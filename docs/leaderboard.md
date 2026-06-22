@@ -7,7 +7,7 @@ permalink: /leaderboard/
 
 # 🏆 DARC Dungeon Leaderboard
 
-*Rankings update when students sync their quest logs. Each completed quest or chest earns **XP**; XP drives your **Level** (max Level 10 — Archmage, 78 XP). **Boss Gates** = floors cleared (max 4).*
+*Rankings update when students sync their quest logs. Each completed main quest or side quest earns **XP**; XP drives your **Level** (max Level 10 — Archmage, 78 XP). **Boss Gates** = floors cleared (max 4).*
 
 <div id="lb-controls">
   <button id="lb-refresh">↻ Refresh</button>

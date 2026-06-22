@@ -16,11 +16,11 @@ permalink: /
 >
 > Each floor corresponds to one day of the bootcamp. Every floor has **rooms** — enter each room, complete the **Main Quest**, and move to the next.
 >
-> Finished early? Look for **Chests** — optional deeper challenges that unlock a named **Weapon** (a skill you carry for the rest of the course). Weapons compound: what you earn in Day 1 pays off in Day 3.
+> Finished early? Look for **Side Quests** — optional deeper challenges that unlock a named **Weapon** (a skill you carry for the rest of the course). Weapons compound: what you earn in Day 1 pays off in Day 3.
 >
 > Each floor ends with a **Boss Gate**: a capstone challenge you submit by committing your work to your fork on GitHub. Push your commit → the grader runs → the next floor unlocks on your personal site.
 >
-> Every completed quest and opened chest earns **XP**. XP accumulates into your **Level** (shown in the widget, bottom-left). All main quests → 34 XP → Level 4 Journeyman. Open every chest → 78 XP → Level 10 Archmage. The leaderboard ranks by level.
+> Every completed main quest or side quest earns **XP**. XP accumulates into your **Level** (shown in the widget, bottom-left). All main quests → 34 XP → Level 4 Journeyman. Complete every side quest → 78 XP → Level 10 Archmage. The leaderboard ranks by level.
 
 ---
 
@@ -73,7 +73,7 @@ Elements: `fire` · `ice` · `lightning` · `earth` · `wind`
 
 ## Weapons Rack
 
-A fully-equipped researcher who opens every chest across all four floors earns:
+A fully-equipped researcher who completes every side quest across all four floors earns:
 
 | Domain | Weapons |
 |---|---|
@@ -89,4 +89,4 @@ A fully-equipped researcher who opens every chest across all four floors earns:
 | **Documentation** | Structure Sigil · Changelog Charm |
 | **GPU + local LLMs** | Smi Sight · Benchmark Blade · Model Menagerie · Modelfile Magic |
 
-All main quests → 34 XP → Level 4 Journeyman. Every chest opened → 78 XP → Level 10 Archmage — fully equipped researcher.
+All main quests → 34 XP → Level 4 Journeyman. Every side quest complete → 78 XP → Level 10 Archmage — fully equipped researcher.

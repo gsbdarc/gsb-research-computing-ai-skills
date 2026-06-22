@@ -58,14 +58,14 @@ sacct -u $USER --format=JobID,JobName,State,Elapsed,MaxRSS,CPUTime --starttime=t
 
 ---
 
-## 📦 Chests
+## 📦 Side Quests
 
 Hidden in the tower wall is a carved niche — inside, a wand that summons your entire job queue with a single whispered word.
 
 {: .chest }
-> **Chest 1 — Watch Wand:** Set up a one-liner alias in `~/.bash_profile` that runs `watch -n 5 squeue -u $USER` with the command `myq`. You should be able to type `myq` at any time and see your live job queue.
+> **Side Quest 1 — Watch Wand:** Set up a one-liner alias in `~/.bash_profile` that runs `watch -n 5 squeue -u $USER` with the command `myq`. You should be able to type `myq` at any time and see your live job queue.
 
-<label class="quest-check"><input type="checkbox" data-room="d3-watch-tower" data-key="chest1"> Watch Wand unlocked</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-watch-tower" data-key="side1"> Watch Wand unlocked</label>
 
 ---
 

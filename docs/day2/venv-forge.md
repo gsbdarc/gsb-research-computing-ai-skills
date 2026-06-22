@@ -57,28 +57,28 @@ deactivate
 
 ---
 
-## 📦 Chests
+## 📦 Side Quests
 
 Three hidden caches are sealed behind this forge's walls — crack them open and you'll walk away with tools that set you apart from every researcher still fighting dependency chaos.
 
 {: .chest }
-> **Chest 1 — Freeze Flask:** Export your environment to `requirements.txt` using `pip freeze`. Then create a new empty venv, install from the requirements file, and verify the packages are the same.
+> **Side Quest 1 — Freeze Flask:** Export your environment to `requirements.txt` using `pip freeze`. Then create a new empty venv, install from the requirements file, and verify the packages are the same.
 
-<label class="quest-check"><input type="checkbox" data-room="d2-venv-forge" data-key="chest1"> Freeze Flask unlocked</label>
+<label class="quest-check"><input type="checkbox" data-room="d2-venv-forge" data-key="side1"> Freeze Flask unlocked</label>
 
 Inside Chest 2 lies the secret that turns active development from a reinstall nightmare into pure flow — change your code, run it, see it work, instantly.
 
 {: .chest }
-> **Chest 2 — Editable Elixir:** Install a local Python package in "editable" mode (`pip install -e .`) so that changes to the source code take effect immediately without reinstalling. When is this useful for research code you're actively developing?
+> **Side Quest 2 — Editable Elixir:** Install a local Python package in "editable" mode (`pip install -e .`) so that changes to the source code take effect immediately without reinstalling. When is this useful for research code you're actively developing?
 
-<label class="quest-check"><input type="checkbox" data-room="d2-venv-forge" data-key="chest2"> Editable Elixir unlocked</label>
+<label class="quest-check"><input type="checkbox" data-room="d2-venv-forge" data-key="side2"> Editable Elixir unlocked</label>
 
 Chest 3 holds a potion that grants mastery over Python itself — not just packages, but the very interpreter version your project runs on.
 
 {: .chest }
-> **Chest 3 — Pyenv Potion:** Look up `pyenv` — a tool for managing multiple Python versions on one machine. What problem does it solve that `module load python` doesn't? When would you need it on the Yens?
+> **Side Quest 3 — Pyenv Potion:** Look up `pyenv` — a tool for managing multiple Python versions on one machine. What problem does it solve that `module load python` doesn't? When would you need it on the Yens?
 
-<label class="quest-check"><input type="checkbox" data-room="d2-venv-forge" data-key="chest3"> Pyenv Potion unlocked</label>
+<label class="quest-check"><input type="checkbox" data-room="d2-venv-forge" data-key="side3"> Pyenv Potion unlocked</label>
 
 ---
 

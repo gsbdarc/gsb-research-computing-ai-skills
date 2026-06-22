@@ -55,21 +55,21 @@ python count_spells.py ~/grimoire/
 
 ---
 
-## 📦 Chests
+## 📦 Side Quests
 
-Two locked chests gleam in the corner — each one rewards a sharper, more dangerous command of the Scribe.
-
-{: .chest }
-> **Chest 1 — Prompt Blade:** The generated script has at least one thing you'd write differently. Identify it and write a better prompt that produces a cleaner result. What made the second prompt better?
-
-<label class="quest-check"><input type="checkbox" data-room="d2-ai-scribe" data-key="chest1"> Prompt Blade unlocked</label>
-
-Hidden inside the second chest is the secret that separates novices from true Scribe commanders: give the Scribe context and it transforms from a guesser into a collaborator.
+Two side quests await — each one rewards a sharper, more dangerous command of the Scribe.
 
 {: .chest }
-> **Chest 2 — Context Tome:** Feed Claude Code your Day 3 SLURM job script (from yesterday's hypothetical) and ask it to explain each `#SBATCH` directive and suggest two improvements. Verify whether each suggestion is correct before accepting it.
+> **Side Quest 1 — Prompt Blade:** The generated script has at least one thing you'd write differently. Identify it and write a better prompt that produces a cleaner result. What made the second prompt better?
 
-<label class="quest-check"><input type="checkbox" data-room="d2-ai-scribe" data-key="chest2"> Context Tome unlocked</label>
+<label class="quest-check"><input type="checkbox" data-room="d2-ai-scribe" data-key="side1"> Prompt Blade unlocked</label>
+
+The second side quest holds the secret that separates novices from true Scribe commanders: give the Scribe context and it transforms from a guesser into a collaborator.
+
+{: .chest }
+> **Side Quest 2 — Context Tome:** Feed Claude Code your Day 3 SLURM job script (from yesterday's hypothetical) and ask it to explain each `#SBATCH` directive and suggest two improvements. Verify whether each suggestion is correct before accepting it.
+
+<label class="quest-check"><input type="checkbox" data-room="d2-ai-scribe" data-key="side2"> Context Tome unlocked</label>
 
 ---
 

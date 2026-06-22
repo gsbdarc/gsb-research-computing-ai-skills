@@ -54,14 +54,14 @@ module unload python/3.11 # unload it
 
 ---
 
-## 📦 Chests
+## 📦 Side Quests
 
 Hidden in this room is a lens that lets you see past the obvious — software that's buried deeper than the main index, waiting to be claimed by someone who knows where to look.
 
 {: .chest }
-> **Chest 1 — Module Lens:** Use `module spider` to find a module that isn't listed obviously in `module avail` — one that requires loading a prerequisite first. What is the prerequisite, and why does the system require it?
+> **Side Quest 1 — Module Lens:** Use `module spider` to find a module that isn't listed obviously in `module avail` — one that requires loading a prerequisite first. What is the prerequisite, and why does the system require it?
 
-<label class="quest-check"><input type="checkbox" data-room="d1-cartographers-room" data-key="chest1"> Module Lens unlocked</label>
+<label class="quest-check"><input type="checkbox" data-room="d1-cartographers-room" data-key="side1"> Module Lens unlocked</label>
 
 ---
 

@@ -77,21 +77,21 @@ print(response.choices[0].message.content)
 
 ---
 
-## 📦 Chests
+## 📦 Side Quests
 
 Two rewards are hidden in this vault — one teaches you how to undo a mistake before it goes public, the other hands you a more secure way to carry credentials altogether.
 
 {: .chest }
-> **Chest 1 — Shield of `.gitignore`:** You committed `.gitignore` above. Now practice a harder case: accidentally stage a `.env` file, then remove it from staging without deleting the file. Use `git rm --cached .env`. Why is this important to know if you're working in a public repo?
+> **Side Quest 1 — Shield of `.gitignore`:** You committed `.gitignore` above. Now practice a harder case: accidentally stage a `.env` file, then remove it from staging without deleting the file. Use `git rm --cached .env`. Why is this important to know if you're working in a public repo?
 
-<label class="quest-check"><input type="checkbox" data-room="d2-key-vault" data-key="chest1"> Shield of .gitignore unlocked</label>
+<label class="quest-check"><input type="checkbox" data-room="d2-key-vault" data-key="side1"> Shield of .gitignore unlocked</label>
 
-This chest holds something even craftier — a way to keep your secrets off the filesystem entirely.
+This side quest holds something even craftier — a way to keep your secrets off the filesystem entirely.
 
 {: .chest }
-> **Chest 2 — Keyring Knife:** Use Python's `keyring` library to store and retrieve the API key from the OS keychain instead of a `.env` file. What is the security trade-off between the two approaches?
+> **Side Quest 2 — Keyring Knife:** Use Python's `keyring` library to store and retrieve the API key from the OS keychain instead of a `.env` file. What is the security trade-off between the two approaches?
 
-<label class="quest-check"><input type="checkbox" data-room="d2-key-vault" data-key="chest2"> Keyring Knife unlocked</label>
+<label class="quest-check"><input type="checkbox" data-room="d2-key-vault" data-key="side2"> Keyring Knife unlocked</label>
 
 ---
 

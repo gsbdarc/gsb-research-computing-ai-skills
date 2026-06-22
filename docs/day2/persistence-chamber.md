@@ -66,14 +66,14 @@ exit                       # or Ctrl-D
 
 ---
 
-## 📦 Chests
+## 📦 Side Quests
 
-A hidden scroll lies sealed in this chest — crack it open and your terminal becomes a battle station: multiple live panes, a status bar that never lets you forget where you are, all within a single indestructible session.
+Crack open this side quest and your terminal becomes a battle station: multiple live panes, a status bar that never lets you forget where you are, all within a single indestructible session.
 
 {: .chest }
-> **Chest 1 — Screen Scroll:** Configure `~/.screenrc` to show a status bar at the bottom with the session name, hostname, and time. Then create a session with two horizontal panes (Ctrl-A, ") and run a script in one while monitoring with `htop` in the other.
+> **Side Quest 1 — Screen Scroll:** Configure `~/.screenrc` to show a status bar at the bottom with the session name, hostname, and time. Then create a session with two horizontal panes (Ctrl-A, ") and run a script in one while monitoring with `htop` in the other.
 
-<label class="quest-check"><input type="checkbox" data-room="d2-persistence-chamber" data-key="chest1"> Screen Scroll unlocked</label>
+<label class="quest-check"><input type="checkbox" data-room="d2-persistence-chamber" data-key="side1"> Screen Scroll unlocked</label>
 
 ---
 

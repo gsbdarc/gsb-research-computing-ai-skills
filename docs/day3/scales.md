@@ -59,21 +59,21 @@ userload
 
 ---
 
-## 📦 Chests
+## 📦 Side Quests
 
 Two artifacts are hidden in this room for those willing to look back at their own footprints.
 
 {: .chest }
-> **Chest 1 — Sacct Scythe:** After your first sbatch job runs (from The Foreman's Desk), come back and run `sacct -j JOBID --format=JobID,Elapsed,MaxRSS,CPUTime`. Compare the actual usage to what you requested. Were your estimates close?
+> **Side Quest 1 — Sacct Scythe:** After your first sbatch job runs (from The Foreman's Desk), come back and run `sacct -j JOBID --format=JobID,Elapsed,MaxRSS,CPUTime`. Compare the actual usage to what you requested. Were your estimates close?
 
-<label class="quest-check"><input type="checkbox" data-room="d3-scales" data-key="chest1"> Sacct Scythe unlocked</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-scales" data-key="side1"> Sacct Scythe unlocked</label>
 
-A second chest waits — this one shows you not just what you used, but how wasteful (or prescient) your estimate really was.
+A second side quest waits — this one shows you not just what you used, but how wasteful (or prescient) your estimate really was.
 
 {: .chest }
-> **Chest 2 — Seff Sigil:** After a job completes, run `seff JOBID`. It shows CPU and memory efficiency as a percentage. What does it tell you about how well you estimated? What would you change in your `#SBATCH` directives?
+> **Side Quest 2 — Seff Sigil:** After a job completes, run `seff JOBID`. It shows CPU and memory efficiency as a percentage. What does it tell you about how well you estimated? What would you change in your `#SBATCH` directives?
 
-<label class="quest-check"><input type="checkbox" data-room="d3-scales" data-key="chest2"> Seff Sigil unlocked</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-scales" data-key="side2"> Seff Sigil unlocked</label>
 
 ---
 

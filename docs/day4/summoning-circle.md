@@ -66,21 +66,21 @@ Notice: the interface is **identical to the Stanford AI Playground** — same Py
 
 ---
 
-## 📦 Chests
+## 📦 Side Quests
 
-Hidden in the shadows of the circle are two sealed chests — each one rewards the curious who push further than the quest demands.
-
-{: .chest }
-> **Chest 1 — Model Menagerie:** Pull two additional models (e.g. `phi3:mini` and `gemma2:2b`). Ask each the same question about SLURM. Compare response quality, speed (tokens/second), and the trade-off between model size and latency.
-
-<label class="quest-check"><input type="checkbox" data-room="d4-summoning-circle" data-key="chest1"> Model Menagerie unlocked</label>
-
-Forge your own creature from raw components — this chest holds the secret to building a model that thinks exactly the way you need it to.
+Two side quests wait in the shadows — each rewards the curious who push further than the main quest demands.
 
 {: .chest }
-> **Chest 2 — Modelfile Magic:** Create a custom Ollama `Modelfile` that gives a base model a system prompt making it respond as a SLURM expert with terse, command-focused answers. Build the custom model with `ollama create` and test it.
+> **Side Quest 1 — Model Menagerie:** Pull two additional models (e.g. `phi3:mini` and `gemma2:2b`). Ask each the same question about SLURM. Compare response quality, speed (tokens/second), and the trade-off between model size and latency.
 
-<label class="quest-check"><input type="checkbox" data-room="d4-summoning-circle" data-key="chest2"> Modelfile Magic unlocked</label>
+<label class="quest-check"><input type="checkbox" data-room="d4-summoning-circle" data-key="side1"> Model Menagerie unlocked</label>
+
+Forge your own creature from raw components — this side quest holds the secret to building a model that thinks exactly the way you need it to.
+
+{: .chest }
+> **Side Quest 2 — Modelfile Magic:** Create a custom Ollama `Modelfile` that gives a base model a system prompt making it respond as a SLURM expert with terse, command-focused answers. Build the custom model with `ollama create` and test it.
+
+<label class="quest-check"><input type="checkbox" data-room="d4-summoning-circle" data-key="side2"> Modelfile Magic unlocked</label>
 
 ---
 

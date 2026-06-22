@@ -76,28 +76,28 @@ print(data.model_dump_json(indent=2))
 
 ---
 
-## 📦 Chests
+## 📦 Side Quests
 
-Three sealed chests line the walls, each one holding a technique that separates brittle pipelines from bulletproof ones. Crack them open.
-
-{: .chest }
-> **Chest 1 — Nested Tome:** Add a nested `Transaction` model to `Form3Extraction` to hold `date`, `shares`, and `price_per_share`. A filing can have multiple transactions — make the field a `List[Transaction]`. Test it on a filing with multiple transaction rows.
-
-<label class="quest-check"><input type="checkbox" data-room="d2-binding-room" data-key="chest1"> Nested Tome unlocked</label>
-
-The Oracle isn't always cooperative — sometimes it hands back mangled JSON that crashes your pipeline at 2am. This chest teaches you to expect that and fight back.
+Three side quests await — each one holds a technique that separates brittle pipelines from bulletproof ones.
 
 {: .chest }
-> **Chest 2 — Retry Rune:** The model sometimes returns malformed JSON. Add a retry loop: if `model_validate_json` raises a `ValidationError`, log the error and retry the API call up to 3 times. Print a warning after the final failure.
+> **Side Quest 1 — Nested Tome:** Add a nested `Transaction` model to `Form3Extraction` to hold `date`, `shares`, and `price_per_share`. A filing can have multiple transactions — make the field a `List[Transaction]`. Test it on a filing with multiple transaction rows.
 
-<label class="quest-check"><input type="checkbox" data-room="d2-binding-room" data-key="chest2"> Retry Rune unlocked</label>
+<label class="quest-check"><input type="checkbox" data-room="d2-binding-room" data-key="side1"> Nested Tome unlocked</label>
 
-Why describe a schema in plain English when you can hand the Oracle the exact specification? This chest unlocks a trick that makes model compliance measurably better.
+The Oracle isn't always cooperative — sometimes it hands back mangled JSON that crashes your pipeline at 2am. This side quest teaches you to expect that and fight back.
 
 {: .chest }
-> **Chest 3 — Schema Shield:** Export your Pydantic model's JSON schema with `Form3Extraction.model_json_schema()` and include it in the system prompt instead of a free-text description. Does the model follow the schema more reliably?
+> **Side Quest 2 — Retry Rune:** The model sometimes returns malformed JSON. Add a retry loop: if `model_validate_json` raises a `ValidationError`, log the error and retry the API call up to 3 times. Print a warning after the final failure.
 
-<label class="quest-check"><input type="checkbox" data-room="d2-binding-room" data-key="chest3"> Schema Shield unlocked</label>
+<label class="quest-check"><input type="checkbox" data-room="d2-binding-room" data-key="side2"> Retry Rune unlocked</label>
+
+Why describe a schema in plain English when you can hand the Oracle the exact specification? This side quest unlocks a trick that makes model compliance measurably better.
+
+{: .chest }
+> **Side Quest 3 — Schema Shield:** Export your Pydantic model's JSON schema with `Form3Extraction.model_json_schema()` and include it in the system prompt instead of a free-text description. Does the model follow the schema more reliably?
+
+<label class="quest-check"><input type="checkbox" data-room="d2-binding-room" data-key="side3"> Schema Shield unlocked</label>
 
 ---
 

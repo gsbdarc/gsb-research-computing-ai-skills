@@ -51,28 +51,28 @@ print(x)        # run in a later cell — it still works (same kernel)
 
 ---
 
-## 📦 Chests
+## 📦 Side Quests
 
 Hidden in the study's locked drawers are tools that separate the apprentice from the archmage — crack them open.
 
 {: .chest }
-> **Chest 1 — Magic Scroll:** Learn three keyboard shortcuts that will save you hours: run-and-advance, insert cell below, and interrupt kernel. Then use `%time` to measure how long a cell takes to run.
+> **Side Quest 1 — Magic Scroll:** Learn three keyboard shortcuts that will save you hours: run-and-advance, insert cell below, and interrupt kernel. Then use `%time` to measure how long a cell takes to run.
 
-<label class="quest-check"><input type="checkbox" data-room="d1-arcane-notebook" data-key="chest1"> Magic Scroll unlocked</label>
+<label class="quest-check"><input type="checkbox" data-room="d1-arcane-notebook" data-key="side1"> Magic Scroll unlocked</label>
 
-The second chest glows with a terminal's green light — the notebook and the shell, fused into one fearsome tool.
-
-{: .chest }
-> **Chest 2 — Shell Tome:** Run a shell command directly inside a Jupyter cell using `%%bash`. Use it to list your grimoire directory on the Yens. Then run `!hostname` (single `!`) in a Python cell. What's the difference between `%%bash` and `!`?
-
-<label class="quest-check"><input type="checkbox" data-room="d1-arcane-notebook" data-key="chest2"> Shell Tome unlocked</label>
-
-The third chest is engraved with ancient runes that speed your hands across every cell without ever reaching for the mouse.
+The second side quest glows with a terminal's green light — the notebook and the shell, fused into one fearsome tool.
 
 {: .chest }
-> **Chest 3 — Vim Sigil:** Enable Vim keybindings in JupyterHub (Settings → Keyboard shortcuts or the Vim extension). Navigate between cells in command mode using `j`/`k`. Why might a researcher bother learning this?
+> **Side Quest 2 — Shell Tome:** Run a shell command directly inside a Jupyter cell using `%%bash`. Use it to list your grimoire directory on the Yens. Then run `!hostname` (single `!`) in a Python cell. What's the difference between `%%bash` and `!`?
 
-<label class="quest-check"><input type="checkbox" data-room="d1-arcane-notebook" data-key="chest3"> Vim Sigil unlocked</label>
+<label class="quest-check"><input type="checkbox" data-room="d1-arcane-notebook" data-key="side2"> Shell Tome unlocked</label>
+
+The third side quest is engraved with ancient runes that speed your hands across every cell without ever reaching for the mouse.
+
+{: .chest }
+> **Side Quest 3 — Vim Sigil:** Enable Vim keybindings in JupyterHub (Settings → Keyboard shortcuts or the Vim extension). Navigate between cells in command mode using `j`/`k`. Why might a researcher bother learning this?
+
+<label class="quest-check"><input type="checkbox" data-room="d1-arcane-notebook" data-key="side3"> Vim Sigil unlocked</label>
 
 ---
 

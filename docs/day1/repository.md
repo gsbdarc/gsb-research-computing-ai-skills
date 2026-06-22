@@ -58,21 +58,21 @@ git push -u origin day1-work
 
 ---
 
-## 📦 Chests
+## 📦 Side Quests
 
-The Archive holds more than safekeeping — it holds power. These chests reveal the spells that let you bend time and context to your will.
+The Archive holds more than safekeeping — it holds power. These side quests reveal the spells that let you bend time and context to your will.
 
 {: .chest }
-> **Chest 1 — History Lens:** Use `git log --oneline`, `git diff HEAD~1`, and `git status` to answer: what was the last commit, what changed, and are there uncommitted modifications right now?
+> **Side Quest 1 — History Lens:** Use `git log --oneline`, `git diff HEAD~1`, and `git status` to answer: what was the last commit, what changed, and are there uncommitted modifications right now?
 
-<label class="quest-check"><input type="checkbox" data-room="d1-repository" data-key="chest1"> History Lens unlocked</label>
+<label class="quest-check"><input type="checkbox" data-room="d1-repository" data-key="side1"> History Lens unlocked</label>
 
 Hidden deeper in the Archive is an escape hatch for every researcher who has ever been interrupted mid-thought.
 
 {: .chest }
-> **Chest 2 — Stash Spell:** Start editing a file, then realize you need to switch branches before finishing. Use `git stash` to park your changes, switch branches, then `git stash pop` to bring them back.
+> **Side Quest 2 — Stash Spell:** Start editing a file, then realize you need to switch branches before finishing. Use `git stash` to park your changes, switch branches, then `git stash pop` to bring them back.
 
-<label class="quest-check"><input type="checkbox" data-room="d1-repository" data-key="chest2"> Stash Spell unlocked</label>
+<label class="quest-check"><input type="checkbox" data-room="d1-repository" data-key="side2"> Stash Spell unlocked</label>
 
 ---
 

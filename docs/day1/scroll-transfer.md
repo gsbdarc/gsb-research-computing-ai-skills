@@ -43,14 +43,14 @@ ls /scratch/SUNetID/grimoire/fire/    # should show your fire spells
 
 ---
 
-## 📦 Chests
+## 📦 Side Quests
 
 A secret compartment behind the courier's desk — crack it open and you'll find a rune that makes `scp` look like a stone chisel.
 
 {: .chest }
-> **Chest 1 — Rsync Rune:** Transfer the grimoire again, but this time use `rsync -avz --progress` instead of `scp`. Then add a new spell file and run rsync a second time — notice that it only transfers the new file. Why is this useful for large datasets?
+> **Side Quest 1 — Rsync Rune:** Transfer the grimoire again, but this time use `rsync -avz --progress` instead of `scp`. Then add a new spell file and run rsync a second time — notice that it only transfers the new file. Why is this useful for large datasets?
 
-<label class="quest-check"><input type="checkbox" data-room="d1-scroll-transfer" data-key="chest1"> Rsync Rune unlocked</label>
+<label class="quest-check"><input type="checkbox" data-room="d1-scroll-transfer" data-key="side1"> Rsync Rune unlocked</label>
 
 ---
 

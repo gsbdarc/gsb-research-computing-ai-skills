@@ -67,19 +67,19 @@ Note your job ID. Check it immediately in The Watch Tower room.
 
 ---
 
-## 📦 Chests
+## 📦 Side Quests
 
-Two chests are wedged behind the foreman's filing cabinet — one hums with the promise of passive alerts, the other holds the secret to scripts that never grow stale.
-
-{: .chest }
-> **Chest 1 — Mail Medallion:** Add `#SBATCH --mail-type=END,FAIL` and `#SBATCH --mail-user=YOUR_EMAIL` to your job script. Submit it and wait for the notification email. When is this more useful than watching `squeue`?
-
-<label class="quest-check"><input type="checkbox" data-room="d3-foremans-desk" data-key="chest1"> Mail Medallion unlocked</label>
+Two side quests wait here — one hums with the promise of passive alerts, the other holds the secret to scripts that never grow stale.
 
 {: .chest }
-> **Chest 2 — Template Tome:** Rewrite `first_job.sh` to accept the input directory as `$1` (the first argument), so you can submit `sbatch jobs/first_job.sh ~/grimoire/` and the script uses that path. This makes one script handle any input.
+> **Side Quest 1 — Mail Medallion:** Add `#SBATCH --mail-type=END,FAIL` and `#SBATCH --mail-user=YOUR_EMAIL` to your job script. Submit it and wait for the notification email. When is this more useful than watching `squeue`?
 
-<label class="quest-check"><input type="checkbox" data-room="d3-foremans-desk" data-key="chest2"> Template Tome unlocked</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-foremans-desk" data-key="side1"> Mail Medallion unlocked</label>
+
+{: .chest }
+> **Side Quest 2 — Template Tome:** Rewrite `first_job.sh` to accept the input directory as `$1` (the first argument), so you can submit `sbatch jobs/first_job.sh ~/grimoire/` and the script uses that path. This makes one script handle any input.
+
+<label class="quest-check"><input type="checkbox" data-room="d3-foremans-desk" data-key="side2"> Template Tome unlocked</label>
 
 ---
 

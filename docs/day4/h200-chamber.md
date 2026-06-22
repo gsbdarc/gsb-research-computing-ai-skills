@@ -69,19 +69,19 @@ tail -f logs/gpu_job_JOBID.out
 
 ---
 
-## 📦 Chests
+## 📦 Side Quests
 
-Two locked chests glow against the far wall. One holds a diagnostic lens, the other a measuring sword — both invaluable before you ever argue for GPU time in a grant proposal.
-
-{: .chest }
-> **Chest 1 — Smi Sight:** Run `nvidia-smi` inside your GPU job and add `nvidia-smi --query-gpu=name,memory.total,memory.used,utilization.gpu --format=csv` to log GPU state at the start and end of your script. Save the output to a file.
-
-<label class="quest-check"><input type="checkbox" data-room="d4-h200-chamber" data-key="chest1"> Smi Sight unlocked</label>
+Two side quests await — one holds a diagnostic lens, the other a measuring sword — both invaluable before you ever argue for GPU time in a grant proposal.
 
 {: .chest }
-> **Chest 2 — Benchmark Blade:** Run the same matrix multiply on both the H200 (yen-gpu4) and CPU only. Compare wall-clock time using Python's `time` module. At what matrix size does the GPU start to win decisively?
+> **Side Quest 1 — Smi Sight:** Run `nvidia-smi` inside your GPU job and add `nvidia-smi --query-gpu=name,memory.total,memory.used,utilization.gpu --format=csv` to log GPU state at the start and end of your script. Save the output to a file.
 
-<label class="quest-check"><input type="checkbox" data-room="d4-h200-chamber" data-key="chest2"> Benchmark Blade unlocked</label>
+<label class="quest-check"><input type="checkbox" data-room="d4-h200-chamber" data-key="side1"> Smi Sight unlocked</label>
+
+{: .chest }
+> **Side Quest 2 — Benchmark Blade:** Run the same matrix multiply on both the H200 (yen-gpu4) and CPU only. Compare wall-clock time using Python's `time` module. At what matrix size does the GPU start to win decisively?
+
+<label class="quest-check"><input type="checkbox" data-room="d4-h200-chamber" data-key="side2"> Benchmark Blade unlocked</label>
 
 ---
 

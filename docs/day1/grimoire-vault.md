@@ -60,28 +60,28 @@ ls ice/ | wc -l       # count ice spells
 
 ---
 
-## 📦 Chests
+## 📦 Side Quests
 
-Hidden deeper in the vault, three locked chests glow with a faint arcane light. Each one rewards a researcher bold enough to go beyond the basics.
-
-{: .chest }
-> **Chest 1 — Wildcard Wand:** Which element+type combination is rarest in the entire grimoire? Find the answer using only `ls`, pipes, `sort`, and `uniq -c` — no Python.
-
-<label class="quest-check"><input type="checkbox" data-room="d1-grimoire-vault" data-key="chest1"> Wildcard Wand unlocked</label>
-
-The second chest is sealed by a riddle only `find` can answer — pierce every subdirectory in a single breath.
+Hidden deeper in the vault, three side quests glow with a faint arcane light. Each one rewards a researcher bold enough to go beyond the basics.
 
 {: .chest }
-> **Chest 2 — Find Familiar:** Use `find -exec` to print the first line of every tier-5 offensive spell file across all element subdirectories in a single command.
+> **Side Quest 1 — Wildcard Wand:** Which element+type combination is rarest in the entire grimoire? Find the answer using only `ls`, pipes, `sort`, and `uniq -c` — no Python.
 
-<label class="quest-check"><input type="checkbox" data-room="d1-grimoire-vault" data-key="chest2"> Find Familiar unlocked</label>
+<label class="quest-check"><input type="checkbox" data-room="d1-grimoire-vault" data-key="side1"> Wildcard Wand unlocked</label>
 
-The third chest holds the most powerful relic in the vault — a tool that transforms raw filenames into structured intelligence.
+The second side quest is sealed by a riddle only `find` can answer — pierce every subdirectory in a single breath.
 
 {: .chest }
-> **Chest 3 — Awk Sigil:** Use `awk` to generate a CSV inventory: `element,tier,type,count` — one row per unique combination, sorted by count descending. Redirect it to `inventory.csv`.
+> **Side Quest 2 — Find Familiar:** Use `find -exec` to print the first line of every tier-5 offensive spell file across all element subdirectories in a single command.
 
-<label class="quest-check"><input type="checkbox" data-room="d1-grimoire-vault" data-key="chest3"> Awk Sigil unlocked</label>
+<label class="quest-check"><input type="checkbox" data-room="d1-grimoire-vault" data-key="side2"> Find Familiar unlocked</label>
+
+The third side quest holds the most powerful relic in the vault — a tool that transforms raw filenames into structured intelligence.
+
+{: .chest }
+> **Side Quest 3 — Awk Sigil:** Use `awk` to generate a CSV inventory: `element,tier,type,count` — one row per unique combination, sorted by count descending. Redirect it to `inventory.csv`.
+
+<label class="quest-check"><input type="checkbox" data-room="d1-grimoire-vault" data-key="side3"> Awk Sigil unlocked</label>
 
 ---
 

@@ -47,14 +47,14 @@ pwd           # /home/users/SUNetID (or similar)
 
 ---
 
-## 📦 Chests
+## 📦 Side Quests
 
 Hidden inside this room is a shortcut that will save you a dozen keystrokes every single day — a carved sigil that shrinks a mouthful of a command down to two words.
 
 {: .chest }
-> **Chest 1 — SSH Sigil:** Set up `~/.ssh/config` on your laptop so that `ssh yen` connects you to `yen.stanford.edu` without typing your full username. You should be able to type nothing except `ssh yen` and be prompted for your password.
+> **Side Quest 1 — SSH Sigil:** Set up `~/.ssh/config` on your laptop so that `ssh yen` connects you to `yen.stanford.edu` without typing your full username. You should be able to type nothing except `ssh yen` and be prompted for your password.
 
-<label class="quest-check"><input type="checkbox" data-room="d1-ssh-gate" data-key="chest1"> SSH Sigil unlocked</label>
+<label class="quest-check"><input type="checkbox" data-room="d1-ssh-gate" data-key="side1"> SSH Sigil unlocked</label>
 
 ---
 

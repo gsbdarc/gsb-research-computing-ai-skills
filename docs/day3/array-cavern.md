@@ -103,35 +103,35 @@ python3 scripts/merge_results.py
 
 ---
 
-## 📦 Chests
+## 📦 Side Quests
 
-These chests hold the techniques that separate a one-time script from a production-grade pipeline. Each one makes you harder to stop.
-
-{: .chest }
-> **Chest 1 — Dependency Dagger:** Chain two job arrays with `--dependency=afterok:JOBID`. The second array runs only after all tasks in the first succeed. Write a two-stage pipeline: extract → validate. What happens when one extraction task fails?
-
-<label class="quest-check"><input type="checkbox" data-room="d3-array-cavern" data-key="chest1"> Dependency Dagger unlocked</label>
-
-💡 This one chest turns two isolated arrays into a guarded two-stage pipeline — stage two never fires until stage one is clean.
+These side quests hold the techniques that separate a one-time script from a production-grade pipeline. Each one makes you harder to stop.
 
 {: .chest }
-> **Chest 2 — Dynamic Draught:** Instead of hardcoding `--array=1-100`, write a wrapper that counts lines in the input file and submits `sbatch --array=1-$(wc -l < filings_list.txt) array_extract.sh`. Never hard-code a count that changes when the dataset changes.
+> **Side Quest 1 — Dependency Dagger:** Chain two job arrays with `--dependency=afterok:JOBID`. The second array runs only after all tasks in the first succeed. Write a two-stage pipeline: extract → validate. What happens when one extraction task fails?
 
-<label class="quest-check"><input type="checkbox" data-room="d3-array-cavern" data-key="chest2"> Dynamic Draught unlocked</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-array-cavern" data-key="side1"> Dependency Dagger unlocked</label>
+
+💡 This side quest turns two isolated arrays into a guarded two-stage pipeline — stage two never fires until stage one is clean.
+
+{: .chest }
+> **Side Quest 2 — Dynamic Draught:** Instead of hardcoding `--array=1-100`, write a wrapper that counts lines in the input file and submits `sbatch --array=1-$(wc -l < filings_list.txt) array_extract.sh`. Never hard-code a count that changes when the dataset changes.
+
+<label class="quest-check"><input type="checkbox" data-room="d3-array-cavern" data-key="side2"> Dynamic Draught unlocked</label>
 
 💡 Your script will now scale to any dataset you hand it — no edits required when the file count grows from 100 to 10,000.
 
 {: .chest }
-> **Chest 3 — Checkpoint Charm:** Add 5 lines to `extract_filing.py`: before doing any work, check if the task ID already appears in `completed.log`. If yes, exit early. If no, process the filing and append the task ID to the log on success. Resubmit the array — only incomplete tasks run.
+> **Side Quest 3 — Checkpoint Charm:** Add 5 lines to `extract_filing.py`: before doing any work, check if the task ID already appears in `completed.log`. If yes, exit early. If no, process the filing and append the task ID to the log on success. Resubmit the array — only incomplete tasks run.
 
-<label class="quest-check"><input type="checkbox" data-room="d3-array-cavern" data-key="chest3"> Checkpoint Charm unlocked</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-array-cavern" data-key="side3"> Checkpoint Charm unlocked</label>
 
 💡 A cluster job can die mid-run. This charm lets you resubmit without redoing finished work — your pipeline picks up exactly where it fell.
 
 {: .chest }
-> **Chest 4 — Siege Scale:** Extend the fault-tolerant pattern to 10,000 inputs. Organize outputs into dated subdirectories (`results/2026-06-22/`) so reruns don't overwrite previous runs. How does this change the merge step?
+> **Side Quest 4 — Siege Scale:** Extend the fault-tolerant pattern to 10,000 inputs. Organize outputs into dated subdirectories (`results/2026-06-22/`) so reruns don't overwrite previous runs. How does this change the merge step?
 
-<label class="quest-check"><input type="checkbox" data-room="d3-array-cavern" data-key="chest4"> Siege Scale unlocked</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-array-cavern" data-key="side4"> Siege Scale unlocked</label>
 
 ⚠️ At 10,000 tasks, even a 1% failure rate means 100 broken outputs. Dated directories and explicit failure logs are not optional at this scale — they are armor.
 

@@ -54,28 +54,28 @@ rm -r old/                     # delete a directory and everything in it
 
 ---
 
-## 📦 Chests
+## 📦 Side Quests
 
-Hidden behind the columns are three chests, each sealed with a different cipher. Crack them and claim weapons that will serve you for years.
-
-{: .chest }
-> **Chest 1 — Grep Blade:** Your dungeon contains 300 spell files. Find every `fire` spell that is also `offensive`, and count how many there are — using only pipes and no loops.
-
-<label class="quest-check"><input type="checkbox" data-room="d1-command-spire" data-key="chest1"> Grep Blade unlocked</label>
-
-The second chest hums with strange energy — it wants you to rename things in bulk, the kind of task that would take an hour by hand and ten seconds in a loop.
+Three side quests wait behind the columns, each sealed with a different cipher. Complete them and claim weapons that will serve you for years.
 
 {: .chest }
-> **Chest 2 — Shell Rune:** Write a `for` loop that renames every `.txt` file in the current directory by appending `_archive` before the extension. (e.g. `quest.txt` → `quest_archive.txt`)
+> **Side Quest 1 — Grep Blade:** Your dungeon contains 300 spell files. Find every `fire` spell that is also `offensive`, and count how many there are — using only pipes and no loops.
 
-<label class="quest-check"><input type="checkbox" data-room="d1-command-spire" data-key="chest2"> Shell Rune unlocked</label>
+<label class="quest-check"><input type="checkbox" data-room="d1-command-spire" data-key="side1"> Grep Blade unlocked</label>
 
-The third chest is the hardest to open — and the most valuable. Inside is the power to turn any trick you learn today into a tool you can call anytime.
+The second side quest hums with strange energy — it wants you to rename things in bulk, the kind of task that would take an hour by hand and ten seconds in a loop.
 
 {: .chest }
-> **Chest 3 — Arcane Blade:** Write a reusable shell script `organize.sh` that takes a directory as its first argument (`$1`) and prints a count of files per extension. Run it on the grimoire directory.
+> **Side Quest 2 — Shell Rune:** Write a `for` loop that renames every `.txt` file in the current directory by appending `_archive` before the extension. (e.g. `quest.txt` → `quest_archive.txt`)
 
-<label class="quest-check"><input type="checkbox" data-room="d1-command-spire" data-key="chest3"> Arcane Blade unlocked</label>
+<label class="quest-check"><input type="checkbox" data-room="d1-command-spire" data-key="side2"> Shell Rune unlocked</label>
+
+The third side quest is the hardest — and the most valuable. Inside is the power to turn any trick you learn today into a tool you can call anytime.
+
+{: .chest }
+> **Side Quest 3 — Arcane Blade:** Write a reusable shell script `organize.sh` that takes a directory as its first argument (`$1`) and prints a count of files per extension. Run it on the grimoire directory.
+
+<label class="quest-check"><input type="checkbox" data-room="d1-command-spire" data-key="side3"> Arcane Blade unlocked</label>
 
 ---
 

@@ -42,7 +42,7 @@ The final gate stands open — but only your output will unlock it.
 > - `README.md` from The Chronicle — what the pipeline does, how to run it, known limitations
 
 {: .tip }
-> 💡 Check `results/failed_tasks.txt` before committing. If tasks failed, resubmit the array. If you opened the Checkpoint Charm chest in the Array Cavern, your pipeline will skip already-completed tasks automatically.
+> 💡 Check `results/failed_tasks.txt` before committing. If tasks failed, resubmit the array. If you completed the Checkpoint Charm side quest in the Array Cavern, your pipeline will skip already-completed tasks automatically.
 
 ---
 

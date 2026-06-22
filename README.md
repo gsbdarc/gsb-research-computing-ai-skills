@@ -4,9 +4,9 @@
 
 You are a pre-doctoral researcher at Stanford GSB. You have four days to learn the tools that serious computational researchers use every day: the command line, the Yens cluster, SLURM, GPU jobs, LLM APIs, and how to document and scale your work.
 
-The course is structured as a dungeon game. Each day is a floor. Each hands-on block is a room. You earn skills by completing quests, unlock optional depth by opening chests, and advance to the next floor by passing a Boss Gate — a real deliverable you commit to GitHub.
+The course is structured as a dungeon game. Each day is a floor. Each hands-on block is a room. You earn skills by completing main quests, unlock optional depth with side quests, and advance to the next floor by passing a Boss Gate — a real deliverable you commit to GitHub.
 
-**Everyone clears all four floors. The real competition is who reaches the highest level — quests and chests earn XP, XP drives your level.**
+**Everyone clears all four floors. The real competition is who reaches the highest level — main quests and side quests earn XP, XP drives your level.**
 
 At any point, open your Quest Log (bottom-left of any page), click **Sync to leaderboard**, save the file, and push it. Your position on the [leaderboard](https://gsbdarc.github.io/rf-bootcamp-2026/leaderboard/) updates automatically.
 
@@ -143,16 +143,16 @@ The grader checks that the files exist and contain valid data — it does not gr
 ## Leaderboard
 
 The leaderboard at `/leaderboard/` ranks students by:
-1. **Level** — each completed quest or chest earns 1 XP; XP total determines level (max Level 10 — Archmage at 78 XP)
+1. **Level** — each completed main quest or side quest earns 1 XP; XP total determines level (max Level 10 — Archmage at 78 XP)
 2. **Boss Gates cleared** (tiebreaker) — everyone should reach 4
 
 To update your position: open the **Quest Log** widget (bottom-left of any dungeon page) → **Sync to leaderboard** → save `quest_log.json` to your repo root → commit and push. The grader updates your ranking automatically.
 
 ## Chests and Weapons
 
-Every room has an optional **Chest** — a one-line challenge you figure out yourself (no walkthrough). Solving it earns a named **Weapon**: a skill that pays off later in the course.
+Every room has optional **Side Quests** — one-line challenges you figure out yourself (no walkthrough). Completing one earns a named **Weapon**: a skill that pays off later in the course.
 
-You don't need to open any chests to pass Boss Gates. But every quest and chest earns **XP**, and XP drives your **Level**. All main quests only → 34 XP → Level 4 Journeyman. Every chest opened → 78 XP → Level 10 Archmage, fully equipped researcher.
+You don't need to complete any side quests to pass Boss Gates. But every main quest and side quest earns **XP**, and XP drives your **Level**. All main quests only → 34 XP → Level 4 Journeyman. Every side quest complete → 78 XP → Level 10 Archmage, fully equipped researcher.
 
 ---
 

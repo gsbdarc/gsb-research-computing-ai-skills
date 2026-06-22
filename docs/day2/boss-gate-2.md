@@ -40,7 +40,7 @@ The boss doesn't care about your plan — only your output. Five transcripts, fi
 > git push
 > ```
 
-💡 Use your Pydantic model from The Binding Room. If you haven't opened that chest yet, now is a good time.
+💡 Use your Pydantic model from The Binding Room. If you haven't completed that side quest yet, now is a good time.
 {: .tip }
 
 ---

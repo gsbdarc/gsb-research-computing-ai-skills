@@ -77,28 +77,28 @@ print(response.choices[0].message.content)
 
 ---
 
-## 📦 Chests
+## 📦 Side Quests
 
 Three hidden caches are sealed behind this chamber's walls — each one rewards a researcher willing to push past the basics.
 
 {: .chest }
-> **Chest 1 — Model Mirror:** Run the same extraction prompt with two different models available in the Playground (e.g. `gpt-4o-mini` and `gpt-4o`). Compare the outputs for accuracy and response time. When is the cheaper model good enough?
+> **Side Quest 1 — Model Mirror:** Run the same extraction prompt with two different models available in the Playground (e.g. `gpt-4o-mini` and `gpt-4o`). Compare the outputs for accuracy and response time. When is the cheaper model good enough?
 
-<label class="quest-check"><input type="checkbox" data-room="d2-oracles-chamber" data-key="chest1"> Model Mirror unlocked</label>
+<label class="quest-check"><input type="checkbox" data-room="d2-oracles-chamber" data-key="side1"> Model Mirror unlocked</label>
 
-The second chest hides a trick that makes your tool feel alive — responses that appear word by word, like the Oracle is thinking out loud.
-
-{: .chest }
-> **Chest 2 — Stream Stone:** Modify your script to use streaming responses (`stream=True`). Print each chunk as it arrives. When would streaming improve the user experience in a real research tool?
-
-<label class="quest-check"><input type="checkbox" data-room="d2-oracles-chamber" data-key="chest2"> Stream Stone unlocked</label>
-
-The third chest rewards the bold: stop waiting in line — summon five Oracles at once.
+The second side quest hides a trick that makes your tool feel alive — responses that appear word by word, like the Oracle is thinking out loud.
 
 {: .chest }
-> **Chest 3 — Async Arrow:** Rewrite the extraction to use `asyncio` and `AsyncOpenAI` to process 5 filings concurrently. How much faster is it than sequential calls?
+> **Side Quest 2 — Stream Stone:** Modify your script to use streaming responses (`stream=True`). Print each chunk as it arrives. When would streaming improve the user experience in a real research tool?
 
-<label class="quest-check"><input type="checkbox" data-room="d2-oracles-chamber" data-key="chest3"> Async Arrow unlocked</label>
+<label class="quest-check"><input type="checkbox" data-room="d2-oracles-chamber" data-key="side2"> Stream Stone unlocked</label>
+
+The third side quest rewards the bold: stop waiting in line — summon five Oracles at once.
+
+{: .chest }
+> **Side Quest 3 — Async Arrow:** Rewrite the extraction to use `asyncio` and `AsyncOpenAI` to process 5 filings concurrently. How much faster is it than sequential calls?
+
+<label class="quest-check"><input type="checkbox" data-room="d2-oracles-chamber" data-key="side3"> Async Arrow unlocked</label>
 
 ---
 

@@ -73,6 +73,6 @@ Every row in this table is a weapon you forged, a door you unlocked, a skill no 
 {: .important }
 > **All four floors cleared.**
 >
-> Every skill in the table above is yours — not borrowed, not half-understood, yours. Now check the leaderboard — the dungeon isn't over until everyone sees how many chests you opened. Sync your quest log and see where you rank.
+> Every skill in the table above is yours — not borrowed, not half-understood, yours. Now check the leaderboard — the dungeon isn't over until everyone sees how many side quests you completed. Sync your quest log and see where you rank.
 >
 > What's next: Sherlock (Stanford's HPC), Redivis (data platform), fine-tuning, multi-node jobs, and whatever your research actually demands. The dungeon was the foundation. You know where every door leads. Go build something real.

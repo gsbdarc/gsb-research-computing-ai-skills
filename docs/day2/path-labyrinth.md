@@ -54,14 +54,14 @@ The rule: **the first match in PATH wins.** Modules and venvs work by prepending
 
 ---
 
-## 📦 Chests
+## 📦 Side Quests
 
 Hidden in the labyrinth walls is a rune that lets you reshape the corridors themselves — permanently, at login, before you even type a single command. Crack it open.
 
 {: .chest }
-> **Chest 1 — Profile Rune:** Add a line to `~/.bash_profile` (or `~/.bashrc`) on the Yens that automatically activates your Bootcamp venv whenever you log in. Test it by logging out and back in. Why might this be a bad idea for a shared project, even if it's convenient for solo work?
+> **Side Quest 1 — Profile Rune:** Add a line to `~/.bash_profile` (or `~/.bashrc`) on the Yens that automatically activates your Bootcamp venv whenever you log in. Test it by logging out and back in. Why might this be a bad idea for a shared project, even if it's convenient for solo work?
 
-<label class="quest-check"><input type="checkbox" data-room="d2-path-labyrinth" data-key="chest1"> Profile Rune unlocked</label>
+<label class="quest-check"><input type="checkbox" data-room="d2-path-labyrinth" data-key="side1"> Profile Rune unlocked</label>
 
 ---
 

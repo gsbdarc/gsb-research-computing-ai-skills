@@ -12,7 +12,7 @@ permalink: /day3/hall-of-heroes/
 
 ---
 
-No quests. No chests. No commits required. This room belongs to you.
+No quests. No side quests. No commits required. This room belongs to you.
 
 The instructors will pull up `userload` and `squeue` on the projector and call out the day's champions:
 

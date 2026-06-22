@@ -76,21 +76,21 @@ Input: SEC Form 3 filings from EDGAR (public domain).
 
 ---
 
-## 📦 Chests
+## 📦 Side Quests
 
 Two treasures are hidden in the walls of this library — crack them open and your repo transforms from a pile of scripts into a fortress any collaborator can navigate.
 
 {: .chest }
-> **Chest 1 — Structure Sigil:** Reorganize your repo into the standard research layout: `data/` for inputs, `scripts/` for code, `results/` for outputs, `jobs/` for SLURM scripts. Update your README paths to match. Does the repo make more sense to a first-time reader now?
+> **Side Quest 1 — Structure Sigil:** Reorganize your repo into the standard research layout: `data/` for inputs, `scripts/` for code, `results/` for outputs, `jobs/` for SLURM scripts. Update your README paths to match. Does the repo make more sense to a first-time reader now?
 
-<label class="quest-check"><input type="checkbox" data-room="d3-chronicle" data-key="chest1"> Structure Sigil unlocked</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-chronicle" data-key="side1"> Structure Sigil unlocked</label>
 
-The second chest rewards the researchers who think about their future selves — the ones who will return to this work months from now and need to know not just *what* changed, but *why*.
+The second side quest rewards the researchers who think about their future selves — the ones who will return to this work months from now and need to know not just *what* changed, but *why*.
 
 {: .chest }
-> **Chest 2 — Changelog Charm:** Create a `CHANGELOG.md` with an entry for today: what you built, what model you used, what the output schema looks like. Add a second entry for Day 4 when you swap in Ollama. Why does this matter for reproducibility?
+> **Side Quest 2 — Changelog Charm:** Create a `CHANGELOG.md` with an entry for today: what you built, what model you used, what the output schema looks like. Add a second entry for Day 4 when you swap in Ollama. Why does this matter for reproducibility?
 
-<label class="quest-check"><input type="checkbox" data-room="d3-chronicle" data-key="chest2"> Changelog Charm unlocked</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-chronicle" data-key="side2"> Changelog Charm unlocked</label>
 
 ---
 
