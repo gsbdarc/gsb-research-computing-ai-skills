@@ -28,8 +28,8 @@ By the end of today you can:
 
 - Connect to the Yens, navigate the file system, transfer data
 - Manage a Python environment and call any OpenAI-compatible API
-- Submit SLURM batch jobs, job arrays, and chained pipelines
-- Write pipelines that survive partial failures and resume where they left off
+- Submit SLURM batch jobs and job arrays across hundreds of inputs
 - Combine parallel outputs into clean, auditable results
+- Document a pipeline in a README while it's still fresh
 
 Day 4 awaits — the GPU Fortress.

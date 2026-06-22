@@ -77,7 +77,7 @@ A fully-equipped researcher who opens every chest across all four floors earns:
 |---|---|
 | **Shell** | Grep Blade · Wildcard Wand · Shell Rune · Rsync Rune · Arcane Blade |
 | **Remote access** | SSH Sigil · Module Lens · Screen Scroll |
-| **Version control** | History Lens · Stash Spell · Blame Blade |
+| **Version control** | History Lens · Stash Spell |
 | **Python env** | Freeze Flask · Editable Elixir · Pyenv Potion · Profile Rune |
 | **Security** | Shield of `.gitignore` · Keyring Knife |
 | **AI Playground + APIs** | Model Mirror · Stream Stone · Async Arrow |
@@ -85,6 +85,6 @@ A fully-equipped researcher who opens every chest across all four floors earns:
 | **Data extraction** | Nested Tome · Retry Rune · Schema Shield |
 | **SLURM + scaling** | Sacct Scythe · Mail Medallion · Template Tome · Watch Wand · Dependency Dagger · Checkpoint Charm · Siege Scale |
 | **Documentation** | Structure Sigil · Changelog Charm |
-| **GPU + local LLMs** | Smi Sight · Benchmark Blade · Model Menagerie · Modelfile Magic · Throughput Tome |
+| **GPU + local LLMs** | Smi Sight · Benchmark Blade · Model Menagerie · Modelfile Magic |
 
 Basic quest only → Level 10 graduate. Every chest opened → fully equipped researcher.
