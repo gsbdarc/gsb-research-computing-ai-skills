@@ -1,0 +1,33 @@
+# Jekyll
+docs/_site/
+docs/.jekyll-cache/
+docs/.jekyll-metadata
+docs/vendor/
+docs/.bundle/
+docs/Gemfile.lock
+
+# R
+.Rhistory
+.RData
+.Rproj.user/
+
+# OS / editor
+.DS_Store
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# Python (when we add exercises/)
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+.env
+
+# Node + Cloudflare Worker
+node_modules/
+bot/.dev.vars
+bot/.wrangler/
+bot/dist/

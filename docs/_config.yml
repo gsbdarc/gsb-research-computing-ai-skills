@@ -1,0 +1,82 @@
+# Site-wide settings for RF Coding Bootcamp 2026
+#
+# This file is NOT auto-reloaded by `jekyll serve` — restart the server
+# after changing anything here.
+
+title: RF Coding Bootcamp 2026
+tagline: GSB RF Coding Bootcamp Website
+author: GSB DARC Team
+description: >-
+  Four-day intro to Stanford GSB's Yens cluster for pre-doctoral researchers.
+  CLI, SSH, JupyterHub, SLURM, GPU jobs on the H200, and AI workflows —
+  taught in bite-sized blocks with a live tutor bot on the site.
+
+baseurl: '/rf_bootcamp_2026'
+url: 'https://gsbdarc.github.io'
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
+  - vendor
+  - .bundle
+
+# Theme (use the gem directly — we're not on the legacy github-pages stack)
+theme: just-the-docs
+color_scheme: light
+search_enabled: true
+heading_anchors: true
+
+# Syntax highlighting
+highlighter: rouge
+
+# Pretty permalinks (e.g. /day1/ instead of /day1.html)
+permalink: pretty
+
+# Top-right aux links
+aux_links:
+  GSB RCpedia:
+    - 'https://rcpedia.stanford.edu'
+
+# Course chat bot — URL of the deployed Cloudflare Worker.
+# Leave empty during local dev and the widget will show a friendly placeholder.
+# After deploying the Worker (see bot/README.md), set this to e.g.
+#   https://rf-bootcamp-bot.gsbdarc.workers.dev
+bot_worker_url: ''
+
+# Just-the-Docs callouts
+callouts:
+  tip:
+    title: Tip
+    color: green
+  warning:
+    title: Warning
+    color: red
+  important:
+    title: Important
+    color: blue
+  note:
+    title: Note
+    color: purple
+  boss:
+    title: Boss Battle
+    color: yellow
+  chest:
+    title: Chest
+    color: yellow
+  weapon:
+    title: Weapon Earned
+    color: purple
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+
+compress_html:
+  clippings: all
+  comments: all
+  endings: all
+  startings: []
+  blanklines: false
+  profile: false

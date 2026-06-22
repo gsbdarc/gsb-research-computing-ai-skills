@@ -1,0 +1,220 @@
+/* Course chat bot widget styles.
+ * Self-contained — does not touch Just-the-Docs' own classes. */
+
+#rfbot-root {
+  --rfbot-accent: #8c1515;       /* Stanford Cardinal */
+  --rfbot-accent-soft: #b83a3a;
+  --rfbot-bg: #ffffff;
+  --rfbot-bg-soft: #f4f5f7;
+  --rfbot-fg: #1a1a1a;
+  --rfbot-fg-soft: #555;
+  --rfbot-border: #e4e6eb;
+  --rfbot-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+  --rfbot-radius: 12px;
+
+  position: fixed;
+  bottom: 1.25rem;
+  right: 1.25rem;
+  z-index: 9999;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 14px;
+  color: var(--rfbot-fg);
+}
+
+#rfbot-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--rfbot-accent);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 0.6rem 1rem;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--rfbot-shadow);
+  transition: background 120ms ease, transform 80ms ease;
+}
+#rfbot-toggle:hover { background: var(--rfbot-accent-soft); }
+#rfbot-toggle:active { transform: translateY(1px); }
+#rfbot-toggle[aria-expanded="true"] { display: none; }
+
+#rfbot-panel {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 380px;
+  max-width: calc(100vw - 2rem);
+  height: 540px;
+  max-height: calc(100vh - 4rem);
+  background: var(--rfbot-bg);
+  border: 1px solid var(--rfbot-border);
+  border-radius: var(--rfbot-radius);
+  box-shadow: var(--rfbot-shadow);
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+}
+#rfbot-panel[aria-hidden="false"] { display: flex; }
+
+.rfbot-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 0.85rem 1rem;
+  background: var(--rfbot-accent);
+  color: #fff;
+}
+.rfbot-header strong { font-size: 15px; }
+.rfbot-subtitle { font-size: 11.5px; opacity: 0.85; margin-top: 2px; }
+#rfbot-close {
+  background: transparent;
+  color: #fff;
+  border: none;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 6px;
+}
+
+.rfbot-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  background: var(--rfbot-bg-soft);
+}
+.rfbot-msg {
+  max-width: 85%;
+  padding: 0.55rem 0.75rem;
+  border-radius: 10px;
+  line-height: 1.45;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+.rfbot-msg.user {
+  align-self: flex-end;
+  background: var(--rfbot-accent);
+  color: #fff;
+  border-bottom-right-radius: 2px;
+}
+.rfbot-msg.bot {
+  align-self: flex-start;
+  background: #fff;
+  color: var(--rfbot-fg);
+  border: 1px solid var(--rfbot-border);
+  border-bottom-left-radius: 2px;
+}
+.rfbot-msg.bot a { color: var(--rfbot-accent); }
+.rfbot-msg.bot code {
+  background: #f0f1f3;
+  padding: 1px 4px;
+  border-radius: 3px;
+  font-size: 13px;
+}
+.rfbot-msg.bot pre {
+  background: #20232a;
+  color: #e6e8eb;
+  padding: 0.5rem 0.6rem;
+  border-radius: 6px;
+  overflow-x: auto;
+  font-size: 12.5px;
+}
+.rfbot-msg.system {
+  align-self: center;
+  background: transparent;
+  color: var(--rfbot-fg-soft);
+  font-style: italic;
+  font-size: 12.5px;
+}
+.rfbot-msg.error {
+  align-self: flex-start;
+  background: #fff5f5;
+  color: #8c1515;
+  border: 1px solid #f1c0c0;
+}
+
+.rfbot-typing {
+  align-self: flex-start;
+  color: var(--rfbot-fg-soft);
+  font-size: 13px;
+  font-style: italic;
+}
+
+.rfbot-form {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.6rem 0.75rem;
+  border-top: 1px solid var(--rfbot-border);
+  background: var(--rfbot-bg);
+}
+#rfbot-input {
+  flex: 1;
+  resize: none;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid var(--rfbot-border);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.4;
+}
+#rfbot-input:focus {
+  outline: 2px solid var(--rfbot-accent);
+  outline-offset: -1px;
+}
+#rfbot-send {
+  background: var(--rfbot-accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+#rfbot-send:hover { background: var(--rfbot-accent-soft); }
+#rfbot-send:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.rfbot-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.4rem 0.75rem 0.5rem;
+  font-size: 11.5px;
+  color: var(--rfbot-fg-soft);
+  background: var(--rfbot-bg);
+  border-top: 1px solid var(--rfbot-border);
+}
+#rfbot-clear {
+  background: transparent;
+  border: none;
+  color: var(--rfbot-fg-soft);
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+  font-size: 11.5px;
+}
+.rfbot-disclaimer { text-align: right; }
+
+.rfbot-srlabel {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 480px) {
+  #rfbot-panel {
+    width: calc(100vw - 1rem);
+    height: calc(100vh - 4rem);
+    right: 0.5rem;
+    bottom: 0;
+  }
+  #rfbot-toggle .rfbot-toggle-label { display: none; }
+}
