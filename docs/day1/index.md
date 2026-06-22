@@ -1,9 +1,10 @@
 ---
-layout: default
+layout: floor
 title: "Day 1 — The Gatehouse"
 nav_order: 1
 has_children: true
 permalink: /day1/
+floor: 1
 ---
 
 # Day 1 — The Gatehouse

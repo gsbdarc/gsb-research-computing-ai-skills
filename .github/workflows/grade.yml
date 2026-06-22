@@ -1,0 +1,32 @@
+name: Grade Boss Gates
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  grade:
+    runs-on: ubuntu-latest
+    # Don't run the grader on grader commits (prevents infinite loop)
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run grader
+        run: python3 scripts/check_boss_gates.py
+
+      - name: Commit unlocked floors
+        run: |
+          if ! git diff --quiet docs/_data/progress.yml; then
+            git config user.name "DARC Grader"
+            git config user.email "actions@github.com"
+            git add docs/_data/progress.yml
+            git commit -m "Grader: unlock floor(s) [skip ci]"
+            git push
+          else
+            echo "No new floors unlocked."
+          fi

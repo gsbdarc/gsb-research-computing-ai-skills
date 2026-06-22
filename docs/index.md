@@ -18,34 +18,34 @@ permalink: /
 >
 > Finished early? Look for **Chests** — optional deeper challenges that unlock a named **Weapon** (a skill you carry for the rest of the course). Weapons compound: what you earn in Day 1 pays off in Day 3.
 >
-> Each floor ends with a **Boss Gate**: a capstone challenge you submit by committing your work to your fork on GitHub. No commit, no key.
->
-> All rooms are always open — this is a reference, not a lock. But follow the floor order. Room dependencies are real.
+> Each floor ends with a **Boss Gate**: a capstone challenge you submit by committing your work to your fork on GitHub. Push your commit → the grader runs → the next floor unlocks on your personal site.
 
 ---
 
 ## The Four Floors
 
+{% assign unlocked = site.data.progress.unlocked_floors %}
+
 <div class="floor-grid">
-  <div class="floor-card">
-    <h3><a href="{{ '/day1/' | relative_url }}">Floor 1 — The Gatehouse</a></h3>
+  <div class="floor-card{% unless unlocked contains 1 %} floor-card-locked{% endunless %}">
+    <h3><a href="{{ '/day1/' | relative_url }}">Floor 1 — The Gatehouse</a>{% unless unlocked contains 1 %} 🔒{% endunless %}</h3>
     <p>Levels 1–3 &nbsp;·&nbsp; 9 rooms + Boss Gate</p>
     <p>CLI &middot; SSH &middot; Yens file system &middot; JupyterHub &middot; Git &middot; AI primer</p>
   </div>
-  <div class="floor-card">
-    <h3><a href="{{ '/day2/' | relative_url }}">Floor 2 — The Alchemist's Lab</a></h3>
+  <div class="floor-card{% unless unlocked contains 2 %} floor-card-locked{% endunless %}">
+    <h3><a href="{{ '/day2/' | relative_url }}">Floor 2 — The Alchemist's Lab</a>{% unless unlocked contains 2 %} 🔒{% endunless %}</h3>
     <p>Levels 4–6 &nbsp;·&nbsp; 10 rooms + Boss Gate</p>
     <p>Virtual envs &middot; AI Playground &middot; Security &middot; Claude Code &middot; LLMs &middot; Screen</p>
   </div>
-  <div class="floor-card">
-    <h3><a href="{{ '/day3/' | relative_url }}">Floor 3 — The SLURM Mines</a></h3>
-    <p>Levels 7–8 &nbsp;·&nbsp; 9 rooms + Boss Gate + Hall of Heroes</p>
-    <p>SLURM &middot; Job arrays &middot; Fault-tolerant pipelines &middot; Scaling</p>
+  <div class="floor-card{% unless unlocked contains 3 %} floor-card-locked{% endunless %}">
+    <h3><a href="{{ '/day3/' | relative_url }}">Floor 3 — The SLURM Mines</a>{% unless unlocked contains 3 %} 🔒{% endunless %}</h3>
+    <p>Levels 7–8 &nbsp;·&nbsp; 8 rooms + Boss Gate + Hall of Heroes</p>
+    <p>SLURM &middot; Job arrays &middot; Scaling &middot; README</p>
   </div>
-  <div class="floor-card">
-    <h3><a href="{{ '/day4/' | relative_url }}">Floor 4 — The GPU Fortress</a></h3>
-    <p>Levels 9–10 &nbsp;·&nbsp; 9 rooms + Boss Gate</p>
-    <p>H200 GPU jobs &middot; Ollama &middot; vLLM &middot; Privacy &middot; README</p>
+  <div class="floor-card{% unless unlocked contains 4 %} floor-card-locked{% endunless %}">
+    <h3><a href="{{ '/day4/' | relative_url }}">Floor 4 — The GPU Fortress</a>{% unless unlocked contains 4 %} 🔒{% endunless %}</h3>
+    <p>Levels 9–10 &nbsp;·&nbsp; 7 rooms + Boss Gate</p>
+    <p>H200 GPU jobs &middot; Ollama &middot; vLLM &middot; Privacy &middot; Agent risks</p>
   </div>
 </div>
 

@@ -1,9 +1,10 @@
 ---
-layout: default
+layout: floor
 title: "Day 3 — The SLURM Mines"
 nav_order: 3
 has_children: true
 permalink: /day3/
+floor: 3
 ---
 
 # Day 3 — The SLURM Mines

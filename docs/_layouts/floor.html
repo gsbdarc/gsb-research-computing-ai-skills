@@ -1,0 +1,15 @@
+---
+layout: default
+---
+{% assign is_unlocked = false %}
+{% for f in site.data.progress.unlocked_floors %}{% if f == page.floor %}{% assign is_unlocked = true %}{% endif %}{% endfor %}
+{% if is_unlocked %}
+{{ content }}
+{% else %}
+<h1>{{ page.title }}</h1>
+<div class="floor-locked">
+  <p><strong>🔒 Floor Locked</strong></p>
+  <p>Complete Boss Gate {{ page.floor | minus: 1 }} on your fork and push your commit. The grader will run automatically and unlock this floor — then refresh this page.</p>
+  <p><a href="{{ '/' | relative_url }}">← Back to the dungeon entrance</a></p>
+</div>
+{% endif %}

@@ -1,9 +1,10 @@
 ---
-layout: default
+layout: floor
 title: "Day 4 — The GPU Fortress"
 nav_order: 4
 has_children: true
 permalink: /day4/
+floor: 4
 ---
 
 # Day 4 — The GPU Fortress

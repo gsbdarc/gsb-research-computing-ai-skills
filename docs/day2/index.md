@@ -1,9 +1,10 @@
 ---
-layout: default
+layout: floor
 title: "Day 2 — The Alchemist's Lab"
 nav_order: 2
 has_children: true
 permalink: /day2/
+floor: 2
 ---
 
 # Day 2 — The Alchemist's Lab
