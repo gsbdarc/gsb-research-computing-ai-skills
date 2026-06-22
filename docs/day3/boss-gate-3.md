@@ -8,9 +8,13 @@ permalink: /day3/boss-gate-3/
 
 # Boss Gate 3
 
-*The Foreman's final test. One hundred filings. One array. One CSV. You know how to write the recipe. You know how to measure what you need. You know how to handle failures. Prove it.*
+*The Foreman steps aside and gestures at a towering wall of parchment — one hundred SEC filings, each sealed with wax, each hiding secrets of insider trades. The torches flicker. The cluster hums. This is what the whole descent was for: a single array job that processes them all in parallel, fails gracefully, and leaves behind a clean CSV and a chronicle anyone could follow. You've learned the recipe, calibrated the resources, and armored your pipeline against failure. Now prove it.*
 
 ---
+
+## 🔑 The Challenge
+
+The final gate stands open — but only your output will unlock it.
 
 {: .boss }
 > **Boss Battle — The Great Scroll Sweep**
@@ -38,7 +42,7 @@ permalink: /day3/boss-gate-3/
 > - `README.md` from The Chronicle — what the pipeline does, how to run it, known limitations
 
 {: .tip }
-> Check `results/failed_tasks.txt` before committing. If tasks failed, resubmit the array. If you opened the Checkpoint Charm chest in the Array Cavern, your pipeline will skip already-completed tasks automatically.
+> 💡 Check `results/failed_tasks.txt` before committing. If tasks failed, resubmit the array. If you opened the Checkpoint Charm chest in the Array Cavern, your pipeline will skip already-completed tasks automatically.
 
 ---
 
@@ -46,10 +50,10 @@ permalink: /day3/boss-gate-3/
 
 ---
 
-## Skills This Gate Tests
+## ⚔️ Skills This Gate Tests
 
-- Write and submit a SLURM job array
-- Use `$SLURM_ARRAY_TASK_ID` to look up per-task input from a file list
-- Merge parallel outputs into one CSV with explicit failure reporting
-- Write a README that documents the pipeline clearly enough to rerun it
-- Commit and push the complete pipeline (scripts + results + docs) to your fork
+- You can design and fire a SLURM job array that fans out across 100 inputs simultaneously
+- You can wield `$SLURM_ARRAY_TASK_ID` to route each task to exactly the right file
+- You can merge parallel outputs into a single clean CSV with explicit failure reporting
+- You can write a README clear enough that a stranger — or future-you — could rerun the whole pipeline cold
+- You can commit and push the complete deliverable: scripts, results, and documentation, all in one move

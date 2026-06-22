@@ -10,11 +10,13 @@ permalink: /day3/chronicle/
 
 <div data-room-id="d3-chronicle"></div>
 
-*The dungeon's library. Write the record now — while the pipeline is still running in the queue, while you remember what every flag does and why you chose 4 GB of memory instead of 2. Six months from now you will open this repository and thank yourself. Or you won't have written it, and you won't remember.*
+*Torchlight flickers across the dungeon's library — floor-to-ceiling shelves of forgotten pipelines, abandoned repos, README files that were never written. Somewhere in the queue, your jobs are still running. Your memory of every flag, every design choice, every "I'll just use 4 GB and see what happens" is still sharp and alive. This is the only moment you will ever have this clarity. Write it down now — carve it into the stone — because six months from now you will open this repository in the dark, and there will either be a map waiting for you, or there won't.*
 
 ---
 
-## Main Quest
+## 🗡️ Main Quest
+
+The terminal is still warm. The jobs are still humming. This is your window — seal the knowledge before it fades.
 
 {: .important }
 > **Quest:** Write a `README.md` for your Day 3 pipeline while the code is still fresh — before you close the terminal.
@@ -74,12 +76,16 @@ Input: SEC Form 3 filings from EDGAR (public domain).
 
 ---
 
-## Chests
+## 📦 Chests
+
+Two treasures are hidden in the walls of this library — crack them open and your repo transforms from a pile of scripts into a fortress any collaborator can navigate.
 
 {: .chest }
 > **Chest 1 — Structure Sigil:** Reorganize your repo into the standard research layout: `data/` for inputs, `scripts/` for code, `results/` for outputs, `jobs/` for SLURM scripts. Update your README paths to match. Does the repo make more sense to a first-time reader now?
 
 <label class="quest-check"><input type="checkbox" data-room="d3-chronicle" data-key="chest1"> Structure Sigil unlocked</label>
+
+The second chest rewards the researchers who think about their future selves — the ones who will return to this work months from now and need to know not just *what* changed, but *why*.
 
 {: .chest }
 > **Chest 2 — Changelog Charm:** Create a `CHANGELOG.md` with an entry for today: what you built, what model you used, what the output schema looks like. Add a second entry for Day 4 when you swap in Ollama. Why does this matter for reproducibility?
@@ -88,7 +94,7 @@ Input: SEC Form 3 filings from EDGAR (public domain).
 
 ---
 
-## Weapons Earned
+## ⚔️ Weapons Earned
 
 {: .weapon }
 > **Structure Sigil** — standard research project layout (`data/`, `scripts/`, `results/`, `jobs/`, `README.md`) that any collaborator recognizes immediately.
@@ -97,8 +103,8 @@ Input: SEC Form 3 filings from EDGAR (public domain).
 
 ---
 
-## Skills Learned
+## 🧠 Skills Learned
 
-- Write a README that answers: what does this do, how do I run it, what do I get, what are the limits
-- Document while the code is fresh — not as a final step, but as part of the workflow
-- Apply a standard project directory layout that makes repos immediately navigable
+- You can now write a README that arms any reader with exactly what they need: what this does, how to run it, what comes out, and where the edges are
+- You can now document while the code is fresh — treating the README as part of the build, not an afterthought left for never
+- You can now impose a standard project directory structure that makes any repo immediately legible to collaborators, advisors, and future-you

@@ -10,11 +10,13 @@ permalink: /day2/ledger/
 
 <div data-room-id="d2-ledger"></div>
 
-*Every Oracle consultation has a price. The Ledger records what was spent, what was gained, and whether the expense was justified. Most researchers reach for the Oracle when `grep` would have answered in a millisecond for free. The Ledger asks: did you need magic, or did you just want it?*
+*The Oracle does not work for free. Every whispered answer drains a pouch of gold tokens — and the Alchemist's Ledger hangs on the wall as a reminder: the greatest researchers are not those who summon the Oracle most often, but those who know exactly when a humble `grep` blade is all they ever needed. Before you spend, you calculate. Before you cast, you ask: is this a spell — or just a pattern?*
 
 ---
 
-## Main Quest
+## 🗡️ Main Quest
+
+Before you unleash the Oracle on your dataset, step up to the Ledger. Every number on this parchment is a decision you get to make consciously rather than discover on your invoice.
 
 {: .important }
 > **Quest:** Develop intuition for LLM token costs and learn the decision rule for when to use an LLM vs. a simpler tool.
@@ -56,9 +58,9 @@ A token is roughly 0.75 words. The Stanford AI Playground shows costs per 1,000 
 
 ---
 
-## Skills Learned
+## 🧠 Skills Learned
 
-- Estimate API cost for any dataset size before running (tokens × rate × count)
-- Apply the "regex first, LLM second" decision rule
-- Understand that cheap models are often good enough for structured extraction tasks
-- Know that cost scales with both input length and dataset size — always calculate before you batch
+- You can now **estimate API cost for any dataset** before a single token is spent — tokens × rate × count, no surprises on the invoice
+- You can **apply the "regex first, LLM second" rule** with confidence, reaching for the right tool instead of the most impressive one
+- You know that **cheap models often match expensive ones** on structured extraction — power isn't always the answer
+- You understand that **cost scales with both input length and dataset size**, so you calculate before you batch, every time

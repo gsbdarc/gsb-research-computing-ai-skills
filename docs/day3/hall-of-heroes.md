@@ -8,13 +8,13 @@ permalink: /day3/hall-of-heroes/
 
 # Hall of Heroes
 
-*The inscription above the door: "Those who have passed through the SLURM Mines shall be remembered." Inside: a board displaying today's fastest array job, the most creatively named job in the queue, and the first researcher to complete the full Quest Log. The projector shows `userload` live — and the jobs bearing your names.*
+*The torchlight is steadier here. Carved above the entrance in stone: "Those who have passed through the SLURM Mines shall be remembered." Inside, a great board blazes with today's legends — the fastest array job, the most audaciously named process in the queue, the first adventurer to fill every page of the Quest Log. The projector hums and casts `userload` across the wall in green, and there — unmistakably — are jobs bearing your names, churning through the cluster like war machines you built with your own hands.*
 
 ---
 
-This is a celebration room. No quests, no chests, no commits required.
+No quests. No chests. No commits required. This room belongs to you.
 
-The instructors will pull up `userload` and `squeue` on the projector and call out:
+The instructors will pull up `userload` and `squeue` on the projector and call out the day's champions:
 
 - **Fastest array:** who processed 100 filings in the least wall-clock time?
 - **Best job name:** `#SBATCH --job-name` is free real estate; who named theirs most creatively?
@@ -22,14 +22,14 @@ The instructors will pull up `userload` and `squeue` on the projector and call o
 
 ---
 
-## What You've Built
+## ⚔️ What You've Built
 
-By the end of today you can:
+You didn't just learn commands — you forged a complete research pipeline from raw data to auditable results. By the end of today you can:
 
-- Connect to the Yens, navigate the file system, transfer data
-- Manage a Python environment and call any OpenAI-compatible API
-- Submit SLURM batch jobs and job arrays across hundreds of inputs
-- Combine parallel outputs into clean, auditable results
-- Document a pipeline in a README while it's still fresh
+- 🗡️ Connect to the Yens, navigate the file system, and move data like you own the place
+- 🗡️ Manage a Python environment and call any OpenAI-compatible API from a script
+- 🗡️ Submit SLURM batch jobs and job arrays that tear through hundreds of inputs in parallel
+- 🗡️ Combine parallel outputs into clean, auditable results your future self will thank you for
+- 🗡️ Document a pipeline in a README while the details are still alive in your memory
 
-Day 4 awaits — the GPU Fortress.
+Day 4 awaits — the GPU Fortress rises on the horizon.

@@ -10,11 +10,13 @@ permalink: /day3/kitchen/
 
 <div data-room-id="d3-kitchen"></div>
 
-*The dungeon's communal kitchen. Right now, at this very moment, seventeen other researchers are using it. Some are running long batch jobs — the equivalent of a slow roast that's been in the oven for six hours. Others are queued, waiting for a burner to free up. Watch the kitchen before you cook. Then you'll understand why SLURM exists.*
+*Steam hangs in the air. Seventeen other researchers are already in here — one has a slow roast that's been in the oven for six hours, two more are fighting over the last open burner, and somewhere in the back a job has been queued so long it's practically fossilized. This is the Yens cluster at peak hours, rendered in cast iron and fire. Watch it breathe before you even think about striking a match. Once you see the chaos, SLURM stops being bureaucracy and starts being salvation.*
 
 ---
 
-## Main Quest
+## 🗡️ Main Quest
+
+Before you touch a single `sbatch` flag, you need to see the beast with your own eyes.
 
 {: .important }
 > **Quest:** Watch the Yens live — see resource contention in real time, then understand the kitchen analogy for SLURM.
@@ -58,9 +60,9 @@ Login nodes are for editing, submitting, and checking jobs — not running them.
 
 ---
 
-## Skills Learned
+## 🧠 Skills Learned
 
-- See live resource contention on the Yens before writing a single SLURM script
-- Understand the head chef / kitchen analogy for batch scheduling
-- Know the difference between a login node (for submitting work) and a compute node (for running it)
-- Understand why running computation on a login node is bad cluster citizenship
+- You can read live resource contention on the Yens and know exactly who is eating the cluster's lunch
+- You can map every piece of SLURM vocabulary to a kitchen equivalent — scheduler, queue, compute node, and all
+- You can instantly distinguish a login node (the pass-through window) from a compute node (the actual stove) and use each correctly
+- You know that running heavy computation on a login node is the cluster equivalent of blocking the fire exit — and you will never do it

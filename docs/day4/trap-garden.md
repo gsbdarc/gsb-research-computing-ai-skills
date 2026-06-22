@@ -10,11 +10,13 @@ permalink: /day4/trap-garden/
 
 <div data-room-id="d4-trap-garden"></div>
 
-*A garden that looks harmless. Each flower is a feature: "the agent can browse the web," "the agent can edit files," "the agent can run code." Pick the wrong flower and the agent runs in a loop for three hours, bills you $400, and deletes the output directory. The Trap Garden teaches you to name the risks before you build.*
+*The garden looks peaceful — rows of bright features blooming in the sun: "the agent can browse the web," "the agent can edit files," "the agent can run code." But every bloom is also a tripwire. Touch the wrong one and the agent spirals into a three-hour loop, burns $400 of API credits, and quietly deletes the output directory on its way down. The Trap Garden doesn't punish the reckless — it rewards the prepared. Name the dangers before you plant anything.*
 
 ---
 
-## Main Quest
+## 🗡️ Main Quest
+
+The battlefield isn't always obvious — sometimes it looks like a helpful pipeline humming along. Learn to read the terrain before your agent does something you can't undo.
 
 {: .important }
 > **Quest:** Name four LLM agent failure modes and a concrete defense for each — before they appear in your research pipeline.
@@ -57,9 +59,9 @@ An agent that writes to a database, sends emails, or deletes files takes actions
 
 ---
 
-## Skills Learned
+## 🧠 Skills Learned
 
-- Name the four main LLM agent failure modes: hallucination at scale, runaway loops, prompt injection, irreversibility
-- Apply a concrete defense to each before starting a new agentic pipeline
-- Understand why automated pipelines require more defensive design than single-call scripts
-- Know when a pipeline is "agentic" and therefore needs these extra considerations
+- You can now identify all four LLM agent failure modes — hallucination at scale, runaway loops, prompt injection, and irreversibility — before they ambush your research
+- You can now pair each failure mode with a concrete, implementable defense you could add to a pipeline today
+- You now understand why agentic pipelines demand a different level of defensive design than one-off LLM calls
+- You can now recognize when a pipeline has crossed the line into "agentic" territory — and know exactly what extra safeguards that demands

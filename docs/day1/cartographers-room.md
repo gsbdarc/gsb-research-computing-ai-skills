@@ -10,11 +10,13 @@ permalink: /day1/cartographers-room/
 
 <div data-room-id="d1-cartographers-room"></div>
 
-*Stone maps line every wall. This room belongs to whoever learned the dungeon's layout — where the storage vaults are, how full they're getting, which exits are passable. On the Yens, this knowledge is not optional. Run out of quota or load a module that doesn't exist, and your research stops.*
+*Ancient stone maps cover every wall, carved by researchers who came before you and survived. Glowing veins trace the dungeon's arteries — the deep scratch vaults where raw data floods in, the precious home quarters where your work is sealed and guarded, the shadowy project halls where your PI's treasures are stacked. On the Yens, this knowledge isn't trivia. Blind adventurers who ignore their quota find their pipelines strangled mid-run. Those who can't load a module stand at locked doors rattling the wrong handle. The Cartographer's Room exists to make you neither.*
 
 ---
 
-## Main Quest
+## 🗡️ Main Quest
+
+Before you touch a single data file, you need to know the terrain — what's yours, how much of it you have, and what weapons the cluster has already forged for you.
 
 {: .important }
 > **Quest:** Map the Yens file system — find out where your data lives, how much space you have, and what software is available.
@@ -52,7 +54,9 @@ module unload python/3.11 # unload it
 
 ---
 
-## Chest
+## 📦 Chests
+
+Hidden in this room is a lens that lets you see past the obvious — software that's buried deeper than the main index, waiting to be claimed by someone who knows where to look.
 
 {: .chest }
 > **Chest 1 — Module Lens:** Use `module spider` to find a module that isn't listed obviously in `module avail` — one that requires loading a prerequisite first. What is the prerequisite, and why does the system require it?
@@ -61,16 +65,16 @@ module unload python/3.11 # unload it
 
 ---
 
-## Weapon Earned
+## ⚔️ Weapons Earned
 
 {: .weapon }
 > **Module Lens** — `module spider <name>` to locate any software on the cluster and understand its dependency chain; never wonder again why `module load` failed.
 
 ---
 
-## Skills Learned
+## 🧠 Skills Learned
 
-- Understand the Yens file system: home (backed up, limited) vs. scratch (large, not backed up)
-- Check disk quota before starting a large job — avoid running out mid-pipeline
-- Use `gsbbrowser` to see where disk space is being consumed
-- Load and unload software modules; understand why the same command might not exist in a fresh shell
+- You can now read the Yens file system like a map — home is your fortified base (backed up, limited space), scratch is your war camp (vast, fast, no safety net)
+- You can check your disk quota before launching a long job, so a full disk never kills your pipeline at 3 AM
+- You can navigate `gsbbrowser` to hunt down whatever is eating your storage and reclaim the space
+- You can load, swap, and unload software modules — and you understand why a fresh shell might act like your tools never existed

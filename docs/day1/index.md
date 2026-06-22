@@ -9,25 +9,29 @@ floor: 1
 
 # Day 1 — The Gatehouse
 
-*The outer wall of the dungeon. Runes flicker at the entrance — the first tests are simple, but everything you learn here is the foundation for what lies above. By the time you pass through the Boss Gate, you can log in, navigate the cluster, commit your work, and hold a mental model of what an LLM actually is.*
+*The outer wall looms before you, its stones etched with runes that pulse with cold blue light. Torches snap in the wind. This is the Gatehouse — where every great adventurer begins. The puzzles here seem simple, but do not be deceived: every command you master, every path you memorize, every commit you push is a brick in the fortress you are building. By the time you force open the Boss Gate, you will move through a remote cluster like you own it — logging in, navigating directories, versioning your work, and holding a true mental model of what an LLM actually is.*
 
 **Duration:** ~3 hours &nbsp;·&nbsp; **Levels:** 1–3
 
 ---
 
+## 🗡️ Main Quest
+
+Seven hands-on rooms, one concept chamber, and a Boss Gate await. Work through each room in order — later rooms build on earlier ones, and the Boss Gate will demand everything you have learned today.
+
 ## Rooms
 
 | Room | Format | What you master |
 |------|--------|-----------------|
-| [The Command Spire](command-spire/) | 💻 Hands-on | Navigate and manipulate files on any Unix system |
-| [The Grimoire Vault](grimoire-vault/) | 💻 Hands-on | Bulk file operations; wildcards; thinking in patterns |
-| [The SSH Gate](ssh-gate/) | 💻 Hands-on | Connect to a remote server; login vs. compute nodes |
-| [The Cartographer's Room](cartographers-room/) | 💻 Hands-on | Cluster file system layout; quota and software modules |
-| [The Scroll Transfer](scroll-transfer/) | 💻 Hands-on | Move data between local and remote; shared file system |
-| [The Arcane Notebook](arcane-notebook/) | 💻 Hands-on | Run code on cluster hardware from a browser |
-| [The Repository](repository/) | 💻 Hands-on | Git: fork → branch → commit → push workflow |
-| [The Primer Chamber](primer-chamber/) | 🖊️ Concept | Working mental model of how LLMs work |
-| [Boss Gate 1](boss-gate-1/) | 🔑 Capstone | Use everything from today on an open-ended problem |
+| [The Command Spire](command-spire/) | 💻 Hands-on | Bend any Unix file system to your will with core navigation commands |
+| [The Grimoire Vault](grimoire-vault/) | 💻 Hands-on | Wield wildcards and bulk operations to reshape hundreds of files at once |
+| [The SSH Gate](ssh-gate/) | 💻 Hands-on | Breach the walls of a remote server and know login nodes from compute nodes |
+| [The Cartographer's Room](cartographers-room/) | 💻 Hands-on | Map the cluster's file system, track your quota, and summon software modules |
+| [The Scroll Transfer](scroll-transfer/) | 💻 Hands-on | Conjure data across machines and master the shared file system |
+| [The Arcane Notebook](arcane-notebook/) | 💻 Hands-on | Harness cluster hardware from a browser — no dark terminal required |
+| [The Repository](repository/) | 💻 Hands-on | Lock your progress in Git: fork → branch → commit → push, unbreakable |
+| [The Primer Chamber](primer-chamber/) | 🖊️ Concept | Forge a working mental model of how LLMs actually think |
+| [Boss Gate 1](boss-gate-1/) | 🔑 Capstone | Prove you command everything from today on an open-ended challenge |
 
 {: .note }
 > The Grimoire Vault exercise depends on files pre-staged by the instructors at `/scratch/shared/rf_bootcamp_2026/grimoire/`. You will copy them to your home directory in The Scroll Transfer room first.

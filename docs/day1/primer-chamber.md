@@ -10,11 +10,13 @@ permalink: /day1/primer-chamber/
 
 <div data-room-id="d1-primer-chamber"></div>
 
-*A quiet antechamber before the exit. Four illuminated panels on the wall. No keyboards, no commands — just four pictures drawn together that explain what you will be doing for the rest of this course. The magic ahead is less mysterious once you understand the mechanism.*
+*A hushed antechamber glows with four stone panels, each etched with a diagram that pulses with soft blue light. No terminal, no keyboard — only chalk and a whiteboard standing between you and the secret the whole course runs on. The dragons ahead breathe fire you can predict, if you understand what fire actually is.*
 
 ---
 
-## Main Quest
+## 🗡️ Main Quest
+
+Sharpen your mental blade before you draw it — these four pictures are the hidden blueprint behind every LLM tool you'll wield this week.
 
 {: .important }
 > **Quest:** Build a working mental model of how LLMs work by drawing four pictures together with the class.
@@ -44,9 +46,9 @@ An **agent** is a loop: prompt the model → get a response → (optionally) cal
 
 ---
 
-## Skills Learned
+## 🧠 Skills Learned
 
-- Understand that LLMs predict tokens, not sentences — and what that means for reliability
-- Know what a context window is and why it limits what the model can "remember"
-- Understand the difference between a single LLM call and an agent loop
-- Have a mental model to stand on when writing prompts and interpreting outputs starting Day 2
+- You can now explain why an LLM sometimes fumbles — it predicts tokens, not sentences, and probability is not truth
+- You can now reason about context windows: you know why the model "forgets" and how to work with that limit, not against it
+- You can now tell a single LLM call apart from an agent loop — and recognize which one you're looking at in the wild
+- You now carry a mental map that makes every prompt you write starting Day 2 a deliberate act, not a guess

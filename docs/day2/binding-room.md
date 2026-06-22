@@ -10,11 +10,13 @@ permalink: /day2/binding-room/
 
 <div data-room-id="d2-binding-room"></div>
 
-*The Oracle speaks in prose. The Binding Room turns prose into structure. A Pydantic model is a contract: "give me a string here, an integer there, and these fields are required." When the Oracle violates the contract, the Binding Room rejects the answer and asks again — automatically.*
+*The Oracle speaks in riddles and prose — beautiful, unpredictable, and utterly untrustworthy as raw data. The Binding Room is where chaos gets a spine. Here, you inscribe a Pydantic model: a contract carved in stone that declares "a string lives here, an integer stands there, and these fields are non-negotiable." When the Oracle returns something that breaks the contract, the Binding Room slams the door and demands a better answer — automatically, without you lifting a finger.*
 
 ---
 
-## Main Quest
+## 🗡️ Main Quest
+
+Your target: a real SEC Form 3 filing, full of names and dates buried in unstructured text. You will forge a model that pulls exactly what you need — typed, validated, and ready to analyze.
 
 {: .important }
 > **Quest:** Define a Pydantic model for SEC Form 3 data and use structured output to extract it reliably from a filing.
@@ -74,17 +76,23 @@ print(data.model_dump_json(indent=2))
 
 ---
 
-## Chests
+## 📦 Chests
+
+Three sealed chests line the walls, each one holding a technique that separates brittle pipelines from bulletproof ones. Crack them open.
 
 {: .chest }
 > **Chest 1 — Nested Tome:** Add a nested `Transaction` model to `Form3Extraction` to hold `date`, `shares`, and `price_per_share`. A filing can have multiple transactions — make the field a `List[Transaction]`. Test it on a filing with multiple transaction rows.
 
 <label class="quest-check"><input type="checkbox" data-room="d2-binding-room" data-key="chest1"> Nested Tome unlocked</label>
 
+The Oracle isn't always cooperative — sometimes it hands back mangled JSON that crashes your pipeline at 2am. This chest teaches you to expect that and fight back.
+
 {: .chest }
 > **Chest 2 — Retry Rune:** The model sometimes returns malformed JSON. Add a retry loop: if `model_validate_json` raises a `ValidationError`, log the error and retry the API call up to 3 times. Print a warning after the final failure.
 
 <label class="quest-check"><input type="checkbox" data-room="d2-binding-room" data-key="chest2"> Retry Rune unlocked</label>
+
+Why describe a schema in plain English when you can hand the Oracle the exact specification? This chest unlocks a trick that makes model compliance measurably better.
 
 {: .chest }
 > **Chest 3 — Schema Shield:** Export your Pydantic model's JSON schema with `Form3Extraction.model_json_schema()` and include it in the system prompt instead of a free-text description. Does the model follow the schema more reliably?
@@ -93,7 +101,7 @@ print(data.model_dump_json(indent=2))
 
 ---
 
-## Weapons Earned
+## ⚔️ Weapons Earned
 
 {: .weapon }
 > **Nested Tome** — nested Pydantic models and `List[Model]` fields for complex structured extraction; model real-world data that doesn't fit a flat schema.
@@ -104,9 +112,9 @@ print(data.model_dump_json(indent=2))
 
 ---
 
-## Skills Learned
+## 🧠 Skills Learned
 
-- Define a Pydantic model to describe the structure you expect from an LLM
-- Use `response_format: json_object` and `model_validate_json` for typed, validated extraction
-- Understand that LLMs sometimes violate output formats — build retry logic into the pipeline
-- Know why structured output is always better than parsing free text: types, validation, IDE support
+- You can now define a Pydantic model that pins down exactly what an LLM must return — types, required fields, and all
+- You can use `response_format: json_object` and `model_validate_json` to get structured, validated data instead of raw text you have to parse yourself
+- You can build retry logic that catches `ValidationError` and automatically re-prompts the model, so one bad response doesn't sink your whole pipeline
+- You understand why structured output beats free-text parsing every time: real Python types, automatic validation, and IDE autocomplete that actually works

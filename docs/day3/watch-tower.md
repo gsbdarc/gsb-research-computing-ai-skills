@@ -10,11 +10,13 @@ permalink: /day3/watch-tower/
 
 <div data-room-id="d3-watch-tower"></div>
 
-*From the tower you can see every job moving through the kitchen. Which ones are running, which are waiting, which have failed. The Watch Tower is not exciting — but it has saved more research projects than any other room in the dungeon. Know what your jobs are doing before they finish.*
+*You climb the spiral stairs and emerge into open air. The entire SLURM Mines sprawl below you — a living map of computation. Glowing threads mark jobs racing across nodes, amber embers pulse where work waits in line, and cold dark patches mark jobs that have already died. Most adventurers throw their jobs into the queue and hope for the best. You will be different. From this tower, nothing moves without your knowledge.*
 
 ---
 
-## Main Quest
+## 🗡️ Main Quest
+
+Your jobs are running somewhere in the cluster right now — let's find them, watch them breathe, and pull the plug if anything goes wrong.
 
 {: .important }
 > **Quest:** Monitor the job you submitted in The Foreman's Desk using `squeue`, `scancel`, and `sacct`.
@@ -56,7 +58,9 @@ sacct -u $USER --format=JobID,JobName,State,Elapsed,MaxRSS,CPUTime --starttime=t
 
 ---
 
-## Chest
+## 📦 Chests
+
+Hidden in the tower wall is a carved niche — inside, a wand that summons your entire job queue with a single whispered word.
 
 {: .chest }
 > **Chest 1 — Watch Wand:** Set up a one-liner alias in `~/.bash_profile` that runs `watch -n 5 squeue -u $USER` with the command `myq`. You should be able to type `myq` at any time and see your live job queue.
@@ -65,16 +69,16 @@ sacct -u $USER --format=JobID,JobName,State,Elapsed,MaxRSS,CPUTime --starttime=t
 
 ---
 
-## Weapon Earned
+## ⚔️ Weapons Earned
 
 {: .weapon }
 > **Watch Wand** — `watch -n 5 squeue -u $USER` as a live dashboard alias; never open a browser to check job status when a terminal command does it better.
 
 ---
 
-## Skills Learned
+## 🧠 Skills Learned
 
-- Check job status with `squeue` and interpret state codes (PD/R/CG/F)
-- Cancel a running or pending job with `scancel`
-- Audit completed jobs with `sacct` to see actual resource usage
-- Follow job output live with `tail -f` without waiting for the job to finish
+- You can now see exactly what your jobs are doing — live — and read their state codes (PD/R/CG/F) at a glance
+- You can surgically cancel a runaway job with `scancel` before it wastes your compute allocation
+- You can summon a full post-mortem on completed jobs with `sacct` and see exactly how much memory and CPU they really used
+- You can tail a live log with `tail -f` and watch your results appear in real time, line by line, before the job even finishes

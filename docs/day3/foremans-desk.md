@@ -10,11 +10,13 @@ permalink: /day3/foremans-desk/
 
 <div data-room-id="d3-foremans-desk"></div>
 
-*The foreman sits here and reads recipes. Every recipe specifies the same things: how many cooks, how long, which pantry section, where to log mistakes. Write a bad recipe and the kitchen ignores it. Write a good one and the kitchen runs it exactly as written, every time, without you watching.*
+*The foreman's desk is buried under scrolls, each one a binding contract with the cluster. Every scroll specifies the same things: how many workers, how long they may toil, which shaft of the mine, where to carve the error glyphs. Forge a sloppy scroll and the mine ignores you entirely. Forge a perfect one and a hundred cores snap to attention — doing exactly your bidding, long after you've gone to sleep.*
 
 ---
 
-## Main Quest
+## 🗡️ Main Quest
+
+The cluster doesn't take verbal orders. You must hand it a script — a scroll that describes your job down to the last directive. Forge yours now.
 
 {: .important }
 > **Quest:** Write a SLURM job script from scratch, understand every directive, and submit your first batch job.
@@ -65,7 +67,9 @@ Note your job ID. Check it immediately in The Watch Tower room.
 
 ---
 
-## Chests
+## 📦 Chests
+
+Two chests are wedged behind the foreman's filing cabinet — one hums with the promise of passive alerts, the other holds the secret to scripts that never grow stale.
 
 {: .chest }
 > **Chest 1 — Mail Medallion:** Add `#SBATCH --mail-type=END,FAIL` and `#SBATCH --mail-user=YOUR_EMAIL` to your job script. Submit it and wait for the notification email. When is this more useful than watching `squeue`?
@@ -79,7 +83,7 @@ Note your job ID. Check it immediately in The Watch Tower room.
 
 ---
 
-## Weapons Earned
+## ⚔️ Weapons Earned
 
 {: .weapon }
 > **Mail Medallion** — `--mail-type=END,FAIL` to get an email when your job finishes or crashes; monitor long jobs without staring at `squeue`.
@@ -88,9 +92,9 @@ Note your job ID. Check it immediately in The Watch Tower room.
 
 ---
 
-## Skills Learned
+## 🧠 Skills Learned
 
-- Write a complete SLURM job script with all required directives
-- Understand what each `#SBATCH` line controls: name, output path, time limit, memory, CPUs, partition
-- Submit with `sbatch` and capture the job ID
-- Know that the script is valid bash — you can test it locally with `bash job.sh` before submitting
+- You can write a complete, submission-ready SLURM job script from a blank file
+- You can read any `#SBATCH` directive at a glance and know what it controls: name, output path, time limit, memory, CPUs, partition
+- You can submit with `sbatch` and hold onto the job ID like the key it is
+- You can test your script locally with `bash job.sh` before ever touching the queue — no wasted allocations, no mystery failures

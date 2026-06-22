@@ -10,11 +10,13 @@ permalink: /day3/array-cavern/
 
 <div data-room-id="d3-array-cavern"></div>
 
-*A thousand identical alcoves, each one running the same recipe on a different ingredient. The Array Cavern answers the researcher's most common scaling problem: "I need to do this to 10,000 files." You write the recipe once. The cavern handles the rest. When the jobs finish, you combine the streams into one river.*
+*A thousand identical alcoves stretch into the dark, each one lit by the faint glow of a running process. The walls hum in unison — the same script, a hundred times over, each instance tearing through a different filing. This is the Array Cavern, where the researcher's oldest curse is finally broken: "I need to do this to 10,000 files." You write the spell once. The cavern multiplies it across an army of workers. When the last task falls silent, you summon the streams together into a single, clean river of data.*
 
 ---
 
-## Main Quest
+## 🗡️ Main Quest
+
+The cluster is waiting. A hundred SEC filings sit untouched — until now. Write the script once, unleash the array, and forge the combined CSV that proves you were here.
 
 {: .important }
 > **Quest:** Submit a SLURM job array that processes 100 SEC filings in parallel, then combine all outputs into one CSV.
@@ -101,31 +103,41 @@ python3 scripts/merge_results.py
 
 ---
 
-## Chests
+## 📦 Chests
+
+These chests hold the techniques that separate a one-time script from a production-grade pipeline. Each one makes you harder to stop.
 
 {: .chest }
 > **Chest 1 — Dependency Dagger:** Chain two job arrays with `--dependency=afterok:JOBID`. The second array runs only after all tasks in the first succeed. Write a two-stage pipeline: extract → validate. What happens when one extraction task fails?
 
 <label class="quest-check"><input type="checkbox" data-room="d3-array-cavern" data-key="chest1"> Dependency Dagger unlocked</label>
 
+💡 This one chest turns two isolated arrays into a guarded two-stage pipeline — stage two never fires until stage one is clean.
+
 {: .chest }
 > **Chest 2 — Dynamic Draught:** Instead of hardcoding `--array=1-100`, write a wrapper that counts lines in the input file and submits `sbatch --array=1-$(wc -l < filings_list.txt) array_extract.sh`. Never hard-code a count that changes when the dataset changes.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-array-cavern" data-key="chest2"> Dynamic Draught unlocked</label>
+
+💡 Your script will now scale to any dataset you hand it — no edits required when the file count grows from 100 to 10,000.
 
 {: .chest }
 > **Chest 3 — Checkpoint Charm:** Add 5 lines to `extract_filing.py`: before doing any work, check if the task ID already appears in `completed.log`. If yes, exit early. If no, process the filing and append the task ID to the log on success. Resubmit the array — only incomplete tasks run.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-array-cavern" data-key="chest3"> Checkpoint Charm unlocked</label>
 
+💡 A cluster job can die mid-run. This charm lets you resubmit without redoing finished work — your pipeline picks up exactly where it fell.
+
 {: .chest }
 > **Chest 4 — Siege Scale:** Extend the fault-tolerant pattern to 10,000 inputs. Organize outputs into dated subdirectories (`results/2026-06-22/`) so reruns don't overwrite previous runs. How does this change the merge step?
 
 <label class="quest-check"><input type="checkbox" data-room="d3-array-cavern" data-key="chest4"> Siege Scale unlocked</label>
 
+⚠️ At 10,000 tasks, even a 1% failure rate means 100 broken outputs. Dated directories and explicit failure logs are not optional at this scale — they are armor.
+
 ---
 
-## Weapons Earned
+## ⚔️ Weapons Earned
 
 {: .weapon }
 > **Dependency Dagger** — `--dependency=afterok` to chain jobs; run stage B only after all of stage A succeeds.
@@ -138,9 +150,9 @@ python3 scripts/merge_results.py
 
 ---
 
-## Skills Learned
+## 🧠 Skills Learned
 
-- Understand `$SLURM_ARRAY_TASK_ID` and how to look up per-task input from a file list
-- Submit a job array and monitor the individual tasks in `squeue`
-- Combine parallel JSON outputs into a single CSV; surface failures explicitly
-- (Optional) Write checkpointing logic so a resubmitted array only retries failed tasks
+- You can now wield `$SLURM_ARRAY_TASK_ID` to map any task index to its exact input file — one script, infinite parallelism
+- You can fire off a job array and watch a hundred workers race through the queue in real time with `squeue`
+- You can stitch a hundred parallel JSON outputs into one clean CSV and surface every failure by task ID — no silent data loss
+- You can write checkpointing logic that makes a resubmitted array skip finished work and retry only what failed

@@ -10,11 +10,13 @@ permalink: /day2/oracles-chamber/
 
 <div data-room-id="d2-oracles-chamber"></div>
 
-*The Oracle speaks in tokens. You ask, it answers — but only as precisely as your question allows. Today you ask it one thing: who signed this filing, and in what capacity? The answer is in the document. The Oracle's job is to find it. Your job is to frame the question correctly.*
+*Deep in the Alchemist's Lab, behind a door carved with question marks, sits the Oracle — a mind made of weights and probabilities, ancient knowledge compressed into a single blazing point. It does not volunteer answers. It responds to invocations. You have one question burning in your hand: who signed this filing, and in what capacity? Frame it perfectly, and the Oracle will reach into a dense forest of regulatory text and hand you the name. Frame it poorly, and you get noise. The difference between the two is a few well-chosen words — and you are about to learn exactly which ones.*
 
 ---
 
-## Main Quest
+## 🗡️ Main Quest
+
+The Oracle awaits your first invocation. Open the filing, shape your prompt like a key, and watch the model pull signal from the fog.
 
 {: .important }
 > **Quest:** Write a Python script that loads one SEC Form 3 filing and uses the Stanford AI Playground to extract the insider's name and role.
@@ -69,23 +71,29 @@ Filing:
 print(response.choices[0].message.content)
 ```
 
-Notice the `[:4000]` slice — models have context limits. For now we stay within budget; Day 3 will handle hundreds of filings.
+💡 Notice the `[:4000]` slice — models have context limits. For now we stay within budget; Day 3 will handle hundreds of filings.
 
 <label class="quest-check"><input type="checkbox" data-room="d2-oracles-chamber" data-key="main"> Main Quest complete</label>
 
 ---
 
-## Chests
+## 📦 Chests
+
+Three hidden caches are sealed behind this chamber's walls — each one rewards a researcher willing to push past the basics.
 
 {: .chest }
 > **Chest 1 — Model Mirror:** Run the same extraction prompt with two different models available in the Playground (e.g. `gpt-4o-mini` and `gpt-4o`). Compare the outputs for accuracy and response time. When is the cheaper model good enough?
 
 <label class="quest-check"><input type="checkbox" data-room="d2-oracles-chamber" data-key="chest1"> Model Mirror unlocked</label>
 
+The second chest hides a trick that makes your tool feel alive — responses that appear word by word, like the Oracle is thinking out loud.
+
 {: .chest }
 > **Chest 2 — Stream Stone:** Modify your script to use streaming responses (`stream=True`). Print each chunk as it arrives. When would streaming improve the user experience in a real research tool?
 
 <label class="quest-check"><input type="checkbox" data-room="d2-oracles-chamber" data-key="chest2"> Stream Stone unlocked</label>
+
+The third chest rewards the bold: stop waiting in line — summon five Oracles at once.
 
 {: .chest }
 > **Chest 3 — Async Arrow:** Rewrite the extraction to use `asyncio` and `AsyncOpenAI` to process 5 filings concurrently. How much faster is it than sequential calls?
@@ -94,7 +102,7 @@ Notice the `[:4000]` slice — models have context limits. For now we stay withi
 
 ---
 
-## Weapons Earned
+## ⚔️ Weapons Earned
 
 {: .weapon }
 > **Model Mirror** — compare model outputs for accuracy and cost; choose a model intentionally based on the task, not the default.
@@ -105,9 +113,9 @@ Notice the `[:4000]` slice — models have context limits. For now we stay withi
 
 ---
 
-## Skills Learned
+## 🧠 Skills Learned
 
-- Call the Stanford AI Playground (OpenAI-compatible) from Python
-- Write an effective extraction prompt with a system message and structured output format
-- Understand the context window constraint and how to work within it
-- Compare models by output quality and latency for a specific task
+- You can now summon the Stanford AI Playground from Python and get a real answer back in seconds
+- You can craft extraction prompts with a system message and a structured output format — no more freeform guessing
+- You know how the context window works and how to stay inside it without losing the signal you need
+- You can pit two models head-to-head and make an informed call on quality versus cost for any extraction task

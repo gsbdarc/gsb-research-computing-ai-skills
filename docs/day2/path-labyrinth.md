@@ -10,11 +10,13 @@ permalink: /day2/path-labyrinth/
 
 <div data-room-id="d2-path-labyrinth"></div>
 
-*Corridors branch endlessly. You shout "python" and five doors open, each leading to a different Python. Which one runs? The labyrinth has rules — it checks the first door, then the second, then the third. Know the order and you control which Python wins. Ignore it and your scripts fail in ways that make no sense.*
+*Corridors fracture in every direction, each passage marked with the same name: "python." You call out and five doors crack open at once — five different Pythons, each certain it is the one you want. The labyrinth does not guess. It follows a strict protocol: check the first corridor, then the second, then the third, until it finds a match and stops. The researcher who understands the order commands the maze. The one who ignores it stumbles through cryptic failures, wrong versions, and errors that appear from nowhere. You are about to learn the order.*
 
 ---
 
-## Main Quest
+## 🗡️ Main Quest
+
+The shell is not magic — it follows a map. That map is `$PATH`, and every command you type is just a race down its list of corridors. Here is how you take control of the race.
 
 {: .important }
 > **Quest:** Understand `$PATH` — how the shell finds commands — and debug a "command not found" error by tracing the lookup chain.
@@ -52,7 +54,9 @@ The rule: **the first match in PATH wins.** Modules and venvs work by prepending
 
 ---
 
-## Chest
+## 📦 Chests
+
+Hidden in the labyrinth walls is a rune that lets you reshape the corridors themselves — permanently, at login, before you even type a single command. Crack it open.
 
 {: .chest }
 > **Chest 1 — Profile Rune:** Add a line to `~/.bash_profile` (or `~/.bashrc`) on the Yens that automatically activates your Bootcamp venv whenever you log in. Test it by logging out and back in. Why might this be a bad idea for a shared project, even if it's convenient for solo work?
@@ -61,16 +65,16 @@ The rule: **the first match in PATH wins.** Modules and venvs work by prepending
 
 ---
 
-## Weapon Earned
+## ⚔️ Weapons Earned
 
 {: .weapon }
 > **Profile Rune** — customize `~/.bash_profile` to set environment variables, load modules, or activate venvs automatically on login; make your shell do the setup work every time.
 
 ---
 
-## Skills Learned
+## 🧠 Skills Learned
 
-- Understand that `$PATH` is an ordered list of directories searched left-to-right when you type a command
-- Use `which` to find exactly which binary runs for any command
-- Understand how `module load` and `source venv/bin/activate` both work by prepending to PATH
-- Diagnose "command not found" and "wrong version" errors by tracing PATH
+- You can now read `$PATH` like a map and predict exactly which binary the shell will run when you type any command
+- You can now use `which` to expose the precise binary behind any command name — no more guessing
+- You can now explain why `module load` and `source venv/bin/activate` both work the same way: they win the race by going first in PATH
+- You can now diagnose "command not found" and "wrong version" errors by tracing the PATH lookup chain step by step

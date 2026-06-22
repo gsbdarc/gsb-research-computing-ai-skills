@@ -8,12 +8,16 @@ permalink: /day4/boss-gate-4/
 
 # Boss Gate 4
 
-*The Archmage's chamber. The final seal. Everything you've built across four days — the shell commands, the SSH aliases, the venvs, the Pydantic models, the SLURM arrays, the GPU job, the local LLM — all of it comes together here. The Champion's Ascent is not a new skill. It is a demonstration that the old ones are yours.*
+*The Archmage's chamber looms before you — ancient stone humming with the heat of a thousand GPU cores. The final seal pulses like a heartbeat. Four days of battle have led here: the shell commands you carved into muscle memory, the SSH tunnels you bored through solid rock, the venvs you forged in the Forge, the Pydantic models you bound like spells, the SLURM arrays you unleashed like war parties, the H200 you bent to your will, the local LLM you summoned from raw silicon. The Champion's Ascent asks for nothing new. It asks you to prove that everything old is now, irrevocably, yours.*
 
 {: .note }
 > **Oracle's Revelation — the course bot unmasked:** The dungeon's oracle was powered by the same tools you've now mastered. System prompt → context injection → Stanford AI Playground call → structured response. Every answer it gave was a Pydantic model. Every "hint" was a retrieval-augmented lookup over the dungeon room map. You didn't just learn to use the oracle — you learned to build one.
 
 ---
+
+## 🔑 The Challenge
+
+The Archmage does not test you with riddles. It tests you with the full stack — all at once.
 
 {: .boss }
 > **Boss Battle — Champion's Ascent**
@@ -37,8 +41,8 @@ permalink: /day4/boss-gate-4/
 > git push
 > ```
 
+💡 The Ollama base URL from JupyterHub is `http://localhost:11434/v1` — but only if Ollama is serving on the same node. If you're on a different node than `yen-gpu4`, the URL needs to point to `yen-gpu4` explicitly. Ask the instructor for the correct URL for your setup.
 {: .tip }
-> The Ollama base URL from JupyterHub is `http://localhost:11434/v1` — but only if Ollama is serving on the same node. If you're on a different node than `yen-gpu4`, the URL needs to point to `yen-gpu4` explicitly. Ask the instructor for the correct URL for your setup.
 
 ---
 
@@ -46,7 +50,9 @@ permalink: /day4/boss-gate-4/
 
 ---
 
-## The Full Stack You've Demonstrated
+## ⚔️ The Full Stack You've Demonstrated
+
+Every row in this table is a weapon you forged, a door you unlocked, a skill no one can take back from you.
 
 | Layer | Tool | Room |
 |-------|------|------|
@@ -67,7 +73,6 @@ permalink: /day4/boss-gate-4/
 {: .important }
 > **All four floors cleared.**
 >
-> Every skill in the table above is yours. Now check the leaderboard — the dungeon isn't over until everyone sees how many chests you opened. Sync your quest log and see where you rank.
+> Every skill in the table above is yours — not borrowed, not half-understood, yours. Now check the leaderboard — the dungeon isn't over until everyone sees how many chests you opened. Sync your quest log and see where you rank.
 >
-> What's next from here: Sherlock (Stanford's HPC), Redivis (data platform), fine-tuning, multi-node jobs, and whatever your research actually needs. The dungeon was the foundation. You know where the doors are.
-
+> What's next: Sherlock (Stanford's HPC), Redivis (data platform), fine-tuning, multi-node jobs, and whatever your research actually demands. The dungeon was the foundation. You know where every door leads. Go build something real.

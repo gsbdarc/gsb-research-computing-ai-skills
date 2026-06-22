@@ -10,11 +10,13 @@ permalink: /day1/arcane-notebook/
 
 <div data-room-id="d1-arcane-notebook"></div>
 
-*A firelit study, its shelves lined with glowing notebooks that run on the dungeon's own engines — not your laptop. Each page is a cell. Each cell can cast spells in Python, draw charts, query data, and print results. The fire comes from the Yens; you're just holding the quill.*
+*You push open a heavy oak door and step into a firelit study. The shelves stretch floor-to-ceiling, stacked with glowing notebooks that hum with quiet power — each one running not on your laptop, but on the dungeon's own iron engines deep below. Every page is a cell. Every cell is a spell: conjure charts, interrogate data, summon results from thousands of rows in a breath. The warmth in the air comes from the Yens. You're just the one holding the quill.*
 
 ---
 
-## Main Quest
+## 🗡️ Main Quest
+
+The notebook is open. The kernel is live. All that's left is to prove you're the one casting the spells — not your laptop.
 
 {: .important }
 > **Quest:** Open JupyterHub on the Yens, start a notebook, and run a cell — all from your browser.
@@ -49,17 +51,23 @@ print(x)        # run in a later cell — it still works (same kernel)
 
 ---
 
-## Chests
+## 📦 Chests
+
+Hidden in the study's locked drawers are tools that separate the apprentice from the archmage — crack them open.
 
 {: .chest }
 > **Chest 1 — Magic Scroll:** Learn three keyboard shortcuts that will save you hours: run-and-advance, insert cell below, and interrupt kernel. Then use `%time` to measure how long a cell takes to run.
 
 <label class="quest-check"><input type="checkbox" data-room="d1-arcane-notebook" data-key="chest1"> Magic Scroll unlocked</label>
 
+The second chest glows with a terminal's green light — the notebook and the shell, fused into one fearsome tool.
+
 {: .chest }
 > **Chest 2 — Shell Tome:** Run a shell command directly inside a Jupyter cell using `%%bash`. Use it to list your grimoire directory on the Yens. Then run `!hostname` (single `!`) in a Python cell. What's the difference between `%%bash` and `!`?
 
 <label class="quest-check"><input type="checkbox" data-room="d1-arcane-notebook" data-key="chest2"> Shell Tome unlocked</label>
+
+The third chest is engraved with ancient runes that speed your hands across every cell without ever reaching for the mouse.
 
 {: .chest }
 > **Chest 3 — Vim Sigil:** Enable Vim keybindings in JupyterHub (Settings → Keyboard shortcuts or the Vim extension). Navigate between cells in command mode using `j`/`k`. Why might a researcher bother learning this?
@@ -68,7 +76,7 @@ print(x)        # run in a later cell — it still works (same kernel)
 
 ---
 
-## Weapons Earned
+## ⚔️ Weapons Earned
 
 {: .weapon }
 > **Magic Scroll** — keyboard shortcuts for Jupyter that cut cell management time in half; `%time` and `%timeit` to measure performance without writing a timer.
@@ -79,9 +87,9 @@ print(x)        # run in a later cell — it still works (same kernel)
 
 ---
 
-## Skills Learned
+## 🧠 Skills Learned
 
-- Open and use JupyterHub to run Python on Yens hardware from a browser
-- Understand what a kernel is: the live Python process behind the notebook
-- Know that the kernel persists when the browser closes — and that this is both useful and dangerous
-- Distinguish between running code on your laptop vs. on the cluster
+- You can now open JupyterHub and run Python on Yens hardware from any browser — no SSH, no setup, no excuses
+- You understand what a kernel is: the persistent Python process that outlives your browser tab and remembers everything
+- You know the kernel keeps running after you close the browser — a superpower when used wisely, a trap when forgotten
+- You can tell the difference between running code on your laptop and running it on the cluster — and you know why it matters

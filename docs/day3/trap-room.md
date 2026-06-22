@@ -10,11 +10,13 @@ permalink: /day3/trap-room/
 
 <div data-room-id="d3-trap-room"></div>
 
-*Pressure plates in the floor. Step on one and your job waits in queue forever, or crashes immediately, or runs successfully while producing garbage output. Every researcher springs these traps at least once. The Trap Room shows them to you first.*
+*The floor is a grid of pressure plates, each one disguised as ordinary stone. Step on the wrong one and your job vanishes into an infinite queue — or detonates on startup — or, worst of all, runs to completion and hands you beautifully formatted nonsense. Every researcher trips these traps. This room lights them up before they cost you a week of results.*
 
 ---
 
-## Main Quest
+## 🗡️ Main Quest
+
+Three scripts walk into the scheduler. None of them make it out alive. Your job: spot the killer before it strikes.
 
 {: .important }
 > **Quest:** Identify the bugs in three broken SLURM scripts before they cost you queue time — no running allowed.
@@ -83,8 +85,8 @@ python3 pipeline.py
 
 ---
 
-## Skills Learned
+## 🧠 Skills Learned
 
-- Recognize over-requesting as a cause of permanent `PD` (pending) status
-- Always use absolute paths in SLURM scripts — relative paths depend on submission directory
-- Know how to activate a Python venv correctly inside a non-interactive SLURM shell
+- You can recognize over-requesting resources as the silent killer that locks jobs in permanent `PD` (pending) purgatory
+- You can write SLURM scripts with absolute paths — so your logs land exactly where you expect, every time
+- You can activate a Python venv correctly inside a non-interactive SLURM shell, no more silent environment failures

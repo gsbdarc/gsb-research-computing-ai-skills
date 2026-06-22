@@ -10,11 +10,13 @@ permalink: /day3/scales/
 
 <div data-room-id="d3-scales"></div>
 
-*Every job request must be weighed before it is granted. Ask for too little and your script runs out of memory and crashes. Ask for too much and you wait in queue while the scheduler looks for a node big enough to satisfy your greedy request. The Scales teach you to measure what you actually need.*
+*In the heart of the Mines hangs an ancient pair of scales, each arm tipped with iron. On one side: your job request. On the other: the truth of what your script actually consumes. Ask for too little and your process crashes mid-run, memory exhausted, data lost. Ask for too much and the scheduler hunts the entire cluster for a node massive enough to satisfy you — while your job rots in the queue. The Scales do not forgive guessing. They reward those who measure.*
 
 ---
 
-## Main Quest
+## 🗡️ Main Quest
+
+Before you write a single `#SBATCH` directive, you must step onto the floor of the Scales and weigh your work honestly.
 
 {: .important }
 > **Quest:** Measure how long your script takes and how much memory it uses before writing a single `#SBATCH` directive.
@@ -57,12 +59,16 @@ userload
 
 ---
 
-## Chests
+## 📦 Chests
+
+Two artifacts are hidden in this room for those willing to look back at their own footprints.
 
 {: .chest }
 > **Chest 1 — Sacct Scythe:** After your first sbatch job runs (from The Foreman's Desk), come back and run `sacct -j JOBID --format=JobID,Elapsed,MaxRSS,CPUTime`. Compare the actual usage to what you requested. Were your estimates close?
 
 <label class="quest-check"><input type="checkbox" data-room="d3-scales" data-key="chest1"> Sacct Scythe unlocked</label>
+
+A second chest waits — this one shows you not just what you used, but how wasteful (or prescient) your estimate really was.
 
 {: .chest }
 > **Chest 2 — Seff Sigil:** After a job completes, run `seff JOBID`. It shows CPU and memory efficiency as a percentage. What does it tell you about how well you estimated? What would you change in your `#SBATCH` directives?
@@ -71,7 +77,7 @@ userload
 
 ---
 
-## Weapons Earned
+## ⚔️ Weapons Earned
 
 {: .weapon }
 > **Sacct Scythe** — `sacct` post-mortem analysis of any job; see exactly what a job used in CPU time, wall time, and memory after it finishes.
@@ -80,9 +86,9 @@ userload
 
 ---
 
-## Skills Learned
+## 🧠 Skills Learned
 
-- Measure wall-clock time with `time` before writing `--time` in a SLURM script
-- Monitor memory usage with `htop` to set `--mem` accurately
-- Understand that over-requesting delays your own jobs by making the scheduler search for larger nodes
-- Use `sacct` and `seff` after a job to calibrate future requests
+- You can now time any script with `time` and translate wall-clock seconds directly into a confident `--time` request
+- You can now watch memory climb in real time with `htop` and lock in a `--mem` value that won't lie
+- You know that over-requesting isn't "safe" — it is the thing that makes the scheduler punish you with a longer wait
+- You can now run `sacct` and `seff` after any job to audit your own estimates and sharpen every future request

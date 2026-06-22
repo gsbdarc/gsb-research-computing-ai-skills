@@ -10,11 +10,13 @@ permalink: /day1/ssh-gate/
 
 <div data-room-id="d1-ssh-gate"></div>
 
-*A crackling arc of electricity spans the gatehouse entrance. The rune above it reads: `ssh`. Touch the wrong stone and nothing happens — touch the right one and a door appears three thousand miles away. This is how researchers reach the Yens: a single command, a handshake of cryptographic keys, and you are in.*
+*A crackling arc of electricity splits the gatehouse air, smelling of ozone and possibility. The rune carved above it reads: `ssh`. Touch the wrong stone and nothing stirs — touch the right one and a door tears open three thousand miles away, inside a machine humming in a Stanford data center. One command. A cryptographic handshake older than your laptop. And suddenly, you are there.*
 
 ---
 
-## Main Quest
+## 🗡️ Main Quest
+
+You are about to set foot on the Yens for the first time. Type carefully, breathe normally — the cluster is waiting for you.
 
 {: .important }
 > **Quest:** Connect to the Yens cluster over SSH, identify which login node you landed on, and read the login banner.
@@ -45,7 +47,9 @@ pwd           # /home/users/SUNetID (or similar)
 
 ---
 
-## Chest
+## 📦 Chests
+
+Hidden inside this room is a shortcut that will save you a dozen keystrokes every single day — a carved sigil that shrinks a mouthful of a command down to two words.
 
 {: .chest }
 > **Chest 1 — SSH Sigil:** Set up `~/.ssh/config` on your laptop so that `ssh yen` connects you to `yen.stanford.edu` without typing your full username. You should be able to type nothing except `ssh yen` and be prompted for your password.
@@ -54,16 +58,16 @@ pwd           # /home/users/SUNetID (or similar)
 
 ---
 
-## Weapon Earned
+## ⚔️ Weapons Earned
 
 {: .weapon }
 > **SSH Sigil** — configure `~/.ssh/config` with named hosts and your username; reduce `ssh SUNetID@yen.stanford.edu` to `ssh yen` — permanently.
 
 ---
 
-## Skills Learned
+## 🧠 Skills Learned
 
-- Connect to a remote server over SSH from your laptop
-- Understand what a login node is and why you don't run computation on it
-- Recognize the difference between your local laptop and a shared remote cluster
-- Read a login banner for system notices and usage policies
+- You can now open a secure shell into the Yens cluster from anywhere with a single command
+- You know what a login node is — and why you treat it like a hallway, not a workroom
+- You can tell at a glance whether you are on your laptop or deep inside a shared remote cluster
+- You can read the login banner to catch system notices, maintenance windows, and usage policies before they catch you

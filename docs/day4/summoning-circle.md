@@ -10,11 +10,13 @@ permalink: /day4/summoning-circle/
 
 <div data-room-id="d4-summoning-circle"></div>
 
-*Draw the circle, speak the name, and the model appears — running entirely inside the fortress, never sending a single token off campus. Ollama is the summoning ritual. The model is yours to keep, interrogate, and benchmark. No API key. No usage caps. No prompts logged to a server in another state.*
+*Chalk the circle on the stone floor. Speak the model's name. Watch the weights materialize on drives inside the fortress — billions of parameters, fully yours, answering only to you. Ollama is the ritual. The H200 is the altar. No API key demanded at the door, no usage meter ticking in the background, no whisper of your prompts drifting to a server farm in another state. What runs here stays here.*
 
 ---
 
-## Main Quest
+## 🗡️ Main Quest
+
+You've got raw GPU muscle beneath you — now it's time to bind a model to it. Speak the name and watch it answer.
 
 {: .important }
 > **Quest:** Pull a model with Ollama on the H200, chat with it from a Jupyter notebook, and confirm it runs locally.
@@ -58,18 +60,22 @@ print(response.choices[0].message.content)
 Notice: the interface is **identical to the Stanford AI Playground** — same Python code, different `base_url`. This is the OpenAI-compatible API standard.
 
 {: .note }
-> Ollama must be running (via `ollama serve`) on the same node where you're querying it. The model runs entirely on the Yens; your prompts never leave Stanford's network.
+> 💡 Ollama must be running (via `ollama serve`) on the same node where you're querying it. The model runs entirely on the Yens; your prompts never leave Stanford's network.
 
 <label class="quest-check"><input type="checkbox" data-room="d4-summoning-circle" data-key="main"> Main Quest complete</label>
 
 ---
 
-## Chests
+## 📦 Chests
+
+Hidden in the shadows of the circle are two sealed chests — each one rewards the curious who push further than the quest demands.
 
 {: .chest }
 > **Chest 1 — Model Menagerie:** Pull two additional models (e.g. `phi3:mini` and `gemma2:2b`). Ask each the same question about SLURM. Compare response quality, speed (tokens/second), and the trade-off between model size and latency.
 
 <label class="quest-check"><input type="checkbox" data-room="d4-summoning-circle" data-key="chest1"> Model Menagerie unlocked</label>
+
+Forge your own creature from raw components — this chest holds the secret to building a model that thinks exactly the way you need it to.
 
 {: .chest }
 > **Chest 2 — Modelfile Magic:** Create a custom Ollama `Modelfile` that gives a base model a system prompt making it respond as a SLURM expert with terse, command-focused answers. Build the custom model with `ollama create` and test it.
@@ -78,7 +84,7 @@ Notice: the interface is **identical to the Stanford AI Playground** — same Py
 
 ---
 
-## Weapons Earned
+## ⚔️ Weapons Earned
 
 {: .weapon }
 > **Model Menagerie** — compare multiple local models on the same task; choose by latency, quality, and VRAM requirements rather than defaulting to the largest model.
@@ -87,9 +93,9 @@ Notice: the interface is **identical to the Stanford AI Playground** — same Py
 
 ---
 
-## Skills Learned
+## 🧠 Skills Learned
 
-- Pull and serve a local LLM with Ollama on cluster GPU hardware
-- Use the OpenAI-compatible Ollama API from Python — same code as the Stanford AI Playground
-- Understand that local models mean zero data leaves the Yens — useful for restricted datasets
-- Know when local (Ollama) beats cloud (Playground): privacy requirements, high-volume batches, no API budget
+- You can now pull and serve any Ollama-compatible LLM directly on cluster GPU hardware — no cloud dependency required
+- You can now call a locally hosted model from Python using the exact same code you'd write for the Stanford AI Playground — just swap the `base_url`
+- You can now run sensitive data through an LLM with confidence: zero tokens leave the Yens, making local models viable for restricted or confidential datasets
+- You can now make an informed choice between local and cloud inference — reaching for Ollama when privacy, volume, or budget rules out the Playground

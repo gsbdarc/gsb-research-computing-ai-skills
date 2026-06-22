@@ -10,11 +10,13 @@ permalink: /day4/engine-room/
 
 <div data-room-id="d4-engine-room"></div>
 
-*The machines behind the machines. Ollama is a torch — quick to light, good for one researcher at a time. When a hundred researchers need the same model simultaneously, you need an engine room: vLLM, TensorRT-LLM, NVIDIA NIM. The Engine Room is concept-only today. You don't need to operate it — you need to know it exists and when to call for it.*
+*Deep in the fortress, past the GPU racks and the hum of cooling fans, lies the Engine Room — where models don't just run, they roar. Ollama is a torch: brilliant, portable, yours alone. But when a hundred researchers hammer the same model at once, a torch becomes a liability. Here live the true power systems: vLLM, TensorRT-LLM, NVIDIA NIM — industrial-grade inference engines built to serve armies. You won't operate them today. You'll learn to recognize them, respect them, and know exactly when to call for the engineers who run them.*
 
 ---
 
-## Main Quest
+## 🗡️ Main Quest
+
+The fate of your research pipeline hinges on a single question: are you a lone wolf, or are you building something the whole team will depend on? Choose your weapon wisely.
 
 {: .important }
 > **Quest:** Understand the production-grade local LLM stack and know the decision point between Ollama and vLLM.
@@ -34,6 +36,8 @@ This is a concept and demo block.
 **NVIDIA NIM:**
 
 NVIDIA provides containerized inference endpoints for popular models (Llama, Mistral, Stable Diffusion) called NIM (NVIDIA Inference Microservices). They're pre-optimized for specific GPU architectures and expose the same OpenAI-compatible API.
+
+💡 The beautiful secret: your Python code doesn't change. Swap one URL and you've gone from laptop prototype to production cluster.
 
 ```python
 # Same Python code works for Ollama, vLLM, NIM, and the Stanford Playground
@@ -55,9 +59,9 @@ Any of the above with cloud OK? → Stanford AI Playground
 
 ---
 
-## Skills Learned
+## 🧠 Skills Learned
 
-- Understand the difference between Ollama (prototyping) and vLLM (production serving)
-- Know that NVIDIA NIM provides pre-optimized containerized model serving
-- Recognize that all three (Ollama, vLLM, NIM) expose OpenAI-compatible APIs — same Python client
-- Know when to escalate from personal Ollama to shared infrastructure
+- You can now distinguish between Ollama (your personal torch) and vLLM (the shared power grid) — and know which one your project needs
+- You can identify when NVIDIA NIM is the right call: pre-optimized, containerized, GPU-architecture-aware serving for popular models
+- You know that Ollama, vLLM, and NIM all speak the same OpenAI-compatible API — one Python client rules them all
+- You can recognize the moment a solo pipeline needs to graduate to shared infrastructure, and you know who to call when it does

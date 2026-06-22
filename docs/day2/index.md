@@ -9,7 +9,7 @@ floor: 2
 
 # Day 2 — The Alchemist's Lab
 
-*The second floor smells of transmutation — Python environments bubbling in flasks, API keys sealed in vaults, LLM responses crystallizing into structured data. The Alchemist's work is precise: isolate your ingredients, measure your costs, never mix what shouldn't mix.*
+*The second floor reeks of transformation. Flasks of Python environments bubble on iron stands, each one sealed and labeled — no cross-contamination allowed. API keys glow amber behind vault doors. Somewhere deeper in the lab, an Oracle waits to answer questions that would take a human researcher weeks to answer alone. The Alchemist's first lesson: precision is power. Know your ingredients, measure your costs, and never mix what shouldn't mix.*
 
 **Duration:** ~3h 15min &nbsp;·&nbsp; **Levels:** 4–6
 
@@ -19,13 +19,13 @@ floor: 2
 
 | Room | Format | What you master |
 |------|--------|-----------------|
-| [The Venv Forge](venv-forge/) | 💻 Hands-on | Isolate Python dependencies per project |
-| [The Path Labyrinth](path-labyrinth/) | 💻 Hands-on | How the shell finds commands; fix "command not found" |
-| [The Key Vault](key-vault/) | 🖊️💬 Concept + hands-on | Stanford AI Playground; secrets in `.env` |
-| [The Watchtower of Secrets](watchtower-of-secrets/) | 💬 Discussion | What leaves your machine on every API call |
-| [The AI Scribe](ai-scribe/) | 💻 Hands-on | AI-assisted coding with Claude Code |
-| [The Oracle's Chamber](oracles-chamber/) | 💻 Hands-on | Call any OpenAI-compatible API from Python |
-| [The Binding Room](binding-room/) | 💻 Hands-on | Structured output with Pydantic |
-| [The Ledger](ledger/) | 💬 Discussion | Token cost intuition; when not to use an LLM |
-| [The Persistence Chamber](persistence-chamber/) | 💻 Hands-on | Run jobs that outlast your SSH session |
-| [Boss Gate 2](boss-gate-2/) | 🔑 Capstone | End-to-end LLM research pipeline |
+| [The Venv Forge](venv-forge/) | 💻 Hands-on | Forge isolated Python environments — no more dependency collisions |
+| [The Path Labyrinth](path-labyrinth/) | 💻 Hands-on | Command the shell's search paths; banish "command not found" forever |
+| [The Key Vault](key-vault/) | 🖊️💬 Concept + hands-on | Unlock Stanford AI Playground and lock your secrets in `.env` |
+| [The Watchtower of Secrets](watchtower-of-secrets/) | 💬 Discussion | See exactly what leaves your machine on every API call |
+| [The AI Scribe](ai-scribe/) | 💻 Hands-on | Write code faster with an AI pair programmer at your side |
+| [The Oracle's Chamber](oracles-chamber/) | 💻 Hands-on | Call any OpenAI-compatible API from Python like a pro |
+| [The Binding Room](binding-room/) | 💻 Hands-on | Tame wild LLM output into clean, validated structures with Pydantic |
+| [The Ledger](ledger/) | 💬 Discussion | Build token-cost intuition; know when NOT to summon the Oracle |
+| [The Persistence Chamber](persistence-chamber/) | 💻 Hands-on | Launch jobs that keep running long after you close your laptop |
+| [Boss Gate 2](boss-gate-2/) | 🔑 Capstone | Ship an end-to-end LLM research pipeline |

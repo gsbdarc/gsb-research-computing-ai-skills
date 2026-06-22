@@ -10,11 +10,13 @@ permalink: /day4/h200-chamber/
 
 <div data-room-id="d4-h200-chamber"></div>
 
-*141 gigabytes of HBM3e memory. The largest, fastest GPU on the Yens. You will submit a job that runs on it — your first real GPU job. Watch the `nvidia-smi` output when it starts. The numbers are real: this silicon is doing work that would take your laptop days.*
+*141 gigabytes of HBM3e memory — a silicon colossus humming in the dark. The chamber smells faintly of ozone and ambition. This is the largest, fastest GPU on the Yens, and in a few minutes your code will be running on it. When `nvidia-smi` spits back its first numbers, feel it: that is not a simulation. That is a $30,000 accelerator doing your bidding while your laptop sits idle.*
 
 ---
 
-## Main Quest
+## 🗡️ Main Quest
+
+The door ahead is sealed with a GPU lock. Prove you can summon compute on demand — write the job script, fire it into the scheduler, and watch real silicon wake up for you.
 
 {: .important }
 > **Quest:** Submit a GPU job targeting `yen-gpu4` (the H200 node), verify it runs on the GPU, and inspect the GPU utilization.
@@ -67,7 +69,9 @@ tail -f logs/gpu_job_JOBID.out
 
 ---
 
-## Chests
+## 📦 Chests
+
+Two locked chests glow against the far wall. One holds a diagnostic lens, the other a measuring sword — both invaluable before you ever argue for GPU time in a grant proposal.
 
 {: .chest }
 > **Chest 1 — Smi Sight:** Run `nvidia-smi` inside your GPU job and add `nvidia-smi --query-gpu=name,memory.total,memory.used,utilization.gpu --format=csv` to log GPU state at the start and end of your script. Save the output to a file.
@@ -81,7 +85,7 @@ tail -f logs/gpu_job_JOBID.out
 
 ---
 
-## Weapons Earned
+## ⚔️ Weapons Earned
 
 {: .weapon }
 > **Smi Sight** — `nvidia-smi` inside a SLURM GPU job; monitor GPU memory and utilization; know whether your model is actually using the GPU or running on CPU by mistake.
@@ -90,9 +94,9 @@ tail -f logs/gpu_job_JOBID.out
 
 ---
 
-## Skills Learned
+## 🧠 Skills Learned
 
-- Write a SLURM script that requests a GPU with `--gres=gpu:1` and targets a specific node with `--nodelist`
-- Verify the GPU is actually being used with `nvidia-smi` and `torch.cuda.is_available()`
-- Understand GPU memory (VRAM) as separate from system RAM — they are different resources
-- Know when GPU is worth the queue wait: large matrix operations, model inference, embedding generation
+- You can now write a SLURM script that requests a GPU with `--gres=gpu:1` and pins it to a specific node with `--nodelist`
+- You can now confirm the GPU is actually doing work — not silently falling back to CPU — using `nvidia-smi` and `torch.cuda.is_available()`
+- You understand that GPU memory (VRAM) is a separate, scarcer resource from system RAM, and you track both independently
+- You can now judge when a GPU is worth the queue wait: large matrix operations, model inference, embedding generation — and back that claim up with measured timings

@@ -10,11 +10,13 @@ permalink: /day4/grand-hall/
 
 <div data-room-id="d4-grand-hall"></div>
 
-*The throne room of the fortress. Here, the laws of the dungeon are etched into stone. Not arbitrary laws — practical ones. Every dataset you will ever work with belongs to one of three buckets. Misplace it and the research is compromised. Place it correctly and you can build anything on top of it, confidently.*
+*The throne room of the fortress. Iron torches line walls carved with warnings and permissions. Three great stone tablets dominate the far end of the chamber — each one a verdict on every dataset you will ever touch. These are not bureaucratic suggestions. They are load-bearing laws. Misplace a dataset and your entire pipeline is built on cracked ground. Place it correctly and you can construct anything — fast, fearless, and defensible.*
 
 ---
 
-## Main Quest
+## 🗡️ Main Quest
+
+Every quest in this hall begins with one question: what kind of data are you carrying?
 
 {: .important }
 > **Quest:** Apply the three-bucket privacy rule to a set of real research scenarios, then classify your own Day 3 pipeline's data.
@@ -54,9 +56,9 @@ Now classify two of your own datasets from your research. For each: which bucket
 
 ---
 
-## Skills Learned
+## 🧠 Skills Learned
 
-- Apply the three-bucket classification (public / restricted / PII) to any dataset
-- Understand the difference between "Stanford data perimeter" and "local on the Yens"
-- Know when Ollama is required instead of the Playground (restricted data, PII under some protocols)
-- Know to check your IRB protocol and DUA before building any LLM pipeline on research data
+- You can instantly classify any dataset into the three buckets — public, restricted, or PII — and choose the right tool without second-guessing yourself
+- You can explain exactly what leaves the Yens and when, so no data ever moves somewhere it shouldn't
+- You know when Ollama is the only safe choice — and why that's a feature, not a compromise
+- You can read your IRB protocol and DUA with a critical eye and catch any clause that would block a cloud LLM pipeline before you build it

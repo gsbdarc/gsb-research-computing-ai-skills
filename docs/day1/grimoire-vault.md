@@ -10,11 +10,13 @@ permalink: /day1/grimoire-vault/
 
 <div data-room-id="d1-grimoire-vault"></div>
 
-*Ice crystals preserve three hundred scrolls in an enormous, unsorted chamber. Each scroll bears a name in the format `fireball_fire_3_offensive_meteor.spell`. Your task: sort them into order before the frost claims your fingers. The Archmage does not accept "I couldn't find it" as an answer.*
+*The vault breathes cold. Frost coats the stone walls and three hundred spell scrolls lie scattered across the chamber floor in total chaos — each one named in a cryptic cipher like `fireball_fire_3_offensive_meteor.spell`. The Archmage's voice echoes from somewhere above: "Sorted. Now. Before the ice takes your hands." You have no loops. You have no Python. You have the shell — and that is enough.*
 
 ---
 
-## Main Quest
+## 🗡️ Main Quest
+
+The vault won't organize itself. One wildcard pattern can move sixty files in the time it would take you to drag-and-drop three. Here's how you become the archivist legends speak of.
 
 {: .important }
 > **Quest:** Download the grimoire archive, then sort all 300 spell files into element subdirectories using wildcards — no loops, no Python.
@@ -58,17 +60,23 @@ ls ice/ | wc -l       # count ice spells
 
 ---
 
-## Chests
+## 📦 Chests
+
+Hidden deeper in the vault, three locked chests glow with a faint arcane light. Each one rewards a researcher bold enough to go beyond the basics.
 
 {: .chest }
 > **Chest 1 — Wildcard Wand:** Which element+type combination is rarest in the entire grimoire? Find the answer using only `ls`, pipes, `sort`, and `uniq -c` — no Python.
 
 <label class="quest-check"><input type="checkbox" data-room="d1-grimoire-vault" data-key="chest1"> Wildcard Wand unlocked</label>
 
+The second chest is sealed by a riddle only `find` can answer — pierce every subdirectory in a single breath.
+
 {: .chest }
 > **Chest 2 — Find Familiar:** Use `find -exec` to print the first line of every tier-5 offensive spell file across all element subdirectories in a single command.
 
 <label class="quest-check"><input type="checkbox" data-room="d1-grimoire-vault" data-key="chest2"> Find Familiar unlocked</label>
+
+The third chest holds the most powerful relic in the vault — a tool that transforms raw filenames into structured intelligence.
 
 {: .chest }
 > **Chest 3 — Awk Sigil:** Use `awk` to generate a CSV inventory: `element,tier,type,count` — one row per unique combination, sorted by count descending. Redirect it to `inventory.csv`.
@@ -77,7 +85,7 @@ ls ice/ | wc -l       # count ice spells
 
 ---
 
-## Weapons Earned
+## ⚔️ Weapons Earned
 
 {: .weapon }
 > **Wildcard Wand** — use `*` and `?` patterns to target hundreds of files at once; never click-drag a file batch again.
@@ -88,9 +96,9 @@ ls ice/ | wc -l       # count ice spells
 
 ---
 
-## Skills Learned
+## 🧠 Skills Learned
 
-- Use wildcards (`*`, `?`) to match and move hundreds of files in one command
-- Understand how the shell expands glob patterns before running the command
-- Use `ls | wc -l`, `sort`, and `uniq` to count and summarize file sets
-- Think in patterns, not individual files — the researcher's approach to bulk data
+- You can now move hundreds of files in a single command using wildcards (`*`, `?`) — no loops, no scripts, no drama
+- You understand how the shell expands glob patterns *before* the command ever runs, giving you precise, predictable control
+- You can count, rank, and summarize entire file collections with `ls | wc -l`, `sort`, and `uniq` in seconds
+- You think in patterns rather than individual files — the hallmark of a researcher who works at scale

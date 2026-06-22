@@ -8,9 +8,11 @@ permalink: /day1/boss-gate-1/
 
 # Boss Gate 1
 
-*The Archmage's crest seals the passage to Floor 2. The seal reads: "Prove you can find what is hidden, and leave a record of your discovery." The vault is somewhere in `/scratch`. The signature spell is in there. Find it.*
+*Iron doors. A glowing crest — the Archmage's seal — pulses cold blue across the stone. The inscription burns into view: "Prove you can find what is hidden, and leave a record of your discovery." Somewhere in the depths of `/scratch`, buried among hundreds of decoy files, a single spell bears the Archmage's true signature. The passage to Floor 2 will not open until you surface it.*
 
 ---
+
+## 🔑 The Challenge
 
 {: .boss }
 > **Boss Battle — The Archmage's Signature**
@@ -39,7 +41,7 @@ permalink: /day1/boss-gate-1/
 > That commit is your key. No push, no exit.
 
 {: .tip }
-> **Hint:** You have `find`, `grep`, and pipes. You do not need Python. Think about what makes this file different from the other 300.
+> 💡 **Hint:** You have `find`, `grep`, and pipes. You do not need Python. Think about what makes this file different from the other 300.
 
 ---
 
@@ -47,9 +49,9 @@ permalink: /day1/boss-gate-1/
 
 ---
 
-## Skills This Gate Tests
+## 🧠 Skills This Gate Tests
 
-- `ssh` to reach the Yens
-- `find` and `grep` to search across a directory tree
-- Reading file contents from the command line
-- The complete git workflow: add → commit → push to your fork
+- You can `ssh` into the Yens cluster and operate as a remote explorer
+- You can wield `find` and `grep` to hunt through a forest of directories for one specific target
+- You can crack open files from the command line and read what's inside
+- You own the complete git spellchain: add → commit → push to your fork

@@ -10,11 +10,13 @@ permalink: /day2/ai-scribe/
 
 <div data-room-id="d2-ai-scribe"></div>
 
-*A quill that writes on your behalf — but only if you guide it precisely. The Scribe is fast and usually right. It has also, on occasion, invented a SLURM flag that does not exist and written a Python function that almost works. The researcher's job is to direct, then verify.*
+*In the deepest alcove of the Alchemist's Lab hovers a luminous quill — the AI Scribe. It writes faster than any mortal hand, conjuring functions and logic from plain words alone. But the Scribe is a powerful ally, not an oracle: it has invented SLURM flags that do not exist, returned Python functions that almost work, and confidently explained code that does the wrong thing. The researcher who wields it is not a passive passenger — they are the commander who directs the quill and the judge who catches its errors before they detonate.*
 
 ---
 
-## Main Quest
+## 🗡️ Main Quest
+
+You step up to the Scribe's pedestal. The quill hovers, waiting. Your task: summon it, command it, and keep your eyes open.
 
 {: .important }
 > **Quest:** Install Claude Code, configure it for the Yens, and use it to write a Python script that you verify before running.
@@ -47,18 +49,22 @@ python count_spells.py ~/grimoire/
 ```
 
 {: .warning }
-> **The one security rule:** Never paste API keys, restricted dataset samples, or PII into a Claude Code prompt. Claude Code sends your prompt to Anthropic's servers. The same rules as any other cloud API apply.
+> ⚠️ **The one security rule:** Never paste API keys, restricted dataset samples, or PII into a Claude Code prompt. Claude Code sends your prompt to Anthropic's servers. The same rules as any other cloud API apply.
 
 <label class="quest-check"><input type="checkbox" data-room="d2-ai-scribe" data-key="main"> Main Quest complete</label>
 
 ---
 
-## Chests
+## 📦 Chests
+
+Two locked chests gleam in the corner — each one rewards a sharper, more dangerous command of the Scribe.
 
 {: .chest }
 > **Chest 1 — Prompt Blade:** The generated script has at least one thing you'd write differently. Identify it and write a better prompt that produces a cleaner result. What made the second prompt better?
 
 <label class="quest-check"><input type="checkbox" data-room="d2-ai-scribe" data-key="chest1"> Prompt Blade unlocked</label>
+
+Hidden inside the second chest is the secret that separates novices from true Scribe commanders: give the Scribe context and it transforms from a guesser into a collaborator.
 
 {: .chest }
 > **Chest 2 — Context Tome:** Feed Claude Code your Day 3 SLURM job script (from yesterday's hypothetical) and ask it to explain each `#SBATCH` directive and suggest two improvements. Verify whether each suggestion is correct before accepting it.
@@ -67,7 +73,7 @@ python count_spells.py ~/grimoire/
 
 ---
 
-## Weapons Earned
+## ⚔️ Weapons Earned
 
 {: .weapon }
 > **Prompt Blade** — write precise coding prompts that specify inputs, outputs, error handling, and constraints; get useful output from AI tools instead of plausible-looking boilerplate.
@@ -76,9 +82,9 @@ python count_spells.py ~/grimoire/
 
 ---
 
-## Skills Learned
+## 🧠 Skills Learned
 
-- Install and use Claude Code as a research coding tool on the Yens
-- Understand the "direct, then verify" workflow: AI writes a draft, you check it before running
-- Apply the security rule: no keys, no restricted data, no PII in AI prompts
-- Write better prompts that specify the exact behavior you need
+- 💡 You can now summon Claude Code on the Yens and put it to work on real research code
+- 💡 You can now run the "direct, then verify" workflow — AI drafts, you judge, nothing executes unseen
+- 💡 You can now enforce the security rule: keys, restricted data, and PII never leave your terminal in a prompt
+- 💡 You can now craft prompts that specify inputs, outputs, edge cases, and constraints — so the Scribe delivers signal, not noise

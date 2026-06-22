@@ -10,11 +10,13 @@ permalink: /day2/watchtower-of-secrets/
 
 <div data-room-id="d2-watchtower-of-secrets"></div>
 
-*From the top of the tower you can see everything that leaves the dungeon. Every scroll sent out, every question whispered to the Oracle — it all passes through this parapet. Most researchers never climb up here. They should.*
+*You climb the spiral stairs and step out onto the parapet. Wind. Clarity. From up here you can see everything that leaves the dungeon — every scroll launched into the cloud, every question breathed to the Oracle, every invisible HTTP packet slipping past the gate. Most researchers never bother climbing this high. They send their data into the dark and hope for the best. You are not most researchers.*
 
 ---
 
-## Main Quest
+## 🗡️ Main Quest
+
+Before you send a single byte to a cloud model, you need to know exactly what you're handing over — and to whom. Step up to the parapet and read what's written on the wind.
 
 {: .important }
 > **Quest:** Work through the security checklist as a class — no keyboard needed. Understand what leaves your machine every time you make an API call, and what the Stanford AI Playground guarantees vs. what it doesn't.
@@ -51,9 +53,9 @@ The API provider logs all of this. Stanford's agreement with OpenAI covers what 
 
 ---
 
-## Skills Learned
+## 🧠 Skills Learned
 
-- Know exactly what data leaves your machine on every LLM API call
-- Apply the three-bucket rule to classify any dataset before sending it to a cloud API
-- Understand what the Stanford AI Playground's data perimeter guarantees — and what it doesn't
-- Have a pre-flight checklist to run before starting any new LLM-based research pipeline
+- You can now name exactly what data leaves your machine on every LLM API call — no more black boxes
+- You can sort any dataset into its bucket and know instantly whether it's safe to send to a cloud API
+- You understand where the Stanford AI Playground's data perimeter ends and your own responsibility begins
+- You have a pre-flight checklist burned into your workflow so you never launch a pipeline blind

@@ -10,11 +10,13 @@ permalink: /day4/armory/
 
 <div data-room-id="d4-armory"></div>
 
-*The weapons vault of the GPU Fortress. Three rows of hardware — each row faster, larger, and more expensive than the last. A30s for the everyday work. A40s for more demanding inference. H200s for the frontier. Choosing the wrong weapon wastes your time and the cluster's resources. Choose deliberately.*
+*Torchlight catches the glint of silicon and copper as you step into the GPU Fortress's most sacred chamber. Three rows of weapons line the walls — each tier heavier, faster, and hungrier than the last. The A30s hum with quiet readiness, battle-tested workhorses for daily inference. The A40s pulse with more menace, built for models that would crush lesser hardware. And at the far end, draped in shadow, the H200 waits — 141 gigabytes of video RAM, enough to swallow a 70-billion-parameter giant whole. Every adventurer who has tried to force a massive model onto the wrong GPU has paid for that mistake in wasted hours and failed jobs. Study the arsenal. Choose deliberately.*
 
 ---
 
-## Main Quest
+## 🗡️ Main Quest
+
+The GPU landscape is your map — without it, you're swinging blind. Take a moment at the whiteboard before you draw a weapon.
 
 {: .important }
 > **Quest:** Learn the GPU landscape on the Yens — what's available, what each GPU is for, and how to request one.
@@ -39,9 +41,9 @@ This is a concept block. Follow the whiteboard.
 
 ---
 
-## Skills Learned
+## 🧠 Skills Learned
 
-- Know the three GPU tiers on the Yens (A30 / A40 / H200) and what each is suited for
-- Understand VRAM as the binding constraint for model size — not CPU RAM
-- Know how to request a GPU in a SLURM script with `--gres=gpu:1`
-- Understand when a GPU job is worth the queue wait vs. CPU-based processing
+- You can now identify the three GPU tiers on the Yens (A30 / A40 / H200) and match the right weapon to the right job
+- You understand VRAM as the true binding constraint for model size — not CPU RAM, not disk, VRAM
+- You can request a GPU in any SLURM script with `--gres=gpu:1` and pin to a specific node when you need the big iron
+- You can judge when a GPU job is worth the queue wait — and when a CPU job will get you there faster

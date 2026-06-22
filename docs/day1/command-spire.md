@@ -10,11 +10,13 @@ permalink: /day1/command-spire/
 
 <div data-room-id="d1-command-spire"></div>
 
-*Lightning crackles between the rune-carved columns. Every researcher who reached the top floor passed through here first. The commands etched into the walls are simple — deceptively so. Master them and you can navigate any Unix system, anywhere, forever.*
+*Lightning splits the air between rune-carved obsidian columns, and the smell of ozone hangs like a dare. The walls themselves are covered in commands — chiseled by every researcher who came before you, each one who clawed their way to the top floor and never looked back. The inscriptions look almost too simple. That's how you know they're powerful. Master what's written here and no Unix system on earth — no cluster, no remote server, no black-screened HPC node — will ever feel foreign again.*
 
 ---
 
-## Main Quest
+## 🗡️ Main Quest
+
+Every hero needs to know where they stand. Fire up your terminal and claim your footing.
 
 {: .important }
 > **Quest:** Use the command line to navigate your file system and reorganize a directory of files — without touching a mouse.
@@ -46,23 +48,29 @@ rm -r old/                     # delete a directory and everything in it
 ```
 
 {: .warning }
-> `rm` is permanent. There is no undo. Double-check your path before you run it.
+> ⚠️ `rm` is permanent. There is no undo. Double-check your path before you run it.
 
 <label class="quest-check"><input type="checkbox" data-room="d1-command-spire" data-key="main"> Main Quest complete</label>
 
 ---
 
-## Chests
+## 📦 Chests
+
+Hidden behind the columns are three chests, each sealed with a different cipher. Crack them and claim weapons that will serve you for years.
 
 {: .chest }
 > **Chest 1 — Grep Blade:** Your dungeon contains 300 spell files. Find every `fire` spell that is also `offensive`, and count how many there are — using only pipes and no loops.
 
 <label class="quest-check"><input type="checkbox" data-room="d1-command-spire" data-key="chest1"> Grep Blade unlocked</label>
 
+The second chest hums with strange energy — it wants you to rename things in bulk, the kind of task that would take an hour by hand and ten seconds in a loop.
+
 {: .chest }
 > **Chest 2 — Shell Rune:** Write a `for` loop that renames every `.txt` file in the current directory by appending `_archive` before the extension. (e.g. `quest.txt` → `quest_archive.txt`)
 
 <label class="quest-check"><input type="checkbox" data-room="d1-command-spire" data-key="chest2"> Shell Rune unlocked</label>
+
+The third chest is the hardest to open — and the most valuable. Inside is the power to turn any trick you learn today into a tool you can call anytime.
 
 {: .chest }
 > **Chest 3 — Arcane Blade:** Write a reusable shell script `organize.sh` that takes a directory as its first argument (`$1`) and prints a count of files per extension. Run it on the grimoire directory.
@@ -71,7 +79,7 @@ rm -r old/                     # delete a directory and everything in it
 
 ---
 
-## Weapons Earned
+## ⚔️ Weapons Earned
 
 {: .weapon }
 > **Grep Blade** — search any file or stream for a pattern; chain with pipes to filter, sort, and count without writing a single line of Python.
@@ -82,9 +90,9 @@ rm -r old/                     # delete a directory and everything in it
 
 ---
 
-## Skills Learned
+## 🧠 Skills Learned
 
-- Navigate the Unix file system with confidence from any terminal on any machine
-- Understand absolute vs. relative paths
-- Create, copy, move, and delete files and directories without a GUI
-- Know that `rm` is permanent — no recycle bin on a cluster
+- You can drop into any Unix terminal on any machine — cluster, cloud, or borrowed laptop — and navigate with total confidence
+- You know the difference between absolute and relative paths and can use both without thinking twice
+- You can conjure, copy, move, and destroy files and directories without ever reaching for a mouse
+- You understand that `rm` is permanent — there is no recycle bin on a cluster, and you will never be caught off guard by that again
