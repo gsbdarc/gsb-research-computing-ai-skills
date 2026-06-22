@@ -68,11 +68,6 @@ git push -u origin day1-work
 
 <label class="quest-check"><input type="checkbox" data-room="d1-repository" data-key="chest2"> Stash Spell unlocked</label>
 
-{: .chest }
-> **Chest 3 — Blame Blade:** Run `git blame` on a file in the course repo. What information does each line show? When would a researcher use this on their own project?
-
-<label class="quest-check"><input type="checkbox" data-room="d1-repository" data-key="chest3"> Blame Blade unlocked</label>
-
 ---
 
 ## Weapons Earned
@@ -81,8 +76,6 @@ git push -u origin day1-work
 > **History Lens** — `git log`, `git diff`, `git status` to understand your project's history and current state at a glance; never lose work or wonder what changed.
 >
 > **Stash Spell** — `git stash` to set aside work-in-progress without committing it; context-switch cleanly between branches.
->
-> **Blame Blade** — `git blame` to trace every line to its author and commit; understand who changed what and why in any collaborative project.
 
 ---
 

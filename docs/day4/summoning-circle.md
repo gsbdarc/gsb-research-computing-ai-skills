@@ -76,11 +76,6 @@ Notice: the interface is **identical to the Stanford AI Playground** — same Py
 
 <label class="quest-check"><input type="checkbox" data-room="d4-summoning-circle" data-key="chest2"> Modelfile Magic unlocked</label>
 
-{: .chest }
-> **Chest 3 — Throughput Tome:** Write a Python script that sends 20 requests to Ollama concurrently using `asyncio` and measures total tokens per second. How does throughput scale with concurrent requests on the H200?
-
-<label class="quest-check"><input type="checkbox" data-room="d4-summoning-circle" data-key="chest3"> Throughput Tome unlocked</label>
-
 ---
 
 ## Weapons Earned
@@ -89,8 +84,6 @@ Notice: the interface is **identical to the Stanford AI Playground** — same Py
 > **Model Menagerie** — compare multiple local models on the same task; choose by latency, quality, and VRAM requirements rather than defaulting to the largest model.
 >
 > **Modelfile Magic** — customize any Ollama model with a system prompt via `Modelfile`; create purpose-built research assistants without cloud API costs.
->
-> **Throughput Tome** — benchmark concurrent request throughput; understand the GPU as a parallel inference engine, not a sequential one.
 
 ---
 

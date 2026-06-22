@@ -1,0 +1,10 @@
+# Enrolled students — add GitHub usernames here before Day 1.
+# The leaderboard at /leaderboard/ fetches each student's progress.yml from their fork.
+#
+# Format:
+#   - username: their-github-username
+#     name: "First L."   # first name + last initial, shown on leaderboard
+#
+# Example (remove before class):
+# - username: jsmith
+#   name: "Jane S."

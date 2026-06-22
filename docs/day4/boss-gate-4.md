@@ -65,9 +65,9 @@ permalink: /day4/boss-gate-4/
 ---
 
 {: .important }
-> **Congratulations — you have cleared the DARC Dungeon.**
+> **All four floors cleared.**
 >
-> Level 10 graduate. Every skill in the table above is yours. The weapons rack in the entrance hall shows what you earned; every chest you opened adds to the arsenal you carry into your research.
+> Every skill in the table above is yours. Now check the leaderboard — the dungeon isn't over until everyone sees how many chests you opened. Sync your quest log and see where you rank.
 >
-> What's next: Sherlock (Stanford's HPC), Redivis (data platform), fine-tuning, multi-node jobs, and whatever your research actually needs. The dungeon was the foundation. You know where the doors are.
+> What's next from here: Sherlock (Stanford's HPC), Redivis (data platform), fine-tuning, multi-node jobs, and whatever your research actually needs. The dungeon was the foundation. You know where the doors are.
 

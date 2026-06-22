@@ -10,7 +10,7 @@
   const STORAGE_KEY = 'dungeon.v1.progress';
 
   // Total possible checkboxes across the entire dungeon (all 4 days)
-  const TOTAL_CHECKS = 80;
+  const TOTAL_CHECKS = 78;
 
   // Full room structure — used to compute per-day totals in the quest log panel.
   // Keys match data-room attributes on checkboxes throughout the site.
@@ -25,7 +25,7 @@
         { id: 'd1-cartographers-room',   keys: ['main', 'chest1'] },
         { id: 'd1-scroll-transfer',      keys: ['main', 'chest1'] },
         { id: 'd1-arcane-notebook',      keys: ['main', 'chest1', 'chest2', 'chest3'] },
-        { id: 'd1-repository',           keys: ['main', 'chest1', 'chest2', 'chest3'] },
+        { id: 'd1-repository',           keys: ['main', 'chest1', 'chest2'] },
         { id: 'd1-primer-chamber',       keys: ['main'] },
         { id: 'd1-boss-gate',            keys: ['commit'] },
       ],
@@ -66,7 +66,7 @@
       rooms: [
         { id: 'd4-armory',              keys: ['main'] },
         { id: 'd4-h200-chamber',        keys: ['main', 'chest1', 'chest2'] },
-        { id: 'd4-summoning-circle',    keys: ['main', 'chest1', 'chest2', 'chest3'] },
+        { id: 'd4-summoning-circle',    keys: ['main', 'chest1', 'chest2'] },
         { id: 'd4-engine-room',         keys: ['main'] },
         { id: 'd4-grand-hall',          keys: ['main'] },
         { id: 'd4-trap-garden',         keys: ['main'] },
@@ -188,6 +188,22 @@
     });
   }
 
+  function exportQuestLog() {
+    var data = loadProgress();
+    var json = JSON.stringify(data, null, 2);
+    var blob = new Blob([json], { type: 'application/json' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'quest_log.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    var hint = document.getElementById('quest-sync-hint');
+    if (hint) hint.style.display = 'block';
+  }
+
   function createWidget() {
     var btn = document.createElement('div');
     btn.id = 'quest-log-btn';
@@ -208,6 +224,25 @@
     var list = document.createElement('ul');
     list.id = 'quest-log-list';
     panel.appendChild(list);
+
+    var syncDiv = document.createElement('div');
+    syncDiv.className = 'quest-sync';
+
+    var syncBtn = document.createElement('button');
+    syncBtn.type = 'button';
+    syncBtn.id = 'quest-sync-btn';
+    syncBtn.textContent = '📤 Sync to leaderboard';
+    syncBtn.addEventListener('click', exportQuestLog);
+    syncDiv.appendChild(syncBtn);
+
+    var hint = document.createElement('p');
+    hint.id = 'quest-sync-hint';
+    hint.innerHTML = 'Save <code>quest_log.json</code> to your repo root, then:<br>'
+      + '<code>git add quest_log.json && git commit -m "sync" && git push</code>';
+    hint.style.display = 'none';
+    syncDiv.appendChild(hint);
+
+    panel.appendChild(syncDiv);
     btn.appendChild(panel);
 
     document.body.appendChild(btn);

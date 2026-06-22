@@ -2,17 +2,19 @@
 DARC Dungeon Boss Gate grader.
 
 Runs on student forks via GitHub Actions after every push to main.
-Checks Boss Gate deliverables and updates docs/_data/progress.yml.
-No external dependencies — stdlib only.
+Checks Boss Gate deliverables, counts quest log completion, and updates
+docs/_data/progress.yml. No external dependencies — stdlib only.
 """
 
 import sys
+import os
 import json
 import csv
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).parent.parent
 PROGRESS_FILE = REPO_ROOT / "docs" / "_data" / "progress.yml"
+QUEST_LOG_FILE = REPO_ROOT / "quest_log.json"
 
 
 # ── Progress file I/O ─────────────────────────────────────────────────────────
@@ -29,11 +31,25 @@ def load_progress():
     return set(floors) if floors else {1}
 
 
-def save_progress(unlocked: set):
+def save_progress(unlocked: set, completed_checks: int, username: str):
     lines = ["unlocked_floors:"]
     for f in sorted(unlocked):
         lines.append(f"- {f}")
+    lines.append(f"completed_checks: {completed_checks}")
+    lines.append(f"username: \"{username}\"")
     PROGRESS_FILE.write_text("\n".join(lines) + "\n")
+
+
+# ── Quest log check count ─────────────────────────────────────────────────────
+
+def count_quest_log():
+    if not QUEST_LOG_FILE.exists():
+        return 0
+    try:
+        data = json.loads(QUEST_LOG_FILE.read_text())
+        return sum(1 for v in data.values() if v is True)
+    except (json.JSONDecodeError, AttributeError):
+        return 0
 
 
 # ── Boss Gate checks ──────────────────────────────────────────────────────────
@@ -124,20 +140,26 @@ GATES = [
     (5, "Boss Gate 4", check_gate_4),
 ]
 
+
 def main():
     unlocked = load_progress()
+    completed_checks = count_quest_log()
+    github_repo = os.environ.get("GITHUB_REPOSITORY", "")
+    username = github_repo.split("/")[0] if "/" in github_repo else ""
     changed = False
 
     print("=" * 55)
     print("  DARC Dungeon — Boss Gate Grader")
     print("=" * 55)
-    print(f"  Currently unlocked floors: {sorted(unlocked)}")
+    print(f"  Student:               {username or '(local run)'}")
+    print(f"  Floors unlocked:       {sorted(unlocked)}")
+    print(f"  Quest log checks:      {completed_checks} / 78")
     print()
 
     for unlock_floor, gate_name, check_fn in GATES:
         prereq_floor = unlock_floor - 1
         if prereq_floor not in unlocked:
-            continue  # can't check this gate yet
+            continue
         if unlock_floor in unlocked:
             print(f"  ✓ {gate_name}: already passed")
             continue
@@ -153,11 +175,11 @@ def main():
             print(f"    {message}")
 
     print()
+    save_progress(unlocked, completed_checks, username)
     if changed:
-        save_progress(unlocked)
         print(f"  Progress saved. Floors now unlocked: {sorted(unlocked)}")
     else:
-        print(f"  No changes. Floors unlocked: {sorted(unlocked)}")
+        print(f"  No new floors unlocked. Floors: {sorted(unlocked)}")
     print("=" * 55)
     return 0
 

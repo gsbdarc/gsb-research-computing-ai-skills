@@ -6,7 +6,12 @@ You are a pre-doctoral researcher at Stanford GSB. You have four days to learn t
 
 The course is structured as a dungeon game. Each day is a floor. Each hands-on block is a room. You earn skills by completing quests, unlock optional depth by opening chests, and advance to the next floor by passing a Boss Gate — a real deliverable you commit to GitHub.
 
+**Everyone clears all four floors. The real competition is who opens the most chests.**
+
+At any point, open your Quest Log (bottom-left of any page), click **Sync to leaderboard**, save the file, and push it. Your position on the [leaderboard](https://gsbdarc.github.io/rf-bootcamp-2026/leaderboard/) updates automatically.
+
 **Reference site:** https://gsbdarc.github.io/rf-bootcamp-2026/
+**Leaderboard:** https://gsbdarc.github.io/rf-bootcamp-2026/leaderboard/
 
 ---
 
@@ -129,17 +134,25 @@ Each floor is locked until you pass the Boss Gate from the previous floor. Here'
 | **Gate 1** | `signature_spell.txt` | Floor 2 — The Alchemist's Lab |
 | **Gate 2** | `results/mood_ring.json` | Floor 3 — The SLURM Mines |
 | **Gate 3** | `results/great_scroll_sweep.csv` · `results/failed_tasks.txt` · `README.md` | Floor 4 — The GPU Fortress |
-| **Gate 4** | `results/comparison.csv` · `results/privacy_ruling.md` · updated `README.md` | Graduation 🎓 |
+| **Gate 4** | `results/comparison.csv` · `results/privacy_ruling.md` · updated `README.md` | All floors cleared ⚔️ |
 
 The grader checks that the files exist and contain valid data — it does not grade quality. The goal is to prove you ran the pipeline, not that it was perfect.
 
 ---
 
+## Leaderboard
+
+The leaderboard at `/leaderboard/` ranks students by:
+1. **Boss Gates cleared** (floors unlocked) — everyone should reach 4
+2. **Total score** (quests + chests completed, max 78) — the competitive differentiator
+
+To update your position: open the **Quest Log** widget (bottom-left of any dungeon page) → **Sync to leaderboard** → save `quest_log.json` to your repo root → commit and push. The grader updates your ranking automatically.
+
 ## Chests and Weapons
 
 Every room has an optional **Chest** — a one-line challenge you figure out yourself (no walkthrough). Solving it earns a named **Weapon**: a skill that pays off later in the course.
 
-You don't need to open any chests to pass Boss Gates. But researchers who open chests walk away with a deeper toolkit: `git blame`, `rsync`, `asyncio`, fault-tolerant SLURM pipelines, vLLM benchmarking, and more.
+You don't need to open any chests to pass Boss Gates. But researchers who open chests walk away with a deeper toolkit: `rsync`, `asyncio`, fault-tolerant SLURM pipelines, custom Ollama models, and more — and a higher leaderboard rank.
 
 ---
 
