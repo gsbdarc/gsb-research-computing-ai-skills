@@ -158,7 +158,7 @@ You don't need to open any chests to pass Boss Gates. But researchers who open c
 
 ## Instructor Notes
 
-- Grimoire files for Day 1: run `python scripts/generate_grimoire.py --seed 2026 --count 300`, then `scp -r grimoire/ SUNetID@yen.stanford.edu:/scratch/rf_bootcamp_2026/grimoire/`
+- Grimoire files for Day 1: on the Yens, run `python scripts/generate_grimoire.py --seed 2026 --count 300 --output-dir /scratch/rf_bootcamp_2026/grimoire/`
 - The main course site (`gsbdarc.github.io/rf-bootcamp-2026`) is read-only reference — students work on their own forks
 - `docs/_data/progress.yml` tracks which floors are unlocked; the grader commits updates automatically
 - Grader source: `scripts/check_boss_gates.py` — no external dependencies, stdlib only
