@@ -178,7 +178,7 @@
 
     var toggle = document.getElementById('quest-log-toggle');
     if (toggle) {
-      toggle.textContent = '⚔️ Lv.' + level + ' · ' + counts.done + '/' + TOTAL_CHECKS;
+      toggle.textContent = '⚔️ Lv.' + level + ' · ' + counts.done + '/' + TOTAL_CHECKS + ' XP';
     }
 
     var levelEl = document.getElementById('quest-level-display');
@@ -192,7 +192,7 @@
     var summary = document.getElementById('quest-log-summary');
     if (summary) {
       summary.innerHTML = '<strong>Level ' + level + ' — ' + title + '</strong>'
-        + ' &nbsp;·&nbsp; ' + counts.done + '/' + TOTAL_CHECKS + ' quests complete';
+        + ' &nbsp;·&nbsp; ' + counts.done + '/' + TOTAL_CHECKS + ' XP';
     }
 
     // Update panel list items
@@ -230,7 +230,7 @@
     var toggle = document.createElement('button');
     toggle.id = 'quest-log-toggle';
     toggle.type = 'button';
-    toggle.textContent = '⚔️ Lv.1 · 0/' + TOTAL_CHECKS;
+    toggle.textContent = '⚔️ Lv.1 · 0/' + TOTAL_CHECKS + ' XP';
     btn.appendChild(toggle);
 
     var panel = document.createElement('div');

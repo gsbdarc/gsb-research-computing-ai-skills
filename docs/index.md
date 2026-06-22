@@ -20,7 +20,7 @@ permalink: /
 >
 > Each floor ends with a **Boss Gate**: a capstone challenge you submit by committing your work to your fork on GitHub. Push your commit → the grader runs → the next floor unlocks on your personal site.
 >
-> Every completed quest and opened chest raises your **Level** (shown in the widget, bottom-left). All main quests → Level 4 Journeyman. Open every chest → Level 10 Archmage. The leaderboard ranks by level.
+> Every completed quest and opened chest earns **XP**. XP accumulates into your **Level** (shown in the widget, bottom-left). All main quests → 34 XP → Level 4 Journeyman. Open every chest → 78 XP → Level 10 Archmage. The leaderboard ranks by level.
 
 ---
 
@@ -89,4 +89,4 @@ A fully-equipped researcher who opens every chest across all four floors earns:
 | **Documentation** | Structure Sigil · Changelog Charm |
 | **GPU + local LLMs** | Smi Sight · Benchmark Blade · Model Menagerie · Modelfile Magic |
 
-All main quests → Level 4 Journeyman. Every chest opened → Level 10 Archmage — fully equipped researcher.
+All main quests → 34 XP → Level 4 Journeyman. Every chest opened → 78 XP → Level 10 Archmage — fully equipped researcher.
