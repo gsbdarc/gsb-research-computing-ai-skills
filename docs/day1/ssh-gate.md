@@ -57,7 +57,7 @@ Your laptop
 │  └─────────────────────────────────────────────────┘        │
 │                                                             │
 │  Shared storage — all nodes see the same files:             │
-│  /home/users/SUNetID/   ← backed up, limited quota         │
+│  /home/users/SUNetID/   ← backed up, limited, personal     │
 │  /yen/projects/         ← backed up, large, for project    │
 │                            files, scripts, and results      │
 │  /scratch/shared/       ← large, fast, NOT backed up       │
