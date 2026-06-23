@@ -30,22 +30,24 @@ Researchers use the terminal — not GUIs, not file browsers — for three reaso
    breaks on a remote server          runs on laptop, Yens, any Linux
 ```
 
-The terminal also reaches further. After SSH (later today), every command you practice right now will work identically on the Yens cluster — 3,000 miles away:
+The terminal also reaches further. After SSH (later this morning), every command you practice right now will work identically on the Yens cluster:
 
 ```
-  Your laptop (now)               Stanford Yens (this afternoon)
-  ┌──────────────────┐            ┌─────────────────────────────┐
-  │ $ ls grimoire/   │  ───ssh──► │ $ ls grimoire/              │
-  │ $ mv *.spell …   │            │ $ mv *.spell …              │
-  └──────────────────┘            │ 600 CPUs · terabytes of RAM │
-    1 machine                     └─────────────────────────────┘
-                                    same commands, different machine
+  Your laptop (now)                  Stanford Yens (later this morning)
+  ┌───────────────────────────┐      ┌───────────────────────────────────┐
+  │ $ ls grimoire/            │      │ $ ls grimoire/                    │
+  │ $ mv *.spell …            │─ssh─►│ $ mv *.spell …                    │
+  │                           │      │                                   │
+  │ ~8–16 cores               │      │ 256 cores per node · 5 nodes      │
+  │ ~8–32 GB RAM              │      │ ~1 TB RAM per node                │
+  └───────────────────────────┘      └───────────────────────────────────┘
+  your machine                         remote server — same commands
 ```
 
 **Open your terminal now:**
 
 - **Mac:** Press `Cmd+Space`, type `Terminal`, press Enter. (iTerm2 also works if installed.)
-- **Windows:** Open the Start menu, search for `Ubuntu` — this is WSL (Windows Subsystem for Linux). If it isn't installed, ask your instructor.
+- **Windows:** Open the Start menu, search for `Ubuntu` — this is WSL (Windows Subsystem for Linux). If it isn't installed, [Git Bash](https://git-scm.com/downloads) is a good alternative — download and install it, then open "Git Bash" from the Start menu.
 
 You should see a blinking cursor waiting for a command. That cursor is the entrance to the dungeon.
 
