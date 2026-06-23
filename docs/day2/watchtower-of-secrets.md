@@ -2,7 +2,7 @@
 layout: default
 title: "The Watchtower of Secrets"
 parent: "Day 2 — The Alchemist's Lab"
-nav_order: 5
+nav_order: 6
 permalink: /day2/watchtower-of-secrets/
 ---
 

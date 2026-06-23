@@ -21,9 +21,8 @@ Every concept has a hands-on exercise. The website documents everything — diag
 | 1.5 | SSH — connect to the Yens, identify your node, read the login banner | 💻 | Connect to a remote server; understand login vs. compute nodes |
 | 1.6 | Yens file system — home vs. `/scratch`, `gsbquota`, `gsbbrowser`, `module avail` | 💻 | Know where data lives, how much space you have, what software is available |
 | 1.7 | File transfer — `scp` the grimoire up; understand the shared file system | 💻 | Move data between local and remote; shared FS means one copy everywhere |
-| 1.8 | JupyterHub — open a notebook on the Yens, run a cell, understand the kernel | 💻 | Run code on cluster hardware from a browser |
-| 1.9 | Git for research — `clone`, `branch`, `add`, `commit`, `push`; why every project needs this | 💻 | Version-control a project; understand the fork → commit → push workflow |
-| 1.10 | 🔑 Capstone: find the hidden file in `/scratch/…/vault/`, commit your answer to your fork | 🔑 | Use everything from today together on an open-ended problem |
+| 1.8 | Git for research — `clone`, `branch`, `add`, `commit`, `push`; why every project needs this | 💻 | Version-control a project; understand the fork → commit → push workflow |
+| 1.9 | 🔑 Capstone: find the hidden file in `/scratch/…/vault/`, commit your answer to your fork | 🔑 | Use everything from today together on an open-ended problem |
 
 ---
 
@@ -35,7 +34,7 @@ Every concept has a hands-on exercise. The website documents everything — diag
 |---|---|---|---|
 | 2.0 | Day 1 recap — sticky check | 💬 | — |
 | 2.1 | Virtual environments — walk through the Venv Forge intro: what breaks without isolation | 💬 | Mental model: project isolation; one venv per project |
-| 2.2 | Create and use a venv, connect it to JupyterHub as a kernel | 💻 | Isolate dependencies per project; never break another project's environment |
+| 2.2 | Create and use a venv; open the Arcane Notebook (JupyterHub), run a cell, connect venv as kernel | 💻 | Isolate dependencies per project; run notebooks on cluster hardware from a browser |
 | 2.3 | `$PATH` — walk through the Path Labyrinth diagram: tool in a folder, first match wins; `module load` and venvs both work by prepending | 💻 | Understand how the shell finds commands; fix "command not found" confidently |
 | 2.4 | Stanford AI Playground — what it is, why it exists, data governance, budget caps, available models | 💬 | Know what the Playground guarantees vs. a personal OpenAI account; understand Stanford's data perimeter |
 | 2.5 | Security and secrets — `.env`, `python-dotenv`, `.gitignore`; what cloud APIs log; never commit keys | 💻 | Keep credentials secure; understand what leaves your machine on every API call |
@@ -97,7 +96,7 @@ Every concept has a hands-on exercise. The website documents everything — diag
 | CLI + file system | 1 | Command Spire, Grimoire Vault |
 | SSH + Yens orientation | 1 | SSH Gate, Cartographer's Room |
 | File transfer (`scp`) | 1 | Scroll Transfer |
-| JupyterHub | 1 | Arcane Notebook |
+| JupyterHub | 2 | Arcane Notebook |
 | Git for version control | 1 | Repository |
 | Virtual environments | 2 | Venv Forge |
 | `$PATH` and modules | 2 | Path Labyrinth |

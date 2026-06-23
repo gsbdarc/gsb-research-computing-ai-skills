@@ -2,7 +2,7 @@
 layout: default
 title: "The Oracle's Chamber"
 parent: "Day 2 — The Alchemist's Lab"
-nav_order: 7
+nav_order: 8
 permalink: /day2/oracles-chamber/
 ---
 

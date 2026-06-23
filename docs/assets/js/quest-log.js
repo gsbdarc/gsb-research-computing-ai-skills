@@ -10,7 +10,7 @@
   const STORAGE_KEY = 'dungeon.v1.progress';
 
   // Total possible checkboxes across the entire dungeon (all 4 days)
-  const TOTAL_CHECKS = 77;
+  const TOTAL_CHECKS = 73;
 
   const LEVEL_TITLES = [
     'Initiate', 'Apprentice', 'Scholar', 'Journeyman', 'Adept',
@@ -28,8 +28,7 @@
         { id: 'd1-grimoire-vault',       keys: ['main', 'side1', 'side2', 'side3'] },
         { id: 'd1-ssh-gate',             keys: ['main', 'side1'] },
         { id: 'd1-cartographers-room',   keys: ['main', 'side1'] },
-        { id: 'd1-scroll-transfer',      keys: ['main', 'side1'] },
-        { id: 'd1-arcane-notebook',      keys: ['main', 'side1', 'side2', 'side3'] },
+        { id: 'd1-scroll-transfer',      keys: ['main'] },
         { id: 'd1-repository',           keys: ['main', 'side1', 'side2'] },
         { id: 'd1-boss-gate',            keys: ['commit'] },
       ],
@@ -39,6 +38,7 @@
       prefix: 'd2',
       rooms: [
         { id: 'd2-venv-forge',           keys: ['main', 'side1', 'side2', 'side3'] },
+        { id: 'd2-arcane-notebook',      keys: ['main'] },
         { id: 'd2-path-labyrinth',       keys: ['main', 'side1'] },
         { id: 'd2-key-vault',            keys: ['main', 'side1', 'side2'] },
         { id: 'd2-watchtower',           keys: ['main'] },

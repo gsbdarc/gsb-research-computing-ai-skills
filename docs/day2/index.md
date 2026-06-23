@@ -20,6 +20,7 @@ floor: 2
 | Room | Format | What you master |
 |------|--------|-----------------|
 | [The Venv Forge](venv-forge/) | 💻 Hands-on | Forge isolated Python environments — no more dependency collisions |
+| [The Arcane Notebook](arcane-notebook/) | 💻 Hands-on | Run Python on the Yens from a browser; connect your venv as a kernel |
 | [The Path Labyrinth](path-labyrinth/) | 💻 Hands-on | Command the shell's search paths; banish "command not found" forever |
 | [The Key Vault](key-vault/) | 🖊️💬 Concept + hands-on | Unlock Stanford AI Playground and lock your secrets in `.env` |
 | [The Watchtower of Secrets](watchtower-of-secrets/) | 💬 Discussion | See exactly what leaves your machine on every API call |

@@ -45,19 +45,7 @@ ls /scratch/SUNetID/grimoire/fire/    # should show your fire spells
 
 ## 📦 Side Quests
 
-A secret compartment behind the courier's desk — crack it open and you'll find a rune that makes `scp` look like a stone chisel.
-
-{: .chest }
-> **Side Quest 1 — Rsync Rune:** Transfer the grimoire again, but this time use `rsync -avz --progress` instead of `scp`. Then add a new spell file and run rsync a second time — notice that it only transfers the new file. Why is this useful for large datasets?
-
-<label class="quest-check"><input type="checkbox" data-room="d1-scroll-transfer" data-key="side1"> Rsync Rune unlocked</label>
-
----
-
-## ⚔️ Weapons Earned
-
-{: .weapon }
-> **Rsync Rune** — use `rsync` for incremental transfers; sync only what changed, resume interrupted transfers, and preserve permissions — the right tool when `scp` would re-copy 50 GB every run.
+*Additional side quests coming soon.*
 
 ---
 
@@ -65,5 +53,3 @@ A secret compartment behind the courier's desk — crack it open and you'll find
 
 - You can now beam entire directory trees from your laptop into the cluster with a single `scp` command
 - You know the Yens' shared file system means one copy lands everywhere — no node-by-node shuffling required
-- You can tell the difference between `scp` (full copy, fast and simple) and `rsync` (incremental sync, built for serious data)
-- You can choose the right transfer tool for the job — and never waste bandwidth re-sending 50 GB you already moved

@@ -17,7 +17,7 @@ floor: 1
 
 ## 🗡️ Main Quest
 
-Seven hands-on rooms and a Boss Gate await. Work through each room in order — later rooms build on earlier ones, and the Boss Gate will demand everything you have learned today.
+Six hands-on rooms and a Boss Gate await. Work through each room in order — later rooms build on earlier ones, and the Boss Gate will demand everything you have learned today.
 
 ## Rooms
 
@@ -28,7 +28,6 @@ Seven hands-on rooms and a Boss Gate await. Work through each room in order — 
 | [The SSH Gate](ssh-gate/) | 💻 Hands-on | Breach the walls of a remote server and know login nodes from compute nodes |
 | [The Cartographer's Room](cartographers-room/) | 💻 Hands-on | Map the cluster's file system, track your quota, and summon software modules |
 | [The Scroll Transfer](scroll-transfer/) | 💻 Hands-on | Conjure data across machines and master the shared file system |
-| [The Arcane Notebook](arcane-notebook/) | 💻 Hands-on | Harness cluster hardware from a browser — no dark terminal required |
 | [The Repository](repository/) | 💻 Hands-on | Lock your progress in Git: fork → branch → commit → push, unbreakable |
 | [Boss Gate 1](boss-gate-1/) | 🔑 Capstone | Prove you command everything from today on an open-ended challenge |
 

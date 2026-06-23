@@ -2,7 +2,7 @@
 layout: default
 title: "The Ledger"
 parent: "Day 2 — The Alchemist's Lab"
-nav_order: 9
+nav_order: 10
 permalink: /day2/ledger/
 ---
 

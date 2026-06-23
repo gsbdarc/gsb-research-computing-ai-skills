@@ -2,7 +2,7 @@
 layout: default
 title: "The Binding Room"
 parent: "Day 2 — The Alchemist's Lab"
-nav_order: 8
+nav_order: 9
 permalink: /day2/binding-room/
 ---
 
