@@ -25,7 +25,7 @@ The Oracle awaits your first invocation. Open the filing, shape your prompt like
 
 ```bash
 # A sample SEC Form 3 is available in the course repo
-ls ~/rf_bootcamp_2026/data/sec_filings/
+ls ~/rf-bootcamp-2026/data/sec_filings/
 # You should see one or more .txt files
 ```
 

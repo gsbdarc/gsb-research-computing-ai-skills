@@ -24,7 +24,7 @@ The cluster is waiting. A hundred SEC filings sit untouched — until now. Write
 **Part 1 — Prepare the input list:**
 
 ```bash
-ls ~/rf_bootcamp_2026/data/sec_filings/*.txt > /scratch/shared/$USER/filings_list.txt
+ls ~/rf-bootcamp-2026/data/sec_filings/*.txt > /scratch/shared/$USER/filings_list.txt
 wc -l /scratch/shared/$USER/filings_list.txt   # confirm: should be 100
 mkdir -p /scratch/shared/$USER/results logs
 ```
@@ -42,12 +42,12 @@ mkdir -p /scratch/shared/$USER/results logs
 #SBATCH --array=1-100
 #SBATCH --partition=normal
 
-source ~/rf_bootcamp_2026/.venv/bin/activate
+source ~/rf-bootcamp-2026/.venv/bin/activate
 
 FILING=$(sed -n "${SLURM_ARRAY_TASK_ID}p" /scratch/shared/$USER/filings_list.txt)
 echo "Task $SLURM_ARRAY_TASK_ID processing: $FILING"
 
-python3 ~/rf_bootcamp_2026/extract_filing.py \
+python3 ~/rf-bootcamp-2026/extract_filing.py \
     --input "$FILING" \
     --output "/scratch/shared/$USER/results/filing_${SLURM_ARRAY_TASK_ID}.json"
 ```

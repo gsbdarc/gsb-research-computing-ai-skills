@@ -39,10 +39,10 @@ mkdir -p jobs
 
 # --- Setup ---
 echo "Job started on $(hostname) at $(date)"
-source ~/rf_bootcamp_2026/.venv/bin/activate
+source ~/rf-bootcamp-2026/.venv/bin/activate
 
 # --- Your actual work ---
-python3 ~/rf_bootcamp_2026/count_spells.py ~/grimoire/
+python3 ~/rf-bootcamp-2026/count_spells.py ~/grimoire/
 
 echo "Job finished at $(date)"
 ```

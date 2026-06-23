@@ -25,7 +25,7 @@ Step up to the forge and claim your isolated environment — this is the foundat
 
 ```bash
 # Create a venv in your project directory
-cd ~/rf_bootcamp_2026
+cd ~/rf-bootcamp-2026
 python3 -m venv .venv
 
 # Activate it

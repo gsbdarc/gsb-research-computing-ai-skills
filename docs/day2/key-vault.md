@@ -32,7 +32,7 @@ Stanford's AI Playground provides access to approved LLMs (GPT-4o, Claude, and o
 **Step 1 — Create `.env`**
 
 ```bash
-cd ~/rf_bootcamp_2026
+cd ~/rf-bootcamp-2026
 touch .env
 ```
 

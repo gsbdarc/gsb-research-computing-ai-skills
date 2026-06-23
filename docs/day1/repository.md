@@ -14,6 +14,36 @@ permalink: /day1/repository/
 
 ---
 
+## 🖊️ Git and GitHub
+
+**Git** is version control software that runs on your machine (or the Yens). It tracks every change you make to a project — who, what, and when — and lets you roll back to any previous state.
+
+**GitHub** is a website that hosts git repositories in the cloud. It's where you share, back up, and submit your work.
+
+```
+  Your Yens                         GitHub (cloud)
+  ─────────────────────────         ──────────────────────────
+  git add / git commit              your fork
+  (saves a snapshot locally)   ──push──►  YOUR_USERNAME/rf-bootcamp-2026
+                               ◄──pull──
+```
+
+The workflow for this course:
+
+```
+  gsbdarc/rf-bootcamp-2026  ──fork──►  YOUR_USERNAME/rf-bootcamp-2026
+                                                │
+                                           git clone
+                                                │
+                                                ▼
+                                         Yens: ~/rf-bootcamp-2026/
+                                         (edit → add → commit → push)
+```
+
+Every Boss Gate in this dungeon requires a `git push` as proof of work. No push, no gate.
+
+---
+
 ## 🗡️ Main Quest
 
 Your journey through the dungeon leaves a trail — and that trail is your version history. Carve your name into the Archive now.
@@ -30,8 +60,8 @@ Go to the course repo on GitHub (your instructor will share the link). Click **F
 On the Yens:
 ```bash
 cd ~
-git clone https://github.com/YOUR_GITHUB_USERNAME/rf_bootcamp_2026.git
-cd rf_bootcamp_2026
+git clone https://github.com/YOUR_GITHUB_USERNAME/rf-bootcamp-2026.git
+cd rf-bootcamp-2026
 ```
 
 **Step 3 — Create a branch**

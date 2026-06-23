@@ -39,7 +39,7 @@ echo "Running on: $(hostname)"
 echo "GPU info:"
 nvidia-smi
 
-source ~/rf_bootcamp_2026/.venv/bin/activate
+source ~/rf-bootcamp-2026/.venv/bin/activate
 pip install torch --quiet   # if not already installed
 
 python3 - <<'EOF'
