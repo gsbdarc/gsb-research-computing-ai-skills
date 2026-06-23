@@ -18,6 +18,20 @@ permalink: /day3/scales/
 
 Before you write a single `#SBATCH` directive, you must step onto the floor of the Scales and weigh your work honestly.
 
+The tricky part of ordering from the head chef: when you write your recipe, you don't yet know how much kitchen you need.
+
+```
+  Before submitting a SLURM job, you need to know:
+
+  How many burners (CPUs)?   →  --cpus-per-task
+  How long on the stove?     →  --time
+  How much fridge (RAM)?     →  --mem
+  How many trips to the      →  (affects wall time — I/O bound vs compute bound)
+  warehouse?
+```
+
+You measure first, then request. Not the other way around.
+
 {: .important }
 > **Quest:** Measure how long your script takes and how much memory it uses before writing a single `#SBATCH` directive.
 

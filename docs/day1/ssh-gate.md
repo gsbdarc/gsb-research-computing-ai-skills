@@ -14,6 +14,63 @@ permalink: /day1/ssh-gate/
 
 ---
 
+## 🖊️ What Is a Remote Server?
+
+Your laptop is powerful but limited: one machine, one location, and it has to be open and plugged in for work to run. A **remote server** is a computer you connect to over the network — it's always on, more powerful than your laptop, and its jobs keep running after you close the lid.
+
+Think of it this way:
+
+```
+  Your laptop          The Yens (today)         Cloud — AWS/GCP
+  ─────────────        ──────────────────────   ────────────────
+  Your kitchen         Shared restaurant         Rented kitchen
+  ○ ○ ○ burners        ○○○○○○ ○○○○○○ burners    ○○○○○○ burners
+  small fridge         walk-in fridges           rented fridge
+  small store          warehouse (/scratch)      rented storage
+  free, all yours      free, shared, limited     unlimited, costs $$
+```
+
+You are logging into the shared kitchen. On Day 3, SLURM (the head chef) will assign you dedicated burners. For now, the login nodes are the kitchen pass-through — you work there, but you don't cook there.
+
+**What are the Yens?**
+
+```
+Your laptop
+     │
+     │  ssh SUNetID@yen.stanford.edu
+     ▼
+┌─────────────────────────────────────────────────────────────┐
+│                   Stanford Yens Cluster                     │
+│                                                             │
+│  Login nodes  (where you land right now)                    │
+│  ┌───────┐ ┌───────┐ ┌───────┐ ┌───────┐ ┌───────┐         │
+│  │ yen1  │ │ yen2  │ │ yen3  │ │ yen4  │ │ yen5  │         │
+│  └───────┘ └───────┘ └───────┘ └───────┘ └───────┘         │
+│  editing · file management · job submission — not compute   │
+│                         │                                   │
+│                    sbatch  (Day 3)                          │
+│                         │                                   │
+│                         ▼                                   │
+│  Compute nodes  (where jobs run — yours exclusively)        │
+│  ┌───────────────────────────────────────────────────┐      │
+│  │  ~32 cores · 256 GB RAM each                      │      │
+│  └───────────────────────────────────────────────────┘      │
+│                                                             │
+│  GPU nodes  (Day 4)                                         │
+│  ┌───────────────────────────────────────────────────┐      │
+│  │  yen-gpu4: H200 · 141 GB VRAM                     │      │
+│  └───────────────────────────────────────────────────┘      │
+│                                                             │
+│  Shared storage — all nodes see the same files:             │
+│  /home/users/SUNetID/   ← backed up, limited quota         │
+│  /scratch/SUNetID/      ← large, fast, not backed up       │
+└─────────────────────────────────────────────────────────────┘
+```
+
+`ssh` opens an encrypted tunnel: you type locally, commands execute remotely, output streams back to your screen. When you run a SLURM job on Day 3, it runs on a compute node — 32 CPUs and 256 GB of RAM — while your laptop sits closed.
+
+---
+
 ## 🗡️ Main Quest
 
 You are about to set foot on the Yens for the first time. Type carefully, breathe normally — the cluster is waiting for you.

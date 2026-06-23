@@ -14,21 +14,61 @@ permalink: /day1/command-spire/
 
 ---
 
+## 🖊️ Why the Terminal
+
+Before you type a single command, understand why the command line exists.
+
+Researchers use the terminal — not GUIs, not file browsers — for three reasons:
+
+```
+        GUI (Finder / Explorer)              CLI (Terminal)
+   ─────────────────────────────      ──────────────────────────────────
+   click → drag → drop                $ mv *_fire_*.spell fire/
+   one file at a time                 300 files sorted in one second
+
+   no record of what you did          save as a script, run it again
+   breaks on a remote server          runs on laptop, Yens, any Linux
+```
+
+The terminal also reaches further. After SSH (later today), every command you practice right now will work identically on the Yens cluster — 3,000 miles away:
+
+```
+  Your laptop (now)               Stanford Yens (this afternoon)
+  ┌──────────────────┐            ┌─────────────────────────────┐
+  │ $ ls grimoire/   │  ───ssh──► │ $ ls grimoire/              │
+  │ $ mv *.spell …   │            │ $ mv *.spell …              │
+  └──────────────────┘            │ 600 CPUs · terabytes of RAM │
+    1 machine                     └─────────────────────────────┘
+                                    same commands, different machine
+```
+
+**Open your terminal now:**
+
+- **Mac:** Press `Cmd+Space`, type `Terminal`, press Enter. (iTerm2 also works if installed.)
+- **Windows:** Open the Start menu, search for `Ubuntu` — this is WSL (Windows Subsystem for Linux). If it isn't installed, ask your instructor.
+
+You should see a blinking cursor waiting for a command. That cursor is the entrance to the dungeon.
+
+---
+
 ## 🗡️ Main Quest
 
-Every hero needs to know where they stand. Fire up your terminal and claim your footing.
+Every hero needs to know where they stand. Your terminal is open — now claim your footing.
 
 {: .important }
 > **Quest:** Use the command line to navigate your file system and reorganize a directory of files — without touching a mouse.
 
-Open your terminal (Mac: Terminal or iTerm; Windows: WSL Ubuntu terminal). Work through each command below:
+Work through each command below:
 
 **Where are you?**
 ```bash
 pwd           # print working directory — your current location
 ls            # list files and directories here
-ls -la        # long format, including hidden files (dotfiles)
+ls -la        # -l = long format (size, date, permissions), -a = include hidden files (dotfiles)
 ```
+
+{: .tip }
+> **Tab completion:** Start typing a filename and press `Tab` — the shell completes it. If nothing happens, press `Tab` twice to see all matches. This works for commands, paths, and flags. Use it constantly; it saves time and prevents typos.
 
 **Move around:**
 ```bash

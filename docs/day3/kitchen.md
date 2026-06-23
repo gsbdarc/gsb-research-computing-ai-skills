@@ -34,17 +34,74 @@ Look at `userload`. Every row is a researcher. Some are using thousands of CPU-h
 
 **Step 2 — The kitchen analogy:**
 
-| Kitchen | Yens cluster |
-|---------|-------------|
-| Head chef | SLURM scheduler |
-| Line cooks | Compute nodes |
-| Orders | Job scripts (`sbatch`) |
-| Tickets on the rail | Job queue (`squeue`) |
-| Pantry | Shared storage (`/scratch`) |
-| Recipe | Your Python/R/shell script |
-| Reservation (dietary restriction) | `#SBATCH` resource request |
+First, the hardware. A computer is just a kitchen:
 
-You don't walk into the kitchen and start cooking. You hand your recipe to the head chef (`sbatch`), specify what ingredients and burners you need (`#SBATCH` directives), and come back when the meal is done.
+```
+  YOUR LAPTOP — Your kitchen
+  ┌──────────────────────────────────────────────────────────────┐
+  │                                                              │
+  │  Burners (CPU cores)    ○ ○ ○ ○ ○ ○ ○ ○                    │
+  │                         each burner = 1 CPU core            │
+  │                         reads data from disk, does compute  │
+  │                                                              │
+  │  Fridge (RAM)                    Store (Storage / Disk)     │
+  │  ┌───────────────────┐           ┌──────────────────────┐   │
+  │  │  data the CPU is  │ ←──bike── │  all your files      │   │
+  │  │  actively using   │           │  slower, holds more  │   │
+  │  └───────────────────┘           └──────────────────────┘   │
+  └──────────────────────────────────────────────────────────────┘
+  Limited burners · small fridge · small store · all yours, free
+```
+
+The Yens is just a much bigger, shared kitchen:
+
+```
+  THE YENS — Shared restaurant kitchen
+  ┌──────────────────────────────────────────────────────────────┐
+  │                                                              │
+  │  Burners:  ○○○○○○○○○○  ○○○○○○○○○○  ○○○○○○○○○○  ...        │
+  │            node 1       node 2       node 3    (many nodes) │
+  │                                                              │
+  │  Walk-in   ┌──────────┐  ┌──────────┐  ┌──────────┐        │
+  │  fridges:  │  256 GB  │  │  256 GB  │  │  256 GB  │  ...   │
+  │            └──────────┘  └──────────┘  └──────────┘        │
+  │                                                              │
+  │  ┌─────────────────────────────────────────────────────┐    │
+  │  │  Warehouse — /scratch  (terabytes, shared)          │    │
+  │  └─────────────────────────────────────────────────────┘    │
+  │               (e-bikes) — faster data transfer              │
+  └──────────────────────────────────────────────────────────────┘
+  Many more burners · shared with all researchers · free
+
+  Cloud (AWS/GCP) — Rented kitchen: all yours, infinite, costs $$
+```
+
+**The tricky part:** when you write a script, you don't know in advance how many burners it needs, how much fridge space, or how many trips to the store. You have to measure first — that's what [The Scales](../scales/) room is for.
+
+**The SLURM problem:** the Yens kitchen is shared. If everyone just walks in and starts cooking, chaos. That's SLURM's job:
+
+```
+  Without SLURM                         With SLURM (head chef)
+  ───────────────────────────           ────────────────────────────────────
+
+  Everyone runs jobs on login nodes     You submit a job script (recipe)
+  Competing for the same burners        Head chef reads your #SBATCH requests
+  No isolation, jobs step on each       Assigns you a dedicated station
+  other, random failures                (compute node — yours alone)
+                                        You come back when it's done
+```
+
+| Kitchen              | Yens / SLURM                        |
+|----------------------|-------------------------------------|
+| Head chef            | SLURM scheduler                     |
+| Station (stove)      | Compute node                        |
+| Order ticket         | Job script (`sbatch`)               |
+| Tickets on the rail  | Job queue (`squeue`)                |
+| Warehouse            | Shared storage (`/scratch`)         |
+| Recipe               | Your Python/R/shell script          |
+| Dietary restriction  | `#SBATCH` resource request          |
+
+You don't walk into the kitchen and start cooking. You hand your recipe to the head chef (`sbatch`), specify what burners and fridge space you need (`#SBATCH` directives), and come back when the meal is done.
 
 **Step 3 — Why login nodes are not for cooking:**
 

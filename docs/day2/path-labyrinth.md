@@ -21,6 +21,47 @@ The shell is not magic — it follows a map. That map is `$PATH`, and every comm
 {: .important }
 > **Quest:** Understand `$PATH` — how the shell finds commands — and debug a "command not found" error by tracing the lookup chain.
 
+**How PATH lookup works:**
+
+Your tools (programs) live in folders. $PATH is the list of folders the shell searches, in order. A tool can be *installed* on the system and still be invisible to the shell if its folder isn't in $PATH.
+
+```
+  You have tools installed in different folders:
+
+  /usr/bin/             python3  (system python)
+  /apps/python/3.11/   python3  (module version)  ← not in PATH yet
+  .venv/bin/            python3  (your venv)       ← not in PATH yet
+
+  ──────────────────────────────────────────────────────────────
+  Situation 1 — default shell (only /usr/bin/ in PATH):
+
+  $ python3  →  shell finds /usr/bin/python3  →  runs system version
+
+  ──────────────────────────────────────────────────────────────
+  Situation 2 — after  module load python/3.11:
+                adds /apps/python/3.11/ to the FRONT of PATH
+
+  $ python3  →  shell finds /apps/python/3.11/python3 FIRST  ✓
+                (never even looks in /usr/bin/)
+
+  ──────────────────────────────────────────────────────────────
+  Situation 3 — after  source .venv/bin/activate:
+                adds .venv/bin/ to the FRONT of PATH
+
+  $ python3  →  shell finds .venv/bin/python3 FIRST  ✓
+                (module and system versions are shadowed)
+```
+
+Both `module load` and `source .venv/bin/activate` work the same way: they win by going first. The tool that's at the front of PATH is the one that runs.
+
+```
+  $PATH (left to right, first match wins):
+
+  [.venv/bin] → [/apps/python/3.11/] → [/usr/local/bin] → [/usr/bin] → ...
+       ↑
+   venv wins — everything else shadowed
+```
+
 **See your current PATH:**
 ```bash
 echo $PATH
@@ -47,8 +88,6 @@ source .venv/bin/activate
 echo $PATH          # .venv/bin is now first
 which python3       # now points into .venv
 ```
-
-The rule: **the first match in PATH wins.** Modules and venvs work by prepending their `bin/` directory to PATH so their commands shadow everything else.
 
 <label class="quest-check"><input type="checkbox" data-room="d2-path-labyrinth" data-key="main"> Main Quest complete</label>
 
