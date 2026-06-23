@@ -10,58 +10,83 @@ permalink: /day4/engine-room/
 
 <div data-room-id="d4-engine-room"></div>
 
-*Deep in the fortress, past the GPU racks and the hum of cooling fans, lies the Engine Room — where models don't just run, they roar. Ollama is a torch: brilliant, portable, yours alone. But when a hundred researchers hammer the same model at once, a torch becomes a liability. Here live the true power systems: vLLM, TensorRT-LLM, NVIDIA NIM — industrial-grade inference engines built to serve armies. You won't operate them today. You'll learn to recognize them, respect them, and know exactly when to call for the engineers who run them.*
+*Two power lines run into the Engine Room. One is the local generator — Ollama, humming on the H200 down the hall, powered by the cluster you already own. The other snakes out through the fortress wall and into the wider world: Stanford's AI Playground, OpenAI, Anthropic. Both lines light the same bulb. The question is never "which one works?" — it's "which one should I trust with this data, and what will it cost me?"*
 
 ---
 
 ## 🗡️ Main Quest
 
-The fate of your research pipeline hinges on a single question: are you a lone wolf, or are you building something the whole team will depend on? Choose your weapon wisely.
-
 {: .important }
-> **Quest:** Understand the production-grade local LLM stack and know the decision point between Ollama and vLLM.
+> **Quest:** Understand the three LLM access patterns available to Stanford researchers — local Ollama, Stanford AI Playground, and third-party APIs — and know which one fits your data, budget, and research context.
 
 This is a concept and demo block.
 
-**Ollama vs. vLLM:**
+**The three patterns:**
 
-| | Ollama | vLLM |
-|---|---|---|
-| **Use case** | Single researcher, prototyping | Multi-user, high-throughput serving |
-| **Setup complexity** | `ollama pull` | Docker / conda, configuration required |
-| **Throughput** | Good for 1 user | Scales to 100+ concurrent requests |
-| **Features** | Simple API, easy model management | Continuous batching, quantization, LoRA |
-| **When to use** | Your personal research pipeline | Shared research infrastructure, deployed tools |
+| | Ollama (local, on Yens) | Stanford AI Playground | Third-party API (OpenAI, Anthropic, etc.) |
+|---|---|---|---|
+| **Where data goes** | Stays on the Yens cluster | Stays within Stanford perimeter | Leaves Stanford — goes to vendor |
+| **Cost** | Free (cluster access you already have) | Budget-capped (Stanford account) | Costs $ per token |
+| **Models available** | Whatever fits on the H200 (141 GB VRAM) | GPT-4o, Claude, Llama — vendor-curated list | Most capable, latest models |
+| **Good for** | Restricted/sensitive data, large batch jobs | General research, day-to-day LLM work | Work where data restrictions allow |
+| **Setup** | `ollama pull` + API already running | API key from playground.stanford.edu | API key from vendor |
 
-**NVIDIA NIM:**
+**The secret that makes this easy:**
 
-NVIDIA provides containerized inference endpoints for popular models (Llama, Mistral, Stable Diffusion) called NIM (NVIDIA Inference Microservices). They're pre-optimized for specific GPU architectures and expose the same OpenAI-compatible API.
-
-💡 The beautiful secret: your Python code doesn't change. Swap one URL and you've gone from laptop prototype to production cluster.
+All three speak the same OpenAI-compatible API. Your Python code doesn't change — only `base_url` and `api_key` do.
 
 ```python
-# Same Python code works for Ollama, vLLM, NIM, and the Stanford Playground
-# Only base_url changes
-client = openai.OpenAI(base_url="http://nim-server:8000/v1", api_key="nim")
+import openai, os
+
+# Pattern 1 — Ollama on the Yens (local, free, data stays on cluster)
+client = openai.OpenAI(
+    base_url="http://localhost:11434/v1",
+    api_key="ollama"          # Ollama ignores the key but the client requires one
+)
+
+# Pattern 2 — Stanford AI Playground (Stanford perimeter, budget-capped)
+client = openai.OpenAI(
+    base_url="https://playground.stanford.edu/api/v1",
+    api_key=os.getenv("PLAYGROUND_API_KEY")
+)
+
+# Pattern 3 — Third-party (OpenAI, Anthropic via OpenAI-compat layer, etc.)
+client = openai.OpenAI(
+    api_key=os.getenv("OPENAI_API_KEY")
+    # base_url defaults to api.openai.com
+)
+
+# The rest of your code is identical across all three
+response = client.chat.completions.create(
+    model="llama3.2",         # swap model name to match the backend
+    messages=[{"role": "user", "content": prompt}]
+)
 ```
 
-**The decision tree:**
+**How to choose:**
 
 ```
-Solo research pipeline? → Ollama
-Research team sharing a model? → vLLM on a dedicated node
-Need a specific optimized model (Llama, etc.)? → Consider NVIDIA NIM
-Data must stay on-prem? → Any of the above (all local)
-Any of the above with cloud OK? → Stanford AI Playground
+Is the data restricted (Level 2 / confidential / covered by IRB)?
+  └── Yes → Ollama only. Data cannot leave the cluster.
+
+Is the data public or low-sensitivity?
+  ├── Running a large batch job on the cluster? → Ollama (free, already here)
+  ├── Want GPT-4 class models, Stanford-audited? → AI Playground
+  └── Need cutting-edge capability, data restrictions allow? → Third-party API
+
+Not sure about your data? → Visit the Grand Hall before you pick.
 ```
 
-<label class="quest-check"><input type="checkbox" data-room="d4-engine-room" data-key="main"> Engine Room briefing complete — I understand the path from Ollama to production serving</label>
+{: .note }
+> The [Grand Hall](../grand-hall/) covers Stanford's 3-bucket data classification rule. If you don't know which bucket your data is in, that room comes before this decision — not after.
+
+<label class="quest-check"><input type="checkbox" data-room="d4-engine-room" data-key="main"> Engine Room briefing complete — I know which LLM access pattern fits my data and research context</label>
 
 ---
 
 ## 🧠 Skills Learned
 
-- You can now distinguish between Ollama (your personal torch) and vLLM (the shared power grid) — and know which one your project needs
-- You can identify when NVIDIA NIM is the right call: pre-optimized, containerized, GPU-architecture-aware serving for popular models
-- You know that Ollama, vLLM, and NIM all speak the same OpenAI-compatible API — one Python client rules them all
-- You can recognize the moment a solo pipeline needs to graduate to shared infrastructure, and you know who to call when it does
+- You can describe the three LLM access patterns available on the Yens and what distinguishes them: data residency, cost, and model availability
+- You know that all three speak the same OpenAI-compatible API — swapping `base_url` is the only code change
+- You can apply the decision guide: restricted data forces local Ollama; general research fits the AI Playground; third-party is available when data governance allows
+- You understand that the Grand Hall's 3-bucket rule is the prerequisite to this decision — classification first, access pattern second

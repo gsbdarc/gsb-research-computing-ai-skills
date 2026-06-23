@@ -26,7 +26,7 @@ This is a 20-minute live demo. Follow along with what's on the projector.
 **Step 1 — See who's using the Yens right now:**
 
 ```bash
-userload          # shows current CPU/memory usage per user across all login nodes
+userload          # shows current CPU/memory usage per user across all Yen servers
 htop              # interactive process viewer — press q to quit
 ```
 
@@ -84,10 +84,10 @@ The Yens is just a much bigger, shared kitchen:
   Without SLURM                         With SLURM (head chef)
   ───────────────────────────           ────────────────────────────────────
 
-  Everyone runs jobs on login nodes     You submit a job script (recipe)
-  Competing for the same burners        Head chef reads your #SBATCH requests
-  No isolation, jobs step on each       Assigns you a dedicated station
-  other, random failures                (compute node — yours alone)
+  Everyone runs jobs on the shared      You submit a job script (recipe)
+  interactive Yens — competing for      Head chef reads your #SBATCH requests
+  the same burners, no isolation,       Assigns you a dedicated station
+  random failures                       (compute node — yours alone)
                                         You come back when it's done
 ```
 
@@ -103,15 +103,15 @@ The Yens is just a much bigger, shared kitchen:
 
 You don't walk into the kitchen and start cooking. You hand your recipe to the head chef (`sbatch`), specify what burners and fridge space you need (`#SBATCH` directives), and come back when the meal is done.
 
-**Step 3 — Why login nodes are not for cooking:**
+**Step 3 — Why big jobs go through SLURM:**
 
 ```bash
-# Never run this on a login node — you're sharing it with everyone
-# python my_big_script.py   ← wrong
+# Don't run a long intensive job directly on a shared Yen — you're sharing it with everyone
+# python my_big_script.py   ← wrong for big jobs
 # Instead, use sbatch (we'll get there in The Foreman's Desk)
 ```
 
-Login nodes are for editing, submitting, and checking jobs — not running them.
+The interactive Yens are for editing, exploring, and short tasks — not pegging 256 cores for hours.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-kitchen" data-key="main"> Kitchen demo complete — I understand why SLURM exists</label>
 
@@ -121,5 +121,5 @@ Login nodes are for editing, submitting, and checking jobs — not running them.
 
 - You can read live resource contention on the Yens and know exactly who is eating the cluster's lunch
 - You can map every piece of SLURM vocabulary to a kitchen equivalent — scheduler, queue, compute node, and all
-- You can instantly distinguish a login node (the pass-through window) from a compute node (the actual stove) and use each correctly
-- You know that running heavy computation on a login node is the cluster equivalent of blocking the fire exit — and you will never do it
+- You can distinguish the shared interactive Yens from a dedicated SLURM compute node — and know when each is appropriate
+- You know that running heavy long jobs directly on a shared Yen is inconsiderate to every other researcher on the cluster — and you will never do it

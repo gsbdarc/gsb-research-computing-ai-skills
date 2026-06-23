@@ -81,7 +81,7 @@ Every concept has a hands-on exercise. The website documents everything — diag
 | 4.1 | GPU landscape — walk through the Armory's GPU table: A30 / A40 / H200, VRAM as the binding constraint | 💬 | Know what GPUs are available, when you need one, how to request it |
 | 4.2 | First GPU job — `--gres=gpu:1`, target yen-gpu4, run inference | 💻 | Submit and run a GPU job; understand GPU memory and why model size matters |
 | 4.3 | Local LLMs with Ollama — pull a model, chat from Jupyter | 💻 | Host a local LLM on cluster hardware; understand the OpenAI-compatible interface |
-| 4.4 | vLLM and NIM — walk through the Engine Room decision tree: Ollama vs. vLLM vs. NIM | 💬 | Know the path from Ollama prototype → production serving |
+| 4.4 | Local LLM vs cloud API — walk through the Engine Room: Ollama (on Yens) vs Stanford AI Playground vs third-party APIs; same Python code, different `base_url`; privacy, cost, and data governance trade-offs | 💬 | Know which LLM access pattern fits your data and research context |
 | — | ☕ Break | — | — |
 | 4.5 | Privacy and data governance — walk through the Grand Hall: 3-bucket rule + classify your own datasets | 💬💻 | Apply the 3-bucket rule to your own datasets; know when cloud API is off-limits |
 | 4.6 | Agent risks — walk through the Trap Garden: 4 failure modes + defenses | 💬 | Name failure modes before they happen in your research pipeline |
@@ -113,9 +113,8 @@ Every concept has a hands-on exercise. The website documents everything — diag
 | Job arrays + scaling | 3 | Array Cavern |
 | Fault-tolerant pipelines (optional side quest) | 3 | Array Cavern |
 | README + project communication | 3 | Chronicle |
-| AI primer — token, context window, prompt, agent | 3 | Primer Chamber (self-serve reference) |
 | GPU jobs + H200 | 4 | Armory, H200 Chamber |
 | Ollama — local LLMs | 4 | Summoning Circle |
-| vLLM / NIM concept | 4 | Engine Room |
+| Local LLM vs cloud API (Ollama / AI Playground / third-party) | 4 | Engine Room |
 | Privacy / data governance | 4 | Grand Hall |
 | Agent risks | 4 | Trap Garden |

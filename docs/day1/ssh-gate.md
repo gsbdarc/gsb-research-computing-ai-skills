@@ -16,7 +16,7 @@ permalink: /day1/ssh-gate/
 
 ## 🖊️ What Is a Remote Server?
 
-Your laptop is powerful but limited: one machine, one location, and it has to be open and plugged in for work to run. A **remote server** is a computer you connect to over the network — it's always on, more powerful than your laptop, and its jobs keep running after you close the lid.
+Your laptop is powerful but limited: one machine, one location, and it has to be open and plugged in for work to run. A **remote server** is a computer you connect to over the network — it's always on, more powerful than your laptop, and your work keeps running after you close the lid.
 
 Think of it this way:
 
@@ -27,12 +27,12 @@ Think of it this way:
   ○ ○ ○ burners        ○○○○○○ ○○○○○○ burners    ○○○○○○ burners
   small fridge         walk-in fridges           rented fridge
   small store          warehouse (/scratch)      rented storage
-  free, all yours      free, shared, limited     unlimited, costs $$
+  free, all yours      free, shared              unlimited, costs $$
 ```
 
-You are logging into the shared kitchen. On Day 3, SLURM (the head chef) will assign you dedicated burners. For now, the login nodes are the kitchen pass-through — you work there, but you don't cook there.
-
 **What are the Yens?**
+
+The Yens are five shared **interactive compute servers** — not just gateways. Each one is genuinely powerful research hardware: when you SSH in, you land directly on a machine built for real work.
 
 ```
 Your laptop
@@ -42,23 +42,17 @@ Your laptop
 ┌─────────────────────────────────────────────────────────────┐
 │                   Stanford Yens Cluster                     │
 │                                                             │
-│  Login nodes  (where you land right now)                    │
+│  Interactive Yens  (where you land — shared compute)        │
 │  ┌───────┐ ┌───────┐ ┌───────┐ ┌───────┐ ┌───────┐         │
 │  │ yen1  │ │ yen2  │ │ yen3  │ │ yen4  │ │ yen5  │         │
 │  └───────┘ └───────┘ └───────┘ └───────┘ └───────┘         │
-│  editing · file management · job submission — not compute   │
-│                         │                                   │
-│                    sbatch  (Day 3)                          │
-│                         │                                   │
-│                         ▼                                   │
-│  Compute nodes  (where jobs run — yours exclusively)        │
-│  ┌───────────────────────────────────────────────────┐      │
-│  │  ~32 cores · 256 GB RAM each                      │      │
-│  └───────────────────────────────────────────────────┘      │
+│  256 cores · ~1 TB RAM each · shared with all researchers   │
 │                                                             │
 │  GPU nodes  (Day 4)                                         │
 │  ┌───────────────────────────────────────────────────┐      │
-│  │  yen-gpu4: H200 · 141 GB VRAM                     │      │
+│  │  yen-gpu1: 4× A30 (24 GB)                         │      │
+│  │  yen-gpu2/3: 4× A40 (48 GB) each                  │      │
+│  │  yen-gpu4: 2× H200 (141 GB)                       │      │
 │  └───────────────────────────────────────────────────┘      │
 │                                                             │
 │  Shared storage — all nodes see the same files:             │
@@ -67,7 +61,7 @@ Your laptop
 └─────────────────────────────────────────────────────────────┘
 ```
 
-`ssh` opens an encrypted tunnel: you type locally, commands execute remotely, output streams back to your screen. When you run a SLURM job on Day 3, it runs on a compute node — 32 CPUs and 256 GB of RAM — while your laptop sits closed.
+`ssh` opens an encrypted tunnel: you type locally, commands execute remotely, output streams back to your screen. The Yens are shared — you and every other researcher are on the same machines — so be a considerate neighbor: don't run jobs that peg all 256 cores for hours on end.
 
 ---
 
@@ -76,7 +70,7 @@ Your laptop
 You are about to set foot on the Yens for the first time. Type carefully, breathe normally — the cluster is waiting for you.
 
 {: .important }
-> **Quest:** Connect to the Yens cluster over SSH, identify which login node you landed on, and read the login banner.
+> **Quest:** Connect to the Yens cluster over SSH, identify which interactive Yen you landed on, and read the login banner.
 
 **Connect:**
 ```bash
@@ -92,7 +86,7 @@ whoami        # confirm you're logged in as yourself
 ```
 
 {: .note }
-> The Yens have **login nodes** (yen1–yen5) and **compute nodes**. You always land on a login node. Never run heavy computation on a login node — that's what SLURM is for (Day 3). The login banner you see when you connect describes this.
+> The Yens (yen1–yen5) are shared interactive compute servers. You land on whichever one the load balancer picks. They're powerful, but shared — read the login banner when you connect, it describes current usage policies.
 
 **Read the banner, then look around:**
 ```bash
@@ -125,6 +119,6 @@ Hidden inside this room is a shortcut that will save you a dozen keystrokes ever
 ## 🧠 Skills Learned
 
 - You can now open a secure shell into the Yens cluster from anywhere with a single command
-- You know what a login node is — and why you treat it like a hallway, not a workroom
+- You know the Yens are shared interactive compute servers — powerful, but shared with every researcher on the cluster
 - You can tell at a glance whether you are on your laptop or deep inside a shared remote cluster
 - You can read the login banner to catch system notices, maintenance windows, and usage policies before they catch you
