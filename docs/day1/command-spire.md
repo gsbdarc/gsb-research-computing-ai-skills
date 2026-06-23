@@ -32,17 +32,15 @@ Researchers use the terminal — not GUIs, not file browsers — for three reaso
 
 The terminal also reaches further. After SSH (later this morning), every command you practice right now will work identically on the Yens cluster:
 
-```
-  Your laptop (now)                  Stanford Yens (later this morning)
-  ┌───────────────────────────┐      ┌───────────────────────────────────┐
-  │ $ ls grimoire/            │      │ $ ls grimoire/                    │
-  │ $ mv *.spell …            │─ssh─►│ $ mv *.spell …                    │
-  │                           │      │                                   │
-  │ ~8–16 cores               │      │ 256 cores per node · 5 nodes      │
-  │ ~8–32 GB RAM              │      │ ~1 TB RAM per node                │
-  └───────────────────────────┘      └───────────────────────────────────┘
-  your machine                         remote server — same commands
-```
+| | Your laptop | Stanford Yens |
+|---|---|---|
+| **Cores** | ~8–16 | 256 per node · 5 nodes |
+| **RAM** | ~8–32 GB | ~1 TB per node |
+| **Commands** | `$ ls grimoire/` | `$ ls grimoire/` |
+| | `$ mv *.spell …` | `$ mv *.spell …` |
+| **Access** | direct | `ssh SUNetID@yen.stanford.edu` |
+
+Same commands. Remote server.
 
 **Open your terminal now:**
 
