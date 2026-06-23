@@ -63,6 +63,12 @@ Your laptop
 
 `ssh` opens an encrypted tunnel: you type locally, commands execute remotely, output streams back to your screen. The Yens are shared — you and every other researcher are on the same machines — so be a considerate neighbor: don't run jobs that peg all 256 cores for hours on end.
 
+**What's inside a Yen server:**
+
+![Server hardware diagram showing CPU, cores, and RAM — Yen1 has 256 cores]({{ "/assets/images/server-hardware-cpu-ram.png" | relative_url }})
+
+The **CPU** is the processor chip. **Cores** are the individual workers inside it — each core runs instructions independently, which is what makes parallel work possible. **RAM** holds the data the CPU is actively using. Each Yen has 256 of those cores and around 1 TB of RAM.
+
 ---
 
 ## 🗡️ Main Quest
