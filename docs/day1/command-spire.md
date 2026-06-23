@@ -34,7 +34,7 @@ The terminal also reaches further. After SSH (later this morning), every command
 
 | | Your laptop | Stanford Yens |
 |---|---|---|
-| **Cores** | ~8–16 | 256 per node · 5 nodes |
+| **Cores** | ~8–16 | 256 per node · 17 nodes |
 | **RAM** | ~8–32 GB | ~1 TB per node |
 | **Commands** | `$ ls grimoire/` | `$ ls grimoire/` |
 | | `$ mv *.spell …` | `$ mv *.spell …` |
