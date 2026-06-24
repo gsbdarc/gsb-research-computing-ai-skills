@@ -38,7 +38,8 @@ Before you touch a single data file, you need to know the terrain — what's you
 
 **Check your quota:**
 ```bash
-gsbquota                  # shows home and scratch usage for your account
+gsbquota                             # shows home and scratch usage for your account
+gsbquota /yen/projects/your_project  # append a path to check a project folder's usage
 ```
 
 **Browse storage in a visual file manager:**
