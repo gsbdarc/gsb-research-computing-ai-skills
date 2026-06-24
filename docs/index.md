@@ -62,42 +62,6 @@ permalink: /
 
 ---
 
-## Your Quest Log
+*The gate is open. The torch is lit. Whatever waits inside — the shell that answers in milliseconds, the cluster that never sleeps, the model you'll summon from bare silicon — it is yours to claim.*
 
-<div id="quest-log-summary">Loading quest log…</div>
-
----
-
-## The Grimoire
-
-The dungeon's first trial involves a vault of spell files — hundreds of them, scattered and unsorted.
-
-**[⬇ Download grimoire.zip](https://drive.google.com/file/d/11ngowIAXgm2VK-_78Q-OdNrtRaHXX4Ej/view?usp=drive_link)**
-
-Save `grimoire.zip` to your laptop. You'll unzip and sort it on your laptop in [The Grimoire Vault]({{ '/day1/grimoire-vault/' | relative_url }}), then transfer your sorted copy to the Yens in [The Scroll Transfer]({{ '/day1/scroll-transfer/' | relative_url }}).
-
-**Spell file format:** `fireball_fire_3_offensive_meteor.spell`
-`name_element_tier_type_mastery`
-Elements: `fire` · `ice` · `lightning` · `earth` · `wind`
-
----
-
-## Weapons Rack
-
-A fully-equipped researcher who completes every side quest across all four floors earns:
-
-| Domain | Weapons |
-|---|---|
-| **Shell** | Grep Blade · Wildcard Wand · Shell Rune · Rsync Rune · Arcane Blade |
-| **Remote access** | SSH Sigil · Module Lens · Screen Scroll |
-| **Version control** | History Lens · Stash Spell |
-| **Python env** | Freeze Flask · Editable Elixir · Pyenv Potion · Profile Rune |
-| **Security** | Shield of `.gitignore` · Keyring Knife |
-| **AI Playground + APIs** | Model Mirror · Stream Stone · Async Arrow |
-| **AI-assisted coding** | Prompt Blade · Context Tome |
-| **Data extraction** | Nested Tome · Retry Rune · Schema Shield |
-| **SLURM + scaling** | Sacct Scythe · Mail Medallion · Template Tome · Watch Wand · Dependency Dagger · Checkpoint Charm · Siege Scale |
-| **Documentation** | Structure Sigil · Changelog Charm |
-| **GPU + local LLMs** | Smi Sight · Benchmark Blade · Model Menagerie · Modelfile Magic |
-
-Complete every quest → 73/73 → Level 10 Archmage — fully equipped researcher.
+*Good luck, adventurer. The dungeon awaits.*
