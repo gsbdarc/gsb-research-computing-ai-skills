@@ -39,9 +39,14 @@ Same commands. More power.
 **Open your terminal now:**
 
 - **Mac:** Press `Cmd+Space`, type `Terminal`, press Enter. (iTerm2 also works if installed.)
-- **Windows:** Open the Start menu, search for `Ubuntu` — this is WSL (Windows Subsystem for Linux). If it isn't installed, [Git Bash](https://git-scm.com/downloads) is a good alternative — download and install it, then open "Git Bash" from the Start menu.
+- **Windows:** Download and install [Git Bash](https://git-scm.com/downloads), then open "Git Bash" from the Start menu.
 
 You should see a blinking cursor waiting for a command. That cursor is the entrance to the dungeon.
+
+{: .note }
+> 🟢 **Green sticky** = I'm done and ready to move on &nbsp;&nbsp; 🔴 **Red sticky** = I need help
+>
+> Put up a sticky note on your laptop screen so the instructors can see where you are.
 
 ---
 
