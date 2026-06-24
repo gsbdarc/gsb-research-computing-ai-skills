@@ -18,19 +18,14 @@ permalink: /day1/command-spire/
 
 Before you type a single command, understand why the command line exists.
 
-Researchers use the terminal — not GUIs, not file browsers — for three reasons:
+| | GUI (Finder / Explorer) | CLI (Terminal) |
+|---|---|---|
+| **Speed** | Click → drag → drop, one file at a time | `mv *_fire_*.spell fire/` — 300 files in one second |
+| **Navigate** | Browse folders by clicking | `cd`, `ls`, `pwd` — move anywhere instantly |
+| **Organize** | Rename files one by one | Wildcards and loops sort an entire dataset in seconds |
+| **Power** | Limited to what the app exposes | Run scripts, schedule jobs, automate anything |
 
-```
-        GUI (Finder / Explorer)              CLI (Terminal)
-   ─────────────────────────────      ──────────────────────────────────
-   click → drag → drop                $ mv *_fire_*.spell fire/
-   one file at a time                 300 files sorted in one second
-
-   no record of what you did          save as a script, run it again
-   breaks on a remote server          runs on laptop, Yens, any Linux
-```
-
-The terminal also reaches further. After SSH (later this morning), every command you practice right now will work identically on the Yens cluster:
+After SSH (later this morning), every command you practice right now will work identically on the Yens cluster:
 
 | | Your laptop | Stanford Yens |
 |---|---|---|
