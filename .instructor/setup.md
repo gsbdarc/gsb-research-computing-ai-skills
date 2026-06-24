@@ -44,15 +44,11 @@ The boss gate challenge lives at `/scratch/shared/rf-bootcamp-2026/boss1/`.
 
 ```bash
 mkdir -p /scratch/shared/rf-bootcamp-2026/boss1/
-cd /scratch/shared/rf-bootcamp-2026/boss1/
 
-# Pull 10 spells from each element out of the generated grimoire
-cp /scratch/shared/rf-bootcamp-2026/grimoire/fire/*.spell . 2>/dev/null | head -10
-# OR create them manually — any file matching *_fire_*.spell etc. will work
-
-# Quick shortcut: copy 10 per element from the grimoire
+# Grimoire is a flat directory — no subdirectories yet (students sort theirs on laptops)
+# Use wildcards on the element name in the filename to grab 10 per element
 for elem in fire ice lightning earth wind; do
-  ls /scratch/shared/rf-bootcamp-2026/grimoire/${elem}/*.spell | head -10 | xargs -I{} cp {} .
+  ls /scratch/shared/rf-bootcamp-2026/grimoire/*_${elem}_*.spell | head -10 | xargs -I{} cp {} /scratch/shared/rf-bootcamp-2026/boss1/
 done
 ```
 
