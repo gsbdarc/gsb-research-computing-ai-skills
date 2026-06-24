@@ -163,15 +163,18 @@ Students download the grimoire zip directly to their laptops at the start of Day
 
 **1. Generate the grimoire:**
 ```bash
+cd /scratch/shared
 git clone https://github.com/gsbdarc/rf-bootcamp-2026.git
 cd rf-bootcamp-2026
 python scripts/generate_grimoire.py --seed 2026 --count 300
 # creates grimoire/ with ~300 .spell files
-zip -r grimoire.zip grimoire/
+zip -r /scratch/shared/rf_bootcamp_2026/grimoire.zip grimoire/
+ml rclone
+rclone copy /scratch/shared/rf_bootcamp_2026/grimoire.zip <shared-space on G drive>
 ```
 
-**2. Upload to Google Drive:**
-- Upload `grimoire.zip` to a shared Drive folder
+**2. Get the shareable link:**
+- Open Google Drive, find `grimoire.zip`
 - Set sharing to **Anyone with the link → Viewer**
 - Copy the shareable link
 
