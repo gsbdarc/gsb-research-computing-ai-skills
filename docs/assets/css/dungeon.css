@@ -63,32 +63,30 @@
 }
 .quest-check.done { text-decoration: line-through; color: #999; }
 
-/* ── Dungeon entrance — floors left, skills panel right ── */
-.dungeon-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-  margin: 1.5rem 0;
-  align-items: start;
-}
-@media (max-width: 700px) { .dungeon-layout { grid-template-columns: 1fr; } }
-
+/* ── Dungeon entrance — floor cards stacked, each card two-column ── */
 .floor-list {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  margin: 1.5rem 0;
 }
 
-.skills-panel {
-  border: 1px solid var(--border-color, #dde);
-  border-radius: 8px;
-  padding: 1rem 1.2rem;
-  background: var(--sidebar-color, #f8f9fa);
-  font-size: 0.9em;
+.floor-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 0 1.5rem;
 }
-.skills-panel h4 { margin-top: 0; font-size: 0.95em; color: #444; }
-.skills-panel ul { margin: 0.5rem 0 0; padding-left: 1.2rem; }
-.skills-panel li { margin-bottom: 0.45rem; color: #555; line-height: 1.4; }
+@media (max-width: 600px) { .floor-card { grid-template-columns: 1fr; } }
+
+.floor-info { }
+.floor-skills {
+  font-size: 0.85em;
+  color: #666;
+  line-height: 1.6;
+  border-left: 2px solid var(--border-color, #dde);
+  padding-left: 1rem;
+}
 
 .floor-card {
   border: 1px solid var(--border-color, #dde);

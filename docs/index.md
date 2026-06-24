@@ -34,41 +34,34 @@ Every completed main quest or side quest adds to your **Quest Log**. Your total 
 
 {% assign unlocked = site.data.progress.unlocked_floors %}
 
-<div class="dungeon-layout">
-  <div class="floor-list">
-    <div class="floor-card{% unless unlocked contains 1 %} floor-card-locked{% endunless %}">
+<div class="floor-list">
+  <div class="floor-card{% unless unlocked contains 1 %} floor-card-locked{% endunless %}">
+    <div class="floor-info">
       <h3><a href="{{ '/day1/' | relative_url }}">Floor 1 — The Gatehouse</a>{% unless unlocked contains 1 %} 🔒{% endunless %}</h3>
       <p>Levels 1–3 &nbsp;·&nbsp; 6 rooms + Boss Gate</p>
-      <p>CLI &middot; SSH &middot; Yens file system &middot; Git</p>
     </div>
-    <div class="floor-card{% unless unlocked contains 2 %} floor-card-locked{% endunless %}">
+    <div class="floor-skills">CLI &middot; SSH &middot; Yens file system &middot; Git</div>
+  </div>
+  <div class="floor-card{% unless unlocked contains 2 %} floor-card-locked{% endunless %}">
+    <div class="floor-info">
       <h3><a href="{{ '/day2/' | relative_url }}">Floor 2 — The Alchemist's Lab</a>{% unless unlocked contains 2 %} 🔒{% endunless %}</h3>
       <p>Levels 4–6 &nbsp;·&nbsp; 10 rooms + Boss Gate</p>
-      <p>JupyterHub &middot; Virtual envs &middot; AI Playground &middot; Security &middot; Claude Code &middot; LLMs &middot; Screen</p>
     </div>
-    <div class="floor-card{% unless unlocked contains 3 %} floor-card-locked{% endunless %}">
+    <div class="floor-skills">JupyterHub &middot; Virtual envs &middot; AI Playground &middot; Security &middot; Claude Code &middot; LLMs &middot; Screen</div>
+  </div>
+  <div class="floor-card{% unless unlocked contains 3 %} floor-card-locked{% endunless %}">
+    <div class="floor-info">
       <h3><a href="{{ '/day3/' | relative_url }}">Floor 3 — The SLURM Mines</a>{% unless unlocked contains 3 %} 🔒{% endunless %}</h3>
       <p>Levels 7–8 &nbsp;·&nbsp; 8 rooms + Boss Gate</p>
-      <p>SLURM &middot; Job arrays &middot; Scaling &middot; README</p>
     </div>
-    <div class="floor-card{% unless unlocked contains 4 %} floor-card-locked{% endunless %}">
+    <div class="floor-skills">SLURM &middot; Job arrays &middot; Scaling &middot; README</div>
+  </div>
+  <div class="floor-card{% unless unlocked contains 4 %} floor-card-locked{% endunless %}">
+    <div class="floor-info">
       <h3><a href="{{ '/day4/' | relative_url }}">Floor 4 — The GPU Fortress</a>{% unless unlocked contains 4 %} 🔒{% endunless %}</h3>
       <p>Levels 9–10 &nbsp;·&nbsp; 7 rooms + Boss Gate</p>
-      <p>H200 GPU jobs &middot; Ollama &middot; Local vs cloud API &middot; Privacy &middot; Agent risks</p>
     </div>
-  </div>
-
-  <div class="skills-panel">
-    <h4>Research skills you will build</h4>
-    <ul>
-      <li>Move 10,000 files in one command instead of clicking one by one</li>
-      <li>SSH into a remote server and run jobs that keep going after you close your laptop</li>
-      <li>Version-control your work so nothing is ever lost</li>
-      <li>Call LLM APIs on your own datasets without data leaving Stanford</li>
-      <li>Submit 100 parallel jobs with a single script</li>
-      <li>Run GPU workloads on H200 hardware without managing infrastructure</li>
-      <li>Share a fully reproducible workflow with your PI</li>
-    </ul>
+    <div class="floor-skills">H200 GPU jobs &middot; Ollama &middot; Local vs cloud API &middot; Privacy &middot; Agent risks</div>
   </div>
 </div>
 
