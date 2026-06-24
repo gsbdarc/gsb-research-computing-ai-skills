@@ -29,13 +29,12 @@ After SSH (later this morning), every command you practice right now will work i
 
 | | Your laptop | Stanford Yens |
 |---|---|---|
-| **Cores** | ~8–16 | 256 per node · 17 nodes |
-| **RAM** | ~8–32 GB | ~1 TB per node |
-| **Commands** | `$ ls grimoire/` | `$ ls grimoire/` |
-| | `$ mv *.spell …` | `$ mv *.spell …` |
+| **Cores** | ~8–16 | 32–512 per node |
+| **RAM** | ~8–32 GB | 250 GB – 3 TB per node |
+| **Commands** | `$ ls` `$ cd` `$ pwd` | `$ ls` `$ cd` `$ pwd` |
 | **Access** | direct | `ssh SUNetID@yen.stanford.edu` |
 
-Same commands. Remote server.
+Same commands. More power.
 
 **Open your terminal now:**
 
