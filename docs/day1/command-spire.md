@@ -62,9 +62,8 @@ You have been working on your research projects for about a month. Before we go 
 - Where do they live right now?
 - What happens when you need to find something from three weeks ago?
 
-*[Whiteboard with the class. Common answers: datasets, scripts, output tables, figures, notes, emails with data attached, Excel files with unclear names like `final_v3_REAL.xlsx`.]*
-
----
+<details>
+<summary>One example structure (expand after discussion)</summary>
 
 Organizing files is not a rule for its own sake — it is what makes your work reproducible, shareable, and recoverable when something goes wrong. Here is one common structure for a research project:
 
@@ -77,6 +76,8 @@ my_project/
 ```
 
 There are many ways to organize files — this is one example. What matters is that the structure is consistent and that raw data is never mixed with outputs.
+
+</details>
 
 ---
 
