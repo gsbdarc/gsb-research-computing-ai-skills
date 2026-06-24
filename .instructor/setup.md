@@ -32,7 +32,7 @@ Update the link in two places if it changes:
 - `docs/day1/grimoire-vault.md` — the download button
 - `docs/index.md` — the entrance page reference
 
-Current link: `https://drive.google.com/file/d/11ngowIAXgm2VK-_78Q-OdNrtRaHXX4Ej/view?usp=drive_link`
+Current link: `https://drive.google.com/file/d/1FJKBl6JZgScseYbssqBb3mqZMLHSAxNi/view?usp=drive_link`
 
 ---
 

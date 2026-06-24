@@ -23,7 +23,7 @@ Three hundred spell files. No order. No organization. A real research dataset lo
 
 **Step 1 — Download and unzip**
 
-**[⬇ Download grimoire.zip](https://drive.google.com/file/d/11ngowIAXgm2VK-_78Q-OdNrtRaHXX4Ej/view?usp=drive_link)**
+**[⬇ Download grimoire.zip](https://drive.google.com/file/d/1FJKBl6JZgScseYbssqBb3mqZMLHSAxNi/view?usp=drive_link)**
 
 ```bash
 mv ~/Downloads/grimoire.zip ~/Desktop/    # move from Downloads to Desktop
