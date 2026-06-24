@@ -44,7 +44,7 @@ gsbquota /yen/projects/your_project  # append a path to check a project folder's
 
 **Browse storage in a visual file manager:**
 ```bash
-gsbbrowser                # opens a ncurses-style file size browser
+gsbbrowser                # opens an interactive file size browser in the terminal
 # navigate with arrow keys, q to quit
 ```
 
