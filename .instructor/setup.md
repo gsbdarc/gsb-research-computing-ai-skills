@@ -25,7 +25,7 @@ rclone copy grimoire.zip gdrive:<your-shared-drive-folder>/
 ```
 
 Then in Google Drive:
-- Open `grimoire.zip` → Share → **Anyone with the link → Viewer**
+- Open `grimoire.zip` → Share → **Stanford University → Viewer**
 - Copy the link
 
 Update the link in two places if it changes:
