@@ -16,7 +16,7 @@ cd /scratch/shared
 git clone https://github.com/gsbdarc/rf-bootcamp-2026.git
 cd rf-bootcamp-2026
 
-python scripts/generate_grimoire.py --seed 2026 --count 300
+python3 scripts/generate_grimoire.py --seed 2026 --count 300
 # creates grimoire/ with ~300 .spell files named name_element_tier_type_mastery.spell
 
 zip -r grimoire.zip grimoire/
