@@ -7,7 +7,7 @@ permalink: /leaderboard/
 
 # 🏆 DARC Dungeon Leaderboard
 
-*Rankings update when students sync their quest logs. Each completed main quest or side quest adds to your **Quest Log**; your total drives your **Level** (max Level 10 — Archmage, 73/73 Quest Log). **Boss Gates** = floors cleared (max 4).*
+*Rankings update when students sync their quest logs. Each completed main quest or side quest adds to your **Quest Log**; your total drives your **Level** (max Level 10 — Archmage, 31/31 Quest Log). **Boss Gates** = floors cleared (max 4).*
 
 <div id="lb-controls">
   <button id="lb-refresh">↻ Refresh</button>
@@ -57,7 +57,7 @@ tr.lb-leader td { background: #f4f8ff; }
   var MAIN   = 'gsbdarc/rf-bootcamp-2026';
   var REPO   = 'rf-bootcamp-2026';
   var BRANCH = 'main';
-  var TOTAL  = 73;
+  var TOTAL  = 31;
 
   var LEVEL_TITLES = [
     'Initiate', 'Apprentice', 'Scholar', 'Journeyman', 'Adept',

@@ -73,38 +73,3 @@ Input: SEC Form 3 filings from EDGAR (public domain).
 > You will update this README in the Day 4 capstone when you swap in the Ollama endpoint.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-chronicle" data-key="main"> Main Quest complete — README written</label>
-
----
-
-## 📦 Side Quests
-
-Two treasures are hidden in the walls of this library — crack them open and your repo transforms from a pile of scripts into a fortress any collaborator can navigate.
-
-{: .chest }
-> **Side Quest 1 — Structure Sigil:** Reorganize your repo into the standard research layout: `data/` for inputs, `scripts/` for code, `results/` for outputs, `jobs/` for SLURM scripts. Update your README paths to match. Does the repo make more sense to a first-time reader now?
-
-<label class="quest-check"><input type="checkbox" data-room="d3-chronicle" data-key="side1"> Structure Sigil unlocked</label>
-
-The second side quest rewards the researchers who think about their future selves — the ones who will return to this work months from now and need to know not just *what* changed, but *why*.
-
-{: .chest }
-> **Side Quest 2 — Changelog Charm:** Create a `CHANGELOG.md` with an entry for today: what you built, what model you used, what the output schema looks like. Add a second entry for Day 4 when you swap in Ollama. Why does this matter for reproducibility?
-
-<label class="quest-check"><input type="checkbox" data-room="d3-chronicle" data-key="side2"> Changelog Charm unlocked</label>
-
----
-
-## ⚔️ Weapons Earned
-
-{: .weapon }
-> **Structure Sigil** — standard research project layout (`data/`, `scripts/`, `results/`, `jobs/`, `README.md`) that any collaborator recognizes immediately.
->
-> **Changelog Charm** — `CHANGELOG.md` with dated entries; future-you reading it in six months will understand *why* the pipeline changed, not just what changed.
-
----
-
-## 🧠 Skills Learned
-
-- You can now write a README that arms any reader with exactly what they need: what this does, how to run it, what comes out, and where the edges are
-- You can now document while the code is fresh — treating the README as part of the build, not an afterthought left for never
-- You can now impose a standard project directory structure that makes any repo immediately legible to collaborators, advisors, and future-you

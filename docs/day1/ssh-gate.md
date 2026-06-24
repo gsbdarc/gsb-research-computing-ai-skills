@@ -14,6 +14,22 @@ permalink: /day1/ssh-gate/
 
 ---
 
+## 🖊️ Why Use a Server at All?
+
+Your laptop is fine for writing code and running small tests. But research computing regularly runs into walls that a laptop cannot break through:
+
+| Situation | What happens on a laptop | What happens on the Yens |
+|-----------|--------------------------|--------------------------|
+| Dataset is 80 GB | Out of memory, script crashes | Loads fine — 250 GB–3 TB RAM per node |
+| Analysis takes 12 hours | Laptop sleeps, WiFi drops, run dies | Job keeps running — always on, always connected |
+| Need to run 100 jobs in parallel | One at a time, ties up your machine | Submit all 100 at once via the scheduler |
+| Data is restricted (IRB, NDA) | Must stay on Stanford systems | Yens are Stanford-managed infrastructure |
+| Collaborating with your PI | "Can you send me the data?" | PI already has access to `/yen/projects/` |
+
+The Yens are not a luxury. They are the right tool for serious research computation.
+
+---
+
 ## 🖊️ What Is a Remote Server?
 
 Your laptop is powerful but limited: one machine, one location, and it has to be open and plugged in for work to run. A **remote server** is a computer you connect to over the network — it's always on, more powerful than your laptop, and your work keeps running after you close the lid.
@@ -94,30 +110,3 @@ ls /yen/projects/                 # shared project storage
 ```
 
 <label class="quest-check"><input type="checkbox" data-room="d1-ssh-gate" data-key="main"> Main Quest complete</label>
-
----
-
-## 📦 Side Quests
-
-Hidden inside this room is a shortcut that will save you a dozen keystrokes every single day — a carved sigil that shrinks a mouthful of a command down to two words.
-
-{: .chest }
-> **Side Quest 1 — SSH Sigil:** Set up `~/.ssh/config` on your laptop so that `ssh yen` connects you to `yen.stanford.edu` without typing your full username. You should be able to type nothing except `ssh yen` and be prompted for your password.
-
-<label class="quest-check"><input type="checkbox" data-room="d1-ssh-gate" data-key="side1"> SSH Sigil unlocked</label>
-
----
-
-## ⚔️ Weapons Earned
-
-{: .weapon }
-> **SSH Sigil** — configure `~/.ssh/config` with named hosts and your username; reduce `ssh SUNetID@yen.stanford.edu` to `ssh yen` — permanently.
-
----
-
-## 🧠 Skills Learned
-
-- You can now open a secure shell into the Yens cluster from anywhere with a single command
-- You know the Yens are shared interactive compute servers — powerful, but with per-user limits enforced; heavy work goes through the SLURM scheduler
-- You can tell at a glance whether you are on your laptop or deep inside a shared remote cluster
-- You can read the login banner to catch system notices, maintenance windows, and usage policies before they catch you

@@ -66,37 +66,3 @@ tail -f logs/gpu_job_JOBID.out
 ```
 
 <label class="quest-check"><input type="checkbox" data-room="d4-h200-chamber" data-key="main"> Main Quest complete</label>
-
----
-
-## 📦 Side Quests
-
-Two side quests await — one holds a diagnostic lens, the other a measuring sword — both invaluable before you ever argue for GPU time in a grant proposal.
-
-{: .chest }
-> **Side Quest 1 — Smi Sight:** Run `nvidia-smi` inside your GPU job and add `nvidia-smi --query-gpu=name,memory.total,memory.used,utilization.gpu --format=csv` to log GPU state at the start and end of your script. Save the output to a file.
-
-<label class="quest-check"><input type="checkbox" data-room="d4-h200-chamber" data-key="side1"> Smi Sight unlocked</label>
-
-{: .chest }
-> **Side Quest 2 — Benchmark Blade:** Run the same matrix multiply on both the H200 (yen-gpu4) and CPU only. Compare wall-clock time using Python's `time` module. At what matrix size does the GPU start to win decisively?
-
-<label class="quest-check"><input type="checkbox" data-room="d4-h200-chamber" data-key="side2"> Benchmark Blade unlocked</label>
-
----
-
-## ⚔️ Weapons Earned
-
-{: .weapon }
-> **Smi Sight** — `nvidia-smi` inside a SLURM GPU job; monitor GPU memory and utilization; know whether your model is actually using the GPU or running on CPU by mistake.
->
-> **Benchmark Blade** — time the same computation on CPU vs. GPU; quantify the speedup; make GPU requests defensible with data.
-
----
-
-## 🧠 Skills Learned
-
-- You can now write a SLURM script that requests a GPU with `--gres=gpu:1` and pins it to a specific node with `--nodelist`
-- You can now confirm the GPU is actually doing work — not silently falling back to CPU — using `nvidia-smi` and `torch.cuda.is_available()`
-- You understand that GPU memory (VRAM) is a separate, scarcer resource from system RAM, and you track both independently
-- You can now judge when a GPU is worth the queue wait: large matrix operations, model inference, embedding generation — and back that claim up with measured timings

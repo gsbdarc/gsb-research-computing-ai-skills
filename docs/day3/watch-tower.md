@@ -55,30 +55,3 @@ sacct -u $USER --format=JobID,JobName,State,Elapsed,MaxRSS,CPUTime --starttime=t
 ```
 
 <label class="quest-check"><input type="checkbox" data-room="d3-watch-tower" data-key="main"> Main Quest complete</label>
-
----
-
-## 📦 Side Quests
-
-Hidden in the tower wall is a carved niche — inside, a wand that summons your entire job queue with a single whispered word.
-
-{: .chest }
-> **Side Quest 1 — Watch Wand:** Set up a one-liner alias in `~/.bash_profile` that runs `watch -n 5 squeue -u $USER` with the command `myq`. You should be able to type `myq` at any time and see your live job queue.
-
-<label class="quest-check"><input type="checkbox" data-room="d3-watch-tower" data-key="side1"> Watch Wand unlocked</label>
-
----
-
-## ⚔️ Weapons Earned
-
-{: .weapon }
-> **Watch Wand** — `watch -n 5 squeue -u $USER` as a live dashboard alias; never open a browser to check job status when a terminal command does it better.
-
----
-
-## 🧠 Skills Learned
-
-- You can now see exactly what your jobs are doing — live — and read their state codes (PD/R/CG/F) at a glance
-- You can surgically cancel a runaway job with `scancel` before it wastes your compute allocation
-- You can summon a full post-mortem on completed jobs with `sacct` and see exactly how much memory and CPU they really used
-- You can tail a live log with `tail -f` and watch your results appear in real time, line by line, before the job even finishes

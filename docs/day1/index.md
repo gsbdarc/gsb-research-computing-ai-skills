@@ -15,11 +15,63 @@ floor: 1
 
 ---
 
-## 🗡️ Main Quest
+## Who We Are
+
+We are the **DARC team** — Data, Analytics, and Research Computing — at Stanford GSB. We run the Yens cluster and support pre-doctoral researchers with the computational side of their work.
+
+This bootcamp exists because the technical skills that make or break a pre-doc RA are rarely taught anywhere. You are about to spend two years at Stanford GSB running analyses, managing datasets, and collaborating with your PI. We want you to spend that time doing research — not fighting your tools.
+
+---
+
+## Key Concepts
+
+**What is research computing?**
+Research computing is using computers to collect, organize, analyze, and share data as part of a research project. For a pre-doc RA this means: running scripts on datasets too large for Excel, processing thousands of files automatically, and reproducing results months later when a reviewer asks.
+
+**What is a server?**
+A server is a powerful computer you access over the network rather than sitting in front of. Servers run continuously, have far more CPU and memory than a laptop, and multiple people can use the same one at the same time. The Yens cluster at Stanford GSB is a set of research servers your team uses to do compute-intensive work.
+
+**What is a terminal?**
+A terminal is a text-based interface to your computer. Instead of clicking icons, you type commands. The terminal is how you talk to servers — there is no GUI when you SSH into a cluster — and it is how you automate work that would take days to do by hand.
+
+---
+
+## Why This Matters for Your Research Job
+
+As a pre-doc RA, you will regularly face situations like these:
+
+**Data arrives as a dump.**
+Your PI or a vendor sends a folder with thousands of files — inconsistently named, unsorted, with no explanation. Organizing it by clicking takes days. The terminal takes seconds. Before you run a single analysis, your first job is to understand and organize what you have.
+
+**Your laptop is the wrong tool.**
+When a script runs for 12 hours and your laptop goes to sleep at hour 3, you lose everything. When your dataset is 80 GB and you only have 16 GB of RAM, nothing runs. The Yens exist precisely for this.
+
+**Organization is a research skill.**
+Where do your scripts live? Where does raw data live? Where do outputs go? These are not trivial questions. A research project that mixes scripts, raw data, and results in one folder is a project that cannot be reproduced — by you, your PI, or anyone who inherits it.
+
+**Documentation is a career skill.**
+Future-you will not remember why you organized files the way you did six months ago. A one-paragraph README written today saves hours of confusion later — and makes your work credible to collaborators and reviewers.
+
+---
+
+## How to Be Effective: A Framework
+
+Every time you encounter a new dataset or task, use this four-step pattern:
+
+| Step | What you do | Why |
+|------|-------------|-----|
+| **1. Explore** | Look at what you have before touching anything | Understand the problem before solving it |
+| **2. Plan** | Decide on a strategy | Rushing to execute without a plan creates more work |
+| **3. Execute** | Run the commands | Now the terminal earns its keep |
+| **4. Document** | Write down what you did and why | Your future self and collaborators will thank you |
+
+You will practice this pattern for the first time in the Grimoire Vault today.
+
+---
+
+## 🗡️ Rooms
 
 Six hands-on rooms and a Boss Gate await. Work through each room in order — later rooms build on earlier ones, and the Boss Gate will demand everything you have learned today.
-
-## Rooms
 
 | Room | Format | What you master |
 |------|--------|-----------------|

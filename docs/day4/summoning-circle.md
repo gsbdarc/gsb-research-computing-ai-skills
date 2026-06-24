@@ -63,39 +63,3 @@ Notice: the interface is **identical to the Stanford AI Playground** — same Py
 > 💡 Ollama must be running (via `ollama serve`) on the same node where you're querying it. The model runs entirely on the Yens; your prompts never leave Stanford's network.
 
 <label class="quest-check"><input type="checkbox" data-room="d4-summoning-circle" data-key="main"> Main Quest complete</label>
-
----
-
-## 📦 Side Quests
-
-Two side quests wait in the shadows — each rewards the curious who push further than the main quest demands.
-
-{: .chest }
-> **Side Quest 1 — Model Menagerie:** Pull two additional models (e.g. `phi3:mini` and `gemma2:2b`). Ask each the same question about SLURM. Compare response quality, speed (tokens/second), and the trade-off between model size and latency.
-
-<label class="quest-check"><input type="checkbox" data-room="d4-summoning-circle" data-key="side1"> Model Menagerie unlocked</label>
-
-Forge your own creature from raw components — this side quest holds the secret to building a model that thinks exactly the way you need it to.
-
-{: .chest }
-> **Side Quest 2 — Modelfile Magic:** Create a custom Ollama `Modelfile` that gives a base model a system prompt making it respond as a SLURM expert with terse, command-focused answers. Build the custom model with `ollama create` and test it.
-
-<label class="quest-check"><input type="checkbox" data-room="d4-summoning-circle" data-key="side2"> Modelfile Magic unlocked</label>
-
----
-
-## ⚔️ Weapons Earned
-
-{: .weapon }
-> **Model Menagerie** — compare multiple local models on the same task; choose by latency, quality, and VRAM requirements rather than defaulting to the largest model.
->
-> **Modelfile Magic** — customize any Ollama model with a system prompt via `Modelfile`; create purpose-built research assistants without cloud API costs.
-
----
-
-## 🧠 Skills Learned
-
-- You can now pull and serve any Ollama-compatible LLM directly on cluster GPU hardware — no cloud dependency required
-- You can now call a locally hosted model from Python using the exact same code you'd write for the Stanford AI Playground — just swap the `base_url`
-- You can now run sensitive data through an LLM with confidence: zero tokens leave the Yens, making local models viable for restricted or confidential datasets
-- You can now make an informed choice between local and cloud inference — reaching for Ollama when privacy, volume, or budget rules out the Playground

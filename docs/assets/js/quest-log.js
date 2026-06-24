@@ -10,7 +10,7 @@
   const STORAGE_KEY = 'dungeon.v1.progress';
 
   // Total possible checkboxes across the entire dungeon (all 4 days)
-  const TOTAL_CHECKS = 73;
+  const TOTAL_CHECKS = 31;
 
   const LEVEL_TITLES = [
     'Initiate', 'Apprentice', 'Scholar', 'Journeyman', 'Adept',
@@ -24,12 +24,12 @@
       label: 'Day 1 — The Gatehouse',
       prefix: 'd1',
       rooms: [
-        { id: 'd1-command-spire',       keys: ['main', 'side1', 'side2', 'side3'] },
-        { id: 'd1-grimoire-vault',       keys: ['main', 'side1', 'side2', 'side3'] },
-        { id: 'd1-ssh-gate',             keys: ['main', 'side1'] },
-        { id: 'd1-cartographers-room',   keys: ['main', 'side1'] },
+        { id: 'd1-command-spire',       keys: ['main'] },
+        { id: 'd1-grimoire-vault',       keys: ['main'] },
+        { id: 'd1-ssh-gate',             keys: ['main'] },
+        { id: 'd1-cartographers-room',   keys: ['main'] },
         { id: 'd1-scroll-transfer',      keys: ['main'] },
-        { id: 'd1-repository',           keys: ['main', 'side1', 'side2'] },
+        { id: 'd1-repository',           keys: ['main'] },
         { id: 'd1-boss-gate',            keys: ['commit'] },
       ],
     },
@@ -37,16 +37,16 @@
       label: 'Day 2 — The Alchemist\'s Lab',
       prefix: 'd2',
       rooms: [
-        { id: 'd2-venv-forge',           keys: ['main', 'side1', 'side2', 'side3'] },
+        { id: 'd2-venv-forge',           keys: ['main'] },
         { id: 'd2-arcane-notebook',      keys: ['main'] },
-        { id: 'd2-path-labyrinth',       keys: ['main', 'side1'] },
-        { id: 'd2-key-vault',            keys: ['main', 'side1', 'side2'] },
+        { id: 'd2-path-labyrinth',       keys: ['main'] },
+        { id: 'd2-key-vault',            keys: ['main'] },
         { id: 'd2-watchtower',           keys: ['main'] },
-        { id: 'd2-ai-scribe',            keys: ['main', 'side1', 'side2'] },
-        { id: 'd2-oracles-chamber',      keys: ['main', 'side1', 'side2', 'side3'] },
-        { id: 'd2-binding-room',         keys: ['main', 'side1', 'side2', 'side3'] },
+        { id: 'd2-ai-scribe',            keys: ['main'] },
+        { id: 'd2-oracles-chamber',      keys: ['main'] },
+        { id: 'd2-binding-room',         keys: ['main'] },
         { id: 'd2-ledger',               keys: ['main'] },
-        { id: 'd2-persistence-chamber',  keys: ['main', 'side1'] },
+        { id: 'd2-persistence-chamber',  keys: ['main'] },
         { id: 'd2-boss-gate',            keys: ['commit'] },
       ],
     },
@@ -55,12 +55,12 @@
       prefix: 'd3',
       rooms: [
         { id: 'd3-kitchen',              keys: ['main'] },
-        { id: 'd3-scales',               keys: ['main', 'side1', 'side2'] },
-        { id: 'd3-foremans-desk',        keys: ['main', 'side1', 'side2'] },
-        { id: 'd3-watch-tower',          keys: ['main', 'side1'] },
+        { id: 'd3-scales',               keys: ['main'] },
+        { id: 'd3-foremans-desk',        keys: ['main'] },
+        { id: 'd3-watch-tower',          keys: ['main'] },
         { id: 'd3-trap-room',            keys: ['main'] },
-        { id: 'd3-array-cavern',         keys: ['main', 'side1', 'side2', 'side3', 'side4'] },
-        { id: 'd3-chronicle',            keys: ['main', 'side1', 'side2'] },
+        { id: 'd3-array-cavern',         keys: ['main'] },
+        { id: 'd3-chronicle',            keys: ['main'] },
         { id: 'd3-boss-gate',            keys: ['commit'] },
       ],
     },
@@ -69,8 +69,8 @@
       prefix: 'd4',
       rooms: [
         { id: 'd4-armory',              keys: ['main'] },
-        { id: 'd4-h200-chamber',        keys: ['main', 'side1', 'side2'] },
-        { id: 'd4-summoning-circle',    keys: ['main', 'side1', 'side2'] },
+        { id: 'd4-h200-chamber',        keys: ['main'] },
+        { id: 'd4-summoning-circle',    keys: ['main'] },
         { id: 'd4-engine-room',         keys: ['main'] },
         { id: 'd4-grand-hall',          keys: ['main'] },
         { id: 'd4-trap-garden',         keys: ['main'] },

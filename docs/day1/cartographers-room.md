@@ -51,30 +51,3 @@ module unload python/3.11 # unload it
 ```
 
 <label class="quest-check"><input type="checkbox" data-room="d1-cartographers-room" data-key="main"> Main Quest complete</label>
-
----
-
-## 📦 Side Quests
-
-Hidden in this room is a lens that lets you see past the obvious — software that's buried deeper than the main index, waiting to be claimed by someone who knows where to look.
-
-{: .chest }
-> **Side Quest 1 — Module Lens:** Use `module spider` to find a module that isn't listed obviously in `module avail` — one that requires loading a prerequisite first. What is the prerequisite, and why does the system require it?
-
-<label class="quest-check"><input type="checkbox" data-room="d1-cartographers-room" data-key="side1"> Module Lens unlocked</label>
-
----
-
-## ⚔️ Weapons Earned
-
-{: .weapon }
-> **Module Lens** — `module spider <name>` to locate any software on the cluster and understand its dependency chain; never wonder again why `module load` failed.
-
----
-
-## 🧠 Skills Learned
-
-- You can now read the Yens file system like a map — home is your fortified base (backed up, limited space), scratch is your war camp (vast, fast, no safety net)
-- You can check your disk quota before launching a long job, so a full disk never kills your pipeline at 3 AM
-- You can navigate `gsbbrowser` to hunt down whatever is eating your storage and reclaim the space
-- You can load, swap, and unload software modules — and you understand why a fresh shell might act like your tools never existed

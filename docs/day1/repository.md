@@ -85,39 +85,3 @@ git push -u origin day1-work
 > **Every Boss Gate** requires a `git push` to your fork as the submission mechanism. Return to this room's steps whenever you need to submit work. This is the unlock pattern for every floor exit.
 
 <label class="quest-check"><input type="checkbox" data-room="d1-repository" data-key="main"> Main Quest complete</label>
-
----
-
-## 📦 Side Quests
-
-The Archive holds more than safekeeping — it holds power. These side quests reveal the spells that let you bend time and context to your will.
-
-{: .chest }
-> **Side Quest 1 — History Lens:** Use `git log --oneline`, `git diff HEAD~1`, and `git status` to answer: what was the last commit, what changed, and are there uncommitted modifications right now?
-
-<label class="quest-check"><input type="checkbox" data-room="d1-repository" data-key="side1"> History Lens unlocked</label>
-
-Hidden deeper in the Archive is an escape hatch for every researcher who has ever been interrupted mid-thought.
-
-{: .chest }
-> **Side Quest 2 — Stash Spell:** Start editing a file, then realize you need to switch branches before finishing. Use `git stash` to park your changes, switch branches, then `git stash pop` to bring them back.
-
-<label class="quest-check"><input type="checkbox" data-room="d1-repository" data-key="side2"> Stash Spell unlocked</label>
-
----
-
-## ⚔️ Weapons Earned
-
-{: .weapon }
-> **History Lens** — `git log`, `git diff`, `git status` to understand your project's history and current state at a glance; never lose work or wonder what changed.
->
-> **Stash Spell** — `git stash` to set aside work-in-progress without committing it; context-switch cleanly between branches.
-
----
-
-## 🧠 Skills Learned
-
-- You can fork a repo on GitHub and summon a full working copy onto the Yens in under a minute
-- You can create a branch, commit your changes, and push them back — the fundamental loop of reproducible research
-- You understand the fork → branch → commit → push → pull request workflow well enough to use it under pressure at every Boss Gate
-- You know why version control is non-negotiable: you can always return to a working state, share your exact pipeline with collaborators, and pinpoint exactly what changed between runs

@@ -90,30 +90,3 @@ which python3       # now points into .venv
 ```
 
 <label class="quest-check"><input type="checkbox" data-room="d2-path-labyrinth" data-key="main"> Main Quest complete</label>
-
----
-
-## 📦 Side Quests
-
-Hidden in the labyrinth walls is a rune that lets you reshape the corridors themselves — permanently, at login, before you even type a single command. Crack it open.
-
-{: .chest }
-> **Side Quest 1 — Profile Rune:** Add a line to `~/.bash_profile` (or `~/.bashrc`) on the Yens that automatically activates your Bootcamp venv whenever you log in. Test it by logging out and back in. Why might this be a bad idea for a shared project, even if it's convenient for solo work?
-
-<label class="quest-check"><input type="checkbox" data-room="d2-path-labyrinth" data-key="side1"> Profile Rune unlocked</label>
-
----
-
-## ⚔️ Weapons Earned
-
-{: .weapon }
-> **Profile Rune** — customize `~/.bash_profile` to set environment variables, load modules, or activate venvs automatically on login; make your shell do the setup work every time.
-
----
-
-## 🧠 Skills Learned
-
-- You can now read `$PATH` like a map and predict exactly which binary the shell will run when you type any command
-- You can now use `which` to expose the precise binary behind any command name — no more guessing
-- You can now explain why `module load` and `source venv/bin/activate` both work the same way: they win the race by going first in PATH
-- You can now diagnose "command not found" and "wrong version" errors by tracing the PATH lookup chain step by step

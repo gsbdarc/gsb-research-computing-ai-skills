@@ -52,39 +52,3 @@ python count_spells.py ~/grimoire/
 > ⚠️ **The one security rule:** Never paste API keys, restricted dataset samples, or PII into a Claude Code prompt. Claude Code sends your prompt to Anthropic's servers. The same rules as any other cloud API apply.
 
 <label class="quest-check"><input type="checkbox" data-room="d2-ai-scribe" data-key="main"> Main Quest complete</label>
-
----
-
-## 📦 Side Quests
-
-Two side quests await — each one rewards a sharper, more dangerous command of the Scribe.
-
-{: .chest }
-> **Side Quest 1 — Prompt Blade:** The generated script has at least one thing you'd write differently. Identify it and write a better prompt that produces a cleaner result. What made the second prompt better?
-
-<label class="quest-check"><input type="checkbox" data-room="d2-ai-scribe" data-key="side1"> Prompt Blade unlocked</label>
-
-The second side quest holds the secret that separates novices from true Scribe commanders: give the Scribe context and it transforms from a guesser into a collaborator.
-
-{: .chest }
-> **Side Quest 2 — Context Tome:** Feed Claude Code your Day 3 SLURM job script (from yesterday's hypothetical) and ask it to explain each `#SBATCH` directive and suggest two improvements. Verify whether each suggestion is correct before accepting it.
-
-<label class="quest-check"><input type="checkbox" data-room="d2-ai-scribe" data-key="side2"> Context Tome unlocked</label>
-
----
-
-## ⚔️ Weapons Earned
-
-{: .weapon }
-> **Prompt Blade** — write precise coding prompts that specify inputs, outputs, error handling, and constraints; get useful output from AI tools instead of plausible-looking boilerplate.
->
-> **Context Tome** — feed AI tools existing code for explanation and improvement; use AI as a code reviewer, not just a writer.
-
----
-
-## 🧠 Skills Learned
-
-- 💡 You can now summon Claude Code on the Yens and put it to work on real research code
-- 💡 You can now run the "direct, then verify" workflow — AI drafts, you judge, nothing executes unseen
-- 💡 You can now enforce the security rule: keys, restricted data, and PII never leave your terminal in a prompt
-- 💡 You can now craft prompts that specify inputs, outputs, edge cases, and constraints — so the Scribe delivers signal, not noise

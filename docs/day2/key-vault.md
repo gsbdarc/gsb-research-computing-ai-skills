@@ -74,39 +74,3 @@ print(response.choices[0].message.content)
 ```
 
 <label class="quest-check"><input type="checkbox" data-room="d2-key-vault" data-key="main"> Main Quest complete</label>
-
----
-
-## 📦 Side Quests
-
-Two rewards are hidden in this vault — one teaches you how to undo a mistake before it goes public, the other hands you a more secure way to carry credentials altogether.
-
-{: .chest }
-> **Side Quest 1 — Shield of `.gitignore`:** You committed `.gitignore` above. Now practice a harder case: accidentally stage a `.env` file, then remove it from staging without deleting the file. Use `git rm --cached .env`. Why is this important to know if you're working in a public repo?
-
-<label class="quest-check"><input type="checkbox" data-room="d2-key-vault" data-key="side1"> Shield of .gitignore unlocked</label>
-
-This side quest holds something even craftier — a way to keep your secrets off the filesystem entirely.
-
-{: .chest }
-> **Side Quest 2 — Keyring Knife:** Use Python's `keyring` library to store and retrieve the API key from the OS keychain instead of a `.env` file. What is the security trade-off between the two approaches?
-
-<label class="quest-check"><input type="checkbox" data-room="d2-key-vault" data-key="side2"> Keyring Knife unlocked</label>
-
----
-
-## ⚔️ Weapons Earned
-
-{: .weapon }
-> **Shield of `.gitignore`** — keep secrets, large data files, and environment-specific config out of your git history; know how to un-stage an accidentally added secret before pushing.
->
-> **Keyring Knife** — store credentials in the OS keychain for scripts that run interactively; avoid `.env` files entirely when the platform supports it.
-
----
-
-## 🧠 Skills Learned
-
-- You can explain what the Stanford AI Playground is and why it is different from a personal API account — audited, budget-capped, and perimeter-bound
-- You can load credentials from a `.env` file at runtime using `python-dotenv`, with zero hardcoding in your source
-- You can protect a secret before it ever touches git history — and rescue one that almost slipped through with `git rm --cached`
-- You can articulate what "data governance" means for AI APIs: your prompts are data, and Stanford can read them
