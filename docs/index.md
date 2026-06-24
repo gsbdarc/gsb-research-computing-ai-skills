@@ -29,7 +29,7 @@ permalink: /
 >
 > Each floor ends with a **Boss Gate**: a capstone challenge you submit by committing your work to your fork on GitHub. Push your commit → the grader runs → the next floor unlocks on your personal site.
 >
-> Every completed main quest or side quest earns **XP**. XP accumulates into your **Level** (shown in the widget, bottom-left). Complete every quest → 73 XP → Level 10 Archmage. The leaderboard ranks by level.
+> Every completed main quest or side quest adds to your **Quest Log**. Your total drives your **Level** (shown in the widget, bottom-left). Complete every quest → 73/73 → Level 10 Archmage. The leaderboard ranks by level.
 
 ---
 
@@ -100,4 +100,4 @@ A fully-equipped researcher who completes every side quest across all four floor
 | **Documentation** | Structure Sigil · Changelog Charm |
 | **GPU + local LLMs** | Smi Sight · Benchmark Blade · Model Menagerie · Modelfile Magic |
 
-Complete every quest → 73 XP → Level 10 Archmage — fully equipped researcher.
+Complete every quest → 73/73 → Level 10 Archmage — fully equipped researcher.

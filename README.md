@@ -6,7 +6,7 @@ You are a pre-doctoral researcher at Stanford GSB. You have four days to learn t
 
 The course is structured as a dungeon game. Each day is a floor. Each hands-on block is a room. You earn skills by completing main quests, unlock optional depth with side quests, and advance to the next floor by passing a Boss Gate — a real deliverable you commit to GitHub.
 
-**Everyone clears all four floors. The real competition is who reaches the highest level — main quests and side quests earn XP, XP drives your level.**
+**Everyone clears all four floors. The real competition is who reaches the highest level — every completed quest adds to your Quest Log, and your Quest Log total drives your level.**
 
 At any point, open your Quest Log (bottom-left of any page), click **Sync to leaderboard**, save the file, and push it. Your position on the [leaderboard](https://gsbdarc.github.io/rf-bootcamp-2026/leaderboard/) updates automatically.
 
@@ -142,7 +142,7 @@ The grader checks that the files exist and contain valid data — it does not gr
 ## Leaderboard
 
 The leaderboard at `/leaderboard/` ranks students by:
-1. **Level** — each completed main quest or side quest earns 1 XP; XP total determines level (max Level 10 — Archmage at 73 XP)
+1. **Level** — each completed main quest or side quest adds to your Quest Log; total quests completed determines level (max Level 10 — Archmage at 73/73)
 2. **Boss Gates cleared** (tiebreaker) — everyone should reach 4
 
 To update your position: open the **Quest Log** widget (bottom-left of any dungeon page) → **Sync to leaderboard** → save `quest_log.json` to your repo root → commit and push. The grader updates your ranking automatically.
@@ -151,7 +151,7 @@ To update your position: open the **Quest Log** widget (bottom-left of any dunge
 
 Every room has optional **Side Quests** — one-line challenges you figure out yourself (no walkthrough). Completing one earns a named **Weapon**: a skill that pays off later in the course.
 
-You don't need to complete any side quests to pass Boss Gates. But every main quest and side quest earns **XP**, and XP drives your **Level**. All main quests only → Level 4 Journeyman. Every side quest complete → 73 XP → Level 10 Archmage, fully equipped researcher.
+You don't need to complete any side quests to pass Boss Gates. But every completed quest builds your **Quest Log**, and your total drives your **Level**. Complete every quest → 73/73 → Level 10 Archmage, fully equipped researcher.
 
 ---
 
