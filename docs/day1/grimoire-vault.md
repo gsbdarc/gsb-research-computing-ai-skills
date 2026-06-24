@@ -140,6 +140,47 @@ ls */*.spell | wc -l  # total spells across all element folders
 
 ---
 
+**Task: Keeping Track**
+
+Create a file listing the names of all tier-3 spells in the grimoire.
+
+The `grep` command searches for a pattern in input. Combined with `ls` and a pipe, you can filter filenames by any part of their name:
+
+```bash
+ls */*.spell | grep "_3_"          # list all tier-3 spells
+ls */*.spell | grep "_3_" > tier3_spells.txt   # save the list to a file
+```
+
+The `>` operator redirects output to a file instead of printing it to the screen. If the file already exists it is overwritten; use `>>` to append instead.
+
+The `cat` command displays the contents of a file:
+
+```bash
+cat tier3_spells.txt               # view the file you just created
+wc -l tier3_spells.txt             # how many tier-3 spells are there?
+```
+
+---
+
+**Bonus Task: Find the Rarest Combination**
+
+The filename format is `name_element_tier_type_mastery.spell`. Find the least common element + type combination across all 300 spells.
+
+The `cut` command splits each line on a delimiter and extracts specific fields. `sort` sorts lines alphabetically. `uniq -c` counts consecutive identical lines (so sort first). `sort -n` sorts numerically.
+
+```bash
+ls */*.spell | cut -d'_' -f2,4 | sort | uniq -c | sort -n
+```
+
+- `cut -d'_' -f2,4` — split on `_`, keep fields 2 (element) and 4 (type)
+- `sort` — group identical combos together
+- `uniq -c` — count each group
+- `sort -n` — sort by count, smallest first
+
+The rarest combinations appear at the top. What do you find?
+
+---
+
 **Step 7 — Document: write a README**
 
 Always leave a note explaining what you did and why. Create a `README.md` in the grimoire folder:
