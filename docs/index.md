@@ -26,7 +26,7 @@ Finished early? Look for **Side Quests** — optional deeper challenges that unl
 
 Each floor ends with a **Boss Gate**: a capstone challenge you submit by committing your work to your fork on GitHub. Push your commit → the grader runs → the next floor unlocks on your personal site.
 
-Every completed main quest or side quest adds to your **Quest Log**. Your total drives your **Level** (shown in the widget, bottom-left). Complete every quest → 73/73 → Level 10 Archmage. The leaderboard ranks by level.
+Every completed quest adds to your **Quest Log** (shown in the widget, bottom-left). Completing all main quests on each floor is enough to pass the Boss Gate and advance. Side quests push your level higher — that is what separates the top of the leaderboard. The more side quests you finish, the higher your rank.
 
 ---
 

@@ -142,7 +142,7 @@ The grader checks that the files exist and contain valid data — it does not gr
 ## Leaderboard
 
 The leaderboard at `/leaderboard/` ranks students by:
-1. **Level** — each completed main quest or side quest adds to your Quest Log; total quests completed determines level (max Level 10 — Archmage at 73/73)
+1. **Level** — completing all main quests advances you through the floors; side quests push your level higher and separate the top of the leaderboard
 2. **Boss Gates cleared** (tiebreaker) — everyone should reach 4
 
 To update your position: open the **Quest Log** widget (bottom-left of any dungeon page) → **Sync to leaderboard** → save `quest_log.json` to your repo root → commit and push. The grader updates your ranking automatically.
@@ -151,4 +151,4 @@ To update your position: open the **Quest Log** widget (bottom-left of any dunge
 
 Every room has optional **Side Quests** — one-line challenges you figure out yourself (no walkthrough). Completing one earns a named **Weapon**: a skill that pays off later in the course.
 
-You don't need to complete any side quests to pass Boss Gates. But every completed quest builds your **Quest Log**, and your total drives your **Level**. Complete every quest → 73/73 → Level 10 Archmage, fully equipped researcher.
+You don't need to complete any side quests to pass Boss Gates. But every side quest you finish pushes your level higher — that's what separates the top of the leaderboard from everyone else who cleared the main path.
