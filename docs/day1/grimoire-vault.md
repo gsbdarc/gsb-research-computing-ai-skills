@@ -74,6 +74,11 @@ Now imagine doing that for all 300 files across 5 elements. How long would it ta
 
 That is exactly what the terminal solves. This is the first skill you will use in real research — and you will reach for it again every time a new dataset arrives.
 
+{: .note }
+> 🟢 **Green sticky** = I'm done and ready &nbsp;&nbsp; 🔴 **Red sticky** = I need help
+>
+> Put a sticky note on your laptop lid so instructors can see where you are.
+
 ---
 
 **Step 5 — Execute: sort with wildcards**
@@ -90,6 +95,11 @@ mv *_lightning_*.spell lightning/
 mv *_earth_*.spell earth/
 mv *_wind_*.spell wind/
 ```
+
+{: .note }
+> 🟢 **Green sticky** = I'm done and ready &nbsp;&nbsp; 🔴 **Red sticky** = I need help
+>
+> Put a sticky note on your laptop lid so instructors can see where you are.
 
 ---
 
@@ -116,6 +126,11 @@ cp */*_healing_*.spell healing/
 `*/*` reaches into every immediate subdirectory at once — so `*/*_offensive_*` matches offensive spells inside fire/, ice/, lightning/, earth/, and wind/ all in one command. Using `cp` instead of `mv` means each spell now lives in two places simultaneously: its element folder and its type folder.
 
 </details>
+
+{: .note }
+> 🟢 **Green sticky** = I'm done and ready &nbsp;&nbsp; 🔴 **Red sticky** = I need help
+>
+> Put a sticky note on your laptop lid so instructors can see where you are.
 
 ---
 
@@ -159,6 +174,11 @@ The `cat` command displays the contents of a file:
 cat tier3_spells.txt               # view the file you just created
 wc -l tier3_spells.txt             # how many tier-3 spells are there?
 ```
+
+{: .note }
+> 🟢 **Green sticky** = I'm done and ready &nbsp;&nbsp; 🔴 **Red sticky** = I need help
+>
+> Put a sticky note on your laptop lid so instructors can see where you are.
 
 ---
 
