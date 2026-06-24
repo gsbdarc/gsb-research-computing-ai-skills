@@ -28,7 +28,7 @@ You should see a blinking cursor. That cursor is the entrance to the dungeon.
 {: .note }
 > 🟢 **Green sticky** = I'm done and ready &nbsp;&nbsp; 🔴 **Red sticky** = I need help
 >
-> Put a sticky note on your laptop screen so instructors can see where you are.
+> Put a sticky note on your laptop lid so instructors can see where you are.
 
 ---
 
@@ -54,7 +54,19 @@ And later this morning, when you SSH into the Yens, every command you learn righ
 
 Same commands. More power.
 
-**Research projects have structure.** Whatever you're working on — at GSB, in a PhD program, anywhere — your project should look like this:
+**Class discussion — file organization**
+
+You have been working on your research projects for about a month. Before we go further:
+
+- What kinds of files do you actually have? *(raise your hand — we will whiteboard this)*
+- Where do they live right now?
+- What happens when you need to find something from three weeks ago?
+
+*[Whiteboard with the class. Common answers: datasets, scripts, output tables, figures, notes, emails with data attached, Excel files with unclear names like `final_v3_REAL.xlsx`.]*
+
+---
+
+Organizing files is not a rule for its own sake — it is what makes your work reproducible, shareable, and recoverable when something goes wrong. Here is one common structure for a research project:
 
 ```
 my_project/
@@ -64,8 +76,7 @@ my_project/
 └── README.md      ← what this project is and how to run it
 ```
 
-{: .note }
-> *"My advisor told me on day one: never put your raw data and your scripts in the same folder. I ignored that once. I won't again."* — Ben
+There are many ways to organize files — this is one example. What matters is that the structure is consistent and that raw data is never mixed with outputs.
 
 ---
 
