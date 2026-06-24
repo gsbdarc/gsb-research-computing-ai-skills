@@ -7,7 +7,7 @@ permalink: /leaderboard/
 
 # 🏆 DARC Dungeon Leaderboard
 
-*Rankings update when students sync their quest logs. Each completed main quest or side quest adds to your **Quest Log**; your total drives your **Level** (max Level 10 — Archmage, 73 quests). **Boss Gates** = floors cleared (max 4).*
+*Rankings update when students sync their quest logs. Each completed main quest or side quest adds to your **Quest Log**; your total drives your **Level** (max Level 10 — Archmage, 73/73 Quest Log). **Boss Gates** = floors cleared (max 4).*
 
 <div id="lb-controls">
   <button id="lb-refresh">↻ Refresh</button>
