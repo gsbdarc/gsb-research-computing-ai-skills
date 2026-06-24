@@ -93,6 +93,32 @@ mv *_wind_*.spell wind/
 
 ---
 
+**Challenge — now try it by type**
+
+Your spells are sorted into element folders. But a researcher might also want to find all offensive spells across every element at once.
+
+Using `cp` (not `mv`) — so files stay in their element folders — organize the spells by type into `offensive/`, `defensive/`, `utility/`, `healing/` folders.
+
+*Think before you type: what wildcard would match all offensive spells regardless of which element folder they are in?*
+
+<details markdown="1">
+<summary>Solution (expand after trying)</summary>
+
+```bash
+mkdir offensive defensive utility healing
+
+cp */*_offensive_*.spell offensive/
+cp */*_defensive_*.spell defensive/
+cp */*_utility_*.spell utility/
+cp */*_healing_*.spell healing/
+```
+
+`*/*` reaches into every immediate subdirectory at once — so `*/*_offensive_*` matches offensive spells inside fire/, ice/, lightning/, earth/, and wind/ all in one command. Using `cp` instead of `mv` means each spell now lives in two places simultaneously: its element folder and its type folder.
+
+</details>
+
+---
+
 **Step 6 — Verify**
 
 ```bash
