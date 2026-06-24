@@ -93,7 +93,7 @@ You are about to set foot on the Yens for the first time. Type carefully, breath
 ssh SUNetID@yen.stanford.edu
 ```
 
-Replace `SUNetID` with your Stanford username. When prompted for your password, type your Stanford password (nothing will appear — that's normal). You may be prompted for Duo two-factor authentication.
+Replace `SUNetID` with your Stanford username. When prompted for your password, type your Stanford password (nothing will appear — that's normal). You will be prompted for Duo two-factor authentication.
 
 **Identify your node:**
 ```bash
@@ -111,5 +111,10 @@ pwd                               # /home/users/SUNetID
 ls /scratch/shared/$USER          # your scratch space
 ls /yen/projects/                 # shared project storage
 ```
+
+{: .note }
+> 🟢 **Green sticky** = I'm done and ready &nbsp;&nbsp; 🔴 **Red sticky** = I need help
+>
+> Put a sticky note on your laptop lid so instructors can see where you are.
 
 <label class="quest-check"><input type="checkbox" data-room="d1-ssh-gate" data-key="main"> Main Quest complete</label>
