@@ -26,4 +26,5 @@ floor: 2
 | [The Key Vault](key-vault/) | 💻 Hands-on | Load the API key from `.env`, add to `.gitignore`, understand what you're sending |
 | [The Oracle's Chamber](oracles-chamber/) | 💻 Hands-on | Make your first API call; extract data from a real SEC filing; move code to a script |
 | [The Binding Room](binding-room/) | 💻 Hands-on | Tame wild LLM output into clean, validated structures with Pydantic |
+| [The Crucible](human-vs-llm/) | 💬 Discussion | Human vs. LLM — when to use each, when to test, and always look at your data |
 | [Boss Gate 2](boss-gate-2/) | 🔑 Capstone | Ship an end-to-end LLM research pipeline |
