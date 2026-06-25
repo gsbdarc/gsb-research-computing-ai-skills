@@ -63,7 +63,7 @@ Organized project committed to GitHub.
 - `$PATH`: how the shell finds programs; what `module load` and `venv activate` do to it
 - Stanford AI Playground: web GUI and API gateway; what leaves the cluster and to where
 - Tokens, costs, and context windows: the economics of every API call
-- Data governance: the 3-bucket rule (public / restricted / PII) and which tool is safe for which data
+- AI coding agents at Stanford: data privacy and security, best practices *(30-min discussion block)*
 - Human vs. LLM: when AI helps, when humans win, how to validate at scale
 
 ### Hands-on Exercises
@@ -75,7 +75,7 @@ Organized project committed to GitHub.
 6. First API call: send one SEC Form 3 filing to the LLM, extract `insider_name` and `role`
 7. Add a Pydantic model; validate and serialize the LLM response to clean JSON
 8. Refactor notebook code into a `.py` script; run it from the terminal
-9. Class discussion: human vs. LLM decision framework; classify the SEC data using the 3-bucket rule
+9. Discussion block *(30 min)*: AI coding agents at Stanford, data privacy and security, best practices; human vs. LLM decision framework
 
 ### 📁 Project Milestone — Day 2
 > `scripts/extract_filing.py` added — processes one filing, returns validated JSON. `README.md` updated with pipeline description and how to run the script. Committed and pushed.
