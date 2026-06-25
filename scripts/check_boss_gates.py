@@ -143,10 +143,18 @@ GATES = [
 
 
 def main():
-    unlocked = load_progress()
-    completed_checks = count_quest_log()
     github_repo = os.environ.get("GITHUB_REPOSITORY", "")
     username = github_repo.split("/")[0] if "/" in github_repo else ""
+    completed_checks = count_quest_log()
+
+    # Instructor's repo: keep all floors unlocked for course development and preview
+    if github_repo == "gsbdarc/rf-bootcamp-2026":
+        save_progress({1, 2, 3, 4}, completed_checks, "gsbdarc")
+        print("Instructor repo — all floors unlocked.")
+        return 0
+
+    # Student forks: always recompute from scratch so forked state is corrected
+    unlocked = {1}
     changed = False
 
     print("=" * 55)
