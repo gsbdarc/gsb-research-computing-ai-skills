@@ -2,7 +2,7 @@
 layout: default
 title: "The Engine Room"
 parent: "Day 4 — The GPU Fortress"
-nav_order: 5
+nav_order: 6
 permalink: /day4/engine-room/
 ---
 
@@ -81,6 +81,29 @@ Not sure about your data? → Visit the Grand Hall before you pick.
 > The 3-bucket data classification rule was covered in [The Crucible](../../day2/human-vs-llm/) on Day 2. If you're unsure which bucket your data belongs to, revisit that room before picking an endpoint.
 
 <label class="quest-check"><input type="checkbox" data-room="d4-engine-room" data-key="main"> Engine Room briefing complete — I know which LLM access pattern fits my data and research context</label>
+
+---
+
+## Discussion — Human vs. LLM: when to trust results at scale
+
+You've run filings through both pipelines. Now the harder question: how much do you trust what came back?
+
+{: .note }
+> **Class discussion:** Compare your Playground and Ollama outputs on the same 5 filings:
+> - Where do the two models agree? Where do they disagree?
+> - When a model returns a confident answer, how would you verify it's correct?
+> - If you scaled to 10,000 filings, how would you detect that 5% of extractions are wrong?
+
+**Rules of thumb for validation at scale:**
+
+| Situation | What to do |
+|-----------|------------|
+| Models agree on all 5 samples | Spot-check 2–5% of the full run; automate a format sanity check |
+| Models disagree on 1–2 samples | Read those cases; understand why before scaling |
+| Models disagree on 3+ samples | Stop. Rewrite the prompt. Validate on 20 before scaling. |
+| High-stakes extraction | Human review on a random 10% sample, no exceptions |
+
+The goal is not to find the "best" model — it's to know your error rate before you commit to a 100-job array.
 
 ---
 

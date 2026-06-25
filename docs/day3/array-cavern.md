@@ -1,14 +1,14 @@
 ---
 layout: default
 title: "The Array Cavern"
-parent: "Day 3 — The SLURM Mines"
-nav_order: 6
-permalink: /day3/array-cavern/
+parent: "Day 4 — The GPU Fortress"
+nav_order: 2
+permalink: /day4/array-cavern/
 ---
 
 # The Array Cavern
 
-<div data-room-id="d3-array-cavern"></div>
+<div data-room-id="d4-array-cavern"></div>
 
 *A thousand identical alcoves stretch into the dark, each one lit by the faint glow of a running process. The walls hum in unison — the same script, a hundred times over, each instance tearing through a different filing. This is the Array Cavern, where the researcher's oldest curse is finally broken: "I need to do this to 10,000 files." You write the spell once. The cavern multiplies it across an army of workers. When the last task falls silent, you summon the streams together into a single, clean river of data.*
 
@@ -99,4 +99,4 @@ if failed:
 python3 scripts/merge_results.py
 ```
 
-<label class="quest-check"><input type="checkbox" data-room="d3-array-cavern" data-key="main"> Main Quest complete — array submitted, CSV merged</label>
+<label class="quest-check"><input type="checkbox" data-room="d4-array-cavern" data-key="main"> Main Quest complete — array submitted, CSV merged</label>

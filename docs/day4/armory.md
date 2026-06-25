@@ -2,7 +2,7 @@
 layout: default
 title: "The Armory"
 parent: "Day 4 — The GPU Fortress"
-nav_order: 2
+nav_order: 3
 permalink: /day4/armory/
 ---
 

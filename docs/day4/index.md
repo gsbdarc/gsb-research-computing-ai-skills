@@ -21,6 +21,7 @@ Six chambers stand between you and the capstone. Each one unlocks a different we
 
 | Room | Format | What you master |
 |------|--------|-----------------|
+| [The Array Cavern](array-cavern/) | 💻 Hands-on | Fan out your script across 100 filings in parallel; collect all results into one CSV |
 | [The Armory](armory/) | 🖊️ Concept | Pick the right GPU for the fight — A30, A40, and H200 compared |
 | [The H200 Chamber](h200-chamber/) | 💻 Hands-on | Submit a live GPU job and understand how memory dictates model size |
 | [The Summoning Circle](summoning-circle/) | 💻 Hands-on | Conjure a local LLM on cluster hardware using Ollama |

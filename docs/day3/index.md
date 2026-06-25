@@ -23,7 +23,6 @@ floor: 3
 | [The Scales](scales/) | 💻 Hands-on | Run the script, profile it — stop guessing at resource requests |
 | [The Foreman's Desk](foremans-desk/) | 💻 Hands-on | Forge a SLURM script from a blank page and submit it yourself |
 | [The Watch Tower](watch-tower/) | 💻 Hands-on | Stalk, cancel, and autopsy your batch jobs like a pro |
-| [The Array Cavern](array-cavern/) | 💻 Hands-on | Detonate one script across hundreds of inputs; harvest the results |
 | [The Chronicle](chronicle/) | 💻 Hands-on | Capture your pipeline in a README while the details are still hot |
 | [Boss Gate 3](boss-gate-3/) | 🔑 Capstone | Drive a real research pipeline at scale — documented and delivered |
 | [Hall of Heroes](hall-of-heroes/) | 💬 Celebration | — |

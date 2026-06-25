@@ -2,58 +2,50 @@
 layout: default
 title: "Boss Gate 3"
 parent: "Day 3 — The SLURM Mines"
-nav_order: 8
+nav_order: 7
 permalink: /day3/boss-gate-3/
 ---
 
 # Boss Gate 3
 
-*The Foreman steps aside and gestures at a towering wall of parchment — one hundred SEC filings, each sealed with wax, each hiding secrets of insider trades. The torches flicker. The cluster hums. This is what the whole descent was for: a single array job that processes them all in parallel, fails gracefully, and leaves behind a clean CSV and a chronicle anyone could follow. You've learned the recipe, calibrated the resources, and armored your pipeline against failure. Now prove it.*
+*The Foreman steps aside and the gate swings open — but only for the researcher who can prove they've handed their pipeline to the scheduler. Not an interactive session. Not a manual run on the login node. A proper SLURM job: resourced, submitted, documented. When the output file lands in `logs/` and the README can explain what happened to anyone who wasn't there, you've crossed the threshold.*
 
 ---
 
 ## 🔑 The Challenge
 
-The final gate stands open — but only your output will unlock it.
-
 {: .boss }
-> **Boss Battle — The Great Scroll Sweep**
+> **Boss Battle — The First Submission**
 >
-> Process all 100 SEC filings from `data/sec_filings/` using a SLURM job array:
+> Submit your Day 2 LLM extraction script as a SLURM batch job:
 >
-> 1. Each array task extracts the insider name, role, and transaction date from one filing
-> 2. Outputs are written to `/scratch/shared/$USER/results/filing_N.json` (one per task)
-> 3. A merge script combines all results into `results/great_scroll_sweep.csv`
-> 4. Failed tasks are listed in `results/failed_tasks.txt`
-> 5. Your array job script, merge script, and `README.md` are committed to your fork
+> 1. Write `jobs/extract.sh` with correct `#SBATCH` directives — time, memory, and partition based on your profiling from The Scales
+> 2. Submit with `sbatch`; confirm the job enters the queue with `squeue -u $USER`
+> 3. Wait for it to complete; inspect the output with `sacct -j JOBID --format=JobID,State,Elapsed,MaxRSS`
+> 4. Update `README.md` with SLURM instructions — how to submit, how to monitor, where the output goes
+> 5. Commit and push
 >
 > **Submit:**
 > ```bash
-> git add jobs/array_extract.sh scripts/merge_results.py results/great_scroll_sweep.csv results/failed_tasks.txt README.md
-> git commit -m "Boss Gate 3: Great Scroll Sweep complete"
+> git add jobs/extract.sh README.md
+> git commit -m "Boss Gate 3: first SLURM submission complete"
 > git push
 > ```
 >
 > **Your commit should include:**
-> - The job script (`jobs/array_extract.sh`)
-> - The merge script (`scripts/merge_results.py`)
-> - The final CSV (`results/great_scroll_sweep.csv`)
-> - The failure log (`results/failed_tasks.txt` — can be empty if all tasks succeeded)
-> - `README.md` from The Chronicle — what the pipeline does, how to run it, known limitations
-
-{: .tip }
-> 💡 Check `results/failed_tasks.txt` before committing. If tasks failed, resubmit the array. If you completed the Checkpoint Charm side quest in the Array Cavern, your pipeline will skip already-completed tasks automatically.
+> - The job script (`jobs/extract.sh`) with `#SBATCH` directives you measured, not guessed
+> - `README.md` from The Chronicle — what the script does, how to run it, where output lands
 
 ---
 
-<label class="quest-check"><input type="checkbox" data-room="d3-boss-gate" data-key="commit"> Committed and pushed CSV + scripts + README</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-boss-gate" data-key="commit"> Committed and pushed job script + README</label>
 
 ---
 
 ## ⚔️ Skills This Gate Tests
 
-- You can design and fire a SLURM job array that fans out across 100 inputs simultaneously
-- You can wield `$SLURM_ARRAY_TASK_ID` to route each task to exactly the right file
-- You can merge parallel outputs into a single clean CSV with explicit failure reporting
-- You can write a README clear enough that a stranger — or future-you — could rerun the whole pipeline cold
-- You can commit and push the complete deliverable: scripts, results, and documentation, all in one move
+- You can write a SLURM job script from scratch with `#SBATCH` directives grounded in real profiling data
+- You can submit a job and confirm it entered the queue
+- You can read `sacct` output and identify whether the job succeeded or failed
+- You can write a README clear enough that a stranger could rerun the job without asking you
+- You can commit and push a complete deliverable: script and documentation together

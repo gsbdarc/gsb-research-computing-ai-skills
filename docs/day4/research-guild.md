@@ -2,7 +2,7 @@
 layout: default
 title: "The Research Guild"
 parent: "Day 4 — The GPU Fortress"
-nav_order: 8
+nav_order: 9
 permalink: /day4/research-guild/
 ---
 

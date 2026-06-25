@@ -2,7 +2,7 @@
 layout: default
 title: "The Chronicle"
 parent: "Day 3 — The SLURM Mines"
-nav_order: 7
+nav_order: 6
 permalink: /day3/chronicle/
 ---
 
@@ -28,9 +28,8 @@ Create `README.md` in your repo root (or a `day3/` subdirectory):
 
 ## What this does
 
-Extracts insider name, role, and transaction date from SEC Form 3 filings
-using the Stanford AI Playground (GPT-4o-mini) and a SLURM job array.
-Results are combined into a single CSV.
+Extracts insider name, role, and transaction date from a single SEC Form 3 filing
+using the Stanford AI Playground (GPT-4o-mini) via a SLURM batch job.
 
 ## How to run
 
@@ -41,23 +40,21 @@ Results are combined into a single CSV.
 
 ### Steps
 ```bash
-# 1. Prepare input list
-ls data/sec_filings/*.txt > /scratch/shared/$USER/filings_list.txt
+# 1. Submit the batch job
+sbatch jobs/extract.sh
 
-# 2. Submit the array
-sbatch jobs/array_extract.sh
+# 2. Monitor
+squeue -u $USER
+sacct -j JOBID --format=JobID,State,Elapsed,MaxRSS
 
-# 3. Monitor
-watch -n 5 squeue -u $USER
-
-# 4. Merge
-python3 scripts/merge_results.py
+# 3. Check output
+cat logs/extract_JOBID.out
 ```
 
 ## Outputs
 
-- `results/extracted_filings.csv` — one row per filing
-- Console warning if any tasks failed
+- `logs/extract_JOBID.out` — extraction results
+- `logs/extract_JOBID.err` — error log if any
 
 ## Data
 
@@ -70,6 +67,6 @@ Input: SEC Form 3 filings from EDGAR (public domain).
 ```
 
 {: .note }
-> You will update this README in the Day 4 capstone when you swap in the Ollama endpoint.
+> You will update this README in the Day 4 capstone when you scale with a job array and swap to the Ollama endpoint.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-chronicle" data-key="main"> Main Quest complete — README written</label>

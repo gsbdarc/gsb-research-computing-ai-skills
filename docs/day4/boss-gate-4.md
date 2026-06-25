@@ -2,7 +2,7 @@
 layout: default
 title: "Boss Gate 4"
 parent: "Day 4 — The GPU Fortress"
-nav_order: 7
+nav_order: 8
 permalink: /day4/boss-gate-4/
 ---
 
@@ -22,18 +22,21 @@ The Archmage does not test you with riddles. It tests you with the full stack �
 {: .boss }
 > **Boss Battle — Champion's Ascent**
 >
-> **Part 1 — Swap the endpoint:**
-> Take your Day 3 array job (`array_extract.sh` / `extract_filing.py`) and modify it to call **Ollama on the H200** instead of the Stanford AI Playground. The Ollama server must be running on `yen-gpu4` in a `screen` session before you submit the array.
+> **Part 1 — Scale with an array job:**
+> Convert your `jobs/extract.sh` to a full job array (`--array=1-100`). Each task processes one filing and writes its result to `/scratch/shared/$USER/results/filing_N.json`. After the array completes, merge all outputs into `results/great_scroll_sweep.csv`.
 >
-> **Part 2 — Compare outputs:**
+> **Part 2 — Swap the endpoint:**
+> Modify your array script to call **Ollama on the H200** instead of the Stanford AI Playground. The Ollama server must be running on `yen-gpu4` in a `screen` session before you submit the array.
+>
+> **Part 3 — Compare outputs:**
 > Run the same 5 filings through both the Playground (gpt-4o-mini) and Ollama (your chosen model). Save the results side-by-side in `results/comparison.csv` with columns: `filename`, `playground_name`, `ollama_name`, `playground_role`, `ollama_role`.
 >
-> **Part 3 — Commit your README:**
-> Ensure `README.md` describes the full pipeline including both endpoints.
+> **Part 4 — Commit your README:**
+> Ensure `README.md` describes the full pipeline: array job, both endpoints, how to rerun.
 >
 > **Submit:**
 > ```bash
-> git add results/comparison.csv README.md
+> git add results/great_scroll_sweep.csv results/comparison.csv README.md
 > git commit -m "Boss Gate 4: Champion's Ascent complete"
 > git push
 > ```

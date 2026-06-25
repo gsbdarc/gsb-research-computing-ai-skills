@@ -2,7 +2,7 @@
 layout: default
 title: "Hall of Heroes"
 parent: "Day 3 — The SLURM Mines"
-nav_order: 9
+nav_order: 8
 permalink: /day3/hall-of-heroes/
 ---
 
@@ -16,7 +16,7 @@ No quests. No side quests. No commits required. This room belongs to you.
 
 The instructors will pull up `userload` and `squeue` on the projector and call out the day's champions:
 
-- **Fastest array:** who processed 100 filings in the least wall-clock time?
+- **Fastest job:** who got their SLURM job submitted, run, and committed in the least wall-clock time?
 - **Best job name:** `#SBATCH --job-name` is free real estate; who named theirs most creatively?
 - **First full Quest Log:** who checked the most boxes across Day 1–3?
 
@@ -28,7 +28,7 @@ You didn't just learn commands — you forged a complete research pipeline from 
 
 - 🗡️ Connect to the Yens, navigate the file system, and move data like you own the place
 - 🗡️ Manage a Python environment and call any OpenAI-compatible API from a script
-- 🗡️ Submit SLURM batch jobs and job arrays that tear through hundreds of inputs in parallel
+- 🗡️ Submit SLURM batch jobs and hand your pipeline off to the scheduler — no babysitting required
 - 🗡️ Combine parallel outputs into clean, auditable results your future self will thank you for
 - 🗡️ Document a pipeline in a README while the details are still alive in your memory
 

@@ -56,7 +56,6 @@
         { id: 'd3-scales',               keys: ['main'] },
         { id: 'd3-foremans-desk',        keys: ['main'] },
         { id: 'd3-watch-tower',          keys: ['main'] },
-        { id: 'd3-array-cavern',         keys: ['main'] },
         { id: 'd3-chronicle',            keys: ['main'] },
         { id: 'd3-boss-gate',            keys: ['commit'] },
       ],
@@ -65,6 +64,7 @@
       label: 'Day 4 — The GPU Fortress',
       prefix: 'd4',
       rooms: [
+        { id: 'd4-array-cavern',         keys: ['main'] },
         { id: 'd4-armory',              keys: ['main'] },
         { id: 'd4-h200-chamber',        keys: ['main'] },
         { id: 'd4-summoning-circle',    keys: ['main'] },
