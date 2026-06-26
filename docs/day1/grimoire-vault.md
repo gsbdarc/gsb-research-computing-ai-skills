@@ -23,12 +23,12 @@ Three hundred spell files. No order. No organization. A real research dataset lo
 
 **Step 1 — Download and unzip**
 
-**[⬇ Download grimoire.zip](https://drive.google.com/file/d/1pGFegdCMjzHDDmfjJrSuZe10L8zrQsWo/view?usp=sharing)**
+Run this in your terminal (Git Bash on Windows, Terminal on Mac):
 
 ```bash
-mv ~/Downloads/grimoire.zip ~/Desktop/    # move from Downloads to Desktop
-cd ~/Desktop                              # go to Desktop
-unzip grimoire.zip                        # unzip the archive
+cd ~/Desktop
+curl -L https://raw.githubusercontent.com/gsbdarc/rf-bootcamp-2026/main/docs/assets/data/grimoire.zip -o grimoire.zip
+unzip grimoire.zip
 ```
 
 ---

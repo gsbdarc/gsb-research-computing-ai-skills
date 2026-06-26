@@ -96,7 +96,7 @@ In your fork, click the **Actions** tab → click **"I understand my workflows, 
 
 ### Step 3 — Enable GitHub Pages on your fork
 
-In your fork, go to **Settings → Pages → Build and deployment → Source → GitHub Actions → Save**.
+In your fork, go to **Settings → Pages → Build and deployment → Source → select **GitHub Actions** (saves automatically).
 
 ### Step 4 — Trigger the first build
 
