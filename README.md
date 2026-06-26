@@ -4,9 +4,6 @@
 
 A four-day hands-on course covering the command line, the Yens cluster, SLURM, GPU jobs, LLM APIs, and AI coding tools. The course runs as a dungeon game — complete rooms, earn skills, pass Boss Gates to advance floors.
 
-**Course site:** https://gsbdarc.github.io/rf-bootcamp-2026/
-**Leaderboard:** https://gsbdarc.github.io/rf-bootcamp-2026/leaderboard/
-
 ---
 
 ## Student Setup

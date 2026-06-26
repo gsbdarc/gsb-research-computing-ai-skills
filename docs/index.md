@@ -18,6 +18,8 @@ permalink: /
 > 4. **Trigger the first build** — Actions → "Deploy Jekyll site to Pages" → Run workflow → Run workflow
 > 5. **Open your personal dungeon site** (~2 min after step 4): `https://YOUR-USERNAME.github.io/rf-bootcamp-2026/`
 >
+> Once your site is live, put a **🟢 green sticky** on your laptop lid. If you're stuck on any step, put a **🔴 red sticky** up so an instructor can come help.
+>
 > Your site is your quest log for the entire course. Keep it open — every room, exercise, and leaderboard submission happens here.
 
 **How the dungeon works**

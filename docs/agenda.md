@@ -21,8 +21,10 @@ Every day adds a layer to one research pipeline. The dataset: SEC Form 3 filings
 ### Core Concepts
 - What is research computing, a server, a terminal?
 - The Unix file system and why researchers live in it
+- Files, folders, local vs remote machine
 - Staying organized: strategy when a PI sends a raw data dump
-- Version control as a lab notebook
+- Claude Code ?
+- Version control as a lab notebook (also with Claude?)
 - SSH and remote access; shared vs. dedicated compute
 
 ### Main Quests
@@ -46,6 +48,7 @@ Every day adds a layer to one research pipeline. The dataset: SEC Form 3 filings
 **Theme:** Interactive Jobs on the Yens (Jupyter)
 
 ### Core Concepts
+- less time here?
 - JupyterHub: notebooks vs. scripts; kernel setup; the Jupyter terminal
 - Python environments: `venv`, `pip`, reproducibility; modules; what `$PATH` is and how it changes
 - Stanford AI Playground: web GUI and API gateway; what leaves the cluster; tokens, costs, context windows

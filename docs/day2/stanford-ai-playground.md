@@ -2,7 +2,7 @@
 layout: default
 title: "The Stanford AI Playground"
 parent: "Day 2 — The Alchemist's Lab"
-nav_order: 5
+nav_order: 4
 permalink: /day2/stanford-ai-playground/
 ---
 

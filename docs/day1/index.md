@@ -33,4 +33,5 @@ Six hands-on rooms and a Boss Gate await. Work through each room in order — la
 | [The Cartographer's Room](cartographers-room/) | 💻 Hands-on | Map the cluster's file system, track your quota, and summon software modules |
 | [The Scroll Transfer](scroll-transfer/) | 💻 Hands-on | Conjure data across machines and master the shared file system |
 | [The Repository](repository/) | 💻 Hands-on | Lock your progress in Git: fork → branch → commit → push, unbreakable |
+| [The Archmage's Counsel](claude-code/) | 🗣️ Discussion | Meet Claude Code — what it sends, Stanford data rules, and your role vs the tool's |
 | [Boss Gate 1](boss-gate-1/) | 🔑 Capstone | Prove you command everything from today on an open-ended challenge |

@@ -2,7 +2,7 @@
 layout: default
 title: "Boss Gate 2"
 parent: "Day 2 — The Alchemist's Lab"
-nav_order: 10
+nav_order: 8
 permalink: /day2/boss-gate-2/
 ---
 

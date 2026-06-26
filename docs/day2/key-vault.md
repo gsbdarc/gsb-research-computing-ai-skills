@@ -2,7 +2,7 @@
 layout: default
 title: "The Key Vault"
 parent: "Day 2 — The Alchemist's Lab"
-nav_order: 6
+nav_order: 5
 permalink: /day2/key-vault/
 ---
 
