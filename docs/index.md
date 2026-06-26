@@ -13,8 +13,9 @@ permalink: /
 > **Day 1 — Do this first**
 >
 > 1. **Fork this repo** — click **Fork** in the top-right corner of the [GitHub page](https://github.com/gsbdarc/rf-bootcamp-2026) to create your own copy
-> 2. **Enable GitHub Pages** on your fork: Settings → Pages → Source → **GitHub Actions** → Save
-> 3. **Open your personal dungeon site:** `https://YOUR-USERNAME.github.io/rf-bootcamp-2026/`
+> 2. **Enable Actions** on your fork — click the **Actions** tab → **"I understand my workflows, go ahead and enable them"**
+> 3. **Enable GitHub Pages** on your fork: Settings → Pages → Build and deployment → Source → **GitHub Actions** → Save
+> 4. **Open your personal dungeon site:** `https://YOUR-USERNAME.github.io/rf-bootcamp-2026/`
 >
 > Your site is your quest log for the entire course. Keep it open — every room, exercise, and leaderboard submission happens here.
 

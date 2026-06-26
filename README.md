@@ -88,9 +88,15 @@ Click **Fork** in the top-right corner of this page. GitHub creates your own cop
 https://github.com/YOUR-USERNAME/rf-bootcamp-2026
 ```
 
-### Step 2 — Enable GitHub Pages on your fork
+### Step 2 — Enable GitHub Actions on your fork
 
-In your fork, go to **Settings → Pages → Source → GitHub Actions → Save**.
+GitHub disables workflows on forks by default. You have to opt in once:
+
+In your fork, click the **Actions** tab → click **"I understand my workflows, go ahead and enable them"**.
+
+### Step 3 — Enable GitHub Pages on your fork
+
+In your fork, go to **Settings → Pages → Build and deployment → Source → GitHub Actions → Save**.
 
 Your personal dungeon site will be live at:
 
@@ -100,7 +106,7 @@ https://YOUR-USERNAME.github.io/rf-bootcamp-2026/
 
 The first build takes ~2 minutes. After that, every push to `main` rebuilds automatically.
 
-### Step 3 — Clone your fork to the Yens
+### Step 4 — Clone your fork to the Yens
 
 ```bash
 git clone https://github.com/YOUR-USERNAME/rf-bootcamp-2026.git
