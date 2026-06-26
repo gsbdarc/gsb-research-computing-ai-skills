@@ -98,15 +98,19 @@ In your fork, click the **Actions** tab → click **"I understand my workflows, 
 
 In your fork, go to **Settings → Pages → Build and deployment → Source → GitHub Actions → Save**.
 
+### Step 4 — Trigger the first build
+
+Go to **Actions → "Deploy Jekyll site to Pages" → Run workflow → Run workflow**.
+
 Your personal dungeon site will be live at:
 
 ```
 https://YOUR-USERNAME.github.io/rf-bootcamp-2026/
 ```
 
-The first build takes ~2 minutes. After that, every push to `main` rebuilds automatically.
+Wait ~2 minutes, then open the URL. After that, every push to `main` rebuilds automatically.
 
-### Step 4 — Clone your fork to the Yens
+### Step 5 — Clone your fork to the Yens
 
 ```bash
 git clone https://github.com/YOUR-USERNAME/rf-bootcamp-2026.git
