@@ -11,7 +11,7 @@ floor: 1
 
 *The outer wall looms before you, its stones etched with runes that pulse with cold blue light. Torches snap in the wind. This is the Gatehouse — where every great adventurer begins. The puzzles here seem simple, but do not be deceived: every command you master, every path you memorize, every commit you push is a brick in the fortress you are building. By the time you force open the Boss Gate, you will move through a remote cluster like you own it — logging in, navigating directories, transferring data, and versioning your work.*
 
-**Duration:** ~3 hours &nbsp;·&nbsp; **Levels:** 1–3
+**Levels:** 1–3
 
 ---
 

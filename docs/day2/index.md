@@ -11,7 +11,7 @@ floor: 2
 
 *The second floor reeks of transformation. Flasks of Python environments bubble on iron stands, each one sealed and labeled — no cross-contamination allowed. API keys glow amber behind vault doors. Somewhere deeper in the lab, an Oracle waits to answer questions that would take a human researcher weeks to answer alone. The Alchemist's first lesson: precision is power. Know your ingredients, measure your costs, and never mix what shouldn't mix.*
 
-**Duration:** ~2h &nbsp;·&nbsp; **Levels:** 4–6
+**Levels:** 4–6
 
 ---
 

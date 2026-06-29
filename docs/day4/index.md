@@ -11,7 +11,7 @@ floor: 4
 
 *You've reached the top floor — and the dungeon shakes. The walls are lined with tensor cores stacked floor to ceiling; the air crackles with heat and possibility. Somewhere behind that door, a 140-billion-parameter model is waiting to be summoned on hardware you are about to command. Today you claim the fortress: running your first GPU job, conjuring a local LLM from bare metal, and learning to wield these weapons without burning down the kingdom — your data, your collaborators, your research.*
 
-**Duration:** ~2h 40min &nbsp;·&nbsp; **Levels:** 9–10
+**Levels:** 9–10
 
 ---
 
