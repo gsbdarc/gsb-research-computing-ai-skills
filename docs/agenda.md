@@ -22,9 +22,13 @@ Every day adds a layer to one research pipeline. The dataset: SEC Form 3 filings
 - The Unix file system and why researchers live in it
 - Files, folders, local vs remote machine
 - Staying organized: strategy when a PI sends a raw data dump
-- Version control with Git; using Claude Code in the repo
+- Version control with Git; using Claude Code in the repo (add a skill)
 - SSH and remote access; shared vs. dedicated compute
+- IDE? VSCode - edit code, git, ssh, AI
 - Claude Code: what it sends, Stanford approval, researcher role vs tool role
+- Claude + Git hands-on (local)
+- Claude on the Yens
+- Security discussion
 
 ### Main Quests
 
@@ -90,6 +94,9 @@ Every day adds a layer to one research pipeline. The dataset: SEC Form 3 filings
 ### Core Concepts
 - The kitchen analogy: CPU (burners), RAM (fridge), shared storage (warehouse), SLURM (head chef)
 - Resource estimation: measure wall time and memory before writing `#SBATCH` directives
+- Hands-on: Systemdata parse data with claude
+- Claude + systemdata to understand the data - process, user, disk, ram, cpu?
+- Why parallelize?
 - Job lifecycle: submit → queue → run → complete → logs
 - Job monitoring: `squeue`, `sacct`, `scancel`, reading output files
 
