@@ -16,28 +16,37 @@ Every day adds a layer to one research pipeline. The dataset: SEC Form 3 filings
 ## Day 1 — Research Computing Foundations
 
 **Theme:** Get oriented, get organized, get to the cluster.
-**Duration:** ~3 hours
 
 ### Core Concepts
 - What is research computing, a server, a terminal?
 - The Unix file system and why researchers live in it
 - Files, folders, local vs remote machine
 - Staying organized: strategy when a PI sends a raw data dump
-- Claude Code ?
-- Version control as a lab notebook (also with Claude?)
+- Version control with Git; using Claude Code in the repo
 - SSH and remote access; shared vs. dedicated compute
+- Claude Code: what it sends, Stanford approval, researcher role vs tool role
 
 ### Main Quests
+
+**Setup block (~20-30 min) — do this before any CLI instruction:**
+
+| # | Quest | Presenter |
+|---|-------|-----------|
+| 0 | Setup: fork repo → enable Actions → enable GitHub Pages → trigger first build → open personal dungeon site | |
+
+*🟢/🔴 sticky check after Quest 0 — everyone should have their site open before proceeding.*
+
+**CLI + cluster:**
 
 | # | Quest | Presenter |
 |---|-------|-----------|
 | 1 | CLI navigation — `ls`, `cd`, `mkdir`, `mv`, `cp`, `rm` | | 
-| 2 | Bulk operations with wildcards — rename 50 files in one command | | 
+| 2 | Bulk operations with wildcards — rename 300 files in one command | | 
 | 3 | SSH into the Yens | | 
-| 4 | Explore cluster: file system, quotas, `module load` | 
+| 4 | Explore cluster: file system, quotas, `module load` | |
 | 5 | File transfer: `scp` data to and from the cluster | | 
-| 6 | Git: fork bootcamp repo, commit, push | | 
-| 7 | Organize raw SEC filing data dump; write `README.md`; commit | |
+| 6 | Git: commit and push to fork | | 
+| 7 | Introduce Claude Code — run in repo, discuss researcher role vs AI tool, Stanford data rules | |
 
 ### Side Quests *(optional)*
 - Add here
@@ -45,34 +54,31 @@ Every day adds a layer to one research pipeline. The dataset: SEC Form 3 filings
 
 ## Day 2 — Python, AI Tools & the LLM Pipeline
 
-**Theme:** Interactive Jobs on the Yens (Jupyter)
+**Theme:** Python + AI Tools — write and run a real extraction script
 
 ### Core Concepts
-- less time here?
-- JupyterHub: notebooks vs. scripts; kernel setup; the Jupyter terminal
-- Python environments: `venv`, `pip`, reproducibility; modules; what `$PATH` is and how it changes
+- JupyterHub: brief orientation; notebooks vs. scripts — scripts are the primary workflow
+- Python environments: `$PATH`, `module load`, `venv`, `pip`, reproducibility
 - Stanford AI Playground: web GUI and API gateway; what leaves the cluster; tokens, costs, context windows
 - Secure key management: `.env`, `python-dotenv`, `.gitignore`
 - Structured LLM output: Pydantic models and validation
-- AI coding agents at Stanford: data privacy, security, best practices *(30-min discussion)*
+- AI coding agents at Stanford: data privacy, security, best practices *(discussion)*
 
 ### Main Quests
 
 | # | Quest | Presenter |
 |---|-------|-----------|
-| 1 | Connect to JupyterHub; run cells; run a script from the terminal | | 
-| 2 | Load modules; observe `$PATH`; create venv; install packages; register kernel | | 
+| 1 | Open JupyterHub briefly; write and run a Python script from the terminal | | 
+| 2 | Understand `$PATH`; create venv; install packages; register Jupyter kernel | | 
 | 3 | Explore Stanford AI Playground web GUI | | 
 | 4 | Load API key from `.env`; initialize OpenAI-compatible client | | 
-| 5 | First API call: extract `insider_name` and `role` from one SEC filing | | 
-| 6 | Add Pydantic model; validate and serialize response to JSON | | 
-| 7 | Refactor notebook code into `scripts/extract_filing.py`; run from terminal | | 
-| 8 | Update `README.md` with pipeline description; commit and push | | 
+| 5 | First API call: extract fields from one SEC filing; validate with Pydantic; save to JSON | | 
+| 6 | Discussion: AI coding agents at Stanford — data privacy, security, best practices | | 
+| 7 | Update `README.md` with pipeline description; commit and push | | 
 
 ### Side Quests *(optional)*
-- What's LLM? Context, models, tokens, costs, environment, agents, Claude Code 
 - Prompt engineering: system vs. user messages, temperature, reasoning
-- Batch processing preview: loop over a directory before Day 3 ?
+- Batch processing preview: loop over a directory before Day 3
 - Add here
 
 ---
