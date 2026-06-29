@@ -20,6 +20,11 @@ Claude Code is an AI coding assistant that runs in your terminal. Unlike a chat 
 
 At Stanford, **Claude Code is now officially approved for research use** as part of the Claude for Education program (launching June 30, 2026). All faculty, students, postdocs, and staff have access with a Stanford SUNet ID.
 
+**Where can you run it?**
+- **Locally** (your laptop) — the most common way; Claude Code sees your local files and any SSH sessions you have open
+- **On the Yens** — SSH in, then run `claude` directly on the cluster; useful for files that live there and shouldn't leave
+- **In VSCode** — VSCode with the SSH extension lets you edit files on the Yens in a proper IDE; Claude Code works inside VSCode's terminal too
+
 **What it sends:** Every prompt you send — the files open in your session, recent terminal output, your chat — is transmitted to Anthropic's servers. This matters for research data.
 
 | Data | Claude Code OK? |
@@ -43,7 +48,7 @@ On your local machine, navigate to your forked repo (the one you set up in The R
 cd rf-bootcamp-2026
 ```
 
-### Step 2 — Run Claude Code
+### Step 2 — Run Claude Code locally
 
 If Claude Code is installed (`claude --version` to check):
 
@@ -56,11 +61,43 @@ Ask it something simple: *"What files are in this repo and what does each one do
 If you don't have it installed yet, open [claude.ai](https://claude.ai) and paste the same question with a file listing. Both work for today.
 
 {: .note }
-> **Install later (Mac):** `npm install -g @anthropic-ai/claude-code` — you'll need Node.js first (`brew install node`). We'll use it heavily starting Day 2.
+> **Install (Mac):** `npm install -g @anthropic-ai/claude-code` — you'll need Node.js first (`brew install node`).
 
 ---
 
-### Step 3 — Class Discussion: Your Role vs the Tool's Role
+### Step 3 — Run Claude Code on the Yens
+
+Claude Code can also run directly on the cluster — useful when your data lives there and you don't want it leaving the Yens perimeter.
+
+SSH in (if you aren't already), then:
+
+```bash
+claude
+```
+
+Ask it: *"What processes am I running on this server?"* or *"What is the output of `userload` telling me?"*
+
+{: .note }
+> Claude Code on the Yens sends your prompts to Anthropic servers over the internet — the compute runs remotely, not locally. For data that must stay within Stanford systems, use the Stanford AI API Gateway or Ollama (Day 4).
+
+---
+
+### Step 4 — Security: what to keep out of Claude's context
+
+Before you use Claude Code habitually, internalize one rule:
+
+**If the file is open in your session, Claude Code can see it.**
+
+- Never open `.env` files or files with API keys in the same session you're using Claude Code
+- Exclude `data/` and `results/` directories from Claude's context when working with restricted data
+- Public data (SEC filings, published papers) → fine
+- Restricted or PII data → use Ollama locally on the Yens (Day 4) or route through the Stanford AI API Gateway
+
+The full data governance discussion happens in [The Crucible](/day2/human-vs-llm/) on Day 2.
+
+---
+
+### Step 5 — Class Discussion: Your Role vs the Tool's Role
 
 *No typing. Put your hands in your lap.*
 
@@ -93,6 +130,7 @@ Claude Code is fast at syntax, boilerplate, and looking things up. What it canno
 
 ## 🧠 Skills Learned
 
-- You know what Claude Code is and how to run it in a project directory
+- You know what Claude Code is and how to run it locally, in VSCode, and on the Yens
 - You understand what context it sends and when that matters for research data
+- You know what to keep out of Claude's session when working with restricted data
 - You can articulate the boundary between what the tool does and what the researcher does — and why that boundary matters when results go to scale

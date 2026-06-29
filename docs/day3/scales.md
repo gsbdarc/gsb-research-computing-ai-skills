@@ -14,6 +14,27 @@ permalink: /day3/scales/
 
 ---
 
+## 🖊️ Why Parallelize?
+
+Your Day 2 script processes one SEC filing in a few seconds. You have 100 filings. Running them one at a time takes 100× as long — and ties up a terminal window while you wait.
+
+The Yens have hundreds of cores sitting idle. SLURM's job: hand each core a different filing so all 100 run simultaneously. Total time stays roughly the same as one filing — just multiplied across independent work.
+
+```
+  One at a time (your laptop):       Parallelized (SLURM):
+  filing 1 → 5s                      filing 1  ┐
+  filing 2 → 5s                      filing 2  │ all start at once
+  filing 3 → 5s                      filing 3  │ → ~5s total
+  ...                                ...       ┘
+  filing 100 → 5s
+  ─────────────
+  Total: ~500s                        Total: ~5s + queue wait
+```
+
+This only works when tasks are **independent** — each filing doesn't need the results from another. Your extraction script qualifies perfectly.
+
+---
+
 ## 🗡️ Main Quest
 
 Before you write a single `#SBATCH` directive, you must step onto the floor of the Scales and weigh your work honestly.
@@ -107,5 +128,33 @@ Compare with a neighbor — do you see the same numbers? Based on what you measu
 - `--time`: take your measured wall-clock time × 2 (give yourself margin)
 - `--mem`: take your peak memory × 1.5
 - `--cpus-per-task`: count your actual Python threads; most single-threaded scripts need 1
+
+---
+
+## 🤖 Claude + System Data
+
+You've just collected profiling output — wall time, memory, CPU. Claude Code can help you make sense of it and translate it into `#SBATCH` directives.
+
+Run Claude Code on the Yens:
+
+```bash
+claude
+```
+
+Then paste in your profiling output and ask:
+
+*"My script ran in 4.2 seconds and used 312 MB of RAM with 1 CPU. What `#SBATCH` directives should I use for a SLURM batch job, with reasonable safety margins?"*
+
+Or ask it to explain live system data:
+
+```bash
+userload            # copy the output
+squeue -u $USER     # copy your job queue
+```
+
+*"Explain this `userload` output. What does it mean for how I should size my job requests?"*
+
+{: .note }
+> This is a good example of Claude Code used well: you ran the measurement yourself, you understand what the numbers represent, and you're asking Claude to help with the translation. Claude doesn't know if your script will behave differently on 100 real filings — that judgment is yours.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-scales" data-key="main"> Main Quest complete</label>

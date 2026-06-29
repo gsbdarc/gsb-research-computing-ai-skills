@@ -84,4 +84,35 @@ git push -u origin day1-work
 {: .important }
 > **Every Boss Gate** requires a `git push` to your fork as the submission mechanism. Return to this room's steps whenever you need to submit work. This is the unlock pattern for every floor exit.
 
+---
+
+## 🤖 Claude + Git Hands-On
+
+Claude Code and git are a natural pair — Claude can explain what happened, draft commit messages, and help you understand diffs before you push.
+
+**Ask Claude to explain your history:**
+```bash
+git log --oneline   # see your commits
+claude              # open Claude Code, then ask:
+```
+*"Explain the last 3 commits in this repo in plain English."*
+
+**Ask Claude to write a commit message:**
+
+Make a small change — edit your `my_first_commit.txt` file. Then:
+```bash
+git diff            # show what changed
+```
+Ask Claude: *"Write a concise git commit message for this change."*
+
+Then commit it:
+```bash
+git add my_first_commit.txt
+git commit -m "your message here"
+git push
+```
+
+{: .note }
+> Claude Code sees your git history, staged files, and diffs — all of that is context it sends to Anthropic's servers. For this repo (public course material), that's fine. For a repo with research data, be deliberate about what you have staged.
+
 <label class="quest-check"><input type="checkbox" data-room="d1-repository" data-key="main"> Main Quest complete</label>
