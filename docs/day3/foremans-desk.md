@@ -2,7 +2,7 @@
 layout: default
 title: "The Foreman's Desk"
 parent: "Day 3 — The SLURM Mines"
-nav_order: 4
+nav_order: 5
 permalink: /day3/foremans-desk/
 ---
 
@@ -55,6 +55,9 @@ sbatch jobs/extract.sh
 ```
 
 Note your job ID — you'll need it in The Watch Tower.
+
+{: .note }
+> **While your job runs:** Head to [The Chronicle](../chronicle/) now and write your README — the job may sit in the queue for a few minutes. Come back to [The Watch Tower](../watch-tower/) once `sacct` shows your job as `COMPLETED`.
 
 {: .note }
 > Every `#SBATCH` directive is just a comment to bash — the script still runs if you execute it directly with `bash jobs/first_job.sh` for testing. This is useful for debugging before submitting.

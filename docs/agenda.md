@@ -94,17 +94,32 @@ Every day adds a layer to one research pipeline. The dataset: SEC Form 3 filings
 ### Core Concepts
 - The kitchen analogy: CPU (burners), RAM (fridge), shared storage (warehouse), SLURM (head chef)
 - Resource estimation: measure wall time and memory before writing `#SBATCH` directives
-- Hands-on: Systemdata parse data with claude
-- Claude + systemdata to understand the data - process, user, disk, ram, cpu?
-- Why parallelize?
+- System data: analyze real cluster data (userload, sacct, ps) to understand CPU/RAM/process/user patterns
+- Why parallelize? Independent tasks → same wall time × N cores
 - Job lifecycle: submit → queue → run → complete → logs
 - Job monitoring: `squeue`, `sacct`, `scancel`, reading output files
+
+### Timing (3 hours)
+
+| # | Quest | Time |
+|---|-------|------|
+| 1 | Kitchen demo | 25 min |
+| NEW | The Data Mine: analyze real Yens system data with an AI agent | 35 min |
+| 2+3 | Profile Day 2 script + profile mystery script | 30 min |
+| 4 | Write + submit `jobs/extract.sh` | 25 min |
+| 6 | Chronicle: write README while job runs | 20 min |
+| 5 | Watch Tower: `sacct` after job completes | 15 min |
+| BG | Boss Gate 3: commit + push | 15 min |
+| — | Transitions | 10 min |
+
+*After Quest 4 (`sbatch`), send students to Quest 6 (Chronicle) while the job queues. Return to Quest 5 (Watch Tower / `sacct`) once the job is COMPLETED.*
 
 ### Main Quests
 
 | # | Quest |
 |---|-------|
 | 1 | Kitchen demo |
+| NEW | The Data Mine: dig into `yens_sample.txt`; find CPU/RAM/process/user patterns using an AI agent or notebook |
 | 2 | Profile Day 2 script: `time`, `htop -u $USER`, `userload` |
 | 3 | Profile mystery script from a second terminal |
 | 4 | Write `jobs/extract.sh` with `#SBATCH` directives; `sbatch` it |

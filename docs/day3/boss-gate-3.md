@@ -2,7 +2,7 @@
 layout: default
 title: "Boss Gate 3"
 parent: "Day 3 — The SLURM Mines"
-nav_order: 7
+nav_order: 8
 permalink: /day3/boss-gate-3/
 ---
 

@@ -2,7 +2,7 @@
 layout: default
 title: "Hall of Heroes"
 parent: "Day 3 — The SLURM Mines"
-nav_order: 8
+nav_order: 9
 permalink: /day3/hall-of-heroes/
 ---
 

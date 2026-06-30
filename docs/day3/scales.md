@@ -2,7 +2,7 @@
 layout: default
 title: "The Scales"
 parent: "Day 3 — The SLURM Mines"
-nav_order: 3
+nav_order: 4
 permalink: /day3/scales/
 ---
 
@@ -128,33 +128,5 @@ Compare with a neighbor — do you see the same numbers? Based on what you measu
 - `--time`: take your measured wall-clock time × 2 (give yourself margin)
 - `--mem`: take your peak memory × 1.5
 - `--cpus-per-task`: count your actual Python threads; most single-threaded scripts need 1
-
----
-
-## 🤖 Claude + System Data
-
-You've just collected profiling output — wall time, memory, CPU. Claude Code can help you make sense of it and translate it into `#SBATCH` directives.
-
-Run Claude Code on the Yens:
-
-```bash
-claude
-```
-
-Then paste in your profiling output and ask:
-
-*"My script ran in 4.2 seconds and used 312 MB of RAM with 1 CPU. What `#SBATCH` directives should I use for a SLURM batch job, with reasonable safety margins?"*
-
-Or ask it to explain live system data:
-
-```bash
-userload            # copy the output
-squeue -u $USER     # copy your job queue
-```
-
-*"Explain this `userload` output. What does it mean for how I should size my job requests?"*
-
-{: .note }
-> This is a good example of Claude Code used well: you ran the measurement yourself, you understand what the numbers represent, and you're asking Claude to help with the translation. Claude doesn't know if your script will behave differently on 100 real filings — that judgment is yours.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-scales" data-key="main"> Main Quest complete</label>
