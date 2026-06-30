@@ -40,7 +40,7 @@ watch -n 5 squeue -u $USER   # refresh every 5 seconds — Ctrl-C to stop
 
 **Read the output as it writes:**
 ```bash
-tail -f logs/first_job_JOBID.out     # follow the log file live
+tail -f logs/extract_JOBID.out       # follow the log file live (replace JOBID with your number)
 ```
 
 **Cancel a job:**

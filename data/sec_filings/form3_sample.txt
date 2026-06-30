@@ -1,0 +1,84 @@
+SECURITIES AND EXCHANGE COMMISSION
+EDGAR FILING — FORM 3
+
+FILED: 2024-03-15
+ACCEPTANCE-DATETIME: 20240315143022
+PERIOD OF REPORT: 20240310
+
+FILER:
+  COMPANY CONFORMED NAME:   Meridian Biotech Holdings, Inc.
+  CIK:  0001872934
+  IRS NUMBER:  843019274
+  STATE OF INCORPORATION:   DE
+  FISCAL YEAR END:  1231
+  FILING VALUES:
+    FORM TYPE:  3
+    SEC ACT:    34
+    SEC FILE NUMBER:  001-41203
+    FILM NUMBER:  24729814
+
+REPORTING-OWNER:
+  OWNER DATA:
+    COMPANY CONFORMED NAME:   Blackwood, Catherine E.
+    CIK:  0001934728
+  FILING VALUES:
+    FORM TYPE:  3
+  OWNER RELATIONSHIP:
+    RELATIONSHIP: Director
+    OTHER:
+
+ISSUER:
+  COMPANY CONFORMED NAME:   Meridian Biotech Holdings, Inc.
+  TICKER SYMBOL:  MRDX
+
+DOCUMENT 1 — FORM 3
+
+INITIAL STATEMENT OF BENEFICIAL OWNERSHIP OF SECURITIES
+Filed pursuant to Section 16(a) of the Securities Exchange Act of 1934 or
+Section 30(h) of the Investment Company Act of 1940
+
+1. Name and Address of Reporting Person
+   Blackwood Catherine E
+   c/o Meridian Biotech Holdings, Inc.
+   500 Industrial Blvd., Suite 800
+   South San Francisco, CA 94080
+
+2. Date of Event Requiring Statement (Month/Day/Year)
+   03/10/2024
+
+3. Issuer Name and Ticker or Trading Symbol
+   Meridian Biotech Holdings, Inc. [ MRDX ]
+
+4. Relationship of Reporting Person(s) to Issuer
+   Director   [ X ]
+   Officer    [   ]   (give title below)
+   10% Owner  [   ]
+   Other      [   ]
+
+5. If Amendment, Date of Original Filed (Month/Day/Year)
+   N/A
+
+6. Individual or Joint/Group Filing
+   Form filed by One Reporting Person
+
+Table I — Non-Derivative Securities Beneficially Owned
+
+Title of Security    Amount Beneficially Owned    Ownership Form    Nature of Indirect
+(Instr. 3)           (Instr. 4)                   Direct (D) or     Beneficial Ownership
+                                                  Indirect (I)      (Instr. 5)
+                                                  (Instr. 5)
+
+Common Stock         0                            D
+
+Table II — Derivative Securities Beneficially Owned
+(e.g., puts, calls, warrants, options, convertible securities)
+
+No derivative securities reported.
+
+Explanation of Responses:
+   Ms. Blackwood was appointed to the Board of Directors effective March 10, 2024.
+   As of the date of this filing, she does not beneficially own any securities of
+   the issuer other than as reported above.
+
+/s/ Catherine E. Blackwood          03/15/2024
+** Signature of Reporting Person     Date

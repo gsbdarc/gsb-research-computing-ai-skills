@@ -34,23 +34,23 @@ Every day adds a layer to one research pipeline. The dataset: SEC Form 3 filings
 
 **Setup block (~20-30 min) — do this before any CLI instruction:**
 
-| # | Quest | Presenter |
-|---|-------|-----------|
-| 0 | Setup: fork repo → enable Actions → enable GitHub Pages → trigger first build → open personal dungeon site | |
+| # | Quest |
+|---|-------|
+| 0 | Setup: fork repo → enable Actions → enable GitHub Pages → trigger first build → open personal dungeon site |
 
 *🟢/🔴 sticky check after Quest 0 — everyone should have their site open before proceeding.*
 
 **CLI + cluster:**
 
-| # | Quest | Presenter |
-|---|-------|-----------|
-| 1 | CLI navigation — `ls`, `cd`, `mkdir`, `mv`, `cp`, `rm` | | 
-| 2 | Bulk operations with wildcards — rename 300 files in one command | | 
-| 3 | SSH into the Yens | | 
-| 4 | Explore cluster: file system, quotas, `module load` | |
-| 5 | File transfer: `scp` data to and from the cluster | | 
-| 6 | Git: commit and push to fork | | 
-| 7 | Introduce Claude Code — run in repo, discuss researcher role vs AI tool, Stanford data rules | |
+| # | Quest |
+|---|-------|
+| 1 | CLI navigation — `ls`, `cd`, `mkdir`, `mv`, `cp`, `rm` |
+| 2 | Bulk operations with wildcards — rename 300 files in one command |
+| 3 | SSH into the Yens |
+| 4 | Explore cluster: file system, quotas, `module load` |
+| 5 | File transfer: `scp` data to and from the cluster |
+| 6 | Git: commit and push to fork |
+| 7 | Introduce Claude Code — run in repo, discuss researcher role vs AI tool, Stanford data rules |
 
 ### Side Quests *(optional)*
 - Add here
@@ -70,15 +70,15 @@ Every day adds a layer to one research pipeline. The dataset: SEC Form 3 filings
 
 ### Main Quests
 
-| # | Quest | Presenter |
-|---|-------|-----------|
-| 1 | Open JupyterHub briefly; write and run a Python script from the terminal | | 
-| 2 | Understand `$PATH`; create venv; install packages; register Jupyter kernel | | 
-| 3 | Explore Stanford AI Playground web GUI | | 
-| 4 | Load API key from `.env`; initialize OpenAI-compatible client | | 
-| 5 | First API call: extract fields from one SEC filing; validate with Pydantic; save to JSON | | 
-| 6 | Discussion: AI coding agents at Stanford — data privacy, security, best practices | | 
-| 7 | Update `README.md` with pipeline description; commit and push | | 
+| # | Quest |
+|---|-------|
+| 1 | Open JupyterHub briefly; write and run a Python script from the terminal |
+| 2 | Understand `$PATH`; create venv; install packages; register Jupyter kernel |
+| 3 | Explore Stanford AI Playground web GUI |
+| 4 | Load API key from `.env`; initialize OpenAI-compatible client |
+| 5 | First API call: extract fields from one SEC filing; validate with Pydantic; save to JSON |
+| 6 | Discussion: AI coding agents at Stanford — data privacy, security, best practices |
+| 7 | Update `README.md` with pipeline description; commit and push | 
 
 ### Side Quests *(optional)*
 - Prompt engineering: system vs. user messages, temperature, reasoning
@@ -102,14 +102,14 @@ Every day adds a layer to one research pipeline. The dataset: SEC Form 3 filings
 
 ### Main Quests
 
-| # | Quest | Presenter |
-|---|-------|-----------|
-| 1 | Kitchen demo | |
-| 2 | Profile Day 2 script: `time`, `htop -u $USER`, `userload` | | 
-| 3 | Profile mystery script from a second terminal | | 
-| 4 | Write `jobs/extract.sh` with `#SBATCH` directives; `sbatch` it | | 
-| 5 | Monitor: `squeue`; retrieve output: `sacct`; cancel a job: `scancel` | | 
-| 6 | Update `README.md` with SLURM instructions; commit and push | | 
+| # | Quest |
+|---|-------|
+| 1 | Kitchen demo |
+| 2 | Profile Day 2 script: `time`, `htop -u $USER`, `userload` |
+| 3 | Profile mystery script from a second terminal |
+| 4 | Write `jobs/extract.sh` with `#SBATCH` directives; `sbatch` it |
+| 5 | Monitor: `squeue`; retrieve output: `sacct`; cancel a job: `scancel` |
+| 6 | Update `README.md` with SLURM instructions; commit and push | 
 
 ### Side Quests *(optional)*
 - Email notifications: `#SBATCH --mail-type=ALL`
@@ -134,13 +134,13 @@ Every day adds a layer to one research pipeline. The dataset: SEC Form 3 filings
 
 ### Main Quests
 
-| # | Quest | Presenter | 
-|---|-------|-----------|
-| 1 | Convert day3 script to an array job; one task per filing; collect all results | | 
-| 2 | Submit GPU job to `yen-gpu4` (H200); verify with `nvidia-smi` | | 
-| 3 | Run 5 filings through both Playground and Ollama; save side-by-side comparison | | 
-| 6 | Discussion: when to use local models vs third-party vs Playground? | | 
-| 7 | Finalize `README.md` — full pipeline, both endpoints, how to rerun; commit and push | | 
+| # | Quest |
+|---|-------|
+| 1 | Convert day3 script to an array job; one task per filing; collect all results |
+| 2 | Submit GPU job to `yen-gpu4` (H200); verify with `nvidia-smi` |
+| 3 | Run 5 filings through both Playground and Ollama; save side-by-side comparison |
+| 6 | Discussion: when to use local models vs third-party vs Playground? |
+| 7 | Finalize `README.md` — full pipeline, both endpoints, how to rerun; commit and push | 
 
 ### Side Quests *(optional)*
 - Add here

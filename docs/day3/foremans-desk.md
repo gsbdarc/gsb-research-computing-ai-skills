@@ -21,44 +21,40 @@ The cluster doesn't take verbal orders. You must hand it a script — a scroll t
 {: .important }
 > **Quest:** Write a SLURM job script from scratch, understand every directive, and submit your first batch job.
 
-**Create `jobs/first_job.sh`:**
+**Create `jobs/extract.sh`:**
 
 ```bash
-mkdir -p jobs
+mkdir -p jobs logs
 ```
 
 ```bash
 #!/bin/bash
-#SBATCH --job-name=my_first_job         # appears in squeue
-#SBATCH --output=logs/first_job_%j.out  # %j = job ID
-#SBATCH --error=logs/first_job_%j.err   # separate stderr log
-#SBATCH --time=00:10:00                 # max wall time HH:MM:SS
-#SBATCH --mem=2G                        # memory request
+#SBATCH --job-name=form3_extract        # appears in squeue
+#SBATCH --output=logs/extract_%j.out    # %j = job ID
+#SBATCH --error=logs/extract_%j.err     # separate stderr log
+#SBATCH --time=00:10:00                 # max wall time HH:MM:SS — set from your Scales measurement
+#SBATCH --mem=2G                        # memory request — set from your Scales measurement
 #SBATCH --cpus-per-task=1              # CPU cores
 #SBATCH --partition=normal             # which queue (ask instructor for correct partition)
 
 # --- Setup ---
 echo "Job started on $(hostname) at $(date)"
-source ~/rf-bootcamp-2026/.venv/bin/activate
+cd ~/rf-bootcamp-2026
+source .venv/bin/activate
 
 # --- Your actual work ---
-python3 ~/rf-bootcamp-2026/count_spells.py ~/grimoire/
+python form3_test.py
 
 echo "Job finished at $(date)"
 ```
 
-**Create the logs directory:**
-```bash
-mkdir -p logs
-```
-
 **Submit:**
 ```bash
-sbatch jobs/first_job.sh
+sbatch jobs/extract.sh
 # Submitted batch job 12345678
 ```
 
-Note your job ID. Check it immediately in The Watch Tower room.
+Note your job ID — you'll need it in The Watch Tower.
 
 {: .note }
 > Every `#SBATCH` directive is just a comment to bash — the script still runs if you execute it directly with `bash jobs/first_job.sh` for testing. This is useful for debugging before submitting.

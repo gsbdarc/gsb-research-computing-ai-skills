@@ -59,13 +59,13 @@ You measure first, then request. Not the other way around.
 **Step 0 — Run the script and understand it:**
 
 ```bash
-# Look at the script
-cat ~/rf-bootcamp-2026/scripts/extract_form3_one_file.py
+# Look at the script you built in Day 2
+cat ~/rf-bootcamp-2026/form3_test.py
 
 # Run it on one filing
 cd ~/rf-bootcamp-2026
 source .venv/bin/activate
-python scripts/extract_form3_one_file.py data/sec_filings/form3_sample.txt
+python form3_test.py
 ```
 
 What does the script do? What output do you see? How long did it seem to take? Now you're ready to measure it properly.
@@ -73,9 +73,9 @@ What does the script do? What output do you see? How long did it seem to take? N
 **Step 1 — Time a script:**
 
 ```bash
-time python3 count_spells.py ~/grimoire/
+time python form3_test.py
 # Output:
-# python3 count_spells.py ~/grimoire/  0.12s user 0.04s system 98% cpu 0.163 total
+# python form3_test.py  1.83s user 0.21s system 97% cpu 2.099 total
 # The "real" (wall-clock) time is what matters for --time in SLURM
 ```
 
@@ -86,7 +86,7 @@ In one terminal, start your script:
 python3 my_pipeline.py &   # run in background
 ```
 
-In another terminal (or screen pane):
+In another terminal:
 ```bash
 htop -u $USER              # filter to your processes, watch RES column (resident memory)
 ```
