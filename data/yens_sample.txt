@@ -5,7 +5,8 @@ Nodes: yen1, yen2, yen3, yen4, yen5 (each: 32 cores, 256 GB RAM)
 ========================================================
 
 
---- userload (real-time snapshot, yen1-yen3) ---
+--- squeue summary (active jobs aggregated by user, yen1-yen5) ---
+--- (generated with: squeue -o "%.18i %.8u %.8C %.8m %.10M %.8T" | awk ...) ---
 
 USER           JOBS   CPUs_USED   MEM_USED_GB   %CPU    %MEM
 lchen             3        24         138.4      91%     54%
@@ -17,6 +18,9 @@ swilson           0         0           0.0       0%      0%
 nrapstin          0         0           0.0       0%      0%
 ---------------------------------------------------------
 CLUSTER TOTAL        64/160     304.7/768 GB    (40% CPU, 40% MEM)
+
+Note: userload shows only YOUR usage on the current interactive node.
+To see all users, aggregate squeue output or use htop on a compute node.
 
 
 --- sacct: job history (last 30 days, all users) ---
@@ -77,9 +81,10 @@ Top users by scratch usage:
 ========================================================
 END OF SNAPSHOT
 Note: Replace this file with live Yens data before class.
-Commands to regenerate:
-  userload > yens_sample.txt
-  sacct --allusers --starttime=$(date -d '30 days ago' +%Y-%m-%d) \
+Commands to regenerate (run on the Yens before class):
+  # userload shows only YOUR usage — for the class snapshot, aggregate squeue instead:
+  squeue -o "%.18i %.8u %.8C %.8m %.10M %.8T" > yens_sample.txt
+  sacct --allusers --starttime=$(date -v-30d +%Y-%m-%d) \
         --format=JobID,User,State,Elapsed,ReqMem,MaxRSS,CPUTime,Partition \
         >> yens_sample.txt
   ps aux --sort=-%cpu | head -20 >> yens_sample.txt

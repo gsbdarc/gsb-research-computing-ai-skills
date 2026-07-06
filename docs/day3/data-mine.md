@@ -20,10 +20,11 @@ The Yens cluster keeps detailed records of everything that runs on it. Four sour
 
 | Source | What it shows |
 |--------|--------------|
-| `userload` | Who is using the cluster right now — CPUs, memory, jobs per user |
-| `sacct` | Historical record of past jobs — elapsed time, memory peak, CPU hours, exit status |
-| `ps aux` | Running processes on a node — what's actually executing and what it's consuming |
-| Memory/disk stats | How much of the shared resource is in use cluster-wide |
+| `userload` | **Your own** CPU and memory usage on the current interactive Yen node |
+| `squeue` | All queued and running SLURM jobs cluster-wide — who submitted what, resource requests, wait time |
+| `sacct` | Historical record of past jobs — elapsed time, peak memory, CPU hours, exit status |
+| `ps aux` | All running processes on a node — what's executing and what it's consuming right now |
+| Disk stats | How much shared storage is in use — `df -h /scratch/shared` |
 
 Before you write a single `#SBATCH` directive, it helps to see what real jobs on this cluster actually look like.
 

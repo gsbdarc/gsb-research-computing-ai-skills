@@ -95,7 +95,8 @@ htop -u $USER              # filter to your processes, watch RES column (residen
 
 ```bash
 userload
-# Find your username — confirm you're only using what you expected
+# Shows YOUR CPU and memory usage on this interactive Yen node
+# Confirm you're only using what you expected — not accidentally pegging a shared machine
 ```
 
 **Step 4 — Monitor a script you haven't profiled before:**
