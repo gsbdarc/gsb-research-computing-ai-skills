@@ -95,7 +95,6 @@ Every day adds a layer to one research pipeline. The dataset: SEC Form 3 filings
 - The kitchen analogy: CPU (burners), RAM (fridge), shared storage (warehouse), SLURM (head chef)
 - Resource estimation: measure wall time and memory before writing `#SBATCH` directives
 - System data: analyze real cluster data (userload, sacct, ps) to understand CPU/RAM/process/user patterns
-- Why parallelize? Independent tasks → same wall time × N cores
 - Job lifecycle: submit → queue → run → complete → logs
 - Job monitoring: `squeue`, `sacct`, `scancel`, reading output files
 
@@ -139,6 +138,7 @@ Every day adds a layer to one research pipeline. The dataset: SEC Form 3 filings
 **Theme:** Scaling and making research pipeline reproducible
 
 ### Core Concepts
+- Why parallelize? Independent tasks → same wall time × N cores (job arrays)
 - Job arrays: one script, one `--array` flag, hundreds of inputs in parallel
 - Fault tolerance: checkpoint log + skip completed files in array jobs
 - GPU tiers on the Yens: A30 / A40 / H200 — VRAM and use cases

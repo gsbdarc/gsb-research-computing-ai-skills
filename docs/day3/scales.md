@@ -14,27 +14,6 @@ permalink: /day3/scales/
 
 ---
 
-## 🖊️ Why Parallelize?
-
-Your Day 2 script processes one SEC filing in a few seconds. You have 100 filings. Running them one at a time takes 100× as long — and ties up a terminal window while you wait.
-
-The Yens have hundreds of cores sitting idle. SLURM's job: hand each core a different filing so all 100 run simultaneously. Total time stays roughly the same as one filing — just multiplied across independent work.
-
-```
-  One at a time (your laptop):       Parallelized (SLURM):
-  filing 1 → 5s                      filing 1  ┐
-  filing 2 → 5s                      filing 2  │ all start at once
-  filing 3 → 5s                      filing 3  │ → ~5s total
-  ...                                ...       ┘
-  filing 100 → 5s
-  ─────────────
-  Total: ~500s                        Total: ~5s + queue wait
-```
-
-This only works when tasks are **independent** — each filing doesn't need the results from another. Your extraction script qualifies perfectly.
-
----
-
 ## 🗡️ Main Quest
 
 Before you write a single `#SBATCH` directive, you must step onto the floor of the Scales and weigh your work honestly.
