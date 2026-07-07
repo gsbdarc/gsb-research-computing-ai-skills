@@ -14,85 +14,136 @@ permalink: /day3/kitchen/
 
 ---
 
-## 🗡️ Main Quest
+## 🖊️ The Kitchen Analogy
 
-The best way to understand why the cluster needs a scheduler is to try to cook without one. You're about to run three rounds of a grilled cheese kitchen — with real volunteers, real roles, and a real timer.
-
-{: .important }
-> **Quest:** Run three rounds of the grilled cheese kitchen — discover through cooking what parallelism, resource limits, and scheduling feel like.
-
-**The Recipe: Grilled Cheese**
-
-> 1. Collect **one** slice of cheese from the **fridge** (= RAM)
-> 2. Collect **two** slices of bread from the **pantry** (= storage)
-> 3. Unwrap the cheese and place it between the bread slices
-> 4. "Cook" for **30 seconds** — your Chef de Temps calls time
-> 5. Plate and serve
-
-Two roles in every round:
-
-| Role | Job |
-|------|-----|
-| **Chef de Cuisine** | Follow the recipe — make sandwiches |
-| **Chef de Temps** | Keep time — alert the Chef de Cuisine when 30 seconds has passed |
+Every computer — your laptop, the Yens, a cloud server — is just a kitchen. The hardware is the kitchen equipment. The software is the recipe. Let's draw it out.
 
 ---
 
-### Round 1 — Your Laptop (1 burner)
+**Your kitchen — your laptop**
 
-**Volunteers needed:** 1 Chef de Cuisine · 1 Chef de Temps
+![Your Kitchen = Your Laptop]({{ site.baseurl }}/assets/images/kitchen-laptop.png)
 
-*Timer: 2 minutes. Go!*
+**What happens when you run a script:**
 
-After the round, discuss:
-- How many sandwiches did you make?
-- What was the bottleneck? Could you do two at once?
-- What if you had 100 orders?
-
-{: .note }
-> **This is your laptop.** One CPU core = one burner. Your script processes tasks one at a time — sequential, single-threaded. Fine for 1 filing. Painful for 100.
+![What Happens When You Run a Python Script on Your Laptop?]({{ site.baseurl }}/assets/images/kitchen-script-laptop.png)
 
 ---
 
-### Round 2 — A Bigger Kitchen (3 burners)
+**Shared restaurant kitchen — the Yens**
 
-**Volunteers needed:** 1 Chef de Cuisine · 3 Chef de Temps *(one timer per burner)*
-
-Same recipe. Three stations are open simultaneously.
-
-*Timer: 2 minutes. Let's cook!*
-
-After the round, discuss:
-- How many sandwiches this time?
-- Did throughput scale with the number of burners? Why?
-- Did the fridge (RAM) or pantry (storage) become a bottleneck?
-
-{: .note }
-> **This is the Yens.** More CPU cores = more burners. Independent tasks — like extracting separate filings — can all start at the same time. Wall time stays roughly constant while throughput multiplies.
+![Yen Cluster = A Shared Restaurant Kitchen]({{ site.baseurl }}/assets/images/kitchen-yens.png)
 
 ---
 
-### Round 3 — More Chefs! (5 burners, 3 timers)
+**Rented kitchen — cloud (AWS / GCP / Azure)**
 
-**Volunteers needed:** 5 Chef de Cuisine · 3 Chef de Temps — *"Let Them Cook!"*
-
-Five workers, but only three timers. What happens?
-
-*Timer: 2 minutes. Go!*
-
-After the round, discuss:
-- Did 5 chefs produce 5× more sandwiches than Round 1?
-- What happened to the 2 chefs who had no Chef de Temps?
-- What does this tell you about requesting more resources than are available?
-
-{: .note }
-> **This is resource contention.** The scheduler assigns what exists. If you request 32 CPUs but the node only has 16 free, your job waits in the queue. The right request — not the biggest request — gets you cooking fastest.
+![Cloud Computing = A Rented Kitchen]({{ site.baseurl }}/assets/images/kitchen-cloud.png)
 
 ---
 
-## The Kitchen Analogy
+## Your Research Project in Kitchen Terms
 
-Everything that just happened maps directly to SLURM:
+Every research computing project has three questions. Answer them and you know what kitchen to cook in and what to cook.
+
+**What** am I doing?
+Talk to your PI — this is your task. For this bootcamp: extract names and CIKs from SEC Form 3 filings. In kitchen terms, you're making a specific dish.
+
+**Where** am I doing it?
+Pick your kitchen: your laptop, the Yens, Sherlock, the cloud. Each is a different kitchen with different equipment. You choose based on how much you need to cook and who else is cooking.
+
+**How** am I doing it?
+Your Python script is the recipe. A recipe is step-by-step instructions to produce a dish — and many recipes can produce the same dish:
+
+```python
+# Recipe: pasta.py
+# 1. Boil water
+# 2. Add pasta
+# 3. While pasta cooks:
+#      → make_sauce()   ← calls another recipe (a function)
+# 4. Mix and serve
+```
+
+Your research script works the same way:
+- Each step = an operation or a call to another function/script
+- Some steps call *other* recipes (helper functions, imported modules)
+- The result = your final dish — the output (extracted names, CIKs, a CSV)
+
+---
+
+## 🗡️ Main Quest — Kitchen Demo
+
+*Your instructor will lead this activity with slides. Follow along and participate.*
+
+---
+
+## ✏️ Interactive Yens
+
+The Yens has **5 interactive nodes** (`yen1`–`yen5`). These are the machines you SSH into — Days 1 and 2 happened entirely here.
+
+- You SSH in and run scripts directly in a terminal
+- No waiting — you get CPU and RAM immediately
+- Burners (cores) **can be shared** between users on the same node
+- Per-user limits apply to CPU and RAM: [rcpedia.stanford.edu/policies/user_limits](https://rcpedia.stanford.edu/_policies/user_limits/)
+- JupyterHub notebooks run here too — same limits apply
+
+**See who's on this node right now:**
+
+```bash
+userload    # YOUR CPU and memory usage on this interactive node
+htop        # all processes on this node — including other researchers; press q to quit
+```
+
+**The problem:** Imagine everyone is trying to cook as fast as they can on the same 5 nodes:
+- One person: 15-minute cookie recipe, 1 burner, a little fridge space
+- Second person: 3-hour dish, 2 burners, a little fridge space
+- Third person: 10 burners for 8 hours, the **entire** fridge
+
+*How do you decide who cooks first?* You need a schedule — and the person with the giant recipe should probably wait. That's exactly what SLURM does.
+
+### 💻 Exercise 3 — Run your Day 2 script
+
+Run the extraction script you built in Day 2:
+
+```bash
+cd ~/rf-bootcamp-2026
+source .venv/bin/activate
+python extract_form_3_one_file.py
+```
+
+Discussion:
+- ❓ Why do you want to estimate the resources your script uses before submitting a batch job?
+- ❓ How would you estimate the time it takes, the CPU cores and RAM it needs?
+
+---
+
+### 💻 Exercise 4 — Profile the mystery script
+
+Open **two terminals** on the same Yen.
+
+**Terminal 1** — run and time the script:
+
+```bash
+time python scripts/mystery_script.py
+```
+
+**Terminal 2** — while it runs, watch its resource usage:
+
+```bash
+htop
+htop -u $USER
+userload
+```
+
+Compare with your neighbor — what time, cores, and RAM did you observe? What do you see?
+
+🟩 / 🟥
+
+---
+
+## SLURM Is the Head Chef
+
+Here's how every kitchen concept maps to SLURM:
 
 | Kitchen | Yens / SLURM |
 |---------|--------------|
@@ -111,42 +162,38 @@ You don't walk into the kitchen and start cooking. You hand your recipe to the h
 
 ---
 
-## See the Real Kitchen
+## ✏️ Yen-SLURM Cluster
 
-Now look at the actual Yens:
+SLURM is a scheduler — software that makes a schedule for sharing cluster resources. On the Yens, SLURM manages **12 dedicated scheduled nodes** that are completely separate from the interactive Yens.
 
-**Your own resource usage on this node:**
-```bash
-userload          # shows YOUR CPU and memory usage on this interactive Yen node
-```
+| | Interactive Yens | SLURM Scheduled Nodes |
+|---|---|---|
+| Nodes | 5 | 12 |
+| How to access | SSH directly | Submit a job script (`sbatch`) |
+| Run style | Interactive terminal | Batch — script runs unattended |
+| Wait for resources? | No | Yes — may queue |
+| Burners shared between users? | Yes | **No** — yours alone |
+| Notebooks? | Yes (same limits) | No |
+| Can exceed interactive limits? | — | Yes |
+| Usage reporting | `userload`, `htop` | `sacct` — actual cpu/RAM/time used |
 
-**All processes on this node** (including other users sharing the same machine):
-```bash
-htop              # press q to quit — spot other users' processes competing for the same cores
-```
+- You do **not** SSH to scheduled nodes — SLURM sends your job there
+- Your Python script runs inside a submission script (coming up in The Foreman's Desk)
+- You request specific cores, RAM, and wall time up front — SLURM finds a node that fits
+- `squeue` shows the full job queue across all scheduled nodes
 
-**All jobs across the whole cluster** (the full ticket rail):
-```bash
-squeue            # every queued and running SLURM job across the Yens
-squeue -u $USER   # just yours
-```
+{: .important }
+> **What happens if you get the resource request wrong?**
+>
+> | Directive | Underestimate | Overestimate |
+> |-----------|--------------|--------------|
+> | `--time` | Job gets killed before it finishes | Longer queue wait; wastes reservation |
+> | `--mem` | Job crashes with out-of-memory error | Blocks RAM other jobs could use |
+> | `--cpus-per-task` | Script is slower than it could be | Reserves cores your script never uses |
 
-{: .note }
-> `userload` shows only your usage on the current node — it's not a cluster-wide view. `htop` lets you see other researchers' processes on the same shared machine. `squeue` gives you the full picture across all nodes.
+Before you submit a job, you need to know what your script actually consumes. Head to **The Scales** to measure it.
 
 ---
-
-## Why SLURM?
-
-The interactive Yens are shared — everyone who SSHs in lands on the same machine. Running a long, CPU-heavy job directly here is like firing up all the burners in a shared kitchen and refusing to leave.
-
-```bash
-# Don't do this for long/intensive work:
-# python my_big_script.py   ← blocks the shared node for everyone
-
-# Do this instead — sbatch gives you a dedicated compute node:
-# sbatch jobs/extract.sh    ← coming up in The Foreman's Desk
-```
 
 <label class="quest-check"><input type="checkbox" data-room="d3-kitchen" data-key="main"> Kitchen demo complete — I understand why SLURM exists</label>
 
@@ -154,7 +201,9 @@ The interactive Yens are shared — everyone who SSHs in lands on the same machi
 
 ## 🧠 Skills Learned
 
-- You've felt the difference between serial (1 burner), parallel (3 burners), and resource-constrained (5 chefs, 3 timers) execution — through doing, not just watching
-- You can map every SLURM concept to a kitchen equivalent: scheduler, queue, compute node, directives
-- You know `userload` shows your own usage on the current node; `htop` shows all processes on the node; `squeue` shows all cluster jobs
-- You understand why running heavy jobs on the shared interactive Yens is inconsiderate — and why `sbatch` gives you the isolation you need
+- You can map every computer to a kitchen: burner = CPU core, fridge = RAM, pantry/warehouse = storage
+- You know the three kitchen types: your laptop (small, yours alone), the Yens (shared, many burners), cloud (all yours, pay per hour)
+- You know the Yens has two separate sets of machines: 5 interactive nodes (where you SSH) and 12 SLURM scheduled nodes (where batch jobs run)
+- You can measure a script's resource footprint with `time`, `htop -u $USER`, and `userload`
+- You know `userload` and `htop` show the interactive node you're on; `squeue` and `sacct` are for the SLURM scheduled nodes
+- You understand what happens when you under- or over-request time, memory, and cores in a SLURM job
