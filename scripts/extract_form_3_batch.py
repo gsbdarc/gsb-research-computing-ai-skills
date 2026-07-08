@@ -1,6 +1,7 @@
 import os
 import json
-import glob
+import requests
+import pandas as pd
 from openai import OpenAI
 from pydantic import BaseModel
 from typing import List
@@ -12,7 +13,7 @@ client = OpenAI(
     api_key=os.getenv("STANFORD_API_KEY"),
 )
 
-FILINGS_DIR = "data/sec_filings"
+CSV_PATH = "data/aws_links.csv"
 RESULTS_DIR = "results"
 os.makedirs(RESULTS_DIR, exist_ok=True)
 
@@ -38,20 +39,24 @@ Extract the following fields:
 Return valid JSON matching the schema exactly.
 """
 
-filings = sorted(glob.glob(os.path.join(FILINGS_DIR, "*.txt")))
-total = len(filings)
-print(f"Found {total} filings in {FILINGS_DIR}")
+df = pd.read_csv(CSV_PATH)
+# Skip the first row which is just the S3 folder URL
+urls = df["urls"].dropna().tolist()
+urls = [u for u in urls if u.endswith(".txt")]
 
-for idx, filing_path in enumerate(filings, 1):
-    filename = os.path.basename(filing_path)
+total = len(urls)
+print(f"Found {total} filings in {CSV_PATH}")
+
+for idx, filing_url in enumerate(urls, 1):
+    filename = filing_url.split("/")[-1]
     output_path = os.path.join(RESULTS_DIR, filename.replace(".txt", ".json"))
 
     print(f"[{idx}/{total}] Processing: {filename}")
 
-    with open(filing_path, "r") as f:
-        filing_text = f.read()
+    response = requests.get(filing_url)
+    filing_text = response.text
 
-    response = client.chat.completions.create(
+    api_response = client.chat.completions.create(
         model="claude-opus-4-7",
         response_format={"type": "json_object"},
         messages=[
@@ -60,7 +65,7 @@ for idx, filing_path in enumerate(filings, 1):
         ],
     )
 
-    result = Form3Filing.model_validate_json(response.choices[0].message.content)
+    result = Form3Filing.model_validate_json(api_response.choices[0].message.content)
 
     with open(output_path, "w") as f:
         json.dump(result.model_dump(), f, indent=2)
