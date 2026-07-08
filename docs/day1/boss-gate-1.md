@@ -148,3 +148,19 @@ Open your GitHub fork in a browser and confirm `signature_spell.txt` appears. Th
 | `git add / commit / push` | The Repository |
 
 <label class="quest-check"><input type="checkbox" data-room="d1-boss-gate-1" data-key="main"> Boss Gate 1 complete</label>
+
+---
+
+## 📊 End of Day 1 — Sync Your Progress
+
+Let your instructor see where you landed today. Takes 2 minutes.
+
+**Step 1 — Export your quest log**
+
+Click **"📤 Sync to leaderboard"** in the bottom-left corner of this page. A file called `quest_log.json` downloads to your laptop.
+
+**Step 2 — Upload it to your fork**
+
+Go to your fork on GitHub (`github.com/YOUR_USERNAME/rf-bootcamp-2026`) → **Add file → Upload files** → drag `quest_log.json` in → **Commit changes** to `main`.
+
+The leaderboard updates within 2 minutes. Your instructor can see how many quests you completed and whether you cleared the Boss Gate.

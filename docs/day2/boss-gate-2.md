@@ -49,6 +49,22 @@ The boss doesn't care about your plan — only your output. Five transcripts, fi
 
 ---
 
+## 📊 End of Day 2 — Sync Your Progress
+
+Let your instructor see where you landed today. Takes 2 minutes.
+
+**Step 1 — Export your quest log**
+
+Click **"📤 Sync to leaderboard"** in the bottom-left corner of this page. A file called `quest_log.json` downloads to your laptop.
+
+**Step 2 — Upload it to your fork**
+
+Go to your fork on GitHub (`github.com/YOUR_USERNAME/rf-bootcamp-2026`) → **Add file → Upload files** → drag `quest_log.json` in → **Commit changes** to `main`.
+
+The leaderboard updates within 2 minutes. Your instructor can see your level, which boss gates you've cleared, and how many side quests you completed.
+
+---
+
 ## ⚔️ Skills This Gate Tests
 
 - You can now load secrets from a `.env` file and fire live API calls to the Stanford AI Playground from Python
