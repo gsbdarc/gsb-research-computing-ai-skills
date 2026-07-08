@@ -43,10 +43,18 @@ cd ~/rf-bootcamp-2026
 source .venv/bin/activate
 
 # --- Your actual work ---
-python form3_test.py
+python scripts/extract_form_3_batch.py
 
 echo "Job finished at $(date)"
 ```
+
+**Test before submitting** — run the script locally to catch path or venv errors before it enters the queue:
+
+```bash
+bash jobs/extract.sh
+```
+
+This runs your script exactly as SLURM would, but right now on the interactive node. If it completes without errors, you're ready to submit.
 
 **Submit:**
 ```bash
@@ -58,8 +66,5 @@ Note your job ID — you'll need it in The Watch Tower.
 
 {: .note }
 > **While your job runs:** Head to [The Chronicle](../chronicle/) now and write your README — the job may sit in the queue for a few minutes. Come back to [The Watch Tower](../watch-tower/) once `sacct` shows your job as `COMPLETED`.
-
-{: .note }
-> Every `#SBATCH` directive is just a comment to bash — the script still runs if you execute it directly with `bash jobs/first_job.sh` for testing. This is useful for debugging before submitting.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-foremans-desk" data-key="main"> Main Quest complete</label>

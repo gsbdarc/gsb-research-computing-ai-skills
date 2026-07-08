@@ -54,4 +54,10 @@ scancel -u $USER             # cancel all your jobs (use carefully)
 sacct -u $USER --format=JobID,JobName,State,Elapsed,MaxRSS,CPUTime --starttime=today
 ```
 
+{: .warning }
+> **Job shows `FAILED`?**
+> 1. Read the log: `cat logs/extract_JOBID.out` (and `.err` if it exists)
+> 2. Fix the issue — wrong path, missing module, out-of-memory, script error
+> 3. Resubmit: `sbatch jobs/extract.sh`
+
 <label class="quest-check"><input type="checkbox" data-room="d3-watch-tower" data-key="main"> Main Quest complete</label>

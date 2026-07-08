@@ -101,44 +101,6 @@ htop        # all processes on this node — including other researchers; press 
 
 *How do you decide who cooks first?* You need a schedule — and the person with the giant recipe should probably wait. That's exactly what SLURM does.
 
-### 💻 Exercise 3 — Run your Day 2 script
-
-Run the extraction script you built in Day 2:
-
-```bash
-cd ~/rf-bootcamp-2026
-source .venv/bin/activate
-python extract_form_3_one_file.py
-```
-
-Discussion:
-- ❓ Why do you want to estimate the resources your script uses before submitting a batch job?
-- ❓ How would you estimate the time it takes, the CPU cores and RAM it needs?
-
----
-
-### 💻 Exercise 4 — Profile the mystery script
-
-Open **two terminals** on the same Yen.
-
-**Terminal 1** — run and time the script:
-
-```bash
-time python scripts/mystery_script.py
-```
-
-**Terminal 2** — while it runs, watch its resource usage:
-
-```bash
-htop
-htop -u $USER
-userload
-```
-
-Compare with your neighbor — what time, cores, and RAM did you observe? What do you see?
-
-🟩 / 🟥
-
 ---
 
 ## SLURM Is the Head Chef
@@ -204,6 +166,5 @@ Before you submit a job, you need to know what your script actually consumes. He
 - You can map every computer to a kitchen: burner = CPU core, fridge = RAM, pantry/warehouse = storage
 - You know the three kitchen types: your laptop (small, yours alone), the Yens (shared, many burners), cloud (all yours, pay per hour)
 - You know the Yens has two separate sets of machines: 5 interactive nodes (where you SSH) and 12 SLURM scheduled nodes (where batch jobs run)
-- You can measure a script's resource footprint with `time`, `htop -u $USER`, and `userload`
 - You know `userload` and `htop` show the interactive node you're on; `squeue` and `sacct` are for the SLURM scheduled nodes
 - You understand what happens when you under- or over-request time, memory, and cores in a SLURM job
