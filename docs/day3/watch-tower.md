@@ -2,7 +2,7 @@
 layout: default
 title: "The Watch Tower"
 parent: "Day 3 — The SLURM Mines"
-nav_order: 6
+nav_order: 7
 permalink: /day3/watch-tower/
 ---
 

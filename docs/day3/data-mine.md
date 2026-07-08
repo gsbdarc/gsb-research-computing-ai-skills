@@ -2,7 +2,7 @@
 layout: default
 title: "The Data Mine"
 parent: "Day 3 — The SLURM Mines"
-nav_order: 3
+nav_order: 4
 permalink: /day3/data-mine/
 ---
 

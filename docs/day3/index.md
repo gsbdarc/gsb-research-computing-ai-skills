@@ -29,7 +29,8 @@ Any questions about Day 1–2 we can discuss before we move on.
 
 | Room | Format | What you master |
 |------|--------|-----------------|
-| [The Kitchen](kitchen/) | 🖊️💻 Demo + discussion | SLURM as a head chef; watch resource contention in real time |
+| [The Kitchen](kitchen/) | 🖊️💻 Demo + hands-on | The shared kitchen analogy; profile a mystery script with htop and userload |
+| [The Head Chef](head-chef/) | 🖊️💻 Demo + discussion | Why SLURM exists; interactive Yens vs dedicated compute nodes |
 | [The Data Mine](data-mine/) | 💻 Hands-on | Dig into real Yens cluster data; find patterns in CPU, memory, and job history |
 | [The Scales](scales/) | 💻 Hands-on | Run the script, profile it — stop guessing at resource requests |
 | [The Foreman's Desk](foremans-desk/) | 💻 Hands-on | Forge a SLURM script from a blank page and submit it yourself |

@@ -2,7 +2,7 @@
 layout: default
 title: "The Scales"
 parent: "Day 3 — The SLURM Mines"
-nav_order: 4
+nav_order: 5
 permalink: /day3/scales/
 ---
 
@@ -79,29 +79,6 @@ userload
 # Shows YOUR CPU and memory usage on this interactive Yen node
 # Confirm you're only using what you expected — not accidentally pegging a shared machine
 ```
-
-**Step 4 — Monitor a script you haven't profiled before:**
-
-Open two terminal tabs. In the first, run a script whose resource profile you don't know:
-
-```bash
-python scripts/mystery_script.py
-```
-
-Immediately in the second terminal, watch it:
-
-```bash
-htop -u $USER     # watch RES (resident memory) and CPU % columns
-userload          # see your footprint vs other users on the cluster
-```
-
-If it finishes too quickly to catch, wrap it with `time`:
-
-```bash
-time python scripts/mystery_script.py
-```
-
-Compare with a neighbor — do you see the same numbers? Based on what you measured, what `--time`, `--mem`, and `--cpus-per-task` would you request?
 
 ---
 

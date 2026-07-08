@@ -76,106 +76,92 @@ Each step is an operation or a call to another function. The result is your dish
 
 - Which kitchen are you working in for this bootcamp?
 - What are the tradeoffs between your laptop, the Yens, and the cloud?
-- What happens when 10 researchers all try to cook at once on the shared Yens?
+- What happens when many researchers all try to cook at once on the shared Yens?
 
 ---
 
 ## 🗡️ Main Quest — See Your Shared Kitchen
 
-Before we talk about how to schedule work, let's see the shared kitchen in action right now.
+Before we talk about scheduling, let's see the shared kitchen in action right now.
 
 {: .important }
-> **Quest:** SSH into a Yen node and see who is cooking — and how much they're using.
+> **Quest:** SSH into a Yen node, see who else is cooking, and run a mystery script to measure its resource footprint.
 
 **Step 1 — Connect to the Yens**
 
 ```bash
-ssh YOUR_USERNAME@yen1.stanford.edu
+ssh YOUR_USERNAME@yen.stanford.edu
 ```
 
-**Step 2 — See all users on this node**
+You'll land on one of the five interactive Yen nodes (`yen1`–`yen5`). The load balancer picks which one.
 
-```bash
-userload
-```
-
-Look at the table. How many researchers are active right now? Who is using the most CPU? The most memory?
-
-**Step 3 — See every individual process**
+**Step 2 — See every process on this node**
 
 ```bash
 htop
 ```
 
-Press `u` and type your username to filter to your own processes. Look at the `CPU%` and `MEM%` columns. Press `q` to quit.
+`htop` shows every running process from every user on this node. Look at the top of the screen:
+- How many researchers are active right now?
+- Who is using the most CPU?
+- Who is using the most memory?
+
+Press `q` to quit.
+
+**Step 3 — See your own footprint**
+
+```bash
+userload
+```
+
+`userload` shows only **your** CPU and memory usage on this node — not other users. Right now it should be near zero since you haven't run anything yet.
 
 {: .note }
-> `userload` gives a per-user summary. `htop` shows every individual running program. Together they answer: who is here, and what exactly are they running?
+> `htop` shows everyone's processes on the node. `userload` shows only your footprint. Use `htop` to see the full picture; use `userload` to check what you specifically are consuming.
 
-When you can see both outputs — put a **🟢 green sticky** on your laptop. If something is not working, put up a **🔴 red sticky** and an instructor will come help.
+**Step 4 — Profile a mystery script**
 
----
+You're about to run a script whose resource usage you don't know. Your job: figure out what it's doing.
 
-## The Shared Kitchen Problem
+Open **two terminal tabs**, both connected to the Yens, and activate your environment in each:
 
-The Yens has **5 interactive nodes** (`yen1`–`yen5`). When you SSH in, you land on one of these — and so does everyone else.
+```bash
+cd ~/rf-bootcamp-2026
+source .venv/bin/activate
+```
 
-- Cores are **shared** between users on the same node
-- Per-user limits apply to CPU and RAM: [rcpedia.stanford.edu/policies/user_limits](https://rcpedia.stanford.edu/_policies/user_limits/)
-- JupyterHub notebooks run here too — same limits
+In the **first terminal**, start the mystery script:
 
-Imagine everyone tries to run a big job at the same time:
-- One person: 15-minute script, 1 core, a little RAM
-- Second person: 3-hour script, 2 cores, a little RAM
-- Third person: needs 10 cores for 8 hours, all the RAM
+```bash
+python scripts/mystery_script.py
+```
 
-*How do you decide who goes first?* You need a head chef. That is SLURM.
+Immediately in the **second terminal**, watch what it does:
 
----
+```bash
+htop -u $USER     # filter to your processes — watch RES (memory) and CPU% columns
+userload          # see your total footprint on this node
+```
 
-## SLURM Is the Head Chef
+When the script finishes, time it:
 
-SLURM is a scheduler. On the Yens, SLURM manages **12 dedicated nodes** — separate from the interactive Yens — where batch jobs run with dedicated resources.
+```bash
+time python scripts/mystery_script.py
+```
 
-| Kitchen | Yens / SLURM |
-|---------|--------------|
-| Head chef | SLURM scheduler |
-| Station (stove) | Compute node |
-| Burner | CPU core |
-| Fridge | RAM |
-| Warehouse | Shared storage (`/scratch`) |
-| Order ticket | Job script (`sbatch`) |
-| Tickets on the rail | Job queue (`squeue`) |
-| Recipe | Your Python / R / shell script |
+Compare with a neighbor. Do you see the same numbers? Based on what you measured, what `--time`, `--mem`, and `--cpus-per-task` would you ask from a scheduler?
 
-You don't walk into the kitchen and start cooking. You hand your recipe to the head chef, tell them what equipment you need, and come back when the meal is done.
+When you can describe what the mystery script does to your CPU and RAM — put a **🟢 green sticky** on your laptop. If something is not working, put up a **🔴 red sticky** and an instructor will come help.
 
 ---
 
-## Interactive Yens vs SLURM Nodes
-
-| | Interactive Yens | SLURM Scheduled Nodes |
-|---|---|---|
-| Nodes | 5 | 12 |
-| How to access | SSH directly | Submit a job script |
-| Wait for resources? | No | Yes — may queue |
-| Cores shared between users? | Yes | No — yours alone |
-| Notebooks? | Yes | No |
-| Usage reporting | `userload`, `htop` | `sacct` |
-
-- You do **not** SSH to SLURM nodes — the scheduler sends your job there
-- How to write a job script: **The Foreman's Desk**
-- How to measure what your script actually needs before requesting resources: **The Scales**
-
----
-
-<label class="quest-check"><input type="checkbox" data-room="d3-kitchen" data-key="main"> I can see the shared kitchen with userload and htop — I understand why SLURM exists</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-kitchen" data-key="main"> I can SSH into the Yens, read htop and userload, and have profiled mystery_script.py</label>
 
 ---
 
 ## Skills Learned
 
-- You can map every computer to a kitchen: core = burner, RAM = fridge, storage = warehouse
-- You know the three kitchen types: your laptop (small, yours), the Yens (shared), cloud (rented)
-- You know the Yens has two separate sets of machines: 5 interactive nodes and 12 SLURM scheduled nodes
-- You know `userload` and `htop` show the interactive node you're on; `squeue` and `sacct` are for SLURM nodes
+- Every computer maps to a kitchen: CPU core = burner, RAM = fridge, storage = warehouse
+- The three kitchen types: your laptop (small, yours), the Yens (shared), cloud (rented)
+- `htop` shows all users and all processes on the current node; `userload` shows only your footprint
+- You measured a mystery script — its runtime, memory, and CPU usage — without guessing
