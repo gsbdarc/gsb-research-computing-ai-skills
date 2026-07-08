@@ -39,22 +39,24 @@ You measure first, then request. Not the other way around.
 
 ```bash
 # Look at the script you built in Day 2
-cat ~/rf-bootcamp-2026/extract_form_3_one_file.py
+cat ~/rf-bootcamp-2026/scripts/extract_form_3_one_file.py
 
 # Run it on one filing
 cd ~/rf-bootcamp-2026
 source .venv/bin/activate
-python extract_form_3_one_file.py
+python scripts/extract_form_3_one_file.py
 ```
 
 What does the script do? What output do you see? How long did it seem to take? Now you're ready to measure it properly.
 
+When the script finishes successfully — put a **🟢 green sticky** on your laptop. If it errors or the venv won't activate, put up a **🔴 red sticky**.
+
 **Step 1 — Time a script:**
 
 ```bash
-time python extract_form_3_one_file.py
+time python scripts/extract_form_3_one_file.py
 # Output:
-# python extract_form_3_one_file.py  1.83s user 0.21s system 97% cpu 2.099 total
+# python scripts/extract_form_3_one_file.py  1.83s user 0.21s system 97% cpu 2.099 total
 # The "real" (wall-clock) time is what matters for --time in SLURM
 ```
 
@@ -62,7 +64,7 @@ time python extract_form_3_one_file.py
 
 In one terminal, start your script:
 ```bash
-python3 my_pipeline.py &   # run in background
+python scripts/extract_form_3_one_file.py &   # run in background
 ```
 
 In another terminal:

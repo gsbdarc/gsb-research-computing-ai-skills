@@ -10,95 +10,101 @@ permalink: /day3/data-mine/
 
 <div data-room-id="d3-data-mine"></div>
 
-*Before you can request resources from the mountain, you must understand what the mountain has already given away. Generations of miners have left behind records — who ran what, how long they toiled, how much ore they consumed. The ledgers are thick and unreadable at a glance. But to a researcher with the right tools, they're a map of the cluster itself: when it strains, who takes the most, and what a reasonable request actually looks like.*
+*Before you can request resources from the mountain, you must understand what the mountain has already given away. Generations of miners have left behind records — who ran what, how long they toiled, how much ore they consumed. The ledgers are thick and unreadable at a glance. But to a researcher with the right tools, they are a map of the cluster itself.*
 
 ---
 
-## 🖊️ What Is System Data?
-
-The Yens cluster keeps detailed records of everything that runs on it. Four sources tell the full story:
-
-| Source | What it shows |
-|--------|--------------|
-| `userload` | **Your own** CPU and memory usage on the current interactive Yen node |
-| `squeue` | All queued and running SLURM jobs cluster-wide — who submitted what, resource requests, wait time |
-| `sacct` | Historical record of past jobs — elapsed time, peak memory, CPU hours, exit status |
-| `ps aux` | All running processes on a node — what's executing and what it's consuming right now |
-| Disk stats | How much shared storage is in use — `df -h /scratch/shared` |
-
-Before you write a single `#SBATCH` directive, it helps to see what real jobs on this cluster actually look like.
-
----
-
-## 🗡️ Main Quest
+## 🗡️ Main Quest — Read the Mine Records
 
 {: .important }
-> **Quest:** Dig into real Yens cluster data. Use an AI coding agent or your notebook to find patterns — who runs what, which jobs go over budget, when the cluster is quiet.
+> **Quest:** Open the Yens monitoring snapshot and figure out what it is telling you — without being told what to look for.
 
 **Step 1 — Open the data**
 
-A snapshot of recent Yens monitoring data is included in your course repo:
+```bash
+cd ~/rf-bootcamp-2026
+cat data/yens_sample.txt
+```
+
+Read the whole file slowly. Don't skim. There are several sections — notice how they are different from each other.
+
+**Step 2 — Explore**
+
+Use whatever tool you want. Spend 10–15 minutes digging in.
 
 ```bash
-cat ~/rf-bootcamp-2026/data/yens_sample.txt
+claude          # open Claude Code and ask it anything you want
 ```
 
-Take a moment to read it. You'll see output from `userload`, `sacct`, and `ps` — the same tools you'll use in The Scales to profile your own script.
+Or open JupyterHub and work in a notebook. Or just read and think. No direction — just look.
+
+**Step 3 — Write down your observations**
+
+Before we discuss as a class, write down at least 3 things you noticed. Some questions to consider:
+
+- Who is using the most resources? How can you tell?
+- Do you see anything that looks like it went wrong?
+- What do you not understand? What columns are confusing?
+- Does anything surprise you?
+
+When you have written down your observations — put a **🟢 green sticky** on your laptop. If the file won't open or you are stuck, put up a **🔴 red sticky**.
 
 ---
 
-**Step 2 — Analyze with an AI agent (tool of your choice)**
+## Compare with a Neighbor
 
-Open whichever tool you prefer:
+Before the class discussion, talk to the person next to you:
 
-**Option A — Claude Code on the Yens** *(recommended — you set this up on Day 1)*
-```bash
-claude
-```
-
-**Option B — Notebook** — open a Jupyter notebook and load the file:
-```python
-with open("data/yens_sample.txt") as f:
-    data = f.read()
-print(data)
-```
-Then paste sections into the AI of your choice.
-
-**Option C — Any other AI coding agent** — paste the content directly.
+- What did you each notice first?
+- Did you find the same things, or different things?
+- What questions do you both have?
 
 ---
 
-**Step 3 — Ask for insights**
+## Class Discussion
 
-Paste the contents of `yens_sample.txt` and try these prompts:
+*Your instructor will lead this. Share what you found.*
 
-*"Here is system monitoring data from a shared HPC cluster. Tell me: which users are using the most CPU and memory? Which jobs ran over their resource request? Are there any jobs that look like they might have failed or been killed? What does this suggest about when to submit new jobs?"*
-
-*"Look at the sacct output. For the jobs that completed successfully, what is the typical ratio of requested time to actual elapsed time? What does this tell me about how much margin I should add when writing my own `--time` directive?"*
-
-*"Based on the userload snapshot, when would be a good time for a new user to submit a resource-intensive job?"*
-
----
-
-**Step 4 — Class discussion**
-
-Take 10 minutes to share what you found:
-
-- Who dominated CPU during this snapshot? What kind of jobs?
-- Which jobs ran over their memory request? What does that mean for the job?
-- What pattern do you see in elapsed time vs. requested time?
-- If you were submitting your own job right now, what would you request — and when?
-
-{: .note }
-> The goal here isn't to copy numbers from this dataset into your own job script. The goal is to build intuition: what does "this cluster is under load" look like in data? What does an overrun job look like? You'll measure your own script in The Scales — this gives you a mental model for what the output means.
-
-<label class="quest-check"><input type="checkbox" data-room="d3-data-mine" data-key="main"> Main Quest complete — I've analyzed Yens system data and can read resource usage patterns</label>
+- What stood out to you in the data?
+- Which user caught your attention? Why?
+- What do you think the different sections of the file represent?
+- What confused you?
 
 ---
 
-## 🧠 Skills Learned
+## What You Were Looking At
 
-- You can read `userload`, `sacct`, and `ps` output and understand what each column means
-- You know what an overrun job looks like (MaxRSS > requested memory, elapsed > requested time)
-- You can use an AI coding agent to find patterns in tabular cluster data
-- You have intuition for when the cluster is busy vs. quiet — useful for scheduling your own submissions
+*Your instructor will walk through this after the discussion.*
+
+The snapshot has four sections:
+
+**User summary** — how much CPU and memory each researcher is using on the cluster right now. Each row is one person.
+
+**Job history** — a record of past jobs: who ran them, how long they ran, how much memory they used, whether they finished or something went wrong.
+
+**Process list** — every individual running program on one node at one moment. Each row is one process.
+
+**Disk usage** — how much shared storage each user has consumed.
+
+Key vocabulary you just saw in the data:
+
+| Term | What it means |
+|------|---------------|
+| **Process** | One running program. A single Python script = one process. A notebook kernel = one process. |
+| **User** | The account that owns a process. Every researcher is a user on the Yens. |
+| **CPU%** | How much of one core this process is using. 100% = one full core. 200% = two cores. |
+| **RSS / MEM** | Resident memory — how much RAM this process is actively holding right now. |
+
+When you run your extraction script on a Yen node, it becomes a process owned by your user. Its CPU% and RSS are exactly what you see in `htop` and `ps`.
+
+---
+
+<label class="quest-check"><input type="checkbox" data-room="d3-data-mine" data-key="main"> I explored the cluster data and can identify processes, users, CPU, and memory in the output</label>
+
+---
+
+## Skills Learned
+
+- You can read raw system monitoring data and extract meaning from it
+- You know what a process is, what a user is, what CPU% and RSS mean
+- You understand the difference between a per-user summary and a per-process listing

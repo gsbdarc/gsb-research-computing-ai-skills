@@ -56,6 +56,8 @@ bash jobs/extract.sh
 
 This runs your script exactly as SLURM would, but right now on the interactive node. If it completes without errors, you're ready to submit.
 
+When the local test passes — put a **🟢 green sticky** on your laptop. If it errors, put up a **🔴 red sticky** and fix it before submitting to the queue.
+
 **Submit:**
 ```bash
 sbatch jobs/extract.sh

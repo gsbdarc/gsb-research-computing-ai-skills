@@ -14,15 +14,17 @@ permalink: /day3/kitchen/
 
 ---
 
-## 🖊️ The Kitchen Analogy
+## The Kitchen Analogy
 
-Every computer — your laptop, the Yens, a cloud server — is just a kitchen. The hardware is the kitchen equipment. The software is the recipe. Let's draw it out.
+Every computer — your laptop, the Yens, a cloud server — is just a kitchen. The hardware is the kitchen equipment. The software is the recipe.
 
 ---
 
 **Your kitchen — your laptop**
 
 ![Your Kitchen = Your Laptop]({{ site.baseurl }}/assets/images/kitchen-laptop.png)
+
+---
 
 **What happens when you run a script:**
 
@@ -44,16 +46,16 @@ Every computer — your laptop, the Yens, a cloud server — is just a kitchen. 
 
 ## Your Research Project in Kitchen Terms
 
-Every research computing project has three questions. Answer them and you know what kitchen to cook in and what to cook.
+Every research computing project has three questions:
 
 **What** am I doing?
 Talk to your PI — this is your task. For this bootcamp: extract names and CIKs from SEC Form 3 filings. In kitchen terms, you're making a specific dish.
 
 **Where** am I doing it?
-Pick your kitchen: your laptop, the Yens, Sherlock, the cloud. Each is a different kitchen with different equipment. You choose based on how much you need to cook and who else is cooking.
+Pick your kitchen: your laptop, the Yens, Sherlock, the cloud. Each has different equipment. You choose based on how much you need to cook and who else is cooking.
 
 **How** am I doing it?
-Your Python script is the recipe. A recipe is step-by-step instructions to produce a dish — and many recipes can produce the same dish:
+Your Python script is the recipe — step-by-step instructions to produce a dish:
 
 ```python
 # Recipe: pasta.py
@@ -64,48 +66,76 @@ Your Python script is the recipe. A recipe is step-by-step instructions to produ
 # 4. Mix and serve
 ```
 
-Your research script works the same way:
-- Each step = an operation or a call to another function/script
-- Some steps call *other* recipes (helper functions, imported modules)
-- The result = your final dish — the output (extracted names, CIKs, a CSV)
+Each step is an operation or a call to another function. The result is your dish — extracted names, CIKs, a CSV.
 
 ---
 
-## 🗡️ Main Quest — Kitchen Demo
+## Kitchen Demo
 
-*Your instructor will lead this activity with slides. Follow along and participate.*
+*Your instructor will walk through the kitchen slides and lead the discussion below.*
+
+- Which kitchen are you working in for this bootcamp?
+- What are the tradeoffs between your laptop, the Yens, and the cloud?
+- What happens when 10 researchers all try to cook at once on the shared Yens?
 
 ---
 
-## ✏️ Interactive Yens
+## 🗡️ Main Quest — See Your Shared Kitchen
 
-The Yens has **5 interactive nodes** (`yen1`–`yen5`). These are the machines you SSH into — Days 1 and 2 happened entirely here.
+Before we talk about how to schedule work, let's see the shared kitchen in action right now.
 
-- You SSH in and run scripts directly in a terminal
-- No waiting — you get CPU and RAM immediately
-- Burners (cores) **can be shared** between users on the same node
-- Per-user limits apply to CPU and RAM: [rcpedia.stanford.edu/policies/user_limits](https://rcpedia.stanford.edu/_policies/user_limits/)
-- JupyterHub notebooks run here too — same limits apply
+{: .important }
+> **Quest:** SSH into a Yen node and see who is cooking — and how much they're using.
 
-**See who's on this node right now:**
+**Step 1 — Connect to the Yens**
 
 ```bash
-userload    # YOUR CPU and memory usage on this interactive node
-htop        # all processes on this node — including other researchers; press q to quit
+ssh YOUR_USERNAME@yen1.stanford.edu
 ```
 
-**The problem:** Imagine everyone is trying to cook as fast as they can on the same 5 nodes:
-- One person: 15-minute cookie recipe, 1 burner, a little fridge space
-- Second person: 3-hour dish, 2 burners, a little fridge space
-- Third person: 10 burners for 8 hours, the **entire** fridge
+**Step 2 — See all users on this node**
 
-*How do you decide who cooks first?* You need a schedule — and the person with the giant recipe should probably wait. That's exactly what SLURM does.
+```bash
+userload
+```
+
+Look at the table. How many researchers are active right now? Who is using the most CPU? The most memory?
+
+**Step 3 — See every individual process**
+
+```bash
+htop
+```
+
+Press `u` and type your username to filter to your own processes. Look at the `CPU%` and `MEM%` columns. Press `q` to quit.
+
+{: .note }
+> `userload` gives a per-user summary. `htop` shows every individual running program. Together they answer: who is here, and what exactly are they running?
+
+When you can see both outputs — put a **🟢 green sticky** on your laptop. If something is not working, put up a **🔴 red sticky** and an instructor will come help.
+
+---
+
+## The Shared Kitchen Problem
+
+The Yens has **5 interactive nodes** (`yen1`–`yen5`). When you SSH in, you land on one of these — and so does everyone else.
+
+- Cores are **shared** between users on the same node
+- Per-user limits apply to CPU and RAM: [rcpedia.stanford.edu/policies/user_limits](https://rcpedia.stanford.edu/_policies/user_limits/)
+- JupyterHub notebooks run here too — same limits
+
+Imagine everyone tries to run a big job at the same time:
+- One person: 15-minute script, 1 core, a little RAM
+- Second person: 3-hour script, 2 cores, a little RAM
+- Third person: needs 10 cores for 8 hours, all the RAM
+
+*How do you decide who goes first?* You need a head chef. That is SLURM.
 
 ---
 
 ## SLURM Is the Head Chef
 
-Here's how every kitchen concept maps to SLURM:
+SLURM is a scheduler. On the Yens, SLURM manages **12 dedicated nodes** — separate from the interactive Yens — where batch jobs run with dedicated resources.
 
 | Kitchen | Yens / SLURM |
 |---------|--------------|
@@ -113,58 +143,39 @@ Here's how every kitchen concept maps to SLURM:
 | Station (stove) | Compute node |
 | Burner | CPU core |
 | Fridge | RAM |
-| Pantry / warehouse | Shared storage (`/scratch`) |
+| Warehouse | Shared storage (`/scratch`) |
 | Order ticket | Job script (`sbatch`) |
 | Tickets on the rail | Job queue (`squeue`) |
-| Recipe | Your Python/R/shell script |
-| Time limit (Chef de Temps) | `#SBATCH --time` |
-| Resource request | `#SBATCH --mem`, `--cpus-per-task` |
+| Recipe | Your Python / R / shell script |
 
-You don't walk into the kitchen and start cooking. You hand your recipe to the head chef (`sbatch`), specify what burners, fridge space, and time you need (`#SBATCH` directives), and come back when the meal is done.
+You don't walk into the kitchen and start cooking. You hand your recipe to the head chef, tell them what equipment you need, and come back when the meal is done.
 
 ---
 
-## ✏️ Yen-SLURM Cluster
-
-SLURM is a scheduler — software that makes a schedule for sharing cluster resources. On the Yens, SLURM manages **12 dedicated scheduled nodes** that are completely separate from the interactive Yens.
+## Interactive Yens vs SLURM Nodes
 
 | | Interactive Yens | SLURM Scheduled Nodes |
 |---|---|---|
 | Nodes | 5 | 12 |
-| How to access | SSH directly | Submit a job script (`sbatch`) |
-| Run style | Interactive terminal | Batch — script runs unattended |
+| How to access | SSH directly | Submit a job script |
 | Wait for resources? | No | Yes — may queue |
-| Burners shared between users? | Yes | **No** — yours alone |
-| Notebooks? | Yes (same limits) | No |
-| Can exceed interactive limits? | — | Yes |
-| Usage reporting | `userload`, `htop` | `sacct` — actual cpu/RAM/time used |
+| Cores shared between users? | Yes | No — yours alone |
+| Notebooks? | Yes | No |
+| Usage reporting | `userload`, `htop` | `sacct` |
 
-- You do **not** SSH to scheduled nodes — SLURM sends your job there
-- Your Python script runs inside a submission script (coming up in The Foreman's Desk)
-- You request specific cores, RAM, and wall time up front — SLURM finds a node that fits
-- `squeue` shows the full job queue across all scheduled nodes
-
-{: .important }
-> **What happens if you get the resource request wrong?**
->
-> | Directive | Underestimate | Overestimate |
-> |-----------|--------------|--------------|
-> | `--time` | Job gets killed before it finishes | Longer queue wait; wastes reservation |
-> | `--mem` | Job crashes with out-of-memory error | Blocks RAM other jobs could use |
-> | `--cpus-per-task` | Script is slower than it could be | Reserves cores your script never uses |
-
-Before you submit a job, you need to know what your script actually consumes. Head to **The Scales** to measure it.
+- You do **not** SSH to SLURM nodes — the scheduler sends your job there
+- How to write a job script: **The Foreman's Desk**
+- How to measure what your script actually needs before requesting resources: **The Scales**
 
 ---
 
-<label class="quest-check"><input type="checkbox" data-room="d3-kitchen" data-key="main"> Kitchen demo complete — I understand why SLURM exists</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-kitchen" data-key="main"> I can see the shared kitchen with userload and htop — I understand why SLURM exists</label>
 
 ---
 
-## 🧠 Skills Learned
+## Skills Learned
 
-- You can map every computer to a kitchen: burner = CPU core, fridge = RAM, pantry/warehouse = storage
-- You know the three kitchen types: your laptop (small, yours alone), the Yens (shared, many burners), cloud (all yours, pay per hour)
-- You know the Yens has two separate sets of machines: 5 interactive nodes (where you SSH) and 12 SLURM scheduled nodes (where batch jobs run)
-- You know `userload` and `htop` show the interactive node you're on; `squeue` and `sacct` are for the SLURM scheduled nodes
-- You understand what happens when you under- or over-request time, memory, and cores in a SLURM job
+- You can map every computer to a kitchen: core = burner, RAM = fridge, storage = warehouse
+- You know the three kitchen types: your laptop (small, yours), the Yens (shared), cloud (rented)
+- You know the Yens has two separate sets of machines: 5 interactive nodes and 12 SLURM scheduled nodes
+- You know `userload` and `htop` show the interactive node you're on; `squeue` and `sacct` are for SLURM nodes
