@@ -60,4 +60,47 @@ sacct -u $USER --format=JobID,JobName,State,Elapsed,MaxRSS,CPUTime --starttime=t
 > 2. Fix the issue — wrong path, missing module, out-of-memory, script error
 > 3. Resubmit: `sbatch jobs/extract.sh`
 
-<label class="quest-check"><input type="checkbox" data-room="d3-watch-tower" data-key="main"> Main Quest complete</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-watch-tower" data-key="main"> My job shows COMPLETED in sacct and I have read the output log</label>
+
+---
+
+## ⚔️ Side Quests
+
+{: .note }
+> Finished early? Try one or both of these bonus challenges.
+
+**S1 — Audit your resource usage with sacct**
+
+After your job completes, run sacct with a custom format to compare requested vs used:
+
+```bash
+sacct -j JOBID --format=JobID,AllocCPUS,CPUTime,MaxRSS,ReqMem,Elapsed
+```
+
+- **AllocCPUS** — how many CPUs you requested
+- **MaxRSS** — peak RAM the job actually used
+- **ReqMem** — how much RAM you requested
+
+Did you over-request memory (MaxRSS much smaller than ReqMem)? Under-request CPU? Use these numbers to calibrate your next job's `--mem` and `--cpus-per-task`.
+
+<label class="quest-check"><input type="checkbox" data-room="d3-watch-tower" data-key="side1"> I audited my resource usage with sacct and know whether I over- or under-requested</label>
+
+**S2 — Read a failure**
+
+Open your `.err` log:
+
+```bash
+cat logs/extract_JOBID.err
+```
+
+Is it empty? Good — that means no errors were written to stderr.
+
+Now intentionally break the script — edit `jobs/extract.sh` to use a wrong path (e.g., change `.venv` to `.venv_broken`) and run it locally:
+
+```bash
+bash jobs/extract.sh
+```
+
+What does a failure look like in the output? This is the same thing you'd see in the `.err` log when a SLURM job fails. Put the path back when you're done.
+
+<label class="quest-check"><input type="checkbox" data-room="d3-watch-tower" data-key="side2"> I intentionally broke and read a failed run — I know what errors look like</label>

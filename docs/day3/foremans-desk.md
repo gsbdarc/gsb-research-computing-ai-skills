@@ -58,6 +58,8 @@ This runs your script exactly as SLURM would, but right now on the interactive n
 
 When the local test passes — put a **🟢 green sticky** on your laptop. If it errors, put up a **🔴 red sticky** and fix it before submitting to the queue.
 
+<label class="quest-check"><input type="checkbox" data-room="d3-foremans-desk" data-key="main"> I wrote extract.sh and the local bash test passed without errors</label>
+
 **Submit:**
 ```bash
 sbatch jobs/extract.sh
@@ -69,4 +71,24 @@ Note your job ID — you'll need it in The Watch Tower.
 {: .note }
 > **While your job runs:** Head to [The Chronicle](../chronicle/) now and write your README — the job may sit in the queue for a few minutes. Come back to [The Watch Tower](../watch-tower/) once `sacct` shows your job as `COMPLETED`.
 
-<label class="quest-check"><input type="checkbox" data-room="d3-foremans-desk" data-key="main"> Main Quest complete</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-foremans-desk" data-key="submit"> I submitted with sbatch and my job entered the queue (I have a JOBID)</label>
+
+---
+
+## ⚔️ Side Quests
+
+{: .note }
+> Finished early? Try this bonus challenge.
+
+**S1 — Email notifications**
+
+Add these two lines to your job script (right after the `#SBATCH --partition` line):
+
+```bash
+#SBATCH --mail-type=END,FAIL
+#SBATCH --mail-user=YOUR_SUNETID@stanford.edu
+```
+
+Re-submit with `sbatch jobs/extract.sh`. You will get an email when the job ends or fails — essential for long jobs you submit and walk away from.
+
+<label class="quest-check"><input type="checkbox" data-room="d3-foremans-desk" data-key="side1"> I added email notifications to my job script</label>

@@ -103,6 +103,25 @@ When you run your extraction script on a Yen node, it becomes a process owned by
 
 ---
 
+## ⚔️ Side Quests
+
+{: .note }
+> Finished early? Try one or both of these bonus challenges.
+
+**S1 — Programmatic analysis**
+
+Open JupyterHub or a Python shell. Load the process list from `data/yens_sample.txt` using pandas and write a single line that finds the username with the highest total CPU usage. (Hint: `read_csv` with a separator, `groupby`, `sum`, `idxmax`.)
+
+<label class="quest-check"><input type="checkbox" data-room="d3-data-mine" data-key="side1"> I wrote one line of pandas code to find the top CPU user</label>
+
+**S2 — Find the marathon job**
+
+Look at the job history section of `data/yens_sample.txt`. Find the single longest-running job. How long did it run, and what command did it execute? Would you have guessed that job would take that long?
+
+<label class="quest-check"><input type="checkbox" data-room="d3-data-mine" data-key="side2"> I found the longest-running job in the job history</label>
+
+---
+
 ## Skills Learned
 
 - You can read raw system monitoring data and extract meaning from it

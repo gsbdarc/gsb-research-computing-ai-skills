@@ -89,6 +89,26 @@ When you can read the queue and explain the difference between `R` and `PD` to a
 
 ---
 
+## ⚔️ Side Quests
+
+{: .note }
+> Finished early? Try this bonus challenge.
+
+**S1 — Explore partitions with sinfo**
+
+```bash
+sinfo
+```
+
+Look at the output:
+- How many compute nodes are currently idle (`STATE=idle`)?
+- What partitions (queues) exist? Which one would you use for a normal job?
+- What is the maximum time limit for each partition?
+
+<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="side1"> I ran sinfo and can describe the Yens partitions and node states</label>
+
+---
+
 ## Skills Learned
 
 - SLURM is the scheduler that manages 12 dedicated compute nodes on the Yens

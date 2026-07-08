@@ -10,7 +10,7 @@
   const STORAGE_KEY = 'dungeon.v1.progress';
 
   // Total possible checkboxes across the entire dungeon (all 4 days)
-  const TOTAL_CHECKS = 31;
+  const TOTAL_CHECKS = 43;
 
   const LEVEL_TITLES = [
     'Initiate', 'Apprentice', 'Scholar', 'Journeyman', 'Adept',
@@ -51,14 +51,14 @@
       label: 'Day 3 — The SLURM Mines',
       prefix: 'd3',
       rooms: [
-        { id: 'd3-kitchen',              keys: ['main'] },
-        { id: 'd3-head-chef',            keys: ['main'] },
-        { id: 'd3-data-mine',            keys: ['main'] },
-        { id: 'd3-scales',               keys: ['main'] },
-        { id: 'd3-foremans-desk',        keys: ['main'] },
-        { id: 'd3-watch-tower',          keys: ['main'] },
-        { id: 'd3-chronicle',            keys: ['main'] },
-        { id: 'd3-boss-gate',            keys: ['commit'] },
+        { id: 'd3-kitchen',         keys: ['main', 'main2', 'side1', 'side2'] },
+        { id: 'd3-head-chef',       keys: ['main', 'side1'] },
+        { id: 'd3-data-mine',       keys: ['main', 'side1', 'side2'] },
+        { id: 'd3-scales',          keys: ['main', 'side1', 'side2'] },
+        { id: 'd3-foremans-desk',   keys: ['main', 'submit', 'side1'] },
+        { id: 'd3-watch-tower',     keys: ['main', 'side1', 'side2'] },
+        { id: 'd3-chronicle',       keys: ['main'] },
+        { id: 'd3-boss-gate',       keys: ['commit'] },
       ],
     },
     {

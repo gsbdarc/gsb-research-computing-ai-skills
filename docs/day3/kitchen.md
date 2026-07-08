@@ -119,6 +119,12 @@ userload
 {: .note }
 > `htop` shows everyone's processes on the node. `userload` shows only your footprint. Use `htop` to see the full picture; use `userload` to check what you specifically are consuming.
 
+When you can read both outputs — put a **🟢 green sticky** on your laptop. If something is not working, put up a **🔴 red sticky** and an instructor will come help.
+
+<label class="quest-check"><input type="checkbox" data-room="d3-kitchen" data-key="main"> I can SSH into the Yens and read the shared node with htop and userload</label>
+
+---
+
 **Step 4 — Profile a mystery script**
 
 You're about to run a script whose resource usage you don't know. Your job: figure out what it's doing.
@@ -153,9 +159,30 @@ Compare with a neighbor. Do you see the same numbers? Based on what you measured
 
 When you can describe what the mystery script does to your CPU and RAM — put a **🟢 green sticky** on your laptop. If something is not working, put up a **🔴 red sticky** and an instructor will come help.
 
+<label class="quest-check"><input type="checkbox" data-room="d3-kitchen" data-key="main2"> I profiled mystery_script.py and can describe what it uses</label>
+
 ---
 
-<label class="quest-check"><input type="checkbox" data-room="d3-kitchen" data-key="main"> I can SSH into the Yens, read htop and userload, and have profiled mystery_script.py</label>
+## ⚔️ Side Quests
+
+{: .note }
+> Finished early? Try one or both of these bonus challenges.
+
+**S1 — Sort htop by memory**
+
+In htop, press `F6`, select `MEM%`, press Enter. What is the #1 memory-consuming process on this node right now? How much RAM is it using?
+
+<label class="quest-check"><input type="checkbox" data-room="d3-kitchen" data-key="side1"> I sorted htop by memory and identified the top consumer</label>
+
+**S2 — Read ps without htop**
+
+```bash
+ps aux --sort=-%mem | head -15
+```
+
+Look at the VSZ and RSS columns. What is the difference between virtual memory (VSZ) and resident memory (RSS)? (Google it — this comes up often in systems and debugging work.)
+
+<label class="quest-check"><input type="checkbox" data-room="d3-kitchen" data-key="side2"> I can explain the difference between VSZ and RSS</label>
 
 ---
 
