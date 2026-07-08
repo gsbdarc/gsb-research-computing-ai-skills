@@ -11,8 +11,6 @@ floor: 3
 
 *Deep in the mountain, the forges never sleep. Hundred-foot shafts drop into darkness where ore — raw compute — waits to be claimed. The SLURM Mines run on one brutal law: describe the work, hand it to the foreman, and the mountain does the rest. But the mountain doesn't forgive vague orders or wasteful hands. Today you learn to speak the foreman's language, read the seismic warnings before a job collapses, and weld pipelines sturdy enough to carry real research all the way to the surface.*
 
-**Levels:** 7–8
-
 ---
 
 ## Day 2 Recap
