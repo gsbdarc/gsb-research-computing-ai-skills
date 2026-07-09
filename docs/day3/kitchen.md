@@ -26,18 +26,19 @@ Every computer — your laptop, the Yens, a cloud server — is just a kitchen. 
 |---------|-------------|
 | Burner | CPU core — does the computation |
 | Fridge | RAM — holds what you're actively working with |
-| Warehouse / pantry | Storage (SSD) — holds everything long-term |
+| Convenience store | Storage (SSD) — holds everything long-term |
+| Bike (to/from store) | Data bus — moves data between storage and RAM |
 | Recipe | Your Python script |
 
 **How data moves: storage → RAM → CPU**
 
-When you run a script, Python reads your data files from **storage** (the warehouse), loads the relevant parts into **RAM** (the fridge), and the **CPU** (the burner) crunches through it. This flow is the bottleneck in almost every research computing job.
+When you run a script, Python hops on the **bike** to the **convenience store** (storage), grabs your data files, and loads them into the **fridge** (RAM). The **burner** (CPU) then crunches through whatever is in the fridge. The bike ride is the slow part — reading from storage is orders of magnitude slower than reading from RAM.
 
-- Storage: large and slow — terabytes, but milliseconds per read
-- RAM: medium and fast — gigabytes, nanoseconds
+- Storage (convenience store): large and slow — terabytes, but milliseconds per read
+- RAM (fridge): medium and fast — gigabytes, nanoseconds
 - CPU cache: tiny and extremely fast — megabytes, right next to the processor
 
-If your dataset doesn't fit in RAM, your job will be slow — it has to keep fetching from the warehouse. This is why memory matters when requesting SLURM resources.
+If your dataset doesn't fit in RAM, your job will be slow — it keeps making bike trips to the store mid-computation. This is why memory matters when requesting SLURM resources.
 
 ---
 
