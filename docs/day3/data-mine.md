@@ -10,14 +10,12 @@ permalink: /day3/data-mine/
 
 <div data-room-id="d3-data-mine"></div>
 
-*Before you can request resources from the mountain, you must understand what the mountain has already given away. Generations of miners have left behind records — who ran what, how long they toiled, how much ore they consumed. The ledgers are thick and unreadable at a glance. But to a researcher with the right tools, they are a map of the cluster itself.*
-
 ---
 
-## 🗡️ Main Quest — Read the Mine Records
+## Main Exercise — Explore the Yens Monitoring Data
 
 {: .important }
-> **Quest:** Open the Yens monitoring snapshot and figure out what it is telling you — without being told what to look for.
+> **Exercise:** Open the Yens monitoring snapshot and figure out what it is telling you — without being told what to look for.
 
 **Step 1 — Open the data**
 
@@ -26,25 +24,25 @@ cd ~/rf-bootcamp-2026
 cat data/yens_sample.txt
 ```
 
-Read the whole file slowly. Don't skim. There are several sections — notice how they are different from each other.
+Read the whole file. There are several sections — notice how they differ from each other.
 
 **Step 2 — Explore**
 
 Use whatever tool you want. Spend 10–15 minutes digging in.
 
 ```bash
-claude          # open Claude Code and ask it anything you want
+claude          # open Claude Code and ask it anything
 ```
 
-Or open JupyterHub and work in a notebook. Or just read and think. No direction — just look.
+Or open JupyterHub and work in a notebook. Or just read and think.
 
 **Step 3 — Write down your observations**
 
-Before we discuss as a class, write down at least 3 things you noticed. Some questions to consider:
+Before the class discussion, write down at least 3 things you noticed:
 
 - Who is using the most resources? How can you tell?
 - Do you see anything that looks like it went wrong?
-- What do you not understand? What columns are confusing?
+- What columns are confusing?
 - Does anything surprise you?
 
 When you have written down your observations — put a **🟢 green sticky** on your laptop. If the file won't open or you are stuck, put up a **🔴 red sticky**.
@@ -65,9 +63,9 @@ Before the class discussion, talk to the person next to you:
 
 *Your instructor will lead this. Share what you found.*
 
-- What stood out to you in the data?
+- What stood out in the data?
 - Which user caught your attention? Why?
-- What do you think the different sections of the file represent?
+- What do you think the different sections represent?
 - What confused you?
 
 ---
@@ -80,13 +78,13 @@ The snapshot has four sections:
 
 **User summary** — how much CPU and memory each researcher is using on the cluster right now. Each row is one person.
 
-**Job history** — a record of past jobs: who ran them, how long they ran, how much memory they used, whether they finished or something went wrong.
+**Job history** — a record of past jobs: who ran them, how long they ran, how much memory they used, whether they finished or failed.
 
 **Process list** — every individual running program on one node at one moment. Each row is one process.
 
 **Disk usage** — how much shared storage each user has consumed.
 
-Key vocabulary you just saw in the data:
+Key vocabulary:
 
 | Term | What it means |
 |------|---------------|
@@ -103,27 +101,27 @@ When you run your extraction script on a Yen node, it becomes a process owned by
 
 ---
 
-## ⚔️ Side Quests
+## Optional Exercises
 
 {: .note }
-> Finished early? Try one or both of these bonus challenges.
+> Finished early? Try one or both of these.
 
-**S1 — Programmatic analysis**
+**Bonus 1 — Programmatic analysis**
 
 Open JupyterHub or a Python shell. Load the process list from `data/yens_sample.txt` using pandas and write a single line that finds the username with the highest total CPU usage. (Hint: `read_csv` with a separator, `groupby`, `sum`, `idxmax`.)
 
 <label class="quest-check"><input type="checkbox" data-room="d3-data-mine" data-key="side1"> I wrote one line of pandas code to find the top CPU user</label>
 
-**S2 — Find the marathon job**
+**Bonus 2 — Find the longest job**
 
-Look at the job history section of `data/yens_sample.txt`. Find the single longest-running job. How long did it run, and what command did it execute? Would you have guessed that job would take that long?
+Look at the job history section of `data/yens_sample.txt`. Find the single longest-running job. How long did it run, and what command did it execute?
 
 <label class="quest-check"><input type="checkbox" data-room="d3-data-mine" data-key="side2"> I found the longest-running job in the job history</label>
 
 ---
 
-## Skills Learned
+## Key Concepts
 
+- A process is one running program; a user is the account that owns it
+- CPU% and RSS are the two numbers that matter most when estimating resource needs
 - You can read raw system monitoring data and extract meaning from it
-- You know what a process is, what a user is, what CPU% and RSS mean
-- You understand the difference between a per-user summary and a per-process listing

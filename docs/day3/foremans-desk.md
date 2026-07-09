@@ -10,16 +10,12 @@ permalink: /day3/foremans-desk/
 
 <div data-room-id="d3-foremans-desk"></div>
 
-*The foreman's desk is buried under scrolls, each one a binding contract with the cluster. Every scroll specifies the same things: how many workers, how long they may toil, which shaft of the mine, where to carve the error glyphs. Forge a sloppy scroll and the mine ignores you entirely. Forge a perfect one and a hundred cores snap to attention — doing exactly your bidding, long after you've gone to sleep.*
-
 ---
 
-## 🗡️ Main Quest
-
-The cluster doesn't take verbal orders. You must hand it a script — a scroll that describes your job down to the last directive. Forge yours now.
+## Main Exercise — Write and Submit a SLURM Job
 
 {: .important }
-> **Quest:** Write a SLURM job script from scratch, understand every directive, and submit your first batch job.
+> **Exercise:** Write a SLURM job script from scratch, understand every directive, and submit your first batch job.
 
 **Create `jobs/extract.sh`:**
 
@@ -56,7 +52,7 @@ bash jobs/extract.sh
 
 This runs your script exactly as SLURM would, but right now on the interactive node. If it completes without errors, you're ready to submit.
 
-When the local test passes — put a **🟢 green sticky** on your laptop. If it errors, put up a **🔴 red sticky** and fix it before submitting to the queue.
+When the local test passes — put a **🟢 green sticky** on your laptop. If it errors, put up a **🔴 red sticky** and fix it before submitting.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-foremans-desk" data-key="main"> I wrote extract.sh and the local bash test passed without errors</label>
 
@@ -75,12 +71,12 @@ Note your job ID — you'll need it in The Watch Tower.
 
 ---
 
-## ⚔️ Side Quests
+## Optional Exercises
 
 {: .note }
-> Finished early? Try this bonus challenge.
+> Finished early? Try this.
 
-**S1 — Email notifications**
+**Bonus 1 — Email notifications**
 
 Add these two lines to your job script (right after the `#SBATCH --partition` line):
 

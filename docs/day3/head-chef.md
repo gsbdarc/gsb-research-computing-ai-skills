@@ -10,27 +10,25 @@ permalink: /day3/head-chef/
 
 <div data-room-id="d3-head-chef"></div>
 
-*You watched the kitchen. Seventeen researchers, five stoves, no posted rules — someone's roast burns while someone else waits forever for a free burner. The interactive Yens have per-user limits, but nothing stops everyone's jobs from competing and slowing each other down. The solution is a head chef: someone — or something — that reads every order, knows what equipment each job needs, and routes work to dedicated stations where no one else is cooking. That is SLURM.*
-
 ---
 
-## The Shared Kitchen Problem
+## The Shared Cluster Problem
 
 The Yens has **5 interactive nodes** (`yen1`–`yen5`). When you SSH in, you land on one of these — and so does everyone else.
 
-- Cores are **shared** between all users on the same node
+- CPU cores are **shared** between all users on the same node
 - Per-user limits apply to CPU and RAM — but many researchers running at once still slows everyone down
-- Long-running or CPU-heavy jobs belong somewhere dedicated, not on a shared interactive node
+- Long-running or CPU-heavy jobs belong on dedicated resources, not on a shared interactive node
 
-You need a head chef who can assign work to **dedicated stations** where nothing else is running.
+The solution: a scheduler that reads every job request, knows what resources each job needs, and assigns work to **dedicated nodes** where nothing else is running.
 
 ---
 
-## SLURM Is the Head Chef
+## SLURM Is the Scheduler
 
-SLURM is a scheduler. On the Yens, SLURM manages **12 dedicated nodes** — completely separate from the interactive Yens — where batch jobs run with their own dedicated resources.
+SLURM manages **12 dedicated nodes** on the Yens — completely separate from the 5 interactive nodes — where batch jobs run with their own dedicated resources.
 
-| Kitchen | Yens / SLURM |
+| Kitchen analogy | Yens / SLURM |
 |---------|--------------|
 | Head chef | SLURM scheduler |
 | Station (stove) | Compute node |
@@ -41,7 +39,7 @@ SLURM is a scheduler. On the Yens, SLURM manages **12 dedicated nodes** — comp
 | Tickets on the rail | Job queue (`squeue`) |
 | Recipe | Your Python / R / shell script |
 
-You don't walk into the kitchen and start cooking. You hand your recipe to the head chef, tell them what equipment you need, and come back when the meal is done.
+You don't walk into the kitchen and start cooking. You hand your recipe to the head chef, specify what resources you need, and come back when the job is done.
 
 ---
 
@@ -60,10 +58,10 @@ You do **not** SSH to SLURM nodes — the scheduler sends your job there.
 
 ---
 
-## 🗡️ Main Quest — Peek at the Queue
+## Main Exercise — Peek at the Queue
 
 {: .important }
-> **Quest:** Look at the live SLURM queue to see what jobs are waiting or running right now.
+> **Exercise:** Look at the live SLURM queue to see what jobs are waiting or running right now.
 
 ```bash
 squeue
@@ -81,7 +79,7 @@ Check your own queue (probably empty for now):
 squeue -u $USER
 ```
 
-You're looking at the real Yens job queue. Every `PD` job is waiting for a node with the resources it requested. When SLURM finds a matching node — it runs.
+Every `PD` job is waiting for a node with the resources it requested. When SLURM finds a matching node — it runs.
 
 When you can read the queue and explain the difference between `R` and `PD` to a neighbor — put a **🟢 green sticky** on your laptop.
 
@@ -89,18 +87,17 @@ When you can read the queue and explain the difference between `R` and `PD` to a
 
 ---
 
-## ⚔️ Side Quests
+## Optional Exercises
 
 {: .note }
-> Finished early? Try this bonus challenge.
+> Finished early? Try this.
 
-**S1 — Explore partitions with sinfo**
+**Bonus 1 — Explore partitions with sinfo**
 
 ```bash
 sinfo
 ```
 
-Look at the output:
 - How many compute nodes are currently idle (`STATE=idle`)?
 - What partitions (queues) exist? Which one would you use for a normal job?
 - What is the maximum time limit for each partition?
@@ -109,7 +106,7 @@ Look at the output:
 
 ---
 
-## Skills Learned
+## Key Concepts
 
 - SLURM is the scheduler that manages 12 dedicated compute nodes on the Yens
 - You do not SSH to SLURM nodes — you submit a job script with `sbatch`

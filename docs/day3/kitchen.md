@@ -10,8 +10,6 @@ permalink: /day3/kitchen/
 
 <div data-room-id="d3-kitchen"></div>
 
-*Steam hangs in the air. Seventeen other researchers are already in here — one has a slow roast that's been in the oven for six hours, two more are fighting over the last open burner, and somewhere in the back a job has been queued so long it's practically fossilized. This is the Yens cluster at peak hours, rendered in cast iron and fire. Watch it breathe before you even think about striking a match. Once you see the chaos, SLURM stops being bureaucracy and starts being salvation.*
-
 ---
 
 ## The Kitchen Analogy
@@ -44,48 +42,46 @@ Every computer — your laptop, the Yens, a cloud server — is just a kitchen. 
 
 ---
 
-## Your Research Project in Kitchen Terms
+## Your Research Project in Computing Terms
 
 Every research computing project has three questions:
 
 **What** am I doing?
-Talk to your PI — this is your task. For this bootcamp: extract names and CIKs from SEC Form 3 filings. In kitchen terms, you're making a specific dish.
+Talk to your PI — this is your task. For this bootcamp: extract names and CIKs from SEC Form 3 filings.
 
 **Where** am I doing it?
-Pick your kitchen: your laptop, the Yens, Sherlock, the cloud. Each has different equipment. You choose based on how much you need to cook and who else is cooking.
+Pick your environment: your laptop, the Yens, Sherlock, the cloud. Each has different resources. You choose based on how much compute you need and who else is using the system.
 
 **How** am I doing it?
-Your Python script is the recipe — step-by-step instructions to produce a dish:
+Your Python script is the recipe — step-by-step instructions:
 
 ```python
 # Recipe: pasta.py
 # 1. Boil water
 # 2. Add pasta
 # 3. While pasta cooks:
-#      → make_sauce()   ← calls another recipe (a function)
+#      → make_sauce()   ← calls another function
 # 4. Mix and serve
 ```
 
-Each step is an operation or a call to another function. The result is your dish — extracted names, CIKs, a CSV.
+Each step is an operation or a function call. The result is your output — extracted names, CIKs, a CSV.
 
 ---
 
-## Kitchen Demo
+## Class Discussion
 
-*Your instructor will walk through the kitchen slides and lead the discussion below.*
+*Your instructor will walk through the kitchen slides and lead the discussion.*
 
-- Which kitchen are you working in for this bootcamp?
+- Which computing environment are you using for this bootcamp?
 - What are the tradeoffs between your laptop, the Yens, and the cloud?
-- What happens when many researchers all try to cook at once on the shared Yens?
+- What happens when many researchers all run jobs at once on the shared Yens?
 
 ---
 
-## 🗡️ Main Quest — See Your Shared Kitchen
-
-Before we talk about scheduling, let's see the shared kitchen in action right now.
+## Main Exercise — See Your Shared Cluster
 
 {: .important }
-> **Quest:** SSH into a Yen node, see who else is cooking, and run a mystery script to measure its resource footprint.
+> **Exercise:** SSH into a Yen node, observe who is using the cluster right now, and profile a mystery script to measure its resource footprint.
 
 **Step 1 — Connect to the Yens**
 
@@ -101,7 +97,7 @@ You'll land on one of the five interactive Yen nodes (`yen1`–`yen5`). The load
 htop
 ```
 
-`htop` shows every running process from every user on this node. Look at the top of the screen:
+`htop` shows every running process from every user on this node:
 - How many researchers are active right now?
 - Who is using the most CPU?
 - Who is using the most memory?
@@ -163,32 +159,32 @@ When you can describe what the mystery script does to your CPU and RAM — put a
 
 ---
 
-## ⚔️ Side Quests
+## Optional Exercises
 
 {: .note }
-> Finished early? Try one or both of these bonus challenges.
+> Finished early? Try one or both of these.
 
-**S1 — Sort htop by memory**
+**Bonus 1 — Sort htop by memory**
 
 In htop, press `F6`, select `MEM%`, press Enter. What is the #1 memory-consuming process on this node right now? How much RAM is it using?
 
 <label class="quest-check"><input type="checkbox" data-room="d3-kitchen" data-key="side1"> I sorted htop by memory and identified the top consumer</label>
 
-**S2 — Read ps without htop**
+**Bonus 2 — Read ps output**
 
 ```bash
 ps aux --sort=-%mem | head -15
 ```
 
-Look at the VSZ and RSS columns. What is the difference between virtual memory (VSZ) and resident memory (RSS)? (Google it — this comes up often in systems and debugging work.)
+Look at the VSZ and RSS columns. What is the difference between virtual memory (VSZ) and resident memory (RSS)?
 
 <label class="quest-check"><input type="checkbox" data-room="d3-kitchen" data-key="side2"> I can explain the difference between VSZ and RSS</label>
 
 ---
 
-## Skills Learned
+## Key Concepts
 
 - Every computer maps to a kitchen: CPU core = burner, RAM = fridge, storage = warehouse
-- The three kitchen types: your laptop (small, yours), the Yens (shared), cloud (rented)
+- The three environments: your laptop (small, yours), the Yens (shared), cloud (rented)
 - `htop` shows all users and all processes on the current node; `userload` shows only your footprint
-- You measured a mystery script — its runtime, memory, and CPU usage — without guessing
+- You measured a script's runtime, memory, and CPU usage before guessing at resource requests

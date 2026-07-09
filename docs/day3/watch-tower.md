@@ -10,16 +10,12 @@ permalink: /day3/watch-tower/
 
 <div data-room-id="d3-watch-tower"></div>
 
-*You climb the spiral stairs and emerge into open air. The entire SLURM Mines sprawl below you — a living map of computation. Glowing threads mark jobs racing across nodes, amber embers pulse where work waits in line, and cold dark patches mark jobs that have already died. Most adventurers throw their jobs into the queue and hope for the best. You will be different. From this tower, nothing moves without your knowledge.*
-
 ---
 
-## 🗡️ Main Quest
-
-Your jobs are running somewhere in the cluster right now — let's find them, watch them breathe, and pull the plug if anything goes wrong.
+## Main Exercise — Monitor Your Job
 
 {: .important }
-> **Quest:** Monitor the job you submitted in The Foreman's Desk using `squeue`, `scancel`, and `sacct`.
+> **Exercise:** Monitor the job you submitted in The Foreman's Desk using `squeue`, `scancel`, and `sacct`.
 
 **Check your jobs:**
 ```bash
@@ -64,12 +60,12 @@ sacct -u $USER --format=JobID,JobName,State,Elapsed,MaxRSS,CPUTime --starttime=t
 
 ---
 
-## ⚔️ Side Quests
+## Optional Exercises
 
 {: .note }
-> Finished early? Try one or both of these bonus challenges.
+> Finished early? Try one or both of these.
 
-**S1 — Audit your resource usage with sacct**
+**Bonus 1 — Audit your resource usage**
 
 After your job completes, run sacct with a custom format to compare requested vs used:
 
@@ -77,15 +73,15 @@ After your job completes, run sacct with a custom format to compare requested vs
 sacct -j JOBID --format=JobID,AllocCPUS,CPUTime,MaxRSS,ReqMem,Elapsed
 ```
 
-- **AllocCPUS** — how many CPUs you requested
+- **AllocCPUS** — CPUs you requested
 - **MaxRSS** — peak RAM the job actually used
-- **ReqMem** — how much RAM you requested
+- **ReqMem** — RAM you requested
 
-Did you over-request memory (MaxRSS much smaller than ReqMem)? Under-request CPU? Use these numbers to calibrate your next job's `--mem` and `--cpus-per-task`.
+Did you over-request memory (MaxRSS much smaller than ReqMem)? Use these numbers to calibrate your next job's `--mem` and `--cpus-per-task`.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-watch-tower" data-key="side1"> I audited my resource usage with sacct and know whether I over- or under-requested</label>
 
-**S2 — Read a failure**
+**Bonus 2 — Read a failure**
 
 Open your `.err` log:
 
@@ -101,6 +97,6 @@ Now intentionally break the script — edit `jobs/extract.sh` to use a wrong pat
 bash jobs/extract.sh
 ```
 
-What does a failure look like in the output? This is the same thing you'd see in the `.err` log when a SLURM job fails. Put the path back when you're done.
+What does a failure look like? This is the same thing you'd see in the `.err` log when a SLURM job fails. Put the path back when you're done.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-watch-tower" data-key="side2"> I intentionally broke and read a failed run — I know what errors look like</label>

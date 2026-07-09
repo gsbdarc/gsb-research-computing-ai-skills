@@ -10,30 +10,22 @@ permalink: /day3/scales/
 
 <div data-room-id="d3-scales"></div>
 
-*In the heart of the Mines hangs an ancient pair of scales, each arm tipped with iron. On one side: your job request. On the other: the truth of what your script actually consumes. Ask for too little and your process crashes mid-run, memory exhausted, data lost. Ask for too much and the scheduler hunts the entire cluster for a node massive enough to satisfy you — while your job rots in the queue. The Scales do not forgive guessing. They reward those who measure.*
-
 ---
 
-## 🗡️ Main Quest
+## Main Exercise — Profile Your Script
 
-Before you write a single `#SBATCH` directive, you must step onto the floor of the Scales and weigh your work honestly.
-
-The tricky part of ordering from the head chef: when you write your recipe, you don't yet know how much kitchen you need.
+Before submitting a job to SLURM, you need to know what resources it actually needs:
 
 ```
-  Before submitting a SLURM job, you need to know:
-
-  How many burners (CPUs)?   →  --cpus-per-task
-  How long on the stove?     →  --time
-  How much fridge (RAM)?     →  --mem
-  How many trips to the      →  (affects wall time — I/O bound vs compute bound)
-  warehouse?
+  How many CPUs?     →  --cpus-per-task
+  How long?          →  --time
+  How much RAM?      →  --mem
 ```
 
 You measure first, then request. Not the other way around.
 
 {: .important }
-> **Quest:** Run the extraction script interactively, understand what it does, then measure its resource footprint before writing a single `#SBATCH` directive.
+> **Exercise:** Run the extraction script interactively and measure its resource footprint before writing any `#SBATCH` directives.
 
 **Step 0 — Run the script and understand it:**
 
@@ -47,11 +39,11 @@ source .venv/bin/activate
 python scripts/extract_form_3_one_file.py
 ```
 
-What does the script do? What output do you see? How long did it seem to take? Now you're ready to measure it properly.
+What does the script do? What output do you see? How long did it seem to take?
 
 When the script finishes successfully — put a **🟢 green sticky** on your laptop. If it errors or the venv won't activate, put up a **🔴 red sticky**.
 
-**Step 1 — Time a script:**
+**Step 1 — Time it:**
 
 ```bash
 time python scripts/extract_form_3_one_file.py
@@ -60,7 +52,7 @@ time python scripts/extract_form_3_one_file.py
 # The "real" (wall-clock) time is what matters for --time in SLURM
 ```
 
-**Step 2 — Monitor memory with `htop`:**
+**Step 2 — Monitor memory with htop:**
 
 In one terminal, start your script:
 ```bash
@@ -72,32 +64,32 @@ In another terminal:
 htop -u $USER              # filter to your processes, watch RES column (resident memory)
 ```
 
-**Step 3 — Run `userload` to see your impact:**
+**Step 3 — Check your impact with userload:**
 
 ```bash
 userload
 # Shows YOUR CPU and memory usage on this interactive Yen node
-# Confirm you're only using what you expected — not accidentally pegging a shared machine
+# Confirm you're only using what you expected
 ```
 
 ---
 
 **Rule of thumb for `#SBATCH` requests:**
 
-- `--time`: take your measured wall-clock time × 2 (give yourself margin)
-- `--mem`: take your peak memory × 1.5
+- `--time`: measured wall-clock time × 2 (give yourself margin)
+- `--mem`: peak memory × 1.5
 - `--cpus-per-task`: count your actual Python threads; most single-threaded scripts need 1
 
 <label class="quest-check"><input type="checkbox" data-room="d3-scales" data-key="main"> I profiled extract_form_3_one_file.py and know what --time, --mem, and --cpus-per-task to request</label>
 
 ---
 
-## ⚔️ Side Quests
+## Optional Exercises
 
 {: .note }
-> Finished early? Try one or both of these bonus challenges.
+> Finished early? Try one or both of these.
 
-**S1 — Verbose time**
+**Bonus 1 — Verbose time**
 
 The `/usr/bin/time -v` command gives much more detail than the shell `time` builtin:
 
@@ -109,7 +101,7 @@ Find the line that says **"Maximum resident set size"** in the output. This is t
 
 <label class="quest-check"><input type="checkbox" data-room="d3-scales" data-key="side1"> I used /usr/bin/time -v and found the peak memory (maximum resident set size)</label>
 
-**S2 — Scaling estimate**
+**Bonus 2 — Scaling estimate**
 
 Edit `scripts/extract_form_3_batch.py` to process only 5 filings. Find the line that builds the URL list and add a slice:
 
@@ -117,6 +109,6 @@ Edit `scripts/extract_form_3_batch.py` to process only 5 filings. Find the line 
 urls = [u for u in urls if u.endswith(".txt")][:5]
 ```
 
-Time it. Then try 10. Does the time scale roughly linearly? Based on that, estimate how long processing all 994 filings would take. Is that feasible in a single SLURM job?
+Time it. Then try 10. Does the time scale roughly linearly? Based on that, estimate how long processing all 994 filings would take.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-scales" data-key="side2"> I estimated scaling: how long would processing all 994 filings take?</label>
