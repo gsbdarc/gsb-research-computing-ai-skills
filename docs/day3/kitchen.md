@@ -28,7 +28,6 @@ Every computer — your laptop, the Yens, a cloud server — is just a kitchen. 
 | Fridge | RAM — holds what you're actively working with |
 | Convenience store | Storage (SSD) — holds everything long-term |
 | Bike (to/from store) | Data bus — moves data between storage and RAM |
-| Recipe | Your Python script |
 
 **How data moves: storage → RAM → CPU**
 
@@ -45,6 +44,23 @@ If your dataset doesn't fit in RAM, your job will be slow — it keeps making bi
 **What happens when you run a script:**
 
 ![What Happens When You Run a Python Script on Your Laptop?]({{ site.baseurl }}/assets/images/kitchen-script-laptop.png)
+
+```python
+# Recipe: pasta.py
+# 1. Boil water
+# 2. Add pasta
+# 3. While pasta cooks:
+#      → make_sauce()   ← calls another function
+# 4. Mix and serve
+```
+
+| Kitchen | Your Python script |
+|---------|-------------|
+| Burner | CPU core — executes each line |
+| Fridge | RAM — holds your variables and loaded data |
+| Convenience store | Storage — your `.py` file, input data, output CSV |
+| Bike (to/from store) | Data bus — reading files, writing results |
+| Recipe | Your Python script |
 
 ---
 
@@ -71,18 +87,7 @@ Talk to your PI — this is your task. For this bootcamp: extract names and CIKs
 Pick your environment: your laptop, the Yens, Sherlock, the cloud. Each has different resources. You choose based on how much compute you need and who else is using the system.
 
 **How** am I doing it?
-Your Python script is the recipe — step-by-step instructions:
-
-```python
-# Recipe: pasta.py
-# 1. Boil water
-# 2. Add pasta
-# 3. While pasta cooks:
-#      → make_sauce()   ← calls another function
-# 4. Mix and serve
-```
-
-Each step is an operation or a function call. The result is your output — extracted names, CIKs, a CSV.
+Your Python script is the recipe — a sequence of steps that produces your output: extracted names, CIKs, a CSV.
 
 ---
 
