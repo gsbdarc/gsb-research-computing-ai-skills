@@ -14,13 +14,30 @@ permalink: /day3/kitchen/
 
 ## The Kitchen Analogy
 
-Every computer — your laptop, the Yens, a cloud server — is just a kitchen. The hardware is the kitchen equipment. The software is the recipe.
+Every computer — your laptop, the Yens, a cloud server — is just a kitchen. The hardware is the equipment; the software is the recipe. Once you see this mapping, reading cluster tools like `htop` becomes natural: you're just watching the kitchen work.
 
 ---
 
 **Your kitchen — your laptop**
 
 ![Your Kitchen = Your Laptop]({{ site.baseurl }}/assets/images/kitchen-laptop.png)
+
+| Kitchen | Your laptop |
+|---------|-------------|
+| Burner | CPU core — does the computation |
+| Fridge | RAM — holds what you're actively working with |
+| Warehouse / pantry | Storage (SSD) — holds everything long-term |
+| Recipe | Your Python script |
+
+**How data moves: storage → RAM → CPU**
+
+When you run a script, Python reads your data files from **storage** (the warehouse), loads the relevant parts into **RAM** (the fridge), and the **CPU** (the burner) crunches through it. This flow is the bottleneck in almost every research computing job.
+
+- Storage: large and slow — terabytes, but milliseconds per read
+- RAM: medium and fast — gigabytes, nanoseconds
+- CPU cache: tiny and extremely fast — megabytes, right next to the processor
+
+If your dataset doesn't fit in RAM, your job will be slow — it has to keep fetching from the warehouse. This is why memory matters when requesting SLURM resources.
 
 ---
 
