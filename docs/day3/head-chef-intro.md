@@ -40,7 +40,7 @@ In the live demo earlier you saw what happens when many cooks share the same kit
 - **You hit the user limit** — per-user CPU and RAM caps are enforced; your script gets throttled even if the node has headroom
 - **You need to walk away** — if your connection drops, your script dies; babysitting a terminal for hours is not research
 
-The solution: a scheduler. **SLURM** reads every job request, knows what resources each job needs, and assigns work to **dedicated nodes** where nothing else is running. You describe the work, hand it to the head chef, and come back when it's done.
+The solution: a scheduler. **SLURM** reads every job request, knows what resources each job needs, and assigns work to **dedicated nodes** where nothing else is running. You don't walk into the kitchen and start cooking — you hand your recipe to the head chef, specify what resources you need, and come back when the job is done.
 
 | Kitchen analogy | Yens / SLURM |
 |---------|--------------|
@@ -52,8 +52,6 @@ The solution: a scheduler. **SLURM** reads every job request, knows what resourc
 | Order ticket | Job script (`sbatch`) |
 | Tickets on the rail | Job queue (`squeue`) |
 | Recipe | Your Python / R / shell script |
-
-You don't walk into the kitchen and start cooking. You hand your recipe to the head chef, specify what resources you need, and come back when the job is done.
 
 {: .note }
 > **Why does this matter?** When you submit a job to the cluster, you have to tell the scheduler exactly how much CPU, RAM, and time your job needs. If you ask for too little, your job fails. If you ask for too much, you wait longer in the queue and waste shared resources. The only way to know what to ask for is to **measure first**.
