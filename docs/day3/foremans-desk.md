@@ -47,13 +47,15 @@ echo "Job finished at $(date)"
 {: .warning }
 > **Your SLURM script must set up its own environment.** When SLURM runs your job, it starts a fresh shell on a compute node — your virtual environment is not active, and your working directory is not set. Every command you need must be in the script: `cd` to the right directory and `source .venv/bin/activate` before calling Python.
 
-**Test interactively on the Yens before submitting** — run the script directly on an interactive node to catch path or environment errors before it enters the queue:
+**Test interactively on the Yens before submitting** — run the commands directly on an interactive node to confirm there are no errors before handing it to the head chef:
 
 ```bash
-bash jobs/extract.slurm
+cd ~/rf-bootcamp-2026
+source .venv/bin/activate
+python scripts/extract_form_3_batch.py
 ```
 
-This runs your script exactly as SLURM would. If it completes without errors, you're ready to submit.
+If it completes without errors, you're ready to submit.
 
 When the interactive test passes — put a **🟢 green sticky** on your laptop. If it errors, put up a **🔴 red sticky** and fix it before submitting.
 
