@@ -88,9 +88,7 @@ time python scripts/mystery_script.py
 **Step 4 — Monitor it in Terminal 2 while it runs.**
 
 ```bash
-htop                  # all processes on this node
-htop -u $USER         # filter to your processes — watch RES (memory) and CPU% columns
-userload              # your total footprint on this node
+watch userload
 ```
 
 **Compare with your neighbor:**
