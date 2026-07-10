@@ -126,6 +126,7 @@ htop -u $USER
 - How long did it take?
 - How many CPU cores did it use?
 - How much RAM did it peak at?
+- Is this script **serial** (one core) or **parallel** (multiple cores)? How can you tell?
 - Do you see the same numbers?
 
 When you can describe what the mystery script does to your CPU and RAM — put a **🟢 green sticky** on your laptop. If something is not working, put up a **🔴 red sticky** and an instructor will come help.
