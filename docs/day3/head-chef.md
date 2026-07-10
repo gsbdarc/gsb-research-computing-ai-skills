@@ -79,22 +79,13 @@ In the new terminal, SSH directly to that node by name (not the load-balanced `y
 ssh YOUR_SUNETID@yen2.stanford.edu   # replace yen2 with whatever hostname showed above
 ```
 
-**Step 3 — Activate your environment in both terminals.**
-
-Run this in each terminal:
-
-```bash
-cd ~/rf-bootcamp-2026
-source .venv/bin/activate
-```
-
-**Step 4 — Run the script in Terminal 1.**
+**Step 3 — Run the script in Terminal 1.**
 
 ```bash
 time python scripts/mystery_script.py
 ```
 
-**Step 5 — Monitor it in Terminal 2 while it runs.**
+**Step 4 — Monitor it in Terminal 2 while it runs.**
 
 ```bash
 htop                  # all processes on this node
