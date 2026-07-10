@@ -155,3 +155,43 @@ watch userload
 Note the `real`, `user`, and `sys` times when it finishes. Is this script serial or parallel?
 
 <label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="exercise2"> I profiled extract_form_3_one_file.py and understand its time, CPU, and RAM usage</label>
+
+---
+
+## Side Quest — Profile Your Own Research Script
+
+{: .note }
+> Finished early? Have a script from your own research? Try this.
+
+Copy a script from your research project onto the Yens and profile it using the same two-terminal technique.
+
+```bash
+# Copy your script to the Yens (run this on your laptop)
+scp /path/to/your/script.py SUNetID@yen.stanford.edu:~/your-project/
+```
+
+Then profile it:
+
+Terminal 1:
+```bash
+time python your-project/script.py
+```
+
+Terminal 2:
+```bash
+watch userload
+```
+
+Record what you observe in a `README.md` in that project folder:
+
+```
+## Resource Profile
+
+- Script: script.py
+- Wall-clock time (real):
+- CPU usage (user):
+- RAM peak:
+- Serial or parallel?
+```
+
+<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="side2"> I profiled my own research script and recorded its time, CPU, and RAM in a README</label>
