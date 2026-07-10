@@ -140,7 +140,7 @@ When you can describe what the mystery script does to your CPU and RAM — put a
 
 ---
 
-## ✏️ Interactive Yens
+## Interactive Yens
 
 The interactive Yens are unusual compared to most HPC clusters: they serve double duty as both login nodes and light compute nodes. You can SSH in and run small exploratory work right there. Most clusters don't allow this — on typical HPC systems, the login node is strictly for job submission, and all computation goes through the scheduler.
 
@@ -159,7 +159,7 @@ Use the interactive Yens for: exploring data, testing code, runs where you're wa
 
 ---
 
-## ✏️ The Yen-SLURM Cluster
+## The Yen-SLURM Cluster
 
 The Yens has **5 interactive nodes** (`yen1`–`yen5`). When you SSH in, you land on one of these — and so does everyone else.
 
