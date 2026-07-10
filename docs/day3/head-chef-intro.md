@@ -80,6 +80,7 @@ squeue
 
 Look at the columns:
 - **JOBID** — unique ID for each job
+- **PARTITION** — which partition (queue) the job was submitted to — each partition has different node types, time limits, and resource caps; see the [current partitions and their limits](https://rcpedia.stanford.edu/_user_guide/slurm/#current-partitions-and-their-limits)
 - **ST** — status: `R` = running, `PD` = pending (waiting in queue for resources)
 - **TIME** — how long the job has been running
 - **NODELIST** — which compute node it landed on
@@ -90,11 +91,17 @@ There is also a shorthand to filter to just your jobs:
 squeue --me
 ```
 
+You can also filter by partition — for example, to see only GPU jobs:
+
+```bash
+squeue -p gpu
+```
+
 Every `PD` job is waiting for a node with the resources it requested. When SLURM finds a matching node — it runs.
 
 When you can read the queue and explain the difference between `R` and `PD` to a neighbor — put a **🟢 green sticky** on your laptop.
 
-<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="main"> I understand why SLURM exists and can read the job queue with squeue</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="main"> I can read the job queue with squeue and filter it by partition</label>
 
 ---
 
