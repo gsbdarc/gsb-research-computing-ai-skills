@@ -145,8 +145,9 @@ The cloud is a rented kitchen — and it's **just for you**. Unlike the Yens, yo
 ## Class Participation Time
 
 {: .important }
-> **Demo + Discussion:** Your instructor will walk through the kitchen analogy and open the floor for questions.
+> **Demo + Discussion:** We will all participate in a class demo together.
 
+**After the demo:**
 - What are the tradeoffs between your laptop, the Yens, and the cloud?
 - What happens when many researchers all run jobs at once on the shared Yens?
 
