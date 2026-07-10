@@ -58,7 +58,7 @@ This page will teach you **how to estimate the resources your script is actually
 
 ## 💻 Exercise 2 — Profile a Mystery Script
 
-You are going to run a script you have never seen before and figure out what resources it uses — without reading the code. The technique is simple: one terminal runs the script, a second terminal on the **same node** watches it live.
+You are going to run a script you have never seen before and figure out what resources it uses — without reading the code. This is called **profiling**: measuring a script's time, CPU, and RAM usage as it runs. The technique is simple: one terminal runs the script, a second terminal on the **same node** watches it live.
 
 {: .important }
 > **Exercise:** Run `mystery_script.py` and measure its resource usage in real time using two terminals — both on the **same Yen node**.
@@ -130,7 +130,7 @@ htop -u $USER
 
 When you can describe what the mystery script does to your CPU and RAM — put a **🟢 green sticky** on your laptop. If something is not working, put up a **🔴 red sticky** and an instructor will come help.
 
-<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="mystery"> I profiled mystery_script.py and can describe its time, CPU, and RAM usage</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="mystery"> I understand its time, CPU, and RAM usage</label>
 
 ---
 
