@@ -99,8 +99,6 @@ squeue -p gpu
 
 Every `PD` job is waiting for a node with the resources it requested. When SLURM finds a matching node — it runs.
 
-Every `PD` job is waiting for a node with the resources it requested. When SLURM finds a matching node — it runs.
-
 Now run `sinfo` to see the state of all nodes and partitions:
 
 ```bash
