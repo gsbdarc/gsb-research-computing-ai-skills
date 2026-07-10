@@ -143,7 +143,7 @@ Now run `longsqueue` — you should see the full resource picture of every job i
 
 <label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="side3"> I added the longsqueue alias to my ~/.bash_profile and can read CPU and memory requests in the queue</label>
 
-**Bonus 3 — Peek at a running job's resource use**
+**Bonus 2 — Peek at a running job's resource use**
 
 Once you have a job running (you will in later exercises), you can inspect what it is actually consuming in real time using `sstat`:
 
