@@ -25,7 +25,7 @@ The interactive Yens are unusual compared to most HPC clusters: they serve doubl
 | Notebooks? | Yes |
 | GPUs? | No |
 
-Use the interactive Yens for: exploring data, testing code, runs where you're watching the terminal (or using `screen` to keep a session alive). Use SLURM for: anything that needs guaranteed resources, runs unattended, or shouldn't compete with other users.
+Use the interactive Yens for: exploring data, testing code, runs where you're watching the terminal (or using [`screen`](https://rcpedia.stanford.edu/_user_guide/screen/) to keep a session alive).
 
 ---
 
