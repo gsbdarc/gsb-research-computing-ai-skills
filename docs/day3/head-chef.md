@@ -12,6 +12,110 @@ permalink: /day3/head-chef/
 
 ---
 
+## Main Exercise — See Your Shared Cluster
+
+{: .important }
+> **Exercise:** SSH into a Yen node, observe who is using the cluster right now, and profile a mystery script to measure its resource footprint.
+
+**Step 1 — Connect to the Yens**
+
+```bash
+ssh YOUR_USERNAME@yen.stanford.edu
+```
+
+You'll land on one of the five interactive Yen nodes (`yen1`–`yen5`). The load balancer picks which one.
+
+**Step 2 — See every process on this node**
+
+```bash
+htop
+```
+
+`htop` shows every running process from every user on this node:
+- How many researchers are active right now?
+- Who is using the most CPU?
+- Who is using the most memory?
+
+Press `q` to quit.
+
+**Step 3 — See your own footprint**
+
+```bash
+userload
+```
+
+`userload` shows only **your** CPU and memory usage on this node — not other users. Right now it should be near zero since you haven't run anything yet.
+
+{: .note }
+> `htop` shows everyone's processes on the node. `userload` shows only your footprint. Use `htop` to see the full picture; use `userload` to check what you specifically are consuming.
+
+When you can read both outputs — put a **🟢 green sticky** on your laptop. If something is not working, put up a **🔴 red sticky** and an instructor will come help.
+
+<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="ssh"> I can SSH into the Yens and read the shared node with htop and userload</label>
+
+---
+
+**Step 4 — Profile a mystery script**
+
+You're about to run a script whose resource usage you don't know. Your job: figure out what it's doing.
+
+Open **two terminal tabs**, both connected to the Yens, and activate your environment in each:
+
+```bash
+cd ~/rf-bootcamp-2026
+source .venv/bin/activate
+```
+
+In the **first terminal**, start the mystery script:
+
+```bash
+python scripts/mystery_script.py
+```
+
+Immediately in the **second terminal**, watch what it does:
+
+```bash
+htop -u $USER     # filter to your processes — watch RES (memory) and CPU% columns
+userload          # see your total footprint on this node
+```
+
+When the script finishes, time it:
+
+```bash
+time python scripts/mystery_script.py
+```
+
+Compare with a neighbor. Do you see the same numbers? Based on what you measured, what `--time`, `--mem`, and `--cpus-per-task` would you ask from a scheduler?
+
+When you can describe what the mystery script does to your CPU and RAM — put a **🟢 green sticky** on your laptop. If something is not working, put up a **🔴 red sticky** and an instructor will come help.
+
+<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="mystery"> I profiled mystery_script.py and can describe what it uses</label>
+
+---
+
+## Optional Exercises — Cluster Tools
+
+{: .note }
+> Finished early? Try one or both of these.
+
+**Bonus 1 — Sort htop by memory**
+
+In htop, press `F6`, select `MEM%`, press Enter. What is the #1 memory-consuming process on this node right now? How much RAM is it using?
+
+<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="htop-mem"> I sorted htop by memory and identified the top consumer</label>
+
+**Bonus 2 — Read ps output**
+
+```bash
+ps aux --sort=-%mem | head -15
+```
+
+Look at the VSZ and RSS columns. What is the difference between virtual memory (VSZ) and resident memory (RSS)?
+
+<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="ps"> I can explain the difference between VSZ and RSS</label>
+
+---
+
 ## The Shared Cluster Problem
 
 The Yens has **5 interactive nodes** (`yen1`–`yen5`). When you SSH in, you land on one of these — and so does everyone else.
@@ -45,6 +149,10 @@ You don't walk into the kitchen and start cooking. You hand your recipe to the h
 
 ## Interactive Yens vs SLURM Nodes
 
+The interactive Yens are unusual compared to most HPC clusters: they serve double duty as both login nodes and light compute nodes. You can SSH in and run small exploratory work right there. Most clusters don't allow this — on typical HPC systems, the login node is strictly for job submission, and all computation goes through the scheduler.
+
+The SLURM nodes are the other half: 12 dedicated nodes where nothing else is running. You never SSH to them. You write a job script, hand it to SLURM, and SLURM decides when and where it runs.
+
 | | Interactive Yens | SLURM Scheduled Nodes |
 |---|---|---|
 | Nodes | 5 | 12 |
@@ -54,7 +162,7 @@ You don't walk into the kitchen and start cooking. You hand your recipe to the h
 | Notebooks? | Yes | No |
 | Usage reporting | `userload`, `htop` | `sacct` |
 
-You do **not** SSH to SLURM nodes — the scheduler sends your job there.
+Use the interactive Yens for: exploring data, testing code, runs where you're watching the terminal (or using `screen` to keep a session alive). Use SLURM for: anything that needs guaranteed resources, runs unattended, or shouldn't compete with other users.
 
 ---
 
