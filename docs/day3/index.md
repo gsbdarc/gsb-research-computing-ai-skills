@@ -31,7 +31,7 @@ Any questions about Day 1–2 we can discuss before we move on.
 | [The Head Chef](head-chef/) | 🖊️💻 Demo + discussion | Why SLURM exists; interactive Yens vs dedicated compute nodes |
 | [The Data Mine](data-mine/) | 💻 Hands-on | Dig into real Yens cluster data; find patterns in CPU, memory, and job history |
 | [The Scales](scales/) | 💻 Hands-on | Run the script, profile it — stop guessing at resource requests |
-| [The Foreman's Desk](foremans-desk/) | 💻 Hands-on | Forge a SLURM script from a blank page and submit it yourself |
+| [The Ticket Rail](foremans-desk/) | 💻 Hands-on | Forge a SLURM script from a blank page and submit it yourself |
 | [The Watch Tower](watch-tower/) | 💻 Hands-on | Stalk, cancel, and autopsy your batch jobs like a pro |
 | [The Chronicle](chronicle/) | 💻 Hands-on | Capture your pipeline in a README while the details are still hot |
 | [Boss Gate 3](boss-gate-3/) | 🔑 Capstone | Drive a real research pipeline at scale — documented and delivered |

@@ -15,7 +15,7 @@ permalink: /day3/watch-tower/
 ## Main Exercise — Monitor Your Job
 
 {: .important }
-> **Exercise:** Monitor the job you submitted in The Foreman's Desk using `squeue`, `scancel`, and `sacct`.
+> **Exercise:** Monitor the job you submitted in The Ticket Rail using `squeue`, `scancel`, and `sacct`.
 
 **Check your jobs:**
 ```bash

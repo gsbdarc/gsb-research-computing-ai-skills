@@ -1,12 +1,12 @@
 ---
 layout: default
-title: "The Foreman's Desk"
+title: "The Ticket Rail"
 parent: "Day 3 — The SLURM Mines"
 nav_order: 7
 permalink: /day3/foremans-desk/
 ---
 
-# The Foreman's Desk
+# The Ticket Rail
 
 <div data-room-id="d3-foremans-desk"></div>
 
