@@ -79,16 +79,28 @@ In the new terminal, SSH directly to that node by name (not the load-balanced `y
 ssh YOUR_SUNETID@yen2.stanford.edu   # replace yen2 with whatever hostname showed above
 ```
 
-**Step 3 — Run the script in Terminal 1.**
+**Step 3 — Run the script in Terminal 1, monitor with `watch userload` in Terminal 2.**
 
+Terminal 1:
 ```bash
 time python scripts/mystery_script.py
 ```
 
-**Step 4 — Monitor it in Terminal 2 while it runs.**
-
+Terminal 2:
 ```bash
 watch userload
+```
+
+**Step 4 — Run the script again. This time monitor with `htop -u $USER` in Terminal 2.**
+
+Terminal 1:
+```bash
+time python scripts/mystery_script.py
+```
+
+Terminal 2:
+```bash
+htop -u $USER
 ```
 
 **Compare with your neighbor:**
