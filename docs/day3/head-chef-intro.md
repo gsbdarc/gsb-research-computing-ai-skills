@@ -18,14 +18,14 @@ The interactive Yens are unusual compared to most HPC clusters: they serve doubl
 
 The Yens has **5 interactive nodes** (`yen1`–`yen5`). When you SSH in, you land on one of these — and so does everyone else. CPU cores and RAM are **shared** between all users on the same node, and per-user limits are enforced — but many researchers running at once still slows everyone down.
 
-| | Interactive Yens | SLURM Scheduled Nodes |
-|---|---|---|
-| Nodes | 5 (`yen1`–`yen5`) | 12 |
-| How to access | SSH directly | Submit a job script |
-| Wait for resources? | No | Yes — may queue |
-| CPU / RAM shared among users? | Yes | No — yours alone |
-| Notebooks? | Yes | No |
-| GPUs? | No | Some nodes |
+| | Interactive Yens |
+|---|---|
+| Nodes | 5 (`yen1`–`yen5`) |
+| How to access | SSH directly |
+| Wait for resources? | No |
+| CPU / RAM shared among users? | Yes |
+| Notebooks? | Yes |
+| GPUs? | No |
 
 Use the interactive Yens for: exploring data, testing code, runs where you're watching the terminal (or using [`screen`](https://rcpedia.stanford.edu/_user_guide/screen/) to keep a session alive).
 
@@ -41,6 +41,15 @@ In the live demo earlier you saw what happens when many cooks share the same kit
 - **You need to walk away** — if your connection drops, your script dies; babysitting a terminal for hours is not research
 
 The solution: a scheduler. **SLURM** reads every job request, knows what resources each job needs, and assigns work to **dedicated nodes** where nothing else is running. You don't walk into the kitchen and start cooking — you hand your recipe to the head chef, specify what resources you need, and come back when the job is done.
+
+| | Interactive Yens | SLURM Scheduled Nodes |
+|---|---|---|
+| Nodes | 5 (`yen1`–`yen5`) | 12 |
+| How to access | SSH directly | Submit a job script |
+| Wait for resources? | No | Yes — may queue |
+| CPU / RAM shared among users? | Yes | No — yours alone |
+| Notebooks? | Yes | No |
+| GPUs? | No | Some nodes |
 
 | Kitchen analogy | Yens / SLURM |
 |---------|--------------|
