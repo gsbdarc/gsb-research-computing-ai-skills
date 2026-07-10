@@ -99,6 +99,10 @@ squeue -p gpu
 
 Every `PD` job is waiting for a node with the resources it requested. When SLURM finds a matching node — it runs.
 
+When you can read the queue and explain the difference between `R` and `PD` to a neighbor — put a **🟢 green sticky** on your laptop.
+
+<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="main"> I can read the job queue with squeue and filter it by partition</label>
+
 Now run `sinfo` to see the state of all nodes and partitions:
 
 ```bash
@@ -108,10 +112,6 @@ sinfo
 - How many compute nodes are currently idle (`STATE=idle`)?
 - What partitions exist? Which one would you use for a normal job?
 - What is the maximum time limit for each partition?
-
-When you can read the queue and explain the difference between `R` and `PD` to a neighbor — put a **🟢 green sticky** on your laptop.
-
-<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="main"> I can read the job queue with squeue and filter it by partition</label>
 
 <label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="side1"> I ran sinfo and can describe the Yens partitions and node states</label>
 
