@@ -127,7 +127,6 @@ htop -u $USER
 - How many CPU cores did it use?
 - How much RAM did it peak at?
 - Is this script **serial** (one core) or **parallel** (multiple cores)? How can you tell?
-- Do you see the same numbers?
 
 {: .note }
 > **Definitions**
