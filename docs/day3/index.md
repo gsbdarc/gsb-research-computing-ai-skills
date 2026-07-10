@@ -35,4 +35,3 @@ Any questions about Day 1–2 we can discuss before we move on.
 | [The Watch Tower](watch-tower/) | 💻 Hands-on | Stalk, cancel, and autopsy your batch jobs like a pro |
 | [The Chronicle](chronicle/) | 💻 Hands-on | Capture your pipeline in a README while the details are still hot |
 | [Boss Gate 3](boss-gate-3/) | 🔑 Capstone | Drive a real research pipeline at scale — documented and delivered |
-| [Hall of Heroes](hall-of-heroes/) | 💬 Celebration | — |
