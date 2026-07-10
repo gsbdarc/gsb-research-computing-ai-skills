@@ -59,22 +59,42 @@ This page will teach you **how to estimate the resources your script is actually
 ## 💻 Exercise 2 — Profile a Mystery Script
 
 {: .important }
-> **Exercise:** Run `mystery_script.py` and measure its resource usage in real time using two terminals.
+> **Exercise:** Run `mystery_script.py` and measure its resource usage in real time using two terminals — both on the **same Yen node**.
 
-Open **two terminal tabs**, both connected to the Yens, and activate your environment in each:
+**Step 1 — Note which Yen you are on.**
+
+In your current terminal, run:
+
+```bash
+hostname
+```
+
+You will see something like `yen2.stanford.edu`. Remember this — your second terminal must connect to the exact same node.
+
+**Step 2 — Open a second terminal on the same node.**
+
+In the new terminal, SSH directly to that node by name (not the load-balanced `yen.stanford.edu`, which could land you on a different machine):
+
+```bash
+ssh YOUR_SUNETID@yen2.stanford.edu   # replace yen2 with whatever hostname showed above
+```
+
+**Step 3 — Activate your environment in both terminals.**
+
+Run this in each terminal:
 
 ```bash
 cd ~/rf-bootcamp-2026
 source .venv/bin/activate
 ```
 
-In the **first terminal**, start the mystery script:
+**Step 4 — Run the script in Terminal 1.**
 
 ```bash
 time python scripts/mystery_script.py
 ```
 
-Immediately in the **second terminal**, watch what it does while it runs:
+**Step 5 — Monitor it in Terminal 2 while it runs.**
 
 ```bash
 htop                  # all processes on this node
