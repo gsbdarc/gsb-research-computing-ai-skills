@@ -18,14 +18,14 @@ The interactive Yens are unusual compared to most HPC clusters: they serve doubl
 
 The Yens has **5 interactive nodes** (`yen1`–`yen5`). When you SSH in, you land on one of these — and so does everyone else. CPU cores and RAM are **shared** between all users on the same node, and per-user limits are enforced — but many researchers running at once still slows everyone down.
 
-| | Interactive Yens |
-|---|---|
-| Nodes | 5 (`yen1`–`yen5`) |
-| How to access | SSH directly |
-| Wait for resources? | No |
-| CPU / RAM shared among users? | Yes |
-| Notebooks? | Yes |
-| GPUs? | No |
+| | Interactive Yens | SLURM Scheduled Nodes |
+|---|---|---|
+| Nodes | 5 (`yen1`–`yen5`) | 12 |
+| How to access | SSH directly | Submit a job script |
+| Wait for resources? | No | Yes — may queue |
+| CPU / RAM shared among users? | Yes | No — yours alone |
+| Notebooks? | Yes | No |
+| GPUs? | No | Some nodes |
 
 Use the interactive Yens for: exploring data, testing code, runs where you're watching the terminal (or using [`screen`](https://rcpedia.stanford.edu/_user_guide/screen/) to keep a session alive).
 
