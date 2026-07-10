@@ -31,7 +31,7 @@ mkdir -p jobs logs
 #SBATCH --time=00:10:00                 # max wall time HH:MM:SS — set from your Scales measurement
 #SBATCH --mem=2G                        # memory request — set from your Scales measurement
 #SBATCH --cpus-per-task=1              # CPU cores
-#SBATCH --partition=normal             # which queue (ask instructor for correct partition)
+#SBATCH --partition=normal
 
 # --- Setup ---
 echo "Job started on $(hostname) at $(date)"
