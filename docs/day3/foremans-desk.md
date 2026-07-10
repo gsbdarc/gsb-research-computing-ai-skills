@@ -86,10 +86,10 @@ Note your job ID — you'll need it in The Watch Tower.
 Add these two lines to your job script (right after the `#SBATCH --partition` line):
 
 ```bash
-#SBATCH --mail-type=END,FAIL
-#SBATCH --mail-user=YOUR_SUNETID@stanford.edu
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=SUNetID@stanford.edu
 ```
 
-Re-submit with `sbatch jobs/extract.slurm`. You will get an email when the job ends or fails — essential for long jobs you submit and walk away from.
+Re-submit with `sbatch jobs/extract.slurm`. `ALL` sends an email when the job starts, ends, and fails — including a utilization summary so you can see how much CPU and RAM the job actually used.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-foremans-desk" data-key="side1"> I added email notifications to my job script</label>
