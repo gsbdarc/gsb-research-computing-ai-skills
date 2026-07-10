@@ -40,7 +40,7 @@ In the live demo earlier you saw what happens when many cooks share the same kit
 - **You hit the user limit** — per-user CPU and RAM caps are enforced; your script gets throttled even if the node has headroom
 - **You need to walk away** — if your connection drops, your script dies; babysitting a terminal for hours is not research
 
-The solution: a scheduler. **SLURM** reads every job request, knows what resources each job needs, and assigns work to **dedicated nodes** where nothing else is running. You describe the work, hand it to the foreman, and come back when it's done.
+The solution: a scheduler. **SLURM** reads every job request, knows what resources each job needs, and assigns work to **dedicated nodes** where nothing else is running. You describe the work, hand it to the head chef, and come back when it's done.
 
 | Kitchen analogy | Yens / SLURM |
 |---------|--------------|
