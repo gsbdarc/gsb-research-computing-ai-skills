@@ -3,7 +3,7 @@ layout: default
 title: "The Scales"
 parent: "Day 3 — The SLURM Mines"
 nav_order: 3
-permalink: /day3/scales-profiling/
+permalink: /day3/scales/
 ---
 
 # The Scales
