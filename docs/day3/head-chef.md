@@ -56,41 +56,7 @@ This page will teach you **how to estimate the resources your script is actually
 
 ---
 
-## 💻 Exercise 2 — Profile Your Day 2 Script
-
-Now that you know the technique, apply it to a script you already know: `extract_form_3_one_file.py` from Day 2.
-
-**Step 1 — Note which Yen you are on.**
-
-```bash
-hostname
-```
-
-**Step 2 — Open a second terminal on the same node.**
-
-```bash
-ssh SUNetID@yen2.stanford.edu   # replace yen2 with whatever hostname showed above
-```
-
-**Step 3 — Run the script in Terminal 1.**
-
-```bash
-time python scripts/extract_form_3_one_file.py
-```
-
-**Step 4 — Monitor it in Terminal 2.**
-
-```bash
-watch userload
-```
-
-Note the `real`, `user`, and `sys` times when it finishes. Is this script serial or parallel?
-
-<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="exercise2"> I profiled extract_form_3_one_file.py and understand its time, CPU, and RAM usage</label>
-
----
-
-## 💻 Exercise 3 — Profile a Mystery Script
+## 💻 Exercise 2 — Profile a Mystery Script
 
 You are going to run a script you have never seen before and figure out what resources it uses — without reading the code. This is called **profiling**: measuring a script's time, CPU, and RAM usage as it runs. The technique is simple: one terminal runs the script, a second terminal on the **same node** watches it live.
 
@@ -171,6 +137,26 @@ htop -u $USER
 When you can describe what the mystery script does to your CPU and RAM — put a **🟢 green sticky** on your laptop. If something is not working, put up a **🔴 red sticky** and an instructor will come help.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="mystery"> I profiled mystery_script.py and I understand its time, CPU, and RAM usage</label>
+
+---
+
+## 💻 Exercise 3 — Profile Your Day 2 Script
+
+Now apply the same technique to a script you already know: `extract_form_3_one_file.py` from Day 2.
+
+Terminal 1:
+```bash
+time python scripts/extract_form_3_one_file.py
+```
+
+Terminal 2:
+```bash
+watch userload
+```
+
+Note the `real`, `user`, and `sys` times when it finishes. Is this script serial or parallel?
+
+<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="exercise2"> I profiled extract_form_3_one_file.py and understand its time, CPU, and RAM usage</label>
 
 ---
 
