@@ -129,6 +129,12 @@ htop -u $USER
 - Is this script **serial** (one core) or **parallel** (multiple cores)? How can you tell?
 - Do you see the same numbers?
 
+{: .note }
+> **Definitions**
+> - **Profiling** — measuring a script's resource usage (time, CPU, RAM) as it runs
+> - **Serial** — the script uses one CPU core at a time; `user` time ≈ `real` time
+> - **Parallel** — the script uses multiple cores simultaneously; `user` time > `real` time
+
 When you can describe what the mystery script does to your CPU and RAM — put a **🟢 green sticky** on your laptop. If something is not working, put up a **🔴 red sticky** and an instructor will come help.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="mystery"> I understand its time, CPU, and RAM usage</label>
