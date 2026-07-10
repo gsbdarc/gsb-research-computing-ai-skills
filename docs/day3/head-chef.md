@@ -136,7 +136,7 @@ htop -u $USER
 
 When you can describe what the mystery script does to your CPU and RAM — put a **🟢 green sticky** on your laptop. If something is not working, put up a **🔴 red sticky** and an instructor will come help.
 
-<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="mystery"> I understand its time, CPU, and RAM usage</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="mystery"> I profiled mystery_script.py and I understand its time, CPU, and RAM usage</label>
 
 ---
 
