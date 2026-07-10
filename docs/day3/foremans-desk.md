@@ -17,7 +17,7 @@ permalink: /day3/foremans-desk/
 {: .important }
 > **Exercise:** Write a SLURM job script from scratch, understand every directive, and submit your first batch job.
 
-**Create `jobs/extract.sh`:**
+**Create `jobs/extract.slurm`:**
 
 ```bash
 mkdir -p jobs logs
@@ -44,21 +44,24 @@ python scripts/extract_form_3_batch.py
 echo "Job finished at $(date)"
 ```
 
-**Test before submitting** — run the script locally to catch path or venv errors before it enters the queue:
+{: .warning }
+> **Your SLURM script must set up its own environment.** When SLURM runs your job, it starts a fresh shell on a compute node — your virtual environment is not active, and your working directory is not set. Every command you need must be in the script: `cd` to the right directory and `source .venv/bin/activate` before calling Python.
+
+**Test interactively on the Yens before submitting** — run the script directly on an interactive node to catch path or environment errors before it enters the queue:
 
 ```bash
-bash jobs/extract.sh
+bash jobs/extract.slurm
 ```
 
-This runs your script exactly as SLURM would, but right now on the interactive node. If it completes without errors, you're ready to submit.
+This runs your script exactly as SLURM would. If it completes without errors, you're ready to submit.
 
-When the local test passes — put a **🟢 green sticky** on your laptop. If it errors, put up a **🔴 red sticky** and fix it before submitting.
+When the interactive test passes — put a **🟢 green sticky** on your laptop. If it errors, put up a **🔴 red sticky** and fix it before submitting.
 
-<label class="quest-check"><input type="checkbox" data-room="d3-foremans-desk" data-key="main"> I wrote extract.sh and the local bash test passed without errors</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-foremans-desk" data-key="main"> I wrote extract.slurm and the interactive test passed without errors</label>
 
 **Submit:**
 ```bash
-sbatch jobs/extract.sh
+sbatch jobs/extract.slurm
 # Submitted batch job 12345678
 ```
 
@@ -85,6 +88,6 @@ Add these two lines to your job script (right after the `#SBATCH --partition` li
 #SBATCH --mail-user=YOUR_SUNETID@stanford.edu
 ```
 
-Re-submit with `sbatch jobs/extract.sh`. You will get an email when the job ends or fails — essential for long jobs you submit and walk away from.
+Re-submit with `sbatch jobs/extract.slurm`. You will get an email when the job ends or fails — essential for long jobs you submit and walk away from.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-foremans-desk" data-key="side1"> I added email notifications to my job script</label>

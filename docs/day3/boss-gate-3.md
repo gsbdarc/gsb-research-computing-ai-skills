@@ -14,20 +14,20 @@ permalink: /day3/boss-gate-3/
 
 Submit your Day 2 LLM extraction script as a SLURM batch job:
 
-1. Write `jobs/extract.sh` with correct `#SBATCH` directives — time, memory, and partition based on your profiling from The Scales
+1. Write `jobs/extract.slurm` with correct `#SBATCH` directives — time, memory, and partition based on your profiling from The Scales
 2. Submit with `sbatch`; confirm the job enters the queue with `squeue -u $USER`
 3. Wait for it to complete; inspect the output with `sacct -j JOBID --format=JobID,State,Elapsed,MaxRSS`
 4. Update `README.md` with SLURM instructions — how to submit, how to monitor, where the output goes
 5. Commit and push:
 
 ```bash
-git add jobs/extract.sh README.md
+git add jobs/extract.slurm README.md
 git commit -m "Boss Gate 3: first SLURM submission complete"
 git push
 ```
 
 Your commit should include:
-- `jobs/extract.sh` with `#SBATCH` directives based on real profiling, not guesses
+- `jobs/extract.slurm` with `#SBATCH` directives based on real profiling, not guesses
 - `README.md` — what the script does, how to run it, where output lands
 
 ---

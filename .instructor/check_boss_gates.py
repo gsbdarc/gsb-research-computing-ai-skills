@@ -82,24 +82,24 @@ def check_gate_2():
 
 
 def check_gate_3():
-    """Boss Gate 3: jobs/extract.sh + README.md."""
+    """Boss Gate 3: jobs/extract.slurm + README.md."""
     errors = []
-    job_script = REPO_ROOT / "jobs" / "extract.sh"
+    job_script = REPO_ROOT / "jobs" / "extract.slurm"
     readme = REPO_ROOT / "README.md"
 
     if not job_script.exists():
-        errors.append("jobs/extract.sh not found — write and submit your SLURM batch job script")
+        errors.append("jobs/extract.slurm not found — write and submit your SLURM batch job script")
     else:
         content = job_script.read_text()
         if "#SBATCH" not in content:
-            errors.append("jobs/extract.sh doesn't contain any #SBATCH directives")
+            errors.append("jobs/extract.slurm doesn't contain any #SBATCH directives")
 
     if not readme.exists():
         errors.append("README.md not found — write it in The Chronicle room")
 
     if errors:
         return False, "; ".join(errors)
-    return True, "jobs/extract.sh with #SBATCH directives present; README.md present"
+    return True, "jobs/extract.slurm with #SBATCH directives present; README.md present"
 
 
 def check_gate_4():
