@@ -10,7 +10,7 @@
   const STORAGE_KEY = 'dungeon.v1.progress';
 
   // Total possible checkboxes across the entire dungeon (all 4 days)
-  const TOTAL_CHECKS = 42;
+  const TOTAL_CHECKS = 44;
 
   const LEVEL_TITLES = [
     'Initiate', 'Apprentice', 'Scholar', 'Journeyman', 'Adept',
@@ -52,7 +52,7 @@
       prefix: 'd3',
       rooms: [
         { id: 'd3-kitchen',         keys: ['main'] },
-        { id: 'd3-head-chef',       keys: ['exercise3', 'exercise2', 'mystery', 'main', 'side1', 'side2', 'readme'] },
+        { id: 'd3-head-chef',       keys: ['exercise3', 'exercise2', 'mystery', 'main', 'side1', 'side2', 'readme', 'side3', 'side4'] },
         { id: 'd3-data-mine',       keys: ['main', 'side1', 'side2'] },
         { id: 'd3-foremans-desk',   keys: ['main', 'submit', 'side1'] },
         { id: 'd3-watch-tower',     keys: ['main', 'side1', 'side2'] },

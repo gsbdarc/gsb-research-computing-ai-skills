@@ -114,3 +114,40 @@ sinfo
 - What is the maximum time limit for each partition?
 
 <label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="side1"> I ran sinfo and can describe the Yens partitions and node states</label>
+
+**Bonus 2 — Add a `longsqueue` alias**
+
+The default `squeue` output is sparse. Pass a custom format to see what each job actually requested — CPU cores, memory, and time limit:
+
+```bash
+squeue -o "%.18i %.9P %.8j %.8u %.8T %.10M %.10l %.4C %.7m %.15R"
+```
+
+The columns are: job ID, partition, job name, user, state, time elapsed, time limit, CPU cores requested, memory requested, and reason/node.
+
+Add it as an alias so you can use it any time:
+
+```bash
+echo "alias longsqueue='squeue -o \"%.18i %.9P %.8j %.8u %.8T %.10M %.10l %.4C %.7m %.15R\"'" >> ~/.bash_profile
+source ~/.bash_profile
+```
+
+Now run `longsqueue` — you should see the full resource picture of every job in the queue.
+
+<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="side3"> I added the longsqueue alias to my ~/.bash_profile and can read CPU and memory requests in the queue</label>
+
+**Bonus 3 — Peek at a running job's resource use**
+
+Once you have a job running (you will in later exercises), you can inspect what it is actually consuming in real time using `sstat`:
+
+```bash
+sstat -j JOBID --format=JobID,AveCPU,AveRSS,MaxRSS,NTasks
+```
+
+- **AveCPU** — average CPU time used across tasks
+- **AveRSS** — average RAM in use
+- **MaxRSS** — peak RAM consumed so far
+
+Compare `MaxRSS` to what you requested with `--mem`. Over-requested? Under-requested?
+
+<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="side4"> I used sstat to inspect a running job's CPU and RAM consumption</label>
