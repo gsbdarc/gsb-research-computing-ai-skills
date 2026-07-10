@@ -31,11 +31,16 @@ Use the interactive Yens for: exploring data, testing code, runs where you're wa
 
 ---
 
-## The Yen-SLURM Cluster
+## When the Shared Kitchen Isn't Enough
 
-Long-running or CPU-heavy jobs belong on dedicated resources, not on a shared interactive node.
+In the live demo earlier you saw what happens when many cooks share the same kitchen — burners get taken, the fridge fills up, and everyone slows down. The interactive Yens hit the same limits:
 
-The solution: a scheduler. SLURM reads every job request, knows what resources each job needs, and assigns work to **dedicated nodes** where nothing else is running.
+- **All the burners are taken** — someone else is using all available CPU cores on the node; your script crawls
+- **Not enough room in the fridge** — another user's job already claimed most of the RAM; yours may crash or get killed
+- **You hit the user limit** — per-user CPU and RAM caps are enforced; your script gets throttled even if the node has headroom
+- **You need to walk away** — if your connection drops, your script dies; babysitting a terminal for hours is not research
+
+The solution: a scheduler. **SLURM** reads every job request, knows what resources each job needs, and assigns work to **dedicated nodes** where nothing else is running. You describe the work, hand it to the foreman, and come back when it's done.
 
 | Kitchen analogy | Yens / SLURM |
 |---------|--------------|
