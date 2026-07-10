@@ -1,12 +1,12 @@
 ---
 layout: default
-title: "The Head Chef"
+title: "The Scales"
 parent: "Day 3 — The SLURM Mines"
 nav_order: 3
 permalink: /day3/head-chef/
 ---
 
-# The Head Chef
+# The Scales
 
 <div data-room-id="d3-head-chef"></div>
 
