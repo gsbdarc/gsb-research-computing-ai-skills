@@ -81,6 +81,11 @@ Confirm it is gone:
 squeue --me
 ```
 
+{: .note }
+> You may briefly see your job's status change to **CG** (completing) before it disappears from the queue — that's normal, not an error.
+
+<label class="quest-check"><input type="checkbox" data-room="d3-foremans-desk" data-key="cancel"> I cancelled my job with scancel and confirmed it left the queue</label>
+
 **Add email notifications and resubmit.** Open `jobs/extract.slurm` and add these two lines after `#SBATCH --partition`:
 
 ```bash
