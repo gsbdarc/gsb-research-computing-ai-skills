@@ -2,85 +2,13 @@
 layout: default
 title: "The Scales"
 parent: "Day 3 — The SLURM Mines"
-nav_order: 5
+nav_order: 6
 permalink: /day3/scales/
 ---
 
 # The Scales
 
 <div data-room-id="d3-scales"></div>
-
----
-
-## Main Exercise — Profile Your Script
-
-Before submitting a job to SLURM, you need to know what resources it actually needs:
-
-```
-  How many CPUs?     →  --cpus-per-task
-  How long?          →  --time
-  How much RAM?      →  --mem
-```
-
-You measure first, then request. Not the other way around.
-
-{: .important }
-> **Exercise:** Run the extraction script interactively and measure its resource footprint before writing any `#SBATCH` directives.
-
-**Step 0 — Run the script and understand it:**
-
-```bash
-# Look at the script you built in Day 2
-cat ~/rf-bootcamp-2026/scripts/extract_form_3_one_file.py
-
-# Run it on one filing
-cd ~/rf-bootcamp-2026
-source .venv/bin/activate
-python scripts/extract_form_3_one_file.py
-```
-
-What does the script do? What output do you see? How long did it seem to take?
-
-When the script finishes successfully — put a **🟢 green sticky** on your laptop. If it errors or the venv won't activate, put up a **🔴 red sticky**.
-
-**Step 1 — Time it:**
-
-```bash
-time python scripts/extract_form_3_one_file.py
-# Output:
-# python scripts/extract_form_3_one_file.py  1.83s user 0.21s system 97% cpu 2.099 total
-# The "real" (wall-clock) time is what matters for --time in SLURM
-```
-
-**Step 2 — Monitor memory with htop:**
-
-In one terminal, start your script:
-```bash
-python scripts/extract_form_3_one_file.py &   # run in background
-```
-
-In another terminal:
-```bash
-htop -u $USER              # filter to your processes, watch RES column (resident memory)
-```
-
-**Step 3 — Check your impact with userload:**
-
-```bash
-userload
-# Shows YOUR CPU and memory usage on this interactive Yen node
-# Confirm you're only using what you expected
-```
-
----
-
-**Rule of thumb for `#SBATCH` requests:**
-
-- `--time`: measured wall-clock time × 2 (give yourself margin)
-- `--mem`: peak memory × 1.5
-- `--cpus-per-task`: count your actual Python threads; most single-threaded scripts need 1
-
-<label class="quest-check"><input type="checkbox" data-room="d3-scales" data-key="main"> I profiled extract_form_3_one_file.py and know what --time, --mem, and --cpus-per-task to request</label>
 
 ---
 
