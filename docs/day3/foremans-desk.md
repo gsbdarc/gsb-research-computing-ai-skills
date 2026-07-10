@@ -101,8 +101,6 @@ Resubmit:
 sbatch jobs/extract.slurm
 ```
 
-Note your new job ID — you'll need it in Failed Order.
-
 Once your job runs, check your inbox. You should receive two emails: one when the job **starts** and one when it **ends** — the end email includes a utilization summary showing how much CPU time and memory the job actually used.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-foremans-desk" data-key="side1"> I added email notifications, cancelled my job, and resubmitted</label>
