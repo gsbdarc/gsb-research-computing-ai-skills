@@ -45,7 +45,7 @@ echo "Job finished at $(date)"
 ```
 
 {: .warning }
-> **Your SLURM script must set up its own environment.** When SLURM runs your job, it starts a fresh shell on a compute node — your virtual environment is not active, and your working directory is not set. Every command you need must be in the script: `cd` to the right directory and `source .venv/bin/activate` before calling Python.
+> **Your SLURM script must set up its own environment.** When SLURM runs your job, it starts a fresh shell on a compute node — your virtual environment is not active, your working directory is not set, and no modules are loaded. Every command you need must be in the script: `cd` to the right directory, `source .venv/bin/activate` before calling Python, and any `module load` commands you rely on.
 
 **Test interactively on the Yens before submitting** — run the commands directly on an interactive node to confirm there are no errors before handing it to the head chef:
 
