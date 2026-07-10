@@ -84,10 +84,10 @@ Look at the columns:
 - **TIME** — how long the job has been running
 - **NODELIST** — which compute node it landed on
 
-Check your own queue (probably empty for now):
+There is also a shorthand to filter to just your jobs:
 
 ```bash
-squeue -u $USER
+squeue --me
 ```
 
 Every `PD` job is waiting for a node with the resources it requested. When SLURM finds a matching node — it runs.
