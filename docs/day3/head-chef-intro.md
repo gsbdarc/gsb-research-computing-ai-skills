@@ -2,7 +2,7 @@
 layout: default
 title: "The Head Chef"
 parent: "Day 3 — The SLURM Mines"
-nav_order: 4
+nav_order: 5
 permalink: /day3/head-chef/
 ---
 
