@@ -142,7 +142,7 @@ When you can describe what the mystery script does to your CPU and RAM — put a
 
 ## Interactive Yens
 
-The interactive Yens are unusual compared to most HPC clusters: they serve double duty as both login nodes and light compute nodes. You can SSH in and run small exploratory work right there. Most clusters don't allow this — on typical HPC systems, the login node is strictly for job submission, and all computation goes through the scheduler.
+The interactive Yens are unusual compared to most HPC clusters: they serve double duty as both login nodes and compute nodes. You can SSH in and run work right there. Most clusters don't allow this — on typical HPC systems, the login node is strictly for job submission, and all computation goes through the scheduler.
 
 The SLURM nodes are the other half: 12 dedicated nodes where nothing else is running. You never SSH to them. You write a job script, hand it to SLURM, and SLURM decides when and where it runs.
 
