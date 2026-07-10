@@ -33,7 +33,7 @@ On the last page we introduced the kitchen analogy. Before we run anything, let'
 If you're not already connected, SSH in:
 
 ```bash
-ssh YOUR_SUNETID@yen.stanford.edu
+ssh SUNetID@yen.stanford.edu
 cd ~/rf-bootcamp-2026
 source .venv/bin/activate
 ```
@@ -78,7 +78,7 @@ You will see something like `yen2`. Remember this — your second terminal must 
 In the new terminal, SSH directly to that node by name (not the load-balanced `yen.stanford.edu`, which could land you on a different machine):
 
 ```bash
-ssh YOUR_SUNETID@yen2.stanford.edu   # replace yen2 with whatever hostname showed above
+ssh SUNetID@yen2.stanford.edu   # replace yen2 with whatever hostname showed above
 ```
 
 **Step 3 — Run the script in Terminal 1, monitor with `watch userload` in Terminal 2.**
