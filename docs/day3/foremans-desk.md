@@ -67,29 +67,38 @@ sbatch jobs/extract.slurm
 # Submitted batch job 12345678
 ```
 
-Note your job ID — you'll need it in The Watch Tower.
-
-{: .note }
-> **While your job runs:** Head to [The Chronicle](../chronicle/) now and write your README — the job may sit in the queue for a few minutes. Come back to [The Watch Tower](../watch-tower/) once `sacct` shows your job as `COMPLETED`.
-
 <label class="quest-check"><input type="checkbox" data-room="d3-foremans-desk" data-key="submit"> I submitted with sbatch and my job entered the queue (I have a JOBID)</label>
 
----
+**Cancel your job:**
 
-## Optional Exercises
+```bash
+scancel JOBID
+```
 
-{: .note }
-> Finished early? Try this.
+Confirm it is gone:
 
-**Bonus 1 — Email notifications**
+```bash
+squeue --me
+```
 
-Add these two lines to your job script (right after the `#SBATCH --partition` line):
+**Add email notifications and resubmit.** Open `jobs/extract.slurm` and add these two lines after `#SBATCH --partition`:
 
 ```bash
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=SUNetID@stanford.edu
 ```
 
-Re-submit with `sbatch jobs/extract.slurm`. `ALL` sends an email when the job starts, ends, and fails — including a utilization summary so you can see how much CPU and RAM the job actually used.
+`ALL` sends an email when the job starts, ends, and fails — including a utilization summary showing how much CPU and RAM it actually used.
 
-<label class="quest-check"><input type="checkbox" data-room="d3-foremans-desk" data-key="side1"> I added email notifications to my job script</label>
+Resubmit:
+
+```bash
+sbatch jobs/extract.slurm
+```
+
+Note your new job ID — you'll need it in The Watch Tower.
+
+{: .note }
+> **While your job runs:** Head to [The Chronicle](../chronicle/) now and write your README — the job may sit in the queue for a few minutes. Come back to [The Watch Tower](../watch-tower/) once `sacct` shows your job as `COMPLETED`.
+
+<label class="quest-check"><input type="checkbox" data-room="d3-foremans-desk" data-key="side1"> I added email notifications, cancelled my job, and resubmitted</label>
