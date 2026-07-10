@@ -58,6 +58,8 @@ This page will teach you **how to estimate the resources your script is actually
 
 ## 💻 Exercise 2 — Profile a Mystery Script
 
+You are going to run a script you have never seen before and figure out what resources it uses — without reading the code. This is exactly what you need to do before submitting a job to SLURM: measure first, then request. The technique is simple: one terminal runs the script, a second terminal on the **same node** watches it live.
+
 {: .important }
 > **Exercise:** Run `mystery_script.py` and measure its resource usage in real time using two terminals — both on the **same Yen node**.
 
