@@ -88,6 +88,18 @@ Terminal 1:
 time python scripts/mystery_script.py
 ```
 
+When the script finishes, `time` prints three lines:
+
+```
+real    0m31.234s
+user    2m0.682s
+sys     0m2.212s
+```
+
+- **real** — wall-clock time: how long you actually waited
+- **user** — CPU time your code consumed across all cores; if `user` > `real`, the script used multiple cores in parallel
+- **sys** — CPU time spent on OS-level work (file I/O, memory allocation)
+
 Terminal 2:
 ```bash
 watch userload
