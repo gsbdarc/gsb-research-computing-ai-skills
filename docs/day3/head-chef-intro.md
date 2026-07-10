@@ -49,7 +49,7 @@ The solution: a scheduler. **SLURM** reads every job request, knows what resourc
 | Wait for resources? | No | Yes — may queue |
 | CPU / RAM shared among users? | Yes | No — yours alone |
 | Notebooks? | Yes | No |
-| GPUs? | No | Some nodes |
+| GPUs? | No | Yes |
 
 | Kitchen analogy | Yens / SLURM |
 |---------|--------------|
