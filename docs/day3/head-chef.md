@@ -105,7 +105,10 @@ Terminal 2:
 watch userload
 ```
 
-`userload` shows your **total CPU% and total RAM** across all your processes on this node — your footprint. Note that it does not count your Jupyter processes, which are tracked separately. `watch` re-runs it every 2 seconds so you can see it change while the script runs. See the [current per-user limits](https://rcpedia.stanford.edu/_policies/user_limits/) for how much CPU and RAM any one user can use on an interactive Yen.
+- `userload` shows your **total CPU% and total RAM** across all your processes on this node — your footprint
+- Jupyter processes are tracked separately and are not included
+- `watch` re-runs it every 2 seconds so you can see it change while the script runs
+- See the [current per-user limits](https://rcpedia.stanford.edu/_policies/user_limits/) for how much CPU and RAM any one user can use on an interactive Yen
 
 **Step 4 — Run the script again. This time monitor with `htop -u $USER` in Terminal 2.**
 
