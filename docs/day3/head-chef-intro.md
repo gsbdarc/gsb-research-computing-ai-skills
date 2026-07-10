@@ -16,14 +16,14 @@ permalink: /day3/head-chef/
 
 The interactive Yens are unusual compared to most HPC clusters: they serve double duty as both login nodes and compute nodes. You can SSH in and run work right there. Most clusters don't allow this — on typical HPC systems, the login node is strictly for job submission.
 
-| | Interactive Yens | SLURM Scheduled Nodes |
-|---|---|---|
-| Nodes | 5 | 12 |
-| How to access | SSH directly | Submit a job script |
-| Wait for resources? | No | Yes — may queue |
-| Cores shared between users? | Yes | No — yours alone |
-| Notebooks? | Yes | No |
-| Usage reporting | `userload`, `htop` | `sacct` |
+| | Interactive Yens |
+|---|---|
+| Nodes | 5 (`yen1`–`yen5`) |
+| How to access | SSH directly |
+| Wait for resources? | No |
+| CPU / RAM shared among users? | Yes |
+| GPUs? | No |
+| Notebooks? | Yes |
 
 Use the interactive Yens for: exploring data, testing code, runs where you're watching the terminal (or using `screen` to keep a session alive). Use SLURM for: anything that needs guaranteed resources, runs unattended, or shouldn't compete with other users.
 
