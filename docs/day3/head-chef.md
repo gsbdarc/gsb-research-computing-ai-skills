@@ -158,6 +158,27 @@ Note the `real`, `user`, and `sys` times when it finishes. Is this script serial
 
 ---
 
+## Main Quest — Document Your Script's Resource Needs
+
+Now that you have profiled `extract_form_3_one_file.py`, write down what you found. Open the `README.md` in your repo and add a **Resource Profile** section:
+
+```markdown
+## Resource Profile
+
+### extract_form_3_one_file.py (one file)
+
+- Wall-clock time (real):
+- CPU time (user):
+- RAM peak:
+- Serial or parallel:
+```
+
+Fill in the actual numbers from your `time` and `userload` output. This documents what the script needs to process a single file — a baseline you will use when scaling up.
+
+<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="readme"> I documented the script's time, CPU, and RAM in README.md</label>
+
+---
+
 ## Side Quest — Profile Your Own Research Script
 
 {: .note }
