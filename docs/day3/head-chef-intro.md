@@ -103,7 +103,7 @@ When you can read the queue and explain the difference between `R` and `PD` to a
 
 <label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="main"> I can read the job queue with squeue and filter it by partition</label>
 
-Now run `sinfo` to see the state of all nodes and partitions:
+Now run `sinfo` to see the state of all nodes and [partitions](https://rcpedia.stanford.edu/_user_guide/slurm/#current-partitions-and-their-limits):
 
 ```bash
 sinfo
