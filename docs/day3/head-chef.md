@@ -169,6 +169,7 @@ Now that you have profiled `extract_form_3_one_file.py`, write down what you fou
 
 - Wall-clock time (real):
 - CPU time (user):
+- CPU cores used:
 - RAM peak:
 - Serial or parallel:
 ```
