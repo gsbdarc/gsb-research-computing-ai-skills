@@ -1,12 +1,12 @@
 ---
 layout: default
-title: "The Data Mine"
+title: "The Dumpster Dive"
 parent: "Day 3 — The SLURM Mines"
 nav_order: 4
 permalink: /day3/data-mine/
 ---
 
-# The Data Mine
+# The Dumpster Dive
 
 <div data-room-id="d3-data-mine"></div>
 
