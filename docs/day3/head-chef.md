@@ -69,7 +69,7 @@ In your current terminal, run:
 hostname
 ```
 
-You will see something like `yen2.stanford.edu`. Remember this — your second terminal must connect to the exact same node.
+You will see something like `yen2`. Remember this — your second terminal must connect to the exact same node.
 
 **Step 2 — Open a second terminal on the same node.**
 
