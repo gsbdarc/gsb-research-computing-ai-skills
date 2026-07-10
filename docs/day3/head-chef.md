@@ -93,6 +93,8 @@ Terminal 2:
 watch userload
 ```
 
+`userload` shows your **total CPU% and total RAM** across all your processes on this node — your footprint, and nothing else. `watch` re-runs it every 2 seconds so you can see it change while the script runs.
+
 **Step 4 — Run the script again. This time monitor with `htop -u $USER` in Terminal 2.**
 
 Terminal 1:
