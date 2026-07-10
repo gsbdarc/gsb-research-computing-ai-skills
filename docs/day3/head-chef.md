@@ -56,7 +56,41 @@ This page will teach you **how to estimate the resources your script is actually
 
 ---
 
-## 💻 Exercise 2 — Profile a Mystery Script
+## 💻 Exercise 2 — Profile Your Day 2 Script
+
+Now that you know the technique, apply it to a script you already know: `extract_form_3_one_file.py` from Day 2.
+
+**Step 1 — Note which Yen you are on.**
+
+```bash
+hostname
+```
+
+**Step 2 — Open a second terminal on the same node.**
+
+```bash
+ssh SUNetID@yen2.stanford.edu   # replace yen2 with whatever hostname showed above
+```
+
+**Step 3 — Run the script in Terminal 1.**
+
+```bash
+time python scripts/extract_form_3_one_file.py
+```
+
+**Step 4 — Monitor it in Terminal 2.**
+
+```bash
+watch userload
+```
+
+Note the `real`, `user`, and `sys` times when it finishes. Is this script serial or parallel?
+
+<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="exercise2"> I profiled extract_form_3_one_file.py and understand its time, CPU, and RAM usage</label>
+
+---
+
+## 💻 Exercise 3 — Profile a Mystery Script
 
 You are going to run a script you have never seen before and figure out what resources it uses — without reading the code. This is called **profiling**: measuring a script's time, CPU, and RAM usage as it runs. The technique is simple: one terminal runs the script, a second terminal on the **same node** watches it live.
 
@@ -142,9 +176,7 @@ When you can describe what the mystery script does to your CPU and RAM — put a
 
 ## Interactive Yens
 
-The interactive Yens are unusual compared to most HPC clusters: they serve double duty as both login nodes and compute nodes. You can SSH in and run work right there. Most clusters don't allow this — on typical HPC systems, the login node is strictly for job submission, and all computation goes through the scheduler.
-
-The SLURM nodes are the other half: 12 dedicated nodes where nothing else is running. You never SSH to them. You write a job script, hand it to SLURM, and SLURM decides when and where it runs.
+The interactive Yens are unusual compared to most HPC clusters: they serve double duty as both login nodes and compute nodes. You can SSH in and run work right there. Most clusters don't allow this — on typical HPC systems, the login node is strictly for job submission.
 
 | | Interactive Yens | SLURM Scheduled Nodes |
 |---|---|---|

@@ -164,7 +164,7 @@ def main():
     print("=" * 55)
     print(f"  Student:               {username or '(local run)'}")
     print(f"  Floors unlocked:       {sorted(unlocked)}")
-    print(f"  Quest log checks:      {completed_checks} / 42")
+    print(f"  Quest log checks:      {completed_checks} / 43")
     print()
 
     for unlock_floor, gate_name, check_fn in GATES:
