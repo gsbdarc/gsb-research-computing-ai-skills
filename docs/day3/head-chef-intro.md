@@ -159,19 +159,3 @@ Find these fields in the output:
 This works on any job — yours or someone else's — as long as it is still in the queue or running.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="side4"> I used scontrol to find the CPU, RAM, and time limit of a job in the queue</label>
-
-**Bonus 3 — Peek at a running job's resource use**
-
-Once you have a job running (you will in later exercises), you can inspect what it is actually consuming in real time using `sstat`:
-
-```bash
-sstat -j JOBID --format=JobID,AveCPU,AveRSS,MaxRSS,NTasks
-```
-
-- **AveCPU** — average CPU time used across tasks
-- **AveRSS** — average RAM in use
-- **MaxRSS** — peak RAM consumed so far
-
-Note: `sstat` only works on your own jobs. Compare `MaxRSS` to what you requested with `--mem` — over-requested? Under-requested?
-
-<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="side5"> I used sstat to inspect a running job's CPU and RAM consumption</label>
