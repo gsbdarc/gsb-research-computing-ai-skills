@@ -143,7 +143,24 @@ Now run `longsqueue` — you should see the full resource picture of every job i
 
 <label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="side3"> I added the longsqueue alias to my ~/.bash_profile and can read CPU and memory requests in the queue</label>
 
-**Bonus 2 — Peek at a running job's resource use**
+**Bonus 2 — Inspect any job with scontrol**
+
+Pick any job from `squeue` and look up its full details:
+
+```bash
+scontrol show job JOBID
+```
+
+Find these fields in the output:
+- **NumCPUs** — how many CPU cores were requested
+- **mem=** — how much RAM was requested
+- **TimeLimit** — the time limit set for the job
+
+This works on any job — yours or someone else's — as long as it is still in the queue or running.
+
+<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="side4"> I used scontrol to find the CPU, RAM, and time limit of a job in the queue</label>
+
+**Bonus 3 — Peek at a running job's resource use**
 
 Once you have a job running (you will in later exercises), you can inspect what it is actually consuming in real time using `sstat`:
 
@@ -155,6 +172,6 @@ sstat -j JOBID --format=JobID,AveCPU,AveRSS,MaxRSS,NTasks
 - **AveRSS** — average RAM in use
 - **MaxRSS** — peak RAM consumed so far
 
-Compare `MaxRSS` to what you requested with `--mem`. Over-requested? Under-requested?
+Note: `sstat` only works on your own jobs. Compare `MaxRSS` to what you requested with `--mem` — over-requested? Under-requested?
 
-<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="side4"> I used sstat to inspect a running job's CPU and RAM consumption</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="side5"> I used sstat to inspect a running job's CPU and RAM consumption</label>
