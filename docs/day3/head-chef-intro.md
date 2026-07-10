@@ -99,9 +99,23 @@ squeue -p gpu
 
 Every `PD` job is waiting for a node with the resources it requested. When SLURM finds a matching node — it runs.
 
+Every `PD` job is waiting for a node with the resources it requested. When SLURM finds a matching node — it runs.
+
+Now run `sinfo` to see the state of all nodes and partitions:
+
+```bash
+sinfo
+```
+
+- How many compute nodes are currently idle (`STATE=idle`)?
+- What partitions exist? Which one would you use for a normal job?
+- What is the maximum time limit for each partition?
+
 When you can read the queue and explain the difference between `R` and `PD` to a neighbor — put a **🟢 green sticky** on your laptop.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="main"> I can read the job queue with squeue and filter it by partition</label>
+
+<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="side1"> I ran sinfo and can describe the Yens partitions and node states</label>
 
 ---
 
@@ -110,19 +124,7 @@ When you can read the queue and explain the difference between `R` and `PD` to a
 {: .note }
 > Finished early? Try this.
 
-**Bonus 1 — Explore partitions with sinfo**
-
-```bash
-sinfo
-```
-
-- How many compute nodes are currently idle (`STATE=idle`)?
-- What partitions (queues) exist? Which one would you use for a normal job?
-- What is the maximum time limit for each partition?
-
-<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="side1"> I ran sinfo and can describe the Yens partitions and node states</label>
-
-**Bonus 2 — Add a `longsqueue` alias**
+**Bonus 1 — Add a `longsqueue` alias**
 
 The default `squeue` output is sparse. Pass a custom format to see what each job actually requested — CPU cores, memory, and time limit:
 
