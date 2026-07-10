@@ -18,51 +18,60 @@ This room is about reading the wreckage: checking job status, finding the error,
 
 ---
 
-## Main Exercise — Monitor Your Job
+## Main Exercise — Debug and Fix Your Job
 
 {: .important }
-> **Exercise:** Monitor the job you submitted in The Ticket Rail using `squeue`, `sacct`, and the output logs.
+> **Exercise:** Your job failed. Find out why, fix the script, and resubmit until it completes successfully.
 
-**Check your jobs:**
+**Step 1 — Check the status**
+
 ```bash
-squeue -u $USER              # show only your jobs
-squeue -u $USER -l           # long format: more details
+sacct -u $USER --format=JobID,JobName,State,Elapsed,MaxRSS --starttime=today
 ```
 
-Status codes:
-- `PD` — pending (waiting for resources)
-- `R` — running
-- `CG` — completing
-- `F` — failed
+Look for your job in the `State` column. A failed job shows `FAILED`.
 
-**Watch a job live:**
+**Step 2 — Read the logs**
+
+Your job writes output to `logs/extract_JOBID.out` and errors to `logs/extract_JOBID.err`. Start with the error log:
+
 ```bash
-watch -n 5 squeue -u $USER   # refresh every 5 seconds — Ctrl-C to stop
+cat logs/extract_JOBID.err
 ```
 
-**Read the output as it writes:**
+Then check the output log:
+
 ```bash
-tail -f logs/extract_JOBID.out       # follow the log file live (replace JOBID with your number)
+cat logs/extract_JOBID.out
 ```
 
-**Cancel a job:**
+The error message tells you what went wrong — a wrong path, a missing module, a Python exception. Read it carefully.
+
+**Step 3 — Fix the script**
+
+Once you've found the bug, fix it. Test interactively on the Yens first to confirm the fix works:
+
 ```bash
-scancel JOBID                # cancel one job
-scancel -u $USER             # cancel all your jobs (use carefully)
+cd ~/rf-bootcamp-2026
+source .venv/bin/activate
+python scripts/extract_form_3_batch.py
 ```
 
-**Audit after completion:**
+**Step 4 — Resubmit**
+
 ```bash
-sacct -u $USER --format=JobID,JobName,State,Elapsed,MaxRSS,CPUTime --starttime=today
+sbatch jobs/extract.slurm
 ```
 
-{: .warning }
-> **Job shows `FAILED`?**
-> 1. Read the log: `cat logs/extract_JOBID.out` (and `.err` if it exists)
-> 2. Fix the issue — wrong path, missing module, out-of-memory, script error
-> 3. Resubmit: `sbatch jobs/extract.slurm`
+Check it enters the queue and eventually completes:
 
-<label class="quest-check"><input type="checkbox" data-room="d3-watch-tower" data-key="main"> My job shows COMPLETED in sacct and I have read the output log</label>
+```bash
+sacct -u $USER --format=JobID,JobName,State,Elapsed,MaxRSS --starttime=today
+```
+
+When your job shows `COMPLETED` — put a **🟢 green sticky** on your laptop.
+
+<label class="quest-check"><input type="checkbox" data-room="d3-watch-tower" data-key="main"> I found the bug, fixed it, resubmitted, and my job shows COMPLETED</label>
 
 ---
 
@@ -73,7 +82,7 @@ sacct -u $USER --format=JobID,JobName,State,Elapsed,MaxRSS,CPUTime --starttime=t
 
 **Bonus 1 — Audit your resource usage**
 
-After your job completes, run sacct with a custom format to compare requested vs used:
+After your job completes, compare what you requested vs what you actually used:
 
 ```bash
 sacct -j JOBID --format=JobID,AllocCPUS,CPUTime,MaxRSS,ReqMem,Elapsed
@@ -83,26 +92,18 @@ sacct -j JOBID --format=JobID,AllocCPUS,CPUTime,MaxRSS,ReqMem,Elapsed
 - **MaxRSS** — peak RAM the job actually used
 - **ReqMem** — RAM you requested
 
-Did you over-request memory (MaxRSS much smaller than ReqMem)? Use these numbers to calibrate your next job's `--mem` and `--cpus-per-task`.
+Did you over-request memory? Use these numbers to calibrate your next job's `--mem` and `--cpus-per-task`.
 
-<label class="quest-check"><input type="checkbox" data-room="d3-watch-tower" data-key="side1"> I audited my resource usage with sacct and know whether I over- or under-requested</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-watch-tower" data-key="side1"> I audited my resource usage and know whether I over- or under-requested</label>
 
-**Bonus 2 — Read a failure**
+**Bonus 2 — Watch a job live**
 
-Open your `.err` log:
-
-```bash
-cat logs/extract_JOBID.err
-```
-
-Is it empty? Good — that means no errors were written to stderr.
-
-Now intentionally break the script — edit `jobs/extract.slurm` to use a wrong path (e.g., change `.venv` to `.venv_broken`) and run it locally:
+While your job is running (status `R`), you can follow the output as it writes:
 
 ```bash
-bash jobs/extract.slurm
+tail -f logs/extract_JOBID.out
 ```
 
-What does a failure look like? This is the same thing you'd see in the `.err` log when a SLURM job fails. Put the path back when you're done.
+Ctrl-C to stop following. This is useful for long jobs where you want to see progress without waiting for completion.
 
-<label class="quest-check"><input type="checkbox" data-room="d3-watch-tower" data-key="side2"> I intentionally broke and read a failed run — I know what errors look like</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-watch-tower" data-key="side2"> I followed a running job's output live with tail -f</label>
