@@ -12,52 +12,54 @@ permalink: /day3/head-chef/
 
 ---
 
-## Main Exercise — See Your Shared Cluster
+## Computing Resources — A Quick Recap
 
-{: .important }
-> **Exercise:** SSH into a Yen node, observe who is using the cluster right now, and profile a mystery script to measure its resource footprint.
+On the last page we introduced the kitchen analogy. Before we run anything, let's make sure we have the vocabulary:
 
-**Step 1 — Connect to the Yens**
-
-```bash
-ssh YOUR_USERNAME@yen.stanford.edu
-```
-
-You'll land on one of the five interactive Yen nodes (`yen1`–`yen5`). The load balancer picks which one.
-
-**Step 2 — See every process on this node**
-
-```bash
-htop
-```
-
-`htop` shows every running process from every user on this node:
-- How many researchers are active right now?
-- Who is using the most CPU?
-- Who is using the most memory?
-
-Press `q` to quit.
-
-**Step 3 — See your own footprint**
-
-```bash
-userload
-```
-
-`userload` shows only **your** CPU and memory usage on this node — not other users. Right now it should be near zero since you haven't run anything yet.
-
-{: .note }
-> `htop` shows everyone's processes on the node. `userload` shows only your footprint. Use `htop` to see the full picture; use `userload` to check what you specifically are consuming.
-
-When you can read both outputs — put a **🟢 green sticky** on your laptop. If something is not working, put up a **🔴 red sticky** and an instructor will come help.
-
-<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="ssh"> I can SSH into the Yens and read the shared node with htop and userload</label>
+| Resource | What it is |
+|----------|-----------|
+| **CPU core** | An individual worker that executes your code |
+| **RAM** | Fast memory the CPU reads from while working |
+| **Storage (file system)** | Where your files live — VAST on the Yens |
+| **Time** | How long your script takes to finish |
 
 ---
 
-**Step 4 — Profile a mystery script**
+## 💻 Exercise 1 — Run Your Script
 
-You're about to run a script whose resource usage you don't know. Your job: figure out what it's doing.
+{: .important }
+> **Exercise:** Run your Day 2 extraction script on the Yens interactively and think about its resource footprint.
+
+If you're not already connected, SSH in:
+
+```bash
+ssh YOUR_SUNETID@yen.stanford.edu
+cd ~/rf-bootcamp-2026
+source .venv/bin/activate
+```
+
+Run the script:
+
+```bash
+python scripts/extract_form_3_one_file.py
+```
+
+While it runs (or after it finishes), discuss as a class:
+
+- ❓ **Why** do we want to estimate the resources a script uses?
+- ❓ Do you know what resources this script is using right now?
+- ❓ How would you estimate them?
+
+<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="exercise3"> I ran the script and understand why we want to estimate its resource usage</label>
+
+This page will teach you **how to estimate the resources your script is actually using**. This matters whether you wrote the script yourself or someone handed it to you.
+
+---
+
+## 💻 Exercise 2 — Profile a Mystery Script
+
+{: .important }
+> **Exercise:** Run `mystery_script.py` and measure its resource usage in real time using two terminals.
 
 Open **two terminal tabs**, both connected to the Yens, and activate your environment in each:
 
@@ -69,85 +71,32 @@ source .venv/bin/activate
 In the **first terminal**, start the mystery script:
 
 ```bash
-python scripts/mystery_script.py
-```
-
-Immediately in the **second terminal**, watch what it does:
-
-```bash
-htop -u $USER     # filter to your processes — watch RES (memory) and CPU% columns
-userload          # see your total footprint on this node
-```
-
-When the script finishes, time it:
-
-```bash
 time python scripts/mystery_script.py
 ```
 
-Compare with a neighbor. Do you see the same numbers? Based on what you measured, what `--time`, `--mem`, and `--cpus-per-task` would you ask from a scheduler?
+Immediately in the **second terminal**, watch what it does while it runs:
+
+```bash
+htop                  # all processes on this node
+htop -u $USER         # filter to your processes — watch RES (memory) and CPU% columns
+userload              # your total footprint on this node
+```
+
+**Compare with your neighbor:**
+- How long did it take?
+- How many CPU cores did it use?
+- How much RAM did it peak at?
+- Do you see the same numbers?
+
+What do you see? Based on your measurements, what `--time`, `--mem`, and `--cpus-per-task` would you request from a scheduler?
 
 When you can describe what the mystery script does to your CPU and RAM — put a **🟢 green sticky** on your laptop. If something is not working, put up a **🔴 red sticky** and an instructor will come help.
 
-<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="mystery"> I profiled mystery_script.py and can describe what it uses</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="mystery"> I profiled mystery_script.py and can describe its time, CPU, and RAM usage</label>
 
 ---
 
-## Optional Exercises — Cluster Tools
-
-{: .note }
-> Finished early? Try one or both of these.
-
-**Bonus 1 — Sort htop by memory**
-
-In htop, press `F6`, select `MEM%`, press Enter. What is the #1 memory-consuming process on this node right now? How much RAM is it using?
-
-<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="htop-mem"> I sorted htop by memory and identified the top consumer</label>
-
-**Bonus 2 — Read ps output**
-
-```bash
-ps aux --sort=-%mem | head -15
-```
-
-Look at the VSZ and RSS columns. What is the difference between virtual memory (VSZ) and resident memory (RSS)?
-
-<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="ps"> I can explain the difference between VSZ and RSS</label>
-
----
-
-## The Shared Cluster Problem
-
-The Yens has **5 interactive nodes** (`yen1`–`yen5`). When you SSH in, you land on one of these — and so does everyone else.
-
-- CPU cores are **shared** between all users on the same node
-- Per-user limits apply to CPU and RAM — but many researchers running at once still slows everyone down
-- Long-running or CPU-heavy jobs belong on dedicated resources, not on a shared interactive node
-
-The solution: a scheduler that reads every job request, knows what resources each job needs, and assigns work to **dedicated nodes** where nothing else is running.
-
----
-
-## SLURM Is the Scheduler
-
-SLURM manages **12 dedicated nodes** on the Yens — completely separate from the 5 interactive nodes — where batch jobs run with their own dedicated resources.
-
-| Kitchen analogy | Yens / SLURM |
-|---------|--------------|
-| Head chef | SLURM scheduler |
-| Station (stove) | Compute node |
-| Burner | CPU core |
-| Fridge | RAM |
-| Warehouse | Shared storage (`/scratch`) |
-| Order ticket | Job script (`sbatch`) |
-| Tickets on the rail | Job queue (`squeue`) |
-| Recipe | Your Python / R / shell script |
-
-You don't walk into the kitchen and start cooking. You hand your recipe to the head chef, specify what resources you need, and come back when the job is done.
-
----
-
-## Interactive Yens vs SLURM Nodes
+## ✏️ Interactive Yens
 
 The interactive Yens are unusual compared to most HPC clusters: they serve double duty as both login nodes and light compute nodes. You can SSH in and run small exploratory work right there. Most clusters don't allow this — on typical HPC systems, the login node is strictly for job submission, and all computation goes through the scheduler.
 
@@ -163,6 +112,34 @@ The SLURM nodes are the other half: 12 dedicated nodes where nothing else is run
 | Usage reporting | `userload`, `htop` | `sacct` |
 
 Use the interactive Yens for: exploring data, testing code, runs where you're watching the terminal (or using `screen` to keep a session alive). Use SLURM for: anything that needs guaranteed resources, runs unattended, or shouldn't compete with other users.
+
+---
+
+## ✏️ The Yen-SLURM Cluster
+
+The Yens has **5 interactive nodes** (`yen1`–`yen5`). When you SSH in, you land on one of these — and so does everyone else.
+
+- CPU cores are **shared** between all users on the same node
+- Per-user limits apply to CPU and RAM — but many researchers running at once still slows everyone down
+- Long-running or CPU-heavy jobs belong on dedicated resources, not on a shared interactive node
+
+The solution: a scheduler. SLURM reads every job request, knows what resources each job needs, and assigns work to **dedicated nodes** where nothing else is running.
+
+| Kitchen analogy | Yens / SLURM |
+|---------|--------------|
+| Head chef | SLURM scheduler |
+| Station (stove) | Compute node |
+| Burner | CPU core |
+| Fridge | RAM |
+| Warehouse | Shared file system (VAST) |
+| Order ticket | Job script (`sbatch`) |
+| Tickets on the rail | Job queue (`squeue`) |
+| Recipe | Your Python / R / shell script |
+
+You don't walk into the kitchen and start cooking. You hand your recipe to the head chef, specify what resources you need, and come back when the job is done.
+
+{: .note }
+> **Why does this matter?** When you submit a job to the cluster, you have to tell the scheduler exactly how much CPU, RAM, and time your job needs. If you ask for too little, your job fails. If you ask for too much, you wait longer in the queue and waste shared resources. The only way to know what to ask for is to **measure first**.
 
 ---
 
@@ -216,7 +193,9 @@ sinfo
 
 ## Key Concepts
 
-- SLURM is the scheduler that manages 12 dedicated compute nodes on the Yens
+- Measure resource usage before requesting — time, CPU cores, and RAM
+- `htop` and `userload` show you what a script is consuming while it runs
+- Interactive Yens (5 nodes): shared, instant, for development and testing
+- SLURM nodes (12): dedicated, queued, for production jobs
 - You do not SSH to SLURM nodes — you submit a job script with `sbatch`
 - `squeue` shows the job queue; `R` = running, `PD` = pending
-- Interactive Yens (5 nodes): shared, instant, for development; SLURM nodes (12): dedicated, queued, for production
