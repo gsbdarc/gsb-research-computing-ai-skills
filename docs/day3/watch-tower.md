@@ -1,21 +1,27 @@
 ---
 layout: default
-title: "The Watch Tower"
+title: "Failed Order"
 parent: "Day 3 — The SLURM Mines"
 nav_order: 8
 permalink: /day3/watch-tower/
 ---
 
-# The Watch Tower
+# Failed Order
 
 <div data-room-id="d3-watch-tower"></div>
+
+---
+
+You burned the pancakes and they got sent back to the kitchen. All that is to say — your job failed. What do you do?
+
+This room is about reading the wreckage: checking job status, finding the error, fixing it, and resubmitting. Even experienced researchers debug failed jobs regularly — the skill is knowing where to look.
 
 ---
 
 ## Main Exercise — Monitor Your Job
 
 {: .important }
-> **Exercise:** Monitor the job you submitted in The Ticket Rail using `squeue`, `scancel`, and `sacct`.
+> **Exercise:** Monitor the job you submitted in The Ticket Rail using `squeue`, `sacct`, and the output logs.
 
 **Check your jobs:**
 ```bash
@@ -54,7 +60,7 @@ sacct -u $USER --format=JobID,JobName,State,Elapsed,MaxRSS,CPUTime --starttime=t
 > **Job shows `FAILED`?**
 > 1. Read the log: `cat logs/extract_JOBID.out` (and `.err` if it exists)
 > 2. Fix the issue — wrong path, missing module, out-of-memory, script error
-> 3. Resubmit: `sbatch jobs/extract.sh`
+> 3. Resubmit: `sbatch jobs/extract.slurm`
 
 <label class="quest-check"><input type="checkbox" data-room="d3-watch-tower" data-key="main"> My job shows COMPLETED in sacct and I have read the output log</label>
 
@@ -91,10 +97,10 @@ cat logs/extract_JOBID.err
 
 Is it empty? Good — that means no errors were written to stderr.
 
-Now intentionally break the script — edit `jobs/extract.sh` to use a wrong path (e.g., change `.venv` to `.venv_broken`) and run it locally:
+Now intentionally break the script — edit `jobs/extract.slurm` to use a wrong path (e.g., change `.venv` to `.venv_broken`) and run it locally:
 
 ```bash
-bash jobs/extract.sh
+bash jobs/extract.slurm
 ```
 
 What does a failure look like? This is the same thing you'd see in the `.err` log when a SLURM job fails. Put the path back when you're done.

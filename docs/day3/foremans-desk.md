@@ -101,9 +101,9 @@ Resubmit:
 sbatch jobs/extract.slurm
 ```
 
-Note your new job ID — you'll need it in The Watch Tower.
+Note your new job ID — you'll need it in Failed Order.
 
 {: .note }
-> **While your job runs:** Head to [The Chronicle](../chronicle/) now and write your README — the job may sit in the queue for a few minutes. Come back to [The Watch Tower](../watch-tower/) once `sacct` shows your job as `COMPLETED`.
+> **While your job runs:** Head to [The Chronicle](../chronicle/) now and write your README — the job may sit in the queue for a few minutes. Come back to [Failed Order](../watch-tower/) once `sacct` shows your job as `COMPLETED`.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-foremans-desk" data-key="side1"> I added email notifications, cancelled my job, and resubmitted</label>
