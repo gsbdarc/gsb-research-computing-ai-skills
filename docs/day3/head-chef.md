@@ -211,7 +211,8 @@ Record what you observe in a `README.md` in that project folder:
 
 - Script: script.py
 - Wall-clock time (real):
-- CPU usage (user):
+- CPU time (user):
+- CPU cores used:
 - RAM peak:
 - Serial or parallel?
 ```
