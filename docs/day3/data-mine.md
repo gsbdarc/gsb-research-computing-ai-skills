@@ -16,7 +16,7 @@ permalink: /day3/data-mine/
 
 ## What Is This Data?
 
-The Yens run a monitoring script every few minutes that captures what `top` would show — a ranked list of the most active processes on the node at that instant. Each row is one process.
+The Yens run a monitoring script every few minutes using `top` in batch mode, collecting a snapshot of every process running on the node at that instant. Each row is one process — not ranked, just every process the OS knows about.
 
 | Column | What it means |
 |--------|---------------|
