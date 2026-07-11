@@ -47,8 +47,7 @@ import pandas as pd
 cols = ['timestamp','host','pid','user','pr','ni','virt','res','shr',
         's','cpu_pct','mem_pct','time_plus','command','type']
 
-# Path on scratch — your instructor will confirm the exact location
-DATA = '/scratch/users/nrapstin/rf-bootcamp-2026/yenstop_2026-07-10-20-56-06.csv.gz'
+DATA = '/scratch/shared/rf-bootcamp-2026/data/yenstop_2026-07-10-20-56-06.csv'
 
 df = pd.read_csv(DATA, header=None, names=cols)
 df.head(10)
