@@ -40,10 +40,10 @@ using the Stanford AI API via a SLURM batch job.
 
 ### Steps
 # 1. Submit the batch job
-sbatch jobs/extract.sh
+sbatch slurm/extract_form_3_one_file.slurm
 
 # 2. Monitor
-squeue -u $USER
+squeue --me
 sacct -j JOBID --format=JobID,State,Elapsed,MaxRSS
 
 # 3. Check output
@@ -64,6 +64,6 @@ Input: SEC Form 3 filings from EDGAR (public domain).
 ```
 
 {: .note }
-> You will update this README in the Day 4 capstone when you scale with a job array.
+> You will update this README in Boss Gate 4 when you scale with a job array.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-chronicle" data-key="main"> README written and covers what the script does, how to run it, and where output lands</label>
