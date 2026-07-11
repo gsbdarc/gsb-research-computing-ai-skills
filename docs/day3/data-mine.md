@@ -14,92 +14,103 @@ permalink: /day3/data-mine/
 
 ---
 
-## Main Exercise — Explore the Yens Monitoring Data
+## What Is This Data?
+
+The Yens run a monitoring script every few minutes that captures what `top` would show — a ranked list of the most active processes on the node at that instant. Each row is one process.
+
+| Column | What it means |
+|--------|---------------|
+| `timestamp` | When the snapshot was taken |
+| `host` | Which Yen node |
+| `pid` | Process ID |
+| `user` | SUNetID of the owner |
+| `virt` | Virtual memory — address space reserved by the process |
+| `res` | Resident memory — RAM actually in use right now |
+| `s` | Status: `R` = running, `S` = sleeping |
+| `cpu_pct` | % of one CPU core used right now |
+| `mem_pct` | % of total node RAM used |
+| `time_plus` | Cumulative CPU time since the process started (HH:MM:SS) |
+| `command` | Program name (truncated to 8 chars by `top`) |
+
+---
+
+## Main Exercise — Read the Pantry Ledger
 
 {: .important }
-> **Exercise:** Open the Yens monitoring snapshot and figure out what it is telling you — without being told what to look for.
+> **Exercise:** Load a real monitoring snapshot from yen1 and answer four questions about who is using the node.
 
-**Step 1 — Open the data**
+Open JupyterHub or Claude Code, then load the file:
 
-```bash
-cd ~/rf-bootcamp-2026
-cat data/yens_sample.txt
+```python
+import pandas as pd
+
+cols = ['timestamp','host','pid','user','pr','ni','virt','res','shr',
+        's','cpu_pct','mem_pct','time_plus','command','type']
+
+# Path on scratch — your instructor will confirm the exact location
+DATA = '/scratch/users/nrapstin/rf-bootcamp-2026/yenstop_2026-07-10-20-56-06.csv.gz'
+
+df = pd.read_csv(DATA, header=None, names=cols)
+df.head(10)
 ```
 
-Read the whole file. There are several sections — notice how they differ from each other.
+Work through these four questions:
 
-**Step 2 — Explore**
+**Q1 — Who is burning the most CPU right now?**
 
-Use whatever tool you want. Spend 10–15 minutes digging in.
-
-```bash
-claude          # open Claude Code and ask it anything
+```python
+df.sort_values('cpu_pct', ascending=False)[['user','command','cpu_pct','s']].head(10)
 ```
 
-Or open JupyterHub and work in a notebook. Or just read and think.
+Which user is at the top? What are they running?
 
-**Step 3 — Write down your observations**
+**Q2 — Running vs sleeping**
 
-Before the class discussion, write down at least 3 things you noticed:
+```python
+df['s'].value_counts()
+```
 
-- Who is using the most resources? How can you tell?
-- Do you see anything that looks like it went wrong?
-- What columns are confusing?
-- Does anything surprise you?
+`R` = running (burner is on), `S` = sleeping (burner off but still holding fridge space). Which is more common? What does that tell you about shared nodes?
 
-When you have written down your observations — put a **🟢 green sticky** on your laptop. If the file won't open or you are stuck, put up a **🔴 red sticky**.
+**Q3 — Who has been cooking the longest?**
 
----
+```python
+df[['user','command','time_plus','cpu_pct']].sort_values('time_plus', ascending=False).head(5)
+```
 
-## Compare with a Neighbor
+`time_plus` is cumulative CPU time. Find the process that has been running the longest. How many hours?
 
-Before the class discussion, talk to the person next to you:
+**Q4 — The VIRT vs RES puzzle**
 
+```python
+df[df['command'] == 'claude'][['user','virt','res','cpu_pct']]
+```
+
+Look at `virt` vs `res` for these processes. What do you notice? Why would a process reserve far more memory than it actually holds?
+
+{: .note }
+> **Virtual vs resident memory.** `virt` is the address space a process has *reserved* — like reserving an entire shelf in the fridge. `res` is what it's actually *using* — the food currently on that shelf. Claude Code and notebook kernels often reserve enormous virtual address space (for memory-mapped files, libraries, etc.) while using a fraction of it as resident RAM. When the fridge fills up and slows everyone down, it's `res` that matters — not `virt`.
+
+**Compare with a neighbor** before the class discussion:
 - What did you each notice first?
-- Did you find the same things, or different things?
-- What questions do you both have?
+- Which user surprised you most?
+- What questions do you have?
+
+When you've worked through all four questions — put a **🟢 green sticky** on your laptop.
+
+{: .important }
+> **Class discussion:** Which user caught your attention? Which process has been running the longest — and what does that tell you about how some researchers use the Yens? The monitoring script itself (`topdump`) shows up in the data — what does that mean?
 
 ---
 
-## Class Discussion
+{: .highlight }
+> **Key concepts**
+> - A process is one running program. One user can have many processes — each one a recipe on a burner.
+> - `cpu_pct` tells you who is actively computing. `res` tells you who is holding fridge space.
+> - A sleeping process (`S`) still occupies RAM. The fridge fills up even when nobody is cooking.
+> - `time_plus` reveals long-running jobs — processes that have been going for hours or days.
 
-*Your instructor will lead this. Share what you found.*
-
-- What stood out in the data?
-- Which user caught your attention? Why?
-- What do you think the different sections represent?
-- What confused you?
-
----
-
-## What You Were Looking At
-
-*Your instructor will walk through this after the discussion.*
-
-The snapshot has four sections:
-
-**User summary** — how much CPU and memory each researcher is using on the cluster right now. Each row is one person.
-
-**Job history** — a record of past jobs: who ran them, how long they ran, how much memory they used, whether they finished or failed.
-
-**Process list** — every individual running program on one node at one moment. Each row is one process.
-
-**Disk usage** — how much shared storage each user has consumed.
-
-Key vocabulary:
-
-| Term | What it means |
-|------|---------------|
-| **Process** | One running program. A single Python script = one process. A notebook kernel = one process. |
-| **User** | The account that owns a process. Every researcher is a user on the Yens. |
-| **CPU%** | How much of one core this process is using. 100% = one full core. 200% = two cores. |
-| **RSS / MEM** | Resident memory — how much RAM this process is actively holding right now. |
-
-When you run your extraction script on a Yen node, it becomes a process owned by your user. Its CPU% and RSS are exactly what you see in `htop` and `ps`.
-
----
-
-<label class="quest-check"><input type="checkbox" data-room="d3-data-mine" data-key="main"> I explored the cluster data and can identify processes, users, CPU, and memory in the output</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-data-mine" data-key="main"> I read the yenstop snapshot and can identify who is using the most CPU and memory on yen1</label>
 
 ---
 
@@ -108,22 +119,22 @@ When you run your extraction script on a Yen node, it becomes a process owned by
 {: .note }
 > Finished early? Try one or both of these.
 
-**Bonus 1 — Programmatic analysis**
+**Bonus 1 — Total memory footprint per user**
 
-Open JupyterHub or a Python shell. Load the process list from `data/yens_sample.txt` using pandas and write a single line that finds the username with the highest total CPU usage. (Hint: `read_csv` with a separator, `groupby`, `sum`, `idxmax`.)
+```python
+df[df['type'] == 'u'].groupby('user')['mem_pct'].sum().sort_values(ascending=False)
+```
 
-<label class="quest-check"><input type="checkbox" data-room="d3-data-mine" data-key="side1"> I wrote one line of pandas code to find the top CPU user</label>
+Which user has the largest total memory footprint across all their processes? Is it the same user who has the highest single-process CPU?
 
-**Bonus 2 — Find the longest job**
+<label class="quest-check"><input type="checkbox" data-room="d3-data-mine" data-key="side1"> I aggregated memory by user and found who holds the most RAM across all their processes</label>
 
-Look at the job history section of `data/yens_sample.txt`. Find the single longest-running job. How long did it run, and what command did it execute?
+**Bonus 2 — What are people running?**
 
-<label class="quest-check"><input type="checkbox" data-room="d3-data-mine" data-key="side2"> I found the longest-running job in the job history</label>
+```python
+df[df['type'] == 'u']['command'].value_counts()
+```
 
----
+What tools appear most often? `top` truncates long names to 8 characters — `jupyter+` and `remote-+` are cut off. Can you guess the full names from context?
 
-## Key Concepts
-
-- A process is one running program; a user is the account that owns it
-- CPU% and RSS are the two numbers that matter most when estimating resource needs
-- You can read raw system monitoring data and extract meaning from it
+<label class="quest-check"><input type="checkbox" data-room="d3-data-mine" data-key="side2"> I explored the process names and identified what tools researchers are running on yen1</label>
