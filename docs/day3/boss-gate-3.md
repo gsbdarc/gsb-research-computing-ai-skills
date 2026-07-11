@@ -10,7 +10,7 @@ permalink: /day3/boss-gate-3/
 
 ---
 
-## Capstone — First SLURM Submission
+## Boss Gate 3 — First SLURM Submission
 
 Submit your Day 2 LLM extraction script as a SLURM batch job:
 
@@ -52,7 +52,7 @@ The leaderboard updates within 2 minutes. Your instructor can see how many quest
 
 ---
 
-## Skills This Capstone Tests
+## Skills This Boss Gate Tests
 
 - Write a SLURM job script from scratch with `#SBATCH` directives grounded in real profiling data
 - Submit a job and confirm it entered the queue
