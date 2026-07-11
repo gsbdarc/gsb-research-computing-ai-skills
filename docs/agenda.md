@@ -106,12 +106,12 @@ Every day adds a layer to one research pipeline. The dataset: SEC Form 3 filings
 | NEW | The Data Mine: analyze real Yens system data with an AI agent | 35 min |
 | 2+3 | Profile Day 2 script + profile mystery script | 30 min |
 | 4 | Write + submit `jobs/extract.sh` | 25 min |
-| 6 | Chronicle: write README while job runs | 20 min |
+| 6 | Recipe Book: write README while job runs | 20 min |
 | 5 | Failed Order: `sacct` after job completes | 15 min |
 | BG | Boss Gate 3: commit + push | 15 min |
 | — | Transitions | 10 min |
 
-*After Quest 4 (`sbatch`), send students to Quest 6 (Chronicle) while the job queues. Return to Quest 5 (Failed Order / `sacct`) once the job is COMPLETED.*
+*After Quest 4 (`sbatch`), send students to Quest 6 (Recipe Book) while the job queues. Return to Quest 5 (Failed Order / `sacct`) once the job is COMPLETED.*
 
 ### Main Quests
 

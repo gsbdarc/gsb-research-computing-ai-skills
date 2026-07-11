@@ -1,12 +1,12 @@
 ---
 layout: default
-title: "The Head Chef"
+title: "The Back Kitchen"
 parent: "Day 3 — The Hearth"
 nav_order: 5
 permalink: /day3/head-chef/
 ---
 
-# The Head Chef
+# The Back Kitchen
 
 <div data-room-id="d3-head-chef"></div>
 
