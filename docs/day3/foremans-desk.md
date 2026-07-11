@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "The Ticket Rail"
-parent: "Day 3 — The SLURM Mines"
+parent: "Day 3 — The Hearth"
 nav_order: 7
 permalink: /day3/foremans-desk/
 ---
@@ -9,6 +9,8 @@ permalink: /day3/foremans-desk/
 # The Ticket Rail
 
 <div data-room-id="d3-foremans-desk"></div>
+
+*You step up to the rail. A blank slip of parchment waits on the counter — the order form, the thing that stands in for you when you're not in the kitchen. It has to contain everything: the recipe, the station you need, the time limit, the resources. The head chef will read it cold, without context. If it's vague, it gets rejected. If it's wrong, the job fails. Write it right the first time.*
 
 ---
 

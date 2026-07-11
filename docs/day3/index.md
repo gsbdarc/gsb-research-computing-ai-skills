@@ -1,15 +1,15 @@
 ---
 layout: floor
-title: "Day 3 — The SLURM Mines"
+title: "Day 3 — The Hearth"
 nav_order: 3
 has_children: true
 permalink: /day3/
 floor: 3
 ---
 
-# Day 3 — The SLURM Mines
+# Day 3 — The Hearth
 
-*Deep in the mountain, the forges never sleep. Hundred-foot shafts drop into darkness where ore — raw compute — waits to be claimed. The SLURM Mines run on one brutal law: describe the work, hand it to the head chef, and the mountain does the rest. But the mountain doesn't forgive vague orders or wasteful hands. Today you learn to speak the head chef's language, read the seismic warnings before a job collapses, and weld pipelines sturdy enough to carry real research all the way to the surface.*
+*The fire never goes out here. Deep in the castle's foundation, the hearth has fed the keep for centuries — a great, roaring kitchen where hundreds of orders are filled every day without ceremony. The Yens are the open benches around the fire: shared burners, shared fridges, every cook jostling for space. But behind the iron doors at the back is where the real work happens. Dedicated stations. Reserved time. The head chef's domain. Today you learn to write orders that survive contact with the kitchen — and to read the wreckage when they don't.*
 
 ---
 

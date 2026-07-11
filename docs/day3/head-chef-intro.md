@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "The Head Chef"
-parent: "Day 3 — The SLURM Mines"
+parent: "Day 3 — The Hearth"
 nav_order: 5
 permalink: /day3/head-chef/
 ---
@@ -9,6 +9,8 @@ permalink: /day3/head-chef/
 # The Head Chef
 
 <div data-room-id="d3-head-chef"></div>
+
+*The foreman leads you past the open kitchen and through a set of iron doors you hadn't noticed before. Beyond them: a corridor that hums with a different energy, orderly and quiet. "Out there, anyone can grab a burner," he says. "Back here, nothing runs without an order." He sweeps a hand along the wall — a rail, stretching the length of the passage, hung with parchment slips. "The head chef reads every one. He assigns the station, the time, the resources. You write the order. He decides when it runs."*
 
 ---
 

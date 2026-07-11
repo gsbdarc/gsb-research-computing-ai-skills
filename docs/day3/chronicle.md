@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "The Chronicle"
-parent: "Day 3 — The SLURM Mines"
+parent: "Day 3 — The Hearth"
 nav_order: 9
 permalink: /day3/chronicle/
 ---
@@ -9,6 +9,8 @@ permalink: /day3/chronicle/
 # The Chronicle
 
 <div data-room-id="d3-chronicle"></div>
+
+*Every cook who passes through this kitchen is expected to leave a record. Not the ingredients — those are in the script. Not the timing — that's in sacct. The record is the method: what you were trying to make, how you set up the station, what failed first, and how you fixed it. The Chronicle is the document that means a colleague can walk in cold and start where you left off, without having to ask you anything.*
 
 ---
 

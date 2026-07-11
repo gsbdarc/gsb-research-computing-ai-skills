@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Failed Order"
-parent: "Day 3 — The SLURM Mines"
+parent: "Day 3 — The Hearth"
 nav_order: 8
 permalink: /day3/watch-tower/
 ---
@@ -10,11 +10,7 @@ permalink: /day3/watch-tower/
 
 <div data-room-id="d3-watch-tower"></div>
 
----
-
-You burned the pancakes and they got sent back to the kitchen. All that is to say — your job failed. What do you do?
-
-This room is about reading the wreckage: checking job status, finding the error, fixing it, and resubmitting. Even experienced researchers debug failed jobs regularly — the skill is knowing where to look.
+*The order came back. Parchment crumpled, stamped FAILED in red, sitting on the rail where you left it hours ago. You burned the pancakes. Maybe the venv wasn't active on the compute node. Maybe the path was wrong. Maybe you asked for 2G of fridge space and the recipe needed 8. The head chef doesn't explain. He just stamps it and sends it back. Reading the wreckage — that's your job.*
 
 ---
 

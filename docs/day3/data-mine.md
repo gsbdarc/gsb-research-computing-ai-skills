@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "The Dumpster Dive"
-parent: "Day 3 — The SLURM Mines"
+parent: "Day 3 — The Hearth"
 nav_order: 4
 permalink: /day3/data-mine/
 ---
@@ -9,6 +9,8 @@ permalink: /day3/data-mine/
 # The Dumpster Dive
 
 <div data-room-id="d3-data-mine"></div>
+
+*Behind the kitchen, past a low doorway, the castle keeps its receipts. Stacks of ledgers record every job that has passed through the hearth: who ran it, which station, how long it burned, how much it consumed. Most of it looks like noise. But noise has a structure — and if you know how to read it, you can see exactly who has been hogging the burners and whose jobs have been running for three days straight. Someone hands you a lantern.*
 
 ---
 

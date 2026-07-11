@@ -1,12 +1,14 @@
 ---
 layout: default
 title: "The Scales"
-parent: "Day 3 — The SLURM Mines"
+parent: "Day 3 — The Hearth"
 nav_order: 3
 permalink: /day3/scales/
 ---
 
 # The Scales
+
+*On a shelf near the ticket rail hangs a set of scales, old and precise. Every seasoned cook knows to use them before writing an order — because the head chef does not accept estimates. "About an hour" is not a time limit. "Probably needs 2G" is not a memory request. These numbers go on the parchment, and the parchment goes to the chef, and the chef does not negotiate. This room is where you learn to weigh the work before you commit to it.*
 
 ---
 

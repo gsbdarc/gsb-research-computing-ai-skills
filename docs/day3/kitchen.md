@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "The Kitchen"
-parent: "Day 3 — The SLURM Mines"
+parent: "Day 3 — The Hearth"
 nav_order: 2
 permalink: /day3/kitchen/
 ---

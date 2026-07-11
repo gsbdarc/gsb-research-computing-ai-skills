@@ -48,7 +48,7 @@
       ],
     },
     {
-      label: 'Day 3 — The SLURM Mines',
+      label: 'Day 3 — The Hearth',
       prefix: 'd3',
       rooms: [
         { id: 'd3-kitchen',         keys: ['main'] },
