@@ -3,7 +3,7 @@ layout: default
 title: "Failed Order"
 parent: "Day 3 — The Hearth"
 nav_order: 8
-permalink: /day3/watch-tower/
+permalink: /day3/failed-order/
 ---
 
 # Failed Order

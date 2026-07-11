@@ -3,7 +3,7 @@ layout: default
 title: "The Recipe Book"
 parent: "Day 3 — The Hearth"
 nav_order: 9
-permalink: /day3/chronicle/
+permalink: /day3/recipe-book/
 ---
 
 # The Recipe Book

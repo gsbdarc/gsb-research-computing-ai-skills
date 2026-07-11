@@ -3,7 +3,7 @@ layout: default
 title: "The Ticket Rail"
 parent: "Day 3 — The Hearth"
 nav_order: 7
-permalink: /day3/foremans-desk/
+permalink: /day3/ticket-rail/
 ---
 
 # The Ticket Rail

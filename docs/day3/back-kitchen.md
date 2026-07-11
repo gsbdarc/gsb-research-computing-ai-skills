@@ -3,7 +3,7 @@ layout: default
 title: "The Back Kitchen"
 parent: "Day 3 — The Hearth"
 nav_order: 5
-permalink: /day3/head-chef/
+permalink: /day3/back-kitchen/
 ---
 
 # The Back Kitchen
