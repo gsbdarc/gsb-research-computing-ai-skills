@@ -14,64 +14,98 @@ permalink: /day3/ticket-rail/
 
 ---
 
-## Main Exercise — Write and Submit a SLURM Job
+## Main Exercise — Write a SLURM Script
 
 {: .important }
-> **Exercise:** Write a SLURM job script from scratch, understand every directive, and submit your first batch job.
+> **Exercise:** Build a SLURM job script line by line to run your Form 3 extraction script on a compute node.
 
-**Create `jobs/extract.slurm`:**
+**Create the file:**
 
 ```bash
-mkdir -p jobs logs
+mkdir -p slurm logs
 ```
+
+Open `slurm/extract_form_3_one_file.slurm` in your editor.
+
+---
+
+**Step 1 — The shebang**
+
+Every shell script starts here:
 
 ```bash
 #!/bin/bash
-#SBATCH --job-name=form3_extract        # appears in squeue
-#SBATCH --output=logs/extract_%j.out    # %j = job ID
-#SBATCH --error=logs/extract_%j.err     # separate stderr log
-#SBATCH --time=00:10:00                 # max wall time HH:MM:SS — set from your Scales measurement
-#SBATCH --mem=2G                        # memory request — set from your Scales measurement
-#SBATCH --cpus-per-task=1              # CPU cores
-#SBATCH --partition=normal
-
-# --- Setup ---
-echo "Job started on $(hostname) at $(date)"
-cd ~/rf-bootcamp-2026
-source .venv/bin/activate
-
-# --- Your actual work ---
-python scripts/extract_form_3_batch.py
-
-echo "Job finished at $(date)"
 ```
+
+---
+
+**Step 2 — SBATCH directives**
+
+These are instructions to the head chef. Fill in each placeholder using the measurements you took in The Scales:
+
+```bash
+#SBATCH --job-name=<job-name>
+#SBATCH --output=logs/<output-file>_%j.out
+#SBATCH --time=<HH:MM:SS>
+#SBATCH --mem=<RAM>
+#SBATCH --cpus-per-task=<cores>
+```
+
+---
+
+**Step 3 — Set up the environment**
+
+```bash
+# Navigate to your project
+cd $HOME/rf-bootcamp-2026
+
+# Activate your virtual environment
+source .venv/bin/activate
+```
+
+---
+
+**Step 4 — Run your script**
+
+```bash
+python scripts/extract_form_3_one_file.py
+```
+
+Save the file.
 
 {: .warning }
-> **Your SLURM script must set up its own environment.** When SLURM runs your job, it starts a fresh shell on a compute node — your virtual environment is not active, your working directory is not set, and no modules are loaded. Every command you need must be in the script: `cd` to the right directory, `source .venv/bin/activate` before calling Python, and any `module load` commands you rely on.
+> **SLURM starts a fresh shell on the compute node.** Your virtual environment is not active. Your working directory is not set. Every setup step must be in the script — `cd`, `source .venv/bin/activate`, and any `module load` commands you need. If it works interactively on the Yens but fails as a job, a missing setup step is usually why.
 
-**Test interactively on the Yens before submitting** — run the commands directly on an interactive node to confirm there are no errors before handing it to the head chef:
+{: .note }
+> **Three things worth understanding before you submit:**
+> - `%j` in the output filename gets replaced with the job ID — so each run writes to its own log file instead of overwriting the last one.
+> - The `logs/` directory must exist before the job runs — SLURM won't create it for you. That's why `mkdir -p logs` comes first.
+> - Paths in the script are resolved on the compute node, not your login node. Absolute paths (`$HOME/...`) are safer than relative ones.
+
+When your script is complete — put a **🟢 green sticky** on your laptop.
+
+<label class="quest-check"><input type="checkbox" data-room="d3-foremans-desk" data-key="main"> I wrote extract_form_3_one_file.slurm and understand every line</label>
+
+---
+
+## Submit
 
 ```bash
-cd ~/rf-bootcamp-2026
-source .venv/bin/activate
-python scripts/extract_form_3_batch.py
+sbatch slurm/extract_form_3_one_file.slurm
+# Submitted batch job 12345678
 ```
 
-If it completes without errors, you're ready to submit.
+Monitor the queue:
 
-When the interactive test passes — put a **🟢 green sticky** on your laptop. If it errors, put up a **🔴 red sticky** and fix it before submitting.
-
-<label class="quest-check"><input type="checkbox" data-room="d3-foremans-desk" data-key="main"> I wrote extract.slurm and the interactive test passed without errors</label>
-
-**Submit:**
 ```bash
-sbatch jobs/extract.slurm
-# Submitted batch job 12345678
+squeue --me
 ```
 
 <label class="quest-check"><input type="checkbox" data-room="d3-foremans-desk" data-key="submit"> I submitted with sbatch and my job entered the queue (I have a JOBID)</label>
 
-**Cancel your job:**
+---
+
+## Cancel
 
 ```bash
 scancel JOBID
@@ -88,7 +122,11 @@ squeue --me
 
 <label class="quest-check"><input type="checkbox" data-room="d3-foremans-desk" data-key="cancel"> I cancelled my job with scancel and confirmed it left the queue</label>
 
-**Add email notifications and resubmit.** Open `jobs/extract.slurm` and add these two lines after `#SBATCH --partition`:
+---
+
+## Add Email Notifications
+
+Open `slurm/extract_form_3_one_file.slurm` and add these two lines with your other `#SBATCH` directives:
 
 ```bash
 #SBATCH --mail-type=ALL
@@ -100,9 +138,9 @@ squeue --me
 Resubmit:
 
 ```bash
-sbatch jobs/extract.slurm
+sbatch slurm/extract_form_3_one_file.slurm
 ```
 
 Once your job runs, check your inbox. You should receive two emails: one when the job **starts** and one when it **ends** — the end email includes a utilization summary showing how much CPU time and memory the job actually used.
 
-<label class="quest-check"><input type="checkbox" data-room="d3-foremans-desk" data-key="side1"> I added email notifications, cancelled my job, and resubmitted</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-foremans-desk" data-key="side1"> I added email notifications and resubmitted</label>
