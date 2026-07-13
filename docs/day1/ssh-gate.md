@@ -41,35 +41,59 @@ Your laptop is powerful but limited: one machine, one location, and it has to be
 
 The Yens are a 17-node shared research computing cluster: 5 interactive nodes you SSH into directly, and 12 nodes accessible only through the SLURM scheduler (Day 3). All 17 nodes share the same file system — a file you write on yen1 is instantly visible on every other node.
 
-```
-Your laptop
-     │
-     │  ssh SUNetID@yen.stanford.edu
-     ▼
-┌─────────────────────────────────────────────────────────────┐
-│                   Stanford Yens Cluster                     │
-│                                                             │
-│  Interactive Yens  (where you land — shared compute)        │
-│  ┌───────┐ ┌───────┐ ┌───────┐ ┌───────┐ ┌───────┐         │
-│  │ yen1  │ │ yen2  │ │ yen3  │ │ yen4  │ │ yen5  │         │
-│  └───────┘ └───────┘ └───────┘ └───────┘ └───────┘         │
-│  many cores · hundreds of GB RAM · per-user limits enforced │
-│                         │                                   │
-│                    scheduler (Day 3)                        │
-│                         │                                   │
-│  SLURM compute nodes  (scheduler-only, dedicated)           │
-│  ┌─────────────────────────────────────────────────┐        │
-│  │  8 CPU nodes + 4 GPU nodes  (12 total)          │        │
-│  │  only accessible via sbatch / srun              │        │
-│  └─────────────────────────────────────────────────┘        │
-│                                                             │
-│  Shared storage — all nodes see the same files:             │
-│  /home/users/SUNetID/   ← backed up, limited, personal     │
-│  /yen/projects/         ← backed up, large, for project    │
-│                            files, scripts, and results      │
-│  /scratch/shared/SUNetID/ ← large, fast, NOT backed up     │
-└─────────────────────────────────────────────────────────────┘
-```
+<svg viewBox="0 0 700 516" role="img" aria-labelledby="ssh-title" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;max-width:700px;height:auto;margin:1.5rem auto" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
+  <title id="ssh-title">Your laptop connects over SSH to the remote Yens cluster. You land on a shared interactive Yen for light work; the powerful SLURM compute nodes are reached later, on Day 3, through a scheduler. Every node shares the same storage.</title>
+  <defs>
+    <marker id="ssh-ah" markerWidth="10" markerHeight="10" refX="7" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#e67e22"/></marker>
+  </defs>
+
+  <!-- Laptop -->
+  <rect x="210" y="12" width="280" height="62" rx="12" fill="#fff8ef" stroke="#e6cfa8" stroke-width="1.5"/>
+  <text x="232" y="40" font-size="15" font-weight="700" fill="#2c3e50">💻  Your laptop</text>
+  <text x="232" y="59" font-size="12.5" fill="#6a7280">where you type your commands</text>
+
+  <!-- SSH arrow -->
+  <line x1="350" y1="76" x2="350" y2="115" stroke="#e67e22" stroke-width="2.5" marker-end="url(#ssh-ah)"/>
+  <text x="366" y="93" font-size="13" font-weight="700" fill="#b3611a">connect with SSH</text>
+  <text x="366" y="109" font-size="11.5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" fill="#5b6472">ssh SUNetID@yen.stanford.edu</text>
+
+  <!-- Cluster band -->
+  <rect x="16" y="118" width="668" height="384" rx="16" fill="#f7f9fc" stroke="#bcd4f2" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <text x="38" y="142" font-size="12" font-weight="700" letter-spacing="0.6" fill="#8a94a6">☁️  THE YENS CLUSTER · REMOTE, ALWAYS ON</text>
+
+  <!-- Interactive Yens -->
+  <rect x="40" y="156" width="620" height="106" rx="12" fill="#eef5ff" stroke="#bcd4f2" stroke-width="1.5"/>
+  <text x="60" y="184" font-size="15" font-weight="700" fill="#2c3e50">Interactive Yens — where you land today</text>
+  <rect x="60" y="200" width="104" height="26" rx="6" fill="#f3f4f7" stroke="#d5d8e2" stroke-width="1"/>
+  <text x="112" y="217" text-anchor="middle" font-size="12" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" fill="#5b6472">yen1</text>
+  <rect x="176" y="200" width="104" height="26" rx="6" fill="#f3f4f7" stroke="#d5d8e2" stroke-width="1"/>
+  <text x="228" y="217" text-anchor="middle" font-size="12" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" fill="#5b6472">yen2</text>
+  <rect x="292" y="200" width="104" height="26" rx="6" fill="#f3f4f7" stroke="#d5d8e2" stroke-width="1"/>
+  <text x="344" y="217" text-anchor="middle" font-size="12" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" fill="#5b6472">yen3</text>
+  <rect x="408" y="200" width="104" height="26" rx="6" fill="#f3f4f7" stroke="#d5d8e2" stroke-width="1"/>
+  <text x="460" y="217" text-anchor="middle" font-size="12" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" fill="#5b6472">yen4</text>
+  <rect x="524" y="200" width="104" height="26" rx="6" fill="#f3f4f7" stroke="#d5d8e2" stroke-width="1"/>
+  <text x="576" y="217" text-anchor="middle" font-size="12" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" fill="#5b6472">yen5</text>
+  <text x="60" y="250" font-size="12.5" fill="#6a7280">Shared compute for light work — per-user CPU &amp; RAM limits enforced</text>
+
+  <!-- Scheduler arrow -->
+  <line x1="350" y1="262" x2="350" y2="299" stroke="#e67e22" stroke-width="2.5" marker-end="url(#ssh-ah)"/>
+  <text x="366" y="286" font-size="13" font-weight="700" fill="#b3611a">via the SLURM scheduler — Day 3</text>
+
+  <!-- SLURM compute nodes -->
+  <rect x="40" y="302" width="620" height="72" rx="12" fill="#eef5ff" stroke="#bcd4f2" stroke-width="1.5"/>
+  <text x="60" y="330" font-size="15" font-weight="700" fill="#2c3e50">SLURM compute nodes — reached on Day 3</text>
+  <text x="60" y="356" font-size="11.5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" fill="#5b6472">8 CPU + 4 GPU nodes (12 total) · only via sbatch / srun</text>
+
+  <!-- Shared storage -->
+  <rect x="40" y="390" width="620" height="100" rx="12" fill="#f3f4f7" stroke="#d5d8e2" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <text x="60" y="414" font-size="12" font-weight="700" letter-spacing="0.6" fill="#8a94a6">SHARED STORAGE · EVERY NODE SEES THE SAME FILES</text>
+  <text x="60" y="438" font-size="11.5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" fill="#5b6472">/home/users/SUNetID/<tspan font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" fill="#6a7280">   personal · backed up · limited</tspan></text>
+  <text x="60" y="460" font-size="11.5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" fill="#5b6472">/yen/projects/<tspan font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" fill="#6a7280">   project files &amp; results · backed up · large</tspan></text>
+  <text x="60" y="482" font-size="11.5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" fill="#5b6472">/scratch/shared/SUNetID/<tspan font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" fill="#6a7280">   large &amp; fast · NOT backed up</tspan></text>
+</svg>
+
+*Your laptop and the Yens are two separate computers; **SSH** is the connection between them. When you log in you land on one of the shared **interactive Yens** (yen1–yen5) — fine for light work. The powerful **SLURM compute nodes** come later, on Day 3, reached through a scheduler rather than directly. Whichever node you're on, you see the same shared files.*
 
 `ssh` opens an encrypted tunnel: you type locally, commands execute remotely, output streams back to your screen. The interactive Yens are shared — per-user CPU and RAM limits are enforced automatically. See the [current limits](https://rcpedia.stanford.edu/_policies/user_limits/) for details. For heavier jobs, the SLURM scheduler (Day 3) gives you dedicated compute nodes.
 

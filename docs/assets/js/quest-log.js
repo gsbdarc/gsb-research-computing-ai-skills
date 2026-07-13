@@ -29,7 +29,7 @@
         { id: 'd1-ssh-gate',             keys: ['main'] },
         { id: 'd1-cartographers-room',   keys: ['main'] },
         { id: 'd1-scroll-transfer',      keys: ['main'] },
-        { id: 'd1-repository',           keys: ['main'] },
+        { id: 'd1-repository',           keys: ['main', 'side1'] },
         { id: 'd1-boss-gate-1',           keys: ['main'] },
       ],
     },

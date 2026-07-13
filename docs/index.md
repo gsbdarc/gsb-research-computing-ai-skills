@@ -10,13 +10,11 @@ permalink: /
 *You stand at the entrance of an ancient tower. Four floors rise above you, each sealed with an Archmage's crest. Somewhere inside, the secrets of computational research await — CLI runes carved into stone walls, SLURM forges humming in the depths, GPU engines blazing on the highest floor.*
 
 {: .important }
-> **Day 1 — Do this first**
+> **New here? Start with Day 1 → The Gatehouse.**
 >
-> 1. **Fork this repo** — click **Fork** in the top-right corner of the [GitHub page](https://github.com/gsbdarc/rf-bootcamp-2026) to create your own copy
-> 2. **Enable GitHub Pages** on your fork: Settings → Pages → Source → **GitHub Actions** → Save
-> 3. **Open your personal dungeon site:** `https://YOUR-USERNAME.github.io/rf-bootcamp-2026/`
+> Your **Quest Log** — the widget in the bottom-left corner — tracks your progress right here on this site. No setup, no account, nothing to install. Just open the first room and begin.
 >
-> Your site is your quest log for the entire course. Keep it open — every room, exercise, and leaderboard submission happens here.
+> Partway through Day 1, in **The Repository** room, you'll learn git and build your *own* personal copy of this site — the one that carries your leaderboard rank and unlocks each floor as you clear its Boss Gate. Until then, work from right here.
 
 **How the dungeon works**
 
