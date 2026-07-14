@@ -10,8 +10,6 @@ permalink: /day3/recipe-book/
 
 <div data-room-id="d3-chronicle"></div>
 
-*Every cook who passes through this kitchen is expected to leave a record. Not the ingredients — those are in the script. Not the timing — that's in sacct. The record is the method: what you were trying to make, how you set up the station, what failed first, and how you fixed it. The Recipe Book is the document that means a colleague can walk in cold and start where you left off, without having to ask you anything.*
-
 ---
 
 ## Main Exercise — Write a README
@@ -20,6 +18,9 @@ Write your README while the code is still fresh — before you close the termina
 
 {: .important }
 > **Exercise:** Write a `README.md` for your Day 3 pipeline.
+
+{: .note }
+> This is the same `README.md` you started in The Storage Pantry and added to in The Scales — keep those sections and add this pipeline writeup alongside them, don't start a new file.
 
 Create `README.md` in your repo root (or a `day3/` subdirectory):
 
@@ -69,4 +70,29 @@ Input: SEC Form 3 filings from EDGAR (public domain).
 <label class="quest-check"><input type="checkbox" data-room="d3-chronicle" data-key="main"> README written and covers what the script does, how to run it, and where output lands</label>
 
 {: .note }
-> 🔄 Ask Claude: "Set `d3-chronicle.main` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it."
+> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-chronicle.main` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it to `main` on my fork." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
+
+---
+
+## Side Quests
+
+{: .note }
+> Finished early? Try one or both of these.
+
+**Side Quest — Have Claude Stress-Test Your README**
+
+Ask Claude Code to read your README as if it were a labmate seeing this pipeline for the first time, and to flag anything that would stop them from rerunning it without asking you a question. Fix at least one thing it flags.
+
+<label class="quest-check"><input type="checkbox" data-room="d3-chronicle" data-key="side1"> I had Claude critique my README as a first-time reader and fixed at least one issue it flagged</label>
+
+{: .note }
+> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-chronicle.side1` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it to `main` on my fork." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
+
+**Side Quest — Explain It to Your PI**
+
+Write 2-3 sentences explaining what this pipeline does for a non-technical reader — your PI, your committee, an IRB reviewer. No SLURM, no flags, no jargon.
+
+<label class="quest-check"><input type="checkbox" data-room="d3-chronicle" data-key="side2"> I wrote a plain-language explanation of my pipeline for a non-technical reader</label>
+
+{: .note }
+> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-chronicle.side2` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it to `main` on my fork." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.

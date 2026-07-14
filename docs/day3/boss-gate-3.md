@@ -36,6 +36,17 @@ Your commit should include:
 
 ---
 
+## Side Quest — Feel the Pain Point
+
+Cleared the gate early? Manually rerun your script against 2-3 more filings, one at a time — editing paths, renaming outputs, resubmitting by hand each time. Notice what gets tedious. That tedium is exactly what Day 4's job arrays exist to eliminate.
+
+<label class="quest-check"><input type="checkbox" data-room="d3-boss-gate" data-key="side1"> I manually reran my script against a few more filings and can describe what would need to change to scale to hundreds</label>
+
+{: .note }
+> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-boss-gate.side1` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it to `main` on my fork." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
+
+---
+
 ## 📊 End of Day 3 — Sync Your Progress
 
 Let your instructor see where you landed today. You already have Claude Code open on the Yens — ask it to handle the sync.

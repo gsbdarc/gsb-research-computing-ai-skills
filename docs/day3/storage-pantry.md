@@ -10,8 +10,6 @@ permalink: /day3/storage-pantry/
 
 <div data-room-id="d3-data-mine"></div>
 
-*Behind the kitchen, past a low doorway, the castle keeps its receipts. Stacks of ledgers record every job that has passed through the hearth: who ran it, which station, how long it burned, how much it consumed. Most of it looks like noise. But noise has a structure — and if you know how to read it, you can see exactly who has been hogging the burners and whose jobs have been running for three days straight. Someone hands you a lantern.*
-
 ---
 
 ## What Is This Data?
@@ -26,8 +24,11 @@ The file below is one such snapshot from yen1, taken on July 10, 2026 at 20:56. 
 | `host` | Which Yen node |
 | `pid` | Process ID — unique number the OS assigns to each running program |
 | `user` | SUNetID of the process owner |
+| `pr` | Scheduling priority — lower numbers run first (`rt` means real-time priority) |
+| `ni` | Nice value — a user-adjustable priority offset; negative = higher priority, positive = lower |
 | `virt` | Virtual memory reserved by the process (bytes) |
 | `res` | Resident memory — RAM physically in use right now (bytes) |
+| `shr` | Shared memory (bytes) — memory the process shares with others, e.g. loaded libraries |
 | `s` | Status: `R` = running (using CPU), `S` = sleeping (idle, holding RAM), `I` = idle kernel thread |
 | `cpu_pct` | % of one CPU core in use — 100% means one full core (yen1 has 256 cores) |
 | `mem_pct` | % of total node RAM in use |
@@ -71,19 +72,33 @@ Find one thing in the data worth keeping. Add a short section to your `README.md
 
 It doesn't have to be the most impressive finding. It just has to be true, specific, and explained in plain language.
 
+{: .note }
+> This `README.md` keeps growing today — you'll add a Resource Profile section in The Scales and a full pipeline writeup in The Recipe Book. Same file the whole time.
+
 When you're ready — put a **🟢 green sticky** on your laptop.
 
-<label class="quest-check"><input type="checkbox" data-room="d3-data-mine" data-key="main"> I loaded the data and found something worth investigating</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-data-mine" data-key="main"> I loaded the data, explored it, and wrote up one true, specific finding in my README</label>
 
 {: .note }
-> 🔄 Ask Claude: "Set `d3-data-mine.main` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it."
+> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-data-mine.main` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it to `main` on my fork." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
+
+---
+
+## Side Quests
+
+{: .note }
+> Finished early? Try one or both of these.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-data-mine" data-key="side1"> I made at least one plot or visualization</label>
 
 {: .note }
-> 🔄 Ask Claude: "Set `d3-data-mine.side1` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it."
+> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-data-mine.side1` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it to `main` on my fork." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
 
-<label class="quest-check"><input type="checkbox" data-room="d3-data-mine" data-key="side2"> I wrote up a finding in my README</label>
+**Side Quest — Check the Per-User Limits**
+
+Group the processes by `user` and compute total `cpu_pct` and `mem_pct` per person. Is anyone close to the per-user limits mentioned back in The Back Kitchen?
+
+<label class="quest-check"><input type="checkbox" data-room="d3-data-mine" data-key="side3"> I grouped processes by user and checked their usage against the per-user limits</label>
 
 {: .note }
-> 🔄 Ask Claude: "Set `d3-data-mine.side2` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it."
+> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-data-mine.side3` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it to `main` on my fork." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.

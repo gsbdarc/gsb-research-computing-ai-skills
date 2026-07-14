@@ -10,8 +10,6 @@ permalink: /day3/ticket-rail/
 
 <div data-room-id="d3-foremans-desk"></div>
 
-*You step up to the rail. A blank slip of parchment waits on the counter — the order form, the thing that stands in for you when you're not in the kitchen. It has to contain everything: the recipe, the station you need, the time limit, the resources. The head chef will read it cold, without context. If it's vague, it gets rejected. If it's wrong, the job fails. Write it right the first time.*
-
 ---
 
 ## Main Exercise — Write a SLURM Script
@@ -46,9 +44,9 @@ These are instructions to the head chef. Fill in each placeholder using the meas
 ```bash
 #SBATCH --job-name=<job-name>
 #SBATCH --output=logs/<output-file>_%j.out
-#SBATCH --time=<HH:MM:SS>
-#SBATCH --mem=<RAM>
-#SBATCH --cpus-per-task=<cores>
+#SBATCH --time=<HH:MM:SS>            # e.g. 00:10:00
+#SBATCH --mem=<RAM>                  # e.g. 4G
+#SBATCH --cpus-per-task=<cores>      # e.g. 2
 ```
 
 ---
@@ -87,7 +85,7 @@ When your script is complete — put a **🟢 green sticky** on your laptop.
 <label class="quest-check"><input type="checkbox" data-room="d3-foremans-desk" data-key="main"> I wrote extract_form_3_one_file.slurm and understand every line</label>
 
 {: .note }
-> 🔄 Ask Claude: "Set `d3-foremans-desk.main` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it."
+> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-foremans-desk.main` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it to `main` on my fork." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
 
 ---
 
@@ -103,11 +101,6 @@ Monitor the queue:
 ```bash
 squeue --me
 ```
-
-<label class="quest-check"><input type="checkbox" data-room="d3-foremans-desk" data-key="submit"> I submitted with sbatch and my job entered the queue (I have a JOBID)</label>
-
-{: .note }
-> 🔄 Ask Claude: "Set `d3-foremans-desk.submit` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it."
 
 ---
 
@@ -126,10 +119,10 @@ squeue --me
 {: .note }
 > You may briefly see your job's status change to **CG** (completing) before it disappears from the queue — that's normal, not an error.
 
-<label class="quest-check"><input type="checkbox" data-room="d3-foremans-desk" data-key="cancel"> I cancelled my job with scancel and confirmed it left the queue</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-foremans-desk" data-key="submit"> I submitted with sbatch, confirmed it in the queue, and cancelled it with scancel</label>
 
 {: .note }
-> 🔄 Ask Claude: "Set `d3-foremans-desk.cancel` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it."
+> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-foremans-desk.submit` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it to `main` on my fork." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
 
 ---
 
@@ -155,4 +148,36 @@ Once your job runs, check your inbox. You should receive two emails: one when th
 <label class="quest-check"><input type="checkbox" data-room="d3-foremans-desk" data-key="side1"> I added email notifications and resubmitted</label>
 
 {: .note }
-> 🔄 Ask Claude: "Set `d3-foremans-desk.side1` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it."
+> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-foremans-desk.side1` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it to `main` on my fork." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
+
+---
+
+## Side Quest — Go Interactive Instead of Batch
+
+Everything so far has been batch submission — write a script, `sbatch` it, wait. SLURM also supports an interactive allocation on a dedicated node, useful for debugging without fighting other users for resources:
+
+```bash
+srun --pty --cpus-per-task=2 --mem=4G --time=00:30:00 bash
+```
+
+Once it drops you into a shell on your allocated node, run your script there directly.
+
+<label class="quest-check"><input type="checkbox" data-room="d3-foremans-desk" data-key="side2"> I requested an interactive allocation with srun --pty and ran my script there</label>
+
+{: .note }
+> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-foremans-desk.side2` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it to `main` on my fork." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
+
+**Side Quest — Chain Two Jobs**
+
+Real pipelines are often more than one step. Submit a second job that only starts if your first one succeeds:
+
+```bash
+sbatch --dependency=afterok:JOBID slurm/extract_form_3_one_file.slurm
+```
+
+Replace `JOBID` with the job ID of a job you already submitted. Confirm with `squeue --me` that the new job shows as pending until the first one completes.
+
+<label class="quest-check"><input type="checkbox" data-room="d3-foremans-desk" data-key="side3"> I chained two SLURM jobs with --dependency=afterok</label>
+
+{: .note }
+> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-foremans-desk.side3` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it to `main` on my fork." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.

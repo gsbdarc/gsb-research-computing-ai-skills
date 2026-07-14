@@ -57,7 +57,7 @@ tr.lb-leader td { background: #f4f8ff; }
   var MAIN   = 'gsbdarc/rf-bootcamp-2026';
   var REPO   = 'rf-bootcamp-2026';
   var BRANCH = 'main';
-  var TOTAL  = 45;
+  var TOTAL  = 54;
 
   var LEVEL_TITLES = [
     'Initiate', 'Apprentice', 'Scholar', 'Journeyman', 'Adept',

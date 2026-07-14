@@ -10,8 +10,6 @@ permalink: /day3/back-kitchen/
 
 <div data-room-id="d3-head-chef"></div>
 
-*The foreman leads you past the open kitchen and through a set of iron doors you hadn't noticed before. Beyond them: a corridor that hums with a different energy, orderly and quiet. "Out there, anyone can grab a burner," he says. "Back here, nothing runs without an order." He sweeps a hand along the wall — a rail, stretching the length of the passage, hung with parchment slips. "The head chef reads every one. He assigns the station, the time, the resources. You write the order. He decides when it runs."*
-
 ---
 
 ## Interactive Yens
@@ -106,7 +104,7 @@ When you can read the queue and explain the difference between `R` and `PD` to a
 <label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="main"> I can read the job queue with squeue and filter it by partition</label>
 
 {: .note }
-> 🔄 Ask Claude: "Set `d3-head-chef.main` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it."
+> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-head-chef.main` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it to `main` on my fork." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
 
 Now run `sinfo` to see the state of all nodes and [partitions](https://rcpedia.stanford.edu/_user_guide/slurm/#current-partitions-and-their-limits):
 
@@ -121,7 +119,7 @@ sinfo
 <label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="side1"> I ran sinfo and can describe the Yens partitions and node states</label>
 
 {: .note }
-> 🔄 Ask Claude: "Set `d3-head-chef.side1` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it."
+> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-head-chef.side1` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it to `main` on my fork." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
 
 ---
 
@@ -152,7 +150,7 @@ Now run `longsqueue` — you should see the full resource picture of every job i
 <label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="side3"> I added the longsqueue alias to my ~/.bash_profile and can read CPU and memory requests in the queue</label>
 
 {: .note }
-> 🔄 Ask Claude: "Set `d3-head-chef.side3` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it."
+> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-head-chef.side3` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it to `main` on my fork." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
 
 **Bonus 2 — Inspect any job with scontrol**
 
@@ -172,4 +170,13 @@ This works on any job — yours or someone else's — as long as it is still in 
 <label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="side4"> I used scontrol to find the CPU, RAM, and time limit of a job in the queue</label>
 
 {: .note }
-> 🔄 Ask Claude: "Set `d3-head-chef.side4` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it."
+> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-head-chef.side4` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it to `main` on my fork." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
+
+**Bonus 3 — Compare partitions**
+
+Run `sinfo -p gpu` and `sinfo -p normal` (or whichever partitions exist on the Yens) and compare what each offers — node count, time limits, resource caps. Can you explain when you'd request one over the other for a job?
+
+<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="side5"> I compared a GPU partition to a CPU partition with sinfo and can explain when I'd request each</label>
+
+{: .note }
+> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-head-chef.side5` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it to `main` on my fork." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.

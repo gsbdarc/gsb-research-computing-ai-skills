@@ -10,8 +10,6 @@ permalink: /day3/failed-order/
 
 <div data-room-id="d3-watch-tower"></div>
 
-*The order came back. Parchment crumpled, stamped FAILED in red, sitting on the rail where you left it hours ago. You burned the pancakes. Maybe the venv wasn't active on the compute node. Maybe the path was wrong. Maybe you asked for 2G of fridge space and the recipe needed 8. The head chef doesn't explain. He just stamps it and sends it back. Reading the wreckage — that's your job.*
-
 ---
 
 ## Main Exercise — Debug and Fix Your Job
@@ -50,13 +48,13 @@ Once you've found the bug, fix it. Test interactively on the Yens first to confi
 ```bash
 cd ~/rf-bootcamp-2026
 source .venv/bin/activate
-python scripts/extract_form_3_batch.py
+python scripts/extract_form_3_one_file.py
 ```
 
 **Step 4 — Resubmit**
 
 ```bash
-sbatch jobs/extract.slurm
+sbatch slurm/extract_form_3_one_file.slurm
 ```
 
 Check it enters the queue and eventually completes:
@@ -70,7 +68,7 @@ When your job shows `COMPLETED` — put a **🟢 green sticky** on your laptop.
 <label class="quest-check"><input type="checkbox" data-room="d3-watch-tower" data-key="main"> I found the bug, fixed it, resubmitted, and my job shows COMPLETED</label>
 
 {: .note }
-> 🔄 Ask Claude: "Set `d3-watch-tower.main` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it."
+> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-watch-tower.main` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it to `main` on my fork." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
 
 ---
 
@@ -96,7 +94,7 @@ Did you over-request memory? Use these numbers to calibrate your next job's `--m
 <label class="quest-check"><input type="checkbox" data-room="d3-watch-tower" data-key="side1"> I audited my resource usage and know whether I over- or under-requested</label>
 
 {: .note }
-> 🔄 Ask Claude: "Set `d3-watch-tower.side1` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it."
+> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-watch-tower.side1` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it to `main` on my fork." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
 
 **Bonus 2 — Watch a job live**
 
@@ -111,4 +109,26 @@ Ctrl-C to stop following. This is useful for long jobs where you want to see pro
 <label class="quest-check"><input type="checkbox" data-room="d3-watch-tower" data-key="side2"> I followed a running job's output live with tail -f</label>
 
 {: .note }
-> 🔄 Ask Claude: "Set `d3-watch-tower.side2` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it."
+> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-watch-tower.side2` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it to `main` on my fork." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
+
+**Bonus 3 — Decode the exit code**
+
+```bash
+sacct -j JOBID --format=JobID,ExitCode,State
+```
+
+An `ExitCode` like `137` often means the job was killed for using too much memory (`SIGKILL`). Look up what your job's exit code means.
+
+<label class="quest-check"><input type="checkbox" data-room="d3-watch-tower" data-key="side3"> I decoded my job's ExitCode with sacct and can explain what it means</label>
+
+{: .note }
+> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-watch-tower.side3` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it to `main` on my fork." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
+
+**Bonus 4 — Trigger an OOM on purpose**
+
+Edit your `#SBATCH --mem` directive down to something clearly too small (e.g. `--mem=10M`) and resubmit. Watch it get killed for running out of memory, then compare its `sacct` `State` and `.err` signature to the bug you fixed earlier — can you tell an OOM kill apart from a code bug at a glance now?
+
+<label class="quest-check"><input type="checkbox" data-room="d3-watch-tower" data-key="side4"> I deliberately triggered an OOM kill and compared its failure signature to my original bug</label>
+
+{: .note }
+> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-watch-tower.side4` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it to `main` on my fork." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
