@@ -105,11 +105,11 @@ Every day adds a layer to one research pipeline. The dataset: SEC Form 3 filings
 | The Kitchen (demo) | 25 min |
 | The Scales (profile Day 2 script + profile mystery script) | 30 min |
 | The Storage Pantry (analyze real Yens system data with an AI agent) | 35 min |
+| The Back Kitchen (why SLURM exists; read the queue with squeue/sinfo) | 20 min |
 | The Ticket Rail (write + submit `slurm/extract_form_3_one_file.slurm`) | 25 min |
 | Failed Order (`sacct` after job completes) | 15 min |
 | The Recipe Book (write README) | 20 min |
 | Boss Gate 3 (commit + push) | 15 min |
-| Transitions | 10 min |
 
 ### Room-by-Room Outline
 
