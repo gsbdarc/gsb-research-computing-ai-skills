@@ -86,6 +86,9 @@ When your script is complete — put a **🟢 green sticky** on your laptop.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-foremans-desk" data-key="main"> I wrote extract_form_3_one_file.slurm and understand every line</label>
 
+{: .note }
+> 🔄 Ask Claude: "Set `d3-foremans-desk.main` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it."
+
 ---
 
 ## Submit
@@ -102,6 +105,9 @@ squeue --me
 ```
 
 <label class="quest-check"><input type="checkbox" data-room="d3-foremans-desk" data-key="submit"> I submitted with sbatch and my job entered the queue (I have a JOBID)</label>
+
+{: .note }
+> 🔄 Ask Claude: "Set `d3-foremans-desk.submit` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it."
 
 ---
 
@@ -121,6 +127,9 @@ squeue --me
 > You may briefly see your job's status change to **CG** (completing) before it disappears from the queue — that's normal, not an error.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-foremans-desk" data-key="cancel"> I cancelled my job with scancel and confirmed it left the queue</label>
+
+{: .note }
+> 🔄 Ask Claude: "Set `d3-foremans-desk.cancel` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it."
 
 ---
 
@@ -144,3 +153,6 @@ sbatch slurm/extract_form_3_one_file.slurm
 Once your job runs, check your inbox. You should receive two emails: one when the job **starts** and one when it **ends** — the end email includes a utilization summary showing how much CPU time and memory the job actually used.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-foremans-desk" data-key="side1"> I added email notifications and resubmitted</label>
+
+{: .note }
+> 🔄 Ask Claude: "Set `d3-foremans-desk.side1` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it."

@@ -38,17 +38,13 @@ Your commit should include:
 
 ## 📊 End of Day 3 — Sync Your Progress
 
-Let your instructor see where you landed today. Takes 2 minutes.
+Let your instructor see where you landed today. You already have Claude Code open on the Yens — ask it to handle the sync.
 
-**Step 1 — Export your quest log**
+In your terminal, inside `~/rf-bootcamp-2026`, tell Claude something like:
 
-Click **"📤 Sync to leaderboard"** in the bottom-left corner of this page. A file called `quest_log.json` downloads to your laptop.
+> Look at the `DAYS` list in `docs/assets/js/quest-log.js` to find the exact `room.key` names for Day 3. In `quest_log.json` at my repo root (create it if it doesn't exist yet), set those keys to `true` for everything I completed today: [list what you finished, e.g. "the Head Chef and Data Mine main quests, and Boss Gate 3"]. Then commit and push it to my fork.
 
-**Step 2 — Upload it to your fork**
-
-Go to your fork on GitHub (`github.com/YOUR_USERNAME/rf-bootcamp-2026`) → **Add file** → **Upload files** → drag `quest_log.json` in → **Commit changes** to main.
-
-The leaderboard updates within 2 minutes. Your instructor can see how many quests you completed and whether you cleared the Boss Gate.
+The leaderboard updates within 2 minutes once Claude pushes. Your instructor can see how many quests you completed and whether you cleared the Boss Gate.
 
 ---
 

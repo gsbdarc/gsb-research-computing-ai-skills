@@ -67,3 +67,6 @@ Input: SEC Form 3 filings from EDGAR (public domain).
 > You will update this README in Boss Gate 4 when you scale with a job array.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-chronicle" data-key="main"> README written and covers what the script does, how to run it, and where output lands</label>
+
+{: .note }
+> 🔄 Ask Claude: "Set `d3-chronicle.main` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it."

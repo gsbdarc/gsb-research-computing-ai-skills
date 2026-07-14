@@ -105,6 +105,9 @@ When you can read the queue and explain the difference between `R` and `PD` to a
 
 <label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="main"> I can read the job queue with squeue and filter it by partition</label>
 
+{: .note }
+> 🔄 Ask Claude: "Set `d3-head-chef.main` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it."
+
 Now run `sinfo` to see the state of all nodes and [partitions](https://rcpedia.stanford.edu/_user_guide/slurm/#current-partitions-and-their-limits):
 
 ```bash
@@ -116,6 +119,9 @@ sinfo
 - What is the maximum time limit for each partition?
 
 <label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="side1"> I ran sinfo and can describe the Yens partitions and node states</label>
+
+{: .note }
+> 🔄 Ask Claude: "Set `d3-head-chef.side1` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it."
 
 ---
 
@@ -145,6 +151,9 @@ Now run `longsqueue` — you should see the full resource picture of every job i
 
 <label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="side3"> I added the longsqueue alias to my ~/.bash_profile and can read CPU and memory requests in the queue</label>
 
+{: .note }
+> 🔄 Ask Claude: "Set `d3-head-chef.side3` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it."
+
 **Bonus 2 — Inspect any job with scontrol**
 
 Pick any job from `squeue` and look up its full details:
@@ -161,3 +170,6 @@ Find these fields in the output:
 This works on any job — yours or someone else's — as long as it is still in the queue or running.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="side4"> I used scontrol to find the CPU, RAM, and time limit of a job in the queue</label>
+
+{: .note }
+> 🔄 Ask Claude: "Set `d3-head-chef.side4` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it."

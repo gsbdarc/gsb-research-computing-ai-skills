@@ -75,6 +75,15 @@ When you're ready — put a **🟢 green sticky** on your laptop.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-data-mine" data-key="main"> I loaded the data and found something worth investigating</label>
 
+{: .note }
+> 🔄 Ask Claude: "Set `d3-data-mine.main` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it."
+
 <label class="quest-check"><input type="checkbox" data-room="d3-data-mine" data-key="side1"> I made at least one plot or visualization</label>
 
+{: .note }
+> 🔄 Ask Claude: "Set `d3-data-mine.side1` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it."
+
 <label class="quest-check"><input type="checkbox" data-room="d3-data-mine" data-key="side2"> I wrote up a finding in my README</label>
+
+{: .note }
+> 🔄 Ask Claude: "Set `d3-data-mine.side2` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it."

@@ -152,3 +152,6 @@ The cloud is a rented kitchen — and it's **just for you**. Unlike the Yens, yo
 - What happens when many researchers all run jobs at once on the shared Yens?
 
 <label class="quest-check"><input type="checkbox" data-room="d3-kitchen" data-key="main"> I participated in the class demo and discussion</label>
+
+{: .note }
+> 🔄 Ask Claude: "Set `d3-kitchen.main` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it."

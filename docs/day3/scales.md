@@ -52,6 +52,9 @@ While it runs (or after it finishes), discuss as a class:
 
 <label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="exercise3"> I ran the script and understand why we want to estimate its resource usage</label>
 
+{: .note }
+> 🔄 Ask Claude: "Set `d3-head-chef.exercise3` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it."
+
 This page will teach you **how to estimate the resources your script is actually using**. This matters whether you wrote the script yourself or someone handed it to you.
 
 ---
@@ -138,6 +141,9 @@ When you can describe what the mystery script does to your CPU and RAM — put a
 
 <label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="mystery"> I profiled mystery_script.py and I understand its time, CPU, and RAM usage</label>
 
+{: .note }
+> 🔄 Ask Claude: "Set `d3-head-chef.mystery` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it."
+
 ---
 
 ## 💻 Exercise 3 — Profile Your Day 2 Script
@@ -157,6 +163,9 @@ watch userload
 Note the `real`, `user`, and `sys` times when it finishes. Is this script serial or parallel?
 
 <label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="exercise2"> I profiled extract_form_3_one_file.py and understand its time, CPU, and RAM usage</label>
+
+{: .note }
+> 🔄 Ask Claude: "Set `d3-head-chef.exercise2` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it."
 
 ---
 
@@ -179,6 +188,9 @@ Now that you have profiled `extract_form_3_one_file.py`, write down what you fou
 Fill in the actual numbers from your `time` and `userload` output. This documents what the script needs to process a single file — a baseline you will use when scaling up.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="readme"> I documented the script's time, CPU, and RAM in README.md</label>
+
+{: .note }
+> 🔄 Ask Claude: "Set `d3-head-chef.readme` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it."
 
 ---
 
@@ -220,3 +232,6 @@ Record what you observe in a `README.md` in that project folder:
 ```
 
 <label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="side2"> I profiled my own research script and recorded its time, CPU, and RAM in a README</label>
+
+{: .note }
+> 🔄 Ask Claude: "Set `d3-head-chef.side2` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it."

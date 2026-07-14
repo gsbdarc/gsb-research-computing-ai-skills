@@ -69,6 +69,9 @@ When your job shows `COMPLETED` — put a **🟢 green sticky** on your laptop.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-watch-tower" data-key="main"> I found the bug, fixed it, resubmitted, and my job shows COMPLETED</label>
 
+{: .note }
+> 🔄 Ask Claude: "Set `d3-watch-tower.main` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it."
+
 ---
 
 ## Optional Exercises
@@ -92,6 +95,9 @@ Did you over-request memory? Use these numbers to calibrate your next job's `--m
 
 <label class="quest-check"><input type="checkbox" data-room="d3-watch-tower" data-key="side1"> I audited my resource usage and know whether I over- or under-requested</label>
 
+{: .note }
+> 🔄 Ask Claude: "Set `d3-watch-tower.side1` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it."
+
 **Bonus 2 — Watch a job live**
 
 While your job is running (status `R`), you can follow the output as it writes:
@@ -103,3 +109,6 @@ tail -f logs/extract_JOBID.out
 Ctrl-C to stop following. This is useful for long jobs where you want to see progress without waiting for completion.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-watch-tower" data-key="side2"> I followed a running job's output live with tail -f</label>
+
+{: .note }
+> 🔄 Ask Claude: "Set `d3-watch-tower.side2` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it."
