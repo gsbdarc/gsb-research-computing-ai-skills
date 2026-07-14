@@ -105,7 +105,7 @@ Every day adds a layer to one research pipeline. The dataset: SEC Form 3 filings
 | 1 | Kitchen demo | 25 min |
 | NEW | The Data Mine: analyze real Yens system data with an AI agent | 35 min |
 | 2+3 | Profile Day 2 script + profile mystery script | 30 min |
-| 4 | Write + submit `jobs/extract.sh` | 25 min |
+| 4 | Write + submit `slurm/extract_form_3_one_file.slurm` | 25 min |
 | 6 | Recipe Book: write README while job runs | 20 min |
 | 5 | Failed Order: `sacct` after job completes | 15 min |
 | BG | Boss Gate 3: commit + push | 15 min |
@@ -118,10 +118,10 @@ Every day adds a layer to one research pipeline. The dataset: SEC Form 3 filings
 | # | Quest |
 |---|-------|
 | 1 | Kitchen demo |
-| NEW | The Data Mine: dig into `yens_sample.txt`; find CPU/RAM/process/user patterns using an AI agent or notebook |
+| NEW | The Data Mine: dig into the real yenstop CSV snapshot; find CPU/RAM/process/user patterns using an AI agent or notebook |
 | 2 | Profile Day 2 script: `time`, `htop -u $USER`, `userload` |
 | 3 | Profile mystery script from a second terminal |
-| 4 | Write `jobs/extract.sh` with `#SBATCH` directives; `sbatch` it |
+| 4 | Write `slurm/extract_form_3_one_file.slurm` with `#SBATCH` directives; `sbatch` it |
 | 5 | Monitor: `squeue`; retrieve output: `sacct`; cancel a job: `scancel` |
 | 6 | Update `README.md` with SLURM instructions; commit and push | 
 

@@ -23,7 +23,7 @@ The Archmage does not test you with riddles. It tests you with the full stack �
 > **Boss Battle — Champion's Ascent**
 >
 > **Part 1 — Scale with an array job:**
-> Convert your `jobs/extract.sh` to a full job array (`--array=1-100`). Each task processes one filing and writes its result to `/scratch/shared/$USER/results/filing_N.json`. After the array completes, merge all outputs into `results/great_scroll_sweep.csv`.
+> Reuse your `jobs/array_extract.sh` from The Array Cavern (`--array=1-100`). Each task processes one filing and writes its result to `/scratch/shared/$USER/results/filing_N.json`. After the array completes, merge all outputs into `results/great_scroll_sweep.csv`.
 >
 > **Part 2 — Swap the endpoint:**
 > Modify your array script to call **Ollama on the H200** instead of the Stanford AI Playground. The Ollama server must be running on `yen-gpu4` in a `screen` session before you submit the array.
