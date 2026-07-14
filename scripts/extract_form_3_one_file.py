@@ -42,7 +42,7 @@ Return valid JSON matching the schema exactly.
 """
 
 response = client.chat.completions.create(
-    model="claude-opus-4-7",
+    model="gpt-4.1-nano",
     response_format={"type": "json_object"},
     messages=[
         {"role": "system", "content": system_prompt},
