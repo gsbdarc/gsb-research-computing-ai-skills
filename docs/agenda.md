@@ -100,36 +100,31 @@ Every day adds a layer to one research pipeline. The dataset: SEC Form 3 filings
 
 ### Timing (3 hours)
 
-| # | Quest | Time |
-|---|-------|------|
-| 1 | Kitchen demo | 25 min |
-| NEW | The Data Mine: analyze real Yens system data with an AI agent | 35 min |
-| 2+3 | Profile Day 2 script + profile mystery script | 30 min |
-| 4 | Write + submit `slurm/extract_form_3_one_file.slurm` | 25 min |
-| 6 | Recipe Book: write README while job runs | 20 min |
-| 5 | Failed Order: `sacct` after job completes | 15 min |
-| BG | Boss Gate 3: commit + push | 15 min |
-| — | Transitions | 10 min |
+| Room | Time |
+|---|---|
+| The Kitchen (demo) | 25 min |
+| The Storage Pantry (analyze real Yens system data with an AI agent) | 35 min |
+| The Scales (profile Day 2 script + profile mystery script) | 30 min |
+| The Ticket Rail (write + submit `slurm/extract_form_3_one_file.slurm`) | 25 min |
+| The Recipe Book (write README while job runs) | 20 min |
+| Failed Order (`sacct` after job completes) | 15 min |
+| Boss Gate 3 (commit + push) | 15 min |
+| Transitions | 10 min |
 
-*After Quest 4 (`sbatch`), send students to Quest 6 (Recipe Book) while the job queues. Return to Quest 5 (Failed Order / `sacct`) once the job is COMPLETED.*
+*After The Ticket Rail (`sbatch`), send students to The Recipe Book while the job queues. Return to Failed Order (`sacct`) once the job is COMPLETED.*
 
-### Main Quests
+### Room-by-Room Outline
 
-| # | Quest |
-|---|-------|
-| 1 | Kitchen demo |
-| NEW | The Data Mine: dig into the real yenstop CSV snapshot; find CPU/RAM/process/user patterns using an AI agent or notebook |
-| 2 | Profile Day 2 script: `time`, `htop -u $USER`, `userload` |
-| 3 | Profile mystery script from a second terminal |
-| 4 | Write `slurm/extract_form_3_one_file.slurm` with `#SBATCH` directives; `sbatch` it |
-| 5 | Monitor: `squeue`; retrieve output: `sacct`; cancel a job: `scancel` |
-| 6 | Update `README.md` with SLURM instructions; commit and push | 
-
-### Side Quests *(optional)*
-- Email notifications: `#SBATCH --mail-type=ALL`
-- Interactive jobs: `srun --pty bash`
-- Checkpointing: saving progress mid-job
-- Reading `sacct` fields: elapsed time, memory used, exit codes
+| Room | Main Quest(s) | Side Quest(s) | Skills Learned | Hands-on Exercise |
+|---|---|---|---|---|
+| **The Kitchen** | Class demo + discussion: laptop vs. Yens vs. cloud (CPU, RAM, storage tradeoffs) | Compare your own laptop's cores/RAM to a Yen node; estimate cloud $/hr for the Day 2 job | Shared vocabulary for CPU, RAM, and storage across environments | Demo + discussion — no hands-on exercise on this page |
+| **The Back Kitchen** | Read `squeue`, filter by partition, explain `R` vs. `PD` | `sinfo` (partitions/node states); `longsqueue` alias; `scontrol show job`; compare a GPU vs. CPU partition request | Why SLURM exists; interactive Yens vs. dedicated scheduled nodes | Read and filter the live SLURM queue |
+| **The Storage Pantry** | Load the real yenstop CSV snapshot, explore it, and write up one finding in README | Make a plot/visualization; group processes by user and check against the per-user limits from The Back Kitchen | Real cluster data literacy; plain-language scientific write-up | Explore a real monitoring CSV with pandas/Claude |
+| **The Scales** | Profile a mystery script with `time`, `watch userload`, and `htop` (serial vs. parallel); document resource needs in README | Profile your own research script; compare `/usr/bin/time -v`'s peak RAM to `userload`'s; profile an I/O-bound script and compare `sys` vs. `user` time | Profiling methodology; estimating resources instead of guessing | Two-terminal live profiling technique |
+| **The Ticket Rail** | Write a SLURM script from scratch (shebang, `#SBATCH` directives, env setup, run command); submit, monitor, and cancel a job | Email notifications (`--mail-type=ALL`); interactive allocation (`srun --pty`); job dependency chaining (`--dependency=afterok`) | Writing a SLURM script line by line; managing a job's full lifecycle | Write, submit, and cancel a real SLURM job |
+| **Failed Order** | Debug a failed job: read `sacct`/logs, fix the bug, resubmit to `COMPLETED` | Audit requested vs. actual resource usage; follow a live job with `tail -f`; decode `ExitCode`; deliberately trigger an OOM kill | Debugging methodology; recognizing failure signatures (code bug vs. OOM) | Real debug → fix → resubmit loop on a failing job |
+| **The Recipe Book** | Write a README covering what the script does, how to run it, and where output lands | Have Claude critique the README as a first-time reader; write a plain-language summary for a non-technical audience | Technical documentation habits; AI-assisted review; research communication | Write a full README from a template while the work is fresh |
+| **Boss Gate 3** | Commit and push the SLURM script + README (capstone) | Manually rerun against a few more filings; describe what breaks at scale (primes Day 4's job arrays) | Synthesize the day: profiling → SLURM → debugging → documentation → commit | Full pipeline submission, backed by real measurements |
 
 ---
 
