@@ -26,6 +26,9 @@ __pycache__/
 venv/
 .env
 
+# SLURM job output (regenerated in class; results/ stays tracked -- it holds graded deliverables)
+logs/
+
 # Node + Cloudflare Worker
 node_modules/
 bot/.dev.vars
