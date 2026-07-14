@@ -96,7 +96,7 @@ When you're ready — put a **🟢 green sticky** on your laptop.
 
 **Side Quest — Check the Per-User Limits**
 
-Group the processes by `user` and compute total `cpu_pct` and `mem_pct` per person. Is anyone close to the per-user limits mentioned back in The Back Kitchen?
+Group the processes by `user` and compute total `cpu_pct` and `mem_pct` per person. Is anyone close to the per-user limits mentioned back in The Scales?
 
 <label class="quest-check"><input type="checkbox" data-room="d3-data-mine" data-key="side3"> I grouped processes by user and checked their usage against the per-user limits</label>
 
