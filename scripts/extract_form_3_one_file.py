@@ -13,7 +13,7 @@ client = OpenAI(
 )
 
 # Filing to process — swap this path for any Form 3 .txt file
-FILING_PATH = "data/sec_filings/form3_sample.txt"
+FILING_PATH = "/zfs/data/NODR/EDGAR_HTTPS/edgar/data/1656998/0000950103-24-000077.txt"
 OUTPUT_PATH = "results/form3_result.json"
 
 with open(FILING_PATH, "r") as f:

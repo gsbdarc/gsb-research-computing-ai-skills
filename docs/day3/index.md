@@ -9,6 +9,8 @@ floor: 3
 
 # Day 3 — The Hearth
 
+Today shifts from running scripts interactively to submitting them as real **batch jobs**. You'll start with a shared vocabulary for **CPU**, **RAM**, and **storage**, see why the cluster needs a **scheduler** at all, and dig into real usage data from the Yens. From there you'll learn to **profile** a script so you know what resources to request instead of guessing, write and submit a **SLURM** job from scratch, **debug** one that fails, and document the whole pipeline in a **README**. **Boss Gate 3** caps the day with a SLURM job backed by real measurements — the foundation Day 4 scales up with **GPU jobs** and **job arrays**.
+
 ---
 
 ## Day 2 Recap

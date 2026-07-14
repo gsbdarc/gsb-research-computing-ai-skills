@@ -63,7 +63,7 @@ Each floor is locked until you pass the Boss Gate from the previous floor:
 |-----------|----------------|--------------|
 | **Gate 1** | `signature_spell.txt` | Floor 2 — The Alchemist's Lab |
 | **Gate 2** | `results/mood_ring.json` | Floor 3 — The SLURM Mines |
-| **Gate 3** | `jobs/extract.sh` · `README.md` | Floor 4 — The GPU Fortress |
+| **Gate 3** | `slurm/extract_form_3_one_file.slurm` · `README.md` | Floor 4 — The GPU Fortress |
 | **Gate 4** | `results/great_scroll_sweep.csv` · `results/comparison.csv` · `README.md` | All floors cleared ⚔️ |
 
 ---
