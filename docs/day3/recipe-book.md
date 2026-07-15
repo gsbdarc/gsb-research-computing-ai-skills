@@ -70,7 +70,7 @@ Input: SEC Form 3 filings from EDGAR (public domain).
 <label class="quest-check"><input type="checkbox" data-room="d3-chronicle" data-key="main"> README written and covers what the script does, how to run it, and where output lands</label>
 
 {: .note }
-> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-chronicle.main` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it to `main` on my fork." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
+> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-chronicle.main` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`YOUR_GITHUB_USERNAME/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
 
 ---
 
@@ -86,7 +86,7 @@ Ask Claude Code to read your README as if it were a labmate seeing this pipeline
 <label class="quest-check"><input type="checkbox" data-room="d3-chronicle" data-key="side1"> I had Claude critique my README as a first-time reader and fixed at least one issue it flagged</label>
 
 {: .note }
-> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-chronicle.side1` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it to `main` on my fork." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
+> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-chronicle.side1` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`YOUR_GITHUB_USERNAME/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
 
 **Side Quest — Explain It to Your PI**
 
@@ -95,4 +95,4 @@ Write 2-3 sentences explaining what this pipeline does for a non-technical reade
 <label class="quest-check"><input type="checkbox" data-room="d3-chronicle" data-key="side2"> I wrote a plain-language explanation of my pipeline for a non-technical reader</label>
 
 {: .note }
-> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-chronicle.side2` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it to `main` on my fork." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
+> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-chronicle.side2` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`YOUR_GITHUB_USERNAME/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
