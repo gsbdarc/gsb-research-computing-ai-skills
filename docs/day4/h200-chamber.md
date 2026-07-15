@@ -10,13 +10,9 @@ permalink: /day4/h200-chamber/
 
 <div data-room-id="d4-h200-chamber"></div>
 
-*141 gigabytes of HBM3e memory — a silicon colossus humming in the dark. The chamber smells faintly of ozone and ambition. This is the largest, fastest GPU on the Yens, and in a few minutes your code will be running on it. When `nvidia-smi` spits back its first numbers, feel it: that is not a simulation. That is a $30,000 accelerator doing your bidding while your laptop sits idle.*
-
 ---
 
-## 🗡️ Main Quest
-
-The door ahead is sealed with a GPU lock. Prove you can summon compute on demand — write the job script, fire it into the scheduler, and watch real silicon wake up for you.
+## Main Quest
 
 {: .important }
 > **Quest:** Submit a GPU job targeting `yen-gpu4` (the H200 node), verify it runs on the GPU, and inspect the GPU utilization.

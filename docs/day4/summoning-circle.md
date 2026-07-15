@@ -10,13 +10,9 @@ permalink: /day4/summoning-circle/
 
 <div data-room-id="d4-summoning-circle"></div>
 
-*Chalk the circle on the stone floor. Speak the model's name. Watch the weights materialize on drives inside the fortress — billions of parameters, fully yours, answering only to you. Ollama is the ritual. The H200 is the altar. No API key demanded at the door, no usage meter ticking in the background, no whisper of your prompts drifting to a server farm in another state. What runs here stays here.*
-
 ---
 
-## 🗡️ Main Quest
-
-You've got raw GPU muscle beneath you — now it's time to bind a model to it. Speak the name and watch it answer.
+## Main Quest
 
 {: .important }
 > **Quest:** Pull a model with Ollama on the H200, chat with it from a Jupyter notebook, and confirm it runs locally.

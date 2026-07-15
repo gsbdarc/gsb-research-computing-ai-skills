@@ -8,22 +8,20 @@ permalink: /day4/boss-gate-4/
 
 # Boss Gate 4
 
-*The Archmage's chamber looms before you — ancient stone humming with the heat of a thousand GPU cores. The final seal pulses like a heartbeat. Four days of battle have led here: the shell commands you carved into muscle memory, the SSH tunnels you bored through solid rock, the venvs you forged in the Forge, the Pydantic models you bound like spells, the SLURM arrays you unleashed like war parties, the H200 you bent to your will, the local LLM you summoned from raw silicon. The Champion's Ascent asks for nothing new. It asks you to prove that everything old is now, irrevocably, yours.*
-
 {: .note }
-> **Oracle's Revelation — the course bot unmasked:** The dungeon's oracle was powered by the same tools you've now mastered. System prompt → context injection → Stanford AI Playground call → structured response. Every answer it gave was a Pydantic model. Every "hint" was a retrieval-augmented lookup over the dungeon room map. You didn't just learn to use the oracle — you learned to build one.
+> **How the course assistant worked:** The bot you've asked questions all week used the same tools you've now learned. System prompt → context injection → Stanford AI Playground call → structured response. Every answer it returned was a Pydantic model; every "hint" was a retrieval-augmented lookup over the room map. You didn't just use it — you now know how to build one.
 
 ---
 
-## 🔑 The Challenge
+## The Challenge
 
-The Archmage does not test you with riddles. It tests you with the full stack — all at once.
+This capstone combines everything from the week into one pipeline — all at once.
 
 {: .boss }
-> **Boss Battle — Champion's Ascent**
+> **Boss Gate 4 — Full Pipeline**
 >
 > **Part 1 — Scale with an array job:**
-> Reuse your `jobs/array_extract.sh` from The Array Cavern (`--array=1-100`). Each task processes one filing and writes its result to `/scratch/shared/$USER/results/filing_N.json`. After the array completes, merge all outputs into `results/great_scroll_sweep.csv`.
+> Reuse your `jobs/array_extract.sh` from The Array Cavern (`--array=1-100`). Each task processes one filing and writes its result to `/scratch/shared/$USER/results/filing_N.json`. After the array completes, merge all outputs into `results/extracted_filings.csv`.
 >
 > **Part 2 — Swap the endpoint:**
 > Modify your array script to call **Ollama on the H200** instead of the Stanford AI Playground. The Ollama server must be running on `yen-gpu4` in a `screen` session before you submit the array.
@@ -36,8 +34,8 @@ The Archmage does not test you with riddles. It tests you with the full stack �
 >
 > **Submit:**
 > ```bash
-> git add results/great_scroll_sweep.csv results/comparison.csv README.md
-> git commit -m "Boss Gate 4: Champion's Ascent complete"
+> git add results/extracted_filings.csv results/comparison.csv README.md
+> git commit -m "Boss Gate 4 complete"
 > git push
 > ```
 
@@ -46,13 +44,13 @@ The Archmage does not test you with riddles. It tests you with the full stack �
 
 ---
 
-<label class="quest-check"><input type="checkbox" data-room="d4-boss-gate" data-key="commit"> Committed and pushed all Champion's Ascent deliverables</label>
+<label class="quest-check"><input type="checkbox" data-room="d4-boss-gate" data-key="commit"> Committed and pushed all Boss Gate 4 deliverables</label>
 
 ---
 
-## ⚔️ The Full Stack You've Demonstrated
+## The Full Stack You've Built
 
-Every row in this table is a weapon you forged, a door you unlocked, a skill no one can take back from you.
+Every row in this table is a tool you used this week and the room where you learned it.
 
 | Layer | Tool | Room |
 |-------|------|------|
@@ -71,8 +69,8 @@ Every row in this table is a weapon you forged, a door you unlocked, a skill no 
 ---
 
 {: .important }
-> **All four floors cleared.**
+> **All four days complete.**
 >
-> Every skill in the table above is yours — not borrowed, not half-understood, yours. Now check the leaderboard — the dungeon isn't over until everyone sees how many side quests you completed. Sync your quest log and see where you rank.
+> Check the leaderboard and sync your quest log to see how many side quests you completed and where you rank.
 >
-> What's next: Sherlock (Stanford's HPC), Redivis (data platform), fine-tuning, multi-node jobs, and whatever your research actually demands. The dungeon was the foundation. You know where every door leads. Go build something real.
+> What's next: Sherlock (Stanford's HPC), Redivis (data platform), fine-tuning, multi-node jobs, and whatever your research demands. This week was the foundation — you now know where each piece fits.

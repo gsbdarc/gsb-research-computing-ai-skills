@@ -10,11 +10,9 @@ permalink: /day4/engine-room/
 
 <div data-room-id="d4-engine-room"></div>
 
-*Two power lines run into the Engine Room. One is the local generator — Ollama, humming on the H200 down the hall, powered by the cluster you already own. The other snakes out through the fortress wall and into the wider world: Stanford's AI Playground, OpenAI, Anthropic. Both lines light the same bulb. The question is never "which one works?" — it's "which one should I trust with this data, and what will it cost me?"*
-
 ---
 
-## 🗡️ Main Quest
+## Main Quest
 
 {: .important }
 > **Quest:** Understand the three LLM access patterns available to Stanford researchers — local Ollama, Stanford AI Playground, and third-party APIs — and know which one fits your data, budget, and research context.
@@ -107,7 +105,7 @@ The goal is not to find the "best" model — it's to know your error rate before
 
 ---
 
-## 🧠 Skills Learned
+## Skills Learned
 
 - You can describe the three LLM access patterns available on the Yens and what distinguishes them: data residency, cost, and model availability
 - You know that all three speak the same OpenAI-compatible API — swapping `base_url` is the only code change

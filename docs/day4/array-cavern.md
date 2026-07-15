@@ -10,11 +10,9 @@ permalink: /day4/array-cavern/
 
 <div data-room-id="d4-array-cavern"></div>
 
-*A thousand identical alcoves stretch into the dark, each one lit by the faint glow of a running process. The walls hum in unison — the same script, a hundred times over, each instance tearing through a different filing. This is the Array Cavern, where the researcher's oldest curse is finally broken: "I need to do this to 10,000 files." You write the spell once. The cavern multiplies it across an army of workers. When the last task falls silent, you summon the streams together into a single, clean river of data.*
-
 ---
 
-## 🖊️ Why Parallelize?
+## Why Parallelize?
 
 Your Day 3 script processes one SEC filing at a time. You have 100 filings. Running them sequentially takes 100× as long — and ties up a node while you wait.
 
@@ -35,9 +33,7 @@ This only works when tasks are **independent** — each filing doesn't need the 
 
 ---
 
-## 🗡️ Main Quest
-
-The cluster is waiting. A hundred SEC filings sit untouched — until now. Write the script once, unleash the array, and forge the combined CSV that proves you were here.
+## Main Quest
 
 {: .important }
 > **Quest:** Submit a SLURM job array that processes 100 SEC filings in parallel, then combine all outputs into one CSV.
