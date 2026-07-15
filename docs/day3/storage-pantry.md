@@ -61,6 +61,7 @@ Some directions if you want a place to start — but don't feel limited to these
 - What commands appear most often? What do you think they are?
 - How long have some of these processes been running? Does anything surprise you?
 - What does virtual memory look like compared to resident memory for the same process?
+- yen1 has about **1 TB of RAM**, and `mem_pct` is each process's share of that. What is the single biggest process using, in **GB**? Cross-check your answer against the `res` column — that's the actual bytes resident in RAM.
 
 Make a plot. Ask Claude to explain something. Follow a thread that looks interesting.
 
@@ -157,3 +158,27 @@ You'll see `L1d` (data), `L1i` (instructions), `L2`, and `L3` with their sizes. 
 
 {: .note }
 > 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-data-mine.side4` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
+
+**Side Quest — Watch the Kitchen Live (`top`)**
+
+The CSV you've been analyzing is a **photograph** — one frozen instant, captured by a script that ran `top` once and saved the result. `top` itself is the **live view**: the same numbers, refreshing every few seconds. SSH to a Yen node and run it:
+
+```bash
+top
+```
+
+Two parts to read:
+- **The header block** (top few lines) is node-wide: load averages, task counts, overall `%Cpu(s)`, and total memory used/free.
+- **The table below** is one row per process — the same fields as your CSV: `PID`, `USER`, `%CPU`, `%MEM`, `TIME+`, `S` (status), `COMMAND`.
+
+While it's running, try these keys:
+- `P` — sort by CPU (the default) · `M` — sort by memory
+- `u`, then type a username and press Enter — show only that person's processes
+- `q` — quit
+
+Watch for a few seconds: which processes churn near a full core, and which just sit `S` (sleeping)? Then quit and add one line to your `README.md` explaining how this live view relates to the frozen CSV snapshot you analyzed.
+
+<label class="quest-check"><input type="checkbox" data-room="d3-data-mine" data-key="side5"> I ran `top` live on a Yen node, read the header and per-process columns, and can explain how it relates to the CSV snapshot</label>
+
+{: .note }
+> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-data-mine.side5` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
