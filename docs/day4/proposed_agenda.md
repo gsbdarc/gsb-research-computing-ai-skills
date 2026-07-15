@@ -39,8 +39,8 @@ sequencing addresses.
     - The Yens have GPUs that facilitate running LLM jobs
     - Understanding different GPU types at a high level
         - And how they map to different Yen nodes (see [`armory.md`](armory.md))
-    - Submitting a simple job to the GPU partition (see [`h200-chamber.md`](h200-chamber.md))
-    - Running an LLM on the Yens (see [`summoning-circle.md`](summoning-circle.md))
+    - **Exercise:** Submitting a simple job to the GPU partition (see [`h200-chamber.md`](h200-chamber.md))
+    - **Exercise:** Running an LLM on the Yens (see [`summoning-circle.md`](summoning-circle.md))
     - Choosing between LLMs on the Yens in practice (see [`engine-room.md`](engine-room.md))
 
 5. **LLM failure modes**
@@ -48,7 +48,7 @@ sequencing addresses.
         - Make it possible to compare a subset of filings
     - TODO: Re-evaluate the list of failure modes and how to defend against them (see [`trap-garden.md`](trap-garden.md))
 
-6. **Putting it all together** (see [`boss-gate-4.md`](boss-gate-4.md))
+6. **Putting it all together** — **Exercise (capstone)** (see [`boss-gate-4.md`](boss-gate-4.md))
     - Running an array job and combining the outputs
         - Using two different LLMs
     - Comparing the outputs
