@@ -1,0 +1,4 @@
+# GitHub owner of the repo this site was built from. Overwritten at build time
+# by .github/workflows/pages.yml with the fork owner's login. This placeholder
+# is the fallback for local builds and the canonical gsbdarc site.
+github_owner: YOUR_GITHUB_USERNAME
