@@ -94,7 +94,8 @@ Every day adds a layer to one research pipeline. The dataset: SEC Form 3 filings
 ### Core Concepts
 - The kitchen analogy: CPU (burners), RAM (fridge), shared storage (warehouse), SLURM (head chef)
 - Resource estimation: measure wall time and memory before writing `#SBATCH` directives
-- System data: analyze real cluster data (userload, sacct, ps) to understand CPU/RAM/process/user patterns
+- System data: analyze a real Yens `top`/yenstop snapshot (and live `top`) to understand CPU/RAM/process/user patterns
+- Hardware intuition: physical cores vs. logical threads (hyper-threading — 128 physical × 2 = 256 logical on yen1) and the cache → RAM → disk memory hierarchy (`lscpu`)
 - Job lifecycle: submit → queue → run → complete → logs
 - Job monitoring: `squeue`, `sacct`, `scancel`, reading output files
 
@@ -117,7 +118,7 @@ Every day adds a layer to one research pipeline. The dataset: SEC Form 3 filings
 |---|---|---|---|---|
 | **The Kitchen** | Class demo + discussion: laptop vs. Yens vs. cloud (CPU, RAM, storage tradeoffs) | Compare your own laptop's cores/RAM to a Yen node; estimate cloud $/hr for the Day 2 job | Shared vocabulary for CPU, RAM, and storage across environments | Demo + discussion — no hands-on exercise on this page |
 | **The Scales** | Profile a mystery script with `time`, `watch userload`, and `htop` (serial vs. parallel); document resource needs in README | Profile your own research script; compare `/usr/bin/time -v`'s peak RAM to `userload`'s; profile an I/O-bound script and compare `sys` vs. `user` time | Profiling methodology; estimating resources instead of guessing | Two-terminal live profiling technique |
-| **The Storage Pantry** | Load the real yenstop CSV snapshot, explore it, and write up one finding in README | Make a plot/visualization; group processes by user and check against the per-user limits from The Scales | Real cluster data literacy; plain-language scientific write-up | Explore a real monitoring CSV with pandas/Claude |
+| **The Storage Pantry** | Load the real yenstop CSV snapshot, explore it (e.g. work out the biggest process in GB, given yen1's ~1 TB RAM), and write up one finding in README | Make a plot; group processes by user vs. the per-user limits from The Scales; explore cores vs. threads and the cache/memory hierarchy with `lscpu`; run `top` live and read its output | Real cluster data literacy; CPU/thread & memory-hierarchy intuition; plain-language write-up | Explore a monitoring CSV with pandas/Claude; inspect the node with `lscpu` and live `top` |
 | **The Back Kitchen** | Read `squeue`, filter by partition, explain `R` vs. `PD` | `sinfo` (partitions/node states); `longsqueue` alias; `scontrol show job`; compare a GPU vs. CPU partition request | Why SLURM exists; interactive vs. scheduled Yen nodes | Read and filter the live SLURM queue |
 | **The Ticket Rail** | Write a SLURM script from scratch (shebang, `#SBATCH` directives, env setup, run command); submit, monitor, and cancel a job | Email notifications (`--mail-type=ALL`); interactive allocation (`srun --pty`); job dependency chaining (`--dependency=afterok`) | Writing a SLURM script line by line; managing a job's full lifecycle | Write, submit, and cancel a real SLURM job |
 | **Failed Order** | Debug a failed job: read `sacct`/logs, fix the bug, resubmit to `COMPLETED` | Audit requested vs. actual resource usage; follow a live job with `tail -f`; decode `ExitCode`; deliberately trigger an OOM kill | Debugging methodology; recognizing failure signatures (code bug vs. OOM) | Real debug → fix → resubmit loop on a failing job |
