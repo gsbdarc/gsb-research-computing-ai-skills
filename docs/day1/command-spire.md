@@ -1,20 +1,20 @@
 ---
 layout: default
-title: "The Command Spire"
-parent: "Day 1 — The Gatehouse"
+title: "Command Line Basics"
+parent: "Day 1 — Foundations"
 nav_order: 2
 permalink: /day1/command-spire/
 ---
 
-# The Command Spire
+# Command Line Basics
 
 <div data-room-id="d1-command-spire"></div>
 
-*Lightning splits the air between rune-carved obsidian columns, and the smell of ozone hangs like a dare. The walls themselves are covered in commands — chiseled by every researcher who came before you, each one who clawed their way to the top floor and never looked back. The inscriptions look almost too simple. That's how you know they're powerful. Master what's written here and no Unix system on earth — no cluster, no remote server, no black-screened HPC node — will ever feel foreign again.*
+This room introduces the terminal: what it is, why researchers use it, and the core commands for navigating and organizing files. Master these basics and any Unix system — a cluster, a remote server, an HPC node — will feel familiar.
 
 ---
 
-## 🖊️ The Terminal
+## The Terminal
 
 A terminal is a text interface to your computer. Instead of clicking icons, you type commands. It is how researchers talk to servers, automate repetitive work, and do in seconds what a mouse would take days to do.
 
@@ -23,7 +23,7 @@ A terminal is a text interface to your computer. Instead of clicking icons, you 
 - **Mac:** Press `Cmd+Space`, type `Terminal`, press Enter.
 - **Windows:** Download and install [Git Bash](https://git-scm.com/downloads), then open "Git Bash" from the Start menu.
 
-You should see a blinking cursor. That cursor is the entrance to the dungeon.
+You should see a blinking cursor. That is where you type commands.
 
 {: .note }
 > 🟢 **Green sticky** = I'm done and ready &nbsp;&nbsp; 🔴 **Red sticky** = I need help
@@ -32,9 +32,9 @@ You should see a blinking cursor. That cursor is the entrance to the dungeon.
 
 ---
 
-## 🖊️ Why This Matters
+## Why This Matters
 
-With a terminal open, here is what you just unlocked:
+With a terminal open, here is what you can now do:
 
 | | GUI (Finder / Explorer) | CLI (Terminal) |
 |---|---|---|
@@ -109,12 +109,12 @@ There are many ways to organize files — this is one example. What matters is t
 
 ---
 
-## 🗡️ Main Quest
+## Exercise
 
-Every hero needs to know where they stand. Your terminal is open — now claim your footing.
+Your terminal is open. In this exercise you will use the command line to find where you are, move around the file system, and create and delete files and folders.
 
 {: .important }
-> **Quest:** Use the command line to navigate your file system and reorganize a directory of files — without touching a mouse.
+> **Goal:** Use the command line to navigate your file system and reorganize a directory of files — without touching a mouse.
 
 **Investigation**
 
@@ -154,21 +154,21 @@ pwd             # confirm you moved up
 
 **Creation**
 
-Create a new folder on your Desktop, conjure a scroll inside it, and duplicate it.
+Create a new folder on your Desktop, create a file inside it, and duplicate it.
 
 ```bash
 mkdir ~/Desktop/spell_chamber        # create a new folder on your Desktop
 cd ~/Desktop/spell_chamber           # enter it
 touch scroll.txt                     # create a new file
 cp scroll.txt scroll_copy.txt        # create a copy of that file
-ls                                   # confirm both scrolls are here
+ls                                   # confirm both files are here
 ```
 
 ---
 
 **Deletion**
 
-Seal the chamber — remove everything you just created.
+Clean up — remove everything you just created.
 
 {: .warning }
 > ⚠️ `rm` is permanent. There is no undo, no trash can. Double-check what you are removing before you run it.
@@ -179,4 +179,4 @@ rm scroll_copy.txt                   # remove the copy
 rm -r ~/Desktop/spell_chamber        # remove the folder and all its contents
 ```
 
-<label class="quest-check"><input type="checkbox" data-room="d1-command-spire" data-key="main"> Main Quest complete</label>
+<label class="quest-check"><input type="checkbox" data-room="d1-command-spire" data-key="main"> Exercise complete</label>

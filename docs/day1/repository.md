@@ -1,20 +1,20 @@
 ---
 layout: default
-title: "The Repository"
-parent: "Day 1 — The Gatehouse"
+title: "Version Control with Git"
+parent: "Day 1 — Foundations"
 nav_order: 8
 permalink: /day1/repository/
 ---
 
-# The Repository
+# Version Control with Git
 
 <div data-room-id="d1-repository"></div>
 
-*Torchlight flickers across the Archive Hall, where floor-to-ceiling shelves hold stone tablets etched with every change ever made to every scroll — who touched what, when, and why. Nothing is ever lost here. No experiment vanishes, no breakthrough is accidentally overwritten, no "working version" is buried under desperate saves. The Archmage's law is absolute: your work must live in the Repository. Every Boss Gate is sealed until you commit.*
+Version control tracks every change you make to a project — who changed what, when, and why — so nothing is ever lost and you can roll back to any earlier state. In this course, your version history is also how you submit your work. This section sets up Git and GitHub and walks through the core workflow.
 
 ---
 
-## 🖊️ Git and GitHub
+## Git and GitHub
 
 **Git** is version control software that runs on your machine (or the Yens). It tracks every change you make to a project — who, what, and when — and lets you roll back to any previous state.
 
@@ -71,27 +71,42 @@ The workflow for this course:
 
 *Three numbered steps: **① fork** — make your own copy of the course repo on GitHub · **② clone** — download that copy to the Yens, where you actually work · **③ push** — send your finished work back up to your fork.*
 
-Every Boss Gate in this dungeon requires a `git push` as proof of work. No push, no gate.
+Each day's challenge is submitted with a `git push` to your fork as proof of work. No push, no submission.
+
+Beyond `commit` and `push`, three GitHub features come up constantly — you'll use them later in the course, so it's worth knowing the words now:
+
+- **Branch** — a separate line of work inside your repo. You make changes on a branch so your experiments never disturb the main, working version. When the work is ready, it gets merged back in.
+- **Issue** — a written note attached to the repo: a task to do, a bug you hit, a question to revisit. Issues are timestamped and searchable, so they become a running record of what happened and why.
+- **Pull request (PR)** — a proposal to merge one branch into another. It shows exactly what changed and lets you (or a collaborator) review the changes before they become part of the main version.
+
+Version control isn't just bookkeeping — for research it's a real advantage:
+
+{: .tip }
+> **Why GitHub is worth it for research:**
+> - **Nothing is ever lost.** Every version is recoverable — roll a broken analysis back to last week's working one.
+> - **Issues are your research record.** Log a data problem the moment you spot it, even if you fix it in five minutes. At paper-writing time, you can reconstruct *what happened and why*.
+> - **Branches let you experiment safely.** Try a risky reanalysis without touching your working results. A failed experiment is a finding, not a mistake to delete.
+> - **Reproducible and credited.** Commit your environment so a collaborator — or a reviewer — can rerun everything.
 
 ---
 
-## 🗡️ Main Quest
+## Exercise
 
-Your journey through the dungeon leaves a trail — and that trail is your version history. Carve your name into the Archive now.
+Your work in this course is tracked in your version history. Set up your copy of the course repo and make your first commit now.
 
 {: .important }
-> **Quest:** Fork the course repo, clone it to the Yens, create a branch, commit a file, and push it back to your fork.
+> **Exercise:** Fork the course repo, clone it to the Yens, create a branch, commit a file, and push it back to your fork.
 
 **Step 1 — Fork the course repo, and build your site**
 
 A **fork** is your own copy of the course repo, living under your GitHub account. Go to the [course repo on GitHub](https://github.com/gsbdarc/rf-bootcamp-2026) and click **Fork** in the top-right corner to create it.
 
-Now turn your fork into your personal dungeon site:
+Now turn your fork into your personal course site:
 
 - **Enable GitHub Pages:** on your fork, go to **Settings → Pages → Source → GitHub Actions → Save**.
 - **Open your site:** `https://YOUR-USERNAME.github.io/rf-bootcamp-2026/`
 
-This is now *your* quest-log site — your leaderboard rank and floor unlocks live here from now on. (It may take a minute to appear the first time.)
+This is now *your* course site, where your progress and leaderboard position are tracked from here on. (It may take a minute to appear the first time.)
 
 **Step 2 — Clone to the Yens**
 
@@ -116,198 +131,30 @@ git checkout -b day1-work
 `add` chooses which changes go into your next snapshot; `commit` saves that snapshot with a message describing what changed and why.
 
 ```bash
-echo "Hello from the Repository" > my_first_commit.txt
+echo "Hello from Day 1" > my_first_commit.txt
 git add my_first_commit.txt
 git commit -m "Add my first commit from Day 1"
 ```
 
 **Step 5 — Push to your fork**
 
-**Pushing** sends your saved snapshots up to your fork on GitHub — where your site updates and, later, the Boss Gate grader can see your work.
+**Pushing** sends your saved snapshots up to your fork on GitHub — where your site updates and, later, your submitted work can be checked.
 
 ```bash
 git push -u origin day1-work
 ```
 
 {: .important }
-> **Every Boss Gate** requires a `git push` to your fork as the submission mechanism. Return to this room's steps whenever you need to submit work. This is the unlock pattern for every floor exit.
+> Every day's challenge is submitted the same way — a `git push` to your fork. Come back to these steps whenever you need to submit work.
 
-<label class="quest-check"><input type="checkbox" data-room="d1-repository" data-key="main"> Main Quest complete</label>
-
----
-
-## 🤖 Meet Claude Code
-
-*You just performed the git ritual by hand — fork, clone, branch, commit, push. Every archmage learns the motions once. But no archmage repeats them by rote forever; they summon a familiar to carry the lantern.*
-
-You now know what each git step *means* — and doing it once by hand is the point. From here on, you don't have to type it. **Claude Code** is an AI assistant that lives in your terminal: you describe what you want in plain English, and it does the work — running commands, editing files, and handling git for you.
-
-Before we summon it, a quick word on *why* keeping your work in GitHub is worth the trouble — because these are exactly the things Claude Code will handle for you.
-
-{: .tip }
-> **Why GitHub is worth it for research:**
-> - **Nothing is ever lost.** Every version is recoverable — roll a broken analysis back to last week's working one.
-> - **Issues are your research record.** Log a data problem the moment you spot it, even if you fix it in five minutes. At paper-writing time, you can reconstruct *what happened and why*.
-> - **Branches let you experiment safely.** Try a risky reanalysis without touching your working results. A failed experiment is a finding, not a mistake to delete.
-> - **Reproducible and credited.** Commit your environment so a collaborator — or a reviewer — can rerun everything.
-
-You will **not** memorize the commands for any of that. You say *"log this as an issue"* or *"try this on a branch,"* and Claude Code does it — the right way — because it follows a **skill** we wrote for research (more below).
+<label class="quest-check"><input type="checkbox" data-room="d1-repository" data-key="main"> Exercise complete</label>
 
 ---
 
-## 🧭 How Claude Code Works
+## What You Learned
 
-*Know your familiar before you summon it.* A few basics — expand any box for more.
-
-**The model and the harness — the brain and the hands.** *Claude* is the **LLM** (large language model — the AI "brain" itself): it reads, reasons, and writes. On its own, it can only talk. **Claude Code** is the *harness* around that brain — it hands Claude real tools: read your files, run commands, edit code, use git. The model is the expert; the harness is the desk, the tools, and permission to act.
-
-<details markdown="1">
-<summary>The models — and how to switch them</summary>
-
-Claude comes as a family, trading speed for power:
-
-| Model | Best for |
-|-------|----------|
-| **Opus** | The most capable — deep reasoning, hard problems |
-| **Sonnet** | Balanced — great for everyday work |
-| **Haiku** | Fastest and lightest — quick, simple tasks |
-
-Switch anytime with the `/model` command. Default to a capable model; drop to a faster one when the task is small.
-</details>
-
-<details markdown="1">
-<summary>Plan mode vs. auto mode — look vs. act</summary>
-
-- **Plan mode:** Claude Code investigates and proposes a plan but changes *nothing* until you approve. Perfect when you want to see the approach first.
-- **Auto mode:** Claude Code carries the work out — editing files and running commands as it goes.
-
-Press `Shift+Tab` to cycle between them. *Plan mode when you want a proposal; auto mode when you trust it to go.*
-</details>
-
-<details markdown="1">
-<summary>Memory — so you don't repeat yourself</summary>
-
-Claude Code can remember things across sessions: facts about your project, your preferences, how your group works. Think of it as a notebook Claude keeps for your project, so you don't re-explain everything each time you sit down.
-</details>
-
-**Terminal vs. the app — where you act, where you think.** Claude Code runs in the **terminal**, right where your files and commands live — ideal for research computing. The **Claude app** (website or desktop) is a chat window: great for questions, writing, and brainstorming, but it can't touch your machine. Same Claude underneath — use the app to *think*, use Claude Code to *act on your project*.
+- Fork, clone, branch, commit, and push with git — version-control every project from day one
 
 ---
 
-## 🔐 Claude at Stanford
-
-You don't need a personal account. Stanford runs **Claude for Education** — a secure, university-managed environment — and for most people it's **free**.
-
-- **Why go through Stanford?** Your work stays under Stanford's data-governance terms. Claude Code is approved for low-, moderate-, and high-risk research data (health data — known as PHI — needs special handling). For real research data, always use the Stanford route, never a personal account.
-- **How to get it.** The **Standard tier is free** for all active faculty, students, postdocs, and staff with a SUNet ID. (A **Premium tier** is available if you have a PTA — a Stanford billing account your lab may hold.) Free still means you request it once, through **ServiceNow** (Stanford's IT request website) — it's a quick approval, not a purchase.
-- **What you get.** Claude on the web and in the app, **Claude Code**, and **Skills** — which is how the research skill below reaches you.
-
-{: .note }
-> Full details and the request links live at [uit.stanford.edu/service/claude](https://uit.stanford.edu/service/claude). Your instructor can point you to the exact sign-up link in class.
-
----
-
-## 📜 The github-for-research Skill
-
-A **skill** is a set of standing instructions that teaches Claude Code how *our* research group works — so it does the right thing without being told each time:
-
-- Do new work on a **branch**, never straight on `main`.
-- **Log problems as issues** — even ones you fix immediately.
-- **Never quietly change raw data**; always validate processed data.
-- **Credit Claude** on every commit, and keep the environment **reproducible**.
-
-It's already prepared for the course. If it isn't installed yet, one command sets it up (an instructor may have done this already):
-
-```bash
-bash scripts/install_github_for_research_skill.sh
-```
-
-{: .note }
-> This is a one-time setup. Not sure if it's already installed? Just ask Claude Code — `> do you have the github-for-research skill?` — or run the command again; it's safe to re-run. The skill's home is `gsbdarc/claude-skill-github-for-research`.
-
----
-
-## 📦 Side Quest — Summon the Familiar
-
-{: .important }
-> **Side Quest:** Install Claude Code on your laptop, interrogate a real research repository, then let the Familiar drive git for you. Complete this to earn your first **Weapon** and climb the leaderboard.
-
-Optional — the Main Quest above is all the Boss Gate requires. But this is where the top of the leaderboard is decided.
-
-### Part A — Summon it (on your laptop)
-
-{: .warning }
-> ⚠️ This Side Quest runs on **your laptop**, not the Yens. Everything before this lived on the cluster; Claude Code you install locally.
-
-<details markdown="1">
-<summary>💻 macOS</summary>
-
-Open **Terminal** (as you did in The Command Spire), install Claude Code following the [official instructions](https://docs.claude.com/en/docs/claude-code/overview), then launch it from any project folder:
-
-```bash
-claude
-```
-</details>
-
-<details markdown="1">
-<summary>🪟 Windows</summary>
-
-Open **Git Bash** — the same terminal you installed in The Command Spire — install Claude Code following the [official instructions](https://docs.claude.com/en/docs/claude-code/overview), then launch it from any project folder:
-
-```bash
-claude
-```
-</details>
-
-When Claude Code starts, sign in with your **SUNet ID** (see *Claude at Stanford* above).
-
-{: .note }
-> Stuck on install or sign-in? This whole Side Quest is optional — raise your hand and we'll help, and you won't fall behind. The Boss Gate only needs the Main Quest above.
-
-### Part B — Interrogate a real research repo
-
-Here is the payoff of a well-kept repository: you can *ask it questions*. We'll use a real Stanford project — an analysis of whether San Francisco's graffiti 311 reports fell during COVID.
-
-Clone it and open Claude Code inside it:
-
-```bash
-git clone https://github.com/gsbdarc/sf311.git
-cd sf311
-claude
-```
-
-Now ask, in plain English:
-
-```
-> What research question does this project answer?
-> How was the raw 311 data cleaned, and where is that checked?
-> Walk me through how to reproduce the main finding.
-> Are there any open issues or things left to do?
-```
-
-{: .tip }
-> Notice how Claude reads the README, the scripts, and the issue history to answer. That structure exists *because* someone kept the repo the way the skill describes — good practice is what makes a project answerable.
-
-### Part C — Let the Familiar drive git
-
-Go back to your own course repo and let Claude Code do the git work you just did by hand. Launch `claude` inside `rf-bootcamp-2026` and try:
-
-```
-> Commit my work on a new branch and open a pull request.
-> Log an issue for the outlier spell I couldn't sort in the Grimoire Vault.
-```
-
-{: .note }
-> Look at what it did: the work went on a **branch**, opened as a **pull request**, and the commit **credits Claude** — the good habits happened automatically, because of the skill.
-
-<label class="quest-check"><input type="checkbox" data-room="d1-repository" data-key="side1"> Side Quest complete — 🗡️ Weapon earned: <strong>The Familiar</strong></label>
-
----
-
-## 🧠 Skills Learned
-
-- Fork, clone, branch, commit, and push with git
-- How Claude Code works — model vs. harness, models, modes, memory, terminal vs. app
-- How to get Claude through Stanford's managed service
-- Interrogate a real research repo with Claude Code
-- Let Claude Code drive git via the github-for-research skill
+*Next: set up Claude Code and learn what data it can and can't be given — see **[Working with Claude Code](../familiars-den/)**.*

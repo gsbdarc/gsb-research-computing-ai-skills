@@ -1,22 +1,22 @@
 ---
 layout: default
-title: "The SSH Gate"
-parent: "Day 1 — The Gatehouse"
+title: "Connecting with SSH"
+parent: "Day 1 — Foundations"
 nav_order: 4
 permalink: /day1/ssh-gate/
 ---
 
-# The SSH Gate
+# Connecting with SSH
 
 <div data-room-id="d1-ssh-gate"></div>
 
-*A crackling arc of electricity splits the gatehouse air, smelling of ozone and possibility. The rune carved above it reads: `ssh`. Touch the wrong stone and nothing stirs — touch the right one and a door tears open three thousand miles away, inside a machine humming in a Stanford data center. One command. A cryptographic handshake older than your laptop. And suddenly, you are there.*
+SSH lets you connect from your laptop to a remote computer and run commands there as if you were sitting at it. In this room you will learn what a remote server is, why researchers use one, and how to log in to the Yens cluster.
 
 ---
 
-## 🖊️ Why Use a Server at All?
+## Why Use a Server at All?
 
-Your laptop is fine for writing code and running small tests. But research computing regularly runs into walls that a laptop cannot break through:
+Your laptop is fine for writing code and running small tests. But research computing regularly runs into limits that a laptop cannot handle:
 
 | Situation | What happens on a laptop | What happens on the Yens |
 |-----------|--------------------------|--------------------------|
@@ -33,7 +33,7 @@ The Yens are available to all researchers at GSB — faculty, PhD students, and 
 
 ---
 
-## 🖊️ What Is a Remote Server?
+## What Is a Remote Server?
 
 Your laptop is powerful but limited: one machine, one location, and it has to be open and plugged in for work to run. A **remote server** is a computer you connect to over the network — it's always on, more powerful than your laptop, and your work keeps running after you close the lid.
 
@@ -105,12 +105,12 @@ The **CPU** is the processor chip. **Cores** are the individual workers inside i
 
 ---
 
-## 🗡️ Main Quest
+## Exercise
 
-You are about to set foot on the Yens for the first time. Type carefully, breathe normally — the cluster is waiting for you.
+Log in to the Yens for the first time and get your bearings.
 
 {: .important }
-> **Quest:** Connect to the Yens cluster over SSH, identify which interactive Yen you landed on, and read the login banner.
+> **Task:** Connect to the Yens cluster over SSH, identify which interactive Yen you landed on, and read the login banner.
 
 **Connect:**
 ```bash
@@ -141,4 +141,4 @@ ls /yen/projects/                 # shared project storage
 >
 > Put a sticky note on your laptop lid so instructors can see where you are.
 
-<label class="quest-check"><input type="checkbox" data-room="d1-ssh-gate" data-key="main"> Main Quest complete</label>
+<label class="quest-check"><input type="checkbox" data-room="d1-ssh-gate" data-key="main"> Exercise complete</label>
