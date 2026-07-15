@@ -2,7 +2,7 @@
 layout: default
 title: "The Venv Forge"
 parent: "Day 2 — The Alchemist's Lab"
-nav_order: 3
+nav_order: 2
 permalink: /day2/venv-forge/
 ---
 
@@ -14,26 +14,27 @@ permalink: /day2/venv-forge/
 
 ---
 
-## 🖊️ How the Shell Finds Commands: `$PATH`
+## 🖊️ There has been a switch up. 
 
-Before creating an environment, it helps to understand how the shell decides which Python (or any command) to run.
+At this point in the process should should have both a JupyterHub terminal and Shell terminal open. 
 
-`$PATH` is a colon-separated list of directories the shell searches left to right — the first match wins:
+Are these the same python?
 
-```bash
-echo $PATH          # see your current search path
-which python3       # which Python does the shell find first?
+What does this mean?
+
+### Practical Exercise
+In your **JupyterHub Terminal** run the following command `pip install seaborn` 
+
+Then in the very same terminal run `python`
+
+```python
+import seaborn
 ```
 
-`module load` works by prepending a directory to `$PATH`. `source venv/bin/activate` does the same thing. Both win by going first.
+Now in the Shell terminal try the the same thing.
 
-```bash
-module load python/3.11
-which python3       # now points to the module version
-module unload python/3.11
-```
+If everything is working at intended this will not import as expected.
 
----
 
 ## 🗡️ Main Quest
 
@@ -42,7 +43,7 @@ module unload python/3.11
 
 ---
 
-### Step 1 — Create a Working Directory and Venv
+### Step 1 — Create a Working Directory and Venv (Learn to Cast Protective Dome)
 
 In your **Jupyter terminal** (or SSH terminal):
 
@@ -57,14 +58,6 @@ Create the virtual environment using the system Python:
 /usr/bin/python3 -m venv venv
 ```
 
-Using `/usr/bin/python3` explicitly picks the base system Python, not whatever module might be loaded. This creates a `venv/` folder inside your `day2/` directory.
-
-Check what's in your path now:
-
-```bash
-echo $PATH
-which python3
-```
 
 ---
 
@@ -158,6 +151,34 @@ If this runs without error, your venv is correctly connected.
 <label class="quest-check"><input type="checkbox" data-room="d2-venv-forge" data-key="main"> Main Quest complete</label>
 
 ---
+
+### Step 5 — Share the Recipe, Not the Crucible
+
+You may need to share an environment with a collaborator or recreate it on another machine. Do not copy the `venv/` folder itself: virtual environments contain machine-specific paths and can break when moved.
+
+Instead, save a `requirements.txt` file. This is the recipe for your environment: a list of the packages and versions needed to run your code.
+
+With your virtual environment activated, create the recipe:
+
+```bash
+python -m pip freeze > requirements.txt
+```
+
+Commit `requirements.txt` to your repository, but keep `venv/` in `.gitignore`.
+
+To recreate the environment elsewhere:
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+python -m pip install -r requirements.txt
+```
+
+{: .note }
+> `requirements.txt` recreates installed packages. It does not copy data files, API keys, notebooks, or Python itself.
+
+
+### Step 6 - Why this matters.
 
 ## 🧠 Skills Learned
 

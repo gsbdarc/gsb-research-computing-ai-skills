@@ -1,9 +1,9 @@
 ---
 layout: default
-title: "The Stanford AI Playground"
+title: "Data Privacy"
 parent: "Day 2 — The Alchemist's Lab"
-nav_order: 4
-permalink: /day2/stanford-ai-playground/
+nav_order: 3
+permalink: /day2/data-privacy/
 ---
 
 # The Stanford AI Playground

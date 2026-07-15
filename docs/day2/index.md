@@ -19,7 +19,7 @@ floor: 2
 
 | Room | Format | What you master |
 |------|--------|-----------------|
-| [The Arcane Notebook](arcane-notebook/) | 💻 Hands-on | Open JupyterHub, run a cell, understand notebooks vs scripts |
+| [The Path](the-path/) | 💻 Hands-on | Open JupyterHub, run a cell, understand notebooks vs scripts |
 | [The Venv Forge](venv-forge/) | 💻 Hands-on | Understand `$PATH` and modules; forge an isolated Python environment |
 | [The Stanford AI Playground](stanford-ai-playground/) | 🖊️💬 Concept + demo | Understand Stanford's AI gateway — web GUI, API, upsides and downsides |
 | [The Key Vault](key-vault/) | 💻 Hands-on | Load the API key from `.env`, add to `.gitignore`, understand what you're sending |
