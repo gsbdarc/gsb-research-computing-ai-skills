@@ -70,6 +70,22 @@ Every row in this table is a weapon you forged, a door you unlocked, a skill no 
 
 ---
 
+## 📊 End of Day 4 — Final Sync
+
+This is the last sync. Make it count.
+
+**Step 1 — Export your quest log**
+
+Click **"📤 Sync to leaderboard"** in the bottom-left corner of this page. A file called `quest_log.json` downloads to your laptop.
+
+**Step 2 — Upload it to your fork**
+
+Go to your fork on GitHub (`github.com/YOUR_USERNAME/rf-bootcamp-2026`) → **Add file → Upload files** → drag `quest_log.json` in → **Commit changes** to `main`.
+
+The leaderboard updates within 2 minutes — this is your final rank.
+
+---
+
 {: .important }
 > **All four floors cleared.**
 >
