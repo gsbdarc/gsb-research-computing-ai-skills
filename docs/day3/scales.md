@@ -12,7 +12,7 @@ permalink: /day3/scales/
 
 ## Computing Resources — A Quick Recap
 
-On the last page we introduced the kitchen analogy. Before we run anything, let's make sure we have the vocabulary:
+Before we run anything, let's make sure we have the vocabulary for the resources a program uses:
 
 | Resource | What it is |
 |----------|-----------|
@@ -134,8 +134,12 @@ When you can describe what the mystery script does to your CPU and RAM — put a
 
 <label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="mystery"> I profiled scripts with time, watch userload, and htop, and can tell serial from parallel execution</label>
 
-{: .note }
-> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-head-chef.mystery` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
+<details markdown="1">
+<summary>🔄 Sync to leaderboard</summary>
+
+**Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-head-chef.mystery` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
+
+</details>
 
 ---
 
@@ -177,8 +181,12 @@ Fill in the actual numbers from your `time` and `userload` output. This document
 
 <label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="readme"> I documented the script's time, CPU, and RAM in README.md</label>
 
-{: .note }
-> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-head-chef.readme` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
+<details markdown="1">
+<summary>🔄 Sync to leaderboard</summary>
+
+**Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-head-chef.readme` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
+
+</details>
 
 ---
 
@@ -221,8 +229,12 @@ Record what you observe in a `README.md` in that project folder:
 
 <label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="side2"> I profiled my own research script and recorded its time, CPU, and RAM in a README</label>
 
-{: .note }
-> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-head-chef.side2` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
+<details markdown="1">
+<summary>🔄 Sync to leaderboard</summary>
+
+**Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-head-chef.side2` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
+
+</details>
 
 ---
 
@@ -241,8 +253,12 @@ Look for **Maximum resident set size** in the output — this is the script's tr
 
 <label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="side6"> I compared /usr/bin/time -v's peak RAM to what watch userload showed me</label>
 
-{: .note }
-> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-head-chef.side6` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
+<details markdown="1">
+<summary>🔄 Sync to leaderboard</summary>
+
+**Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-head-chef.side6` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
+
+</details>
 
 **Side Quest — Profile an I/O-Bound Script**
 
@@ -250,5 +266,9 @@ Everything you've profiled so far is CPU-bound (`user` time dominates). Write a 
 
 <label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="side7"> I profiled an I/O-bound script and compared its sys vs. user time to the mystery script's</label>
 
-{: .note }
-> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-head-chef.side7` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
+<details markdown="1">
+<summary>🔄 Sync to leaderboard</summary>
+
+**Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-head-chef.side7` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
+
+</details>
