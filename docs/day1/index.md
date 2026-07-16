@@ -29,7 +29,7 @@ Work through the sections in order — later ones build on earlier ones, and the
 |------|--------|-----------------|
 | [Command Line Basics](command-spire/) | 💻 Hands-on | Navigate a Unix file system with core commands: `pwd`, `ls`, `cd`, `mkdir`, `cp`, `rm` |
 | [Bulk File Operations](grimoire-vault/) | 💻 Hands-on | Use wildcards, pipes, `grep`, and `sort` to work on many files at once |
-| [Connecting with SSH](ssh-gate/) | 💻 Hands-on | Connect to a remote server and tell interactive nodes from compute nodes |
+| [Connecting to a Cluster](ssh-gate/) | 💻 Hands-on | Connect to a remote server and tell interactive nodes from compute nodes |
 | [The Cluster File System](cartographers-room/) | 💻 Hands-on | Find your way around cluster storage, check your quota, and load software modules |
 | [Transferring Files (scp)](scroll-transfer/) | 💻 Hands-on | Copy files between your machine and the cluster over the shared file system |
 | [Version Control with Git](repository/) | 💻 Hands-on | Track your work in Git: fork → branch → commit → push |

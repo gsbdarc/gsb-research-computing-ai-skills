@@ -136,7 +136,7 @@ Open your GitHub fork in a browser and confirm `signature_spell.txt` appears. Th
 
 | Skill | Where you learned it |
 |-------|---------------------|
-| `ssh` to a remote server | Connecting with SSH |
+| `ssh` to a remote server | Connecting to a Cluster |
 | `mkdir` to create directories | Command Line Basics |
 | `cd` to navigate the file system | Command Line Basics |
 | `cp -r` to copy a directory | Command Line Basics (cp) + Transferring Files (scp) (-r flag) |

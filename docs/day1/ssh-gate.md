@@ -1,12 +1,12 @@
 ---
 layout: default
-title: "Connecting with SSH"
+title: "Connecting to a Cluster"
 parent: "Day 1 — Foundations"
 nav_order: 4
 permalink: /day1/ssh-gate/
 ---
 
-# Connecting with SSH
+# Connecting to a Cluster
 
 <div data-room-id="d1-ssh-gate"></div>
 

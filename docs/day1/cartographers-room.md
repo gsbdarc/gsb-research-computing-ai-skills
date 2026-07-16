@@ -66,14 +66,9 @@ Rule of thumb: keep raw data and scripts in **home** or **projects** — they're
 
 **Local disk: `/tmp`**
 
-Those three locations — home, projects, and scratch — are all on the **shared file system**: every node sees the same files. Each node *also* has its own **local disk** that is **not** shared with the other nodes. `/tmp` lives on that local disk.
+Those three locations — home, projects, and scratch — are all on the **shared file system**: every node sees the same files. Each node *also* has its own **local disk** that is **not** shared with other nodes, and `/tmp` lives there — it's where programs often write temporary files while they run.
 
-Because it's physically attached to the node, `/tmp` can be faster for a job that reads and writes many small files. But it comes with two catches:
-
-- **It's private to that one node.** A file you write to `/tmp` on `yen1` does not exist on `yen2`. If a later step of your work runs on a different node, it won't find it.
-- **It's temporary.** `/tmp` is cleared automatically and is not backed up. Anything you want to keep must be copied to home, projects, or scratch.
-
-Use `/tmp` for genuinely throwaway scratch work within a single job; use the shared file system for anything you need again.
+Two things to know about `/tmp`: it's **private to that node** (a file at `/tmp` on `yen1` isn't visible on `yen2`), and it's **temporary and not backed up** (cleared automatically). Keep anything you care about — data, results — on the shared file system.
 
 **Check your quota:**
 ```bash

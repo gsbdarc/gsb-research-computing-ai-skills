@@ -23,7 +23,7 @@ Three hundred files. No order. No organization. A real research dataset often lo
 
 **Step 1 — Download and unzip**
 
-**[⬇ Download grimoire.zip](https://drive.google.com/file/d/1pGFegdCMjzHDDmfjJrSuZe10L8zrQsWo/view?usp=sharing)**
+**[⬇ Download grimoire.zip](https://drive.google.com/uc?export=download&id=1pGFegdCMjzHDDmfjJrSuZe10L8zrQsWo)**
 
 ```bash
 mv ~/Downloads/grimoire.zip ~/Desktop/    # move from Downloads to Desktop
