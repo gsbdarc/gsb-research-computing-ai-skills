@@ -7,7 +7,7 @@ permalink: /leaderboard/
 
 # 🏆 DARC Dungeon Leaderboard
 
-*Rankings update when students sync their quest logs. Each completed main quest or side quest adds to your **Quest Log**; your total drives your **Level** (max Level 10 — Archmage, 31/31 Quest Log complete). **Boss Gates** = floors cleared (max 4).*
+*Rankings update when students sync their quest logs. Each completed main quest or side quest adds to your **Quest Log**; your total drives your **Level** (max Level 10 — Archmage). **Boss Gates** = optional capstone challenges completed (max 4).*
 
 <div id="lb-controls">
   <button id="lb-refresh">↻ Refresh</button>
@@ -57,7 +57,15 @@ tr.lb-leader td { background: #f4f8ff; }
   var MAIN   = 'gsbdarc/rf-bootcamp-2026';
   var REPO   = 'rf-bootcamp-2026';
   var BRANCH = 'main';
-  var TOTAL  = 54;
+  var TOTAL  = 57; // keep in sync with TOTAL_CHECKS in assets/js/quest-log.js
+
+  // quest_log.json keys that mark each day's Boss Gate as complete
+  var BOSS_GATE_KEYS = [
+    'd1-boss-gate-1.main',
+    'd2-boss-gate.commit',
+    'd3-boss-gate.commit',
+    'd4-boss-gate.commit',
+  ];
 
   var LEVEL_TITLES = [
     'Initiate', 'Apprentice', 'Scholar', 'Journeyman', 'Adept',
@@ -85,14 +93,14 @@ tr.lb-leader td { background: #f4f8ff; }
     return students;
   }
 
-  function parseProgress(text) {
-    var floors = [], re = /^- (\d+)/gm, m;
-    while ((m = re.exec(text)) !== null) floors.push(parseInt(m[1]));
-    var cm = text.match(/^completed_checks:\s*(\d+)/m);
-    return {
-      floors: floors.length ? floors : [1],
-      completedChecks: cm ? parseInt(cm[1]) : 0
-    };
+  function parseQuestLog(text) {
+    var data;
+    try { data = JSON.parse(text); } catch (e) { data = {}; }
+    var completedChecks = 0;
+    for (var k in data) { if (data[k] === true) completedChecks++; }
+    var bossGates = 0;
+    BOSS_GATE_KEYS.forEach(function (k) { if (data[k] === true) bossGates++; });
+    return { completedChecks: completedChecks, bossGates: bossGates };
   }
 
   function fetchText(url) {
@@ -102,13 +110,12 @@ tr.lb-leader td { background: #f4f8ff; }
     });
   }
 
-  function gateIcons(maxFloor) {
-    var cleared = Math.max(0, maxFloor - 1);
+  function gateIcons(cleared) {
     var html = '';
     for (var i = 0; i < 4; i++) {
       html += i < cleared
         ? '<span class="gate-cleared" title="Boss Gate ' + (i+1) + ' cleared">⚔</span>'
-        : '<span class="gate-locked" title="Boss Gate ' + (i+1) + ' locked">·</span>';
+        : '<span class="gate-locked" title="Boss Gate ' + (i+1) + ' not yet done">·</span>';
     }
     html += '<span class="gate-label">' + Math.min(cleared, 4) + '/4</span>';
     return html;
@@ -135,14 +142,13 @@ tr.lb-leader td { background: #f4f8ff; }
       + '</tr></thead><tbody>';
 
     entries.forEach(function (e, i) {
-      var maxFloor = Math.max.apply(null, e.floors);
-      var allClear = maxFloor >= 5;
+      var allClear = e.bossGates >= 4;
       var rowClass = allClear ? 'lb-all-clear' : (i === 0 ? 'lb-leader' : '');
       html += '<tr class="' + rowClass + '">'
         + '<td class="lb-rank">' + rankCell(i) + '</td>'
         + '<td class="lb-name">' + e.name + (allClear ? '<span class="lb-crown">👑</span>' : '') + '</td>'
         + '<td class="lb-level">' + levelBadge(e.completedChecks) + '</td>'
-        + '<td class="lb-gates">' + gateIcons(maxFloor) + '</td>'
+        + '<td class="lb-gates">' + gateIcons(e.bossGates) + '</td>'
         + '<td class="lb-bar-wrap">' + progressBar(e.completedChecks) + '</td>'
         + '</tr>';
     });
@@ -164,14 +170,14 @@ tr.lb-leader td { background: #f4f8ff; }
           return;
         }
         return Promise.all(students.map(function (s) {
-          var url = RAW + '/' + s.username + '/' + REPO + '/' + BRANCH + '/docs/_data/progress.yml';
+          var url = RAW + '/' + s.username + '/' + REPO + '/' + BRANCH + '/quest_log.json';
           return fetchText(url)
-            .then(function (t) { return Object.assign({}, s, parseProgress(t)); })
-            .catch(function () { return Object.assign({}, s, { floors: [1], completedChecks: 0 }); });
+            .then(function (t) { return Object.assign({}, s, parseQuestLog(t)); })
+            .catch(function () { return Object.assign({}, s, { completedChecks: 0, bossGates: 0 }); });
         })).then(function (entries) {
           entries.sort(function (a, b) {
             var cd = b.completedChecks - a.completedChecks;
-            return cd !== 0 ? cd : Math.max.apply(null, b.floors) - Math.max.apply(null, a.floors);
+            return cd !== 0 ? cd : b.bossGates - a.bossGates;
           });
           container.innerHTML = renderTable(entries);
           ts.textContent = 'Updated ' + new Date().toLocaleTimeString();

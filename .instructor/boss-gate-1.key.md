@@ -62,6 +62,6 @@ git push
 
 ---
 
-## Grader check
+## Checking the submission
 
-The auto-grader (`scripts/check_boss_gates.py`) checks that `signature_spell.txt` exists in the student's fork root and that line 2 matches the expected seal string. Update the expected string there if you change `ARCHMAGE-SEAL-XXXX`.
+There is no auto-grader — boss gates are self-reported. To verify a student's Boss Gate 1 by hand, confirm `signature_spell.txt` exists in their fork root and that line 2 matches the expected seal string (`ARCHMAGE-SEAL-XXXX`).

@@ -40,7 +40,7 @@ The workflow for this course:
                                          (edit → add → commit → push)
 ```
 
-Every Boss Gate in this dungeon requires a `git push` as proof of work. No push, no gate.
+Every Boss Gate in this dungeon is submitted with a `git push` — that's how your work lands on your fork and shows up on the leaderboard.
 
 ---
 
@@ -65,13 +65,13 @@ After forking, do these two things on GitHub before anything else. Each one is n
 
 **a) Enable GitHub Actions**
 
-The dungeon grader runs automatically every time you push to `main`. On forks, GitHub requires you to opt in manually.
+Your personal dungeon site is built by a GitHub Actions workflow every time you push to `main`. On forks, GitHub requires you to opt in manually.
 
 *Actions tab → "I understand my workflows, go ahead and enable them"*
 
 **b) Enable GitHub Pages**
 
-This deploys your personal copy of the dungeon website — your floor locks and quest checkboxes are tied to your own site, not the instructor's.
+This deploys your personal copy of the dungeon website — your quest checkboxes and leaderboard progress are tied to your own site, not the instructor's.
 
 *Settings → Pages → Source: Deploy from a branch → Branch: `main` / `docs` → Save*
 
@@ -104,10 +104,10 @@ git commit -m "Add my first commit from Day 1"
 git push
 ```
 
-GitHub Actions will now run the grader on your fork. Check the **Actions tab** on GitHub — you should see a green checkmark within a minute.
+GitHub Actions will now rebuild your site on your fork. Check the **Actions tab** on GitHub — you should see a green checkmark within a minute.
 
 {: .important }
-> **Every Boss Gate** works the same way: make your changes, `git add`, `git commit`, `git push`. The grader runs automatically on every push to `main` and unlocks the next floor if the gate is cleared. You always push to `main` — no branch switching needed.
+> **Every Boss Gate** works the same way: make your changes, `git add`, `git commit`, `git push`. Every floor is unlocked from the start — pushing just saves your work and keeps your site and leaderboard current. You always push to `main` — no branch switching needed.
 
 ---
 
