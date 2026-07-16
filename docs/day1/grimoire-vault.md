@@ -23,11 +23,11 @@ Three hundred files. No order. No organization. A real research dataset often lo
 
 **Step 1 — Download and unzip**
 
-**[⬇ Download grimoire.zip](https://drive.google.com/uc?export=download&id=1pGFegdCMjzHDDmfjJrSuZe10L8zrQsWo)**
+Download the dataset straight to your Desktop and unzip it (Git Bash on Windows, Terminal on macOS):
 
 ```bash
-mv ~/Downloads/grimoire.zip ~/Desktop/    # move from Downloads to Desktop
 cd ~/Desktop                              # go to Desktop
+curl -L https://raw.githubusercontent.com/gsbdarc/rf-bootcamp-2026/main/docs/assets/data/grimoire.zip -o grimoire.zip
 unzip grimoire.zip                        # unzip the archive
 ```
 
