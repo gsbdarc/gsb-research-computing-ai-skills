@@ -48,10 +48,11 @@ sequencing addresses.
         - Make it possible to compare a subset of filings
     - TODO: Re-evaluate the list of failure modes and how to defend against them (see [`trap-garden.md`](trap-garden.md))
 
-6. **Putting it all together** — **Exercise (capstone)** (see [`boss-gate-4.md`](boss-gate-4.md))
-    - Running an array job and combining the outputs
-        - Using two different LLMs
-    - Comparing the outputs
-    - Writing a README
+6. **Putting it all together**
+    - **Exercise (capstone)** (see [`boss-gate-4.md`](boss-gate-4.md))
+        - Running an array job and combining the outputs
+            - Using two different LLMs
+        - Comparing the outputs
+        - Writing a README
 
 7. **Staying in touch** (see [`research-guild.md`](research-guild.md))
