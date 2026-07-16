@@ -1,16 +1,37 @@
 ---
 layout: default
 title: "The Array Cavern"
-parent: "Day 3 — The SLURM Mines"
-nav_order: 7
-permalink: /day3/array-cavern/
+parent: "Day 4 — The GPU Fortress"
+nav_order: 2
+permalink: /day4/array-cavern/
 ---
 
 # The Array Cavern
 
-<div data-room-id="d3-array-cavern"></div>
+<div data-room-id="d4-array-cavern"></div>
 
 *A thousand identical alcoves stretch into the dark, each one lit by the faint glow of a running process. The walls hum in unison — the same script, a hundred times over, each instance tearing through a different filing. This is the Array Cavern, where the researcher's oldest curse is finally broken: "I need to do this to 10,000 files." You write the spell once. The cavern multiplies it across an army of workers. When the last task falls silent, you summon the streams together into a single, clean river of data.*
+
+---
+
+## 🖊️ Why Parallelize?
+
+Your Day 3 script processes one SEC filing at a time. You have 100 filings. Running them sequentially takes 100× as long — and ties up a node while you wait.
+
+The Yens have hundreds of cores sitting idle. SLURM's job: hand each core a different filing so all 100 run simultaneously. Total time stays roughly the same as one filing — just multiplied across independent work.
+
+```
+  One at a time (sequential):        Parallelized (job array):
+  filing 1 → 5s                      filing 1  ┐
+  filing 2 → 5s                      filing 2  │ all start at once
+  filing 3 → 5s                      filing 3  │ → ~5s total
+  ...                                ...       ┘
+  filing 100 → 5s
+  ─────────────
+  Total: ~500s                        Total: ~5s + queue wait
+```
+
+This only works when tasks are **independent** — each filing doesn't need the results from another. Your extraction script qualifies perfectly.
 
 ---
 
@@ -99,4 +120,4 @@ if failed:
 python3 scripts/merge_results.py
 ```
 
-<label class="quest-check"><input type="checkbox" data-room="d3-array-cavern" data-key="main"> Main Quest complete — array submitted, CSV merged</label>
+<label class="quest-check"><input type="checkbox" data-room="d4-array-cavern" data-key="main"> Main Quest complete — array submitted, CSV merged</label>

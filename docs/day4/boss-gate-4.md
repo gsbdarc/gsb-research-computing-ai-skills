@@ -22,21 +22,21 @@ The Archmage does not test you with riddles. It tests you with the full stack �
 {: .boss }
 > **Boss Battle — Champion's Ascent**
 >
-> **Part 1 — Swap the endpoint:**
-> Take your Day 3 array job (`array_extract.sh` / `extract_filing.py`) and modify it to call **Ollama on the H200** instead of the Stanford AI Playground. The Ollama server must be running on `yen-gpu4` in a `screen` session before you submit the array.
+> **Part 1 — Scale with an array job:**
+> Reuse your `jobs/array_extract.sh` from The Array Cavern (`--array=1-100`). Each task processes one filing and writes its result to `/scratch/shared/$USER/results/filing_N.json`. After the array completes, merge all outputs into `results/great_scroll_sweep.csv`.
 >
-> **Part 2 — Compare outputs:**
+> **Part 2 — Swap the endpoint:**
+> Modify your array script to call **Ollama on the H200** instead of the Stanford AI Playground. The Ollama server must be running on `yen-gpu4` in a `screen` session before you submit the array.
+>
+> **Part 3 — Compare outputs:**
 > Run the same 5 filings through both the Playground (gpt-4o-mini) and Ollama (your chosen model). Save the results side-by-side in `results/comparison.csv` with columns: `filename`, `playground_name`, `ollama_name`, `playground_role`, `ollama_role`.
 >
-> **Part 3 — Privacy ruling:**
-> Write one paragraph in `results/privacy_ruling.md` stating: which bucket do these SEC filings belong to, can they go to a cloud API, can they go to Ollama, and what would change if the filings contained unreported PII.
->
 > **Part 4 — Commit your README:**
-> Ensure `README.md` describes the full pipeline including both endpoints and the privacy ruling.
+> Ensure `README.md` describes the full pipeline: array job, both endpoints, how to rerun.
 >
 > **Submit:**
 > ```bash
-> git add results/comparison.csv results/privacy_ruling.md README.md
+> git add results/great_scroll_sweep.csv results/comparison.csv README.md
 > git commit -m "Boss Gate 4: Champion's Ascent complete"
 > git push
 > ```
@@ -66,7 +66,23 @@ Every row in this table is a weapon you forged, a door you unlocked, a skill no 
 | GPU computing | H200 via `--gres=gpu:1` | The H200 Chamber |
 | Local LLMs | Ollama on cluster hardware | The Summoning Circle |
 | Documentation | README + project layout | The Chronicle |
-| Data governance | 3-bucket privacy rule | The Grand Hall |
+| Data governance | 3-bucket privacy rule | The Crucible (Day 2) |
+
+---
+
+## 📊 End of Day 4 — Final Sync
+
+This is the last sync. Make it count.
+
+**Step 1 — Export your quest log**
+
+Click **"📤 Sync to leaderboard"** in the bottom-left corner of this page. A file called `quest_log.json` downloads to your laptop.
+
+**Step 2 — Upload it to your fork**
+
+Go to your fork on GitHub (`github.com/YOUR_USERNAME/rf-bootcamp-2026`) → **Add file → Upload files** → drag `quest_log.json` in → **Commit changes** to `main`.
+
+The leaderboard updates within 2 minutes — this is your final rank.
 
 ---
 

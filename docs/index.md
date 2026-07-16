@@ -21,7 +21,13 @@ You can read the site and track your Quest Log with nothing installed. To do the
 {: .important }
 > **New here? Start with Day 1 → The Gatehouse.**
 >
-> Your **Quest Log** — the widget in the bottom-left corner — tracks your progress right here on this site. No setup, no account, nothing to install. Just open the first room and begin.
+> 1. **Fork this repo** — click **Fork** in the top-right corner of the [GitHub page](https://github.com/gsbdarc/rf-bootcamp-2026) to create your own copy
+> 2. **Enable Actions** on your fork — click the **Actions** tab → **"I understand my workflows, go ahead and enable them"**
+> 3. **Enable GitHub Pages** on your fork: Settings → Pages → Build and deployment → Source → select **GitHub Actions** (saves automatically)
+> 4. **Trigger the first build** — Actions → "Deploy Jekyll site to Pages" → Run workflow → Run workflow
+> 5. **Open your personal dungeon site** (~2 min after step 4): `https://YOUR-USERNAME.github.io/rf-bootcamp-2026/`
+>
+> Once your site is live, put a **🟢 green sticky** on your laptop lid. If you're stuck on any step, put a **🔴 red sticky** up so an instructor can come help.
 >
 > Partway through Day 1, in **The Repository** room, you'll learn git and build your *own* personal copy of this site — the one that carries your leaderboard rank and unlocks each floor as you clear its Boss Gate. Until then, work from right here.
 
@@ -50,19 +56,19 @@ Every completed quest adds to your **Quest Log** (shown in the widget, bottom-le
 
   <div class="floor-card{% unless unlocked contains 2 %} floor-card-locked{% endunless %}">
     <h3><a href="{{ '/day2/' | relative_url }}">Floor 2 — The Alchemist's Lab</a>{% unless unlocked contains 2 %} 🔒{% endunless %}</h3>
-    <p>Levels 4–6 &nbsp;·&nbsp; 10 rooms + Boss Gate</p>
+    <p>Levels 4–6 &nbsp;·&nbsp; 8 rooms + Boss Gate</p>
   </div>
-  <div class="floor-skills">JupyterHub &middot; Virtual envs &middot; AI Playground &middot; Security &middot; Claude Code &middot; LLMs &middot; Screen</div>
+  <div class="floor-skills">JupyterHub &middot; Python envs &middot; AI Playground &middot; Secure key management &middot; Pydantic &middot; AI agents &amp; data privacy</div>
 
   <div class="floor-card{% unless unlocked contains 3 %} floor-card-locked{% endunless %}">
     <h3><a href="{{ '/day3/' | relative_url }}">Floor 3 — The SLURM Mines</a>{% unless unlocked contains 3 %} 🔒{% endunless %}</h3>
-    <p>Levels 7–8 &nbsp;·&nbsp; 8 rooms + Boss Gate</p>
+    <p>Levels 7–8 &nbsp;·&nbsp; 6 rooms + Boss Gate</p>
   </div>
-  <div class="floor-skills">SLURM &middot; Job arrays &middot; Scaling &middot; README</div>
+  <div class="floor-skills">SLURM &middot; Resource estimation &middot; Job lifecycle &middot; Job monitoring</div>
 
   <div class="floor-card{% unless unlocked contains 4 %} floor-card-locked{% endunless %}">
     <h3><a href="{{ '/day4/' | relative_url }}">Floor 4 — The GPU Fortress</a>{% unless unlocked contains 4 %} 🔒{% endunless %}</h3>
     <p>Levels 9–10 &nbsp;·&nbsp; 7 rooms + Boss Gate</p>
   </div>
-  <div class="floor-skills">H200 GPU jobs &middot; Ollama &middot; Local vs cloud API &middot; Privacy &middot; Agent risks</div>
+  <div class="floor-skills">Job arrays &middot; GPU tiers &middot; Local LLMs &middot; OpenAI-compatible API &middot; Human vs LLM</div>
 </div>

@@ -2,7 +2,7 @@
 layout: default
 title: "The H200 Chamber"
 parent: "Day 4 — The GPU Fortress"
-nav_order: 3
+nav_order: 4
 permalink: /day4/h200-chamber/
 ---
 

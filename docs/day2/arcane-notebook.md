@@ -38,7 +38,7 @@ You should see your home directory and the `rf-bootcamp-2026` folder you cloned 
 ## 🗡️ Main Quest
 
 {: .important }
-> **Quest:** Open JupyterHub on the Yens, run your first Python cells in a notebook, write and execute a script from the terminal, and explore files using the Jupyter terminal.
+> **Quest:** Open JupyterHub on the Yens, run a Python cell in a notebook, then run the same code as a script from the terminal.
 
 ---
 
@@ -66,85 +66,30 @@ Log in with your SUNet credentials. You should see the same files as your home d
 
 ---
 
-### Step 3 — First Notebook Cells (Exercise 1.1)
+### Step 3 — Run a Cell
 
-Type each block into a **separate cell** and run with **Shift+Enter**:
-
-```python
-# Cell 1
-print("Hello, World!")
-```
+Type this into a cell and run with **Shift+Enter**:
 
 ```python
-# Cell 2
-import math
-print(math.pi)
-```
-
-```python
-# Cell 3
 numbers = [1, 2, 3, 4, 5]
 print(sum(numbers))
 ```
 
-Expected output: `Hello, World!`, `3.141592653589793`, `15`
+Expected output: `15`
 
 ---
 
-### Step 4 — Save and Run a Python Script (Exercise 1.2)
+### Step 4 — Run the Same Code as a Script
 
-In the **terminal tab**, create an empty file:
-
-```bash
-touch interactive.py
-```
-
-Find `interactive.py` in the JupyterHub file browser, open it, and paste the three code blocks from Step 3. Save the file.
-
-Now run it from the terminal:
+In the **terminal tab**, create a file and paste the same code:
 
 ```bash
-python interactive.py
+echo "numbers = [1, 2, 3, 4, 5]" > test.py
+echo "print(sum(numbers))" >> test.py
+python3 test.py
 ```
 
-Verify you get the same output as the notebook cells. This is how you move from exploring in a notebook to running standalone scripts.
-
----
-
-### Step 5 — Terminal Basics (Exercise 1.3)
-
-In the **terminal tab**:
-
-```bash
-# List your home directory
-ls
-
-# Navigate into your bootcamp repo
-cd rf-bootcamp-2026
-
-# List its contents
-ls
-
-# Which python are you using?
-which python3
-```
-
-Note the python path — compare it to what you see in the notebook.
-
----
-
-### Step 6 — Read a File in the Notebook (Exercise 1.4 — Placeholder)
-
-{: .note }
-> 🚧 **Coming soon:** This exercise will use files from your grimoire to explore reading data into the notebook and navigating paths. For now, try this on your own:
-> 
-> ```python
-> # Pick any .spell file from your grimoire on the Yens
-> with open("/scratch/shared/SUNetID/grimoire/fire/some_spell.spell", "r") as f:
->     print(f.read())
-> ```
-> 
-> What does the file contain? Can you print just the first line?
+Same output, different workflow. Notebooks are good for exploration; scripts are what you submit to the cluster. For the rest of Day 2, you will write scripts.
 
 <label class="quest-check"><input type="checkbox" data-room="d2-arcane-notebook" data-key="main"> Main Quest complete</label>
 
@@ -152,6 +97,6 @@ Note the python path — compare it to what you see in the notebook.
 
 ## 🧠 Skills Learned
 
-- You can open JupyterHub on the Yens and run Python from any browser — no SSH required for code
-- You know how to run cells in a notebook (`Shift+Enter`) and move working code into a `.py` script
-- You understand that the Jupyter terminal and the SSH terminal are both shells on the same machine — the same files are visible in both
+- You can open JupyterHub on the Yens and run Python from any browser
+- You know the difference between a notebook cell and a script — and when each is useful
+- You can run a `.py` script from the terminal, which is how cluster jobs work

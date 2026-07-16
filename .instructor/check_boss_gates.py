@@ -82,46 +82,46 @@ def check_gate_2():
 
 
 def check_gate_3():
-    """Boss Gate 3: CSV + failed_tasks.txt + README.md."""
+    """Boss Gate 3: slurm/extract_form_3_one_file.slurm + README.md."""
     errors = []
-    csv_file = REPO_ROOT / "results" / "great_scroll_sweep.csv"
-    failed_file = REPO_ROOT / "results" / "failed_tasks.txt"
+    job_script = REPO_ROOT / "slurm" / "extract_form_3_one_file.slurm"
     readme = REPO_ROOT / "README.md"
 
-    if not csv_file.exists():
-        errors.append("results/great_scroll_sweep.csv not found")
+    if not job_script.exists():
+        errors.append("slurm/extract_form_3_one_file.slurm not found — write and submit your SLURM batch job script")
     else:
-        try:
-            rows = list(csv.reader(csv_file.read_text().splitlines()))
-            if len(rows) < 2:
-                errors.append("great_scroll_sweep.csv appears empty (only a header row)")
-        except Exception as e:
-            errors.append(f"Could not read CSV: {e}")
-
-    if not failed_file.exists():
-        errors.append("results/failed_tasks.txt not found (can be empty if all tasks succeeded)")
+        content = job_script.read_text()
+        if "#SBATCH" not in content:
+            errors.append("slurm/extract_form_3_one_file.slurm doesn't contain any #SBATCH directives")
 
     if not readme.exists():
-        errors.append("README.md not found — write it in The Chronicle room")
+        errors.append("README.md not found — write it in The Recipe Book room")
 
     if errors:
         return False, "; ".join(errors)
-
-    row_count = len(list(csv.reader(csv_file.read_text().splitlines()))) - 1
-    return True, f"CSV has {row_count} data rows; failed_tasks.txt present; README.md present"
+    return True, "slurm/extract_form_3_one_file.slurm with #SBATCH directives present; README.md present"
 
 
 def check_gate_4():
-    """Boss Gate 4: comparison.csv + privacy_ruling.md + README mentioning Ollama."""
+    """Boss Gate 4: great_scroll_sweep.csv + comparison.csv + README mentioning Ollama."""
     errors = []
+    sweep = REPO_ROOT / "results" / "great_scroll_sweep.csv"
     comparison = REPO_ROOT / "results" / "comparison.csv"
-    ruling = REPO_ROOT / "results" / "privacy_ruling.md"
     readme = REPO_ROOT / "README.md"
 
+    if not sweep.exists():
+        errors.append("results/great_scroll_sweep.csv not found — run the array job and merge outputs")
+    else:
+        try:
+            rows = list(csv.reader(sweep.read_text().splitlines()))
+            if len(rows) < 2:
+                errors.append("great_scroll_sweep.csv appears empty (only a header row)")
+        except Exception as e:
+            errors.append(f"Could not read great_scroll_sweep.csv: {e}")
+
     if not comparison.exists():
-        errors.append("results/comparison.csv not found")
-    if not ruling.exists():
-        errors.append("results/privacy_ruling.md not found")
+        errors.append("results/comparison.csv not found — run the side-by-side comparison")
+
     if not readme.exists():
         errors.append("README.md not found")
     elif "ollama" not in readme.read_text().lower():
@@ -129,7 +129,9 @@ def check_gate_4():
 
     if errors:
         return False, "; ".join(errors)
-    return True, "All Champion's Ascent deliverables present"
+
+    row_count = len(list(csv.reader(sweep.read_text().splitlines()))) - 1
+    return True, f"Array sweep CSV has {row_count} rows; comparison.csv present; README mentions Ollama"
 
 
 # ── Main ──────────────────────────────────────────────────────────────────────
@@ -162,7 +164,7 @@ def main():
     print("=" * 55)
     print(f"  Student:               {username or '(local run)'}")
     print(f"  Floors unlocked:       {sorted(unlocked)}")
-    print(f"  Quest log checks:      {completed_checks} / 78")
+    print(f"  Quest log checks:      {completed_checks} / 45")
     print()
 
     for unlock_floor, gate_name, check_fn in GATES:

@@ -32,6 +32,13 @@ jobs:
         id: pages
         uses: actions/configure-pages@v5
 
+      - name: Write fork owner metadata
+        working-directory: docs
+        run: |
+          owner="${{ github.repository_owner }}"
+          if [ "$owner" = "gsbdarc" ]; then owner="YOUR_GITHUB_USERNAME"; fi
+          echo "github_owner: $owner" > _data/site_meta.yml
+
       - name: Build with Jekyll
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
         working-directory: docs

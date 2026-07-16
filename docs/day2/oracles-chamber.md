@@ -2,7 +2,7 @@
 layout: default
 title: "The Oracle's Chamber"
 parent: "Day 2 — The Alchemist's Lab"
-nav_order: 7
+nav_order: 6
 permalink: /day2/oracles-chamber/
 ---
 
@@ -152,6 +152,47 @@ python form3_test.py
 
 Verify you get the same output as the notebook. You now have a reproducible script you can schedule, share, or scale.
 
+---
+
+### Step 5 — Validate with Pydantic
+
+The API returns a string. Pydantic turns it into a typed, validated Python object — and rejects responses that don't match your schema.
+
+Define a model:
+
+```python
+from pydantic import BaseModel
+from typing import Optional
+
+class Form3Extraction(BaseModel):
+    insider_name: str
+    role: str
+    issuer_name: str
+    transaction_date: Optional[str] = None
+    shares_acquired: Optional[int] = None
+```
+
+Ask for structured JSON output:
+
+```python
+response = client.chat.completions.create(
+    model="gpt-4.1-nano",
+    messages=[
+        {"role": "system", "content": "Extract the requested fields from this SEC Form 3 filing. Return only valid JSON matching the schema provided."},
+        {"role": "user", "content": f"Extract from this filing:\n\n{filing_text[:4000]}"}
+    ],
+    response_format={"type": "json_object"},
+)
+
+raw = response.choices[0].message.content
+data = Form3Extraction.model_validate_json(raw)
+print(data.model_dump_json(indent=2))
+```
+
+If the model returns a field that doesn't match the schema (wrong type, missing required field), `model_validate_json` raises a `ValidationError` — catching that error is how you know something went wrong before you scale to 10,000 filings.
+
+Update your `form3_test.py` script to use the Pydantic model and save the output as JSON.
+
 <label class="quest-check"><input type="checkbox" data-room="d2-oracles-chamber" data-key="main"> Main Quest complete</label>
 
 ---
@@ -161,4 +202,5 @@ Verify you get the same output as the notebook. You now have a reproducible scri
 - The OpenAI-compatible API takes a list of messages with `role` (system/user/assistant) and `content` (the text)
 - The system prompt frames what the model is and what it should do; the user prompt is the actual data
 - Context limits mean you need to trim large documents before sending — `[:4000]` is a quick safeguard
-- A notebook is for exploration; a `.py` script is for reproducibility — move working code into a script when you're done experimenting
+- Pydantic models turn unstructured LLM output into typed, validated Python objects — if the model returns garbage, you catch it before it silently corrupts your dataset
+- A notebook is for exploration; a `.py` script is for reproducibility

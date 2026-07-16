@@ -1,59 +1,68 @@
 ---
 layout: default
 title: "Boss Gate 3"
-parent: "Day 3 — The SLURM Mines"
-nav_order: 9
+parent: "Day 3 — The Hearth"
+nav_order: 10
 permalink: /day3/boss-gate-3/
 ---
 
 # Boss Gate 3
 
-*The Foreman steps aside and gestures at a towering wall of parchment — one hundred SEC filings, each sealed with wax, each hiding secrets of insider trades. The torches flicker. The cluster hums. This is what the whole descent was for: a single array job that processes them all in parallel, fails gracefully, and leaves behind a clean CSV and a chronicle anyone could follow. You've learned the recipe, calibrated the resources, and armored your pipeline against failure. Now prove it.*
+---
+
+## Boss Gate 3 — First SLURM Submission
+
+Submit your Day 2 LLM extraction script as a SLURM batch job:
+
+1. Write `slurm/extract_form_3_one_file.slurm` with correct `#SBATCH` directives — time, memory, and cores based on your profiling from The Scales
+2. Submit with `sbatch`; confirm the job enters the queue with `squeue --me`
+3. Wait for it to complete; inspect the output with `sacct -j JOBID --format=JobID,State,Elapsed,MaxRSS`
+4. Update `README.md` with SLURM instructions — how to submit, how to monitor, where the output goes
+5. Commit and push:
+
+```bash
+git add slurm/extract_form_3_one_file.slurm README.md
+git commit -m "Boss Gate 3: first SLURM submission complete"
+git push
+```
+
+Your commit should include:
+- `slurm/extract_form_3_one_file.slurm` with `#SBATCH` directives based on real profiling, not guesses
+- `README.md` — what the script does, how to run it, where output lands
 
 ---
 
-## 🔑 The Challenge
-
-The final gate stands open — but only your output will unlock it.
-
-{: .boss }
-> **Boss Battle — The Great Scroll Sweep**
->
-> Process all 100 SEC filings from `data/sec_filings/` using a SLURM job array:
->
-> 1. Each array task extracts the insider name, role, and transaction date from one filing
-> 2. Outputs are written to `/scratch/shared/$USER/results/filing_N.json` (one per task)
-> 3. A merge script combines all results into `results/great_scroll_sweep.csv`
-> 4. Failed tasks are listed in `results/failed_tasks.txt`
-> 5. Your array job script, merge script, and `README.md` are committed to your fork
->
-> **Submit:**
-> ```bash
-> git add jobs/array_extract.sh scripts/merge_results.py results/great_scroll_sweep.csv results/failed_tasks.txt README.md
-> git commit -m "Boss Gate 3: Great Scroll Sweep complete"
-> git push
-> ```
->
-> **Your commit should include:**
-> - The job script (`jobs/array_extract.sh`)
-> - The merge script (`scripts/merge_results.py`)
-> - The final CSV (`results/great_scroll_sweep.csv`)
-> - The failure log (`results/failed_tasks.txt` — can be empty if all tasks succeeded)
-> - `README.md` from The Chronicle — what the pipeline does, how to run it, known limitations
-
-{: .tip }
-> 💡 Check `results/failed_tasks.txt` before committing. If tasks failed, resubmit the array. If you completed the Checkpoint Charm side quest in the Array Cavern, your pipeline will skip already-completed tasks automatically.
+<label class="quest-check"><input type="checkbox" data-room="d3-boss-gate" data-key="commit"> Committed and pushed job script + README</label>
 
 ---
 
-<label class="quest-check"><input type="checkbox" data-room="d3-boss-gate" data-key="commit"> Committed and pushed CSV + scripts + README</label>
+## Side Quest — Feel the Pain Point
+
+Cleared the gate early? Manually rerun your script against 2-3 more filings, one at a time — editing paths, renaming outputs, resubmitting by hand each time. Notice what gets tedious. That tedium is exactly what Day 4's job arrays exist to eliminate.
+
+<label class="quest-check"><input type="checkbox" data-room="d3-boss-gate" data-key="side1"> I manually reran my script against a few more filings and can describe what would need to change to scale to hundreds</label>
+
+{: .note }
+> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-boss-gate.side1` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
 
 ---
 
-## ⚔️ Skills This Gate Tests
+## 📊 End of Day 3 — Sync Your Progress
 
-- You can design and fire a SLURM job array that fans out across 100 inputs simultaneously
-- You can wield `$SLURM_ARRAY_TASK_ID` to route each task to exactly the right file
-- You can merge parallel outputs into a single clean CSV with explicit failure reporting
-- You can write a README clear enough that a stranger — or future-you — could rerun the whole pipeline cold
-- You can commit and push the complete deliverable: scripts, results, and documentation, all in one move
+Let your instructor see where you landed today. You already have Claude Code open on the Yens — ask it to handle the sync.
+
+In your terminal, inside `~/rf-bootcamp-2026`, tell Claude something like:
+
+> Look at the `DAYS` list in `docs/assets/js/quest-log.js` to find the exact `room.key` names for Day 3. In `quest_log.json` at my repo root (create it if it doesn't exist yet), set those keys to `true` for everything I completed today: [list what you finished, e.g. "the Head Chef and Data Mine main quests, and Boss Gate 3"]. Then commit and push it to my fork.
+
+The leaderboard updates within 2 minutes once Claude pushes. Your instructor can see how many quests you completed and whether you cleared the Boss Gate.
+
+---
+
+## Skills This Boss Gate Tests
+
+- Write a SLURM job script from scratch with `#SBATCH` directives grounded in real profiling data
+- Submit a job and confirm it entered the queue
+- Read `sacct` output and identify whether the job succeeded or failed
+- Write a README clear enough that a colleague could rerun the job without asking you
+- Commit and push a complete deliverable: script and documentation together

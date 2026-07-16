@@ -2,7 +2,7 @@
 layout: default
 title: "The Venv Forge"
 parent: "Day 2 — The Alchemist's Lab"
-nav_order: 4
+nav_order: 3
 permalink: /day2/venv-forge/
 ---
 
@@ -14,6 +14,27 @@ permalink: /day2/venv-forge/
 
 ---
 
+## 🖊️ How the Shell Finds Commands: `$PATH`
+
+Before creating an environment, it helps to understand how the shell decides which Python (or any command) to run.
+
+`$PATH` is a colon-separated list of directories the shell searches left to right — the first match wins:
+
+```bash
+echo $PATH          # see your current search path
+which python3       # which Python does the shell find first?
+```
+
+`module load` works by prepending a directory to `$PATH`. `source venv/bin/activate` does the same thing. Both win by going first.
+
+```bash
+module load python/3.11
+which python3       # now points to the module version
+module unload python/3.11
+```
+
+---
+
 ## 🗡️ Main Quest
 
 {: .important }
@@ -21,7 +42,7 @@ permalink: /day2/venv-forge/
 
 ---
 
-### Step 1 — Create a Working Directory and Venv (Exercise 3)
+### Step 1 — Create a Working Directory and Venv
 
 In your **Jupyter terminal** (or SSH terminal):
 

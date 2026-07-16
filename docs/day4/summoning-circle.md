@@ -2,7 +2,7 @@
 layout: default
 title: "The Summoning Circle"
 parent: "Day 4 — The GPU Fortress"
-nav_order: 4
+nav_order: 5
 permalink: /day4/summoning-circle/
 ---
 

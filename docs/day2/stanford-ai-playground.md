@@ -2,7 +2,7 @@
 layout: default
 title: "The Stanford AI Playground"
 parent: "Day 2 — The Alchemist's Lab"
-nav_order: 5
+nav_order: 4
 permalink: /day2/stanford-ai-playground/
 ---
 
@@ -73,11 +73,11 @@ from openai import OpenAI
 
 client = OpenAI(
     api_key="YOUR_STANFORD_KEY",           # Stanford-issued key, not OpenAI key
-    base_url="https://api.stanford.edu/openai/v1",  # Stanford gateway, not api.openai.com
+    base_url="https://aiapi-prod.stanford.edu/v1",  # Stanford gateway, not api.openai.com
 )
 ```
 
-Every model call, prompt, and response flows through `api.stanford.edu` — Stanford's contracted endpoint — instead of directly to OpenAI. Your code looks identical; only the endpoint changes.
+Every model call, prompt, and response flows through `aiapi-prod.stanford.edu` — Stanford's contracted endpoint — instead of directly to OpenAI. Your code looks identical; only the endpoint changes.
 
 In the next room (The Key Vault), you'll load the key securely from a `.env` file rather than hardcoding it.
 

@@ -76,6 +76,48 @@ chmod 644 /scratch/shared/rf-bootcamp-2026/boss1/*.spell
 
 ---
 
+## Before Day 1 — Enroll students
+
+Add each student's GitHub username to `docs/_data/students.yml` in the instructor repo before class starts. The leaderboard will show anyone listed here as soon as they push to their fork.
+
+```yaml
+- username: their-github-username
+  name: "First L."
+```
+
+Commit and push to `main`. GitHub Pages rebuilds in ~2 minutes and the leaderboard is live.
+
+---
+
+## Displaying the Leaderboard on the Projector
+
+Open this URL in a browser on the projector machine:
+
+```
+https://gsbdarc.github.io/rf-bootcamp-2026/leaderboard/
+```
+
+**What it shows:**
+- Each student's rank, level (Initiate → Archmage), boss gates cleared (⚔ = day cleared), and progress bar
+- Students who did side quests rank higher — the progress bar shows who went beyond the main quests
+- Students with no progress yet show as Level 1 / Initiate with an empty bar
+
+**Refreshing:**
+- Auto-refreshes every 2 minutes
+- Click **↻ Refresh** for an instant update
+
+**When to pull it up:**
+- End of each day after students sync their quest logs (they upload `quest_log.json` to their fork)
+- Boss gate clears show up automatically as soon as students push — no sync needed for floor icons
+
+**Reading the leaderboard:**
+- ⚔ icons = boss gates cleared (one per day). A student with 2 swords has cleared Days 1 and 2.
+- Progress bar = total quests completed including side quests. Long bar = went above and beyond.
+- Level title = quick read on depth: Journeyman = solid, Master/Archmage = exceptional.
+- Students with no bar at all = haven't synced yet, or are behind — worth checking in with.
+
+---
+
 ## Day-of checklist
 
 - [ ] Grimoire zip is accessible at the Google Drive link (test the download in a browser)

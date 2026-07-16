@@ -2,7 +2,7 @@
 layout: default
 title: "The Key Vault"
 parent: "Day 2 — The Alchemist's Lab"
-nav_order: 6
+nav_order: 5
 permalink: /day2/key-vault/
 ---
 
@@ -33,7 +33,7 @@ You'll see something like:
 
 ```
 OPENAI_API_KEY=sk-stanford-...
-OPENAI_BASE_URL=https://api.stanford.edu/openai/v1
+OPENAI_BASE_URL=https://aiapi-prod.stanford.edu/v1
 ```
 
 Do not copy this file anywhere public. Do not commit it to git. You are about to load it safely.
@@ -53,7 +53,7 @@ Open `.env` and add the values you saw above:
 
 ```
 OPENAI_API_KEY=sk-stanford-...
-OPENAI_BASE_URL=https://api.stanford.edu/openai/v1
+OPENAI_BASE_URL=https://aiapi-prod.stanford.edu/v1
 ```
 
 ---
