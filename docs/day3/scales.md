@@ -77,6 +77,9 @@ In the new terminal, SSH directly to that node by name (not the load-balanced `y
 ssh SUNetID@yen2.stanford.edu   # replace yen2 with whatever hostname showed above
 ```
 
+{: .note }
+> 💡 **Skip the second login.** A fresh `ssh` means another password + Duo prompt. To avoid re-authenticating, open a terminal through JupyterHub instead: browse to that node's hub (e.g. `https://yen2.stanford.edu/jupyter/`), then **New → Terminal**. You're already authenticated there, and it drops you onto that exact node — ideal for the second monitoring terminal.
+
 **Step 3 — Run the script in Terminal 1, monitor with `watch userload` in Terminal 2.**
 
 Terminal 1:
@@ -190,44 +193,44 @@ Fill in the actual numbers from your `time` and `userload` output. This document
 
 ---
 
-## Side Quest — Profile Your Own Research Script
+## Side Quest — Vectorized vs. Non-Vectorized
 
 {: .note }
-> Finished early? Have a script from your own research? Try this.
+> Finished early? This one is self-contained — no script of your own required.
 
-Copy a script from your research project onto the Yens and profile it using the same two-terminal technique.
+The single biggest speedup in scientific Python is usually **vectorization**: pushing a computation into NumPy (compiled C loops) instead of a Python `for` loop. We ship a script that computes the same sum of squares both ways — profile it and see the difference.
 
+Terminal 1 — run it:
 ```bash
-# Copy your script to the Yens (run this on your laptop)
-scp /path/to/your/script.py SUNetID@yen.stanford.edu:~/your-project/
+source .venv/bin/activate
+time python scripts/vectorize_demo.py
 ```
 
-Then profile it:
-
-Terminal 1:
-```bash
-time python your-project/script.py
-```
-
-Terminal 2:
+Terminal 2 — watch the load while it runs:
 ```bash
 watch userload
 ```
 
-Record what you observe in a `README.md` in that project folder:
+Both versions produce the identical result; the script prints how much faster the vectorized one was (often 10× or more). Notice the slow Python loop pins a core the whole time, while the NumPy version finishes almost before you can look at Terminal 2.
 
-```
-## Resource Profile
+**Have a script from your own research?** Even better — copy it over and profile it the same way, then hunt for a hot `for` loop you could vectorize:
 
-- Script: script.py
-- Wall-clock time (real):
-- CPU time (user):
-- CPU cores used:
-- RAM peak:
-- Serial or parallel?
+```bash
+scp /path/to/your/script.py SUNetID@yen.stanford.edu:~/your-project/
 ```
 
-<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="side2"> I profiled my own research script and recorded its time, CPU, and RAM in a README</label>
+Record what you find in your `README.md`:
+
+```
+## Resource Profile — vectorized vs. loop
+
+- Python loop time (real):
+- NumPy vectorized time (real):
+- Speedup:
+- (If you profiled your own script) a loop you could vectorize:
+```
+
+<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="side2"> I profiled the vectorized vs. non-vectorized demo (and/or my own script) and recorded the speedup</label>
 
 <details markdown="1">
 <summary>🔄 Sync to leaderboard</summary>
