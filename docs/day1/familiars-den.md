@@ -70,6 +70,8 @@ The **context** (or *context window*) is everything Claude can see right now: yo
 
 A long session slowly fills the window. When it's full, or when the conversation has drifted far from the task at hand, the fix is to **start fresh**: `/clear` wipes the slate so the next question gets Claude's full attention. `/context` shows how full the window currently is.
 
+If you're filling up but *don't* want to lose the thread, **`/compact`** is the middle ground: it replaces the long back-and-forth with a short summary, freeing room while keeping what matters. Use `/compact` to keep going on the same task; use `/clear` when you're moving on to a new one.
+
 *Rule of thumb: one focused task per conversation. A clean context beats a cluttered one every time.*
 </details>
 
@@ -212,37 +214,36 @@ bash scripts/install_github_for_research_skill.sh
 
 Optional — the Day 1 Challenge only needs the exercise from Version Control with Git. This is extra practice.
 
-### Part A — Install it (on your laptop)
+### Part A — Install it and take it for a spin
+
+<details markdown="1">
+<summary>Show steps</summary>
 
 {: .warning }
 > ⚠️ This runs on **your laptop**, not the Yens. Everything before this lived on the cluster; Claude Code you install locally.
 
-<details markdown="1">
-<summary>💻 macOS</summary>
-
-Open **Terminal** (as you did in Command Line Basics), install Claude Code following the [official instructions](https://docs.claude.com/en/docs/claude-code/overview), then launch it from any project folder:
+**macOS:** open **Terminal** (as you did in Command Line Basics). **Windows:** open **Git Bash** — the same terminal you installed there. Then install Claude Code following the [official instructions](https://docs.claude.com/en/docs/claude-code/overview) and launch it from any project folder:
 
 ```bash
 claude
 ```
-</details>
 
-<details markdown="1">
-<summary>🪟 Windows</summary>
+**Your first run — try each of these once:**
 
-Open **Git Bash** — the same terminal you installed in Command Line Basics — install Claude Code following the [official instructions](https://docs.claude.com/en/docs/claude-code/overview), then launch it from any project folder:
-
-```bash
-claude
-```
-</details>
-
-When Claude Code starts, sign in with your **SUNet ID** (see *Claude at Stanford* above).
+1. **Launch it** — run `claude` in a project folder.
+2. **Sign in** with your **SUNet ID** (see *Claude at Stanford* above).
+3. **Check your usage** — type `/cost` to see how many tokens this session has used (see the *Tokens* box above).
+4. **Switch modes** — press `Shift+Tab` to flip between plan mode and auto mode (see the *Plan mode vs. auto mode* box above).
 
 {: .note }
 > Stuck on install or sign-in? This whole section is optional — raise your hand and we'll help, and you won't fall behind. The Day 1 Challenge only needs the exercise from Version Control with Git.
 
-### Part B — Interrogate a real research repo
+</details>
+
+### Part B — Ask a real research repo questions
+
+<details markdown="1">
+<summary>Show steps</summary>
 
 Here is the payoff of a well-kept repository: you can *ask it questions*. We'll use a real Stanford project — an analysis of whether San Francisco's graffiti 311 reports fell during COVID.
 
@@ -266,17 +267,29 @@ Now ask, in plain English:
 {: .tip }
 > Notice how Claude reads the README, the scripts, and the issue history to answer. That structure exists *because* someone kept the repo the way the skill describes — good practice is what makes a project answerable.
 
+</details>
+
 ### Part C — Let Claude Code drive git
 
-Go back to your own course repo and let Claude Code do the git work you just did by hand. Launch `claude` inside `rf-bootcamp-2026` and try:
+<details markdown="1">
+<summary>Show steps</summary>
+
+Go back to your own course repo and let Claude Code do the git work you just did by hand. Launch `claude` inside `rf-bootcamp-2026` and give it a real, checkable task — put your SUNet ID in a file and have Claude drive the whole git loop:
 
 ```
-> Commit my work on a new branch and open a pull request.
+> Create a file called signed_in.txt containing my SUNet ID, commit it on a new branch, and open a pull request.
+```
+
+Then confirm it worked: on your fork on GitHub, check that a new **branch** and a **pull request** appeared, and that `signed_in.txt` holds your SUNet ID. For a second task, try:
+
+```
 > Log an issue for the outlier I couldn't sort in Bulk File Operations.
 ```
 
 {: .note }
 > Look at what it did: the work went on a **branch**, opened as a **pull request**, and the commit **credits Claude** — the good habits happened automatically, because of the skill.
+
+</details>
 
 <label class="quest-check"><input type="checkbox" data-room="d1-familiars-den" data-key="side1"> Optional practice complete</label>
 
