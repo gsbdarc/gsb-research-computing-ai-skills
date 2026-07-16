@@ -29,11 +29,13 @@ Open `slurm/extract_form_3_one_file.slurm` in your editor.
 
 **Step 1 — The shebang**
 
-Every shell script starts here:
+The first line of every shell script is the **shebang**:
 
 ```bash
 #!/bin/bash
 ```
+
+The `#!` tells the operating system which interpreter to run the rest of the file with — here, the Bash shell at `/bin/bash`. Without it, the system doesn't know whether your script is Bash, Python, or something else. It has to be the very first line of the file.
 
 ---
 
@@ -43,7 +45,8 @@ These are instructions to the SLURM scheduler. Fill in each placeholder using th
 
 ```bash
 #SBATCH --job-name=<job-name>
-#SBATCH --output=logs/<output-file>_%j.out
+#SBATCH --output=logs/extract_%j.out
+#SBATCH --error=logs/extract_%j.err
 #SBATCH --time=<HH:MM:SS>            # e.g. 00:10:00
 #SBATCH --mem=<RAM>                  # e.g. 4G
 #SBATCH --cpus-per-task=<cores>      # e.g. 2
@@ -61,6 +64,22 @@ cd $HOME/rf-bootcamp-2026
 source .venv/bin/activate
 ```
 
+{: .note }
+> **What's already installed.** Your `.venv` was built from `requirements.txt` on Day 2. Once it's activated, any job can use these packages:
+>
+> | Package | Used for |
+> |---|---|
+> | `openai` | Calling the Stanford AI API (LLM extraction) |
+> | `python-dotenv` | Loading your API key from `.env` |
+> | `pydantic` | Validating and structuring the LLM output |
+> | `pandas` | Tabular data |
+> | `numpy` | Vectorized numerics (installed with pandas) |
+> | `requests` | Downloading filings over HTTP |
+> | `ipykernel` / `jupyter` | Notebook and JupyterHub kernels |
+> | `matplotlib` | Plots |
+>
+> Need something else? `pip install` it into your `.venv` (never system-wide) and add it to `requirements.txt` so your work stays reproducible.
+
 ---
 
 **Step 4 — Run your script**
@@ -75,8 +94,9 @@ Save the file.
 > **SLURM starts a fresh shell on the compute node.** Your virtual environment is not active. Your working directory is not set. Every setup step must be in the script — `cd`, `source .venv/bin/activate`, and any `module load` commands you need. If it works interactively on the Yens but fails as a job, a missing setup step is usually why.
 
 {: .note }
-> **Three things worth understanding before you submit:**
-> - `%j` in the output filename gets replaced with the job ID — so each run writes to its own log file instead of overwriting the last one.
+> **What the log files are, and other things worth knowing before you submit:**
+> - A batch job has **no terminal** — you're not watching it run. So SLURM redirects everything your script would normally print to the screen: normal output goes to the **`--output` (`.out`) file**, and error messages/tracebacks go to the **`--error` (`.err`) file**. Those two files are how you see what your job did and debug it when it fails.
+> - `%j` gets replaced with the job ID, so each run writes its own `logs/extract_<jobid>.out` and `.err` instead of overwriting the last.
 > - The `logs/` directory must exist before the job runs — SLURM won't create it for you. That's why `mkdir -p logs` comes first.
 > - Paths in the script are resolved on the compute node, not your login node. Absolute paths (`$HOME/...`) are safer than relative ones.
 
@@ -199,5 +219,31 @@ Replace `JOBID` with the job ID of a job you already submitted. Confirm with `sq
 <summary>🔄 Sync to leaderboard</summary>
 
 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-foremans-desk.side3` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
+
+</details>
+
+**Side Quest — Watch Your Job on Its Node**
+
+A running batch job has a compute node all to itself — and while it's running, you can SSH in and watch it work. First find out where it landed:
+
+```bash
+squeue --me
+```
+
+The `NODELIST` column shows the node your job is on (e.g. `yen10`). SSH to that node and watch your job's processes live:
+
+```bash
+ssh SUNetID@yen10.stanford.edu   # use your job's actual node
+htop -u $USER                    # or: top -u $USER
+```
+
+You'll see your Python process using the CPU and RAM you requested in the script. Press `q` to quit `htop`, then `exit` to leave the node. This only works while the job is running, and only on a node where you actually have a job — you can't SSH to arbitrary compute nodes.
+
+<label class="quest-check"><input type="checkbox" data-room="d3-foremans-desk" data-key="side4"> I found my job's node with squeue and watched it run live with htop</label>
+
+<details markdown="1">
+<summary>🔄 Sync to leaderboard</summary>
+
+**Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-foremans-desk.side4` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
 
 </details>
