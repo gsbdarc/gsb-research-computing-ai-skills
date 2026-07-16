@@ -201,3 +201,51 @@ Look up on-demand pricing for a cloud VM comparable to a Yen node (similar CPU/R
 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-kitchen.side2` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
 
 </details>
+
+**Side Quest 3 — Laptop vs. a Yen node**
+
+You looked up your laptop's specs in Side Quest 1. Enter them below to see just how much bigger one Yen node is.
+
+<style>
+.yen-widget { border: 1px solid #ddd; border-radius: 6px; padding: 1rem 1.25rem; margin: 1rem 0; }
+.yen-widget label { display: block; margin: 0.35rem 0; }
+.yen-widget input { width: 6rem; margin-left: 0.4rem; }
+.yen-widget button { margin-top: 0.6rem; padding: 0.35rem 0.9rem; cursor: pointer; border-radius: 4px; border: 1px solid #ccc; background: #f0f0f0; }
+#yw-out { margin-top: 0.75rem; line-height: 1.5; }
+</style>
+
+<div class="yen-widget">
+  <label>Your laptop's CPU cores: <input id="yw-cores" type="number" min="1" step="1" value="8"></label>
+  <label>Your laptop's RAM (GB): <input id="yw-ram" type="number" min="1" step="1" value="16"></label>
+  <button id="yw-go">Compare</button>
+  <p id="yw-out"></p>
+</div>
+
+<script>
+(function () {
+  var YEN_CORES = 256, YEN_RAM = 1024; // one Yen node: 256 logical cores, ~1 TB RAM
+  function compare() {
+    var c = parseFloat(document.getElementById('yw-cores').value);
+    var r = parseFloat(document.getElementById('yw-ram').value);
+    var out = document.getElementById('yw-out');
+    if (!(c > 0) || !(r > 0)) { out.textContent = 'Enter your laptop’s cores and RAM above.'; return; }
+    var coreX = YEN_CORES / c, ramX = YEN_RAM / r;
+    var fit = Math.floor(Math.min(coreX, ramX));
+    out.innerHTML =
+      'A Yen node has <strong>' + coreX.toFixed(0) + '×</strong> your cores (' + YEN_CORES + ' vs ' + c + ')'
+      + ' and <strong>' + ramX.toFixed(0) + '×</strong> your RAM (' + YEN_RAM + ' GB vs ' + r + ' GB).<br>'
+      + 'About <strong>' + fit + '</strong> of your laptop' + (fit === 1 ? '' : 's') + ' would fit inside one Yen node.';
+  }
+  document.getElementById('yw-go').addEventListener('click', compare);
+  compare();
+})();
+</script>
+
+<label class="quest-check"><input type="checkbox" data-room="d3-kitchen" data-key="side3"> I used the widget to compare my laptop to a Yen node</label>
+
+<details markdown="1">
+<summary>🔄 Sync to leaderboard</summary>
+
+**Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-kitchen.side3` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
+
+</details>
