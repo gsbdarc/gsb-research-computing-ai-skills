@@ -1,0 +1,8 @@
+openai
+python-dotenv
+pydantic
+pandas
+requests
+ipykernel
+jupyter
+matplotlib

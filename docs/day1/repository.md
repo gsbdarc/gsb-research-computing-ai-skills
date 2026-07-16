@@ -49,40 +49,65 @@ Every Boss Gate in this dungeon requires a `git push` as proof of work. No push,
 Your journey through the dungeon leaves a trail — and that trail is your version history. Carve your name into the Archive now.
 
 {: .important }
-> **Quest:** Fork the course repo, clone it to the Yens, create a branch, commit a file, and push it back to your fork.
+> **Quest:** Fork the course repo, configure three settings on GitHub, clone it to the Yens, commit a file, and push it back to your fork on `main`.
+
+---
 
 **Step 1 — Fork the course repo**
 
-Go to the course repo on GitHub (your instructor will share the link). Click **Fork** to create your own copy under your GitHub account.
+Go to the course repo on GitHub (your instructor will share the link). Click **Fork** → **Create fork**.
 
-**Step 2 — Clone to the Yens**
+---
 
-On the Yens:
+**Step 2 — Two required settings on your fork**
+
+After forking, do these two things on GitHub before anything else. Each one is needed for the dungeon to work.
+
+**a) Enable GitHub Actions**
+
+The dungeon grader runs automatically every time you push to `main`. On forks, GitHub requires you to opt in manually.
+
+*Actions tab → "I understand my workflows, go ahead and enable them"*
+
+**b) Enable GitHub Pages**
+
+This deploys your personal copy of the dungeon website — your floor locks and quest checkboxes are tied to your own site, not the instructor's.
+
+*Settings → Pages → Source: Deploy from a branch → Branch: `main` / `docs` → Save*
+
+After a minute or two, your site will be live at:
+```
+https://YOUR_GITHUB_USERNAME.github.io/rf-bootcamp-2026/
+```
+
+---
+
+**Step 3 — Clone to the Yens**
+
 ```bash
 cd ~
 git clone https://github.com/YOUR_GITHUB_USERNAME/rf-bootcamp-2026.git
 cd rf-bootcamp-2026
 ```
 
-**Step 3 — Create a branch**
-```bash
-git checkout -b day1-work
-```
-
 **Step 4 — Make a change and commit**
+
 ```bash
 echo "Hello from the Repository" > my_first_commit.txt
 git add my_first_commit.txt
 git commit -m "Add my first commit from Day 1"
 ```
 
-**Step 5 — Push to your fork**
+**Step 5 — Push to `main`**
+
 ```bash
-git push -u origin day1-work
+git push
 ```
 
+GitHub Actions will now run the grader on your fork. Check the **Actions tab** on GitHub — you should see a green checkmark within a minute.
+
 {: .important }
-> **Every Boss Gate** requires a `git push` to your fork as the submission mechanism. Return to this room's steps whenever you need to submit work. This is the unlock pattern for every floor exit.
+> **Every Boss Gate** works the same way: make your changes, `git add`, `git commit`, `git push`. The grader runs automatically on every push to `main` and unlocks the next floor if the gate is cleared. You always push to `main` — no branch switching needed.
 
 ---
 

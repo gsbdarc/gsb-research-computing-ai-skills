@@ -82,24 +82,24 @@ def check_gate_2():
 
 
 def check_gate_3():
-    """Boss Gate 3: jobs/extract.sh + README.md."""
+    """Boss Gate 3: slurm/extract_form_3_one_file.slurm + README.md."""
     errors = []
-    job_script = REPO_ROOT / "jobs" / "extract.sh"
+    job_script = REPO_ROOT / "slurm" / "extract_form_3_one_file.slurm"
     readme = REPO_ROOT / "README.md"
 
     if not job_script.exists():
-        errors.append("jobs/extract.sh not found — write and submit your SLURM batch job script")
+        errors.append("slurm/extract_form_3_one_file.slurm not found — write and submit your SLURM batch job script")
     else:
         content = job_script.read_text()
         if "#SBATCH" not in content:
-            errors.append("jobs/extract.sh doesn't contain any #SBATCH directives")
+            errors.append("slurm/extract_form_3_one_file.slurm doesn't contain any #SBATCH directives")
 
     if not readme.exists():
-        errors.append("README.md not found — write it in The Chronicle room")
+        errors.append("README.md not found — write it in The Recipe Book room")
 
     if errors:
         return False, "; ".join(errors)
-    return True, "jobs/extract.sh with #SBATCH directives present; README.md present"
+    return True, "slurm/extract_form_3_one_file.slurm with #SBATCH directives present; README.md present"
 
 
 def check_gate_4():
@@ -164,7 +164,7 @@ def main():
     print("=" * 55)
     print(f"  Student:               {username or '(local run)'}")
     print(f"  Floors unlocked:       {sorted(unlocked)}")
-    print(f"  Quest log checks:      {completed_checks} / 30")
+    print(f"  Quest log checks:      {completed_checks} / 45")
     print()
 
     for unlock_floor, gate_name, check_fn in GATES:

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "The Kitchen"
-parent: "Day 3 — The SLURM Mines"
+parent: "Day 3 — The Hearth"
 nav_order: 2
 permalink: /day3/kitchen/
 ---
@@ -10,122 +10,182 @@ permalink: /day3/kitchen/
 
 <div data-room-id="d3-kitchen"></div>
 
-*Steam hangs in the air. Seventeen other researchers are already in here — one has a slow roast that's been in the oven for six hours, two more are fighting over the last open burner, and somewhere in the back a job has been queued so long it's practically fossilized. This is the Yens cluster at peak hours, rendered in cast iron and fire. Watch it breathe before you even think about striking a match. Once you see the chaos, SLURM stops being bureaucracy and starts being salvation.*
+---
+
+## Your Research Project in Computing Terms
+
+Every research computing project has three questions:
+
+<div style="display:flex; gap:1rem; margin:1.5rem 0;">
+  <div style="flex:1; border:2px solid #4a90d9; border-radius:8px; padding:1rem;">
+    <div style="font-size:2rem; text-align:center;">🎯</div>
+    <div style="font-weight:700; font-size:1.1rem; text-align:center; margin:0.5rem 0;">What?</div>
+    <div style="font-size:0.9rem;">Your research <strong>task</strong> — defined by your PI. For this bootcamp: extract names and CIKs from SEC Form 3 filings.</div>
+  </div>
+  <div style="flex:1; border:2px solid #27ae60; border-radius:8px; padding:1rem;">
+    <div style="font-size:2rem; text-align:center;">🐍</div>
+    <div style="font-weight:700; font-size:1.1rem; text-align:center; margin:0.5rem 0;">How?</div>
+    <div style="font-size:0.9rem;">Your Python <strong>script</strong> — a sequence of steps that produces your output: extracted names, CIKs, a CSV.</div>
+  </div>
+  <div style="flex:1; border:2px solid #e67e22; border-radius:8px; padding:1rem;">
+    <div style="font-size:2rem; text-align:center;">🖥️</div>
+    <div style="font-weight:700; font-size:1.1rem; text-align:center; margin:0.5rem 0;">Where?</div>
+    <div style="font-size:0.9rem;">Your compute environment — laptop, the Yens, or the cloud. Each has different <strong>resources</strong> (CPU cores, RAM, and storage).</div>
+  </div>
+</div>
+
+The rest of this page answers the **Where** question — understanding the resources behind each environment: **CPU cores**, **RAM**, and **storage**.
 
 ---
 
-## 🗡️ Main Quest
+## Under the Hood
 
-Before you touch a single `sbatch` flag, you need to see the beast with your own eyes.
+In Days 1 and 2, you wrote a Python script and ran it on the Yens interactively. But what is actually inside the machine running your code?
+
+Inside every computer — your laptop, a Yen node, a cloud server — there are the same few physical components. The diagram below shows a Yen server opened up: the **CPU** is the processor chip, **cores** are the individual workers inside it (each runs code independently), and **RAM** is the fast memory the CPU reads from while working.
+
+![Server hardware diagram showing CPU, cores, and RAM]({{ site.baseurl }}/assets/images/server-hardware-cpu-ram.png)
+
+Today we'll understand what each of these does when your script is running — and why they determine how fast (or slow) your code goes.
+
+| Component | What it is |
+|-----------|-----------|
+| **CPU** | The processor chip — executes your code |
+| **CPU core** | An individual worker inside the CPU — each runs independently |
+| **RAM** | Fast memory the CPU reads from and writes to while working — limited in size |
+| **Storage (disk / file system)** | Where your files live when nothing is running — large but slow |
+| **I/O (Input/Output)** | Moving data from disk into RAM (read) and writing results back to disk (write) — the slowest step |
+
+---
+
+## The Kitchen Analogy
+
+To make these concepts concrete, we're going to use a **kitchen analogy** that carries through the whole day — from your laptop to the Yens to the cloud. Your kitchen — your laptop — is all yours and only yours: a few burners (CPU cores), a small fridge (RAM), and a convenience store down the street (disk) that's bigger than your fridge but slow to access. Your bike (disk I/O) can only grab a few things from the store at a time.
+
+![Your Laptop = Your Kitchen]({{ site.baseurl }}/assets/images/kitchen-laptop.png)
+
+| Component | What it is | Kitchen analogy |
+|-----------|-----------|-----------------|
+| **CPU** | The processor chip — executes your code | The stove |
+| **CPU core** | An individual worker inside the CPU — each runs independently | A single burner |
+| **RAM** | Fast memory the CPU reads from and writes to while working — limited in size | The fridge |
+| **Storage (disk / file system)** | Where your files live when nothing is running — large but slow | The convenience store |
+| **I/O (Input/Output)** | Moving data from disk into RAM (read) and writing results back to disk (write) — the slowest step | Biking to the store and back |
+
+---
+
+**What happens when you run a script:**
+
+When you run `python extract_form_3_one_file.py`, four things happen in sequence:
+
+1. **Load from disk** — Python reads your script and data files from storage (the convenience store) onto the bike and hauls them into RAM.
+2. **Into RAM** — the data lands in the fridge. Now the CPU can reach it quickly without another trip to the store.
+3. **CPU does the work** — the stove fires up. Each CPU core executes the steps in your script against whatever is in the fridge.
+4. **Save to disk** — results get written back to storage so they're there when you shut down.
+
+![What Happens When You Run a Script]({{ site.baseurl }}/assets/images/kitchen-script-laptop.png)
+
+{: .warning }
+> **The tricky part: the bike ride is slow.** Reading from disk is orders of magnitude slower than reading from RAM. Your CPU can crunch through data in nanoseconds, but a disk read takes milliseconds — **a million times longer**. If your dataset is too large to fit in RAM all at once, your script keeps making bike trips mid-computation, and that is what makes jobs crawl. This is why knowing how much RAM your script needs matters — not just for the cluster, but on your laptop too.
+
+Your script is a **recipe** — a numbered sequence of steps the **CPU** follows from top to bottom. Just like a recipe can say "make the sauce" and refer you to another page, a script can call **functions or other scripts**. Each call is a **sub-recipe**: the CPU pauses the main recipe, runs the sub-recipe to completion, then picks up where it left off.
+
+```python
+# Recipe: pasta.py
+# 1. Boil water
+# 2. Add pasta
+# 3. While pasta cooks:
+#      → make_sauce()   ← calls another function (a sub-recipe)
+# 4. Mix and serve
+```
+
+| Component | What it is | Kitchen analogy |
+|-----------|-----------|-----------------|
+| **CPU** | The processor chip — executes your code | The stove |
+| **CPU core** | An individual worker inside the CPU — each runs independently | A single burner |
+| **RAM** | Fast memory the CPU reads from and writes to while working — limited in size | The fridge |
+| **Storage (disk / file system)** | Where your files live when nothing is running — large but slow | The convenience store |
+| **I/O (Input/Output)** | Moving data from disk into RAM (read) and writing results back to disk (write) — the slowest step | Biking to the store and back |
+| **Script** | The sequence of steps the CPU follows to produce your output | The recipe |
+
+---
+
+**Shared restaurant kitchen — the Yens**
+
+The Yens are a shared restaurant kitchen. Many cooks are working at the same time — you share the **burners (CPU cores)**, the **fridge (RAM)**, and the **file system (VAST)** with everyone else on the node. **They are not infinite.** Per-user limits are enforced so one chef can't claim every burner, but if the kitchen is busy, you feel it.
+
+{: .note }
+> **Shared file system:** A file you write on yen1 is instantly visible on every other Yen node — because they all read from and write to the same VAST storage. This is powerful for collaboration, but it also means everyone is hitting the same warehouse at once.
+
+![Yen Cluster = A Shared Restaurant Kitchen]({{ site.baseurl }}/assets/images/kitchen-yens.png)
+
+| Component | What it is | Kitchen analogy |
+|-----------|-----------|-----------------|
+| **Node** | One physical server — each node has its own CPU and RAM, independent from other nodes | A station in the restaurant kitchen — its own stove and fridge |
+| **CPU** | The processor chip — executes your code | The stove |
+| **CPU core** | An individual worker inside the CPU — each runs independently | A single burner |
+| **RAM** | Fast memory the CPU reads from and writes to while working — limited in size | The fridge |
+| **Storage (disk / file system)** | VAST — a shared file system across all nodes, ~1 PB, every node reads and writes the same files | The shared data warehouse |
+| **I/O (Input/Output)** | Moving data from disk into RAM (read) and writing results back to disk (write) — the slowest step | Driving to the warehouse and back |
+| **Script** | The sequence of steps the CPU follows to produce your output | The recipe |
+
+---
+
+**Rented kitchen — cloud (AWS / GCP / Azure)**
+
+The cloud is a rented kitchen — and it's **just for you**. Unlike the Yens, you're not sharing burners or fridges with anyone. Cloud gives you **flexible and practically infinite** compute, memory, and storage: need 1,000 burners for an hour, rent them; need a warehouse the size of a city block, rent it.
+
+{: .warning }
+> **You pay for everything you rent, for as long as you rent it.** Leaving a large instance running overnight by accident can cost hundreds of dollars. Always shut down what you're not using.
+
+![Cloud Computing = A Rented Kitchen]({{ site.baseurl }}/assets/images/kitchen-cloud.png)
+
+---
+
+## Main Quest — Class Participation
 
 {: .important }
-> **Quest:** Watch the Yens live — see resource contention in real time, then understand the kitchen analogy for SLURM.
+> 🥪 **Demo + Discussion:** 🥪 We will all participate in a class demo together. 🥪
 
-This is a 30-minute class participation block. Follow along on the projector — call out what you see.
+<details markdown="1">
+<summary><strong>After the demo:</strong></summary>
 
-**Step 1 — See who's using the Yens right now:**
+- What are the tradeoffs between your laptop, the Yens, and the cloud?
+- What happens when many researchers all run jobs at once on the shared Yens?
 
-```bash
-userload          # shows current CPU/memory usage per user across all Yen servers
-htop              # interactive process viewer — press q to quit
-```
+</details>
 
-Look at `userload`. Every row is a researcher. Some are using thousands of CPU-hours. Now imagine you try to run a 32-core job from the command line — you'd be competing with all of them for the same shared hardware.
-
-{: .note }
-> **Class discussion:** What do you notice about CPU usage? Who's using the most? What do you think happens if everyone runs intensive jobs directly on the shared interactive Yens at the same time?
-
-**Step 2 — The kitchen analogy:**
-
-First, the hardware. A computer is just a kitchen:
-
-```
-  YOUR LAPTOP — Your kitchen
-  ┌──────────────────────────────────────────────────────────────┐
-  │                                                              │
-  │  Burners (CPU cores)    ○ ○ ○ ○ ○ ○ ○ ○                    │
-  │                         each burner = 1 CPU core            │
-  │                         reads data from disk, does compute  │
-  │                                                              │
-  │  Fridge (RAM)                    Store (Storage / Disk)     │
-  │  ┌───────────────────┐           ┌──────────────────────┐   │
-  │  │  data the CPU is  │ ←──bike── │  all your files      │   │
-  │  │  actively using   │           │  slower, holds more  │   │
-  │  └───────────────────┘           └──────────────────────┘   │
-  └──────────────────────────────────────────────────────────────┘
-  Limited burners · small fridge · small store · all yours, free
-```
-
-The Yens is just a much bigger, shared kitchen:
-
-```
-  THE YENS — Shared restaurant kitchen
-  ┌──────────────────────────────────────────────────────────────┐
-  │                                                              │
-  │  Burners:  ○○○○○○○○○○  ○○○○○○○○○○  ○○○○○○○○○○  ...        │
-  │            node 1       node 2       node 3    (many nodes) │
-  │                                                              │
-  │  Walk-in   ┌──────────┐  ┌──────────┐  ┌──────────┐        │
-  │  fridges:  │  256 GB  │  │  256 GB  │  │  256 GB  │  ...   │
-  │            └──────────┘  └──────────┘  └──────────┘        │
-  │                                                              │
-  │  ┌─────────────────────────────────────────────────────┐    │
-  │  │  Warehouse — /scratch  (terabytes, shared)          │    │
-  │  └─────────────────────────────────────────────────────┘    │
-  │               (e-bikes) — faster data transfer              │
-  └──────────────────────────────────────────────────────────────┘
-  Many more burners · shared with all researchers · free
-
-  Cloud (AWS/GCP) — Rented kitchen: all yours, infinite, costs $$
-```
-
-**The tricky part:** when you write a script, you don't know in advance how many burners it needs, how much fridge space, or how many trips to the store. You have to measure first — that's what [The Scales](../scales/) room is for.
-
-**The SLURM problem:** the Yens kitchen is shared. If everyone just walks in and starts cooking, chaos. That's SLURM's job:
-
-```
-  Without SLURM                         With SLURM (head chef)
-  ───────────────────────────           ────────────────────────────────────
-
-  Everyone runs jobs on the shared      You submit a job script (recipe)
-  interactive Yens — competing for      Head chef reads your #SBATCH requests
-  the same burners, no isolation,       Assigns you a dedicated station
-  random failures                       (compute node — yours alone)
-                                        You come back when it's done
-```
-
-| Kitchen              | Yens / SLURM                        |
-|----------------------|-------------------------------------|
-| Head chef            | SLURM scheduler                     |
-| Station (stove)      | Compute node                        |
-| Order ticket         | Job script (`sbatch`)               |
-| Tickets on the rail  | Job queue (`squeue`)                |
-| Warehouse            | Shared storage (`/scratch`)         |
-| Recipe               | Your Python/R/shell script          |
-| Dietary restriction  | `#SBATCH` resource request          |
+<label class="quest-check"><input type="checkbox" data-room="d3-kitchen" data-key="main"> I participated in the class demo and discussion</label>
 
 {: .note }
-> **Class discussion:** What questions do you have about how SLURM assigns resources? What happens if you ask for too much? Too little?
-
-You don't walk into the kitchen and start cooking. You hand your recipe to the head chef (`sbatch`), specify what burners and fridge space you need (`#SBATCH` directives), and come back when the meal is done.
-
-**Step 3 — Why big jobs go through SLURM:**
-
-```bash
-# Don't run a long intensive job directly on a shared Yen — you're sharing it with everyone
-# python my_big_script.py   ← wrong for big jobs
-# Instead, use sbatch (we'll get there in The Foreman's Desk)
-```
-
-The interactive Yens are for editing, exploring, and short tasks — not pegging 256 cores for hours.
-
-<label class="quest-check"><input type="checkbox" data-room="d3-kitchen" data-key="main"> Kitchen demo complete — I understand why SLURM exists</label>
+> 🔄 **Keep the leaderboard live.**
+>
+> 1. In your terminal on the Yens, go to `~/rf-bootcamp-2026`.
+> 2. Start Claude Code with `claude` if it isn't already running.
+> 3. Tell it: "Set `d3-kitchen.main` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`."
+> 4. Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
 
 ---
 
-## 🧠 Skills Learned
+## Side Quests
 
-- You can read live resource contention on the Yens and know exactly who is eating the cluster's lunch
-- You can map every piece of SLURM vocabulary to a kitchen equivalent — scheduler, queue, compute node, and all
-- You can distinguish the shared interactive Yens from a dedicated SLURM compute node — and know when each is appropriate
-- You know that running heavy long jobs directly on a shared Yen is inconsiderate to every other researcher on the cluster — and you will never do it
+{: .note }
+> Finished early? Try one or both of these.
+
+**Side Quest 1 — Know your own machine**
+
+Check your own laptop's CPU core count and RAM, and compare them to a Yen node (256 cores). On Mac: `system_profiler SPHardwareDataType`. On Windows: Task Manager → Performance tab. On Linux: `nproc` and `free -h`.
+
+<label class="quest-check"><input type="checkbox" data-room="d3-kitchen" data-key="side1"> I checked my own laptop's CPU cores and RAM and compared them to a Yen node</label>
+
+{: .note }
+> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-kitchen.side1` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
+
+**Side Quest 2 — Price the rented kitchen**
+
+Look up on-demand pricing for a cloud VM comparable to a Yen node (similar CPU/RAM), and estimate what it would cost to run your Day 2 extraction job there for an hour. Grant budgets aren't infinite — this is a real judgment call you'll make in your own research.
+
+<label class="quest-check"><input type="checkbox" data-room="d3-kitchen" data-key="side2"> I estimated the cost of running my Day 2 job in the cloud for an hour</label>
+
+{: .note }
+> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-kitchen.side2` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.

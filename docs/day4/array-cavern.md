@@ -14,6 +14,27 @@ permalink: /day4/array-cavern/
 
 ---
 
+## 🖊️ Why Parallelize?
+
+Your Day 3 script processes one SEC filing at a time. You have 100 filings. Running them sequentially takes 100× as long — and ties up a node while you wait.
+
+The Yens have hundreds of cores sitting idle. SLURM's job: hand each core a different filing so all 100 run simultaneously. Total time stays roughly the same as one filing — just multiplied across independent work.
+
+```
+  One at a time (sequential):        Parallelized (job array):
+  filing 1 → 5s                      filing 1  ┐
+  filing 2 → 5s                      filing 2  │ all start at once
+  filing 3 → 5s                      filing 3  │ → ~5s total
+  ...                                ...       ┘
+  filing 100 → 5s
+  ─────────────
+  Total: ~500s                        Total: ~5s + queue wait
+```
+
+This only works when tasks are **independent** — each filing doesn't need the results from another. Your extraction script qualifies perfectly.
+
+---
+
 ## 🗡️ Main Quest
 
 The cluster is waiting. A hundred SEC filings sit untouched — until now. Write the script once, unleash the array, and forge the combined CSV that proves you were here.

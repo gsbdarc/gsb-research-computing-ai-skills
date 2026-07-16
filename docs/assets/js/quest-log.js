@@ -10,7 +10,7 @@
   const STORAGE_KEY = 'dungeon.v1.progress';
 
   // Total possible checkboxes across the entire dungeon (all 4 days)
-  const TOTAL_CHECKS = 29;
+  const TOTAL_CHECKS = 57;
 
   const LEVEL_TITLES = [
     'Initiate', 'Apprentice', 'Scholar', 'Journeyman', 'Adept',
@@ -48,15 +48,16 @@
       ],
     },
     {
-      label: 'Day 3 — The SLURM Mines',
+      label: 'Day 3 — The Hearth',
       prefix: 'd3',
       rooms: [
-        { id: 'd3-kitchen',              keys: ['main'] },
-        { id: 'd3-scales',               keys: ['main'] },
-        { id: 'd3-foremans-desk',        keys: ['main'] },
-        { id: 'd3-watch-tower',          keys: ['main'] },
-        { id: 'd3-chronicle',            keys: ['main'] },
-        { id: 'd3-boss-gate',            keys: ['commit'] },
+        { id: 'd3-kitchen',         keys: ['main', 'side1', 'side2'] },
+        { id: 'd3-head-chef',       keys: ['mystery', 'main', 'readme', 'side1', 'side2', 'side3', 'side4', 'side5', 'side6', 'side7'] },
+        { id: 'd3-data-mine',       keys: ['main', 'side1', 'side2', 'side3', 'side4', 'side5'] },
+        { id: 'd3-foremans-desk',   keys: ['main', 'submit', 'side1', 'side2', 'side3'] },
+        { id: 'd3-watch-tower',     keys: ['main', 'side1', 'side2', 'side3', 'side4'] },
+        { id: 'd3-chronicle',       keys: ['main', 'side1', 'side2'] },
+        { id: 'd3-boss-gate',       keys: ['commit', 'side1'] },
       ],
     },
     {
@@ -201,22 +202,6 @@
     });
   }
 
-  function exportQuestLog() {
-    var data = loadProgress();
-    var json = JSON.stringify(data, null, 2);
-    var blob = new Blob([json], { type: 'application/json' });
-    var url = URL.createObjectURL(blob);
-    var a = document.createElement('a');
-    a.href = url;
-    a.download = 'quest_log.json';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-    var hint = document.getElementById('quest-sync-hint');
-    if (hint) hint.style.display = 'block';
-  }
-
   function createWidget() {
     var btn = document.createElement('div');
     btn.id = 'quest-log-btn';
@@ -241,25 +226,6 @@
     var list = document.createElement('ul');
     list.id = 'quest-log-list';
     panel.appendChild(list);
-
-    var syncDiv = document.createElement('div');
-    syncDiv.className = 'quest-sync';
-
-    var syncBtn = document.createElement('button');
-    syncBtn.type = 'button';
-    syncBtn.id = 'quest-sync-btn';
-    syncBtn.textContent = '📤 Sync to leaderboard';
-    syncBtn.addEventListener('click', exportQuestLog);
-    syncDiv.appendChild(syncBtn);
-
-    var hint = document.createElement('p');
-    hint.id = 'quest-sync-hint';
-    hint.innerHTML = 'Save <code>quest_log.json</code> to your repo root, then:<br>'
-      + '<code>git add quest_log.json && git commit -m "sync" && git push</code>';
-    hint.style.display = 'none';
-    syncDiv.appendChild(hint);
-
-    panel.appendChild(syncDiv);
     btn.appendChild(panel);
 
     document.body.appendChild(btn);

@@ -1,160 +1,254 @@
 ---
 layout: default
 title: "The Scales"
-parent: "Day 3 — The SLURM Mines"
+parent: "Day 3 — The Hearth"
 nav_order: 3
 permalink: /day3/scales/
 ---
 
 # The Scales
 
-<div data-room-id="d3-scales"></div>
+---
 
-*In the heart of the Mines hangs an ancient pair of scales, each arm tipped with iron. On one side: your job request. On the other: the truth of what your script actually consumes. Ask for too little and your process crashes mid-run, memory exhausted, data lost. Ask for too much and the scheduler hunts the entire cluster for a node massive enough to satisfy you — while your job rots in the queue. The Scales do not forgive guessing. They reward those who measure.*
+## Computing Resources — A Quick Recap
+
+On the last page we introduced the kitchen analogy. Before we run anything, let's make sure we have the vocabulary:
+
+| Resource | What it is |
+|----------|-----------|
+| **CPU core** | An individual worker that executes your code |
+| **RAM** | Fast memory the CPU reads from while working |
+| **Storage (file system)** | Where your files live — VAST on the Yens |
+| **Time** | How long your script takes to finish |
 
 ---
 
-## 🖊️ Why Parallelize?
-
-Your Day 2 script processes one SEC filing in a few seconds. You have 100 filings. Running them one at a time takes 100× as long — and ties up a terminal window while you wait.
-
-The Yens have hundreds of cores sitting idle. SLURM's job: hand each core a different filing so all 100 run simultaneously. Total time stays roughly the same as one filing — just multiplied across independent work.
-
-```
-  One at a time (your laptop):       Parallelized (SLURM):
-  filing 1 → 5s                      filing 1  ┐
-  filing 2 → 5s                      filing 2  │ all start at once
-  filing 3 → 5s                      filing 3  │ → ~5s total
-  ...                                ...       ┘
-  filing 100 → 5s
-  ─────────────
-  Total: ~500s                        Total: ~5s + queue wait
-```
-
-This only works when tasks are **independent** — each filing doesn't need the results from another. Your extraction script qualifies perfectly.
-
----
-
-## 🗡️ Main Quest
-
-Before you write a single `#SBATCH` directive, you must step onto the floor of the Scales and weigh your work honestly.
-
-The tricky part of ordering from the head chef: when you write your recipe, you don't yet know how much kitchen you need.
-
-```
-  Before submitting a SLURM job, you need to know:
-
-  How many burners (CPUs)?   →  --cpus-per-task
-  How long on the stove?     →  --time
-  How much fridge (RAM)?     →  --mem
-  How many trips to the      →  (affects wall time — I/O bound vs compute bound)
-  warehouse?
-```
-
-You measure first, then request. Not the other way around.
+## 💻 Exercise 1 — Run Your Script
 
 {: .important }
-> **Quest:** Run the extraction script interactively, understand what it does, then measure its resource footprint before writing a single `#SBATCH` directive.
+> **Exercise:** Run your Day 2 extraction script on the Yens interactively and think about its resource footprint.
 
-**Step 0 — Run the script and understand it:**
+If you're not already connected, SSH in:
 
 ```bash
-# Look at the script
-cat ~/rf-bootcamp-2026/scripts/extract_form3_one_file.py
-
-# Run it on one filing
+ssh SUNetID@yen.stanford.edu
 cd ~/rf-bootcamp-2026
 source .venv/bin/activate
-python scripts/extract_form3_one_file.py data/sec_filings/form3_sample.txt
 ```
 
-What does the script do? What output do you see? How long did it seem to take? Now you're ready to measure it properly.
-
-**Step 1 — Time a script:**
+Run the script:
 
 ```bash
-time python3 count_spells.py ~/grimoire/
-# Output:
-# python3 count_spells.py ~/grimoire/  0.12s user 0.04s system 98% cpu 0.163 total
-# The "real" (wall-clock) time is what matters for --time in SLURM
+python scripts/extract_form_3_one_file.py
 ```
 
-**Step 2 — Monitor memory with `htop`:**
+While it runs (or after it finishes), discuss as a class:
 
-In one terminal, start your script:
-```bash
-python3 my_pipeline.py &   # run in background
-```
+- ❓ **Why** do we want to estimate the resources a script uses?
+- ❓ Do you know what resources this script is using right now?
+- ❓ How would you estimate them?
 
-In another terminal (or screen pane):
-```bash
-htop -u $USER              # filter to your processes, watch RES column (resident memory)
-```
+This page will teach you **how to estimate the resources your script is actually using**. This matters whether you wrote the script yourself or someone handed it to you.
 
-**Step 3 — Run `userload` to see your impact:**
+---
 
-```bash
-userload
-# Find your username — confirm you're only using what you expected
-```
+## Main Quest — Profile a Mystery Script
 
-**Step 4 — Monitor a script you haven't profiled before:**
+You are going to run a script you have never seen before and figure out what resources it uses — without reading the code. This is called **profiling**: measuring a script's time, CPU, and RAM usage as it runs. The technique is simple: one terminal runs the script, a second terminal on the **same node** watches it live.
 
-Open two terminal tabs. In the first, run a script whose resource profile you don't know:
+{: .important }
+> **Exercise:** Run `mystery_script.py` and measure its resource usage in real time using two terminals — both on the **same Yen node**.
+
+**Step 1 — Note which Yen you are on.**
+
+In your current terminal, run:
 
 ```bash
-python scripts/mystery_script.py
+hostname
 ```
 
-Immediately in the second terminal, watch it:
+You will see something like `yen2`. Remember this — your second terminal must connect to the exact same node.
+
+**Step 2 — Open a second terminal on the same node.**
+
+In the new terminal, SSH directly to that node by name (not the load-balanced `yen.stanford.edu`, which could land you on a different machine):
 
 ```bash
-htop -u $USER     # watch RES (resident memory) and CPU % columns
-userload          # see your footprint vs other users on the cluster
+ssh SUNetID@yen2.stanford.edu   # replace yen2 with whatever hostname showed above
 ```
 
-If it finishes too quickly to catch, wrap it with `time`:
+**Step 3 — Run the script in Terminal 1, monitor with `watch userload` in Terminal 2.**
 
+Terminal 1:
 ```bash
 time python scripts/mystery_script.py
 ```
 
-Compare with a neighbor — do you see the same numbers? Based on what you measured, what `--time`, `--mem`, and `--cpus-per-task` would you request?
+When the script finishes, `time` prints three lines:
 
----
-
-**Rule of thumb for `#SBATCH` requests:**
-
-- `--time`: take your measured wall-clock time × 2 (give yourself margin)
-- `--mem`: take your peak memory × 1.5
-- `--cpus-per-task`: count your actual Python threads; most single-threaded scripts need 1
-
----
-
-## 🤖 Claude + System Data
-
-You've just collected profiling output — wall time, memory, CPU. Claude Code can help you make sense of it and translate it into `#SBATCH` directives.
-
-Run Claude Code on the Yens:
-
-```bash
-claude
+```
+real    0m31.234s
+user    2m0.682s
+sys     0m2.212s
 ```
 
-Then paste in your profiling output and ask:
+- **real** — wall-clock time: how long you actually waited
+- **user** — CPU time your code consumed across all cores; if `user` > `real`, the script used multiple cores in parallel
+- **sys** — CPU time spent on OS-level work (file I/O, memory allocation)
 
-*"My script ran in 4.2 seconds and used 312 MB of RAM with 1 CPU. What `#SBATCH` directives should I use for a SLURM batch job, with reasonable safety margins?"*
-
-Or ask it to explain live system data:
-
+Terminal 2:
 ```bash
-userload            # copy the output
-squeue -u $USER     # copy your job queue
+watch userload
 ```
 
-*"Explain this `userload` output. What does it mean for how I should size my job requests?"*
+- `userload` shows your **total CPU% and total RAM** across all your processes on this node — your footprint
+- Jupyter processes are tracked separately and are not included
+- `watch` re-runs it every 2 seconds so you can see it change while the script runs
+- See the [current per-user limits](https://rcpedia.stanford.edu/_policies/user_limits/) for how much CPU and RAM any one user can use on an interactive Yen
+
+**Step 4 — Run the script again. This time monitor with `htop -u $USER` in Terminal 2.**
+
+Terminal 1:
+```bash
+time python scripts/mystery_script.py
+```
+
+Terminal 2:
+```bash
+htop -u $USER
+```
+
+**Compare with your neighbor:**
+- How long did it take?
+- How many CPU cores did it use?
+- How much RAM did it peak at?
+- Is this script **serial** (one core) or **parallel** (multiple cores)? How can you tell?
 
 {: .note }
-> This is a good example of Claude Code used well: you ran the measurement yourself, you understand what the numbers represent, and you're asking Claude to help with the translation. Claude doesn't know if your script will behave differently on 100 real filings — that judgment is yours.
+> **Definitions**
+> - **Profiling** — measuring a script's resource usage (time, CPU, RAM) as it runs
+> - **Serial** — the script uses one CPU core at a time; `user` time ≈ `real` time
+> - **Parallel** — the script uses multiple cores simultaneously; `user` time > `real` time
 
-<label class="quest-check"><input type="checkbox" data-room="d3-scales" data-key="main"> Main Quest complete</label>
+When you can describe what the mystery script does to your CPU and RAM — put a **🟢 green sticky** on your laptop. If something is not working, put up a **🔴 red sticky** and an instructor will come help.
+
+<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="mystery"> I profiled scripts with time, watch userload, and htop, and can tell serial from parallel execution</label>
+
+{: .note }
+> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-head-chef.mystery` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
+
+---
+
+## 💻 Exercise 3 — Profile Your Day 2 Script
+
+Now apply the same technique to a script you already know: `extract_form_3_one_file.py` from Day 2.
+
+Terminal 1:
+```bash
+time python scripts/extract_form_3_one_file.py
+```
+
+Terminal 2:
+```bash
+watch userload
+```
+
+Note the `real`, `user`, and `sys` times when it finishes. Is this script serial or parallel?
+
+---
+
+## Main Quest — Document Your Script's Resource Needs
+
+Now that you have profiled `extract_form_3_one_file.py`, write down what you found. Open the `README.md` in your repo and add a **Resource Profile** section:
+
+```markdown
+## Resource Profile
+
+### extract_form_3_one_file.py (one file)
+
+- Wall-clock time (real):
+- CPU time (user):
+- CPU cores used:
+- RAM peak:
+- Serial or parallel:
+```
+
+Fill in the actual numbers from your `time` and `userload` output. This documents what the script needs to process a single file — a baseline you will use when scaling up.
+
+<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="readme"> I documented the script's time, CPU, and RAM in README.md</label>
+
+{: .note }
+> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-head-chef.readme` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
+
+---
+
+## Side Quest — Profile Your Own Research Script
+
+{: .note }
+> Finished early? Have a script from your own research? Try this.
+
+Copy a script from your research project onto the Yens and profile it using the same two-terminal technique.
+
+```bash
+# Copy your script to the Yens (run this on your laptop)
+scp /path/to/your/script.py SUNetID@yen.stanford.edu:~/your-project/
+```
+
+Then profile it:
+
+Terminal 1:
+```bash
+time python your-project/script.py
+```
+
+Terminal 2:
+```bash
+watch userload
+```
+
+Record what you observe in a `README.md` in that project folder:
+
+```
+## Resource Profile
+
+- Script: script.py
+- Wall-clock time (real):
+- CPU time (user):
+- CPU cores used:
+- RAM peak:
+- Serial or parallel?
+```
+
+<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="side2"> I profiled my own research script and recorded its time, CPU, and RAM in a README</label>
+
+{: .note }
+> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-head-chef.side2` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
+
+---
+
+## Side Quest — Catch What `userload` Misses
+
+{: .note }
+> Finished early? Try one or both of these.
+
+`watch userload` only samples every 2 seconds — a short memory spike between samples can hide from it entirely. Run the mystery script again with `/usr/bin/time -v` instead:
+
+```bash
+/usr/bin/time -v python scripts/mystery_script.py
+```
+
+Look for **Maximum resident set size** in the output — this is the script's true peak RAM over its whole run. Compare it to what `watch userload` showed you earlier. Did `userload` miss a spike?
+
+<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="side6"> I compared /usr/bin/time -v's peak RAM to what watch userload showed me</label>
+
+{: .note }
+> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-head-chef.side6` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
+
+**Side Quest — Profile an I/O-Bound Script**
+
+Everything you've profiled so far is CPU-bound (`user` time dominates). Write a tiny script that's I/O-bound instead — for example, one that reads and re-writes a large file in a loop — and profile it the same way. Compare its `sys` and `user` times to the mystery script's.
+
+<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="side7"> I profiled an I/O-bound script and compared its sys vs. user time to the mystery script's</label>
+
+{: .note }
+> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-head-chef.side7` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
