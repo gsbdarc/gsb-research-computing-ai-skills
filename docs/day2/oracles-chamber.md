@@ -21,7 +21,18 @@ permalink: /day2/oracles-chamber/
 
 ---
 
-### Step 1 — Hello World (Exercise 4.2)
+### Step 1 — Open the Oracle's Notebook
+
+Every invocation in this room happens in one notebook. In JupyterHub (on the Yens), open your `day2/` folder and create a **new notebook named `oracle.ipynb`**. From the kernel menu in the top-right, choose **Bootcamp 2026** — the kernel you forged in [The Venv Forge](../venv-forge/).
+
+{: .important }
+> Selecting the **Bootcamp 2026** kernel is what gives this notebook its reagents — `openai`, `python-dotenv`, and `pydantic` — the packages you installed into that venv. If the imports in the next step fail with `ModuleNotFoundError`, the wrong kernel is almost always the culprit: check the kernel name shown in the notebook's top-right corner.
+
+Every code cell below runs in `oracle.ipynb` unless it says otherwise.
+
+---
+
+### Step 2 — Hello World (Exercise 4.2)
 
 With your `.env` loaded and the OpenAI client initialized, confirm the API works:
 
@@ -52,7 +63,7 @@ If you see a response, the API is working.
 
 ---
 
-### Step 2 — Load and Inspect a SEC Filing (Exercise 4.3)
+### Step 3 — Load and Inspect a SEC Filing (Exercise 4.3)
 
 A sample SEC Form 3 filing is included in your course repo:
 
@@ -60,10 +71,10 @@ A sample SEC Form 3 filing is included in your course repo:
 ls ~/rf-bootcamp-2026/data/sec_filings/
 ```
 
-You should see one or more `.txt` files. Load it in your notebook and take a look:
+You should see one or more `.txt` files. Load it in `oracle.ipynb` and take a look:
 
 ```python
-with open("data/sec_filings/form3_sample.txt", "r") as f:
+with open("data/sec_filings/Cheniere_Energy_Inc.txt", "r") as f:
     filing_text = f.read()
 
 print(filing_text[:2000])   # preview the first 2000 characters
@@ -73,7 +84,7 @@ SEC Form 3 filings report an insider's financial interest in a company — their
 
 ---
 
-### Step 3 — Extract Information with the API
+### Step 4 — Extract Information with the API
 
 Now ask the model to pull out the key fields:
 
@@ -109,11 +120,11 @@ Experiment: try changing the system prompt. What happens if you ask for more fie
 
 ---
 
-### Step 4 — From Notebook to Script (Exercise 4.4)
+### Step 5 — From Notebook to Script (Exercise 4.4)
 
 A notebook is great for exploration. Once the logic works, move it to a standalone script.
 
-In your notebook, consolidate the working code into one cell:
+In `oracle.ipynb`, consolidate the working code into one cell:
 
 ```python
 from dotenv import load_dotenv
@@ -127,7 +138,7 @@ client = openai.OpenAI(
     base_url=os.environ["OPENAI_BASE_URL"],
 )
 
-with open("data/sec_filings/form3_sample.txt", "r") as f:
+with open("data/sec_filings/Cheniere_Energy_Inc.txt", "r") as f:
     filing_text = f.read()
 
 response = client.chat.completions.create(
@@ -154,7 +165,7 @@ Verify you get the same output as the notebook. You now have a reproducible scri
 
 ---
 
-### Step 5 — Validate with Pydantic
+### Step 6 — Validate with Pydantic
 
 The API returns a string. Pydantic turns it into a typed, validated Python object — and rejects responses that don't match your schema.
 

@@ -51,9 +51,6 @@ For each, is it **Low**, **Moderate**, or **High** Risk under Stanford's definit
 3. An unreleased internal budget or financial projection
 4. Student grades and transcripts
 5. De-identified, aggregated survey data
-
-*Discuss as a class: which ones surprised you? Where did opinions differ?*
-
 ---
 
 Since AI is permeating every facet of research, Stanford has worked hard to give you a space to submit AI queries with certain guarantees.
@@ -111,37 +108,12 @@ Notice: the responses come from the same models you'd use via the API. You're al
 | ✅ **Stanford data perimeter** | Covered under Stanford's data processing agreement with OpenAI |
 | ✅ **No account required** | Every Stanford researcher has access via SUNet login |
 | ⚠️ **Prompts are audited** | Stanford can review usage logs, so don't send restricted data or PHI through this gateway |
-| ⚠️ **Rate limits** | Shared infrastructure means lower throughput than a dedicated paid account |
 | ⚠️ **Model selection** | Available models are determined by Stanford's contract, not your preference |
 
 
-**Personal OpenAI key vs. Stanford key:**
-
-| | Personal key | Stanford key |
-|-|-------------|-------------|
-| Cost | Your credit card | Covered by Stanford |
-| Audit | Not audited | Stanford can see prompts |
-| Data governance | OpenAI's standard terms | Stanford's DPA with OpenAI |
-| Rate limits | Based on your plan | Shared pool |
-| Setup | Create account, enter billing | Already available, use the shared key |
-
----
-
-## 🖊️ What Is an API Key?
-
-An API key is a long, random string, something like `sk-stanford-xxxxxxx`, that authorizes a program to use a service on your behalf. Think of it like a hotel key card instead of a face-to-face check-in: it doesn't carry your name, but it opens specific doors, gets logged every time it's used, and can be deactivated the moment it's lost or stolen.
-
-Every API request carries the key in an HTTP header, invisible in the response you see but present on every call. The server checks it before doing anything: is this key valid, has it hit its budget or rate limit, whose account does it belong to?
-
-That's also why a leaked key is dangerous. Anyone holding it can make requests, and rack up charges, under your name until it's revoked. Treat it like a password: never in code you commit, never in a prompt, never in a screenshot.
-
-Next, see exactly how that key travels from your code to the model and back.
-
----
-
 ## 🖊️ How the API Works
 
-The Stanford AI Playground API is fully OpenAI-compatible. Code that calls the OpenAI API can call Stanford's gateway with two changes:
+The Stanford [**AI API Gateway**](https://uit.stanford.edu/service/ai-api-gateway) is fully OpenAI-compatible. Code that calls the OpenAI API can call Stanford's gateway with two changes:
 
 ```python
 from openai import OpenAI
@@ -151,9 +123,6 @@ client = OpenAI(
     base_url="https://aiapi-prod.stanford.edu/v1",  # Stanford gateway, not api.openai.com
 )
 ```
-
-{: .note }
-> **Why the `openai` library for a non-OpenAI service?** When OpenAI's API took off, its request and response format became a de facto standard. Rather than invent their own client, most model providers now expose an "OpenAI-compatible" endpoint that speaks that same format. That's why the same `openai` Python package can talk to Stanford's gateway, a local Ollama server, or a dozen other vendors: you just swap `base_url` (and sometimes the model name). Learn this one SDK and it travels with you almost everywhere.
 
 Here's what happens on the wire when that code runs:
 
@@ -165,6 +134,10 @@ Here's what happens on the wire when that code runs:
 ```
 
 Every model call, prompt, and response flows through `aiapi-prod.stanford.edu`, Stanford's contracted endpoint, instead of going straight to OpenAI. Your code looks identical; only the endpoint changes.
+
+**Why Stanford Runs Its Own Server**
+
+That gateway is a server Stanford stands up and maintains itself, placed between your code and the model provider on purpose. Owning the middle is what lets the University put every request under its contract with the provider (the **DPA**), authenticate you through **SUNet**, enforce **budget caps**, and keep an **audit trail**. Send data straight to a vendor on a personal account instead, and none of those protections apply. One governed door for all of campus beats thousands of ungoverned ones.
 
 **Requesting Your Own Key**
 
@@ -178,7 +151,7 @@ Today you're using the shared bootcamp key. If you or your PI need a personal St
 - **Budget**: your maximum monthly spend
 - **Volume**: approximate number of requests per day
 - **Due date**: when you need the key by
-- **Billing**: your Project, Task, and Award (the PTA), plus an approver for the billing account if your request requires approval
+- **Billing**: your Project, Task, and Award (the PTA), plus an approver for the billing account if your request requires approval (Ask Your Advisor)
 
 {: .note }
 > If your request needs approval, the designated approver gets notified before the key is issued. If you're the designated approver yourself, the request is auto-approved.
@@ -187,28 +160,12 @@ In the next room (The Key Vault), you'll load the key securely from a `.env` fil
 
 <label class="quest-check"><input type="checkbox" data-room="d2-stanford-ai-playground" data-key="main"> Main Quest complete</label>
 
-## 📦 Side Quests
+## Side Quests
 
-{: .note }
-> Finished early? Try any of these.
 
-**Side Quest: Save a Course Context Prompt**
-
-Save a reusable prompt template outside the chat (a notes doc, a snippet manager) that gives quick background: what class this is, what you're working on, what tools you have access to. Paste it in whenever you start a new conversation instead of re-explaining yourself.
-
-<label class="quest-check"><input type="checkbox" data-room="d2-stanford-ai-playground" data-key="side1"> I saved a reusable course-context prompt</label>
-
-**Side Quest: Compare Two Models**
-
-Ask two different models in the Playground the same Yen-specific question. Compare the answers: which one do you trust more, and why?
-
-<label class="quest-check"><input type="checkbox" data-room="d2-stanford-ai-playground" data-key="side2"> I compared two models on the same question</label>
-
-**Side Quest: Test the System Prompt**
-
-Find the system prompt field in the Playground. Set it to describe your background and preferred tone, then ask the same question with the system prompt empty vs. filled in. Does the tone or depth of the answer actually change? A system prompt persists automatically for the whole conversation; a saved prompt you paste in only applies once, at the top.
-
-<label class="quest-check"><input type="checkbox" data-room="d2-stanford-ai-playground" data-key="side3"> I customized the system prompt and compared the results</label>
+1. Save a prompt which gives proper context for the class you are currently taking to quickly ask questions moving forward 
+2. Compare two different cutting edge models on a Yen Specific Question
+3. Change the System prompt to make sure the AI is aware of who you are and your current knowledge base, and how you like to be spoken too.
 
 ---
 

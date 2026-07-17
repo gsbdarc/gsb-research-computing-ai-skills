@@ -1,0 +1,145 @@
+<SEC-DOCUMENT>0000030625-22-000085.txt : 20220822
+<SEC-HEADER>0000030625-22-000085.hdr.sgml : 20220822
+<ACCEPTANCE-DATETIME>20220822160905
+ACCESSION NUMBER:		0000030625-22-000085
+CONFORMED SUBMISSION TYPE:	3
+PUBLIC DOCUMENT COUNT:		1
+CONFORMED PERIOD OF REPORT:	20220816
+FILED AS OF DATE:		20220822
+DATE AS OF CHANGE:		20220822
+
+REPORTING-OWNER:	
+
+	OWNER DATA:	
+		COMPANY CONFORMED NAME:			SIEGEL KENNETH I
+		CENTRAL INDEX KEY:			0001465558
+
+	FILING VALUES:
+		FORM TYPE:		3
+		SEC ACT:		1934 Act
+		SEC FILE NUMBER:	001-13179
+		FILM NUMBER:		221183845
+
+	MAIL ADDRESS:	
+		STREET 1:		667 MADISON AVENUE
+		CITY:			NEW YORK
+		STATE:			NY
+		ZIP:			10065
+
+ISSUER:		
+
+	COMPANY DATA:	
+		COMPANY CONFORMED NAME:			FLOWSERVE CORP
+		CENTRAL INDEX KEY:			0000030625
+		STANDARD INDUSTRIAL CLASSIFICATION:	PUMPS & PUMPING EQUIPMENT [3561]
+		IRS NUMBER:				310267900
+		STATE OF INCORPORATION:			NY
+		FISCAL YEAR END:			1231
+
+	BUSINESS ADDRESS:	
+		STREET 1:		5215 N. O'CONNOR BLVD.
+		STREET 2:		SUITE 700
+		CITY:			IRVING
+		STATE:			TX
+		ZIP:			75039
+		BUSINESS PHONE:		9724436500
+
+	MAIL ADDRESS:	
+		STREET 1:		5215 N. O'CONNOR BLVD.
+		STREET 2:		SUITE 700
+		CITY:			IRVING
+		STATE:			TX
+		ZIP:			75039
+
+	FORMER COMPANY:	
+		FORMER CONFORMED NAME:	DURCO INTERNATIONAL INC
+		DATE OF NAME CHANGE:	19970508
+
+	FORMER COMPANY:	
+		FORMER CONFORMED NAME:	DURIRON CO INC
+		DATE OF NAME CHANGE:	19920703
+
+	FORMER COMPANY:	
+		FORMER CONFORMED NAME:	THE DURIRON CO INC
+		DATE OF NAME CHANGE:	19900509
+</SEC-HEADER>
+<DOCUMENT>
+<TYPE>3
+<SEQUENCE>1
+<FILENAME>wf-form3_166119891815086.xml
+<DESCRIPTION>FORM 3
+<TEXT>
+<XML>
+<?xml version="1.0"?>
+<ownershipDocument>
+
+    <schemaVersion>X0206</schemaVersion>
+
+    <documentType>3</documentType>
+
+    <periodOfReport>2022-08-16</periodOfReport>
+
+    <noSecuritiesOwned>0</noSecuritiesOwned>
+
+    <issuer>
+        <issuerCik>0000030625</issuerCik>
+        <issuerName>FLOWSERVE CORP</issuerName>
+        <issuerTradingSymbol>FLS</issuerTradingSymbol>
+    </issuer>
+
+    <reportingOwner>
+        <reportingOwnerId>
+            <rptOwnerCik>0001465558</rptOwnerCik>
+            <rptOwnerName>SIEGEL KENNETH I</rptOwnerName>
+        </reportingOwnerId>
+        <reportingOwnerAddress>
+            <rptOwnerStreet1>5215 N O CONNOR BLVD</rptOwnerStreet1>
+            <rptOwnerStreet2># 700</rptOwnerStreet2>
+            <rptOwnerCity>IRVING</rptOwnerCity>
+            <rptOwnerState>TX</rptOwnerState>
+            <rptOwnerZipCode>75039</rptOwnerZipCode>
+            <rptOwnerStateDescription></rptOwnerStateDescription>
+        </reportingOwnerAddress>
+        <reportingOwnerRelationship>
+            <isDirector>1</isDirector>
+            <isOfficer>0</isOfficer>
+            <isTenPercentOwner>0</isTenPercentOwner>
+            <isOther>0</isOther>
+            <officerTitle></officerTitle>
+            <otherText></otherText>
+        </reportingOwnerRelationship>
+    </reportingOwner>
+
+    <nonDerivativeTable>
+        <nonDerivativeHolding>
+            <securityTitle>
+                <value>Common Stock</value>
+            </securityTitle>
+            <postTransactionAmounts>
+                <sharesOwnedFollowingTransaction>
+                    <value>0</value>
+                </sharesOwnedFollowingTransaction>
+            </postTransactionAmounts>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>D</value>
+                </directOrIndirectOwnership>
+            </ownershipNature>
+        </nonDerivativeHolding>
+    </nonDerivativeTable>
+
+    <derivativeTable></derivativeTable>
+
+    <footnotes></footnotes>
+
+    <remarks></remarks>
+
+    <ownerSignature>
+        <signatureName>/s/ Shakeeb Mir, attorney-in-fact</signatureName>
+        <signatureDate>2022-08-22</signatureDate>
+    </ownerSignature>
+</ownershipDocument>
+</XML>
+</TEXT>
+</DOCUMENT>
+</SEC-DOCUMENT>

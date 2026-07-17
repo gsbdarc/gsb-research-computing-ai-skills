@@ -9,8 +9,9 @@
 
   const STORAGE_KEY = 'dungeon.v1.progress';
 
-  // Total possible checkboxes across the entire dungeon (all 4 days)
-  const TOTAL_CHECKS = 34;
+  // Total possible checkboxes across the entire dungeon is computed from DAYS
+  // (defined below) in TOTAL_CHECKS, so it can never drift out of sync with the
+  // room structure when quests are added or removed.
 
   const LEVEL_TITLES = [
     'Initiate', 'Apprentice', 'Scholar', 'Journeyman', 'Adept',
@@ -38,8 +39,8 @@
       label: 'Day 2 — The Alchemist\'s Lab',
       prefix: 'd2',
       rooms: [
-        { id: 'd2-arcane-notebook',          keys: ['main'] },
-        { id: 'd2-venv-forge',               keys: ['main', 'side1'] },
+        { id: 'd2-arcane-notebook',          keys: ['main', 'side1', 'side2'] },
+        { id: 'd2-venv-forge',               keys: ['main', 'side1', 'side2', 'side3'] },
         { id: 'd2-stanford-ai-playground',   keys: ['main', 'side1', 'side2', 'side3'] },
         { id: 'd2-key-vault',                keys: ['main', 'side1', 'side2'] },
         { id: 'd2-oracles-chamber',          keys: ['main'] },
@@ -73,6 +74,14 @@
       ],
     },
   ];
+
+  // Single source of truth for the grand total: sum every room's keys across all
+  // days. Add or remove a key above and this stays correct automatically.
+  const TOTAL_CHECKS = DAYS.reduce(function (sum, day) {
+    return sum + day.rooms.reduce(function (roomSum, room) {
+      return roomSum + room.keys.length;
+    }, 0);
+  }, 0);
 
   // ── Storage ──────────────────────────────────────────────────────────────
 

@@ -1,0 +1,136 @@
+<SEC-DOCUMENT>0000014930-21-000158.txt : 20211217
+<SEC-HEADER>0000014930-21-000158.hdr.sgml : 20211217
+<ACCEPTANCE-DATETIME>20211217164240
+ACCESSION NUMBER:		0000014930-21-000158
+CONFORMED SUBMISSION TYPE:	3
+PUBLIC DOCUMENT COUNT:		1
+CONFORMED PERIOD OF REPORT:	20211207
+FILED AS OF DATE:		20211217
+DATE AS OF CHANGE:		20211217
+
+REPORTING-OWNER:	
+
+	OWNER DATA:	
+		COMPANY CONFORMED NAME:			Wrobel Jill
+		CENTRAL INDEX KEY:			0001900316
+
+	FILING VALUES:
+		FORM TYPE:		3
+		SEC ACT:		1934 Act
+		SEC FILE NUMBER:	001-01043
+		FILM NUMBER:		211502199
+
+	MAIL ADDRESS:	
+		STREET 1:		C/OBRUNSWICK CORPORATION
+		STREET 2:		26125 N. RIVERWOODS BLVD. #500
+		CITY:			METTAWA
+		STATE:			IL
+		ZIP:			60045
+
+ISSUER:		
+
+	COMPANY DATA:	
+		COMPANY CONFORMED NAME:			BRUNSWICK CORP
+		CENTRAL INDEX KEY:			0000014930
+		STANDARD INDUSTRIAL CLASSIFICATION:	ENGINES & TURBINES [3510]
+		IRS NUMBER:				360848180
+		STATE OF INCORPORATION:			DE
+		FISCAL YEAR END:			1231
+
+	BUSINESS ADDRESS:	
+		STREET 1:		26125 N. RIVERWOODS BLVD. SUITE 500
+		CITY:			METTAWA
+		STATE:			IL
+		ZIP:			60045-3420
+		BUSINESS PHONE:		8477354700
+
+	MAIL ADDRESS:	
+		STREET 1:		26125 N. RIVERWOODS BLVD. SUITE 500
+		CITY:			METTAWA
+		STATE:			IL
+		ZIP:			60045-3420
+
+	FORMER COMPANY:	
+		FORMER CONFORMED NAME:	BRUNSWICK BALKE COLLENDER CO
+		DATE OF NAME CHANGE:	19660919
+</SEC-HEADER>
+<DOCUMENT>
+<TYPE>3
+<SEQUENCE>1
+<FILENAME>wf-form3_163977733999721.xml
+<DESCRIPTION>FORM 3
+<TEXT>
+<XML>
+<?xml version="1.0"?>
+<ownershipDocument>
+
+    <schemaVersion>X0206</schemaVersion>
+
+    <documentType>3</documentType>
+
+    <periodOfReport>2021-12-07</periodOfReport>
+
+    <noSecuritiesOwned>0</noSecuritiesOwned>
+
+    <issuer>
+        <issuerCik>0000014930</issuerCik>
+        <issuerName>BRUNSWICK CORP</issuerName>
+        <issuerTradingSymbol>BC</issuerTradingSymbol>
+    </issuer>
+
+    <reportingOwner>
+        <reportingOwnerId>
+            <rptOwnerCik>0001900316</rptOwnerCik>
+            <rptOwnerName>Wrobel Jill</rptOwnerName>
+        </reportingOwnerId>
+        <reportingOwnerAddress>
+            <rptOwnerStreet1>C/O BRUNSWICK CORPORATION</rptOwnerStreet1>
+            <rptOwnerStreet2>26125 N. RIVERWOODS BLVD. #500</rptOwnerStreet2>
+            <rptOwnerCity>METTAWA</rptOwnerCity>
+            <rptOwnerState>IL</rptOwnerState>
+            <rptOwnerZipCode>60045</rptOwnerZipCode>
+            <rptOwnerStateDescription></rptOwnerStateDescription>
+        </reportingOwnerAddress>
+        <reportingOwnerRelationship>
+            <isDirector>0</isDirector>
+            <isOfficer>1</isOfficer>
+            <isTenPercentOwner>0</isTenPercentOwner>
+            <isOther>0</isOther>
+            <officerTitle>EVP Chief Human Resources Off</officerTitle>
+            <otherText></otherText>
+        </reportingOwnerRelationship>
+    </reportingOwner>
+
+    <nonDerivativeTable>
+        <nonDerivativeHolding>
+            <securityTitle>
+                <value>Common Stock</value>
+            </securityTitle>
+            <postTransactionAmounts>
+                <sharesOwnedFollowingTransaction>
+                    <value>3261</value>
+                </sharesOwnedFollowingTransaction>
+            </postTransactionAmounts>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>D</value>
+                </directOrIndirectOwnership>
+            </ownershipNature>
+        </nonDerivativeHolding>
+    </nonDerivativeTable>
+
+    <derivativeTable></derivativeTable>
+
+    <footnotes></footnotes>
+
+    <remarks></remarks>
+
+    <ownerSignature>
+        <signatureName>by Power of Attorney for: /s/ Jill Wrobel</signatureName>
+        <signatureDate>2021-12-17</signatureDate>
+    </ownerSignature>
+</ownershipDocument>
+</XML>
+</TEXT>
+</DOCUMENT>
+</SEC-DOCUMENT>
