@@ -151,7 +151,7 @@ Version control is powerful, but it isn't a cure-all. A few honest caveats:
 Your work in this course is tracked in your version history. Set up your copy of the course repo and make your first commit now.
 
 {: .important }
-> **Exercise:** Fork the course repo, clone it to the Yens, create a branch, commit a file, and push it back to your fork.
+> **Exercise:** Fork the course repo, clone it to the Yens, authenticate with GitHub, create a branch, commit a file, and push it back to your fork.
 
 **Step 1 — Fork the course repo, and build your site**
 
@@ -174,7 +174,35 @@ git clone https://github.com/YOUR_GITHUB_USERNAME/rf-bootcamp-2026.git
 cd rf-bootcamp-2026
 ```
 
-**Step 3 — Create a branch**
+**Step 3 — Authenticate with GitHub (one time)**
+
+Pushing to your fork has to prove it's really you. The **GitHub CLI** (`gh`) sets this up once, and then git just works. On the Yens, load it and sign in:
+
+```bash
+module load gh     # make gh available on the Yens
+gh auth login      # answer: GitHub.com → HTTPS → Authenticate Git? Yes → Login with a web browser
+```
+
+`gh` prints a **one-time code**. On your **laptop**, open [github.com/login/device](https://github.com/login/device), enter the code, and approve — the Yens have no browser, so you do this part from your laptop. That's it: `gh` configures git to use your GitHub login, so every `git push` from now on works without asking for a password.
+
+<details markdown="1">
+<summary>Setting up <code>gh</code> on your own laptop</summary>
+
+You'll want `gh` on your laptop too (for the Claude Code work later). Install it, then run the same `gh auth login`:
+
+- **macOS** (Homebrew): `brew install gh`
+- **Windows** (in PowerShell — then it's usable from Git Bash too): `winget install --id GitHub.cli`
+- **Linux** / other: see the [official instructions](https://github.com/cli/cli#installation)
+
+```bash
+gh auth login    # GitHub.com → HTTPS → Login with a web browser
+```
+
+On a laptop `gh` can open the browser for you automatically.
+
+</details>
+
+**Step 4 — Create a branch**
 
 A **branch** is a safe, separate workspace, so your experiments never disturb the main version of your work.
 
@@ -182,7 +210,7 @@ A **branch** is a safe, separate workspace, so your experiments never disturb th
 git checkout -b experiment
 ```
 
-**Step 4 — Make a change and commit**
+**Step 5 — Make a change and commit**
 
 `add` chooses which changes go into your next snapshot; `commit` saves that snapshot with a message describing what changed and why.
 
@@ -192,7 +220,7 @@ git add my_first_commit.txt
 git commit -m "Add my first commit from Day 1"
 ```
 
-**Step 5 — Push to your fork**
+**Step 6 — Push to your fork**
 
 **Pushing** sends your saved snapshots up to your fork on GitHub — where your site updates and, later, your submitted work can be checked.
 

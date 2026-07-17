@@ -128,7 +128,7 @@ git push
 Open your GitHub fork in a browser and confirm `signature_spell.txt` appears. That commit is your submission.
 
 {: .note }
-> If `git push` asks for credentials, your token may not be cached on the Yens. Ask an instructor.
+> If `git push` asks for a password, you haven't authenticated yet — run `module load gh && gh auth login` (see Step 3 of [Version Control with Git](../repository/)). Still stuck? Ask an instructor.
 
 ---
 
