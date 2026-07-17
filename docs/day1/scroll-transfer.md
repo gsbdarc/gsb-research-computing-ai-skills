@@ -24,7 +24,7 @@ Transfer a directory from your laptop to your Yens scratch space using `scp`.
 First, **on the Yens**, create your scratch directory:
 
 ```bash
-mkdir /scratch/shared/$USER
+mkdir -p /scratch/shared/SUNetID
 ```
 
 Then, from your **laptop** (open a new local terminal tab):
@@ -86,16 +86,17 @@ hostname                        # now shows yen2
 
 Each `ssh` opens a connection *to* a reachable machine — your laptop can reach the Yens, and any Yen can reach any other. That second hop (`yen1 → yen2`) is the same reachability that lets `scp` copy between the two nodes.
 
-Because `/tmp` is shared by *everyone* logged into that node, don't drop files at the top level like `/tmp/note.txt` — your name could collide with someone else's. Tuck your file behind your username instead. The `$USER` variable holds your username, so a filename like `/tmp/note_$USER.txt` is unique to you.
+Because `/tmp` is shared by everyone on a node, give yourself a private subfolder named after your username — `/tmp/SUNetID` — so your files don't clash with anyone else's.
 
-One important detail: **run this transfer from a Yens node, not your laptop.** Both nodes are reachable servers, so either one can run the copy — and running it on the Yens means `$USER` expands to your SUNetID (on your laptop it would expand to your laptop username, giving the wrong path).
-
-**SSH into one node** (say `yen1`), create a file, then copy it to a *different* node (`yen2`):
+**SSH into one node** (say `yen1`), create a file in your folder, then copy the whole folder to a *different* node (`yen2`):
 
 ```bash
-# on yen1
-echo "hello from $(hostname)" > /tmp/note_$USER.txt   # $USER = your SUNetID here
-scp /tmp/note_$USER.txt $USER@yen2.stanford.edu:/tmp/  # copy it straight to yen2
+# on yen1 — make a folder that's yours alone
+mkdir -p /tmp/SUNetID
+echo "hello from $(hostname)" > /tmp/SUNetID/note.txt
+
+# copy the whole folder straight to yen2 (scp -r creates it there)
+scp -r /tmp/SUNetID SUNetID@yen2.stanford.edu:/tmp/
 ```
 
 The file goes from yen1's local disk to yen2's local disk directly — it never touches your laptop. (Use `hostname` any time to check which node you're on.)
