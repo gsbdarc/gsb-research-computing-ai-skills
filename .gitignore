@@ -28,7 +28,7 @@ venv/
 .ipynb_checkpoints/
 
 # Potion Brawl (generated artifacts — the code + requirements.txt are the source)
-potion_brawl/output/
+docs/assets/data/potion_brawl/output/
 
 # Node + Cloudflare Worker
 node_modules/

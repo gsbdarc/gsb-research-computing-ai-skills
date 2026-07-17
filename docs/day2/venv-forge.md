@@ -187,7 +187,7 @@ Your cloned repo already ships one: **Potion Brawl** — a little physics specta
 Move into it and read the scroll:
 
 ```bash
-cd ~/rf-bootcamp-2026/potion_brawl
+cd ~/rf-bootcamp-2026/docs/assets/data/potion_brawl
 cat requirements.txt
 ```
 
@@ -206,7 +206,7 @@ pip install -r requirements.txt
 One command rebuilds the entire shelf — exact packages, exact versions — from the scroll alone.
 
 {: .note }
-> `.venv/` and `potion_brawl/output/` are already in the repo's `.gitignore`, so you'll never accidentally commit hundreds of megabytes of packages or generated artifacts.
+> `.venv/` and the brew's `output/` folder are already in the repo's `.gitignore`, so you'll never accidentally commit hundreds of megabytes of packages or generated artifacts.
 
 #### Brew it
 
