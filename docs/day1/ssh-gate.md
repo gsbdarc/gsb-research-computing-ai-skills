@@ -142,3 +142,35 @@ ls /yen/projects/                 # shared project storage
 > Put a sticky note on your laptop lid so instructors can see where you are.
 
 <label class="quest-check"><input type="checkbox" data-room="d1-ssh-gate" data-key="main"> Exercise complete</label>
+
+---
+
+## Optional practice
+
+**Skip the repeated logins with SSH multiplexing**
+
+Every time you `ssh` to the Yens you re-enter your password and approve Duo again — tedious once you're opening several sessions. **SSH multiplexing** keeps one authenticated connection open and reuses it for every later session to the same host, so you authenticate just **once**.
+
+Set it up on your **laptop** (not the Yens) by adding this to `~/.ssh/config` — create the file if it doesn't exist:
+
+```
+Host yen yen? yen??
+  HostName %h.stanford.edu
+
+Host yen yen.stanford.edu yen? yen?? yen?.stanford.edu yen??.stanford.edu
+  ControlMaster auto
+  ControlPersist yes
+  GSSAPIDelegateCredentials yes
+
+Host *
+  ControlPath ~/.ssh/%r@%h:%p
+```
+
+Then try it:
+
+1. Open your first connection as usual — `ssh SUNetID@yen.stanford.edu` — and authenticate with your password and Duo. This becomes the shared "master" connection.
+2. Leave it open, and in a **second** terminal run `ssh SUNetID@yen.stanford.edu` again. It connects **instantly** — no password, no Duo — because it's reusing the first connection.
+
+Full write-up: [SSH Setup for the Yen Servers](https://rcpedia.stanford.edu/blog/2026/03/17/ssh-setup-for-the-yen-servers/) on RCpedia.
+
+<label class="quest-check"><input type="checkbox" data-room="d1-ssh-gate" data-key="side1"> Optional practice complete</label>

@@ -10,7 +10,7 @@
   const STORAGE_KEY = 'dungeon.v1.progress';
 
   // Total possible checkboxes across the entire dungeon (all 4 days)
-  const TOTAL_CHECKS = 57;
+  const TOTAL_CHECKS = 58;
 
   const LEVEL_TITLES = [
     'Initiate', 'Apprentice', 'Scholar', 'Journeyman', 'Adept',
@@ -26,7 +26,7 @@
       rooms: [
         { id: 'd1-command-spire',       keys: ['main'] },
         { id: 'd1-grimoire-vault',       keys: ['main', 'side1'] },
-        { id: 'd1-ssh-gate',             keys: ['main'] },
+        { id: 'd1-ssh-gate',             keys: ['main', 'side1'] },
         { id: 'd1-cartographers-room',   keys: ['main'] },
         { id: 'd1-scroll-transfer',      keys: ['main'] },
         { id: 'd1-repository',           keys: ['main'] },
@@ -203,6 +203,23 @@
   }
 
   function createWidget() {
+    var sunetCss =
+      '#quest-sunet{margin-top:.5rem;padding-top:.5rem;border-top:1px solid rgba(0,0,0,.12);font-size:.82rem;}' +
+      '#quest-sunet label{display:block;font-size:.78rem;font-weight:700;margin-bottom:.2rem;}' +
+      '#quest-sunet .quest-sunet-row{display:flex;gap:.3rem;}' +
+      '#quest-sunet input{flex:1;min-width:0;font:inherit;padding:.15rem .4rem;border:1px solid #d9b477;border-radius:6px;}' +
+      '#quest-sunet input:focus{outline:2px solid #e0a13a;outline-offset:1px;}' +
+      '#quest-sunet button{font:inherit;cursor:pointer;border:1px solid #d9b477;background:#fff;border-radius:6px;padding:.15rem .55rem;}' +
+      '#quest-sunet button:hover{background:#f3e6cf;}' +
+      '#quest-sunet .quest-sunet-set{display:flex;align-items:center;gap:.35rem;color:#5b4a2f;}' +
+      '#quest-sunet .quest-sunet-val{font-weight:700;}' +
+      '#quest-sunet .quest-sunet-edit{border:none;background:none;padding:0;margin-left:auto;' +
+        'color:#8a5a12;text-decoration:underline;font-size:.78rem;}' +
+      '#quest-sunet .quest-sunet-edit:hover{background:none;color:#5b3a08;}';
+    var sunetStyle = document.createElement('style');
+    sunetStyle.textContent = sunetCss;
+    document.head.appendChild(sunetStyle);
+
     var btn = document.createElement('div');
     btn.id = 'quest-log-btn';
 
@@ -226,8 +243,14 @@
     var list = document.createElement('ul');
     list.id = 'quest-log-list';
     panel.appendChild(list);
-    btn.appendChild(panel);
 
+    // ── SUNet ID: fills the SUNetID placeholder in commands site-wide ────────
+    var SUNET_KEY = 'bootcamp.sunetid';
+    var sunet = document.createElement('div');
+    sunet.id = 'quest-sunet';
+    panel.appendChild(sunet);
+
+    btn.appendChild(panel);
     document.body.appendChild(btn);
 
     toggle.addEventListener('click', function () {
@@ -236,6 +259,64 @@
 
     document.addEventListener('click', function (e) {
       if (!btn.contains(e.target)) panel.classList.remove('open');
+    });
+
+    // SUNet field: compact once set (you rarely change it), expands to edit.
+    function readSunet() {
+      try { return (localStorage.getItem(SUNET_KEY) || '').trim(); } catch (_) { return ''; }
+    }
+    function writeSunet(v) {
+      try {
+        if (v) localStorage.setItem(SUNET_KEY, v);
+        else localStorage.removeItem(SUNET_KEY);
+      } catch (_) { /* storage blocked */ }
+      document.dispatchEvent(new CustomEvent('sunet:changed', { detail: { id: v } }));
+    }
+    function renderSunet(editing) {
+      var id = readSunet();
+      if (id && !editing) {
+        sunet.innerHTML = '<div class="quest-sunet-set">SUNet ID: ' +
+          '<code class="quest-sunet-val"></code>' +
+          '<button type="button" data-sunet-act="edit" class="quest-sunet-edit">change</button></div>';
+        sunet.querySelector('.quest-sunet-val').textContent = id;
+      } else {
+        sunet.innerHTML =
+          '<label for="quest-sunet-input">Your SUNet ID</label>' +
+          '<div class="quest-sunet-row">' +
+            '<input id="quest-sunet-input" type="text" placeholder="e.g. jdoe" autocomplete="off" spellcheck="false">' +
+            '<button type="button" data-sunet-act="save">Set</button>' +
+          '</div>';
+        var inp = sunet.querySelector('#quest-sunet-input');
+        inp.value = id;
+        if (editing) { inp.focus(); inp.select(); }
+      }
+    }
+    function commitSunet() {
+      var inp = sunet.querySelector('#quest-sunet-input');
+      if (!inp) return;
+      writeSunet(inp.value.trim());
+      renderSunet(false);
+    }
+    sunet.addEventListener('click', function (e) {
+      var b = e.target.closest ? e.target.closest('[data-sunet-act]') : null;
+      if (!b) return;
+      // Re-rendering detaches this button mid-click; stop the event so the
+      // panel's click-outside-to-close handler doesn't treat it as outside.
+      e.stopPropagation();
+      if (b.getAttribute('data-sunet-act') === 'save') commitSunet();
+      else renderSunet(true);
+    });
+    sunet.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' && e.target.id === 'quest-sunet-input') { e.preventDefault(); commitSunet(); }
+    });
+    renderSunet(false);
+
+    // personalize.js asks us to open when an unset placeholder is clicked.
+    document.addEventListener('sunet:open', function () {
+      panel.classList.add('open');
+      renderSunet(true);
+      var inp = sunet.querySelector('#quest-sunet-input');
+      if (inp) { inp.focus(); inp.select(); }
     });
   }
 
