@@ -187,7 +187,7 @@ Your cloned repo already ships one: **Potion Brawl** — a little physics specta
 Move into it and read the scroll:
 
 ```bash
-cd ~/rf-bootcamp-2026/docs/assets/data/potion_brawl
+cd ~/rf-bootcamp-2026/data/potion_brawl
 cat requirements.txt
 ```
 
