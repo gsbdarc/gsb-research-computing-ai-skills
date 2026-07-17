@@ -25,6 +25,10 @@ __pycache__/
 .venv/
 venv/
 .env
+.ipynb_checkpoints/
+
+# Potion Brawl (generated artifacts — the code + requirements.txt are the source)
+potion_brawl/output/
 
 # Node + Cloudflare Worker
 node_modules/

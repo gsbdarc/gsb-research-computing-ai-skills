@@ -178,7 +178,79 @@ python -m pip install -r requirements.txt
 > `requirements.txt` recreates installed packages. It does not copy data files, API keys, notebooks, or Python itself.
 
 
-### Step 6 - Why this matters.
+### Step 6 — Why This Matters: Rebuild a Complex Brew from the Scroll
+
+Everything so far was an *empty* crucible — you installed a handful of packages you chose yourself. The real power of a venv shows up when you inherit **someone else's complex project** and have to make it run: no guessing which packages, no "but it works on my machine." Just the code and the recipe scroll.
+
+Your cloned repo already ships one: **Potion Brawl** — a little physics spectacle where three enchanted potions brawl rock-paper-scissors style until one floods the lab. It leans on a whole shelf of reagents: `numpy`, `scipy`, `matplotlib`, `plotly`, `networkx`, and more.
+
+Move into it and read the scroll:
+
+```bash
+cd ~/rf-bootcamp-2026/potion_brawl
+cat requirements.txt
+```
+
+That's **13 pinned reagents**. Nobody memorises that list — and nobody should have to. The scroll *is* the memory.
+
+#### Forge a crucible just for this brew
+
+Potion Brawl gets its **own** environment, separate from the one you built above. That is the whole discipline: one project, one crucible.
+
+```bash
+/usr/bin/python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+One command rebuilds the entire shelf — exact packages, exact versions — from the scroll alone.
+
+{: .note }
+> `.venv/` and `potion_brawl/output/` are already in the repo's `.gitignore`, so you'll never accidentally commit hundreds of megabytes of packages or generated artifacts.
+
+#### Brew it
+
+```bash
+python potion_brawl.py
+```
+
+You'll get a `POTION BRAWL` banner, a progress bar, a populations table, and a fresh `output/` folder:
+
+| file | what it is |
+|------|------------|
+| `brawl.gif` | top-down animation of the bouncing brawl |
+| `populations.png` | stacked-area chart of the war over time |
+| `law_of_the_brawl.png` | the 3-potion cycle diagram |
+| `victor.txt` | the tick count and final tally |
+| `lab_journal.pkl` | the **save state** — positions, velocities, and the random-number generator |
+
+#### The punchline: reproducibility you can *see*
+
+Run it again:
+
+```bash
+python potion_brawl.py
+```
+
+It finds the lab journal and **resumes the exact same brawl**. Because the journal restored the random-number generator's state, the continuation is *bit-for-bit identical* to a brawl that never paused. Copy the folder (code + `requirements.txt` + `output/lab_journal.pkl`) to a brand-new directory — or a different machine entirely — rebuild the venv from the scroll, and the brew picks up precisely where it left off.
+
+That is the point of this entire room. In research it's the difference between:
+
+- **"It ran last spring on my laptop"** — and nobody, including future-you, can reproduce the number in the paper; and
+- **"Here's the code and `requirements.txt`"** — and a collaborator, a reviewer, or the cluster rebuilds your exact environment and gets your exact result.
+
+The recipe scroll + your code = the same brew, any alchemist, any lab.
+
+{: .note }
+> Prefer the story with pictures? With `.venv` active, register it as a kernel and open the notebook:
+> ```bash
+> python -m ipykernel install --user --name potion-brawl --display-name "Potion Brawl (venv)"
+> ```
+> Then open **`the_alchemists_lab.ipynb`** in JupyterHub, choose the **"Potion Brawl (venv)"** kernel, and *Kernel → Restart & Run All*.
+
+<label class="quest-check"><input type="checkbox" data-room="d2-venv-forge" data-key="side1"> Rebuilt and brewed Potion Brawl</label>
+
+---
 
 ## 🧠 Skills Learned
 
@@ -186,3 +258,4 @@ python -m pip install -r requirements.txt
 - `source venv/bin/activate` prepends `venv/bin/` to `$PATH`, making the venv's Python the first match
 - JupyterHub kernels are just named Python environments — you can have one per project
 - Never commit `venv/` to git — it's too large and machine-specific
+- A `requirements.txt` lets anyone rebuild a complex environment — exact packages and versions — from a single command, which is what makes your research reproducible

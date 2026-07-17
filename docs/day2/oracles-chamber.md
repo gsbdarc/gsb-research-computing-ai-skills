@@ -33,7 +33,7 @@ import openai
 load_dotenv()
 
 client = openai.OpenAI(
-    api_key=os.environ["OPENAI_API_KEY"],
+    api_key=os.environ["STANFORD_API_KEY"],
     base_url=os.environ["OPENAI_BASE_URL"],
 )
 
@@ -123,7 +123,7 @@ import openai
 load_dotenv()
 
 client = openai.OpenAI(
-    api_key=os.environ["OPENAI_API_KEY"],
+    api_key=os.environ["STANFORD_API_KEY"],
     base_url=os.environ["OPENAI_BASE_URL"],
 )
 
