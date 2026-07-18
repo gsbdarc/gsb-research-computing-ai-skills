@@ -15,7 +15,7 @@ permalink: /day2/stanford-ai-playground/
 ---
 
 
-## Data Security
+## 🖊️ Data Security
 
 Datasets that aren't public come with rules, imposed by multiple entities. Two systems matter most for your research.
 
@@ -51,11 +51,14 @@ For each, is it **Low**, **Moderate**, or **High** Risk under Stanford's definit
 3. An unreleased internal budget or financial projection
 4. Student grades and transcripts
 5. De-identified, aggregated survey data
+
+*Discuss as a class: which ones surprised you? Where did opinions differ?*
+
 ---
 
 Since AI is permeating every facet of research, Stanford has worked hard to give you a space to submit AI queries with certain guarantees.
 
-## The AI Offerings at Stanford
+## 🖊️ The AI Offerings at Stanford
 
 *This list keeps growing. See the [full directory](https://uit.stanford.edu/ai/services/explore) for the latest.*
 
@@ -105,7 +108,7 @@ Notice: the responses come from the same models you'd use via the API. You're al
 | | Detail |
 |-|--------|
 | ✅ **No personal billing** | Budget caps enforced by Stanford; you cannot accidentally run up a $10,000 bill |
-| ✅ **Stanford data perimeter** | Covered under Stanford's data processing agreement with OpenAI |
+| ✅ **Stanford data perimeter** | Covered under Stanford's data processing agreement with the model provider |
 | ✅ **No account required** | Every Stanford researcher has access via SUNet login |
 | ⚠️ **Prompts are audited** | Stanford can review usage logs, so don't send restricted data or PHI through this gateway |
 | ⚠️ **Model selection** | Available models are determined by Stanford's contract, not your preference |
@@ -133,7 +136,7 @@ Here's what happens on the wire when that code runs:
 └─────────────────┘              └─────────────────┘              └─────────────────┘
 ```
 
-Every model call, prompt, and response flows through `aiapi-prod.stanford.edu`, Stanford's contracted endpoint, instead of going straight to OpenAI. Your code looks identical; only the endpoint changes.
+Every model call, prompt, and response flows through `aiapi-prod.stanford.edu`, Stanford's contracted endpoint, instead of going straight to the provider. Your code looks identical; only the endpoint changes.
 
 **Why Stanford Runs Its Own Server**
 
@@ -160,12 +163,25 @@ In the next room (The Key Vault), you'll load the key securely from a `.env` fil
 
 <label class="quest-check"><input type="checkbox" data-room="d2-stanford-ai-playground" data-key="main"> Main Quest complete</label>
 
-## Side Quests
+## 📦 Side Quests
 
+**Side Quest: Save a Course Context Prompt**
 
-1. Save a prompt which gives proper context for the class you are currently taking to quickly ask questions moving forward 
-2. Compare two different cutting edge models on a Yen Specific Question
-3. Change the System prompt to make sure the AI is aware of who you are and your current knowledge base, and how you like to be spoken too.
+Save a reusable prompt that gives the AI quick background on the class you're taking: what the course is, what you're working on, and what tools you have access to. Paste it in at the top of a new conversation instead of re-explaining yourself every time.
+
+<label class="quest-check"><input type="checkbox" data-room="d2-stanford-ai-playground" data-key="side1"> I saved a reusable course-context prompt</label>
+
+**Side Quest: Compare Two Models**
+
+Ask two different cutting-edge models the same Yen-specific question. Compare the answers: which one do you trust more, and why?
+
+<label class="quest-check"><input type="checkbox" data-room="d2-stanford-ai-playground" data-key="side2"> I compared two models on the same question</label>
+
+**Side Quest: Customize the System Prompt**
+
+Set the system prompt so the AI knows who you are, your current knowledge level, and how you like to be spoken to. Ask the same question with the system prompt empty versus filled in, and see whether the tone or depth actually changes.
+
+<label class="quest-check"><input type="checkbox" data-room="d2-stanford-ai-playground" data-key="side3"> I customized the system prompt and compared the results</label>
 
 ---
 

@@ -49,7 +49,7 @@ client = openai.OpenAI(
 )
 
 completion = client.chat.completions.create(
-    model="gpt-4.1-nano",
+    model="gemini-2.5-flash-lite",
     messages=[
         {"role": "system", "content": "You are a helpful assistant."},
         {"role": "user", "content": "Say hello world!"}
@@ -74,7 +74,7 @@ ls ~/rf-bootcamp-2026/data/sec_filings/
 You should see one or more `.txt` files. Load it in `oracle.ipynb` and take a look:
 
 ```python
-with open("data/sec_filings/Cheniere_Energy_Inc.txt", "r") as f:
+with open("../data/sec_filings/Cheniere_Energy_Inc.txt", "r") as f:
     filing_text = f.read()
 
 print(filing_text[:2000])   # preview the first 2000 characters
@@ -90,7 +90,7 @@ Now ask the model to pull out the key fields:
 
 ```python
 response = client.chat.completions.create(
-    model="gpt-4.1-nano",
+    model="gemini-2.5-flash-lite",
     messages=[
         {
             "role": "system",
@@ -122,14 +122,23 @@ Experiment: try changing the system prompt. What happens if you ask for more fie
 
 ### Step 5 — From Notebook to Script (Exercise 4.4)
 
-A notebook is great for exploration. Once the logic works, move it to a standalone script.
+A notebook is great for exploration. Once the logic works, move it to a standalone script, the form you'll actually schedule and run on the cluster.
 
-In `oracle.ipynb`, consolidate the working code into one cell:
+One thing should change when code leaves the notebook: how it reports progress. In a notebook you watch cell output live. A script often runs unattended (in the background, or as a cluster job whose output you read afterward), so instead of scattering `print()` calls for status, use Python's built-in **`logging`** library. It stamps each message with a timestamp and a severity level, and you can turn it up or down, or send it to a file, without rewriting the rest of your code.
+
+In `oracle.ipynb`, consolidate the working code into one cell, now with logging:
 
 ```python
-from dotenv import load_dotenv
+import logging
 import os
 import openai
+from dotenv import load_dotenv
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s  %(levelname)s  %(message)s",
+)
+logger = logging.getLogger(__name__)
 
 load_dotenv()
 
@@ -138,26 +147,32 @@ client = openai.OpenAI(
     base_url=os.environ["OPENAI_BASE_URL"],
 )
 
-with open("data/sec_filings/Cheniere_Energy_Inc.txt", "r") as f:
+logger.info("Reading filing")
+with open("../data/sec_filings/Cheniere_Energy_Inc.txt", "r") as f:
     filing_text = f.read()
 
+logger.info("Sending %d characters to the model", len(filing_text[:4000]))
 response = client.chat.completions.create(
-    model="gpt-4.1-nano",
+    model="gemini-2.5-flash-lite",
     messages=[
         {"role": "system", "content": "You are a financial data extraction assistant. Extract information precisely and concisely."},
         {"role": "user", "content": f"Extract the insider's name and role. Reply with: NAME | ROLE\n\n{filing_text[:4000]}"}
     ]
 )
+logger.info("Model responded")
 
 print(response.choices[0].message.content)
 ```
 
-Copy this into a new file called `form3_test.py` (create it in the Jupyter terminal: `touch form3_test.py`).
+{: .note }
+> 💡 Notice the split: **`logging` is for diagnostics** (what the program is doing, and when), while **`print` is for the actual result** you want to keep. Log messages carry a timestamp and level (`INFO`, `WARNING`, `ERROR`) and go to the error stream; your extracted answer stays clean on standard output. On Day 3, when these scripts run as cluster jobs, those logs are exactly what you'll read to see what happened.
+
+Copy this into a new file called `form3_test.py` in your `day2/` folder (in the Jupyter terminal: `cd ~/rf-bootcamp-2026/day2 && touch form3_test.py`).
 
 Run it from the terminal:
 
 ```bash
-cd ~/rf-bootcamp-2026
+cd ~/rf-bootcamp-2026/day2
 python form3_test.py
 ```
 
@@ -172,7 +187,7 @@ The API returns a string. Pydantic turns it into a typed, validated Python objec
 Define a model:
 
 ```python
-from pydantic import BaseModel
+from pydantic import BaseModel, ValidationError
 from typing import Optional
 
 class Form3Extraction(BaseModel):
@@ -186,8 +201,9 @@ class Form3Extraction(BaseModel):
 Ask for structured JSON output:
 
 ```python
+logger.info("Requesting structured JSON extraction")
 response = client.chat.completions.create(
-    model="gpt-4.1-nano",
+    model="gemini-2.5-flash-lite",
     messages=[
         {"role": "system", "content": "Extract the requested fields from this SEC Form 3 filing. Return only valid JSON matching the schema provided."},
         {"role": "user", "content": f"Extract from this filing:\n\n{filing_text[:4000]}"}
@@ -196,13 +212,25 @@ response = client.chat.completions.create(
 )
 
 raw = response.choices[0].message.content
-data = Form3Extraction.model_validate_json(raw)
+
+try:
+    data = Form3Extraction.model_validate_json(raw)
+except ValidationError as e:
+    logger.error("Model output failed validation: %s", e)
+    raise
+
+logger.info("Validated extraction for issuer: %s", data.issuer_name)
+
+with open("form3_extraction.json", "w") as f:
+    f.write(data.model_dump_json(indent=2))
+logger.info("Wrote form3_extraction.json")
+
 print(data.model_dump_json(indent=2))
 ```
 
 If the model returns a field that doesn't match the schema (wrong type, missing required field), `model_validate_json` raises a `ValidationError` — catching that error is how you know something went wrong before you scale to 10,000 filings.
 
-Update your `form3_test.py` script to use the Pydantic model and save the output as JSON.
+Fold this into your `form3_test.py` so the script validates every response and writes `form3_extraction.json`, logging a clear error if validation ever fails.
 
 <label class="quest-check"><input type="checkbox" data-room="d2-oracles-chamber" data-key="main"> Main Quest complete</label>
 
