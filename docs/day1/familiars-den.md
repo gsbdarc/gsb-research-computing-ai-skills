@@ -233,9 +233,11 @@ module load claude
 {: .note }
 > If `module load claude` can't find the module, ask an instructor for the exact name — the module list changes over time.
 
-**2 — Launch it from your home directory:**
+**2 — Make a working folder and launch it from there.** Create a `cctest` directory in your home directory, move into it, and start Claude Code:
 
 ```bash
+mkdir -p ~/cctest
+cd ~/cctest
 claude
 ```
 
