@@ -224,10 +224,10 @@ bash scripts/install_github_for_research_skill.sh
 
 ---
 
-## Optional Practice — Set Up Claude Code
+## Optional Practice — Put Claude Code to Work
 
 {: .important }
-> **Optional practice:** Install Claude Code on your laptop, ask it about a real research repository, then let it drive git for you.
+> **Optional practice:** Set up Claude Code, then have it make a real change to your course site — switch it to **dark mode** — and open a pull request. A bonus walks the same change the way a pro would: inspect, plan, then act.
 
 Optional — the Day 1 Challenge only needs the exercise from Version Control with Git. This is extra practice.
 
@@ -257,12 +257,57 @@ claude
 
 </details>
 
-### Part B — Ask a real research repo questions
+### Part B — Make a real change: dark mode
 
 <details markdown="1">
 <summary>Show steps</summary>
 
-Here is the payoff of a well-kept repository: you can *ask it questions*. We'll use a real Stanford project — an analysis of whether San Francisco's graffiti 311 reports fell during COVID.
+Now let Claude Code do real work on your own site. Launch `claude` inside `rf-bootcamp-2026` and give it a concrete, checkable task — switch the site to dark mode and drive the whole git loop for you:
+
+```
+> Switch this site's theme to dark mode, commit it on a new branch, and open a pull request.
+```
+
+Then confirm it worked: on your fork on GitHub, a new **branch** and a **pull request** should have appeared with the theme change.
+
+{: .note }
+> Look at what it did: the work went on a **branch**, opened as a **pull request**, and the commit **credits Claude** — the good habits happened automatically, because of the github-for-research skill.
+
+</details>
+
+### Bonus — Do it like a pro (plan mode + issues)
+
+<details markdown="1">
+<summary>Show steps</summary>
+
+Part B did the job in one line. Here's how you'd handle a real change more carefully — look before you leap, and review a plan before any file changes. (Do this on a fresh branch, or instead of Part B.)
+
+1. **Inspect the repo.** In `claude`, ask how the site is themed:
+   ```
+   > How is this site's theme and colours set up, and which files control them?
+   ```
+2. **Review what's open.** Have Claude survey the project's issue tracker:
+   ```
+   > Summarise the open issues in this project.
+   ```
+3. **Plan before acting.** Press `Shift+Tab` to enter **plan mode**, then ask:
+   ```
+   > Propose a plan to move the whole site to dark mode — colours, code blocks, and the diagrams.
+   ```
+   Claude investigates and shows a plan **without changing anything**. Read it; refine it if you want.
+4. **Approve, implement, and open a PR.** Accept the plan (it switches to auto mode), let it make the changes, and have it open a pull request.
+
+{: .tip }
+> This is the everyday Claude Code loop for anything non-trivial: **look → plan → approve → act.** Plan mode is your safety net — you see exactly what it intends before a single file changes.
+
+</details>
+
+### Also try — Ask a real research repo questions
+
+<details markdown="1">
+<summary>Show steps</summary>
+
+A well-kept repository is one you can *ask questions*. We'll use a real Stanford project — an analysis of whether San Francisco's graffiti 311 reports fell during COVID.
 
 Clone it and open Claude Code inside it:
 
@@ -286,28 +331,6 @@ Now ask, in plain English:
 
 </details>
 
-### Part C — Let Claude Code drive git
-
-<details markdown="1">
-<summary>Show steps</summary>
-
-Go back to your own course repo and let Claude Code do the git work you just did by hand. Launch `claude` inside `rf-bootcamp-2026` and give it a real, checkable task — put your SUNet ID in a file and have Claude drive the whole git loop:
-
-```
-> Create a file called signed_in.txt containing my SUNet ID, commit it on a new branch, and open a pull request.
-```
-
-Then confirm it worked: on your fork on GitHub, check that a new **branch** and a **pull request** appeared, and that `signed_in.txt` holds your SUNet ID. For a second task, try:
-
-```
-> Log an issue for the outlier I couldn't sort in Bulk File Operations.
-```
-
-{: .note }
-> Look at what it did: the work went on a **branch**, opened as a **pull request**, and the commit **credits Claude** — the good habits happened automatically, because of the skill.
-
-</details>
-
 <label class="quest-check"><input type="checkbox" data-room="d1-familiars-den" data-key="side1"> Optional practice complete</label>
 
 ---
@@ -318,5 +341,5 @@ Then confirm it worked: on your fork on GitHub, check that a new **branch** and 
 - What a token is, and why context and cost are both measured in tokens
 - What leaves your machine on an AI call — and why sensitive data can't go to an external LLM
 - How to get Claude through Stanford's managed service
+- Have Claude Code make a real change (dark mode) and open a pull request — using plan mode to review before it acts
 - Interrogate a real research repo with Claude Code
-- Let Claude Code drive git via the github-for-research skill
