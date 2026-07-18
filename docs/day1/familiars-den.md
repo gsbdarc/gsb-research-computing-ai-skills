@@ -124,8 +124,8 @@ The two work in a **loop**: the harness sends the model your prompt and whatever
 
 Here is the part people get wrong: Claude Code does **not** sort safe data from sensitive. It sends whatever you let it read — if you point it at a file full of names, those names go to the server. Nothing keeps personal, restricted, or health data local on its own. **Holding that data back is *your* job** — by not letting Claude read it in the first place.
 
-<svg viewBox="0 0 840 384" role="img" aria-labelledby="cc-arch-title" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;max-width:840px;height:auto;margin:1.5rem auto" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
-  <title id="cc-arch-title">How Claude Code works: both the harness and the tools it drives — your files, shell, git, and other tools — live on your machine. The harness exchanges with Claude's model on Anthropic's server across the campus perimeter in a loop: it sends your prompt and what it reads, and the model replies with the next step. Public data and your code may cross to the server; PII, restricted, and health data must not, and the harness will not withhold them for you.</title>
+<svg viewBox="0 0 860 348" role="img" aria-labelledby="cc-arch-title" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;max-width:860px;height:auto;margin:1.5rem auto" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
+  <title id="cc-arch-title">How Claude Code works: the harness runs on your machine with your permissions. It reads the data you point it at — you choose (public data and your code are fine; personal, NDA/licensed, or health data you keep out) — and it acts on your machine as you: editing files, running commands, driving git, and calling other tools. It exchanges what it reads with Claude's model on Anthropic's server, reached via Stanford's governed route, in a loop.</title>
   <defs>
     <marker id="ah-green" markerWidth="10" markerHeight="10" refX="7" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#2e8b57"/></marker>
     <marker id="ah-slate" markerWidth="10" markerHeight="10" refX="7" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#556a95"/></marker>
@@ -133,57 +133,74 @@ Here is the part people get wrong: Claude Code does **not** sort safe data from 
   </defs>
 
   <!-- perimeter -->
-  <line x1="606" y1="34" x2="606" y2="300" stroke="#b09668" stroke-width="2" stroke-dasharray="5 5"/>
-  <text x="606" y="26" text-anchor="middle" font-size="11" font-weight="700" letter-spacing="0.5" fill="#b09668">CAMPUS PERIMETER</text>
+  <line x1="618" y1="30" x2="618" y2="332" stroke="#b09668" stroke-width="2" stroke-dasharray="5 5"/>
+  <text x="618" y="22" text-anchor="middle" font-size="11" font-weight="700" letter-spacing="0.5" fill="#b09668">CAMPUS PERIMETER</text>
 
-  <!-- your machine: contains BOTH the harness and the tools it drives -->
-  <rect x="16" y="48" width="566" height="250" rx="16" fill="#fdf6ea" stroke="#e6cfa8" stroke-width="1.5"/>
-  <text x="36" y="78" font-size="14.5" font-weight="700" fill="#2c3e50">💻  Your machine · the Yens</text>
-  <text x="36" y="99" font-size="11" fill="#9a8a68">The harness drives these locally:</text>
+  <!-- your machine -->
+  <rect x="16" y="44" width="576" height="288" rx="16" fill="#fdf6ea" stroke="#e6cfa8" stroke-width="1.5"/>
+  <text x="36" y="72" font-size="14.5" font-weight="700" fill="#2c3e50">💻  Your machine · the Yens</text>
+  <text x="36" y="91" font-size="11" fill="#9a8a68">Claude reads what you allow — and acts on your machine as you.</text>
 
-  <!-- tools list -->
-  <text x="36" y="134" font-size="13">📄</text><text x="62" y="134" font-size="12.5" fill="#2c3e50">Your files — read &amp; edit</text>
-  <text x="36" y="166" font-size="13">⌨️</text><text x="62" y="166" font-size="12.5" fill="#2c3e50">Shell — run commands</text>
-  <text x="36" y="198" font-size="13">🔀</text><text x="62" y="198" font-size="12.5" fill="#2c3e50">Git — commit &amp; push</text>
-  <text x="36" y="230" font-size="13">🔌</text><text x="62" y="230" font-size="12.5" fill="#2c3e50">Other tools — MCP, web</text>
-  <text x="36" y="262" font-size="10.5" font-style="italic" fill="#a5281c">…and some files hold PII / NDA / PHI.</text>
+  <!-- your data panel (what it reads) -->
+  <rect x="32" y="104" width="250" height="180" rx="10" fill="#ffffff" stroke="#e6cfa8" stroke-width="1.25"/>
+  <text x="46" y="124" font-size="11" font-weight="700" fill="#2c3e50">Your data</text>
+  <text x="46" y="144" font-size="10.5" font-weight="700" fill="#2e7d46">✓  OK to give Claude</text>
+  <circle cx="52" cy="161" r="4.5" fill="#37a06a"/><text x="64" y="165" font-size="11.5" fill="#2c3e50">Public data (e.g. SEC filings)</text>
+  <circle cx="52" cy="181" r="4.5" fill="#37a06a"/><text x="64" y="185" font-size="11.5" fill="#2c3e50">Your own code &amp; scripts</text>
+  <line x1="46" y1="199" x2="268" y2="199" stroke="#eee2cf" stroke-width="1"/>
+  <text x="46" y="219" font-size="10.5" font-weight="700" fill="#a5281c">✕  Keep out — your responsibility</text>
+  <circle cx="52" cy="240" r="4.5" fill="#c0392b"/><text x="64" y="244" font-size="11.5" fill="#7a2018">Personal info (PII)</text>
+  <circle cx="52" cy="258" r="4.5" fill="#c0392b"/><text x="64" y="262" font-size="11.5" fill="#7a2018">Data under an NDA / license</text>
+  <circle cx="52" cy="276" r="4.5" fill="#c0392b"/><text x="64" y="280" font-size="11.5" fill="#7a2018">Health data (PHI)</text>
 
-  <!-- harness box, inside your machine, near the perimeter -->
-  <rect x="356" y="150" width="170" height="94" rx="13" fill="#fbe9cf" stroke="#dcae6a" stroke-width="1.75"/>
-  <text x="441" y="186" text-anchor="middle" font-size="14" font-weight="700" fill="#2c3e50">⚙️  The harness</text>
-  <text x="441" y="207" text-anchor="middle" font-size="11" fill="#8a6d3b">Claude Code — the</text>
-  <text x="441" y="222" text-anchor="middle" font-size="11" fill="#8a6d3b">local actor</text>
+  <!-- harness -->
+  <rect x="352" y="126" width="156" height="84" rx="13" fill="#fbe9cf" stroke="#dcae6a" stroke-width="1.75"/>
+  <text x="430" y="158" text-anchor="middle" font-size="13.5" font-weight="700" fill="#2c3e50">⚙️  The harness</text>
+  <text x="430" y="178" text-anchor="middle" font-size="10.5" fill="#8a6d3b">Claude Code — the</text>
+  <text x="430" y="193" text-anchor="middle" font-size="10.5" fill="#8a6d3b">local actor</text>
 
-  <!-- harness drives the tools -->
-  <line x1="354" y1="197" x2="292" y2="197" stroke="#b5761f" stroke-width="2.5" marker-end="url(#ah-brown)"/>
-  <text x="323" y="188" text-anchor="middle" font-size="10.5" font-weight="600" fill="#95611a">drives</text>
+  <!-- reads the data you choose (horizontal) -->
+  <line x1="288" y1="168" x2="348" y2="168" stroke="#2e8b57" stroke-width="2.5" marker-end="url(#ah-green)"/>
+  <text x="318" y="151" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1f6b45">reads —</text>
+  <text x="318" y="163" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1f6b45">you choose</text>
 
-  <!-- model box: anthropic server, across the perimeter -->
-  <rect x="652" y="148" width="172" height="108" rx="14" fill="#eef5ff" stroke="#bcd4f2" stroke-width="1.5"/>
-  <text x="738" y="182" text-anchor="middle" font-size="14" font-weight="700" fill="#2c3e50">🧠  Claude's model</text>
-  <text x="738" y="204" text-anchor="middle" font-size="11" fill="#6a7280">Anthropic's server</text>
-  <text x="738" y="224" text-anchor="middle" font-size="10.5" fill="#8a94a6">reached via Stanford's</text>
-  <text x="738" y="238" text-anchor="middle" font-size="10.5" fill="#8a94a6">governed route</text>
+  <!-- acts on your machine, as you (vertical) -->
+  <line x1="430" y1="210" x2="430" y2="246" stroke="#b5761f" stroke-width="2.5" marker-end="url(#ah-brown)"/>
+  <text x="446" y="232" font-size="10.5" font-weight="700" fill="#95611a">acts as you</text>
+  <rect x="300" y="250" width="260" height="52" rx="10" fill="#fdf0d8" stroke="#e0c48a" stroke-width="1.25"/>
+  <text x="430" y="270" text-anchor="middle" font-size="10.5" font-weight="700" fill="#8a5a12">On your machine, with your permissions:</text>
+  <text x="430" y="290" text-anchor="middle" font-size="10.5" fill="#6a5326">edit files · run commands · drive git · call tools</text>
 
-  <!-- up: harness sends context to model -->
-  <line x1="526" y1="166" x2="648" y2="168" stroke="#2e8b57" stroke-width="2.5" marker-end="url(#ah-green)"/>
-  <text x="587" y="153" text-anchor="middle" font-size="11.5" font-weight="600" fill="#1f6b45">① sends context →</text>
+  <!-- model -->
+  <rect x="652" y="126" width="184" height="100" rx="14" fill="#eef5ff" stroke="#bcd4f2" stroke-width="1.5"/>
+  <text x="744" y="160" text-anchor="middle" font-size="14" font-weight="700" fill="#2c3e50">🧠  Claude's model</text>
+  <text x="744" y="182" text-anchor="middle" font-size="11" fill="#6a7280">Anthropic's server</text>
+  <text x="744" y="202" text-anchor="middle" font-size="10.5" fill="#8a94a6">reached via Stanford's</text>
+  <text x="744" y="216" text-anchor="middle" font-size="10.5" fill="#8a94a6">governed route</text>
 
-  <!-- down: model replies with the next step -->
-  <line x1="648" y1="200" x2="526" y2="202" stroke="#556a95" stroke-width="2.5" marker-end="url(#ah-slate)"/>
-  <text x="587" y="220" text-anchor="middle" font-size="11.5" font-weight="600" fill="#3f4f74">② its next step ←</text>
-  <text x="587" y="238" text-anchor="middle" font-size="10" fill="#8a94a6">loops until done</text>
-
-  <!-- governance footer -->
-  <rect x="16" y="316" width="808" height="52" rx="12" fill="#fbf3f0" stroke="#eccfc9" stroke-width="1.5"/>
-  <text x="420" y="339" text-anchor="middle" font-size="12" font-weight="700" fill="#2c3e50">Only what the harness sends leaves the perimeter — public data &amp; your code are fine.</text>
-  <text x="420" y="358" text-anchor="middle" font-size="11" fill="#a5281c">PII · NDA · PHI must not cross — Claude won't withhold them; keeping them out is your job.</text>
+  <!-- loop: harness sends context; model replies (both horizontal; labels kept left of the perimeter) -->
+  <line x1="508" y1="152" x2="648" y2="152" stroke="#2e8b57" stroke-width="2.5" marker-end="url(#ah-green)"/>
+  <text x="560" y="140" text-anchor="middle" font-size="11" font-weight="700" fill="#1f6b45">① sends context</text>
+  <line x1="648" y1="188" x2="510" y2="188" stroke="#556a95" stroke-width="2.5" marker-end="url(#ah-slate)"/>
+  <text x="560" y="206" text-anchor="middle" font-size="11" font-weight="700" fill="#3f4f74">② its next step</text>
+  <text x="560" y="221" text-anchor="middle" font-size="10" fill="#8a94a6">loops until done</text>
 </svg>
 
-*The harness is the local actor — it drives your files, shell, git, and other tools, and it runs the loop. The model only ever sees what the harness sends across the perimeter to Anthropic's server, reached under Stanford's governed route. Public data and your own code may cross; **PII, restricted, and health data must not — and the tool won't withhold them for you.** Never a personal account for real research data. We map out these categories in full on Day 2.*
+The harness is the local actor — it reads and runs whatever you point it at and runs the loop; the model only ever sees what the harness sends across the perimeter to Anthropic's server. **Deciding what Claude Code may read is your responsibility.** Public data and your own code are fine; personal (PII), NDA/licensed, or health (PHI) data must not be sent — and the tool won't hold them back for you. What's approved depends on the data and the tool: see [Responsible AI at Stanford](https://uit.stanford.edu/security/responsibleai) for which AI tools are cleared for which data-risk levels, and the [GSB Library's eResources usage policy](https://www.gsb.stanford.edu/library/research-resources/usage-policy) for whether a licensed dataset may be used this way. We map out these data categories in full on Day 2.
 
 {: .note }
 > Full details and the request links live at [uit.stanford.edu/service/claude](https://uit.stanford.edu/service/claude). Your instructor can point you to the exact sign-up link in class.
+
+---
+
+## Claude Code acts as you
+
+When Claude Code runs a command, edits a file, or pushes to GitHub, it does so with **your** credentials and **your** permissions. To the Yens, to GitHub, to anything it touches, the action looks exactly like *you* did it — there is no way for those systems to tell you apart from Claude acting on your behalf.
+
+That has a blunt consequence: **Claude Code can do anything you can do.** It can read, change, or delete any file you can, run any command you could run, and reach any system your account can reach. You can *ask* it to steer clear of something — "don't touch the `data/` folder," "never force-push" — and it will try, but that's a request, not a boundary the system enforces. Nothing outside your own judgment stops it.
+
+{: .warning }
+> Treat it like handing your keyboard to a fast, capable assistant. Use **plan mode** when you want to see the plan before anything happens, review actions that are hard to undo (deleting files, force-pushing, sending data off your machine), and don't point it at anything you wouldn't do yourself.
 
 ---
 
