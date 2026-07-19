@@ -145,16 +145,25 @@ The cloud is a rented kitchen — and it's **just for you**. Unlike the Yens, yo
 ## Main Quest — Class Participation
 
 {: .important }
-> **Demo + Discussion:** We will all participate in a class demo together.
+> 🥪 **Demo + Discussion:** 🥪 We will all participate in a class demo together. 🥪
 
-**After the demo:**
+<details markdown="1">
+<summary><strong>After the demo:</strong></summary>
+
 - What are the tradeoffs between your laptop, the Yens, and the cloud?
 - What happens when many researchers all run jobs at once on the shared Yens?
+
+</details>
 
 <label class="quest-check"><input type="checkbox" data-room="d3-kitchen" data-key="main"> I participated in the class demo and discussion</label>
 
 {: .note }
-> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-kitchen.main` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it to `main` on my fork." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
+> 🔄 **Keep the leaderboard live.**
+>
+> 1. In your terminal on the Yens, go to `~/rf-bootcamp-2026`.
+> 2. Start Claude Code with `claude` if it isn't already running.
+> 3. Tell it: "Set `d3-kitchen.main` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`."
+> 4. Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
 
 ---
 
@@ -170,7 +179,7 @@ Check your own laptop's CPU core count and RAM, and compare them to a Yen node (
 <label class="quest-check"><input type="checkbox" data-room="d3-kitchen" data-key="side1"> I checked my own laptop's CPU cores and RAM and compared them to a Yen node</label>
 
 {: .note }
-> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-kitchen.side1` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it to `main` on my fork." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
+> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-kitchen.side1` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
 
 **Side Quest 2 — Price the rented kitchen**
 
@@ -179,4 +188,4 @@ Look up on-demand pricing for a cloud VM comparable to a Yen node (similar CPU/R
 <label class="quest-check"><input type="checkbox" data-room="d3-kitchen" data-key="side2"> I estimated the cost of running my Day 2 job in the cloud for an hour</label>
 
 {: .note }
-> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-kitchen.side2` to `true` in `quest_log.json` at my repo root (create it if missing), then commit and push it to `main` on my fork." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
+> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-kitchen.side2` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.

@@ -4,3 +4,5 @@ pydantic
 pandas
 requests
 ipykernel
+jupyter
+matplotlib
