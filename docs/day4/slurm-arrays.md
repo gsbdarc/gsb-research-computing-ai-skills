@@ -82,7 +82,11 @@ and that one submission becomes 100 tasks. Every task runs the same script — i
 
 ## Mapping a Task to a Filing
 
-The task ID is just an integer — *you* decide what it points to. A common pattern: list the filings in a file, **one file path per line**, and have each task grab the line matching its ID.
+The task ID is just an integer — *you* decide what it points to. The usual pattern has four steps:
+
+**1. List the filings, one file path per line.** Write the paths to a file such as `filings_list.txt`; the line number is what each task ID will refer to.
+
+**2. Have each task grab its own line.** Use `SLURM_ARRAY_TASK_ID` to pull the matching line from that list:
 
 ```bash
 # each line of filings_list.txt is the path to one filing;
@@ -90,17 +94,24 @@ The task ID is just an integer — *you* decide what it points to. A common patt
 FILING=$(sed -n "${SLURM_ARRAY_TASK_ID}p" filings_list.txt)
 ```
 
-So `$FILING` holds the **path to a different filing** in each task — task 1 gets the path on line 1, task 2 the path on line 2, and so on — and that's the path you hand to your extraction script.
+Now `$FILING` holds the **path to a different filing** in each task — task 1 gets the path on line 1, task 2 the path on line 2, and so on.
 
-Putting it together takes two pieces: a script that *accepts* a filing path, and an array that hands a different path to each task.
+**3. Use a script that accepts the path as an argument.** The Day 3 `extract_form_3_one_file.py` hard-codes its `FILING_PATH`, so it can't be pointed at a different filing per task. We've provided `scripts/extract_form_3_cli.py` — the same extraction logic, with a few lines added so it reads the paths from the command line:
 
-**First, a script that takes the path as an argument.** The Day 3 `extract_form_3_one_file.py` hard-codes its `FILING_PATH`, so it can't be pointed at a different filing per task. `scripts/extract_form_3_cli.py` is the same extraction logic wired up to take `--input` and `--output` on the command line:
+```python
+import sys
 
-```bash
-python scripts/extract_form_3_cli.py --input path/to/filing.txt --output results/filing.json
+FILING_PATH = sys.argv[1]     # 1st argument: the filing to process
+OUTPUT_PATH = sys.argv[2]     # 2nd argument: where to write the result
 ```
 
-**Then the array script** that hands each task its own input and output paths:
+Now you can point it at any filing (the two paths are passed in order):
+
+```bash
+python scripts/extract_form_3_cli.py path/to/filing.txt results/filing.json
+```
+
+**4. Put it all in the array script,** which hands each task its own input and output paths:
 
 ```bash
 #!/bin/bash
@@ -118,21 +129,19 @@ source .venv/bin/activate
 FILING=$(sed -n "${SLURM_ARRAY_TASK_ID}p" filings_list.txt)
 
 # hand that path — and a per-task output file — to the script
-python scripts/extract_form_3_cli.py \
-    --input  "$FILING" \
-    --output "results/filing_${SLURM_ARRAY_TASK_ID}.json"
+python scripts/extract_form_3_cli.py "$FILING" "results/filing_${SLURM_ARRAY_TASK_ID}.json"
 ```
 
 {: .note }
-> **More filings than tasks?** If you'd rather have fewer tasks than filings — say 50 tasks for 100 filings (array size is capped, and very short jobs aren't worth a whole task each) — hand each task a *chunk* of filings instead: task *n* processes a fixed block of lines from the list, with a `for` loop working through that block in sequence. The array runs the chunks in parallel; the loop handles the filings within each chunk.
+> **More filings than the scheduler allows?** SLURM caps how many tasks an array can have, so if you have more filings than that limit, you can't give each one its own task. The fix is to hand each task a *chunk* of filings: task *n* processes a fixed block of lines from the list, with a `for` loop working through that block in sequence. The array runs the chunks in parallel; the loop handles the filings within each chunk.
 
-You'll build and submit an array script like this in the exercise below.
+**5. Combine the outputs (optional).** Each task writes its own result file, so when the array finishes you're left with a folder of per-task outputs — `results/filing_1.json`, `filing_2.json`, and so on. For analysis you'll usually want to stitch those into a single dataset, such as one CSV. That's a short post-processing step once all the tasks are done (the exercise below walks through it).
 
 ---
 
-## Why an Array Beats Submitting by Hand
+## Review: Why an Array Beats Submitting by Hand
 
-- **SLURM schedules the tasks for you** across whatever cores are free — including the [waves](parallelization/) that happen when there are more filings than cores.
+- **SLURM schedules the tasks for you** across whatever cores are free — including the ["waves"](parallelization/) that happen when there are more filings than cores.
 - **The tasks are independent.** One task failing doesn't touch the others, and you can resubmit just the failures instead of rerunning everything.
 - **There's one thing to track.** A single job ID (with per-task sub-IDs) to monitor with `squeue` or cancel with `scancel`.
 - **The outputs are predictable.** `filing_${SLURM_ARRAY_TASK_ID}.json` gives you a tidy set of files, ready to combine into one CSV.
@@ -172,9 +181,7 @@ source ~/rf-bootcamp-2026/.venv/bin/activate
 FILING=$(sed -n "${SLURM_ARRAY_TASK_ID}p" /scratch/shared/$USER/filings_list.txt)
 echo "Task $SLURM_ARRAY_TASK_ID processing: $FILING"
 
-python3 ~/rf-bootcamp-2026/scripts/extract_form_3_cli.py \
-    --input "$FILING" \
-    --output "/scratch/shared/$USER/results/filing_${SLURM_ARRAY_TASK_ID}.json"
+python3 ~/rf-bootcamp-2026/scripts/extract_form_3_cli.py "$FILING" "/scratch/shared/$USER/results/filing_${SLURM_ARRAY_TASK_ID}.json"
 ```
 
 **Part 3 — Submit and monitor:**

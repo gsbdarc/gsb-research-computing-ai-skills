@@ -3,14 +3,14 @@
 Unlike ``extract_form_3_one_file.py`` (which hard-codes its paths), this version
 takes the filing path and output path as command-line arguments. That makes it
 callable once per filing — for example from a SLURM job array, where each task
-passes a different ``--input``:
+passes a different filing:
 
-    python scripts/extract_form_3_cli.py --input path/to/filing.txt --output results/filing.json
+    python scripts/extract_form_3_cli.py path/to/filing.txt results/filing.json
 """
 
 import os
+import sys
 import json
-import argparse
 from typing import List
 
 from openai import OpenAI
@@ -40,17 +40,9 @@ Return valid JSON matching the schema exactly.
 """
 
 
-def parse_args():
-    parser = argparse.ArgumentParser(
-        description="Extract structured fields from one SEC Form 3 filing."
-    )
-    parser.add_argument("--input", required=True, help="Path to the filing .txt file")
-    parser.add_argument("--output", required=True, help="Path to write the JSON result")
-    return parser.parse_args()
-
-
 def main():
-    args = parse_args()
+    filing_path = sys.argv[1]     # 1st argument: the filing to process
+    output_path = sys.argv[2]     # 2nd argument: where to write the result
 
     # API key comes from .env in the repo root
     load_dotenv()
@@ -59,7 +51,7 @@ def main():
         api_key=os.getenv("STANFORD_API_KEY"),
     )
 
-    with open(args.input, "r") as f:
+    with open(filing_path, "r") as f:
         filing_text = f.read()
 
     response = client.chat.completions.create(
@@ -74,11 +66,11 @@ def main():
     result = Form3Filing.model_validate_json(response.choices[0].message.content)
 
     # Create the output directory if needed, then write the result
-    os.makedirs(os.path.dirname(args.output) or ".", exist_ok=True)
-    with open(args.output, "w") as f:
+    os.makedirs(os.path.dirname(output_path) or ".", exist_ok=True)
+    with open(output_path, "w") as f:
         json.dump(result.model_dump(), f, indent=2)
 
-    print(f"Saved {args.output}")
+    print(f"Saved {output_path}")
 
 
 if __name__ == "__main__":
