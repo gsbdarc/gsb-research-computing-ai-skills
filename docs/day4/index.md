@@ -22,7 +22,7 @@ Day 4 scales yesterday's single SLURM job into a full research pipeline. You'll 
 - Wrote and submitted `slurm/extract_form_3_one_file.slurm` as a batch job, with `#SBATCH` directives grounded in those measurements
 - Monitored the job with `squeue` and `sacct`, and documented the pipeline in `README.md`
 
-Any questions about Day 1–3 we can discuss before we move on.
+Any questions about Day 1–3 before we move on?
 
 ---
 
@@ -33,8 +33,7 @@ Work through the sections in order — later ones build on earlier ones, and the
 | Section | Format | What you'll learn |
 |------|--------|-----------------|
 | [Parallelization Basics](parallelization/) | 🖊️ Concept | What running work in parallel means, when it helps, and why independent tasks are the key |
-| [SLURM Job Arrays](slurm-arrays/) | 🖊️ Concept | How to operationalize parallelization on the cluster: job arrays, `--array`, and `SLURM_ARRAY_TASK_ID` |
-| [Parallel Jobs with SLURM Arrays](array-cavern/) | 💻 Hands-on | Process hundreds of filings in one submission with job arrays, combine the outputs, and avoid recomputation when jobs fail |
+| [SLURM Job Arrays](slurm-arrays/) | 🖊️💻 Concept + Hands-on | How to operationalize parallelization on the cluster — job arrays, `--array`, `SLURM_ARRAY_TASK_ID` — then build, submit, and combine one across 100 filings |
 | [Choosing a GPU](armory/) | 🖊️ Concept | Why LLMs need GPUs, the GPU types on the Yens (A30, A40, H200), and how they map to nodes |
 | [Running GPU Jobs](h200-chamber/) | 💻 Hands-on | Submit a job to the GPU partition and see how VRAM limits the model size you can load |
 | [Local LLMs with Ollama](summoning-circle/) | 💻 Hands-on | Run a model entirely on cluster hardware with Ollama and keep your data on the Yens |

@@ -23,7 +23,7 @@ This capstone combines everything from the week into one pipeline — all at onc
 > **Task — Full Pipeline**
 >
 > **Part 1 — Scale with an array job:**
-> Reuse your `jobs/array_extract.sh` from [Parallel Jobs with SLURM Arrays](../array-cavern/) (`--array=1-100`). Each task processes one filing and writes its result to `/scratch/shared/$USER/results/filing_N.json`. After the array completes, merge all outputs into `results/extracted_filings.csv`.
+> Reuse your `jobs/array_extract.sh` from [SLURM Job Arrays](../slurm-arrays/) (`--array=1-100`). Each task processes one filing and writes its result to `/scratch/shared/$USER/results/filing_N.json`. After the array completes, merge all outputs into `results/extracted_filings.csv`.
 >
 > **Part 2 — Swap the endpoint:**
 > Modify your array script to call **Ollama on the H200** instead of the Stanford AI Playground. The Ollama server must be running on `yen-gpu4` in a `screen` session before you submit the array.
