@@ -177,11 +177,12 @@ The illustration above already shows the common situation — more filings than 
 
 Parallelization only pays off when the pieces of work are **independent** — each can run without waiting on the results of another. When a job splits cleanly into fully independent tasks with no coordination between them, it's called **embarrassingly parallel** — and it's the easiest, highest-payoff kind of work to spread across cores. Extracting fields from a folder of filings is a textbook example.
 
+Other examples:
+
 | Works well in parallel | Does *not* parallelize cleanly |
 |---|---|
 | Extract fields from 100 separate filings | Step B needs the output of step A |
-| Run the same simulation with 50 different seeds | A running total that every task updates |
-| Resize 10,000 images | Reading line *n* requires line *n − 1* |
+| Run the same simulation with 50 different seeds | Reading line *n* requires line *n − 1* |
 
 A quick test: if you could hand each task to a different person and never have them talk to each other, it will parallelize. Your extraction job fits perfectly — every filing is its own self-contained task.
 
@@ -191,6 +192,9 @@ A quick test: if you could hand each task to a different person and never have t
 ---
 
 <label class="quest-check"><input type="checkbox" data-room="d4-parallelization" data-key="main"> I can explain what parallelization is and when it helps</label>
+
+{: .note }
+> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d4-parallelization.main` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
 
 ---
 

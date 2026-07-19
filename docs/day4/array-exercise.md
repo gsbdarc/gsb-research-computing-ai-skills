@@ -113,6 +113,9 @@ head -3 results/extracted_filings.csv   # sanity-check the columns and first row
 
 <label class="quest-check"><input type="checkbox" data-room="d4-array-exercise" data-key="main"> Exercise complete — array submitted, merged, and verified</label>
 
+{: .note }
+> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d4-array-exercise.main` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
+
 ---
 
 ## What You Learned

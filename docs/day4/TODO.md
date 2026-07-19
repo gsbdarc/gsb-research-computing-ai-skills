@@ -113,6 +113,36 @@ tree — it belongs in §3.
   - Remove the fault-tolerance claims from `agenda.md` and `boss-gate-4.md` if
     it's out of scope for Day 4.
 
+## Side quests & per-section checkpoints
+
+- [ ] **Construct side quests for Day 4 — currently there are none.** Day 3 pages
+  include optional **side quests** (registered as `side1…sideN` keys per room in
+  `assets/js/quest-log.js`, e.g. `d3-head-chef` has `side1…side7`) and drop a
+  `quest-check` checkbox at the end of *each* exercise/quest section (3–6 per page).
+  Day 4's active pages have a single checkbox each — `parallelization.md`,
+  `slurm-arrays.md`, and `array-exercise.md` (one checkbox at the very end, after
+  all five Parts). To match Day 3:
+  1. **Write optional side quests** for Day 4 — candidate material: the *chunking*
+     pattern as a hands-on side quest (50 tasks / 100 filings); deliberately fail a
+     task and re-run to see the skip-if-exists resilience in action; a GPU-room side
+     quest once those pages are built.
+  2. **Add per-section / per-Part checkpoints** so progress is tracked at the
+     granularity Day 3 uses (e.g. a checkbox after each Part of the array exercise).
+  Both require registering the new keys under the relevant `d4-*` rooms in
+  `quest-log.js` (e.g. `d4-array-exercise` → `part1…part5` and `side1…`).
+
+- [x] **Leaderboard-sync instructions — Day 3 convention adopted.** Day 3 pairs
+  *every* checkpoint with a "🔄 **Keep the leaderboard live**" blockquote that tells
+  the student to use **Claude Code in the terminal** to set the specific `room.key`
+  to `true` in `quest_log.json` at the repo root (creating it if missing), **verify
+  with `git remote -v` that `origin` is their own fork, not `gsbdarc/rf-bootcamp-2026`**,
+  then commit and push to `main` (see e.g. `day3/ticket-rail.md:88`). This blockquote
+  is now added to the single checkpoint on each active Day 4 page
+  (`parallelization.md`, `slurm-arrays.md`, `array-exercise.md`). **Remaining:** when
+  the per-Part checkpoints and side quests above are built, attach the same sync
+  prompt to each new checkpoint. (The archived `boss-gate-4.md` still uses the older
+  Day 2 button-and-upload flow — reconcile if that page is revived.)
+
 ## Missing motivation / sequencing
 
 > **Both items below are now folded into the "Agreed Day 4 sequencing plan"
