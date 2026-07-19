@@ -2,7 +2,7 @@
 layout: default
 title: "Choosing a GPU"
 parent: "Day 4 — Parallelization & GPUs"
-nav_order: 3
+nav_order: 4
 permalink: /day4/armory/
 ---
 

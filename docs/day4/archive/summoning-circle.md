@@ -2,7 +2,7 @@
 layout: default
 title: "Local LLMs with Ollama"
 parent: "Day 4 — Parallelization & GPUs"
-nav_order: 5
+nav_order: 6
 permalink: /day4/summoning-circle/
 ---
 

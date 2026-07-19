@@ -2,7 +2,7 @@
 layout: default
 title: "Parallel Jobs with SLURM Arrays"
 parent: "Day 4 — Parallelization & GPUs"
-nav_order: 2
+nav_order: 3
 permalink: /day4/array-cavern/
 ---
 

@@ -2,7 +2,7 @@
 layout: default
 title: "Running GPU Jobs"
 parent: "Day 4 — Parallelization & GPUs"
-nav_order: 4
+nav_order: 5
 permalink: /day4/h200-chamber/
 ---
 

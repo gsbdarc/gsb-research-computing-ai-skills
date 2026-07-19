@@ -33,6 +33,7 @@ Work through the sections in order — later ones build on earlier ones, and the
 | Section | Format | What you'll learn |
 |------|--------|-----------------|
 | [Parallelization Basics](parallelization/) | 🖊️ Concept | What running work in parallel means, when it helps, and why independent tasks are the key |
+| [SLURM Job Arrays](slurm-arrays/) | 🖊️ Concept | How to operationalize parallelization on the cluster: job arrays, `--array`, and `SLURM_ARRAY_TASK_ID` |
 | [Parallel Jobs with SLURM Arrays](array-cavern/) | 💻 Hands-on | Process hundreds of filings in one submission with job arrays, combine the outputs, and avoid recomputation when jobs fail |
 | [Choosing a GPU](armory/) | 🖊️ Concept | Why LLMs need GPUs, the GPU types on the Yens (A30, A40, H200), and how they map to nodes |
 | [Running GPU Jobs](h200-chamber/) | 💻 Hands-on | Submit a job to the GPU partition and see how VRAM limits the model size you can load |

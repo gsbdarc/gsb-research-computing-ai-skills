@@ -115,46 +115,48 @@ Even with just a handful of cores, the batch finishes in a fraction of the seria
 
 So far every filing took the same 5 seconds. Real filings aren't so uniform — a dense filing with many transactions can take two or three times as long as a simple one. When task durations are uneven, the cores stop finishing in lockstep:
 
-<svg viewBox="0 0 562 176" role="img" aria-labelledby="imbalance-title imbalance-desc" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;max-width:560px;height:auto;margin:1.5rem auto" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
-  <title id="imbalance-title">Uneven filing durations cause load imbalance</title>
-  <desc id="imbalance-desc">A timeline with two rows, one per core, over 30 seconds. Short filings take 5 seconds and long filings take 15 seconds. One core is handed a run of work that finishes at 30 seconds while the other finishes at 20 seconds and then sits idle, so the total time is set by the busiest core.</desc>
-  <!-- row labels -->
-  <circle cx="16" cy="47" r="6" fill="#0072B2"/>
-  <text x="28" y="51" font-size="12" fill="#2c3e50">core 1</text>
-  <circle cx="16" cy="91" r="6" fill="#E69F00"/>
-  <text x="28" y="95" font-size="12" fill="#2c3e50">core 2</text>
-  <!-- core 1 timeline: f1 (5s), f3 (5s), f4 (5s), f5 (15s, long) -->
-  <rect x="90"  y="30" width="75"  height="34" fill="#0072B2" stroke="#ffffff" stroke-width="2"/>
-  <text x="128" y="51" font-size="11" font-weight="600" fill="#ffffff" text-anchor="middle">f1 · 5s</text>
-  <rect x="165" y="30" width="75"  height="34" fill="#0072B2" stroke="#ffffff" stroke-width="2"/>
-  <text x="203" y="51" font-size="11" font-weight="600" fill="#ffffff" text-anchor="middle">f3 · 5s</text>
-  <rect x="240" y="30" width="75"  height="34" fill="#0072B2" stroke="#ffffff" stroke-width="2"/>
-  <text x="278" y="51" font-size="11" font-weight="600" fill="#ffffff" text-anchor="middle">f4 · 5s</text>
-  <rect x="315" y="30" width="225" height="34" fill="#0072B2" stroke="#ffffff" stroke-width="2"/>
-  <text x="428" y="51" font-size="11" font-weight="600" fill="#ffffff" text-anchor="middle">f5 · 15s (long)</text>
-  <!-- core 2 timeline: f2 (15s, long), f6 (5s), then idle -->
-  <rect x="90"  y="74" width="225" height="34" fill="#E69F00" stroke="#ffffff" stroke-width="2"/>
-  <text x="203" y="95" font-size="11" font-weight="600" fill="#ffffff" text-anchor="middle">f2 · 15s (long)</text>
-  <rect x="315" y="74" width="75"  height="34" fill="#E69F00" stroke="#ffffff" stroke-width="2"/>
-  <text x="353" y="95" font-size="11" font-weight="600" fill="#ffffff" text-anchor="middle">f6 · 5s</text>
-  <rect x="390" y="74" width="150" height="34" fill="#f3f4f7" stroke="#cdd4e6" stroke-width="1.5" stroke-dasharray="4 4"/>
-  <text x="465" y="95" font-size="11" font-weight="600" fill="#9aa2b1" text-anchor="middle">idle</text>
-  <!-- time axis -->
-  <line x1="90" y1="118" x2="548" y2="118" stroke="#b8bfcc" stroke-width="1.5"/>
-  <path d="M548,114 L556,118 L548,122 Z" fill="#b8bfcc"/>
-  <line x1="90"  y1="114" x2="90"  y2="118" stroke="#b8bfcc" stroke-width="1.5"/>
-  <line x1="240" y1="114" x2="240" y2="118" stroke="#b8bfcc" stroke-width="1.5"/>
-  <line x1="390" y1="114" x2="390" y2="118" stroke="#b8bfcc" stroke-width="1.5"/>
-  <line x1="540" y1="114" x2="540" y2="118" stroke="#b8bfcc" stroke-width="1.5"/>
-  <text x="90"  y="131" font-size="10.5" fill="#6a7280" text-anchor="middle">0s</text>
-  <text x="240" y="131" font-size="10.5" fill="#6a7280" text-anchor="middle">10s</text>
-  <text x="390" y="131" font-size="10.5" fill="#6a7280" text-anchor="middle">20s</text>
-  <text x="540" y="131" font-size="10.5" fill="#6a7280" text-anchor="middle">30s</text>
-  <!-- caption -->
-  <text x="281" y="150" font-size="12.5" fill="#6a7280" text-anchor="middle"><tspan x="281" dy="0">A long filing takes 3× a short one, so the cores fall out of step.</tspan><tspan x="281" dy="16">Total time is set by the busiest core (30s); the other sits idle.</tspan></text>
+<svg viewBox="0 0 600 178" role="img" aria-labelledby="imbalance-title imbalance-desc" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;max-width:598px;height:auto;margin:1.5rem auto" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
+  <title id="imbalance-title">A long filing causes load imbalance</title>
+  <desc id="imbalance-desc">Six filings in a row; the last filing takes three times as long as the others. Two cores process the filings two at a time. When the short filings run out, one core moves to the end of the line and waits idle while the other core finishes the long final filing, which sets the total time.</desc>
+  <!-- filing boxes: the last one (filing 6) is long and tinted -->
+  <rect x="16"  y="64" width="76" height="56" rx="10" fill="#eef1f8" stroke="#cdd4e6" stroke-width="1.5"/>
+  <text x="54"  y="97" font-size="13" fill="#2c3e50" text-anchor="middle">filing 1</text>
+  <rect x="107" y="64" width="76" height="56" rx="10" fill="#eef1f8" stroke="#cdd4e6" stroke-width="1.5"/>
+  <text x="145" y="97" font-size="13" fill="#2c3e50" text-anchor="middle">filing 2</text>
+  <rect x="198" y="64" width="76" height="56" rx="10" fill="#eef1f8" stroke="#cdd4e6" stroke-width="1.5"/>
+  <text x="236" y="97" font-size="13" fill="#2c3e50" text-anchor="middle">filing 3</text>
+  <rect x="289" y="64" width="76" height="56" rx="10" fill="#eef1f8" stroke="#cdd4e6" stroke-width="1.5"/>
+  <text x="327" y="97" font-size="13" fill="#2c3e50" text-anchor="middle">filing 4</text>
+  <rect x="380" y="64" width="76" height="56" rx="10" fill="#eef1f8" stroke="#cdd4e6" stroke-width="1.5"/>
+  <text x="418" y="97" font-size="13" fill="#2c3e50" text-anchor="middle">filing 5</text>
+  <rect x="471" y="64" width="76" height="56" rx="10" fill="#fdf1e0" stroke="#e6cfa8" stroke-width="1.5"/>
+  <text x="509" y="90" font-size="13" fill="#2c3e50" text-anchor="middle">filing 6</text>
+  <text x="509" y="107" font-size="10" font-weight="600" fill="#b26a00" text-anchor="middle">long ×3</text>
+  <!-- core 1 (blue): filings 1, 3, 5 — then waits idle at the end of the line -->
+  <g>
+    <path d="M46,54 L62,54 L54,64 Z" fill="#0072B2"/>
+    <circle cx="54" cy="34" r="20" fill="#0072B2"/>
+    <text x="54" y="38" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">CPU</text>
+    <text x="54" y="9" font-size="10" font-weight="600" fill="#9aa2b1" text-anchor="middle" opacity="0">idle<animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.5833;0.60;0.8667;1" dur="8s" repeatCount="indefinite" calcMode="linear"/></text>
+    <animateTransform attributeName="transform" type="translate"
+      values="0,0;0,0;182,0;182,0;364,0;364,0;524,0;524,0;0,0"
+      keyTimes="0;0.1667;0.1833;0.35;0.3667;0.5333;0.5833;0.8667;1"
+      dur="8s" repeatCount="indefinite" calcMode="linear"/>
+  </g>
+  <!-- core 2 (orange): filings 2, 4, then the long filing 6 — the straggler -->
+  <g>
+    <path d="M137,54 L153,54 L145,64 Z" fill="#E69F00"/>
+    <circle cx="145" cy="34" r="20" fill="#E69F00"/>
+    <text x="145" y="38" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">CPU</text>
+    <animateTransform attributeName="transform" type="translate"
+      values="0,0;0,0;182,0;182,0;364,0;364,0;0,0"
+      keyTimes="0;0.1667;0.1833;0.35;0.3667;0.8667;1"
+      dur="8s" repeatCount="indefinite" calcMode="linear"/>
+  </g>
+  <text x="300" y="150" font-size="12.5" fill="#6a7280" text-anchor="middle"><tspan x="300" dy="0">Filing 6 runs 3× longer, so core 2 is still busy when core 1 runs out of work.</tspan><tspan x="300" dy="16">Core 1 waits idle at the end of the line; the straggler sets the total time.</tspan></text>
 </svg>
 
-Whichever core draws the long filings finishes last, and the total wall-clock time is set by that busiest core — not the average. The quicker cores go idle waiting for it. This is called **load imbalance**, and it's why you can't just divide total work by the number of cores to predict runtime.
+The core that draws a long filing keeps working after the others have run out, and the total wall-clock time is set by that straggler — not the average. The cores that finish early sit idle waiting for it. This is called **load imbalance**, and it's why you can't just divide total work by the number of cores to predict runtime.
 
 ---
 

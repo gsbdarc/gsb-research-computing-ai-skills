@@ -2,7 +2,7 @@
 layout: default
 title: "LLM Failure Modes"
 parent: "Day 4 — Parallelization & GPUs"
-nav_order: 7
+nav_order: 8
 permalink: /day4/trap-garden/
 ---
 

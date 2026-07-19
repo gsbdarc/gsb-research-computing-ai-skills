@@ -2,7 +2,7 @@
 layout: default
 title: "Local vs. Cloud Inference"
 parent: "Day 4 — Parallelization & GPUs"
-nav_order: 6
+nav_order: 7
 permalink: /day4/engine-room/
 ---
 
