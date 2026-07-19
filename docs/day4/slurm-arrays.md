@@ -10,7 +10,7 @@ permalink: /day4/slurm-arrays/
 
 <div data-room-id="d4-slurm-arrays"></div>
 
-You've seen *why* parallelization helps and when a workload qualifies. This section is about *how* to implement it on the Yens. There are a few ways to run work in parallel on a cluster; for embarrassingly parallel jobs like ours, the standard, purpose-built tool is a **SLURM job array**. We'll cover how arrays work, then you'll build and submit one yourself.
+You've seen *why* parallelization helps and when a workload qualifies. This section is about *how* to implement it on the Yens. There are a few ways to run work in parallel on a cluster; for embarrassingly parallel jobs like ours, the standard, purpose-built tool is a **SLURM job array**. This page covers how arrays work; you'll build and submit one in [Submitting an Array Job](array-exercise/).
 
 ---
 
@@ -100,9 +100,10 @@ Now `$FILING` holds the **path to a different filing** in each task — task 1 g
 
 ```python
 import sys
+from pathlib import Path
 
-FILING_PATH = sys.argv[1]     # 1st argument: the filing to process
-OUTPUT_PATH = sys.argv[2]     # 2nd argument: where to write the result
+FILING_PATH = Path(sys.argv[1])     # 1st argument: the filing to process
+OUTPUT_PATH = Path(sys.argv[2])     # 2nd argument: where to write the result
 ```
 
 Now you can point it at any filing (the two paths are passed in order):
@@ -135,103 +136,42 @@ python scripts/extract_form_3_cli.py "$FILING" "results/filing_${SLURM_ARRAY_TAS
 {: .note }
 > **More filings than the scheduler allows?** SLURM caps how many tasks an array can have, so if you have more filings than that limit, you can't give each one its own task. The fix is to hand each task a *chunk* of filings: task *n* processes a fixed block of lines from the list, with a `for` loop working through that block in sequence. The array runs the chunks in parallel; the loop handles the filings within each chunk.
 
-**5. Combine the outputs (optional).** Each task writes its own result file, so when the array finishes you're left with a folder of per-task outputs — `results/filing_1.json`, `filing_2.json`, and so on. For analysis you'll usually want to stitch those into a single dataset, such as one CSV. That's a short post-processing step once all the tasks are done (the exercise below walks through it).
+**5. Combine the outputs (optional).** Each task writes its own result file, so when the array finishes you're left with a folder of per-task outputs — `results/filing_1.json`, `filing_2.json`, and so on. For analysis you'll usually want to stitch those into a single dataset, such as one CSV. That's a short post-processing step once all the tasks are done (the [exercise](array-exercise/) walks through it).
 
 ---
 
-## Review: Why an Array Beats Submitting by Hand
+## Why an Array Beats Submitting by Hand
 
 - **SLURM schedules the tasks for you** across whatever cores are free — including the ["waves"](parallelization/) that happen when there are more filings than cores.
 - **The tasks are independent.** One task failing doesn't touch the others, and you can resubmit just the failures instead of rerunning everything.
 - **There's one thing to track.** A single job ID (with per-task sub-IDs) to monitor with `squeue` or cancel with `scancel`.
 - **The outputs are predictable.** `filing_${SLURM_ARRAY_TASK_ID}.json` gives you a tidy set of files, ready to combine into one CSV.
 
-<label class="quest-check"><input type="checkbox" data-room="d4-slurm-arrays" data-key="main"> I understand how a SLURM job array turns one script into many parallel tasks</label>
+---
+
+## Failure Resilience
+
+Array jobs fail in pieces. A node reboots, a task hits its time limit, the API times out — and a handful of your 100 tasks come back empty. You don't want to redo the ones that already succeeded: that wastes compute, and with a paid API, money.
+
+The fix is to make each task safe to run again. Before doing the work, a task checks whether its output already exists and skips if it does. Then, after a partial failure, you resubmit the *same* array: the finished tasks see their output and exit immediately, and only the missing ones do real work.
+
+`scripts/extract_form_3_cli.py` includes exactly this check, right after it reads the output path:
+
+```python
+import sys
+from pathlib import Path
+
+OUTPUT_PATH = Path(sys.argv[2])
+
+# already done? skip — makes the array safe to resubmit after a partial failure
+if OUTPUT_PATH.exists():
+    print(f"{OUTPUT_PATH} already exists — skipping")
+    sys.exit(0)
+```
 
 ---
 
-## Exercise
-
-{: .important }
-> **Goal:** Submit a SLURM job array that processes 100 SEC filings in parallel, then combine all outputs into one CSV.
-
-**Part 1 — Prepare the input list:**
-
-```bash
-ls ~/rf-bootcamp-2026/data/sec_filings/*.txt > /scratch/shared/$USER/filings_list.txt
-wc -l /scratch/shared/$USER/filings_list.txt   # confirm: should be 100
-mkdir -p /scratch/shared/$USER/results logs
-```
-
-**Part 2 — Write `jobs/array_extract.sh`:**
-
-```bash
-#!/bin/bash
-#SBATCH --job-name=extract_array
-#SBATCH --output=logs/extract_%A_%a.out    # %A = array job ID, %a = task index
-#SBATCH --error=logs/extract_%A_%a.err
-#SBATCH --time=00:15:00
-#SBATCH --mem=4G
-#SBATCH --cpus-per-task=1
-#SBATCH --array=1-100
-#SBATCH --partition=normal
-
-source ~/rf-bootcamp-2026/.venv/bin/activate
-
-FILING=$(sed -n "${SLURM_ARRAY_TASK_ID}p" /scratch/shared/$USER/filings_list.txt)
-echo "Task $SLURM_ARRAY_TASK_ID processing: $FILING"
-
-python3 ~/rf-bootcamp-2026/scripts/extract_form_3_cli.py "$FILING" "/scratch/shared/$USER/results/filing_${SLURM_ARRAY_TASK_ID}.json"
-```
-
-**Part 3 — Submit and monitor:**
-
-```bash
-sbatch jobs/array_extract.sh
-watch -n 5 squeue -u $USER    # Ctrl-C when done
-```
-
-**Part 4 — Combine outputs into one CSV:**
-
-```python
-# scripts/merge_results.py
-import json, csv, os
-from pathlib import Path
-
-RESULTS_DIR = Path(f"/scratch/shared/{os.environ['USER']}/results")
-OUTPUT_CSV  = Path("results/extracted_filings.csv")
-OUTPUT_CSV.parent.mkdir(parents=True, exist_ok=True)
-
-rows, failed = [], []
-
-for task_id in range(1, 101):
-    f = RESULTS_DIR / f"filing_{task_id}.json"
-    if not f.exists():
-        failed.append(task_id)
-        continue
-    try:
-        data = json.loads(f.read_text())
-        data["task_id"] = task_id
-        rows.append(data)
-    except json.JSONDecodeError:
-        failed.append(task_id)
-
-if rows:
-    with open(OUTPUT_CSV, "w", newline="") as out:
-        writer = csv.DictWriter(out, fieldnames=rows[0].keys())
-        writer.writeheader()
-        writer.writerows(rows)
-    print(f"Wrote {len(rows)} rows to {OUTPUT_CSV}")
-
-if failed:
-    print(f"FAILED ({len(failed)}): {failed}")
-```
-
-```bash
-python3 scripts/merge_results.py
-```
-
-<label class="quest-check"><input type="checkbox" data-room="d4-slurm-arrays" data-key="exercise"> Exercise complete — array submitted, CSV merged</label>
+<label class="quest-check"><input type="checkbox" data-room="d4-slurm-arrays" data-key="main"> I understand how a SLURM job array turns one script into many parallel tasks</label>
 
 ---
 
@@ -240,5 +180,7 @@ python3 scripts/merge_results.py
 - You can explain what a SLURM **job array** is: one script, submitted once, that SLURM runs as many independent tasks
 - You know that `#SBATCH --array=1-N` creates the tasks and `SLURM_ARRAY_TASK_ID` distinguishes them
 - You can map a task ID to a unit of work — e.g. selecting the matching line from a list of filings
-- You built and submitted a real array job on the Yens, and combined its per-task outputs into a single CSV
+- You know how to make a task safe to rerun — skip it if its output already exists — so a partially failed array only redoes the missing work
 - You can say why an array beats submitting jobs by hand: scheduling, independence, tracking, and tidy outputs
+
+The hands-on exercise, [Submitting an Array Job](array-exercise/), puts this into practice.

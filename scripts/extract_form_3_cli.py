@@ -11,6 +11,7 @@ passes a different filing:
 import os
 import sys
 import json
+from pathlib import Path
 from typing import List
 
 from openai import OpenAI
@@ -41,8 +42,14 @@ Return valid JSON matching the schema exactly.
 
 
 def main():
-    filing_path = sys.argv[1]     # 1st argument: the filing to process
-    output_path = sys.argv[2]     # 2nd argument: where to write the result
+    filing_path = Path(sys.argv[1])     # 1st argument: the filing to process
+    output_path = Path(sys.argv[2])     # 2nd argument: where to write the result
+
+    # Already processed? Skip it. This makes the array safe to resubmit after a
+    # partial failure: finished tasks exit instantly, only the missing ones rerun.
+    if output_path.exists():
+        print(f"{output_path} already exists — skipping")
+        return
 
     # API key comes from .env in the repo root
     load_dotenv()
@@ -51,8 +58,7 @@ def main():
         api_key=os.getenv("STANFORD_API_KEY"),
     )
 
-    with open(filing_path, "r") as f:
-        filing_text = f.read()
+    filing_text = filing_path.read_text()
 
     response = client.chat.completions.create(
         model="gpt-5.2",
@@ -66,9 +72,8 @@ def main():
     result = Form3Filing.model_validate_json(response.choices[0].message.content)
 
     # Create the output directory if needed, then write the result
-    os.makedirs(os.path.dirname(output_path) or ".", exist_ok=True)
-    with open(output_path, "w") as f:
-        json.dump(result.model_dump(), f, indent=2)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    output_path.write_text(json.dumps(result.model_dump(), indent=2))
 
     print(f"Saved {output_path}")
 
