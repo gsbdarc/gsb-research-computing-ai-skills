@@ -1,21 +1,23 @@
 ---
 layout: default
-title: "The Summoning Circle"
-parent: "Day 4 — The GPU Fortress"
+title: "Local LLMs with Ollama"
+parent: "Day 4 — Parallelization & GPUs"
 nav_order: 5
 permalink: /day4/summoning-circle/
 ---
 
-# The Summoning Circle
+# Local LLMs with Ollama
 
 <div data-room-id="d4-summoning-circle"></div>
 
+This section runs a model entirely on cluster hardware with Ollama, so your prompts and data never leave the Yens.
+
 ---
 
-## Main Quest
+## Exercise
 
 {: .important }
-> **Quest:** Pull a model with Ollama on the H200, chat with it from a Jupyter notebook, and confirm it runs locally.
+> **Goal:** Pull a model with Ollama on the H200, chat with it from a Jupyter notebook, and confirm it runs locally.
 
 **Inside a GPU job on yen-gpu4** (or from an interactive session if available):
 
@@ -58,4 +60,4 @@ Notice: the interface is **identical to the Stanford AI Playground** — same Py
 {: .note }
 > 💡 Ollama must be running (via `ollama serve`) on the same node where you're querying it. The model runs entirely on the Yens; your prompts never leave Stanford's network.
 
-<label class="quest-check"><input type="checkbox" data-room="d4-summoning-circle" data-key="main"> Main Quest complete</label>
+<label class="quest-check"><input type="checkbox" data-room="d4-summoning-circle" data-key="main"> Exercise complete</label>

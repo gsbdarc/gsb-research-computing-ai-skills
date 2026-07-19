@@ -1,42 +1,29 @@
 ---
 layout: default
-title: "The Array Cavern"
-parent: "Day 4 — The GPU Fortress"
+title: "Parallel Jobs with SLURM Arrays"
+parent: "Day 4 — Parallelization & GPUs"
 nav_order: 2
 permalink: /day4/array-cavern/
 ---
 
-# The Array Cavern
+# Parallel Jobs with SLURM Arrays
 
 <div data-room-id="d4-array-cavern"></div>
 
----
-
-## Why Parallelize?
-
-Your Day 3 script processes one SEC filing at a time. You have 100 filings. Running them sequentially takes 100× as long — and ties up a node while you wait.
-
-The Yens have hundreds of cores sitting idle. SLURM's job: hand each core a different filing so all 100 run simultaneously. Total time stays roughly the same as one filing — just multiplied across independent work.
-
-```
-  One at a time (sequential):        Parallelized (job array):
-  filing 1 → 5s                      filing 1  ┐
-  filing 2 → 5s                      filing 2  │ all start at once
-  filing 3 → 5s                      filing 3  │ → ~5s total
-  ...                                ...       ┘
-  filing 100 → 5s
-  ─────────────
-  Total: ~500s                        Total: ~5s + queue wait
-```
-
-This only works when tasks are **independent** — each filing doesn't need the results from another. Your extraction script qualifies perfectly.
+This section takes the single-filing script from Day 3 and fans it across hundreds of filings in one submission using a SLURM **job array**, then combines the outputs into a single CSV.
 
 ---
 
-## Main Quest
+## Recap
+
+[Parallelization Basics](../parallelization/) covered the idea: your Day 3 script processes one filing at a time on a single core, but the filings are **independent**, so SLURM can hand each one to a different core and run them all at once — 100 filings finishing in roughly the time of one. This section is where you build that as a **job array** and combine the outputs.
+
+---
+
+## Exercise
 
 {: .important }
-> **Quest:** Submit a SLURM job array that processes 100 SEC filings in parallel, then combine all outputs into one CSV.
+> **Goal:** Submit a SLURM job array that processes 100 SEC filings in parallel, then combine all outputs into one CSV.
 
 **Part 1 — Prepare the input list:**
 
@@ -116,4 +103,4 @@ if failed:
 python3 scripts/merge_results.py
 ```
 
-<label class="quest-check"><input type="checkbox" data-room="d4-array-cavern" data-key="main"> Main Quest complete — array submitted, CSV merged</label>
+<label class="quest-check"><input type="checkbox" data-room="d4-array-cavern" data-key="main"> Exercise complete — array submitted, CSV merged</label>

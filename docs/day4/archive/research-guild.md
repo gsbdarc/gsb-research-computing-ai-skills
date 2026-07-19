@@ -1,20 +1,16 @@
 ---
 layout: default
-title: "The Research Guild"
-parent: "Day 4 — The GPU Fortress"
+title: "Staying Connected"
+parent: "Day 4 — Parallelization & GPUs"
 nav_order: 9
 permalink: /day4/research-guild/
 ---
 
-# The Research Guild
-
----
-
-## Staying Connected
+# Staying Connected
 
 The DARC team runs the Yens and supports GSB researchers year-round. You are not expected to remember everything from this week — you are expected to know where to ask.
 
-### Slack — `#gsb-yen-users`
+## Slack — `#gsb-yen-users`
 
 Join the **#gsb-yen-users** channel on Stanford Slack. It's where Yen users and the DARC team:
 - Answer questions about the cluster, SLURM, storage, and software
@@ -26,7 +22,7 @@ Join the **#gsb-yen-users** channel on Stanford Slack. It's where Yen users and 
 
 If the link does not open automatically, open the Slack app, search for **#gsb-yen-users** in Channels, and join from there.
 
-### Email
+## Email
 
 For questions that need a direct answer from the team, or anything you'd rather not post in a channel:
 
@@ -55,7 +51,6 @@ Everything you ran this week is in your fork. Future projects can start from the
 - **More data, same pipeline:** swap the input list in your SLURM array script
 - **Different model:** change `base_url` and `model` — the rest is identical
 - **New dataset type:** adapt your Pydantic schema, rerun the pipeline
-- **Need a GPU:** copy your `h200-chamber` job script and swap the `--gres` flag
+- **Need a GPU:** copy your GPU job script from [Running GPU Jobs](../h200-chamber/) and swap the `--gres` flag
 
-The leaderboard stays up, and any side quests you didn't finish are still there.
-
+The leaderboard stays up, and any optional exercises you didn't finish are still there.

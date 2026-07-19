@@ -1,25 +1,20 @@
 ---
 layout: default
-title: "The Engine Room"
-parent: "Day 4 — The GPU Fortress"
+title: "Local vs. Cloud Inference"
+parent: "Day 4 — Parallelization & GPUs"
 nav_order: 6
 permalink: /day4/engine-room/
 ---
 
-# The Engine Room
+# Local vs. Cloud Inference
 
 <div data-room-id="d4-engine-room"></div>
 
+This is a concept and demo section. The goal is to understand the three LLM access patterns available to Stanford researchers — local Ollama, the Stanford AI Playground, and third-party APIs — and know which one fits your data, budget, and research context.
+
 ---
 
-## Main Quest
-
-{: .important }
-> **Quest:** Understand the three LLM access patterns available to Stanford researchers — local Ollama, Stanford AI Playground, and third-party APIs — and know which one fits your data, budget, and research context.
-
-This is a concept and demo block.
-
-**The three patterns:**
+## The Three Patterns
 
 | | Ollama (local, on Yens) | Stanford AI Playground | Third-party API (OpenAI, Anthropic, etc.) |
 |---|---|---|---|
@@ -29,7 +24,7 @@ This is a concept and demo block.
 | **Good for** | Restricted/sensitive data, large batch jobs | General research, day-to-day LLM work | Work where data restrictions allow |
 | **Setup** | `ollama pull` + API already running | API key from aiapi-prod.stanford.edu | API key from vendor |
 
-**The secret that makes this easy:**
+**What makes this easy:**
 
 All three speak the same OpenAI-compatible API. Your Python code doesn't change — only `base_url` and `api_key` do.
 
@@ -72,13 +67,13 @@ Is the data public or low-sensitivity?
   ├── Want GPT-4 class models, Stanford-audited? → AI Playground
   └── Need cutting-edge capability, data restrictions allow? → Third-party API
 
-Not sure about your data? → Visit the Grand Hall before you pick.
+Not sure about your data? → Check the data classification rules before you pick.
 ```
 
 {: .note }
-> The 3-bucket data classification rule was covered in [The Crucible](../../day2/human-vs-llm/) on Day 2. If you're unsure which bucket your data belongs to, revisit that room before picking an endpoint.
+> The 3-bucket data classification rule was covered in [the data classification section](../../day2/human-vs-llm/) on Day 2. If you're unsure which bucket your data belongs to, revisit it before picking an endpoint.
 
-<label class="quest-check"><input type="checkbox" data-room="d4-engine-room" data-key="main"> Engine Room briefing complete — I know which LLM access pattern fits my data and research context</label>
+<label class="quest-check"><input type="checkbox" data-room="d4-engine-room" data-key="main"> I know which LLM access pattern fits my data and research context</label>
 
 ---
 
@@ -105,9 +100,9 @@ The goal is not to find the "best" model — it's to know your error rate before
 
 ---
 
-## Skills Learned
+## What You Learned
 
 - You can describe the three LLM access patterns available on the Yens and what distinguishes them: data residency, cost, and model availability
 - You know that all three speak the same OpenAI-compatible API — swapping `base_url` is the only code change
 - You can apply the decision guide: restricted data forces local Ollama; general research fits the AI Playground; third-party is available when data governance allows
-- You understand that the Grand Hall's 3-bucket rule is the prerequisite to this decision — classification first, access pattern second
+- You understand that the 3-bucket data classification rule is the prerequisite to this decision — classification first, access pattern second

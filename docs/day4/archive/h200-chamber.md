@@ -1,21 +1,23 @@
 ---
 layout: default
-title: "The H200 Chamber"
-parent: "Day 4 — The GPU Fortress"
+title: "Running GPU Jobs"
+parent: "Day 4 — Parallelization & GPUs"
 nav_order: 4
 permalink: /day4/h200-chamber/
 ---
 
-# The H200 Chamber
+# Running GPU Jobs
 
 <div data-room-id="d4-h200-chamber"></div>
 
+This section walks through submitting a job to the GPU partition, confirming it runs on the GPU, and inspecting GPU utilization.
+
 ---
 
-## Main Quest
+## Exercise
 
 {: .important }
-> **Quest:** Submit a GPU job targeting `yen-gpu4` (the H200 node), verify it runs on the GPU, and inspect the GPU utilization.
+> **Goal:** Submit a GPU job targeting `yen-gpu4` (the H200 node), verify it runs on the GPU, and inspect the GPU utilization.
 
 **Write `jobs/first_gpu_job.sh`:**
 
@@ -61,4 +63,4 @@ sbatch jobs/first_gpu_job.sh
 tail -f logs/gpu_job_JOBID.out
 ```
 
-<label class="quest-check"><input type="checkbox" data-room="d4-h200-chamber" data-key="main"> Main Quest complete</label>
+<label class="quest-check"><input type="checkbox" data-room="d4-h200-chamber" data-key="main"> Exercise complete</label>

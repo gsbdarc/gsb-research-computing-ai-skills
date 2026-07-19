@@ -61,9 +61,10 @@
       ],
     },
     {
-      label: 'Day 4 — The GPU Fortress',
+      label: 'Day 4 — Parallelization & GPUs',
       prefix: 'd4',
       rooms: [
+        { id: 'd4-parallelization',      keys: ['main'] },
         { id: 'd4-array-cavern',         keys: ['main'] },
         { id: 'd4-armory',              keys: ['main'] },
         { id: 'd4-h200-chamber',        keys: ['main'] },
