@@ -3,6 +3,8 @@ layout: default
 title: "Staying Connected"
 parent: "Day 4 — Parallelization & GPUs"
 nav_order: 10
+nav_exclude: true
+search_exclude: true
 permalink: /day4/research-guild/
 ---
 

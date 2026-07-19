@@ -3,6 +3,8 @@ layout: default
 title: "Day 4 Challenge"
 parent: "Day 4 — Parallelization & GPUs"
 nav_order: 9
+nav_exclude: true
+search_exclude: true
 permalink: /day4/boss-gate-4/
 ---
 
