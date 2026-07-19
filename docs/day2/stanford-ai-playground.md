@@ -21,7 +21,7 @@ Datasets that aren't public come with rules, imposed by multiple entities. Two s
 
 **1. Stanford's data risk classification**
 
-![Stanford Data Risk]({{ "/assets/images/stanford-data-risk.png" | relative_url }})
+![Stanford Data Risk]({{ "/assets/images/Stanford_data_risk.png" | relative_url }})
 
 *Stanford's data risk classification guidelines.*
 
@@ -110,7 +110,7 @@ Notice: the responses come from the same models you'd use via the API. You're al
 | ✅ **No personal billing** | Budget caps enforced by Stanford; you cannot accidentally run up a $10,000 bill |
 | ✅ **Stanford data perimeter** | Covered under Stanford's data processing agreement with the model provider |
 | ✅ **No account required** | Every Stanford researcher has access via SUNet login |
-| ⚠️ **Prompts are audited** | Stanford can review usage logs, so don't send restricted data or PHI through this gateway |
+| ⚠️ **Prompts are logged** | Stanford can review usage logs, so it isn't anonymous. The upside: that audited, contracted perimeter is exactly what lets the gateway handle sensitive data up to High Risk, including PHI (subject to your DUA) |
 | ⚠️ **Model selection** | Available models are determined by Stanford's contract, not your preference |
 
 

@@ -236,6 +236,92 @@ Fold this into your `form3_test.py` so the script validates every response and w
 
 ---
 
+## 📦 Side Quests
+
+Your `client` talks to more than one endpoint. Each of these is a different door on the same Stanford gateway (your `base_url` never changes), so with the client already configured, they just work.
+
+**Side Quest: List the Available Models**
+
+Hit the models endpoint (`GET /v1/models`) to see exactly which model ids the gateway accepts. This is the menu for every other call.
+
+```python
+for m in client.models.list().data:
+    print(m.id)
+```
+
+Look for `text-embedding-ada-002` and `imagen-4.0-generate-001` in the list; those are the ids the next two quests use.
+
+<label class="quest-check"><input type="checkbox" data-room="d2-oracles-chamber" data-key="side1"> I listed the available models</label>
+
+**Side Quest: Turn Text into an Embedding**
+
+An embedding turns text into a vector of numbers that captures its meaning, the foundation of semantic search and clustering. Call the embeddings endpoint (`POST /v1/embeddings`):
+
+```python
+resp = client.embeddings.create(
+    model="text-embedding-ada-002",
+    input="Insider files a Form 3 disclosure",
+)
+vector = resp.data[0].embedding
+print(len(vector), "dimensions")
+print(vector[:8])
+```
+
+<label class="quest-check"><input type="checkbox" data-room="d2-oracles-chamber" data-key="side2"> I generated an embedding vector</label>
+
+**Side Quest: Generate an Image**
+
+The same gateway can create images. Call the image endpoint (`POST /v1/images/generations`):
+
+```python
+import base64
+from IPython.display import Image, display
+
+resp = client.images.generate(
+    model="imagen-4.0-generate-001",
+    prompt="A medieval alchemist's lab full of glowing potions, digital art",
+)
+
+img = resp.data[0]
+if img.url:                       # some models return a link
+    print(img.url)
+else:                             # others (e.g. imagen) return base64
+    display(Image(data=base64.b64decode(img.b64_json)))
+```
+
+{: .note }
+> 💡 An images response carries the picture in one of two fields: `url` (a link to download) or `b64_json` (the image encoded inline as base64). A model fills in only one, so `resp.data[0].url` is `None` when the model returned base64. The code above checks for both.
+
+<label class="quest-check"><input type="checkbox" data-room="d2-oracles-chamber" data-key="side3"> I generated an image</label>
+
+**Side Quest: Count Tokens and Calculate the Cost**
+
+Every response reports how many tokens it used. Look at the `usage` field on one of your earlier chat responses:
+
+```python
+print(response.usage)
+# CompletionUsage(prompt_tokens=..., completion_tokens=..., total_tokens=...)
+```
+
+Now look up your model's price on the <a href="https://uit.stanford.edu/service/ai-api-gateway/rates" target="_blank" rel="noopener noreferrer">AI API Gateway rates page</a> and work out what that single call cost:
+
+```python
+usage = response.usage
+
+# From the rates page, in dollars per 1M tokens (fill in for your model):
+input_price = 0.00
+output_price = 0.00
+
+cost = (usage.prompt_tokens * input_price + usage.completion_tokens * output_price) / 1_000_000
+print(f"This call cost ${cost:.6f}")
+```
+
+Then multiply by 10,000 filings. That per-call number is small, but it is exactly what you budget against when you scale.
+
+<label class="quest-check"><input type="checkbox" data-room="d2-oracles-chamber" data-key="side4"> I found the token usage and estimated the cost</label>
+
+---
+
 ## 🧠 Skills Learned
 
 - The OpenAI-compatible API takes a list of messages with `role` (system/user/assistant) and `content` (the text)

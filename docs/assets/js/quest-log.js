@@ -43,7 +43,7 @@
         { id: 'd2-venv-forge',               keys: ['main', 'side1', 'side2', 'side3'] },
         { id: 'd2-stanford-ai-playground',   keys: ['main', 'side1', 'side2', 'side3'] },
         { id: 'd2-key-vault',                keys: ['main', 'side1', 'side2'] },
-        { id: 'd2-oracles-chamber',          keys: ['main'] },
+        { id: 'd2-oracles-chamber',          keys: ['main', 'side1', 'side2', 'side3', 'side4'] },
         { id: 'd2-human-vs-llm',             keys: ['main'] },
         { id: 'd2-boss-gate',                keys: ['commit'] },
       ],

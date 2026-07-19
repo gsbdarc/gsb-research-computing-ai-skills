@@ -156,15 +156,15 @@ Every time you call the API, the following is sent to Stanford's gateway:
 - **Metadata** — timestamp, model name, token counts, your IP address
 - **Model response** — returned and (at Stanford's end) logged
 
-**Three-bucket rule** — before sending any data to an API, classify it:
+**Classify before you send:** place any data on Stanford's risk scale before it goes to an API.
 
-| Bucket | Examples | Send via Stanford API? |
-|--------|----------|----------------------|
-| 🟢 **Public** | Published papers, open datasets | Yes |
-| 🟡 **Restricted** | Unpublished research, proprietary data, IRB-approved data | Check your DUA/IRB first |
-| 🔴 **PII** | Names, SSNs, health records, email addresses | No — never |
+| Risk level | Examples | Send via Stanford API? |
+|------------|----------|------------------------|
+| 🟢 **Low** | Published papers, open datasets | Yes |
+| 🟡 **Moderate** | Unpublished research, FERPA records, DUA-covered data | Yes, check your DUA/IRB |
+| 🔴 **High (incl. PHI)** | SSNs, financial account numbers, health records | Yes, the gateway is approved for it (subject to your DUA) |
 
-When in doubt: anonymize a test subset before sending real data through any API.
+The Stanford gateway clears all three levels because it stays inside Stanford's perimeter. A **third-party** API (not Stanford's) is Low-risk or public data only. More on choosing paths in [The Crucible](../human-vs-llm/).
 
 <label class="quest-check"><input type="checkbox" data-room="d2-key-vault" data-key="main"> Main Quest complete</label>
 

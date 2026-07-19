@@ -67,18 +67,35 @@ def check_gate_1():
 
 
 def check_gate_2():
-    """Boss Gate 2: results/mood_ring.json with at least 5 entries."""
-    f = REPO_ROOT / "results" / "mood_ring.json"
+    """Boss Gate 2: results/genre_verdicts.json with >= 10 verdicts, each carrying a
+    predicted genre, a valid certainty (0-100), and a human-review flag."""
+    f = REPO_ROOT / "results" / "genre_verdicts.json"
     if not f.exists():
-        return False, "results/mood_ring.json not found"
+        return False, "results/genre_verdicts.json not found"
     try:
         data = json.loads(f.read_text())
-        entries = data if isinstance(data, list) else data.get("results", [])
-        if len(entries) < 5:
-            return False, f"mood_ring.json has {len(entries)} entries — need at least 5"
-        return True, f"{len(entries)} entries found"
     except json.JSONDecodeError as e:
-        return False, f"mood_ring.json is not valid JSON: {e}"
+        return False, f"genre_verdicts.json is not valid JSON: {e}"
+
+    entries = data if isinstance(data, list) else data.get("results", [])
+    if len(entries) < 10:
+        return False, f"genre_verdicts.json has {len(entries)} verdicts — need at least 10"
+
+    required = {"predicted_genre", "certainty", "needs_human_review"}
+    for i, entry in enumerate(entries):
+        if not isinstance(entry, dict):
+            return False, f"verdict {i} is not a JSON object"
+        missing = required - entry.keys()
+        if missing:
+            return False, f"verdict {i} is missing key(s): {', '.join(sorted(missing))}"
+        if "title" not in entry and "id" not in entry:
+            return False, f"verdict {i} needs a 'title' or 'id'"
+        c = entry["certainty"]
+        if not isinstance(c, (int, float)) or isinstance(c, bool) or not 0 <= c <= 100:
+            return False, f"verdict {i} has certainty {c!r} — must be a number 0-100"
+
+    flagged = sum(1 for e in entries if e.get("needs_human_review"))
+    return True, f"{len(entries)} verdicts; {flagged} flagged for human review"
 
 
 def check_gate_3():
