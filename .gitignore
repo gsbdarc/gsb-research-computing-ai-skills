@@ -25,6 +25,10 @@ __pycache__/
 .venv/
 venv/
 .env
+.ipynb_checkpoints/
+
+# Potion Brawl (generated artifacts — the code + requirements.txt are the source)
+data/potion_brawl/output/
 
 # SLURM job output (regenerated in class; results/ stays tracked -- it holds graded deliverables)
 logs/
@@ -34,6 +38,3 @@ node_modules/
 bot/.dev.vars
 bot/.wrangler/
 bot/dist/
-
-# Jupyter
-.ipynb_checkpoints/
