@@ -63,9 +63,11 @@ Every day adds a layer to one research pipeline. The dataset: SEC Form 3 filings
 ### Core Concepts
 - JupyterHub: brief orientation; notebooks vs. scripts — scripts are the primary workflow
 - Python environments: `$PATH`, `module load`, `venv`, `pip`, reproducibility
+- Reproducibility in practice: rebuild a complex project from `requirements.txt` in a fresh venv (the Potion Brawl example in The Venv Forge) — same recipe, same result, any machine
 - Stanford AI Playground: web GUI and API gateway; what leaves the cluster; tokens, costs, context windows
 - Secure key management: `.env`, `python-dotenv`, `.gitignore`
 - Structured LLM output: Pydantic models and validation
+- LLM-as-a-judge: have a model self-evaluate with an agreement + confidence score, then flag low-confidence outputs for human review — the escalation *policy lives in your code, not the prompt* (auditable)
 - AI coding agents at Stanford: data privacy, security, best practices *(discussion)*
 
 ### Main Quests
@@ -73,12 +75,13 @@ Every day adds a layer to one research pipeline. The dataset: SEC Form 3 filings
 | # | Quest |
 |---|-------|
 | 1 | Open JupyterHub briefly; write and run a Python script from the terminal |
-| 2 | Understand `$PATH`; create venv; install packages; register Jupyter kernel |
+| 2 | Understand `$PATH`; create venv; install packages; register Jupyter kernel; rebuild a complex script from `requirements.txt` to see reproducibility |
 | 3 | Explore Stanford AI Playground web GUI |
 | 4 | Load API key from `.env`; initialize OpenAI-compatible client |
 | 5 | First API call: extract fields from one SEC filing; validate with Pydantic; save to JSON |
 | 6 | Discussion: AI coding agents at Stanford — data privacy, security, best practices |
-| 7 | Update `README.md` with pipeline description; commit and push | 
+| 7 | Update `README.md` with pipeline description; commit and push |
+| Boss Gate 2 *(optional capstone)* | The Genre Tribunal: predict a movie's genre → judge the prediction (agreement + certainty) → flag `needs_human_review` in your code → commit `results/genre_verdicts.json` |
 
 ### Side Quests *(optional)*
 - Prompt engineering: system vs. user messages, temperature, reasoning

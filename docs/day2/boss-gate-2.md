@@ -38,7 +38,7 @@ The boss doesn't care about your plan, only your output. Ten films, two models, 
 > git push
 > ```
 
-Run it from the **repo root** (`~/rf-bootcamp-2026`) so that `data/top_rated_movies.csv` and `results/genre_verdicts.json` both resolve, and so the gate's grader finds your output.
+Run it from the **repo root** (`~/rf-bootcamp-2026`) so that `data/top_rated_movies.csv` and `results/genre_verdicts.json` both resolve.
 {: .tip }
 
 ---

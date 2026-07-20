@@ -64,7 +64,7 @@ That's it — the push saves your work and updates your site and the leaderboard
 | Boss Gate | Deliverables |
 |-----------|--------------|
 | **Gate 1** | `signature_spell.txt` |
-| **Gate 2** | `results/mood_ring.json` |
+| **Gate 2** | `results/genre_verdicts.json` |
 | **Gate 3** | `slurm/extract_form_3_one_file.slurm` · `README.md` |
 | **Gate 4** | `results/great_scroll_sweep.csv` · `results/comparison.csv` · `README.md` |
 
@@ -82,6 +82,6 @@ That's it — the push saves your work and updates your site and the leaderboard
 | Floor | Day | Skills |
 |-------|-----|--------|
 | 1 — The Gatehouse | Day 1 | CLI · SSH · Yens file system · Git · Claude Code |
-| 2 — The Alchemist's Lab | Day 2 | JupyterHub · Python envs · AI Playground · Secure key management · Pydantic · AI agents & data privacy |
+| 2 — The Alchemist's Lab | Day 2 | JupyterHub · Python envs & reproducible venvs · AI Playground · Secure key management · Pydantic · LLM-as-a-judge · AI agents & data privacy |
 | 3 — The SLURM Mines | Day 3 | SLURM · Resource estimation · Job lifecycle · Job monitoring |
 | 4 — The GPU Fortress | Day 4 | Job arrays · GPU tiers · Local LLMs · OpenAI-compatible API · Human vs LLM |
