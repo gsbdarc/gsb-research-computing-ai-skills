@@ -42,6 +42,7 @@ sequencing addresses.
     - **Exercise:** Submitting a simple job to the GPU partition (see [`h200-chamber.md`](h200-chamber.md))
     - **Exercise:** Running an LLM on the Yens (see [`summoning-circle.md`](summoning-circle.md))
     - Choosing between LLMs on the Yens in practice (see [`engine-room.md`](engine-room.md))
+    - **Demonstrate switching model calls:** all three endpoints (local model, Stanford AI Playground, third-party) speak the OpenAI-compatible API, so swapping is just changing `base_url` (+ `model`/`api_key`) — the rest of the code is identical. Comes *after* running a local LLM (need a second endpoint to switch to), and sets up the two-model capstone (§6). Good candidate for its own small hands-on page.
 
 5. **LLM failure modes**
     - Rules of thumb for validating LLM outputs (e.g., comparing between models; see [`engine-room.md`](engine-room.md))
