@@ -46,6 +46,15 @@ echo "Task $SLURM_ARRAY_TASK_ID processing: $FILING"
 python3 ~/rf-bootcamp-2026/scripts/extract_form_3_cli.py "$FILING" "/scratch/shared/$USER/results/filing_${SLURM_ARRAY_TASK_ID}.json"
 ```
 
+{: .tip }
+> **Throttle concurrency with `%N`.** As written, `--array=1-100` lets SLURM run as many of the 100 tasks at once as the partition allows — and since each task calls the Stanford AI Playground, dozens of simultaneous requests can trip the API's rate limit and fail. Cap how many run *at the same time* by appending `%N` to the array range:
+>
+> ```bash
+> #SBATCH --array=1-100%10   # all 100 tasks still run, but at most 10 at once
+> ```
+>
+> As each task finishes, the next queued one starts. A lower `%N` is gentler on rate limits (and shared-cluster neighbors) at the cost of longer wall-clock — tune it to whatever the binding constraint is.
+
 **Part 3 — Submit and monitor:**
 
 ```bash
@@ -100,14 +109,14 @@ python3 scripts/merge_results.py
 ```
 
 {: .tip }
-> **Automate the merge with a job dependency.** Here you run the merge by hand once the array finishes. You can instead submit it as a *dependent* job that starts automatically only if every array task succeeds — the same `--dependency=afterok` trick you used to chain jobs in [Day 3](../../day3/ticket-rail/):
+> **Automate the merge with a job dependency.** Here you run the merge by hand once the array finishes. You can instead submit it as a *dependent* job — the same job-chaining trick from [Day 3](../../day3/ticket-rail/), where you used `--dependency=afterok`. One nuance for arrays: `afterok:<arrayjobid>` requires *every* task to succeed, so a single failed filing would stop the merge from ever running. Since `merge_results.py` is built to tolerate missing outputs (it writes what succeeded and lists the failures), use `afterany` instead — run the merge once all tasks *finish*, pass or fail:
 >
 > ```bash
-> ARRAY_ID=$(sbatch --parsable jobs/array_extract.sh)           # capture the array job ID
-> sbatch --dependency=afterok:$ARRAY_ID jobs/merge_results.sh   # runs only after the array succeeds
+> ARRAY_ID=$(sbatch --parsable jobs/array_extract.sh)            # capture the array job ID
+> sbatch --dependency=afterany:$ARRAY_ID jobs/merge_results.sh   # runs once all tasks finish
 > ```
 >
-> Wrap `merge_results.py` in a short SLURM script (`jobs/merge_results.sh`) and the two steps become one hands-off pipeline.
+> Wrap `merge_results.py` in a short SLURM script (`jobs/merge_results.sh`) and the two steps become one hands-off pipeline. If the merge reports failures, resubmit the array (finished tasks skip themselves) and re-run the merge.
 
 **Part 5 — Verify the merged file:**
 
