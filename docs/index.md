@@ -65,8 +65,8 @@ Every completed quest adds to your **Quest Log** (shown in the widget, bottom-le
   <div class="floor-skills">SLURM &middot; Resource estimation &middot; Job lifecycle &middot; Job monitoring</div>
 
   <div class="floor-card">
-    <h3><a href="{{ '/day4/' | relative_url }}">Floor 4 — The GPU Fortress</a></h3>
+    <h3><a href="{{ '/day4/' | relative_url }}">Floor 4 — Parallelization &amp; GPUs</a></h3>
     <p>Levels 9–10 &nbsp;·&nbsp; 7 rooms + Boss Gate</p>
   </div>
-  <div class="floor-skills">Job arrays &middot; GPU tiers &middot; Local LLMs &middot; OpenAI-compatible API &middot; Human vs LLM</div>
+  <div class="floor-skills">Job arrays &middot; GPU tiers &middot; Local LLMs &middot; OpenAI-compatible API &middot; LLM failure modes</div>
 </div>
