@@ -1,23 +1,23 @@
 ---
 layout: default
-title: "Failed Order"
-parent: "Day 3 — The Hearth"
+title: "Debugging Failed Jobs"
+parent: "Day 3 — Cluster Computing"
 nav_order: 8
 permalink: /day3/failed-order/
 ---
 
-# Failed Order
+# Debugging Failed Jobs
 
 <div data-room-id="d3-watch-tower"></div>
 
 ---
 
-## Main Exercise — Debug and Fix a Real Failure
+## Exercise — Debug and Fix a Real Failure
 
 We've staged a job that failed for a past cohort. Your task: submit it, watch it fail, read the logs to find out *why*, fix it, and resubmit until it completes.
 
 {: .important }
-> **Exercise:** Debug `slurm/last_year_bug.slurm` (which runs `scripts/last_year_bug.py`) until it shows `COMPLETED`.
+> **Task:** Debug `slurm/last_year_bug.slurm` (which runs `scripts/last_year_bug.py`) until it shows `COMPLETED`.
 
 **Step 1 — Submit the broken job**
 
@@ -84,7 +84,7 @@ When your job shows `COMPLETED` — put a **🟢 green sticky** on your laptop.
 {: .note }
 > Finished early? Try one or both of these.
 
-**Bonus 1 — Audit your resource usage**
+**Optional practice — Audit your resource usage**
 
 After your job completes, compare what you requested vs what you actually used:
 
@@ -107,7 +107,7 @@ Did you over-request memory? Use these numbers to calibrate your next job's `--m
 
 </details>
 
-**Bonus 2 — Watch a job live**
+**Optional practice — Watch a job live**
 
 While your job is running (status `R`), you can follow the output as it writes:
 
@@ -126,7 +126,7 @@ Ctrl-C to stop following. This is useful for long jobs where you want to see pro
 
 </details>
 
-**Bonus 3 — Decode the exit code**
+**Optional practice — Decode the exit code**
 
 ```bash
 sacct -j JOBID --format=JobID,ExitCode,State
@@ -143,7 +143,7 @@ An `ExitCode` like `137` often means the job was killed for using too much memor
 
 </details>
 
-**Bonus 4 — Trigger an OOM on purpose**
+**Optional practice — Trigger an OOM on purpose**
 
 Edit your `#SBATCH --mem` directive down to something clearly too small (e.g. `--mem=10M`) and resubmit. Watch it get killed for running out of memory, then compare its `sacct` `State` and `.err` signature to the bug you fixed earlier — can you tell an OOM kill apart from a code bug at a glance now?
 
@@ -156,7 +156,7 @@ Edit your `#SBATCH --mem` directive down to something clearly too small (e.g. `-
 
 </details>
 
-**Bonus 5 — Trigger a timeout on purpose**
+**Optional practice — Trigger a timeout on purpose**
 
 The other way jobs die is running out of *time*. Submit a job that asks for far less time than it needs — `--wrap` runs an inline command as a throwaway job:
 

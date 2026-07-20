@@ -1,21 +1,21 @@
 ---
 layout: default
-title: "Boss Gate 3"
-parent: "Day 3 — The Hearth"
+title: "Day 3 Challenge"
+parent: "Day 3 — Cluster Computing"
 nav_order: 10
 permalink: /day3/boss-gate-3/
 ---
 
-# Boss Gate 3
+# Day 3 Challenge
 
 ---
 
-## Boss Gate 3 — Scale Up to a Batch
+## The Challenge — Scale Up to a Batch
 
-In The Ticket Rail you ran the extraction on a *single* filing. Now scale it to a **batch of ~10**: `scripts/extract_form_3_batch.py` loops over every filing listed in `data/aws_links.csv` and writes one JSON per filing into `results/`.
+In Writing & Submitting a SLURM Job you ran the extraction on a *single* filing. Now scale it to a **batch of ~10**: `scripts/extract_form_3_batch.py` loops over every filing listed in `data/aws_links.csv` and writes one JSON per filing into `results/`.
 
 1. Write `slurm/extract_form_3_batch.slurm` — shebang, `#SBATCH` directives, `cd`, `source .venv/bin/activate`, then `python scripts/extract_form_3_batch.py`.
-2. **Re-estimate your resources.** You profiled *one* filing back in The Scales. The batch processes filings one at a time, so **RAM stays about the same**, but **wall-clock time scales with the number of filings** — set `#SBATCH --time` to roughly single-file time × the number of filings, plus headroom. Don't just reuse your single-file number.
+2. **Re-estimate your resources.** You profiled *one* filing back in Profiling Resource Usage. The batch processes filings one at a time, so **RAM stays about the same**, but **wall-clock time scales with the number of filings** — set `#SBATCH --time` to roughly single-file time × the number of filings, plus headroom. Don't just reuse your single-file number.
 3. Submit with `sbatch`; confirm it enters the queue with `squeue --me`.
 4. When it finishes, check `sacct -j JOBID --format=JobID,State,Elapsed,MaxRSS` and confirm `results/` has one JSON per filing.
 5. Update `README.md` — how to run the batch, the resources you requested and *why*, and where the output lands.
@@ -23,7 +23,7 @@ In The Ticket Rail you ran the extraction on a *single* filing. Now scale it to 
 
 ```bash
 git add slurm/extract_form_3_batch.slurm README.md
-git commit -m "Boss Gate 3: batch SLURM submission complete"
+git commit -m "Day 3 Challenge: batch SLURM submission complete"
 git push
 ```
 
@@ -37,7 +37,7 @@ Your commit should include:
 
 ---
 
-## Side Quest — Feel the Pain Point
+## Optional practice — Feel the Pain Point
 
 Your batch ran the ~10 filings **one after another**. Now imagine hundreds or thousands: even in a batch, they run serially, so the wall-clock time just keeps climbing. Add a few more URLs to `data/aws_links.csv`, resubmit, and watch `Elapsed` grow roughly linearly with the file count. Running them **in parallel** — many at once instead of one at a time — is exactly what Day 4's job arrays exist to do.
 
@@ -58,13 +58,13 @@ Let your instructor see where you landed today. You already have Claude Code ope
 
 In your terminal, inside `~/rf-bootcamp-2026`, tell Claude something like:
 
-> Look at the `DAYS` list in `docs/assets/js/quest-log.js` to find the exact `room.key` names for Day 3. In `quest_log.json` at my repo root (create it if it doesn't exist yet), set those keys to `true` for everything I completed today: [list what you finished, e.g. "the Head Chef and Data Mine main quests, and Boss Gate 3"]. Then commit and push it to my fork.
+> Look at the `DAYS` list in `docs/assets/js/quest-log.js` to find the exact `room.key` names for Day 3. In `quest_log.json` at my repo root (create it if it doesn't exist yet), set those keys to `true` for everything I completed today: [list what you finished, e.g. "the profiling and data-exploration exercises, and the Day 3 Challenge"]. Then commit and push it to my fork.
 
-The leaderboard updates within 2 minutes once Claude pushes. Your instructor can see how many quests you completed and whether you cleared the Boss Gate.
+The leaderboard updates within 2 minutes once Claude pushes. Your instructor can see how many quests you completed and whether you completed the Day 3 Challenge.
 
 ---
 
-## Skills This Boss Gate Tests
+## Skills This Challenge Tests
 
 - Write a SLURM job script from scratch with `#SBATCH` directives grounded in real profiling data
 - Scale a single-file job to a batch and re-estimate resources (time scales with the workload; memory often doesn't)

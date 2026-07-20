@@ -1,26 +1,26 @@
 ---
 layout: default
-title: "The Recipe Book"
-parent: "Day 3 — The Hearth"
+title: "Documenting Your Pipeline"
+parent: "Day 3 — Cluster Computing"
 nav_order: 9
 permalink: /day3/recipe-book/
 ---
 
-# The Recipe Book
+# Documenting Your Pipeline
 
 <div data-room-id="d3-chronicle"></div>
 
 ---
 
-## Main Exercise — Write a README
+## Exercise — Write a README
 
 Write your README while the code is still fresh — before you close the terminal. Your memory of every flag and design choice is sharpest right now.
 
 {: .important }
-> **Exercise:** Write a `README.md` for your Day 3 pipeline.
+> **Task:** Write a `README.md` for your Day 3 pipeline.
 
 {: .note }
-> This is the same `README.md` you started in The Storage Pantry and added to in The Scales — keep those sections and add this pipeline writeup alongside them, don't start a new file.
+> This is the same `README.md` you started in Exploring Cluster Usage Data and added to in Profiling Resource Usage — keep those sections and add this pipeline writeup alongside them, don't start a new file.
 
 Create `README.md` in your repo root (or a `day3/` subdirectory):
 
@@ -78,12 +78,12 @@ Input: SEC Form 3 filings from EDGAR (public domain).
 
 ---
 
-## Side Quests
+## Optional practice
 
 {: .note }
 > Finished early? Try one or both of these.
 
-**Side Quest — Have Claude Stress-Test Your README**
+**Optional practice — Have Claude Stress-Test Your README**
 
 Ask Claude Code to read your README as if it were a labmate seeing this pipeline for the first time, and to flag anything that would stop them from rerunning it without asking you a question. Fix at least one thing it flags.
 
@@ -96,7 +96,7 @@ Ask Claude Code to read your README as if it were a labmate seeing this pipeline
 
 </details>
 
-**Side Quest — Explain It to Your PI**
+**Optional practice — Explain It to Your PI**
 
 Write 2-3 sentences explaining what this pipeline does for a non-technical reader — your PI, your committee, an IRB reviewer. No SLURM, no flags, no jargon.
 

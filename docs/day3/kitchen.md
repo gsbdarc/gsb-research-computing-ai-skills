@@ -1,12 +1,12 @@
 ---
 layout: default
-title: "The Kitchen"
-parent: "Day 3 — The Hearth"
+title: "Compute Environments"
+parent: "Day 3 — Cluster Computing"
 nav_order: 2
 permalink: /day3/kitchen/
 ---
 
-# The Kitchen
+# Compute Environments
 
 <div data-room-id="d3-kitchen"></div>
 
@@ -142,7 +142,7 @@ The cloud is a rented kitchen — and it's **just for you**. Unlike the Yens, yo
 
 ---
 
-## Main Quest — Class Participation
+## Exercise — Class Participation
 
 {: .important }
 > 🥪 **Demo + Discussion:** 🥪 We will all participate in a class demo together. 🥪
@@ -171,12 +171,12 @@ The cloud is a rented kitchen — and it's **just for you**. Unlike the Yens, yo
 
 ---
 
-## Side Quests
+## Optional practice
 
 {: .note }
 > Finished early? Try one or both of these.
 
-**Side Quest 1 — Know your own machine**
+**Optional practice 1 — Know your own machine**
 
 Check your own laptop's CPU core count and RAM, and compare them to a Yen node (256 cores). On Mac: `system_profiler SPHardwareDataType`. On Windows: Task Manager → Performance tab. On Linux: `nproc` and `free -h`.
 
@@ -189,7 +189,7 @@ Check your own laptop's CPU core count and RAM, and compare them to a Yen node (
 
 </details>
 
-**Side Quest 2 — Price the rented kitchen**
+**Optional practice 2 — Price the rented kitchen**
 
 Look up on-demand pricing for a cloud VM comparable to a Yen node (similar CPU/RAM), and estimate what it would cost to run your Day 2 extraction job there for an hour. Grant budgets aren't infinite — this is a real judgment call you'll make in your own research.
 
@@ -202,9 +202,9 @@ Look up on-demand pricing for a cloud VM comparable to a Yen node (similar CPU/R
 
 </details>
 
-**Side Quest 3 — Laptop vs. a Yen node**
+**Optional practice 3 — Laptop vs. a Yen node**
 
-You looked up your laptop's specs in Side Quest 1. Enter them below to see just how much bigger one Yen node is.
+You looked up your laptop's specs in the *Know your own machine* practice above. Enter them below to see just how much bigger one Yen node is.
 
 <style>
 .yen-widget { border: 1px solid #ddd; border-radius: 6px; padding: 1rem 1.25rem; margin: 1rem 0; }
