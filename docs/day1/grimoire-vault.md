@@ -1,34 +1,34 @@
 ---
 layout: default
-title: "The Grimoire Vault"
-parent: "Day 1 — The Gatehouse"
+title: "Bulk File Operations"
+parent: "Day 1 — Foundations"
 nav_order: 3
 permalink: /day1/grimoire-vault/
 ---
 
-# The Grimoire Vault
+# Bulk File Operations
 
 <div data-room-id="d1-grimoire-vault"></div>
 
-*The vault breathes cold. Frost coats the stone walls and three hundred spell scrolls lie scattered across the chamber floor in total chaos — each one named in a cryptic cipher like `fireball_fire_3_offensive_meteor.spell`. The Archmage's voice echoes from somewhere above: "Sorted. Now. Before the ice takes your hands." You have no loops. You have no Python. You have the shell — and that is enough.*
+This room teaches you how to organize hundreds of files at once using the shell — no loops or Python required. You start with 300 disorganized files, each named in a cryptic format like `fireball_fire_3_offensive_meteor.spell`, and impose a clean structure on them.
 
 ---
 
-## 🗡️ Main Quest
+## Exercise
 
-Three hundred spell files. No order. No organization. A real research dataset looks exactly like this — files from a vendor, a scrape, an instrument dump. Your job before any analysis is to understand what you have and impose structure on it.
+Three hundred files. No order. No organization. A real research dataset often looks exactly like this — files from a vendor, a scrape, an instrument dump. Your job before any analysis is to understand what you have and impose structure on it.
 
 {: .important }
-> **Quest:** Organize 300 spell files into a clean directory structure using the explore → plan → execute → document framework.
+> **Task:** Organize 300 files into a clean directory structure using the explore → plan → execute → document framework.
 
 **Step 1 — Download and unzip**
 
-Run this in your terminal (Git Bash on Windows, Terminal on Mac):
+Download the dataset straight to your Desktop and unzip it (Git Bash on Windows, Terminal on macOS):
 
 ```bash
-cd ~/Desktop
+cd ~/Desktop                              # go to Desktop
 curl -L https://raw.githubusercontent.com/gsbdarc/rf-bootcamp-2026/main/docs/assets/data/grimoire.zip -o grimoire.zip
-unzip grimoire.zip
+unzip grimoire.zip                        # unzip the archive
 ```
 
 ---
@@ -39,13 +39,41 @@ Before touching anything, understand the data:
 
 ```bash
 ls grimoire/             # see the files
-ls grimoire/ | wc -l     # how many are there?
-ls grimoire/ | head -20  # look at the first 20 names
 ```
 
 The filename format is: `name_ELEMENT_tier_type_mastery.spell`
 
 What elements do you see? What patterns are there? What would make a logical organization?
+
+**Ask questions with wildcards.** The `*` wildcard matches any run of characters, so you can list just the files whose names contain a given piece. This is the most useful tool for getting a feel for a messy dataset:
+
+```bash
+ls grimoire/*_fire_*        # every file with _fire_ in its name
+ls grimoire/*_5_*           # every tier-5 file
+ls grimoire/*_healing_*     # every healing file
+ls grimoire/*.spell         # every .spell file (all of them)
+```
+
+`*` can go anywhere in the pattern, and you can use more than one — `*_fire_*_healing_*` matches fire healing files. Try a few combinations.
+
+**Count and preview with a pipe.** The `|` character is a **pipe**: it takes the output of one command and feeds it as the input to the next. That lets you build a question out of small pieces. Two commands pair especially well with `ls`:
+
+- `wc -l` counts lines
+- `head -N` shows only the first N lines
+
+```bash
+ls grimoire/ | wc -l              # how many files in total?
+ls grimoire/ | head -20           # just the first 20 names
+ls grimoire/*_fire_* | wc -l      # how many fire files?
+ls grimoire/*_5_* | wc -l         # how many tier-5 files?
+```
+
+Read a pipeline left to right: *list the fire files, then count how many lines that produces.* You'll reach for this pattern — `ls` a subset, pipe it to a counter or filter — constantly in real work.
+
+{: .note }
+> 🟢 **Green sticky** = I'm done and ready &nbsp;&nbsp; 🔴 **Red sticky** = I need help
+>
+> Put a sticky note on your laptop lid so instructors can see where you are.
 
 ---
 
@@ -60,7 +88,7 @@ What elements do you see? What patterns are there? What would make a logical org
 - Group by **tier** (`tier1/`, `tier2/`, … `tier5/`)
 - Group by **type** (`offensive/`, `defensive/`, `utility/`, `healing/`)
 
-We will go with **element** — element names appear in every filename, so wildcard matching is clean and unambiguous.
+We will go with **element** — it is the most natural grouping for this dataset and maps cleanly to the filename structure.
 
 </details>
 
@@ -68,7 +96,7 @@ We will go with **element** — element names appear in every filename, so wildc
 
 **Step 4 — Try by hand first**
 
-Before using the terminal, open **Finder** (Mac) or **File Explorer** (Windows). Navigate to `Desktop/grimoire/`. Try moving 10 fire spells into a new `fire/` folder by clicking and dragging.
+Before using the terminal, open **Finder** (Mac) or **File Explorer** (Windows). Navigate to `Desktop/grimoire/`. Create a `fire/` folder and try moving 10 fire files into it by clicking and dragging.
 
 Now imagine doing that for all 300 files across 5 elements. How long would it take? What happens when you get 10,000 files next year?
 
@@ -83,11 +111,11 @@ That is exactly what the terminal solves. This is the first skill you will use i
 
 **Step 5 — Execute: sort with wildcards**
 
-The `*` wildcard matches any characters. `*_fire_*` matches every filename that has `_fire_` anywhere in it — all 60 fire spells at once:
+Now put the wildcard to work. `*_fire_*` matches every filename with `_fire_` in it — all 60 fire files — so you can move them into a folder in a single command:
 
 ```bash
 cd ~/Desktop/grimoire
-mkdir -p fire ice lightning earth wind   # -p skips any folder that already exists
+mkdir fire ice lightning earth wind
 
 mv *_fire_*.spell fire/
 mv *_ice_*.spell ice/
@@ -103,44 +131,13 @@ mv *_wind_*.spell wind/
 
 ---
 
-**Challenge — now try it by type**
-
-Your spells are sorted into element folders. But a researcher might also want to find all offensive spells across every element at once.
-
-Using `cp` (not `mv`) — so files stay in their element folders — organize the spells by type into `offensive/`, `defensive/`, `utility/`, `healing/` folders.
-
-*Think before you type: what wildcard would match all offensive spells regardless of which element folder they are in?*
-
-<details markdown="1">
-<summary>Solution (expand after trying)</summary>
-
-```bash
-mkdir offensive defensive utility healing
-
-cp */*_offensive_*.spell offensive/
-cp */*_defensive_*.spell defensive/
-cp */*_utility_*.spell utility/
-cp */*_healing_*.spell healing/
-```
-
-`*/*` reaches into every immediate subdirectory at once — so `*/*_offensive_*` matches offensive spells inside fire/, ice/, lightning/, earth/, and wind/ all in one command. Using `cp` instead of `mv` creates actual copies — the original stays in its element folder and a duplicate is placed in the type folder. Both files are independent; changing one does not affect the other.
-
-</details>
-
-{: .note }
-> 🟢 **Green sticky** = I'm done and ready &nbsp;&nbsp; 🔴 **Red sticky** = I need help
->
-> Put a sticky note on your laptop lid so instructors can see where you are.
-
----
-
 **Step 6 — Verify**
 
-The `|` character is called a **pipe**. It takes the output of one command and feeds it as input to the next. `wc -l` counts lines — so `ls fire/ | wc -l` asks: *list the files in fire/, then count how many lines that produces.*
+Use the pipe from Step 2 to check your work — `ls fire/ | wc -l` lists the files in `fire/` and counts them:
 
 ```bash
-ls fire/ | wc -l      # count fire spells
-ls ice/ | wc -l       # count ice spells
+ls fire/ | wc -l      # count fire files
+ls ice/ | wc -l       # count ice files
 ls lightning/ | wc -l
 ls earth/ | wc -l
 ls wind/ | wc -l
@@ -150,20 +147,20 @@ ls wind/ | wc -l
 You can also count everything at once:
 
 ```bash
-ls {fire,ice,lightning,earth,wind}/*.spell | wc -l  # total across all five element folders — should be 300
+ls */*.spell | wc -l  # total files across all element folders
 ```
 
 ---
 
 **Task: Keeping Track**
 
-Create a file listing the names of all tier-3 spells in the grimoire.
+Create a file listing the names of all tier-3 files in the dataset.
 
 The `grep` command searches for a pattern in input. Combined with `ls` and a pipe, you can filter filenames by any part of their name:
 
 ```bash
-ls {fire,ice,lightning,earth,wind}/*.spell | grep "_3_"          # list all tier-3 spells (element folders only)
-ls {fire,ice,lightning,earth,wind}/*.spell | grep "_3_" > tier3_spells.txt   # save the list
+ls */*.spell | grep "_3_"          # list all tier-3 files
+ls */*.spell | grep "_3_" > tier3_spells.txt   # save the list to a file
 ```
 
 The `>` operator redirects output to a file instead of printing it to the screen. If the file already exists it is overwritten; use `>>` to append instead.
@@ -172,7 +169,7 @@ The `cat` command displays the contents of a file:
 
 ```bash
 cat tier3_spells.txt               # view the file you just created
-wc -l tier3_spells.txt             # how many tier-3 spells are there?
+wc -l tier3_spells.txt             # how many tier-3 files are there?
 ```
 
 {: .note }
@@ -195,7 +192,7 @@ Write something like:
 ```
 # Grimoire Archive
 
-300 spell files sorted by element into subdirectories:
+300 files sorted by element into subdirectories:
 fire/, ice/, lightning/, earth/, wind/
 
 Each filename follows the format:
@@ -206,20 +203,46 @@ Organized: [today's date]
 
 Save with `Ctrl+O`, exit with `Ctrl+X`.
 
-This habit — documenting your decisions while the details are still fresh — is one of the most useful things you can do for your future self. You will thank yourself in six months.
+This habit — documenting your organization decisions while they are fresh — is one of the highest-leverage things you can do for your research career. You will thank yourself in six months.
 
 {: .note }
-> You will transfer your sorted grimoire to the Yens in [The Scroll Transfer](../scroll-transfer/) room. Keep this directory — you need it there.
+> You will transfer your sorted files to the Yens in [Transferring Files (scp)](../scroll-transfer/). Keep this directory — you need it there.
 
-<label class="quest-check"><input type="checkbox" data-room="d1-grimoire-vault" data-key="main"> Main Quest complete</label>
+<label class="quest-check"><input type="checkbox" data-room="d1-grimoire-vault" data-key="main"> Exercise complete</label>
 
 ---
 
-## 📦 Side Quest
+## Optional practice
+
+**Sort by type as well**
+
+Your files are now sorted into element folders. A researcher might also want to find all offensive files across every element at once.
+
+Using `cp` (not `mv`) — so files stay in their element folders — organize the files by type into `offensive/`, `defensive/`, `utility/`, `healing/` folders.
+
+*Think before you type: what wildcard would match all offensive files regardless of which element folder they are in?*
+
+<details markdown="1">
+<summary>Solution (expand after trying)</summary>
+
+```bash
+mkdir offensive defensive utility healing
+
+cp */*_offensive_*.spell offensive/
+cp */*_defensive_*.spell defensive/
+cp */*_utility_*.spell utility/
+cp */*_healing_*.spell healing/
+```
+
+`*/*` reaches into every immediate subdirectory at once — so `*/*_offensive_*` matches offensive files inside fire/, ice/, lightning/, earth/, and wind/ all in one command. Using `cp` instead of `mv` means each file now lives in two places simultaneously: its element folder and its type folder.
+
+</details>
+
+---
 
 **Find the Rarest Combination**
 
-The filename format is `name_element_tier_type_mastery.spell`. Find the least common element + type combination across all 300 spells.
+The filename format is `name_element_tier_type_mastery.spell`. Find the least common element + type combination across all 300 files.
 
 The `cut` command splits each line on a delimiter and extracts specific fields. `sort` sorts lines alphabetically. `uniq -c` counts consecutive identical lines (so sort first). `sort -n` sorts numerically.
 
@@ -234,4 +257,4 @@ ls */*.spell | cut -d'_' -f2,4 | sort | uniq -c | sort -n
 
 The rarest combinations appear at the top. What do you find?
 
-<label class="quest-check"><input type="checkbox" data-room="d1-grimoire-vault" data-key="side1"> Side Quest complete</label>
+<label class="quest-check"><input type="checkbox" data-room="d1-grimoire-vault" data-key="side1"> Optional practice complete</label>

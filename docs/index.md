@@ -7,10 +7,19 @@ permalink: /
 
 # The DARC Dungeon
 
-*You stand at the entrance of an ancient tower. Four floors rise above you, each sealed with an Archmage's crest. Somewhere inside, the secrets of computational research await — CLI runes carved into stone walls, SLURM forges humming in the depths, GPU engines blazing on the highest floor.*
+## Prerequisites
+
+You can read the site and track your Quest Log with nothing installed. To do the hands-on work, you'll need a few things set up — your instructor can help with any of these in class:
+
+- **A Claude account.** Stanford provides Claude for Education, free for most people. Request access at [uit.stanford.edu/service/claude](https://uit.stanford.edu/service/claude).
+- **Terminal access.** On **macOS**, use the built-in **Terminal** app. On **Windows**, install [Git Bash](https://git-scm.com/downloads) and open it from the Start menu.
+- **A GitHub account.** Free — [sign up](https://github.com/signup) if you don't already have one.
+- **Access to the Yen servers.** Stanford GSB's research cluster. Faculty, PhD students, post-docs, and research fellows have access by default; others need a SUNet ID and faculty sponsorship. See [Access the Yens](https://rcpedia.stanford.edu/_getting_started/how_access_yens/) on RCpedia.
+
+---
 
 {: .important }
-> **Day 1 — Do this first**
+> **New here? Start with Day 1 → The Gatehouse.**
 >
 > 1. **Fork this repo** — click **Fork** in the top-right corner of the [GitHub page](https://github.com/gsbdarc/rf-bootcamp-2026) to create your own copy
 > 2. **Enable Actions** on your fork — click the **Actions** tab → **"I understand my workflows, go ahead and enable them"**
@@ -20,7 +29,7 @@ permalink: /
 >
 > Once your site is live, put a **🟢 green sticky** on your laptop lid. If you're stuck on any step, put a **🔴 red sticky** up so an instructor can come help.
 >
-> Your site is your quest log for the entire course. Keep it open — every room, exercise, and leaderboard submission happens here.
+> Partway through Day 1, in **The Repository** room, you'll learn git and build your *own* personal copy of this site — the one that carries your leaderboard rank and unlocks each floor as you clear its Boss Gate. Until then, work from right here.
 
 **How the dungeon works**
 
@@ -61,9 +70,3 @@ Every completed quest adds to your **Quest Log** (shown in the widget, bottom-le
   </div>
   <div class="floor-skills">Job arrays &middot; GPU tiers &middot; Local LLMs &middot; OpenAI-compatible API &middot; Human vs LLM</div>
 </div>
-
----
-
-*The gate is open. The torch is lit. Whatever waits inside — the shell that answers in milliseconds, the cluster that never sleeps, the model you'll summon from bare silicon — it is yours to claim.*
-
-*Good luck, adventurer. The dungeon awaits.*

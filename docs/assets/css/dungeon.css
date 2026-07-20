@@ -106,3 +106,10 @@
 }
 .lb-level-title { color: #666; font-size: 0.88em; }
 
+/* Wrap long plain-text code blocks (e.g. Claude Code prompt examples) so they
+   wrap instead of scrolling off-screen. Command blocks (language-bash) are
+   left to scroll, since wrapping a command mid-token hurts readability. */
+.language-plaintext.highlighter-rouge pre.highlight {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
