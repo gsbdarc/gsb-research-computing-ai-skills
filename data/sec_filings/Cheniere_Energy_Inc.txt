@@ -1,0 +1,165 @@
+<SEC-DOCUMENT>0000003570-22-000041.txt : 20220407
+<SEC-HEADER>0000003570-22-000041.hdr.sgml : 20220407
+<ACCEPTANCE-DATETIME>20220407171146
+ACCESSION NUMBER:		0000003570-22-000041
+CONFORMED SUBMISSION TYPE:	3
+PUBLIC DOCUMENT COUNT:		2
+CONFORMED PERIOD OF REPORT:	20220405
+FILED AS OF DATE:		20220407
+DATE AS OF CHANGE:		20220407
+
+REPORTING-OWNER:	
+
+	OWNER DATA:	
+		COMPANY CONFORMED NAME:			PEAK SCOTT BENNETT
+		CENTRAL INDEX KEY:			0001826808
+
+	FILING VALUES:
+		FORM TYPE:		3
+		SEC ACT:		1934 Act
+		SEC FILE NUMBER:	001-16383
+		FILM NUMBER:		22814620
+
+	MAIL ADDRESS:	
+		STREET 1:		1200 SMITH STREET
+		CITY:			HOUSTON
+		STATE:			TX
+		ZIP:			77002
+
+ISSUER:		
+
+	COMPANY DATA:	
+		COMPANY CONFORMED NAME:			Cheniere Energy, Inc.
+		CENTRAL INDEX KEY:			0000003570
+		STANDARD INDUSTRIAL CLASSIFICATION:	NATURAL GAS DISTRIBUTION [4924]
+		IRS NUMBER:				954352386
+		STATE OF INCORPORATION:			DE
+		FISCAL YEAR END:			1231
+
+	BUSINESS ADDRESS:	
+		STREET 1:		700 MILAM ST.
+		STREET 2:		SUITE 1900
+		CITY:			HOUSTON
+		STATE:			TX
+		ZIP:			77002
+		BUSINESS PHONE:		7133755000
+
+	MAIL ADDRESS:	
+		STREET 1:		700 MILAM ST.
+		STREET 2:		SUITE 1900
+		CITY:			HOUSTON
+		STATE:			TX
+		ZIP:			77002
+
+	FORMER COMPANY:	
+		FORMER CONFORMED NAME:	CHENIERE ENERGY INC
+		DATE OF NAME CHANGE:	19960827
+
+	FORMER COMPANY:	
+		FORMER CONFORMED NAME:	BEXY COMMUNICATIONS INC
+		DATE OF NAME CHANGE:	19940314
+
+	FORMER COMPANY:	
+		FORMER CONFORMED NAME:	ALL AMERICAN GROUP OF DELAWARE INC
+		DATE OF NAME CHANGE:	19931004
+</SEC-HEADER>
+<DOCUMENT>
+<TYPE>3
+<SEQUENCE>1
+<FILENAME>wf-form3_164936588470845.xml
+<DESCRIPTION>FORM 3
+<TEXT>
+<XML>
+<?xml version="1.0"?>
+<ownershipDocument>
+
+    <schemaVersion>X0206</schemaVersion>
+
+    <documentType>3</documentType>
+
+    <periodOfReport>2022-04-05</periodOfReport>
+
+    <noSecuritiesOwned>1</noSecuritiesOwned>
+
+    <issuer>
+        <issuerCik>0000003570</issuerCik>
+        <issuerName>Cheniere Energy, Inc.</issuerName>
+        <issuerTradingSymbol>LNG</issuerTradingSymbol>
+    </issuer>
+
+    <reportingOwner>
+        <reportingOwnerId>
+            <rptOwnerCik>0001826808</rptOwnerCik>
+            <rptOwnerName>PEAK SCOTT BENNETT</rptOwnerName>
+        </reportingOwnerId>
+        <reportingOwnerAddress>
+            <rptOwnerStreet1>700 MILAM</rptOwnerStreet1>
+            <rptOwnerStreet2>SUITE 1900</rptOwnerStreet2>
+            <rptOwnerCity>HOUSTON</rptOwnerCity>
+            <rptOwnerState>TX</rptOwnerState>
+            <rptOwnerZipCode>77002</rptOwnerZipCode>
+            <rptOwnerStateDescription></rptOwnerStateDescription>
+        </reportingOwnerAddress>
+        <reportingOwnerRelationship>
+            <isDirector>1</isDirector>
+            <isOfficer>0</isOfficer>
+            <isTenPercentOwner>0</isTenPercentOwner>
+            <isOther>0</isOther>
+            <officerTitle></officerTitle>
+            <otherText></otherText>
+        </reportingOwnerRelationship>
+    </reportingOwner>
+
+    <nonDerivativeTable></nonDerivativeTable>
+
+    <derivativeTable></derivativeTable>
+
+    <footnotes></footnotes>
+
+    <remarks>Mr. Peak, a Managing Partner in The Brookfield Infrastructure Group (&quot;Brookfield&quot;) and Chief Investment Officer for North America, is a member of the board of directors of the issuer. Mr. Peak disclaims beneficial ownership of any securities of the issuer that may be deemed to be beneficially owned by affiliates of Brookfield.
+
+EXHIBIT LIST: EX-24 Power of Attorney</remarks>
+
+    <ownerSignature>
+        <signatureName>/s/ Sean N. Markowitz under POA by Scott Peak</signatureName>
+        <signatureDate>2022-04-07</signatureDate>
+    </ownerSignature>
+</ownershipDocument>
+</XML>
+</TEXT>
+</DOCUMENT>
+<DOCUMENT>
+<TYPE>EX-24
+<SEQUENCE>2
+<FILENAME>ceipoa-peak.htm
+<DESCRIPTION>EXHIBIT 24 - POWER OF ATTORNEY
+<TEXT>
+<!-- Document created using Workiva -->
+<html>
+<body>
+<pre>
+POWER OF ATTORNEY
+
+       Know all by these presents, that the undersigned hereby constitutes and appoints Sean Markowitz and Zach Davis signing singly, the undersigned's true and lawful attorney-in-fact to:
+
+1.    execute for and on behalf of the undersigned, in the undersigned's capacity as a director of Cheniere Energy, Inc. (the "Company"), Forms 3, 4 and 5, pursuant to Section 16(a) of the Securities Exchange Act of 1934 and the rules thereunder, and Form 144, pursuant to Rule 144 under the Securities Act of 1933 and the rules thereunder, if required; and
+
+2.    do and perform any and all acts for and on behalf of the undersigned which may be necessary or desirable to complete and execute any such Form 3, Form 4, Form 5 or Form 144 and timely file such form with the United States Securities and Exchange Commission and any stock exchange or similar authority; and
+
+3.    take any other action of any type whatsoever in connection with the foregoing which, in the opinion of such attorney-in-fact, may be of benefit to, in the best interest of, or legally required by, the undersigned, it being understood that the documents executed by such attorney-in-fact on behalf of the undersigned pursuant to this Power of Attorney shall be in such form and shall contain such terms and conditions as such attorney-in-fact may approve in such attorney-in-fact's discretion.
+
+       The undersigned hereby grants such attorney-in-fact full power and authority to do and perform any and every act and thing whatsoever requisite, necessary or proper to be done in the exercise of any of the rights and powers herein granted, as fully to all intents and purposes as the undersigned might or could do if personally present, with full power of substitution or revocation, hereby ratifying and confirming all that such attorney-in-fact shall lawfully do or cause to be done by virtue of this power of attorney and the rights and powers herein granted. The undersigned acknowledges that the foregoing attorney-in-fact, in serving in such capacity at the request of the undersigned, is not assuming, nor is the Company assuming, any of the undersigned's responsibilities to comply with Section 16(a) of the Securities Exchange Act of 1934 or Rule 144 of the Securities Act of 1933.
+
+       This Power of Attorney shall remain in full force and effect until the undersigned is no longer a director of the Company unless earlier revoked by the undersigned in a signed writing delivered to the foregoing attorneys-in-fact; provided, however, this Power of Attorney will expire immediately upon the termination of employment or consulting arrangement of any attorney-in-fact as to that attorney-in-fact only, but not as to any other appointed attorney-in-fact hereunder.
+
+       IN WITNESS WHEREOF, the undersigned has caused this Power of Attorney to be executed as of this 28th day of  March, 2022.
+
+
+/s/Scott Peak
+Name: Scott Peak
+</pre>
+</body>
+</html>
+</TEXT>
+</DOCUMENT>
+</SEC-DOCUMENT>

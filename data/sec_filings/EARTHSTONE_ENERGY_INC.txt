@@ -1,0 +1,122 @@
+<SEC-DOCUMENT>0000010254-21-000016.txt : 20210122
+<SEC-HEADER>0000010254-21-000016.hdr.sgml : 20210122
+<ACCEPTANCE-DATETIME>20210122192239
+ACCESSION NUMBER:		0000010254-21-000016
+CONFORMED SUBMISSION TYPE:	3
+PUBLIC DOCUMENT COUNT:		1
+CONFORMED PERIOD OF REPORT:	20210107
+FILED AS OF DATE:		20210122
+DATE AS OF CHANGE:		20210122
+
+REPORTING-OWNER:	
+
+	OWNER DATA:	
+		COMPANY CONFORMED NAME:			Habachy David
+		CENTRAL INDEX KEY:			0001738013
+
+	FILING VALUES:
+		FORM TYPE:		3
+		SEC ACT:		1934 Act
+		SEC FILE NUMBER:	001-35049
+		FILM NUMBER:		21547477
+
+	MAIL ADDRESS:	
+		STREET 1:		C/O WARBURG PINCUS LLC
+		STREET 2:		450 LEXINGTON AVE
+		CITY:			NEW YORK
+		STATE:			NY
+		ZIP:			10017
+
+ISSUER:		
+
+	COMPANY DATA:	
+		COMPANY CONFORMED NAME:			EARTHSTONE ENERGY INC
+		CENTRAL INDEX KEY:			0000010254
+		STANDARD INDUSTRIAL CLASSIFICATION:	CRUDE PETROLEUM & NATURAL GAS [1311]
+		IRS NUMBER:				840592823
+		STATE OF INCORPORATION:			DE
+		FISCAL YEAR END:			1231
+
+	BUSINESS ADDRESS:	
+		STREET 1:		1400 WOODLOCH FOREST DRIVE
+		STREET 2:		SUITE 300
+		CITY:			THE WOODLANDS
+		STATE:			TX
+		ZIP:			77380
+		BUSINESS PHONE:		281-298-4246
+
+	MAIL ADDRESS:	
+		STREET 1:		1400 WOODLOCH FOREST DRIVE
+		STREET 2:		SUITE 300
+		CITY:			THE WOODLANDS
+		STATE:			TX
+		ZIP:			77380
+
+	FORMER COMPANY:	
+		FORMER CONFORMED NAME:	BASIC EARTH SCIENCE SYSTEMS INC
+		DATE OF NAME CHANGE:	19920703
+</SEC-HEADER>
+<DOCUMENT>
+<TYPE>3
+<SEQUENCE>1
+<FILENAME>wf-form3_161136134326747.xml
+<DESCRIPTION>FORM 3
+<TEXT>
+<XML>
+<?xml version="1.0"?>
+<ownershipDocument>
+
+    <schemaVersion>X0206</schemaVersion>
+
+    <documentType>3</documentType>
+
+    <periodOfReport>2021-01-07</periodOfReport>
+
+    <noSecuritiesOwned>1</noSecuritiesOwned>
+
+    <issuer>
+        <issuerCik>0000010254</issuerCik>
+        <issuerName>EARTHSTONE ENERGY INC</issuerName>
+        <issuerTradingSymbol>ESTE</issuerTradingSymbol>
+    </issuer>
+
+    <reportingOwner>
+        <reportingOwnerId>
+            <rptOwnerCik>0001738013</rptOwnerCik>
+            <rptOwnerName>Habachy David</rptOwnerName>
+        </reportingOwnerId>
+        <reportingOwnerAddress>
+            <rptOwnerStreet1>4400 POST OAK PARKWAY, SUITE 1900</rptOwnerStreet1>
+            <rptOwnerStreet2></rptOwnerStreet2>
+            <rptOwnerCity>HOUSTON</rptOwnerCity>
+            <rptOwnerState>TX</rptOwnerState>
+            <rptOwnerZipCode>77027</rptOwnerZipCode>
+            <rptOwnerStateDescription></rptOwnerStateDescription>
+        </reportingOwnerAddress>
+        <reportingOwnerRelationship>
+            <isDirector>1</isDirector>
+            <isOfficer>0</isOfficer>
+            <isTenPercentOwner>0</isTenPercentOwner>
+            <isOther>0</isOther>
+            <officerTitle></officerTitle>
+            <otherText></otherText>
+        </reportingOwnerRelationship>
+    </reportingOwner>
+
+    <nonDerivativeTable></nonDerivativeTable>
+
+    <derivativeTable></derivativeTable>
+
+    <footnotes></footnotes>
+
+    <remarks></remarks>
+
+    <ownerSignature>
+        <signatureName>/s/ David S. Habachy</signatureName>
+        <signatureDate>2021-01-22</signatureDate>
+    </ownerSignature>
+</ownershipDocument>
+</XML>
+</TEXT>
+</DOCUMENT>
+</SEC-DOCUMENT>
