@@ -12,49 +12,52 @@ permalink: /day3/failed-order/
 
 ---
 
-## Main Exercise — Debug and Fix Your Job
+## Main Exercise — Debug and Fix a Real Failure
+
+We've staged a job that failed for a past cohort. Your task: submit it, watch it fail, read the logs to find out *why*, fix it, and resubmit until it completes.
 
 {: .important }
-> **Exercise:** Your job failed. Find out why, fix the script, and resubmit until it completes successfully.
+> **Exercise:** Debug `slurm/last_year_bug.slurm` (which runs `scripts/last_year_bug.py`) until it shows `COMPLETED`.
 
-**Step 1 — Check the status**
+**Step 1 — Submit the broken job**
+
+```bash
+cd ~/rf-bootcamp-2026
+mkdir -p logs
+sbatch slurm/last_year_bug.slurm
+```
+
+**Step 2 — Check the status**
 
 ```bash
 sacct -u $USER --format=JobID,JobName,State,Elapsed,MaxRSS --starttime=today
 ```
 
-Look for your job in the `State` column. A failed job shows `FAILED`.
+Look for the job in the `State` column — it shows `FAILED`.
 
-**Step 2 — Read the logs**
+**Step 3 — Read the logs**
 
-Your job writes output to `logs/extract_JOBID.out` and errors to `logs/extract_JOBID.err`. Start with the error log:
+The job writes normal output to `logs/last_year_<jobid>.out` and errors to `logs/last_year_<jobid>.err`. Start with the error log:
 
 ```bash
-cat logs/extract_JOBID.err
+cat logs/last_year_*.err
 ```
 
-Then check the output log:
+Read the traceback carefully. It's a Python exception — **what file or directory is it complaining about?** (This is one of the most common ways a job that "worked on my laptop" dies on a fresh compute node.)
+
+**Step 4 — Fix the script**
+
+Once you've found the bug, fix `scripts/last_year_bug.py`. Test interactively on the Yens first to confirm the fix works:
 
 ```bash
-cat logs/extract_JOBID.out
-```
-
-The error message tells you what went wrong — a wrong path, a missing module, a Python exception. Read it carefully.
-
-**Step 3 — Fix the script**
-
-Once you've found the bug, fix it. Test interactively on the Yens first to confirm the fix works:
-
-```bash
-cd ~/rf-bootcamp-2026
 source .venv/bin/activate
-python scripts/extract_form_3_one_file.py
+python scripts/last_year_bug.py
 ```
 
-**Step 4 — Resubmit**
+**Step 5 — Resubmit**
 
 ```bash
-sbatch slurm/extract_form_3_one_file.slurm
+sbatch slurm/last_year_bug.slurm
 ```
 
 Check it enters the queue and eventually completes:
@@ -150,5 +153,30 @@ Edit your `#SBATCH --mem` directive down to something clearly too small (e.g. `-
 <summary>🔄 Sync to leaderboard</summary>
 
 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-watch-tower.side4` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
+
+</details>
+
+**Bonus 5 — Trigger a timeout on purpose**
+
+The other way jobs die is running out of *time*. Submit a job that asks for far less time than it needs — `--wrap` runs an inline command as a throwaway job:
+
+```bash
+sbatch --time=00:00:10 --wrap="sleep 120"
+```
+
+It gets killed at the 10-second limit. Check how SLURM reports it:
+
+```bash
+sacct -j JOBID --format=JobID,State,Elapsed,ExitCode
+```
+
+The `State` shows `TIMEOUT` (and the log notes `CANCELLED ... DUE TO TIME LIMIT`). You've now seen three distinct failure fingerprints — a **code bug** (Python traceback), an **OOM kill** (`ExitCode 137`), and a **timeout** (`State TIMEOUT`) — and can tell them apart at a glance.
+
+<label class="quest-check"><input type="checkbox" data-room="d3-watch-tower" data-key="side5"> I deliberately triggered a timeout and can tell TIMEOUT, OOM, and code-bug failures apart</label>
+
+<details markdown="1">
+<summary>🔄 Sync to leaderboard</summary>
+
+**Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-watch-tower.side5` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
 
 </details>
