@@ -85,6 +85,56 @@ When you run `python extract_form_3_one_file.py`, four things happen in sequence
 
 ![What Happens When You Run a Script]({{ site.baseurl }}/assets/images/kitchen-script-laptop.png)
 
+Here is that same flow as a moving picture — the identical trip in hardware terms, then in kitchen terms. Notice the first leg (disk → RAM) is the slow one; once the data is close to the processor, the rest is quick:
+
+<svg viewBox="0 0 600 176" role="img" aria-labelledby="hwflow-title hwflow-desc" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;max-width:600px;height:auto;margin:1.25rem auto 0.25rem" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
+  <title id="hwflow-title">How your program uses the hardware</title>
+  <desc id="hwflow-desc">A packet of data travels along a track from Storage to RAM to the CPU. Reading from disk into RAM is the slow leg; once the data is in RAM the CPU reaches it quickly. Results are written back to storage.</desc>
+  <text x="12" y="20" font-size="12" font-weight="700" letter-spacing="0.4" fill="#8a94a6">🖥  HOW YOUR PROGRAM USES THE HARDWARE</text>
+  <line x1="80" y1="44" x2="520" y2="44" stroke="#cdd4e6" stroke-width="2" stroke-dasharray="4 5"/>
+  <text x="190" y="34" text-anchor="middle" font-size="11.5" font-weight="700" fill="#c0392b">read — slow (I/O)</text>
+  <text x="410" y="34" text-anchor="middle" font-size="11.5" font-weight="700" fill="#3f4f74">fast</text>
+  <rect x="20" y="72" width="120" height="60" rx="10" fill="#eef1f8" stroke="#cdd4e6" stroke-width="1.5"/>
+  <text x="80" y="98" text-anchor="middle" font-size="14" font-weight="700" fill="#2c3e50">Storage</text>
+  <text x="80" y="117" text-anchor="middle" font-size="10.5" fill="#6a7280">disk — large, slow</text>
+  <rect x="240" y="72" width="120" height="60" rx="10" fill="#eef1f8" stroke="#cdd4e6" stroke-width="1.5"/>
+  <text x="300" y="98" text-anchor="middle" font-size="14" font-weight="700" fill="#2c3e50">RAM</text>
+  <text x="300" y="117" text-anchor="middle" font-size="10.5" fill="#6a7280">fast, limited</text>
+  <rect x="460" y="72" width="120" height="60" rx="10" fill="#eef1f8" stroke="#cdd4e6" stroke-width="1.5"/>
+  <text x="520" y="93" text-anchor="middle" font-size="14" font-weight="700" fill="#2c3e50">CPU</text>
+  <rect x="487" y="103" width="12" height="12" rx="2" fill="#cdd4e6"/><rect x="503" y="103" width="12" height="12" rx="2" fill="#cdd4e6"/><rect x="519" y="103" width="12" height="12" rx="2" fill="#cdd4e6"/><rect x="535" y="103" width="12" height="12" rx="2" fill="#cdd4e6"/>
+  <text x="520" y="128" text-anchor="middle" font-size="10" fill="#6a7280">cores do the work</text>
+  <g>
+    <circle cx="80" cy="44" r="8" fill="#0072B2"><animate attributeName="r" values="8;10;8" dur="1s" repeatCount="indefinite"/></circle>
+    <animateTransform attributeName="transform" type="translate" values="0,0; 0,0; 220,0; 220,0; 440,0; 440,0; 0,0" keyTimes="0; 0.08; 0.50; 0.58; 0.72; 0.92; 1" dur="6s" repeatCount="indefinite" calcMode="linear"/>
+  </g>
+  <text x="300" y="162" text-anchor="middle" font-size="12" fill="#6a7280">Data crawls from disk into RAM (the slow step), then the CPU works on it in RAM.</text>
+</svg>
+
+<svg viewBox="0 0 600 176" role="img" aria-labelledby="kflow-title kflow-desc" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;max-width:600px;height:auto;margin:0.25rem auto 0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
+  <title id="kflow-title">The same trip, in the kitchen</title>
+  <desc id="kflow-desc">A shopping cart travels from the convenience store to the fridge to the stove. Biking from the store is the slow leg; once ingredients are in the fridge they are within arm's reach of the burners on the stove.</desc>
+  <text x="12" y="20" font-size="12" font-weight="700" letter-spacing="0.4" fill="#8a94a6">🍳  THE SAME TRIP, IN THE KITCHEN</text>
+  <line x1="80" y1="44" x2="520" y2="44" stroke="#cdd4e6" stroke-width="2" stroke-dasharray="4 5"/>
+  <text x="190" y="34" text-anchor="middle" font-size="11.5" font-weight="700" fill="#c0392b">the bike — slow</text>
+  <text x="410" y="34" text-anchor="middle" font-size="11.5" font-weight="700" fill="#3f4f74">arm's reach</text>
+  <rect x="20" y="72" width="120" height="60" rx="10" fill="#eef1f8" stroke="#cdd4e6" stroke-width="1.5"/>
+  <text x="80" y="97" text-anchor="middle" font-size="18">🏪</text>
+  <text x="80" y="120" text-anchor="middle" font-size="11" font-weight="700" fill="#2c3e50">Store = disk</text>
+  <rect x="240" y="72" width="120" height="60" rx="10" fill="#eef1f8" stroke="#cdd4e6" stroke-width="1.5"/>
+  <text x="300" y="97" text-anchor="middle" font-size="18">🧊</text>
+  <text x="300" y="120" text-anchor="middle" font-size="11" font-weight="700" fill="#2c3e50">Fridge = RAM</text>
+  <rect x="460" y="72" width="120" height="60" rx="10" fill="#eef1f8" stroke="#cdd4e6" stroke-width="1.5"/>
+  <text x="520" y="95" text-anchor="middle" font-size="16">🔥</text>
+  <circle cx="497" cy="112" r="5" fill="#cdd4e6"/><circle cx="512" cy="112" r="5" fill="#cdd4e6"/><circle cx="527" cy="112" r="5" fill="#cdd4e6"/><circle cx="542" cy="112" r="5" fill="#cdd4e6"/>
+  <text x="520" y="128" text-anchor="middle" font-size="10" fill="#6a7280">stove = CPU · burners = cores</text>
+  <g>
+    <text x="80" y="50" text-anchor="middle" font-size="18">🛒</text>
+    <animateTransform attributeName="transform" type="translate" values="0,0; 0,0; 220,0; 220,0; 440,0; 440,0; 0,0" keyTimes="0; 0.08; 0.50; 0.58; 0.72; 0.92; 1" dur="6s" repeatCount="indefinite" calcMode="linear"/>
+  </g>
+  <text x="300" y="162" text-anchor="middle" font-size="12" fill="#6a7280">Bike groceries from the store (slow) to the fridge, then cook at the stove with what's in the fridge.</text>
+</svg>
+
 {: .warning }
 > **The tricky part: the bike ride is slow.** Reading from disk is orders of magnitude slower than reading from RAM. Your CPU can crunch through data in nanoseconds, but a disk read takes milliseconds — **a million times longer**. If your dataset is too large to fit in RAM all at once, your script keeps making bike trips mid-computation, and that is what makes jobs crawl. This is why knowing how much RAM your script needs matters — not just for the cluster, but on your laptop too.
 
