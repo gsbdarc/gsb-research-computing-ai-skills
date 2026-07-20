@@ -10,7 +10,7 @@ floor: 4
 
 # Day 4 — Parallelization & GPUs
 
-Day 4 scales yesterday's single SLURM job into a full research pipeline. You'll fan one script across hundreds of filings with **job arrays**, then move onto **GPU nodes** — comparing the A30, A40, and H200 and seeing how VRAM sets a ceiling on the model size you can load. From there you'll run a **local LLM** on cluster hardware with Ollama, weigh it against the Stanford AI Playground and third-party APIs, and learn to spot where LLMs fail before their output reaches your results. The Day 4 Challenge caps the day — and the bootcamp — with the full stack running end to end: **SLURM → GPU → local LLM**, documented so it reruns.
+Day 4 scales yesterday's single SLURM job into a full research pipeline. You'll fan one script across hundreds of filings with **job arrays**, then move onto **GPU nodes** — comparing the A30, A40, and H200 and seeing how VRAM sets a ceiling on the model size you can load. From there you'll run a **local LLM** on cluster hardware with Ollama, weigh it against the Stanford AI Playground and third-party APIs, and learn to spot where LLMs fail before their output reaches your results. Putting It All Together caps the day — and the bootcamp — with the full stack running end to end: **SLURM → GPU → local LLM**, documented so it reruns.
 
 **Duration:** ~3 hours
 
@@ -28,7 +28,7 @@ Any questions about Day 1–3 before we move on?
 
 ## Sections
 
-Work through the sections in order — later ones build on earlier ones, and the Day 4 Challenge draws on everything you've learned.
+Work through the sections in order — later ones build on earlier ones, and Putting It All Together draws on everything you've learned.
 
 | Section | Format | What you'll learn |
 |------|--------|-----------------|
@@ -37,6 +37,6 @@ Work through the sections in order — later ones build on earlier ones, and the
 | [Submitting an Array Job](array-exercise/) | 💻 Hands-on | Build, submit, and monitor a 100-filing array job, then combine the per-task outputs into one CSV |
 | [Why Run LLMs on the Yens?](why-local-llms/) | 🖊️ Concept | When to run a model yourself on the Yens vs. calling a cloud API — privacy, cost, reproducibility, and open vs. proprietary models |
 | [How to Run LLMs on the Yens](running-llms/) | 🖊️💻 Concept + Hands-on | Why LLMs need a GPU, how to request one on the Yens, and running an open model with Ollama (same code as the Playground, different `base_url`) |
-| [Validating LLM Outputs](validating-llm-outputs/) | 💬 Discussion | 🚧 TODO — not written yet |
+| [Handling LLM Failure Modes](validating-llm-outputs/) | 🖊️ Concept | Why even top models are brittle, the main LLM failure modes (hallucination, prompt injection, irreversibility, runaway loops), and how to guard against them |
 | [Putting It All Together](putting-it-all-together/) | 🔑 Capstone | 🚧 TODO — not written yet |
 | [Staying In Touch](staying-in-touch/) | 🏛️ Community | 🚧 TODO — not written yet |
