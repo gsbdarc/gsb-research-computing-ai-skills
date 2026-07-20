@@ -49,7 +49,7 @@
       ],
     },
     {
-      label: 'Day 3 — The Hearth',
+      label: 'Day 3 — Cluster Computing',
       prefix: 'd3',
       rooms: [
         { id: 'd3-kitchen',         keys: ['main', 'side1', 'side2', 'side3'] },

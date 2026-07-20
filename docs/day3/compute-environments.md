@@ -1,12 +1,12 @@
 ---
 layout: default
-title: "The Kitchen"
-parent: "Day 3 — The Hearth"
+title: "Compute Environments"
+parent: "Day 3 — Cluster Computing"
 nav_order: 2
-permalink: /day3/kitchen/
+permalink: /day3/compute-environments/
 ---
 
-# The Kitchen
+# Compute Environments
 
 <div data-room-id="d3-kitchen"></div>
 
@@ -85,6 +85,62 @@ When you run `python extract_form_3_one_file.py`, four things happen in sequence
 
 ![What Happens When You Run a Script]({{ site.baseurl }}/assets/images/kitchen-script-laptop.png)
 
+Here is that same flow as a moving picture — the identical trip in hardware terms, then in kitchen terms. Notice the first leg (disk → RAM) is the slow one; once the data is close to the processor, the rest is quick:
+
+<svg viewBox="0 0 600 210" role="img" aria-labelledby="hwflow-title hwflow-desc" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;max-width:600px;height:auto;margin:1.25rem auto 0.25rem" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
+  <title id="hwflow-title">How your program uses the hardware</title>
+  <desc id="hwflow-desc">A packet of data loops from Storage to RAM to the CPU and back to Storage. Reading from disk into RAM is the slow leg; once the data is in RAM the CPU reaches it quickly; then results are written back to disk.</desc>
+  <defs><marker id="bk-hw" markerWidth="9" markerHeight="9" refX="6.5" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#8a94a6"/></marker></defs>
+  <text x="12" y="20" font-size="12" font-weight="700" letter-spacing="0.4" fill="#8a94a6">🖥  HOW YOUR PROGRAM USES THE HARDWARE</text>
+  <line x1="80" y1="44" x2="520" y2="44" stroke="#cdd4e6" stroke-width="2" stroke-dasharray="4 5"/>
+  <text x="190" y="34" text-anchor="middle" font-size="11.5" font-weight="700" fill="#c0392b">read — slow (I/O)</text>
+  <text x="410" y="34" text-anchor="middle" font-size="11.5" font-weight="700" fill="#3f4f74">fast</text>
+  <rect x="20" y="72" width="120" height="60" rx="10" fill="#eef1f8" stroke="#cdd4e6" stroke-width="1.5"/>
+  <text x="80" y="98" text-anchor="middle" font-size="14" font-weight="700" fill="#2c3e50">Storage</text>
+  <text x="80" y="117" text-anchor="middle" font-size="10.5" fill="#6a7280">disk — large, slow</text>
+  <rect x="240" y="72" width="120" height="60" rx="10" fill="#eef1f8" stroke="#cdd4e6" stroke-width="1.5"/>
+  <text x="300" y="98" text-anchor="middle" font-size="14" font-weight="700" fill="#2c3e50">RAM</text>
+  <text x="300" y="117" text-anchor="middle" font-size="10.5" fill="#6a7280">fast, limited</text>
+  <rect x="460" y="72" width="120" height="60" rx="10" fill="#eef1f8" stroke="#cdd4e6" stroke-width="1.5"/>
+  <text x="520" y="93" text-anchor="middle" font-size="14" font-weight="700" fill="#2c3e50">CPU</text>
+  <rect x="487" y="103" width="12" height="12" rx="2" fill="#cdd4e6"/><rect x="503" y="103" width="12" height="12" rx="2" fill="#cdd4e6"/><rect x="519" y="103" width="12" height="12" rx="2" fill="#cdd4e6"/><rect x="535" y="103" width="12" height="12" rx="2" fill="#cdd4e6"/>
+  <text x="520" y="128" text-anchor="middle" font-size="10" fill="#6a7280">cores do the work</text>
+  <line x1="520" y1="162" x2="90" y2="162" stroke="#8a94a6" stroke-width="1.5" stroke-dasharray="4 4" marker-end="url(#bk-hw)"/>
+  <text x="305" y="156" text-anchor="middle" font-size="11" font-weight="600" fill="#8a94a6">write results back to disk</text>
+  <g>
+    <circle cx="80" cy="44" r="8" fill="#0072B2"><animate attributeName="r" values="8;10;8" dur="1s" repeatCount="indefinite"/></circle>
+    <animateTransform attributeName="transform" type="translate" values="0,0; 0,0; 220,0; 220,0; 440,0; 440,0; 440,118; 0,118; 0,0" keyTimes="0; 0.05; 0.42; 0.50; 0.60; 0.72; 0.82; 0.95; 1" dur="8s" repeatCount="indefinite" calcMode="linear"/>
+  </g>
+  <text x="300" y="198" text-anchor="middle" font-size="12" fill="#6a7280">Data crawls from disk into RAM (the slow step), the CPU works in RAM, then results are written back to disk.</text>
+</svg>
+
+<svg viewBox="0 0 600 210" role="img" aria-labelledby="kflow-title kflow-desc" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;max-width:600px;height:auto;margin:0.25rem auto 0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
+  <title id="kflow-title">The same trip, in the kitchen</title>
+  <desc id="kflow-desc">A shopping cart loops from the convenience store to the fridge to the stove and back to the store. Biking from the store is the slow leg; once ingredients are in the fridge they are within arm's reach of the stove; then leftovers go back to the store.</desc>
+  <defs><marker id="bk-k" markerWidth="9" markerHeight="9" refX="6.5" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#8a94a6"/></marker></defs>
+  <text x="12" y="20" font-size="12" font-weight="700" letter-spacing="0.4" fill="#8a94a6">🍳  THE SAME TRIP, IN THE KITCHEN</text>
+  <line x1="80" y1="44" x2="520" y2="44" stroke="#cdd4e6" stroke-width="2" stroke-dasharray="4 5"/>
+  <text x="190" y="34" text-anchor="middle" font-size="11.5" font-weight="700" fill="#c0392b">the bike — slow</text>
+  <text x="410" y="34" text-anchor="middle" font-size="11.5" font-weight="700" fill="#3f4f74">arm's reach</text>
+  <rect x="20" y="72" width="120" height="60" rx="10" fill="#eef1f8" stroke="#cdd4e6" stroke-width="1.5"/>
+  <text x="80" y="99" text-anchor="middle" font-size="18">🏪</text>
+  <text x="80" y="121" text-anchor="middle" font-size="11" font-weight="700" fill="#2c3e50">Store = disk</text>
+  <rect x="240" y="72" width="120" height="60" rx="10" fill="#eef1f8" stroke="#cdd4e6" stroke-width="1.5"/>
+  <text x="300" y="99" text-anchor="middle" font-size="18">🧊</text>
+  <text x="300" y="121" text-anchor="middle" font-size="11" font-weight="700" fill="#2c3e50">Fridge = RAM</text>
+  <rect x="460" y="72" width="120" height="60" rx="10" fill="#eef1f8" stroke="#cdd4e6" stroke-width="1.5"/>
+  <text x="520" y="95" text-anchor="middle" font-size="16">🔥</text>
+  <circle cx="497" cy="110" r="5" fill="#cdd4e6"/><circle cx="512" cy="110" r="5" fill="#cdd4e6"/><circle cx="527" cy="110" r="5" fill="#cdd4e6"/><circle cx="542" cy="110" r="5" fill="#cdd4e6"/>
+  <text x="520" y="126" text-anchor="middle" font-size="11" font-weight="700" fill="#2c3e50">Stove = CPU</text>
+  <line x1="520" y1="162" x2="90" y2="162" stroke="#8a94a6" stroke-width="1.5" stroke-dasharray="4 4" marker-end="url(#bk-k)"/>
+  <text x="305" y="156" text-anchor="middle" font-size="11" font-weight="600" fill="#8a94a6">leftovers go back to the store</text>
+  <g>
+    <text x="80" y="50" text-anchor="middle" font-size="18">🛒</text>
+    <animateTransform attributeName="transform" type="translate" values="0,0; 0,0; 220,0; 220,0; 440,0; 440,0; 440,118; 0,118; 0,0" keyTimes="0; 0.05; 0.42; 0.50; 0.60; 0.72; 0.82; 0.95; 1" dur="8s" repeatCount="indefinite" calcMode="linear"/>
+  </g>
+  <text x="300" y="198" text-anchor="middle" font-size="12" fill="#6a7280">Bike groceries from the store (slow) to the fridge, cook at the stove, then leftovers go back to the store.</text>
+</svg>
+
 {: .warning }
 > **The tricky part: the bike ride is slow.** Reading from disk is orders of magnitude slower than reading from RAM. Your CPU can crunch through data in nanoseconds, but a disk read takes milliseconds — **a million times longer**. If your dataset is too large to fit in RAM all at once, your script keeps making bike trips mid-computation, and that is what makes jobs crawl. This is why knowing how much RAM your script needs matters — not just for the cluster, but on your laptop too.
 
@@ -142,7 +198,7 @@ The cloud is a rented kitchen — and it's **just for you**. Unlike the Yens, yo
 
 ---
 
-## Main Quest — Class Participation
+## Exercise — Class Participation
 
 {: .important }
 > 🥪 **Demo + Discussion:** 🥪 We will all participate in a class demo together. 🥪
@@ -171,12 +227,12 @@ The cloud is a rented kitchen — and it's **just for you**. Unlike the Yens, yo
 
 ---
 
-## Side Quests
+## Optional practice
 
 {: .note }
 > Finished early? Try one or both of these.
 
-**Side Quest 1 — Know your own machine**
+**Optional practice 1 — Know your own machine**
 
 Check your own laptop's CPU core count and RAM, and compare them to a Yen node (256 cores). On Mac: `system_profiler SPHardwareDataType`. On Windows: Task Manager → Performance tab. On Linux: `nproc` and `free -h`.
 
@@ -189,7 +245,7 @@ Check your own laptop's CPU core count and RAM, and compare them to a Yen node (
 
 </details>
 
-**Side Quest 2 — Price the rented kitchen**
+**Optional practice 2 — Price the rented kitchen**
 
 Look up on-demand pricing for a cloud VM comparable to a Yen node (similar CPU/RAM), and estimate what it would cost to run your Day 2 extraction job there for an hour. Grant budgets aren't infinite — this is a real judgment call you'll make in your own research.
 
@@ -202,9 +258,9 @@ Look up on-demand pricing for a cloud VM comparable to a Yen node (similar CPU/R
 
 </details>
 
-**Side Quest 3 — Laptop vs. a Yen node**
+**Optional practice 3 — Laptop vs. a Yen node**
 
-You looked up your laptop's specs in Side Quest 1. Enter them below to see just how much bigger one Yen node is.
+You looked up your laptop's specs in the *Know your own machine* practice above. Enter them below to see just how much bigger one Yen node is.
 
 <style>
 .yen-widget { border: 1px solid #ddd; border-radius: 6px; padding: 1rem 1.25rem; margin: 1rem 0; }

@@ -1,12 +1,12 @@
 ---
 layout: default
-title: "The Back Kitchen"
-parent: "Day 3 — The Hearth"
+title: "The SLURM Scheduler"
+parent: "Day 3 — Cluster Computing"
 nav_order: 5
-permalink: /day3/back-kitchen/
+permalink: /day3/slurm-scheduler/
 ---
 
-# The Back Kitchen
+# The SLURM Scheduler
 
 <div data-room-id="d3-head-chef"></div>
 
@@ -69,10 +69,10 @@ Instead of running your script directly on a shared node, you submit it to the s
 
 ---
 
-## Main Exercise — Peek at the Queue
+## Exercise — Peek at the Queue
 
 {: .important }
-> **Exercise:** Look at the live SLURM queue to see what jobs are waiting or running right now.
+> **Task:** Look at the live SLURM queue to see what jobs are waiting or running right now.
 
 ```bash
 squeue
@@ -127,7 +127,7 @@ When you can read the queue, tell `R` from `PD`, and describe the Yens partition
 {: .note }
 > Finished early? Try this.
 
-**Bonus 1 — Add a `longsqueue` alias**
+**Optional practice — Add a `longsqueue` alias**
 
 The default `squeue` output is sparse. Pass a custom format to see what each job actually requested — CPU cores, memory, and time limit:
 
@@ -155,7 +155,7 @@ Now run `longsqueue` — you should see the full resource picture of every job i
 
 </details>
 
-**Bonus 2 — Inspect any job with scontrol**
+**Optional practice — Inspect any job with scontrol**
 
 Pick any job from `squeue` and look up its full details:
 
@@ -179,7 +179,7 @@ This works on any job — yours or someone else's — as long as it is still in 
 
 </details>
 
-**Bonus 3 — Compare partitions**
+**Optional practice — Compare partitions**
 
 Run `sinfo -p gpu` and `sinfo -p normal` (or whichever partitions exist on the Yens) and compare what each offers — node count, time limits, resource caps. Can you explain when you'd request one over the other for a job?
 

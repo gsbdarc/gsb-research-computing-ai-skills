@@ -1,12 +1,12 @@
 ---
 layout: default
-title: "The Storage Pantry"
-parent: "Day 3 — The Hearth"
+title: "Exploring Cluster Usage Data"
+parent: "Day 3 — Cluster Computing"
 nav_order: 4
-permalink: /day3/storage-pantry/
+permalink: /day3/cluster-usage-data/
 ---
 
-# The Storage Pantry
+# Exploring Cluster Usage Data
 
 <div data-room-id="d3-data-mine"></div>
 
@@ -74,7 +74,7 @@ Find one thing in the data worth keeping. Add a short section to your `README.md
 It doesn't have to be the most impressive finding. It just has to be true, specific, and explained in plain language.
 
 {: .note }
-> This `README.md` keeps growing today — you'll add a Resource Profile section in The Scales and a full pipeline writeup in The Recipe Book. Same file the whole time.
+> This `README.md` keeps growing today — you'll add a Resource Profile section in Profiling Resource Usage and a full pipeline writeup in Documenting Your Pipeline. Same file the whole time.
 
 When you're ready — put a **🟢 green sticky** on your laptop.
 
@@ -89,7 +89,7 @@ When you're ready — put a **🟢 green sticky** on your laptop.
 
 ---
 
-## Side Quests
+## Optional practice
 
 {: .note }
 > Finished early? Try any of these.
@@ -103,11 +103,11 @@ When you're ready — put a **🟢 green sticky** on your laptop.
 
 </details>
 
-**Side Quest — Per-User Limits vs. the Whole Node**
+**Optional practice — Per-User Limits vs. the Whole Node**
 
 Group the processes by `user` and compute total `cpu_pct` and `mem_pct` per person. Then compare two different ceilings:
 
-- the **per-user limit** — the cap any single researcher gets (mentioned back in The Scales), and
+- the **per-user limit** — the cap any single researcher gets (mentioned back in Profiling Resource Usage), and
 - the **whole node's capacity** — 256 logical CPUs and ~1 TB of RAM.
 
 Is anyone close to their per-user limit? And how much of the *entire node* is actually in use? A node can sit far from full even while one user is maxed out — that's the per-user limit doing its job: keeping any one job from starving everyone else on a shared machine.
@@ -121,7 +121,7 @@ Is anyone close to their per-user limit? And how much of the *entire node* is ac
 
 </details>
 
-**Side Quest — Watch It Live (`top`)**
+**Optional practice — Watch It Live (`top`)**
 
 The CSV you've been analyzing is a **photograph** — one frozen instant, captured by a script that ran `top` once and saved the result. `top` itself is the **live view**: the same numbers, refreshing every few seconds. SSH to a Yen node and run it:
 

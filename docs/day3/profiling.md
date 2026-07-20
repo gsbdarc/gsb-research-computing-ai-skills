@@ -1,12 +1,12 @@
 ---
 layout: default
-title: "The Scales"
-parent: "Day 3 — The Hearth"
+title: "Profiling Resource Usage"
+parent: "Day 3 — Cluster Computing"
 nav_order: 3
-permalink: /day3/scales/
+permalink: /day3/profiling/
 ---
 
-# The Scales
+# Profiling Resource Usage
 
 ---
 
@@ -26,7 +26,7 @@ Before we run anything, let's make sure we have the vocabulary for the resources
 ## 💻 Exercise 1 — Run Your Script
 
 {: .important }
-> **Exercise:** Run your Day 2 extraction script on the Yens interactively and think about its resource footprint.
+> **Task:** Run your Day 2 extraction script on the Yens interactively and think about its resource footprint.
 
 If you're not already connected, SSH in:
 
@@ -52,12 +52,12 @@ This page will teach you **how to estimate the resources your script is actually
 
 ---
 
-## Main Quest — Profile a Mystery Script
+## Exercise — Profile a Mystery Script
 
 You are going to run a script you have never seen before and figure out what resources it uses — without reading the code. This is called **profiling**: measuring a script's time, CPU, and RAM usage as it runs. The technique is simple: one terminal runs the script, a second terminal on the **same node** watches it live.
 
 {: .important }
-> **Exercise:** Run `mystery_script.py` and measure its resource usage in real time using two terminals — both on the **same Yen node**.
+> **Task:** Run `mystery_script.py` and measure its resource usage in real time using two terminals — both on the **same Yen node**.
 
 **Step 1 — Note which Yen you are on.**
 
@@ -164,7 +164,7 @@ Note the `real`, `user`, and `sys` times when it finishes. Is this script serial
 
 ---
 
-## Main Quest — Document Your Script's Resource Needs
+## Exercise — Document Your Script's Resource Needs
 
 Now that you have profiled `extract_form_3_one_file.py`, write down what you found. Open the `README.md` in your repo and add a **Resource Profile** section:
 
@@ -193,7 +193,7 @@ Fill in the actual numbers from your `time` and `userload` output. This document
 
 ---
 
-## Side Quest — Vectorized vs. Non-Vectorized
+## Optional practice — Vectorized vs. Non-Vectorized
 
 {: .note }
 > Finished early? This one is self-contained — no script of your own required.
@@ -241,7 +241,7 @@ Record what you find in your `README.md`:
 
 ---
 
-## Side Quest — Catch What `userload` Misses
+## Optional practice — Catch What `userload` Misses
 
 {: .note }
 > Finished early? Try one or both of these.
@@ -263,7 +263,7 @@ Look for **Maximum resident set size** in the output — this is the script's tr
 
 </details>
 
-**Side Quest — Profile an I/O-Bound Script**
+**Optional practice — Profile an I/O-Bound Script**
 
 Everything you've profiled so far is CPU-bound (`user` time dominates). Write a tiny script that's I/O-bound instead — for example, one that reads and re-writes a large file in a loop — and profile it the same way. Compare its `sys` and `user` times to the mystery script's.
 

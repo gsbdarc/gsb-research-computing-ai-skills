@@ -1,21 +1,21 @@
 ---
 layout: default
-title: "The Ticket Rail"
-parent: "Day 3 — The Hearth"
+title: "Writing & Submitting a SLURM Job"
+parent: "Day 3 — Cluster Computing"
 nav_order: 7
-permalink: /day3/ticket-rail/
+permalink: /day3/slurm-job/
 ---
 
-# The Ticket Rail
+# Writing & Submitting a SLURM Job
 
 <div data-room-id="d3-foremans-desk"></div>
 
 ---
 
-## Main Exercise — Write a SLURM Script
+## Exercise — Write a SLURM Script
 
 {: .important }
-> **Exercise:** Build a SLURM job script line by line to run your Form 3 extraction script on a compute node.
+> **Task:** Build a SLURM job script line by line to run your Form 3 extraction script on a compute node.
 
 **Create the file:**
 
@@ -41,7 +41,7 @@ The `#!` tells the operating system which interpreter to run the rest of the fil
 
 **Step 2 — SBATCH directives**
 
-These are instructions to the SLURM scheduler. Fill in each placeholder using the measurements you took in The Scales:
+These are instructions to the SLURM scheduler. Fill in each placeholder using the measurements you took in Profiling Resource Usage:
 
 ```bash
 #SBATCH --job-name=<job-name>
@@ -184,7 +184,7 @@ Once your job runs, check your inbox. You should receive two emails: one when th
 
 ---
 
-## Side Quest — Go Interactive Instead of Batch
+## Optional practice — Go Interactive Instead of Batch
 
 Everything so far has been batch submission — write a script, `sbatch` it, wait. SLURM also supports an interactive allocation on a dedicated node, useful for debugging without fighting other users for resources:
 
@@ -203,7 +203,7 @@ Once it drops you into a shell on your allocated node, run your script there dir
 
 </details>
 
-**Side Quest — Chain Two Jobs**
+**Optional practice — Chain Two Jobs**
 
 Real pipelines are often more than one step. Submit a second job that only starts if your first one succeeds:
 
@@ -222,7 +222,7 @@ Replace `JOBID` with the job ID of a job you already submitted. Confirm with `sq
 
 </details>
 
-**Side Quest — Watch Your Job on Its Node**
+**Optional practice — Watch Your Job on Its Node**
 
 A running batch job has a compute node all to itself — and while it's running, you can SSH in and watch it work. First find out where it landed:
 
