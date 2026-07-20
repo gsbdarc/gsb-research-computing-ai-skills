@@ -20,109 +20,21 @@ In **Version Control with Git** you worked through fork, clone, branch, commit, 
 
 **Claude Code** is an AI assistant that lives in your terminal: you describe what you want in plain English, and it does the work — running commands, editing files, and handling git for you.
 
-You just saw *why* keeping your work in GitHub is worth the trouble (see [Version Control with Git](../repository/)) — and those are exactly the habits Claude Code can handle for you. You will **not** memorize the commands for any of it. You say *"log this as an issue"* or *"try this on a branch,"* and Claude Code does it — the right way — because it follows a **skill** we wrote for research (more below).
+You just saw *why* keeping your work in GitHub is worth the trouble (see [Version Control with Git](../repository/)) — and those are exactly the habits Claude Code can handle for you. You will **not** memorize the commands for any of it. You say *"log this as an issue"* or *"try this on a branch,"* and Claude Code does it — the right way — because it follows a **skill** we wrote for research.
+
+**Getting access.** You don't need a personal account. Stanford runs **Claude for Education** — a secure, university-managed environment — and it's **free for everyone at Stanford**.
+
+- **Why go through Stanford?** Your work stays under Stanford's data-governance terms. Claude Code is approved for use with Stanford data when terms and conditions allow it. Stanford's [GenAI tool matrix](https://uit.stanford.edu/ai/genai-tool-matrix) has the latest on data categories and approved tools. For research, it is always preferred to use your Stanford account.
+- **How to get it.** The **Standard tier is free** for all active faculty, students, postdocs, and staff with a SUNet ID. (A **Premium tier** is available if you have a PTA — a Stanford billing account your lab may hold.) Free still means you request it once, through **ServiceNow** (Stanford's IT request website) — it's a quick approval, not a purchase.
+
+{: .note }
+> Full details and the request links live at [uit.stanford.edu/service/claude](https://uit.stanford.edu/service/claude). Your instructor can point you to the exact sign-up link in class.
 
 ---
 
 ## How Claude Code Works
 
-A few basics — expand any box for more.
-
-**The model and the harness — the brain and the hands.** *Claude* is the **LLM** (large language model — the AI "brain" itself): it reads, reasons, and writes. On its own, it can only talk. **Claude Code** is the *harness* around that brain — it hands Claude real tools: read your files, run commands, edit code, use git. The model is the expert; the harness is the desk, the tools, and permission to act.
-
-<details markdown="1">
-<summary>The models — and how to switch them</summary>
-
-Claude comes as a family, trading speed for power:
-
-| Model | Best for |
-|-------|----------|
-| **Opus** | The most capable — deep reasoning, hard problems |
-| **Sonnet** | Balanced — great for everyday work |
-| **Haiku** | Fastest and lightest — quick, simple tasks |
-
-Switch anytime with the `/model` command. Default to a capable model; drop to a faster one when the task is small.
-</details>
-
-<details markdown="1">
-<summary>Plan mode vs. auto mode — look vs. act</summary>
-
-- **Plan mode:** Claude Code investigates and proposes a plan but changes *nothing* until you approve. Perfect when you want to see the approach first.
-- **Auto mode:** Claude Code carries the work out — editing files and running commands as it goes.
-
-Press `Shift+Tab` to cycle between them. *Plan mode when you want a proposal; auto mode when you trust it to go.*
-</details>
-
-<details markdown="1">
-<summary>Tokens — how Claude reads, and what it costs</summary>
-
-Claude doesn't read letter by letter or word by word — it reads in **tokens**. A token is a chunk of text: very roughly **¾ of a word**, or about **4 characters**. "Repository" is a couple of tokens; a full page of prose is around 500.
-
-Everything is counted this way — the text you send *and* the text Claude sends back. Tokens matter for two reasons: they are **how much Claude can hold at once** (see *Context*, next), and they are **how paid AI services charge** — a fixed price per token. You won't pay by hand inside Claude Code, but the API calls you'll write on Day 2 are billed in exactly these tokens, so "send fewer tokens" comes to mean "spend less."
-
-*Type `/cost` any time to see how many tokens the current session has used.*
-</details>
-
-<details markdown="1">
-<summary>Context — Claude's working memory, and when to clear it</summary>
-
-The **context** (or *context window*) is everything Claude can see right now: your conversation, any files it has read, and its own replies so far. It's measured in tokens — large, but not infinite.
-
-A long session slowly fills the window. When it's full, or when the conversation has drifted far from the task at hand, the fix is to **start fresh**: `/clear` wipes the slate so the next question gets Claude's full attention. `/context` shows how full the window currently is.
-
-If you're filling up but *don't* want to lose the thread, **`/compact`** is the middle ground: it replaces the long back-and-forth with a short summary, freeing room while keeping what matters. Use `/compact` to keep going on the same task; use `/clear` when you're moving on to a new one.
-
-*Rule of thumb: one focused task per conversation. A clean context beats a cluttered one every time.*
-</details>
-
-<details markdown="1">
-<summary>Memory — the notebook Claude keeps</summary>
-
-Context is erased the moment you `/clear` or close the terminal. **Memory** is what survives — and it comes in two forms:
-
-- **A `CLAUDE.md` file in your project.** A plain-text note you commit alongside your code, telling Claude how *this* project works — where the data lives, how to run things, conventions to follow. Every future session (yours or a collaborator's) reads the same file, which makes your project easier to pick back up and to reproduce.
-- **Personal memory across sessions** — facts about you and how you like to work, remembered from one sitting to the next.
-
-*Start any line with `#` to jot something into memory on the spot. Because `CLAUDE.md` is just a file in your repo, it's version-controlled like everything else you commit.*
-</details>
-
-<details markdown="1">
-<summary>Skills — standing instructions for how your group works</summary>
-
-A **skill** is a reusable set of instructions that Claude Code pulls in whenever it's relevant — so it follows your group's way of doing things without being told each time. If *memory* is a set of facts, a *skill* is a way of working.
-
-Skills can come from Stanford, from your lab, or ones you write yourself. This course ships one — **github-for-research** — which you'll meet just below.
-</details>
-
-{: .tip }
-> **See it for yourself — Claude lives in hidden files.** Remember the **dotfiles** from Command Line Basics — names starting with a `.`, invisible to a plain `ls`? That's exactly where Claude Code keeps its settings, skills, and memory. Reveal the hidden folder in your home directory and look inside:
->
-> ```bash
-> ls -a ~          # spot the hidden .claude folder among the dotfiles
-> ls ~/.claude     # settings, skills, and memory — all plain text
-> ```
->
-> Open one up (`cat ~/.claude/CLAUDE.md` shows your personal memory, if you've saved any). Nothing here is magic — it's ordinary text in hidden files, editable and versionable like anything else you've touched today.
-
-**Terminal vs. the app — where you act, where you think.** Claude Code runs in the **terminal**, right where your files and commands live — ideal for research computing. The **Claude app** (website or desktop) is a chat window: great for questions, writing, and brainstorming, but it can't touch your machine. Same Claude underneath — use the app to *think*, use Claude Code to *act on your project*.
-
----
-
-## Claude at Stanford
-
-You don't need a personal account. Stanford runs **Claude for Education** — a secure, university-managed environment — and for most people it's **free**.
-
-- **Why go through Stanford?** Your work stays under Stanford's data-governance terms. Claude Code is approved for low-, moderate-, and high-risk research data (health data — known as PHI — needs special handling). For real research data, always use the Stanford route, never a personal account.
-- **How to get it.** The **Standard tier is free** for all active faculty, students, postdocs, and staff with a SUNet ID. (A **Premium tier** is available if you have a PTA — a Stanford billing account your lab may hold.) Free still means you request it once, through **ServiceNow** (Stanford's IT request website) — it's a quick approval, not a purchase.
-- **What you get.** Claude on the web and in the app, **Claude Code**, and **Skills** — which is how the research skill below reaches you.
-
-### What leaves your machine — and what must not
-
-Claude Code runs in two halves. The **harness** stays on your machine and is the part that actually *does things* — it reads and edits your files, runs shell commands, drives git, and calls other tools. The **model** — the brain that decides *what* to do — runs on **Anthropic's server**.
-
-The two work in a **loop**: the harness sends the model your prompt and whatever it has read; the model sends back its next step (*"read this file," "run that command"*); the harness carries it out on your machine and reports the result; repeat until the task is done. The model never touches your machine directly — but everything the harness feeds it **leaves your machine and travels to that server**.
-
-Claude Code does **not** sort safe data from sensitive. It sends whatever you let it read — if you point it at a file full of names, those names go to the server. Nothing keeps personal, restricted, or health data local on its own. **Holding that data back is *your* job** — by not letting Claude read it in the first place.
+A few basics worth knowing before you start.
 
 <svg viewBox="0 0 1000 560" role="img" aria-labelledby="cc-arch-title" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;max-width:1000px;height:auto;margin:1.5rem auto" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
   <title id="cc-arch-title">How Claude Code works: on your machine you give the harness instructions and point it at your data — check before sharing. The harness acts as you (editing files, running commands, driving git, calling tools) and loops those results back to itself. It exchanges context with Claude's model on Anthropic's server, across the campus perimeter, reached via Stanford's governed route.</title>
@@ -195,14 +107,92 @@ Claude Code does **not** sort safe data from sensitive. It sends whatever you le
   <text x="684" y="382" text-anchor="middle" font-size="14" fill="#8a94a6" stroke="#ffffff" stroke-width="5" paint-order="stroke" stroke-linejoin="round">loops until done</text>
 </svg>
 
-The harness is the local actor — it reads and runs whatever you point it at and runs the loop; the model only ever sees what the harness sends across the perimeter to Anthropic's server. **Deciding what Claude Code may read is your responsibility.** Public data and your own code are fine; personal (PII), NDA/licensed, or health (PHI) data must not be sent — and the tool won't hold them back for you. What's approved depends on the data and the tool: see [Responsible AI at Stanford](https://uit.stanford.edu/security/responsibleai) for which AI tools are cleared for which data-risk levels, and the [GSB Library's eResources usage policy](https://www.gsb.stanford.edu/library/research-resources/usage-policy) for whether a licensed dataset may be used this way. We map out these data categories in full on Day 2.
+**The model and the harness — the brain and the hands.** *Claude* is the **LLM** (large language model — the AI "brain" itself): it reads, reasons, and writes. On its own, it can only talk. **Claude Code** is the *harness* around that brain — it hands Claude real tools: read your files, run commands, edit code, use git. The model is the expert; the harness is the desk, the tools, and permission to act.
 
-{: .note }
-> Full details and the request links live at [uit.stanford.edu/service/claude](https://uit.stanford.edu/service/claude). Your instructor can point you to the exact sign-up link in class.
+### The models — and how to switch them
+
+Claude comes as a family, trading speed for power:
+
+| Model | Best for |
+|-------|----------|
+| **Opus** | The most capable — deep reasoning, hard problems |
+| **Sonnet** | Balanced — great for everyday work |
+| **Haiku** | Fastest and lightest — quick, simple tasks |
+
+Switch anytime with the `/model` command. Default to a capable model; drop to a faster one when the task is small.
+
+### Permission modes — how much Claude does before asking
+
+Claude Code always works with your permission — you choose how much it checks in before acting. Press `Shift+Tab` to cycle through the modes (the current one shows at the bottom of the screen, e.g. `⏸ plan mode on`, `⏵⏵ accept edits on`):
+
+- **Manual** (the default): Claude reads freely but asks before every edit and every command — nothing changes on your machine without your yes. Safest, and a good place to start.
+- **Accept edits:** Claude applies its file edits (and common file commands like creating folders) without asking each time, but still stops before running other commands. Good once you trust the direction and don't want to approve every edit.
+- **Plan:** Claude investigates and writes up a plan but changes *nothing* — no edits, no commands that alter anything — until you approve. Perfect when you want to see the approach first.
+- **Auto:** Claude does everything on its own — editing files and running commands as it goes — with background safety checks that block the riskiest actions. Fastest, but least oversight: it reduces prompts, it doesn't guarantee safety, so use it only when you trust the task.
+
+*Start in manual to stay in control; use plan mode when you want a proposal first; move to accept-edits or auto once you trust where it's headed.*
+
+### Tokens — how Claude reads, and what it costs
+
+Claude doesn't read letter by letter or word by word — it reads in **tokens**. A token is a chunk of text: very roughly **¾ of a word**, or about **4 characters**. "Repository" is a couple of tokens; a full page of prose is around 500.
+
+Everything is counted this way — the text you send *and* the text Claude sends back. Tokens matter for two reasons: they are **how much Claude can hold at once** (see *Context*, next), and they are **how paid AI services charge** — a fixed price per token. You won't pay by hand inside Claude Code, but the API calls you'll write on Day 2 are billed in exactly these tokens, so "send fewer tokens" comes to mean "spend less."
+
+*Type `/cost` any time to see how many tokens the current session has used.*
+
+{: .important }
+> **Run out of usage and you wait — you can't pay for more.** Stanford gives you Claude on a **managed plan with a usage limit**, not the pay-per-token billing a personal account would have. When you use up your allowance, Claude Code **pauses until your limit resets after a set time** — there is no "just charge me for more tokens" button. To make your usage last: switch to a lighter model with `/model` (Haiku and Sonnet cost far less than Opus), keep each session to one focused task, and use `/clear` or `/compact` so you're not re-sending a large context every turn.
+
+### Context — Claude's working memory, and when to clear it
+
+The **context** (or *context window*) is everything Claude can see right now: your conversation, any files it has read, and its own replies so far. It's measured in tokens — large, but not infinite.
+
+A long session slowly fills the window. When it's full, or when the conversation has drifted far from the task at hand, the fix is to **start fresh**: `/clear` wipes the slate so the next question gets Claude's full attention. `/context` shows how full the window currently is.
+
+If you're filling up but *don't* want to lose the thread, **`/compact`** is the middle ground: it replaces the long back-and-forth with a short summary, freeing room while keeping what matters. Use `/compact` to keep going on the same task; use `/clear` when you're moving on to a new one.
+
+*Rule of thumb: one focused task per conversation. A clean context beats a cluttered one every time.*
+
+### Memory — the notebook Claude keeps
+
+Context is erased the moment you `/clear` or close the terminal. **Memory** is what survives — and it comes in two forms:
+
+- **A `CLAUDE.md` file in your project.** A plain-text note you commit alongside your code, telling Claude how *this* project works — where the data lives, how to run things, conventions to follow. Every future session (yours or a collaborator's) reads the same file, which makes your project easier to pick back up and to reproduce.
+- **Personal memory across sessions** — facts about you and how you like to work, remembered from one sitting to the next.
+
+*To save something to memory, just ask — tell Claude "remember that…" and it stores the note. Use the `/memory` command to review or edit what's saved, or open `CLAUDE.md` directly. Because `CLAUDE.md` is just a file in your repo, it's version-controlled like everything else you commit.*
+
+### Skills — standing instructions for how your group works
+
+A **skill** is a reusable set of instructions that Claude Code pulls in whenever it's relevant — so it follows your group's way of doing things without being told each time. If *memory* is a set of facts, a *skill* is a way of working.
+
+Skills can come from Stanford, from your lab, or ones you write yourself. This course ships one — **github-for-research** — which you'll meet just below.
+
+{: .tip }
+> **See it for yourself — Claude lives in hidden files.** Remember the **dotfiles** from Command Line Basics — names starting with a `.`, invisible to a plain `ls`? That's exactly where Claude Code keeps its settings, skills, and memory. Reveal the hidden folder in your home directory and look inside:
+>
+> ```bash
+> ls -a ~          # spot the hidden .claude folder among the dotfiles
+> ls ~/.claude     # settings, skills, and memory — all plain text
+> ```
+>
+> Open one up (`cat ~/.claude/CLAUDE.md` shows your personal memory, if you've saved any). Nothing here is magic — it's ordinary text in hidden files, editable and versionable like anything else you've touched today.
 
 ---
 
-## Claude Code acts as you
+## Data Governance and Security
+
+Before you point Claude Code at real work, keep two things straight: **what data leaves your machine**, and the fact that **it acts with your full access**.
+
+### What leaves your machine — and what must not
+
+As the diagram above shows, the harness stays on your machine, but the model runs on Anthropic's server — so **everything the harness sends the model leaves your machine and travels to that server.**
+
+Claude Code does **not** sort safe data from sensitive. It sends whatever you let it read — if you point it at a file full of names, those names go to the server. Nothing keeps personal, restricted, or health data local on its own. **Holding that data back is *your* job** — by not letting Claude read it in the first place.
+
+**Deciding what Claude Code may read is your responsibility.** Public data and your own code are fine; personal (PII), NDA/licensed, or health (PHI) data must not be sent — and the tool won't hold them back for you. What's approved depends on the data and the tool: see [Responsible AI at Stanford](https://uit.stanford.edu/security/responsibleai) for which AI tools are cleared for which data-risk levels, and the [GSB Library's eResources usage policy](https://www.gsb.stanford.edu/library/research-resources/usage-policy) for whether a licensed dataset may be used this way. We map out these data categories in full on Day 2.
+
+### Claude Code acts as you
 
 When Claude Code runs a command, edits a file, or pushes to GitHub, it does so with **your** credentials and **your** permissions. To the Yens, to GitHub, to anything it touches, the action looks exactly like *you* did it — there is no way for those systems to tell you apart from Claude acting on your behalf.
 
@@ -241,12 +231,12 @@ cd ~/cctest
 claude
 ```
 
-**3 — Sign in** with your **SUNet ID** the first time (see *Claude at Stanford* above).
+**3 — Sign in** with your **SUNet ID** the first time (see *Meet Claude Code* above).
 
 **4 — Learn two controls.** Try each once:
 
 - Type `/cost` — see how many tokens this session has used (the *Tokens* box explains why this matters).
-- Press `Shift+Tab` — flip between plan mode and auto mode (see *Plan mode vs. auto mode* above).
+- Press `Shift+Tab` — cycle through the permission modes: manual, accept edits, plan, and auto (see *Permission modes* above).
 
 **5 — Give it a real task.** No need to download anything yourself — just point Claude at the grimoire on GitHub and say what you want:
 
@@ -256,8 +246,11 @@ claude
 
 Claude fetches the archive, unzips it, reads the filenames, and reports one spell per element. Notice what you *didn't* do: no `curl`, no `unzip`, no wildcards or pipes — you said what you wanted, and it worked out how. That's the shift Claude Code represents.
 
-{: .note }
-> Stuck on loading or sign-in? Raise your hand — we'll get you going, and you won't fall behind.
+**6 — Quit, and move to your project.** Leave Claude Code by typing `/exit` (or pressing `Ctrl+D`). The next section sets things up inside your course repo, so move there now:
+
+```bash
+cd ~/rf-bootcamp-2026
+```
 
 {: .note }
 > 🟢 **Green sticky** = I'm done and ready &nbsp;&nbsp; 🔴 **Red sticky** = I need help
@@ -270,14 +263,14 @@ Claude fetches the archive, unzips it, reads the filenames, and reports one spel
 
 ## The github-for-research Skill
 
-You just met skills in the abstract; here's the one this course ships. **github-for-research** teaches Claude Code how *our* research group works — so it does the right thing without being told each time:
+You just met skills in the abstract; here's the one this course ships. **github-for-research** teaches Claude Code some opinionated, but informed, best practices about how to use GitHub as part of a research project at the GSB:
 
 - Do new work on a **branch**, never straight on `main`.
 - **Log problems as issues** — even ones you fix immediately.
 - **Never quietly change raw data**; always validate processed data.
 - **Credit Claude** on every commit, and keep the environment **reproducible**.
 
-It's already prepared for the course. If it isn't installed yet, one command sets it up (an instructor may have done this already):
+Install it like this:
 
 ```bash
 bash scripts/install_github_for_research_skill.sh
@@ -285,6 +278,45 @@ bash scripts/install_github_for_research_skill.sh
 
 {: .note }
 > This is a one-time setup. Not sure if it's already installed? Just ask Claude Code — `> do you have the github-for-research skill?` — or run the command again; it's safe to re-run. The skill's home is `gsbdarc/claude-skill-github-for-research`.
+
+{: .note }
+> 🟢 **Green sticky** = I'm done and ready &nbsp;&nbsp; 🔴 **Red sticky** = I need help
+>
+> Put a sticky note on your laptop lid so instructors can see where you are.
+
+<label class="quest-check"><input type="checkbox" data-room="d1-familiars-den" data-key="skill"> Installed the github-for-research skill</label>
+
+### Optional practice — investigate a well-kept repo
+
+A repository that follows these practices is one you can actually *understand* — by hand or with Claude Code. Try both on a real Stanford project: an analysis of whether San Francisco's graffiti 311 reports fell during COVID.
+
+<details markdown="1">
+<summary>Show steps</summary>
+
+**By hand.** Open [gsbdarc/sf311](https://github.com/gsbdarc/sf311) on GitHub and try to answer, just by clicking around:
+
+- What research question does this project answer? (Start with the README.)
+- How was the raw data cleaned, and where is that checked?
+- What's left to do? (Check the **Issues** tab and the commit history.)
+
+Notice how much you can piece together *because* the repo is organized and documented — and how long it takes.
+
+**With Claude Code.** Now let Claude do the reading. Clone it, launch Claude Code inside, and ask the same things in plain English:
+
+```bash
+git clone https://github.com/gsbdarc/sf311.git
+cd sf311
+claude
+```
+
+```
+> What research question does this project answer? How was the raw 311 data cleaned and where is that checked? Walk me through reproducing the main finding, and list anything left to do.
+```
+
+{: .tip }
+> Claude reads the README, the scripts, and the issue history and answers in seconds — but only *because* someone kept the repo the way this skill describes. Good practice is what makes a project answerable, by a person or by Claude.
+
+</details>
 
 ---
 
@@ -300,7 +332,7 @@ Optional — the Day 1 Challenge only needs the exercise from Version Control wi
 <details markdown="1">
 <summary>Show steps</summary>
 
-Now let Claude Code do real work on your own site. Launch `claude` inside `rf-bootcamp-2026` and give it a concrete, checkable task — switch the site to dark mode and drive the whole git loop for you:
+Now let Claude Code do real work on your own site. Launch `claude` inside `rf-bootcamp-2026`, then press `Shift+Tab` until you're in **auto mode** — so Claude can run the whole task end to end without stopping to ask at every edit and git step. Then give it a concrete, checkable task — switch the site to dark mode and drive the whole git loop for you:
 
 ```
 > Switch this site's theme to dark mode, commit it on a new branch, and open a pull request.
@@ -311,6 +343,15 @@ Then confirm it worked: on your fork on GitHub, a new **branch** and a **pull re
 {: .note }
 > Look at what it did: the work went on a **branch**, opened as a **pull request**, and the commit **credits Claude** — the good habits happened automatically, because of the github-for-research skill.
 
+**See your change.** When Claude opens the PR it prints a link — follow it and open the **Files changed** tab. That alone confirms Claude made the edit correctly, and reviewing the diff *is* the review. To watch it render *live*, merge the PR into your fork's `main`; your GitHub Pages site rebuilds in a minute or two and dark mode appears at your site URL:
+
+```
+https://YOUR-USERNAME.github.io/rf-bootcamp-2026/
+```
+
+{: .note }
+> GitHub Pages publishes one site per repo, so there's no separate preview for a branch — merging into `main` is how you see it. On your personal fork, turning the whole site dark is harmless.
+
 </details>
 
 ### Bonus — Do it like a pro (plan mode + issues)
@@ -318,7 +359,7 @@ Then confirm it worked: on your fork on GitHub, a new **branch** and a **pull re
 <details markdown="1">
 <summary>Show steps</summary>
 
-The task above did the job in one line. Here's how you'd handle a real change more carefully — look before you leap, and review a plan before any file changes. (Do this on a fresh branch, or instead of the one-liner above.)
+The task above flipped the whole site to dark in one line. Here's a more ambitious change, handled carefully — add a **toggle** so readers can switch between light and dark themselves. Because it's bigger, you look before you leap and review a plan before any file changes. (Do this on a fresh branch.)
 
 1. **Inspect the repo.** In `claude`, ask how the site is themed:
    ```
@@ -330,42 +371,13 @@ The task above did the job in one line. Here's how you'd handle a real change mo
    ```
 3. **Plan before acting.** Press `Shift+Tab` to enter **plan mode**, then ask:
    ```
-   > Propose a plan to move the whole site to dark mode — colours, code blocks, and the diagrams.
+   > Propose a plan to add a dark-mode toggle to the site — a control readers can click to switch between light and dark that remembers their choice.
    ```
    Claude investigates and shows a plan **without changing anything**. Read it; refine it if you want.
-4. **Approve, implement, and open a PR.** Accept the plan (it switches to auto mode), let it make the changes, and have it open a pull request.
+4. **Approve, implement, and open a PR.** Approve the plan, let Claude make the changes, and have it open a pull request.
 
 {: .tip }
 > This is the everyday Claude Code loop for anything non-trivial: **look → plan → approve → act.** Plan mode is your safety net — you see exactly what it intends before a single file changes.
-
-</details>
-
-### Also try — Ask a real research repo questions
-
-<details markdown="1">
-<summary>Show steps</summary>
-
-A well-kept repository is one you can *ask questions*. We'll use a real Stanford project — an analysis of whether San Francisco's graffiti 311 reports fell during COVID.
-
-Clone it and open Claude Code inside it:
-
-```bash
-git clone https://github.com/gsbdarc/sf311.git
-cd sf311
-claude
-```
-
-Now ask, in plain English:
-
-```
-> What research question does this project answer?
-> How was the raw 311 data cleaned, and where is that checked?
-> Walk me through how to reproduce the main finding.
-> Are there any open issues or things left to do?
-```
-
-{: .tip }
-> Notice how Claude reads the README, the scripts, and the issue history to answer. That structure exists *because* someone kept the repo the way the skill describes — good practice is what makes a project answerable.
 
 </details>
 
@@ -375,7 +387,7 @@ Now ask, in plain English:
 
 ## What You Learned
 
-- How Claude Code works — model vs. harness, models, modes, tokens, context, memory, skills, terminal vs. app
+- How Claude Code works — model vs. harness, models, modes, tokens, context, memory, skills
 - What a token is, and why context and cost are both measured in tokens
 - What leaves your machine on an AI call — and why sensitive data can't go to an external LLM
 - How to get Claude through Stanford's managed service
