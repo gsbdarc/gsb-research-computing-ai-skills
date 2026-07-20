@@ -106,20 +106,6 @@
 }
 .lb-level-title { color: #666; font-size: 0.88em; }
 
-.floor-card-locked { opacity: 0.55; }
-.floor-card-locked h3 a { color: #999; pointer-events: none; }
-
-/* ── Locked floor page message ── */
-.floor-locked {
-  border-left: 4px solid #c0392b;
-  background: #fdf3f2;
-  border-radius: 4px;
-  padding: 1rem 1.25rem;
-  margin: 1.5rem 0;
-  font-size: 0.95em;
-}
-.floor-locked p { margin: 0.3rem 0; }
-
 /* Wrap long plain-text code blocks (e.g. Claude Code prompt examples) so they
    wrap instead of scrolling off-screen. Command blocks (language-bash) are
    left to scroll, since wrapping a command mid-token hurts readability. */

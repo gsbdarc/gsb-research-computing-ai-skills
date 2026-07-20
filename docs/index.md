@@ -37,37 +37,35 @@ Each floor corresponds to one day of the bootcamp. Every floor has **rooms** —
 
 Finished early? Look for **Side Quests** — optional deeper challenges that unlock a named **Weapon** (a skill you carry for the rest of the course). Weapons compound: what you earn in Day 1 pays off in Day 3.
 
-Each floor ends with a **Boss Gate**: a capstone challenge you submit by committing your work to your fork on GitHub. Push your commit → the grader runs → the next floor unlocks on your personal site.
+Each floor ends with a **Boss Gate**: an optional capstone challenge you submit by committing your work to your fork on GitHub. Every floor is open from the start — clear the Boss Gates for the satisfaction (and the leaderboard), not to unlock anything.
 
-Every completed quest adds to your **Quest Log** (shown in the widget, bottom-left). Completing all main quests on each floor is enough to pass the Boss Gate and advance. Side quests push your level higher — that is what separates the top of the leaderboard. The more side quests you finish, the higher your rank.
+Every completed quest adds to your **Quest Log** (shown in the widget, bottom-left) and to your standing on the leaderboard. Side quests push your level higher — that is what separates the top of the leaderboard. The more side quests you finish, the higher your rank.
 
 ---
 
 ## The Four Floors
 
-{% assign unlocked = site.data.progress.unlocked_floors %}
-
 <div class="dungeon-layout">
-  <div class="floor-card{% unless unlocked contains 1 %} floor-card-locked{% endunless %}">
-    <h3><a href="{{ '/day1/' | relative_url }}">Floor 1 — The Gatehouse</a>{% unless unlocked contains 1 %} 🔒{% endunless %}</h3>
+  <div class="floor-card">
+    <h3><a href="{{ '/day1/' | relative_url }}">Floor 1 — The Gatehouse</a></h3>
     <p>Levels 1–3 &nbsp;·&nbsp; 6 rooms + Boss Gate</p>
   </div>
   <div class="floor-skills">CLI &middot; SSH &middot; Yens file system &middot; Git</div>
 
-  <div class="floor-card{% unless unlocked contains 2 %} floor-card-locked{% endunless %}">
-    <h3><a href="{{ '/day2/' | relative_url }}">Floor 2 — The Alchemist's Lab</a>{% unless unlocked contains 2 %} 🔒{% endunless %}</h3>
+  <div class="floor-card">
+    <h3><a href="{{ '/day2/' | relative_url }}">Floor 2 — The Alchemist's Lab</a></h3>
     <p>Levels 4–6 &nbsp;·&nbsp; 8 rooms + Boss Gate</p>
   </div>
   <div class="floor-skills">JupyterHub &middot; Python envs &middot; AI Playground &middot; Secure key management &middot; Pydantic &middot; AI agents &amp; data privacy</div>
 
-  <div class="floor-card{% unless unlocked contains 3 %} floor-card-locked{% endunless %}">
-    <h3><a href="{{ '/day3/' | relative_url }}">Floor 3 — The SLURM Mines</a>{% unless unlocked contains 3 %} 🔒{% endunless %}</h3>
+  <div class="floor-card">
+    <h3><a href="{{ '/day3/' | relative_url }}">Floor 3 — The SLURM Mines</a></h3>
     <p>Levels 7–8 &nbsp;·&nbsp; 6 rooms + Boss Gate</p>
   </div>
   <div class="floor-skills">SLURM &middot; Resource estimation &middot; Job lifecycle &middot; Job monitoring</div>
 
-  <div class="floor-card{% unless unlocked contains 4 %} floor-card-locked{% endunless %}">
-    <h3><a href="{{ '/day4/' | relative_url }}">Floor 4 — The GPU Fortress</a>{% unless unlocked contains 4 %} 🔒{% endunless %}</h3>
+  <div class="floor-card">
+    <h3><a href="{{ '/day4/' | relative_url }}">Floor 4 — The GPU Fortress</a></h3>
     <p>Levels 9–10 &nbsp;·&nbsp; 7 rooms + Boss Gate</p>
   </div>
   <div class="floor-skills">Job arrays &middot; GPU tiers &middot; Local LLMs &middot; OpenAI-compatible API &middot; Human vs LLM</div>
