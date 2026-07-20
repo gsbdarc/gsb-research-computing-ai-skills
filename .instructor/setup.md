@@ -107,8 +107,8 @@ https://gsbdarc.github.io/rf-bootcamp-2026/leaderboard/
 - Click **↻ Refresh** for an instant update
 
 **When to pull it up:**
-- End of each day after students sync their quest logs (they upload `quest_log.json` to their fork)
-- Boss gate clears show up automatically as soon as students push — no sync needed for floor icons
+- End of each day after students sync their quest logs (Claude Code commits `quest_log.json` to their fork)
+- Boss gate clears show up once a student's `quest_log.json` marks that gate's key `true` and is pushed
 
 **Reading the leaderboard:**
 - ⚔ icons = boss gates cleared (one per day). A student with 2 swords has cleared Days 1 and 2.
@@ -133,10 +133,6 @@ See `.instructor/boss-gate-1.key.md` for the full step-by-step solution to Boss 
 
 ---
 
-## Grader notes
+## Boss gates
 
-The auto-grader (`scripts/check_boss_gates.py`) runs on each student's GitHub Actions after every push. For Boss Gate 1 it checks:
-- `signature_spell.txt` exists in the repo
-- At least one line in the file ends with `.spell`
-
-It does **not** check the signature string value — any correctly named spell file satisfies the grader.
+There is **no auto-grader** — every floor is unlocked from the start and boss gates are optional capstone challenges. A student "clears" a gate by committing the gate's deliverables and marking its key `true` in `quest_log.json` (via Claude Code). The leaderboard reads those keys directly: `d1-boss-gate-1.main`, `d2-boss-gate.commit`, `d3-boss-gate.commit`, `d4-boss-gate.commit`.

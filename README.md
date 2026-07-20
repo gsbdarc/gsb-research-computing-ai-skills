@@ -2,7 +2,7 @@
 
 > **Stanford GSB DARC · Pre-doctoral Researcher Training · 4 days · Hands-on**
 
-A four-day hands-on course covering the command line, the Yens cluster, SLURM, GPU jobs, LLM APIs, and AI coding tools. The course runs as a dungeon game — complete rooms, earn skills, pass Boss Gates to advance floors.
+A four-day hands-on course covering the command line, the Yens cluster, SLURM, GPU jobs, LLM APIs, and AI coding tools. The course runs as a dungeon game — complete rooms, earn skills, and take on optional Boss Gate challenges.
 
 ---
 
@@ -45,26 +45,28 @@ git clone https://github.com/YOUR-USERNAME/rf-bootcamp-2026.git
 cd rf-bootcamp-2026
 ```
 
-Work from this directory for all Boss Gate submissions.
+Work from this directory for all your course work.
 
 ---
 
 ## How Boss Gates Work
 
-Each floor is locked until you pass the Boss Gate from the previous floor:
+Every floor is open from the start — nothing is locked, and you can work through the days in order at your own pace. Each floor ends with an optional **Boss Gate**: a capstone challenge that ties the day's skills together.
 
-1. Complete the Boss Gate quest on the Boss Gate page
-2. Commit the required files to your fork's `main` branch
+To complete a Boss Gate:
+
+1. Do the Boss Gate quest on its page
+2. Commit the deliverables to your fork's `main` branch
 3. Push: `git push`
-4. Wait ~60 seconds — a grader runs automatically in your fork's Actions tab
-5. Green ✓ = floor unlocked; Red ✗ = click the run to see what's missing
 
-| Boss Gate | Files to commit | What unlocks |
-|-----------|----------------|--------------|
-| **Gate 1** | `signature_spell.txt` | Floor 2 — The Alchemist's Lab |
-| **Gate 2** | `results/mood_ring.json` | Floor 3 — The SLURM Mines |
-| **Gate 3** | `slurm/extract_form_3_one_file.slurm` · `README.md` | Floor 4 — The GPU Fortress |
-| **Gate 4** | `results/great_scroll_sweep.csv` · `results/comparison.csv` · `README.md` | All floors cleared ⚔️ |
+That's it — the push saves your work and updates your site and the leaderboard. There's no grader and no floor to unlock; clearing a gate is its own reward and shows up on the leaderboard.
+
+| Boss Gate | Deliverables |
+|-----------|--------------|
+| **Gate 1** | `signature_spell.txt` |
+| **Gate 2** | `results/mood_ring.json` |
+| **Gate 3** | `slurm/extract_form_3_one_file.slurm` · `README.md` |
+| **Gate 4** | `results/great_scroll_sweep.csv` · `results/comparison.csv` · `README.md` |
 
 ---
 

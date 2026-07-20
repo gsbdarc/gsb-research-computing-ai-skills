@@ -31,12 +31,12 @@ Use the interactive Yens for: exploring data, testing code, runs where you're wa
 
 ---
 
-## When the Shared Kitchen Isn't Enough
+## When the Interactive Yens Aren't Enough
 
-In the live demo earlier you saw what happens when many cooks share the same kitchen — burners get taken, the fridge fills up, and everyone slows down. The interactive Yens hit the same limits:
+In the live demo earlier you saw what happens when many users share the same node — CPU cores get taken, RAM fills up, and everyone slows down. The interactive Yens hit the same limits:
 
-- **All the burners are taken** — someone else is using all available CPU cores on the node; your script crawls
-- **Not enough room in the fridge** — another user's job already claimed most of the RAM; yours may crash or get killed
+- **All the CPU cores are busy** — someone else is using all available cores on the node; your script crawls
+- **The node is out of RAM** — another user's job already claimed most of the memory; yours may crash or get killed
 - **You hit the user limit** — per-user CPU and RAM caps are enforced; your script gets throttled even if the node has headroom
 - **You need to walk away** — if your connection drops, your script dies; babysitting a terminal for hours is not research
 
@@ -51,18 +51,18 @@ The solution: a scheduler. **SLURM** reads every job request, knows what resourc
 | Notebooks? | Yes | No |
 | GPUs? | No | Yes |
 
-You don't walk into the kitchen and start cooking — you hand your recipe to the head chef, specify what resources you need, and come back when the job is done.
+Instead of running your script directly on a shared node, you submit it to the scheduler: you specify what resources you need, SLURM runs it on a dedicated node, and you collect the results when it's done.
 
-| Kitchen analogy | Yens / SLURM |
-|---------|--------------|
-| Head chef | SLURM scheduler |
-| Station (stove) | Compute node |
-| Burner | CPU core |
-| Fridge | RAM |
-| Warehouse | Shared file system (VAST) |
-| Order ticket | Job script (`sbatch`) |
-| Tickets on the rail | Job queue (`squeue`) |
-| Recipe | Your Python / R / shell script |
+| SLURM concept | What it is |
+|---|---|
+| SLURM scheduler | Decides which jobs run where and when |
+| Compute node | A dedicated machine that runs your job |
+| CPU core | A unit of parallel compute you request |
+| RAM | Memory you request for the job |
+| Shared file system (VAST) | Where your data and code live, visible from every node |
+| Job script (`sbatch`) | The script you submit to request resources and run your work |
+| Job queue (`squeue`) | The list of pending and running jobs |
+| Your Python / R / shell script | The actual program the job runs |
 
 {: .note }
 > **Why does this matter?** When you submit a job to the cluster, you have to tell the scheduler exactly how much CPU, RAM, and time your job needs. If you ask for too little, your job fails. If you ask for too much, you wait longer in the queue and waste shared resources. The only way to know what to ask for is to **measure first**.
@@ -99,14 +99,7 @@ squeue -p gpu
 
 Every `PD` job is waiting for a node with the resources it requested. When SLURM finds a matching node — it runs.
 
-When you can read the queue and explain the difference between `R` and `PD` to a neighbor — put a **🟢 green sticky** on your laptop.
-
-<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="main"> I can read the job queue with squeue and filter it by partition</label>
-
-{: .note }
-> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-head-chef.main` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
-
-Now run `sinfo` to see the state of all nodes and [partitions](https://rcpedia.stanford.edu/_user_guide/slurm/#current-partitions-and-their-limits):
+Now run `sinfo` to see the state of all nodes and the partitions they belong to:
 
 ```bash
 sinfo
@@ -114,12 +107,18 @@ sinfo
 
 - How many compute nodes are currently idle (`STATE=idle`)?
 - What partitions exist? Which one would you use for a normal job?
-- What is the maximum time limit for each partition?
+- What is the maximum time limit for each partition? (See the [current partitions and their limits](https://rcpedia.stanford.edu/_user_guide/slurm/#current-partitions-and-their-limits).)
 
-<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="side1"> I ran sinfo and can describe the Yens partitions and node states</label>
+When you can read the queue, tell `R` from `PD`, and describe the Yens partitions and node states — put a **🟢 green sticky** on your laptop.
 
-{: .note }
-> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-head-chef.side1` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
+<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="main"> I can read the queue with squeue, filter by partition, and describe the partitions and node states with sinfo</label>
+
+<details markdown="1">
+<summary>🔄 Sync to leaderboard</summary>
+
+**Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-head-chef.main` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
+
+</details>
 
 ---
 
@@ -149,8 +148,12 @@ Now run `longsqueue` — you should see the full resource picture of every job i
 
 <label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="side3"> I added the longsqueue alias to my ~/.bash_profile and can read CPU and memory requests in the queue</label>
 
-{: .note }
-> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-head-chef.side3` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
+<details markdown="1">
+<summary>🔄 Sync to leaderboard</summary>
+
+**Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-head-chef.side3` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
+
+</details>
 
 **Bonus 2 — Inspect any job with scontrol**
 
@@ -169,8 +172,12 @@ This works on any job — yours or someone else's — as long as it is still in 
 
 <label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="side4"> I used scontrol to find the CPU, RAM, and time limit of a job in the queue</label>
 
-{: .note }
-> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-head-chef.side4` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
+<details markdown="1">
+<summary>🔄 Sync to leaderboard</summary>
+
+**Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-head-chef.side4` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
+
+</details>
 
 **Bonus 3 — Compare partitions**
 
@@ -178,5 +185,9 @@ Run `sinfo -p gpu` and `sinfo -p normal` (or whichever partitions exist on the Y
 
 <label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="side5"> I compared a GPU partition to a CPU partition with sinfo and can explain when I'd request each</label>
 
-{: .note }
-> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-head-chef.side5` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
+<details markdown="1">
+<summary>🔄 Sync to leaderboard</summary>
+
+**Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-head-chef.side5` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
+
+</details>
