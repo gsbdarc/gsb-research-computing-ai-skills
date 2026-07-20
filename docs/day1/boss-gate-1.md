@@ -10,125 +10,158 @@ permalink: /day1/boss-gate-1/
 
 <div data-room-id="d1-boss-gate-1"></div>
 
-This challenge combines everything from Day 1: moving around the file system, sorting files in bulk, connecting over SSH, and committing your work with Git.
+This challenge ties the whole day together into a single piece of proof. You'll
+capture a fingerprint of **your laptop**, carry it across to **the Yens** with
+`scp`, and then hand the analysis and the git work to **Claude Code** — the tool
+you just set up. The result is one file, `day1_challenge.json`, that travels from
+your laptop to the cluster and lands in your fork as a pull request.
 
-A shared directory contains fifty-one files. Fifty belong to five known categories. One does not. Your task is to find that outlier, read the value stored inside it, and push the proof to your GitHub fork.
+Everything you'll use today shows up here: SSH, `scp`, Claude Code, and the
+fork → branch → commit → push → PR workflow from the github-for-research skill.
 
 ---
 
 ## The Challenge
 
 {: .important }
-> **Task:** Go to the shared directory, sort the files by category, find the file that doesn't fit, read the value inside it, and push the proof to your GitHub fork.
+> **Task:** Capture your laptop's public IP, `scp` it to the Yens, then have
+> Claude Code compute a letter distribution over the grimoire spell names, write
+> both into `day1_challenge.json`, and open a pull request on your fork.
+
+The finished file has this **structure** (the numbers below are placeholders to
+show the shape — Claude computes the real counts):
+
+```json
+{
+  "public_ip": "203.0.113.42",
+  "letter_distribution": { "a": 0, "b": 0, "c": 0 }
+}
+```
+
+- `public_ip` — the public IP address of **your laptop** (proof the file started
+  on your machine and crossed to the cluster).
+- `letter_distribution` — how often each letter `a`–`z` appears across the
+  **spell name** field of the grimoire (Claude computes this for you).
 
 ---
 
-### Step 1 — Create your workspace in scratch
+### Step 1 — Grab your laptop's public IP
 
-You are already SSH'd onto the Yens. Create a personal working directory and copy the shared files into it:
-
-```bash
-mkdir /scratch/shared/$USER/boss1
-cp -r /scratch/shared/rf-bootcamp-2026/boss1/ /scratch/shared/$USER/boss1/
-```
-
-`-r` means recursive — copies the entire directory, just like `scp -r` in the Transferring Files (scp) room.
-
-Navigate in and count what you have:
+Do this on your **laptop** (a local Terminal / Git Bash tab), *not* on the Yens —
+run it on the Yens and you'd capture the *cluster's* address instead of yours.
 
 ```bash
-cd /scratch/shared/$USER/boss1
-ls | wc -l          # how many files are there?
-ls | head -10       # look at the naming pattern
+curl -s https://api.ipify.org > ~/Desktop/provenance.txt   # your laptop's public IP
+cat ~/Desktop/provenance.txt                               # confirm you got an address
 ```
 
----
-
-### Step 2 — Sort the files by category
-
-The filename format is `name_CATEGORY_tier_type_level.spell`. Create directories for the five standard categories and move the files into them:
-
-```bash
-mkdir fire ice lightning earth wind
-
-mv *_fire_*.spell fire/
-mv *_ice_*.spell ice/
-mv *_lightning_*.spell lightning/
-mv *_earth_*.spell earth/
-mv *_wind_*.spell wind/
-```
-
----
-
-### Step 3 — Count and find what remains
-
-Verify your work:
-
-```bash
-ls fire/ | wc -l
-ls ice/ | wc -l
-ls lightning/ | wc -l
-ls earth/ | wc -l
-ls wind/ | wc -l
-```
-
-Now check what is still in the working directory — what the wildcards could not sort:
-
-```bash
-ls *.spell
-```
-
-One file does not belong to any of the five categories. That is the file you are looking for.
-
----
-
-### Step 4 — Read the file
-
-```bash
-cat <the-remaining-filename>.spell
-```
-
-`cat` displays the contents of a file. The file contains a line beginning with `SIGNATURE:` — copy that string exactly.
-
----
-
-### Step 5 — Record the proof in your repo
-
-Navigate to your cloned repository on the Yens:
-
-```bash
-cd ~/rf-bootcamp-2026/
-```
-
-Create a file called `signature_spell.txt` with two lines:
-
-```bash
-nano signature_spell.txt
-```
-
-Write exactly:
-
-```
-Spell found: <the-filename-you-found>.spell
-Signature: <the-signature-string-from-the-file>
-```
-
-Save with `Ctrl+O`, exit with `Ctrl+X`.
-
----
-
-### Step 6 — Push to your fork
-
-```bash
-git add signature_spell.txt
-git commit -m "Day 1 Challenge: signature found"
-git push
-```
-
-Open your GitHub fork in a browser and confirm `signature_spell.txt` appears. That commit is your submission.
+You should see something like `203.0.113.42`.
 
 {: .note }
-> If `git push` asks for a password, you haven't authenticated yet — run `module load gh && gh auth login` (see Step 3 of [Version Control with Git](../repository/)). Still stuck? Ask an instructor.
+> Everyone in the room shares the same network, so this address points at the
+> classroom, not at you personally.
+
+---
+
+### Step 2 — Send it to the Yens with `scp`
+
+Still on your **laptop**, copy the file straight into your course repo on the
+Yens (`scp` runs over the SSH connection you set up earlier):
+
+```bash
+scp ~/Desktop/provenance.txt SUNetID@yen.stanford.edu:~/rf-bootcamp-2026/provenance.txt
+```
+
+This is the same upload direction you practiced in
+[Transferring Files (scp)](../scroll-transfer/) — source is local, destination is
+remote.
+
+---
+
+### Step 3 — Let Claude Code do the analysis and the git work
+
+Now hop onto the Yens, move into your repo, and launch Claude Code:
+
+```bash
+ssh SUNetID@yen.stanford.edu     # if you're not already connected
+cd ~/rf-bootcamp-2026
+claude
+```
+
+Press `Shift+Tab` until you reach **plan mode** — so Claude investigates and
+proposes an approach *without changing anything* until you approve. This is the
+`look → plan → approve → act` loop from [Working with Claude Code](../familiars-den/).
+
+Now describe the task **in your own words** — don't copy a script. Tell Claude
+what you want to end up with, and let it work out the how. Your instruction should
+cover all of these objectives:
+
+- **Analyze the grimoire.** The dataset is already in the repo you cloned, at
+  `docs/assets/data/grimoire.zip` — Claude just needs to unzip it (no download).
+  Count how often each letter `a`–`z` appears across the **spell name** field
+  only — the
+  first underscore-separated field of each filename (e.g. `ashstrike` in
+  `ashstrike_fire_3_defensive_meteor.spell`), never the element, tier, type, or
+  mastery. Be explicit about **how** you count: use every one of the files' names
+  (names repeat across the dataset, and each file counts), lowercase `a`–`z`
+  only, as integer counts.
+- **Read your provenance.** Pull your laptop's public IP from `provenance.txt`,
+  the file you just `scp`'d into this repo.
+- **Write the result.** Produce a file named `day1_challenge.json` in the repo,
+  containing exactly two top-level keys and nothing else:
+  - `public_ip` — the IP string from `provenance.txt`.
+  - `letter_distribution` — an object mapping each lowercase letter to its integer
+    count.
+
+  The file's **structure** must match this (the numbers are placeholders — Claude
+  fills in the real counts):
+
+  ```json
+  {
+    "public_ip": "203.0.113.42",
+    "letter_distribution": { "a": 0, "b": 0, "c": 0 }
+  }
+  ```
+- **Do the git work the research way.** Log an issue for the task, work on a new
+  branch, commit crediting Claude, and open a pull request.
+
+**Then read the plan Claude gives you.** Before you approve, check it yourself:
+
+- Does it hit **every** objective above — the analysis, the IP, the JSON file,
+  *and* the full issue → branch → commit → PR cycle?
+- Is it following the **github-for-research** skill you installed in
+  [Working with Claude Code](../familiars-den/)? If the plan doesn't mention the
+  skill or the branch/issue/PR habits, ask Claude: `> are you using the
+  github-for-research skill for this?` — and have it revise the plan if not.
+
+Refine the plan until it clearly achieves the objectives, then approve it and let
+Claude carry it out. Notice what you *didn't* do: no `curl` for the dataset, no
+`unzip`, no counting by hand, no `git` commands typed out — you described the
+outcome and reviewed the approach, and Claude did the rest.
+
+---
+
+### Step 4 — Verify your submission
+
+Open your fork on GitHub in a browser. You should see a new **pull request** with
+`day1_challenge.json` in its **Files changed** tab. Open the file and check it has
+both keys — a valid IP in `public_ip` and a set of letter counts in
+`letter_distribution`. That pull request is your submission.
+
+Merging it is optional — the open PR is enough to count as done.
+
+{: .note }
+> If Claude reports that `git push` failed for authentication, you haven't
+> signed in to GitHub on the Yens yet — run `module load gh && gh auth login`
+> (see Step 3 of [Version Control with Git](../repository/)), then ask Claude to
+> push again. Still stuck? Ask an instructor.
+
+{: .note }
+> 🟢 **Green sticky** = I'm done and ready &nbsp;&nbsp; 🔴 **Red sticky** = I need help
+>
+> Put a sticky note on your laptop lid so instructors can see where you are.
+
+<label class="quest-check"><input type="checkbox" data-room="d1-boss-gate-1" data-key="main"> Day 1 Challenge complete</label>
 
 ---
 
@@ -136,13 +169,13 @@ Open your GitHub fork in a browser and confirm `signature_spell.txt` appears. Th
 
 | Skill | Where you learned it |
 |-------|---------------------|
+| `curl` to fetch data over the network | Bulk File Operations |
 | `ssh` to a remote server | Connecting to a Cluster |
-| `mkdir` to create directories | Command Line Basics |
-| `cd` to navigate the file system | Command Line Basics |
-| `cp -r` to copy a directory | Command Line Basics (cp) + Transferring Files (scp) (-r flag) |
-| `ls \| wc -l` to count files | Bulk File Operations |
-| `mv *_category_*` wildcard sorting | Bulk File Operations |
-| `cat` to read a file's contents | (new — but you know `ls` and `head`) |
-| `git add / commit / push` | Version Control with Git |
+| `scp` to move a file laptop → cluster | Transferring Files (scp) |
+| The spell filename fields (`name_element_tier_type_mastery`) | Bulk File Operations |
+| Driving a task in plain English with Claude Code | Working with Claude Code |
+| Branch → commit → PR, done for you by the skill | Version Control with Git + Working with Claude Code |
 
-<label class="quest-check"><input type="checkbox" data-room="d1-boss-gate-1" data-key="main"> Day 1 Challenge complete</label>
+You just ran a full research loop end to end: fingerprint your machine, move data
+across the network, analyze it with an AI assistant, and version-control the
+result — the same shape of workflow you'll use for real projects on the Yens.
