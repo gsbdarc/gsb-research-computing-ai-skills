@@ -99,6 +99,16 @@ if failed:
 python3 scripts/merge_results.py
 ```
 
+{: .tip }
+> **Automate the merge with a job dependency.** Here you run the merge by hand once the array finishes. You can instead submit it as a *dependent* job that starts automatically only if every array task succeeds — the same `--dependency=afterok` trick you used to chain jobs in [Day 3](../../day3/ticket-rail/):
+>
+> ```bash
+> ARRAY_ID=$(sbatch --parsable jobs/array_extract.sh)           # capture the array job ID
+> sbatch --dependency=afterok:$ARRAY_ID jobs/merge_results.sh   # runs only after the array succeeds
+> ```
+>
+> Wrap `merge_results.py` in a short SLURM script (`jobs/merge_results.sh`) and the two steps become one hands-off pipeline.
+
 **Part 5 — Verify the merged file:**
 
 Confirm the CSV was written and has a row for every filing:

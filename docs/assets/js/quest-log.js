@@ -9,9 +9,6 @@
 
   const STORAGE_KEY = 'dungeon.v1.progress';
 
-  // Total possible checkboxes across the entire dungeon (all 4 days)
-  const TOTAL_CHECKS = 60;
-
   const LEVEL_TITLES = [
     'Initiate', 'Apprentice', 'Scholar', 'Journeyman', 'Adept',
     'Specialist', 'Expert', 'Veteran', 'Master', 'Archmage',
@@ -74,6 +71,12 @@
       ],
     },
   ];
+
+  // Total possible checkboxes across the entire dungeon — derived from DAYS so
+  // it stays correct as rooms/keys are added or removed.
+  const TOTAL_CHECKS = DAYS.reduce(function (sum, day) {
+    return sum + day.rooms.reduce(function (s, room) { return s + room.keys.length; }, 0);
+  }, 0);
 
   // ── Storage ──────────────────────────────────────────────────────────────
 

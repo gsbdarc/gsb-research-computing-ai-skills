@@ -57,14 +57,14 @@ tr.lb-leader td { background: #f4f8ff; }
   var MAIN   = 'gsbdarc/rf-bootcamp-2026';
   var REPO   = 'rf-bootcamp-2026';
   var BRANCH = 'main';
-  var TOTAL  = 57; // keep in sync with TOTAL_CHECKS in assets/js/quest-log.js
+  var TOTAL  = 62; // keep in sync with TOTAL_CHECKS in assets/js/quest-log.js
 
   // quest_log.json keys that mark each day's Boss Gate as complete
   var BOSS_GATE_KEYS = [
     'd1-boss-gate-1.main',
     'd2-boss-gate.commit',
     'd3-boss-gate.commit',
-    'd4-boss-gate.commit',
+    'd4-capstone.commit',
   ];
 
   var LEVEL_TITLES = [
