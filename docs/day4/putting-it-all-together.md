@@ -84,4 +84,4 @@ The leaderboard updates within a couple of minutes — this is your final rank.
 >
 > Check the leaderboard to see how many optional exercises you completed and where you rank.
 >
-> What's next: Sherlock (Stanford's HPC), Redivis (data platform), fine-tuning, multi-node jobs, and whatever your research demands. This week was the foundation — you now know where each piece fits.
+> But note that there's still more to learn: Sherlock (Stanford's HPC), Redivis (data platform), fine-tuning, multi-node jobs, and whatever your research demands. This week was just the foundation.

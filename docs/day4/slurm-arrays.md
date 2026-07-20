@@ -80,9 +80,9 @@ and that one submission becomes 100 tasks. Every task runs the same script — i
 
 ---
 
-## Mapping a Task to a Filing
+## Building the Array Job
 
-The task ID is just an integer — *you* decide what it points to. The usual pattern has four steps:
+The task ID is just an integer — *you* decide what it points to. The usual pattern has these steps:
 
 **1. List the filings, one file path per line.** Write the paths to a file such as `filings_list.txt`; the line number is what each task ID will refer to.
 
