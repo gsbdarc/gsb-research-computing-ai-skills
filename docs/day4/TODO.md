@@ -9,10 +9,13 @@ search_exclude: true
 **Internal planning note — not a course page.** Tracks the remaining known gaps in
 the Day 4 material. Excluded from site nav and search via front matter.
 
-The Day 4 rewrite (de-fantasized pages, new content, leaderboard/quest wiring) is
-complete; the sequencing plan, `extract_form_3_cli.py`, fault-tolerance/skip-if-exists,
-the "why a GPU" and local-vs-cloud motivation, the interactive GPU session, and the
-Day 3-style leaderboard sync are all done. What's left:
+The Day 4 rewrite is essentially complete. **Done:** the sequencing plan;
+`extract_form_3_cli.py` (with `sys.argv` introduced at first use in `slurm-arrays.md`);
+fault-tolerance / skip-if-exists; the "why a GPU" and local-vs-cloud motivation; the
+interactive GPU session (`srun --pty`); the Day 3-style leaderboard sync; and the
+cross-page link audit — all course-page links and anchors resolve. (The only dead
+links are in `proposed_agenda.md`, an internal doc still pointing at now-deleted
+archive files; delete or fix that doc separately.)
 
 ---
 
@@ -30,21 +33,8 @@ mostly have a single checkbox each — `running-llms.md` is the exception
 - Add per-Part checkpoints (e.g. a checkbox after each Part of the array exercise).
 - Register any new keys under the relevant `d4-*` rooms in `quest-log.js`, and attach
   the "🔄 Keep the leaderboard live" sync prompt to each new checkpoint.
-  (`TOTAL_CHECKS` is now derived from the registry, so new keys are counted
+  (`TOTAL_CHECKS` is derived from the registry, so new keys are counted
   automatically — but keep `leaderboard.md`'s `TOTAL` in sync.)
-
-### Introduce prerequisites used but never taught
-- **Passing command-line arguments** — `extract_form_3_cli.py` reads `sys.argv`, but
-  passing arguments to a script is never introduced in Days 1–3. Add a short aside
-  before first use (in `slurm-arrays.md`, where the CLI script appears).
-- **Keyword arguments** (`name=value`) — used since Day 2 (OpenAI client, pandas)
-  but never named. Consider a one-line aside in `day2/oracles-chamber.md` at first use.
-
-### Finish the cross-page link audit
-Confirmed OK: all Day 3 child links resolve; referenced images/assets exist.
-Not yet verified: whether *every* internal page link resolves — cross-day links still
-to check include `day2/human-vs-llm`, `scroll-transfer`, `cartographers-room`, and
-`claude-code`.
 
 ---
 

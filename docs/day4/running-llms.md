@@ -84,13 +84,16 @@ You request a GPU the same way you set any other resource in a SLURM script — 
 
 Just like the `#SBATCH` directives you wrote on Day 3, this tells the scheduler what your job needs — here, one GPU. Match the partition name (and any specific-node targeting) to your cluster's current setup; ask an instructor if unsure.
 
-**For interactive work** — exploring, pulling a model, quick tests — you don't need a batch script. Grab a GPU node directly with `srun --pty`, the same command you used for a CPU allocation on [Day 3](../../day3/ticket-rail/), plus the GPU flags:
-
-```bash
-srun --partition=gpu --gres=gpu:1 --cpus-per-task=4 --mem=16G --time=01:00:00 --pty bash
-```
-
-This drops you into a shell *on a GPU node* with one GPU reserved — run `nvidia-smi` to confirm, and `exit` to release it when you're done. To pin a specific GPU type (e.g. the H200 for a large model), add `--constraint="GPU_MODEL:H200"`. Reach for an interactive session when you're exploring or testing; use a batch job (the Optional Practice below) for long or production runs that should queue unattended.
+{: .tip }
+> **For interactive work** — exploring, pulling a model, quick tests — you don't need a batch script. Grab a GPU node directly with `srun --pty`, the same command you used for a CPU allocation on [Day 3](../../day3/ticket-rail/), plus the GPU flags:
+>
+> ```bash
+> srun --partition=gpu --gres=gpu:1 --cpus-per-task=4 --mem=16G --time=01:00:00 --pty bash
+> ```
+>
+> This drops you into a shell *on a GPU node* with one GPU reserved — run `nvidia-smi` to confirm. To pin a specific GPU type (e.g. the H200 for a large model), add `--constraint="GPU_MODEL:H200"`. Reach for an interactive session when you're exploring or testing; use a batch job (the Optional Practice below) for long or production runs that should queue unattended.
+>
+> **Release it when you're done.** Type `exit` the moment your experimentation is complete. An interactive allocation holds the GPU for the *full* `--time` you requested — even while it sits idle at your shell prompt — so no one else can use that GPU until you exit or the time limit runs out. GPUs are scarce shared resources; don't sit on one you've finished with.
 
 <label class="quest-check"><input type="checkbox" data-room="d4-running-llms" data-key="main"> I know why LLMs need a GPU and how to request one on the Yens</label>
 

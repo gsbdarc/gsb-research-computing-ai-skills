@@ -158,6 +158,9 @@ So far every filing took the same 5 seconds. Real filings aren't so uniform — 
 
 The core that draws a long filing keeps working after the others have run out, and the total wall-clock time is set by that straggler — not the average. The cores that finish early sit idle waiting for it. This is called **load imbalance**, and it's why you can't just divide total work by the number of cores to predict runtime.
 
+{: .tip }
+> **If you can order the work, run the longest tasks first.** Load imbalance bites hardest when a long task starts *late* — the other cores finish and sit idle waiting for it. Start the longest tasks first and the short ones backfill around them, so the cores finish close together. This is the "longest processing time first" rule, and it's provably within a third of the best-possible finish time. It does need a rough sense of which tasks are long, but a cheap proxy often works — e.g. sort the filings by file size (bigger ≈ slower) and process the biggest first.
+
 ---
 
 ## More Filings Than Cores (and Vice Versa)
