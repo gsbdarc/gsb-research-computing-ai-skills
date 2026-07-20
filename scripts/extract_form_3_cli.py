@@ -61,7 +61,7 @@ def main():
     filing_text = filing_path.read_text()
 
     response = client.chat.completions.create(
-        model="gpt-5.2",
+        model="gpt-4o-mini",
         response_format={"type": "json_object"},
         messages=[
             {"role": "system", "content": SYSTEM_PROMPT},

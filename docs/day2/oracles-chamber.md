@@ -38,7 +38,7 @@ client = openai.OpenAI(
 )
 
 completion = client.chat.completions.create(
-    model="gpt-4.1-nano",
+    model="gpt-4o-mini",
     messages=[
         {"role": "system", "content": "You are a helpful assistant."},
         {"role": "user", "content": "Say hello world!"}
@@ -79,7 +79,7 @@ Now ask the model to pull out the key fields:
 
 ```python
 response = client.chat.completions.create(
-    model="gpt-4.1-nano",
+    model="gpt-4o-mini",
     messages=[
         {
             "role": "system",
@@ -131,7 +131,7 @@ with open("data/sec_filings/form3_sample.txt", "r") as f:
     filing_text = f.read()
 
 response = client.chat.completions.create(
-    model="gpt-4.1-nano",
+    model="gpt-4o-mini",
     messages=[
         {"role": "system", "content": "You are a financial data extraction assistant. Extract information precisely and concisely."},
         {"role": "user", "content": f"Extract the insider's name and role. Reply with: NAME | ROLE\n\n{filing_text[:4000]}"}
@@ -176,7 +176,7 @@ Ask for structured JSON output:
 
 ```python
 response = client.chat.completions.create(
-    model="gpt-4.1-nano",
+    model="gpt-4o-mini",
     messages=[
         {"role": "system", "content": "Extract the requested fields from this SEC Form 3 filing. Return only valid JSON matching the schema provided."},
         {"role": "user", "content": f"Extract from this filing:\n\n{filing_text[:4000]}"}

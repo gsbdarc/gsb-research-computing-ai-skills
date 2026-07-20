@@ -131,7 +131,7 @@ Switching between a local model, the Playground, and a third-party API is just a
 
 ---
 
-## Side Quest — Submit a GPU Job to the Partition
+## Optional Practice — Submit a GPU Job to the Partition
 
 Finished early? Instead of working interactively, submit a **batch job** to the GPU partition and confirm it actually landed on a GPU.
 
@@ -180,7 +180,7 @@ tail -f logs/gpu_job_JOBID.out
 {: .note }
 > `torch`, or PyTorch, is one of the canonical deep-learning libraries that LLMs are architected in — which makes it a natural way to confirm the GPU is usable from Python. **CUDA** is NVIDIA's software layer that lets ordinary code run on its GPUs; `CUDA available: True` means PyTorch can actually reach the GPU.
 
-<label class="quest-check"><input type="checkbox" data-room="d4-running-llms" data-key="side1"> Side Quest complete — submitted a GPU job and confirmed it ran on a GPU</label>
+<label class="quest-check"><input type="checkbox" data-room="d4-running-llms" data-key="side1"> Optional Practice complete — submitted a GPU job and confirmed it ran on a GPU</label>
 
 {: .note }
 > 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d4-running-llms.side1` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.

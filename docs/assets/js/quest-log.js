@@ -75,7 +75,7 @@
         { id: 'd4-summoning-circle',    keys: ['main'] },
         { id: 'd4-engine-room',         keys: ['main'] },
         { id: 'd4-trap-garden',         keys: ['main'] },
-        { id: 'd4-boss-gate',           keys: ['commit'] },
+        { id: 'd4-capstone',            keys: ['commit'] },
       ],
     },
   ];

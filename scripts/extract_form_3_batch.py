@@ -57,7 +57,7 @@ for idx, filing_url in enumerate(urls, 1):
     filing_text = response.text
 
     api_response = client.chat.completions.create(
-        model="gpt-5.2",
+        model="gpt-4o-mini",
         response_format={"type": "json_object"},
         messages=[
             {"role": "system", "content": system_prompt},

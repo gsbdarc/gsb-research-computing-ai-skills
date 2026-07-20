@@ -73,7 +73,7 @@ Because the model won't flag its own mistakes, you have to check correctness *ex
 > thirdparty = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 >
 > # same call for each — only the client and model name change
-> answer_a = playground.chat.completions.create(model="gpt-5.2", messages=messages)
+> answer_a = playground.chat.completions.create(model="gpt-4o-mini", messages=messages)
 > answer_b = local.chat.completions.create(model="llama3.2:3b", messages=messages)
 > answer_c = thirdparty.chat.completions.create(model="gpt-5.6", messages=messages)
 > ```

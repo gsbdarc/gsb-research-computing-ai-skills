@@ -38,5 +38,5 @@ Work through the sections in order — later ones build on earlier ones, and Put
 | [Why Run LLMs on the Yens?](why-local-llms/) | 🖊️ Concept | When to run a model yourself on the Yens vs. calling a cloud API — privacy, cost, reproducibility, and open vs. proprietary models |
 | [How to Run LLMs on the Yens](running-llms/) | 🖊️💻 Concept + Hands-on | Why LLMs need a GPU, how to request one on the Yens, and running an open model with Ollama (same code as the Playground, different `base_url`) |
 | [Handling LLM Failure Modes](validating-llm-outputs/) | 🖊️ Concept | Why even top models are brittle, the main LLM failure modes (hallucination, prompt injection, irreversibility, runaway loops), and how to guard against them |
-| [Putting It All Together](putting-it-all-together/) | 🔑 Capstone | 🚧 TODO — not written yet |
+| [Putting It All Together](putting-it-all-together/) | 🔑 Capstone | The capstone: run an array across two LLMs, compare the outputs, write a README that reruns — plus a full-stack recap of the week |
 | [Staying In Touch](staying-in-touch/) | 🏛️ Community | Where to get help after the bootcamp — the `#gsb-yen-users` Slack, the DARC team, and patterns to build on |
