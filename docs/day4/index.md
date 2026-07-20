@@ -39,4 +39,4 @@ Work through the sections in order — later ones build on earlier ones, and Put
 | [How to Run LLMs on the Yens](running-llms/) | 🖊️💻 Concept + Hands-on | Why LLMs need a GPU, how to request one on the Yens, and running an open model with Ollama (same code as the Playground, different `base_url`) |
 | [Handling LLM Failure Modes](validating-llm-outputs/) | 🖊️ Concept | Why even top models are brittle, the main LLM failure modes (hallucination, prompt injection, irreversibility, runaway loops), and how to guard against them |
 | [Putting It All Together](putting-it-all-together/) | 🔑 Capstone | 🚧 TODO — not written yet |
-| [Staying In Touch](staying-in-touch/) | 🏛️ Community | 🚧 TODO — not written yet |
+| [Staying In Touch](staying-in-touch/) | 🏛️ Community | Where to get help after the bootcamp — the `#gsb-yen-users` Slack, the DARC team, and patterns to build on |

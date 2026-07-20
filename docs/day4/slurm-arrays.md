@@ -10,7 +10,7 @@ permalink: /day4/slurm-arrays/
 
 <div data-room-id="d4-slurm-arrays"></div>
 
-You've seen *why* parallelization helps and when a workload qualifies. This section is about *how* to implement it on the Yens. There are a few ways to run work in parallel on a cluster; for embarrassingly parallel jobs like ours, the standard, purpose-built tool is a **SLURM job array**. This page covers how arrays work; you'll build and submit one in [Submitting an Array Job](array-exercise/).
+You've seen *why* parallelization helps and when a workload qualifies. This section is about *how* to implement it on the Yens. There are a few ways to run work in parallel on a cluster; for embarrassingly parallel jobs like ours, the standard, purpose-built tool is a **SLURM job array**. This page covers how arrays work; you'll build and submit one in [Submitting an Array Job](../array-exercise/).
 
 ---
 
@@ -32,7 +32,7 @@ for filing in filings:       # your list of filings
     save(result)
 ```
 
-That gives you one script that processes every filing. But it works through them *one at a time* on a single core — this isn't parallelization, it's just your work organized into a single, re-runnable script (the serial picture from [Parallelization Basics](parallelization/)).
+That gives you one script that processes every filing. But it works through them *one at a time* on a single core — this isn't parallelization, it's just your work organized into a single, re-runnable script (the serial picture from [Parallelization Basics](../parallelization/)).
 
 ---
 
@@ -136,13 +136,13 @@ python scripts/extract_form_3_cli.py "$FILING" "results/filing_${SLURM_ARRAY_TAS
 {: .note }
 > **More filings than the scheduler allows?** SLURM caps how many tasks an array can have, so if you have more filings than that limit, you can't give each one its own task. The fix is to hand each task a *chunk* of filings: task *n* processes a fixed block of lines from the list, with a `for` loop working through that block in sequence. The array runs the chunks in parallel; the loop handles the filings within each chunk.
 
-**5. Combine the outputs (optional).** Each task writes its *own* file (`results/filing_1.json`, `filing_2.json`, …), and that separation is deliberate. The tasks run at the same time, so if they all tried to append to one shared output file, their writes would interleave and overwrite each other — a **"race condition"** (a bug whose outcome depends on the unpredictable order in which simultaneous operations happen to run), leaving you with a garbled, unusable file. Giving each task its own file sidesteps that entirely. Once the array finishes, you stitch those per-task files into a single dataset (such as one CSV) as a quick post-processing step — the [exercise](array-exercise/) walks through it.
+**5. Combine the outputs (optional).** Each task writes its *own* file (`results/filing_1.json`, `filing_2.json`, …), and that separation is deliberate. The tasks run at the same time, so if they all tried to append to one shared output file, their writes would interleave and overwrite each other — a **"race condition"** (a bug whose outcome depends on the unpredictable order in which simultaneous operations happen to run), leaving you with a garbled, unusable file. Giving each task its own file sidesteps that entirely. Once the array finishes, you stitch those per-task files into a single dataset (such as one CSV) as a quick post-processing step — the [exercise](../array-exercise/) walks through it.
 
 ---
 
 ## Why an Array Beats Submitting by Hand
 
-- **SLURM schedules the tasks for you** across whatever cores are free — including the ["waves"](parallelization/) that happen when there are more filings than cores.
+- **SLURM schedules the tasks for you** across whatever cores are free — including the ["waves"](../parallelization/) that happen when there are more filings than cores.
 - **The tasks are independent.** One task failing doesn't touch the others, and you can resubmit just the failures instead of rerunning everything.
 - **There's one thing to track.** A single job ID (with per-task sub-IDs) to monitor with `squeue` or cancel with `scancel`.
 - **The outputs are predictable.** `filing_${SLURM_ARRAY_TASK_ID}.json` gives you a tidy set of files, ready to combine into one CSV.
@@ -186,4 +186,4 @@ if OUTPUT_PATH.exists():
 - You know how to make a task safe to rerun — skip it if its output already exists — so a partially failed array only redoes the missing work
 - You can say why an array beats submitting jobs by hand: scheduling, independence, tracking, and tidy outputs
 
-The hands-on exercise, [Submitting an Array Job](array-exercise/), puts this into practice.
+The hands-on exercise, [Submitting an Array Job](../array-exercise/), puts this into practice.

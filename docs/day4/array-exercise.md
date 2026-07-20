@@ -54,7 +54,7 @@ watch -n 5 squeue -u $USER    # Ctrl-C when done
 ```
 
 {: .note }
-> If some tasks fail, just resubmit the same script — `extract_form_3_cli.py` skips any filing whose output already exists (see [Failure Resilience](slurm-arrays/#failure-resilience)), so only the missing ones rerun.
+> If some tasks fail, just resubmit the same script — `extract_form_3_cli.py` skips any filing whose output already exists (see [Failure Resilience](../slurm-arrays/#failure-resilience)), so only the missing ones rerun.
 
 **Part 4 — Combine outputs into one CSV:**
 
