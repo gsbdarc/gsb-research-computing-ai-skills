@@ -26,12 +26,11 @@ You just saw *why* keeping your work in GitHub is worth the trouble (see [Versio
 
 ## How Claude Code Works
 
-A few basics — expand any box for more.
+A few basics worth knowing before you start.
 
 **The model and the harness — the brain and the hands.** *Claude* is the **LLM** (large language model — the AI "brain" itself): it reads, reasons, and writes. On its own, it can only talk. **Claude Code** is the *harness* around that brain — it hands Claude real tools: read your files, run commands, edit code, use git. The model is the expert; the harness is the desk, the tools, and permission to act.
 
-<details markdown="1">
-<summary>The models — and how to switch them</summary>
+### The models — and how to switch them
 
 Claude comes as a family, trading speed for power:
 
@@ -42,29 +41,26 @@ Claude comes as a family, trading speed for power:
 | **Haiku** | Fastest and lightest — quick, simple tasks |
 
 Switch anytime with the `/model` command. Default to a capable model; drop to a faster one when the task is small.
-</details>
 
-<details markdown="1">
-<summary>Plan mode vs. auto mode — look vs. act</summary>
+### Plan mode vs. auto mode — look vs. act
 
 - **Plan mode:** Claude Code investigates and proposes a plan but changes *nothing* until you approve. Perfect when you want to see the approach first.
 - **Auto mode:** Claude Code carries the work out — editing files and running commands as it goes.
 
 Press `Shift+Tab` to cycle between them. *Plan mode when you want a proposal; auto mode when you trust it to go.*
-</details>
 
-<details markdown="1">
-<summary>Tokens — how Claude reads, and what it costs</summary>
+### Tokens — how Claude reads, and what it costs
 
 Claude doesn't read letter by letter or word by word — it reads in **tokens**. A token is a chunk of text: very roughly **¾ of a word**, or about **4 characters**. "Repository" is a couple of tokens; a full page of prose is around 500.
 
 Everything is counted this way — the text you send *and* the text Claude sends back. Tokens matter for two reasons: they are **how much Claude can hold at once** (see *Context*, next), and they are **how paid AI services charge** — a fixed price per token. You won't pay by hand inside Claude Code, but the API calls you'll write on Day 2 are billed in exactly these tokens, so "send fewer tokens" comes to mean "spend less."
 
 *Type `/cost` any time to see how many tokens the current session has used.*
-</details>
 
-<details markdown="1">
-<summary>Context — Claude's working memory, and when to clear it</summary>
+{: .important }
+> **Run out of usage and you wait — you can't pay for more.** Stanford gives you Claude on a **managed plan with a usage limit**, not the pay-per-token billing a personal account would have. When you use up your allowance, Claude Code **pauses until your limit resets after a set time** — there is no "just charge me for more tokens" button. To make your usage last: switch to a lighter model with `/model` (Haiku and Sonnet cost far less than Opus), keep each session to one focused task, and use `/clear` or `/compact` so you're not re-sending a large context every turn.
+
+### Context — Claude's working memory, and when to clear it
 
 The **context** (or *context window*) is everything Claude can see right now: your conversation, any files it has read, and its own replies so far. It's measured in tokens — large, but not infinite.
 
@@ -73,26 +69,21 @@ A long session slowly fills the window. When it's full, or when the conversation
 If you're filling up but *don't* want to lose the thread, **`/compact`** is the middle ground: it replaces the long back-and-forth with a short summary, freeing room while keeping what matters. Use `/compact` to keep going on the same task; use `/clear` when you're moving on to a new one.
 
 *Rule of thumb: one focused task per conversation. A clean context beats a cluttered one every time.*
-</details>
 
-<details markdown="1">
-<summary>Memory — the notebook Claude keeps</summary>
+### Memory — the notebook Claude keeps
 
 Context is erased the moment you `/clear` or close the terminal. **Memory** is what survives — and it comes in two forms:
 
 - **A `CLAUDE.md` file in your project.** A plain-text note you commit alongside your code, telling Claude how *this* project works — where the data lives, how to run things, conventions to follow. Every future session (yours or a collaborator's) reads the same file, which makes your project easier to pick back up and to reproduce.
 - **Personal memory across sessions** — facts about you and how you like to work, remembered from one sitting to the next.
 
-*Start any line with `#` to jot something into memory on the spot. Because `CLAUDE.md` is just a file in your repo, it's version-controlled like everything else you commit.*
-</details>
+*To save something to memory, just ask — tell Claude "remember that…" and it stores the note. Use the `/memory` command to review or edit what's saved, or open `CLAUDE.md` directly. Because `CLAUDE.md` is just a file in your repo, it's version-controlled like everything else you commit.*
 
-<details markdown="1">
-<summary>Skills — standing instructions for how your group works</summary>
+### Skills — standing instructions for how your group works
 
 A **skill** is a reusable set of instructions that Claude Code pulls in whenever it's relevant — so it follows your group's way of doing things without being told each time. If *memory* is a set of facts, a *skill* is a way of working.
 
 Skills can come from Stanford, from your lab, or ones you write yourself. This course ships one — **github-for-research** — which you'll meet just below.
-</details>
 
 {: .tip }
 > **See it for yourself — Claude lives in hidden files.** Remember the **dotfiles** from Command Line Basics — names starting with a `.`, invisible to a plain `ls`? That's exactly where Claude Code keeps its settings, skills, and memory. Reveal the hidden folder in your home directory and look inside:
