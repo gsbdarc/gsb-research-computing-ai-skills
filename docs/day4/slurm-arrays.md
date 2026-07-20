@@ -136,7 +136,7 @@ python scripts/extract_form_3_cli.py "$FILING" "results/filing_${SLURM_ARRAY_TAS
 {: .note }
 > **More filings than the scheduler allows?** SLURM caps how many tasks an array can have, so if you have more filings than that limit, you can't give each one its own task. The fix is to hand each task a *chunk* of filings: task *n* processes a fixed block of lines from the list, with a `for` loop working through that block in sequence. The array runs the chunks in parallel; the loop handles the filings within each chunk.
 
-**5. Combine the outputs (optional).** Each task writes its own result file, so when the array finishes you're left with a folder of per-task outputs — `results/filing_1.json`, `filing_2.json`, and so on. For analysis you'll usually want to stitch those into a single dataset, such as one CSV. That's a short post-processing step once all the tasks are done (the [exercise](array-exercise/) walks through it).
+**5. Combine the outputs (optional).** Each task writes its **own** file (`results/filing_1.json`, `filing_2.json`, …), and that separation is deliberate. The tasks run at the same time, so if they all tried to append to one shared output file, their writes would interleave and overwrite each other — a **"race condition"** (a bug whose outcome depends on the unpredictable order in which simultaneous operations happen to run), leaving you with a garbled, unusable file. Giving each task its own file sidesteps that entirely. Once the array finishes, you stitch those per-task files into a single dataset (such as one CSV) as a quick post-processing step — the [exercise](array-exercise/) walks through it.
 
 ---
 

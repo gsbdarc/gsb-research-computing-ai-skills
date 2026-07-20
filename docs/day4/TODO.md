@@ -113,6 +113,15 @@ tree — it belongs in §3.
   - Remove the fault-tolerance claims from `agenda.md` and `boss-gate-4.md` if
     it's out of scope for Day 4.
 
+- [ ] **Teach how to *interactively* use a GPU node on the Yens.** `running-llms.md`
+  tells students to run Ollama "on a GPU node (an interactive GPU session, or
+  inside a GPU job)" but never shows how to *get* an interactive GPU session —
+  e.g. an `srun --partition=gpu --gres=gpu:1 --pty bash` session (confirm the exact
+  flags/partition for the current Yen setup). Add a short walkthrough of requesting
+  an interactive GPU session, and a line on when to use interactive (exploring,
+  pulling a model, quick tests) vs. a batch job (long/production runs). The
+  running-an-LLM exercise depends on students being able to do this.
+
 ## Side quests & per-section checkpoints
 
 - [ ] **Construct side quests for Day 4 — currently there are none.** Day 3 pages

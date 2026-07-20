@@ -60,7 +60,7 @@ When you call an LLM API, three things happen outside your control:
 
 **1. Privacy & data requirements — often a hard rule, not a preference.** Restricted, confidential, or IRB-governed data may not leave Stanford's perimeter. Run the model locally and your prompts and documents never leave the cluster — nothing goes to an outside model provider. (Which bucket your data falls in was covered in [the data classification section](../../day2/human-vs-llm/) on Day 2.)
 
-**2. Cost at scale.** No per-token bill. You already have cluster access, so local "inference" (submitting a query to an LLM) is effectively free at the margin. A run over 100,000 filings that would rack up a real bill on a metered API costs nothing extra on the Yens.
+**2. Cost at scale.** No per-token bill. You already have cluster access, so local "inference" (querying an LLM) is effectively free at the margin. A run over 100,000 filings that would rack up a real bill on a metered API costs nothing extra on the Yens.
 
 **3. Reproducibility.** Versioning proprietary models is complicated — the provider can change the model behind a given name, and old versions eventually get retired. An open model is always reproducible: you control the weights, so the exact model is fixed and a reviewer (or future you) can rerun the identical pipeline years later.
 
@@ -96,6 +96,8 @@ Running locally isn't always the answer. The honest tradeoffs:
 | **Cost** | Free at the margin | Budget-capped Stanford account | Per-token billing |
 | **Models** | Whatever you can run on the Yens | Provider-curated, Stanford-audited | Latest, most capable |
 | **Best for** | Restricted data, large batch jobs | Everyday research | Hardest tasks where data rules allow |
+
+For the Stanford AI Playground's tradeoffs in more depth, see the [Upsides and Downsides table](../../day2/stanford-ai-playground/#upsides-and-downsides) from Day 2.
 
 ---
 

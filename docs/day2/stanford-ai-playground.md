@@ -41,7 +41,7 @@ Notice: the responses come from the same models you'd use via the API. You're al
 
 ---
 
-## 🖊️ Upsides and Downsides
+## 🖊️ Upsides and Downsides {#upsides-and-downsides}
 
 | | Detail |
 |-|--------|
