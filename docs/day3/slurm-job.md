@@ -3,7 +3,7 @@ layout: default
 title: "Writing & Submitting a SLURM Job"
 parent: "Day 3 — Cluster Computing"
 nav_order: 7
-permalink: /day3/ticket-rail/
+permalink: /day3/slurm-job/
 ---
 
 # Writing & Submitting a SLURM Job

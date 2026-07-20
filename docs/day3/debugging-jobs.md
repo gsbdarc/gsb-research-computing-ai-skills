@@ -3,7 +3,7 @@ layout: default
 title: "Debugging Failed Jobs"
 parent: "Day 3 — Cluster Computing"
 nav_order: 8
-permalink: /day3/failed-order/
+permalink: /day3/debugging-jobs/
 ---
 
 # Debugging Failed Jobs

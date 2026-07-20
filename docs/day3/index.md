@@ -28,11 +28,11 @@ Any questions about Day 1–2 we can discuss before we move on.
 
 | Room | Format | What you master |
 |------|--------|-----------------|
-| [Compute Environments](kitchen/) | 🥪💬 Demo + discussion | **Compute environments** — so you pick the right one (laptop, Yens, or cloud) instead of wasting your advisor's compute budget (or your afternoon) |
-| [Profiling Resource Usage](scales/) | 💻 Hands-on | **Profiling** — so your own jobs request the resources they actually need instead of guessing and stalling in the queue |
-| [Exploring Cluster Usage Data](storage-pantry/) | 💻🤖 Hands-on (Claude-assisted) | **Data exploration** — the same messy-real-data instinct you'll need on your own datasets |
-| [The SLURM Scheduler](back-kitchen/) | 💬💻 Discussion + hands-on | **Interactive vs. scheduled Yen nodes** — so your research jobs get dedicated resources instead of competing with everyone else on a shared login node |
-| [Writing & Submitting a SLURM Job](ticket-rail/) | 💻 Hands-on | **Batch jobs** — the actual mechanism you'll use to run your own research code on the cluster |
-| [Debugging Failed Jobs](failed-order/) | 💻 Hands-on | **Debugging** — the skill that saves you hours when your own job fails and you need to know why |
-| [Documenting Your Pipeline](recipe-book/) | 💻🤖 Hands-on (Claude-assisted) | **Reproducibility** — what makes collaborators, and your future self, trust and rerun your results |
+| [Compute Environments](compute-environments/) | 🥪💬 Demo + discussion | **Compute environments** — so you pick the right one (laptop, Yens, or cloud) instead of wasting your advisor's compute budget (or your afternoon) |
+| [Profiling Resource Usage](profiling/) | 💻 Hands-on | **Profiling** — so your own jobs request the resources they actually need instead of guessing and stalling in the queue |
+| [Exploring Cluster Usage Data](cluster-usage-data/) | 💻🤖 Hands-on (Claude-assisted) | **Data exploration** — the same messy-real-data instinct you'll need on your own datasets |
+| [The SLURM Scheduler](slurm-scheduler/) | 💬💻 Discussion + hands-on | **Interactive vs. scheduled Yen nodes** — so your research jobs get dedicated resources instead of competing with everyone else on a shared login node |
+| [Writing & Submitting a SLURM Job](slurm-job/) | 💻 Hands-on | **Batch jobs** — the actual mechanism you'll use to run your own research code on the cluster |
+| [Debugging Failed Jobs](debugging-jobs/) | 💻 Hands-on | **Debugging** — the skill that saves you hours when your own job fails and you need to know why |
+| [Documenting Your Pipeline](documenting-pipeline/) | 💻🤖 Hands-on (Claude-assisted) | **Reproducibility** — what makes collaborators, and your future self, trust and rerun your results |
 | [Day 3 Challenge](boss-gate-3/) | 🔑 Capstone | **Profiled submission** — the exact loop you'll repeat for every real research pipeline from here on |

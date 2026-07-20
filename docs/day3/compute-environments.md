@@ -3,7 +3,7 @@ layout: default
 title: "Compute Environments"
 parent: "Day 3 — Cluster Computing"
 nav_order: 2
-permalink: /day3/kitchen/
+permalink: /day3/compute-environments/
 ---
 
 # Compute Environments

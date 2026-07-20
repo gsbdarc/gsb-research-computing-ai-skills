@@ -3,7 +3,7 @@ layout: default
 title: "Documenting Your Pipeline"
 parent: "Day 3 — Cluster Computing"
 nav_order: 9
-permalink: /day3/recipe-book/
+permalink: /day3/documenting-pipeline/
 ---
 
 # Documenting Your Pipeline

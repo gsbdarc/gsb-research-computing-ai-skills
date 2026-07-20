@@ -3,7 +3,7 @@ layout: default
 title: "Exploring Cluster Usage Data"
 parent: "Day 3 — Cluster Computing"
 nav_order: 4
-permalink: /day3/storage-pantry/
+permalink: /day3/cluster-usage-data/
 ---
 
 # Exploring Cluster Usage Data

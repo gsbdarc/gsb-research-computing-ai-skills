@@ -3,7 +3,7 @@ layout: default
 title: "Profiling Resource Usage"
 parent: "Day 3 — Cluster Computing"
 nav_order: 3
-permalink: /day3/scales/
+permalink: /day3/profiling/
 ---
 
 # Profiling Resource Usage

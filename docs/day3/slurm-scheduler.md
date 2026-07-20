@@ -3,7 +3,7 @@ layout: default
 title: "The SLURM Scheduler"
 parent: "Day 3 — Cluster Computing"
 nav_order: 5
-permalink: /day3/back-kitchen/
+permalink: /day3/slurm-scheduler/
 ---
 
 # The SLURM Scheduler
