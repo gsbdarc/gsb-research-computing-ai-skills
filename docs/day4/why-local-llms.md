@@ -10,7 +10,7 @@ permalink: /day4/why-local-llms/
 
 <div data-room-id="d4-why-local-llms"></div>
 
-This is a concept section. Since Day 2, every LLM call you've made — to the Stanford AI Playground, or any third-party model — has gone to an **API** (application programming interface): your prompt and your data travel to someone else's server, the model runs there, and the answer comes back. This section asks the opposite question: when should you run the model **yourself**, on Stanford's own hardware (the Yens)?
+Since Day 2, every LLM call you've made — to the Stanford AI Playground, or any third-party model — has gone to an **API** (application programming interface): your prompt and your data travel to someone else's server, the model runs there, and the answer comes back. This section asks the opposite question: when should you run the model *yourself*, on Stanford's own hardware (the Yens)?
 
 ---
 

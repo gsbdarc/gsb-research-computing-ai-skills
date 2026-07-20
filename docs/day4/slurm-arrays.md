@@ -32,7 +32,7 @@ for filing in filings:       # your list of filings
     save(result)
 ```
 
-That gives you one script that processes every filing. But it works through them **one at a time** on a single core — this isn't parallelization, it's just your work organized into a single, re-runnable script (the serial picture from [Parallelization Basics](parallelization/)).
+That gives you one script that processes every filing. But it works through them *one at a time* on a single core — this isn't parallelization, it's just your work organized into a single, re-runnable script (the serial picture from [Parallelization Basics](parallelization/)).
 
 ---
 
@@ -94,7 +94,7 @@ The task ID is just an integer — *you* decide what it points to. The usual pat
 FILING=$(sed -n "${SLURM_ARRAY_TASK_ID}p" filings_list.txt)
 ```
 
-Now `$FILING` holds the **path to a different filing** in each task — task 1 gets the path on line 1, task 2 the path on line 2, and so on.
+Now `$FILING` holds the path to a different filing in each task — task 1 gets the path on line 1, task 2 the path on line 2, and so on.
 
 **3. Use a script that accepts the path as an argument.** The Day 3 `extract_form_3_one_file.py` hard-codes its `FILING_PATH`, so it can't be pointed at a different filing per task. We've provided `scripts/extract_form_3_cli.py` — the same extraction logic, with a few lines added so it reads the paths from the command line:
 
@@ -136,7 +136,7 @@ python scripts/extract_form_3_cli.py "$FILING" "results/filing_${SLURM_ARRAY_TAS
 {: .note }
 > **More filings than the scheduler allows?** SLURM caps how many tasks an array can have, so if you have more filings than that limit, you can't give each one its own task. The fix is to hand each task a *chunk* of filings: task *n* processes a fixed block of lines from the list, with a `for` loop working through that block in sequence. The array runs the chunks in parallel; the loop handles the filings within each chunk.
 
-**5. Combine the outputs (optional).** Each task writes its **own** file (`results/filing_1.json`, `filing_2.json`, …), and that separation is deliberate. The tasks run at the same time, so if they all tried to append to one shared output file, their writes would interleave and overwrite each other — a **"race condition"** (a bug whose outcome depends on the unpredictable order in which simultaneous operations happen to run), leaving you with a garbled, unusable file. Giving each task its own file sidesteps that entirely. Once the array finishes, you stitch those per-task files into a single dataset (such as one CSV) as a quick post-processing step — the [exercise](array-exercise/) walks through it.
+**5. Combine the outputs (optional).** Each task writes its *own* file (`results/filing_1.json`, `filing_2.json`, …), and that separation is deliberate. The tasks run at the same time, so if they all tried to append to one shared output file, their writes would interleave and overwrite each other — a **"race condition"** (a bug whose outcome depends on the unpredictable order in which simultaneous operations happen to run), leaving you with a garbled, unusable file. Giving each task its own file sidesteps that entirely. Once the array finishes, you stitch those per-task files into a single dataset (such as one CSV) as a quick post-processing step — the [exercise](array-exercise/) walks through it.
 
 ---
 

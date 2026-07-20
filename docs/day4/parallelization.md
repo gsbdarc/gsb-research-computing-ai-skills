@@ -10,7 +10,7 @@ permalink: /day4/parallelization/
 
 <div data-room-id="d4-parallelization"></div>
 
-This is a concept section — no hands-on. Before you scale a job across the cluster, it helps to picture what "in parallel" actually means, when it works, and why it's usually the single biggest speedup available to you.
+Before you scale a job across the cluster, it helps to picture what "in parallel" actually means, when it works, and why it's usually the single biggest speedup available to you.
 
 ---
 
@@ -111,7 +111,7 @@ Because the work is independent, you can hand the filings out across several cor
   <text x="281" y="152" font-size="12.5" fill="#6a7280" text-anchor="middle"><tspan x="281" dy="0">Two cores, six filings: each core finishes one, then moves</tspan><tspan x="281" dy="16">to the next free filing — three waves (≈ 3 × 5s = 15s)</tspan></text>
 </svg>
 
-Even with just a handful of cores, the batch finishes in a fraction of the serial time: here two cores clear six filings in three waves — about 3 × 5s ≈ **15s of wall-clock time**, versus ~30s running them one at a time. That is parallelization: the same total work, spread across many workers instead of stacked on one.
+Even with just a handful of cores, the batch finishes in a fraction of the serial time: here two cores clear six filings in three waves — about 3 × 5s ≈ 15s of wall-clock time, versus ~30s running them one at a time. That is parallelization: the same total work, spread across many workers instead of stacked on one.
 
 So far every filing took the same 5 seconds. Real filings aren't so uniform — a dense filing with many transactions can take two or three times as long as a simple one. When task durations are uneven, the cores stop finishing in lockstep:
 

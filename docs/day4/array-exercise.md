@@ -10,7 +10,7 @@ permalink: /day4/array-exercise/
 
 <div data-room-id="d4-array-exercise"></div>
 
-This is the hands-on companion to [SLURM Job Arrays](slurm-arrays/). You'll submit a job array that processes 100 SEC filings in parallel, then combine the per-task outputs into one CSV.
+You'll submit a job array that processes 100 SEC filings in parallel, then combine the per-task outputs into one CSV.
 
 ---
 
