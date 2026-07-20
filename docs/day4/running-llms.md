@@ -1,12 +1,12 @@
 ---
 layout: default
-title: "Running LLMs on the Yens"
+title: "How to Run LLMs on the Yens"
 parent: "Day 4 — Parallelization & GPUs"
 nav_order: 5
 permalink: /day4/running-llms/
 ---
 
-# Running LLMs on the Yens
+# How to Run LLMs on the Yens
 
 <div data-room-id="d4-running-llms"></div>
 
@@ -128,6 +128,62 @@ Switching between a local model, the Playground, and a third-party API is just a
 
 {: .note }
 > 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d4-running-llms.exercise` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
+
+---
+
+## Side Quest — Submit a GPU Job to the Partition
+
+Finished early? Instead of working interactively, submit a **batch job** to the GPU partition and confirm it actually landed on a GPU.
+
+Write `jobs/first_gpu_job.sh`:
+
+```bash
+#!/bin/bash
+#SBATCH --job-name=first_gpu_job
+#SBATCH --output=logs/gpu_job_%j.out
+#SBATCH --error=logs/gpu_job_%j.err
+#SBATCH --time=00:15:00
+#SBATCH --mem=16G
+#SBATCH --cpus-per-task=4
+#SBATCH --gres=gpu:1                     # request 1 GPU (any type is fine for this check)
+#SBATCH --partition=gpu                 # GPU partition (confirm with instructor)
+
+echo "Running on: $(hostname)"
+echo "GPU info:"
+nvidia-smi
+
+source ~/rf-bootcamp-2026/.venv/bin/activate
+pip install torch --quiet   # if not already installed
+
+python3 - <<'EOF'
+import torch
+print(f"CUDA available: {torch.cuda.is_available()}")
+print(f"GPU: {torch.cuda.get_device_name(0)}")
+print(f"VRAM total: {torch.cuda.get_device_properties(0).total_memory / 1e9:.1f} GB")
+
+# Simple GPU computation to confirm it's working
+x = torch.randn(10000, 10000, device="cuda")
+y = x @ x.T
+print(f"Matrix multiply complete. Result shape: {y.shape}")
+EOF
+```
+
+Submit it and watch the log once it runs:
+
+```bash
+sbatch jobs/first_gpu_job.sh
+tail -f logs/gpu_job_JOBID.out
+```
+
+`nvidia-smi` should list a GPU, and the Python check should print `CUDA available: True` along with the GPU's name and VRAM.
+
+{: .note }
+> `torch`, or PyTorch, is one of the canonical deep-learning libraries that LLMs are architected in — which makes it a natural way to confirm the GPU is usable from Python. **CUDA** is NVIDIA's software layer that lets ordinary code run on its GPUs; `CUDA available: True` means PyTorch can actually reach the GPU.
+
+<label class="quest-check"><input type="checkbox" data-room="d4-running-llms" data-key="side1"> Side Quest complete — submitted a GPU job and confirmed it ran on a GPU</label>
+
+{: .note }
+> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d4-running-llms.side1` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
 
 ---
 

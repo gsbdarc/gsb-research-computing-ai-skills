@@ -68,7 +68,7 @@
         { id: 'd4-slurm-arrays',         keys: ['main'] },
         { id: 'd4-array-exercise',       keys: ['main'] },
         { id: 'd4-why-local-llms',      keys: ['main'] },
-        { id: 'd4-running-llms',        keys: ['main', 'exercise'] },
+        { id: 'd4-running-llms',        keys: ['main', 'exercise', 'side1'] },
         { id: 'd4-armory',              keys: ['main'] },
         { id: 'd4-h200-chamber',        keys: ['main'] },
         { id: 'd4-summoning-circle',    keys: ['main'] },
