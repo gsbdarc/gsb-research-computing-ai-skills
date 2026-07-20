@@ -37,3 +37,6 @@ Work through the sections in order — later ones build on earlier ones, and the
 | [Submitting an Array Job](array-exercise/) | 💻 Hands-on | Build, submit, and monitor a 100-filing array job, then combine the per-task outputs into one CSV |
 | [Why Run LLMs on the Yens?](why-local-llms/) | 🖊️ Concept | When to run a model yourself on the Yens vs. calling a cloud API — privacy, cost, reproducibility, and open vs. proprietary models |
 | [How to Run LLMs on the Yens](running-llms/) | 🖊️💻 Concept + Hands-on | Why LLMs need a GPU, how to request one on the Yens, and running an open model with Ollama (same code as the Playground, different `base_url`) |
+| [Validating LLM Outputs](validating-llm-outputs/) | 💬 Discussion | 🚧 TODO — not written yet |
+| [Putting It All Together](putting-it-all-together/) | 🔑 Capstone | 🚧 TODO — not written yet |
+| [Staying In Touch](staying-in-touch/) | 🏛️ Community | 🚧 TODO — not written yet |
