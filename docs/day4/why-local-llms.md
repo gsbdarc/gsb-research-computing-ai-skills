@@ -94,7 +94,7 @@ Running locally isn't always the answer. The honest tradeoffs:
 |---|---|---|---|
 | **Where your data goes** | Stays on the cluster | In the cloud, but regulated and approved by Stanford | Leaves Stanford → model provider |
 | **Cost** | Free at the margin | Budget-capped Stanford account | Per-token billing |
-| **Models** | Whatever you can run on the Yens | Provider-curated, Stanford-audited | Latest, most capable |
+| **Models** | Open-weight models you can run on the Yens | Provider-curated, Stanford-audited | Latest, most capable |
 | **Best for** | Restricted data, large batch jobs | Everyday research | Hardest tasks where data rules allow |
 
 For the Stanford AI Playground's tradeoffs in more depth, see the [Upsides and Downsides table](../../day2/stanford-ai-playground/#upsides-and-downsides) from Day 2.
