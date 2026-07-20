@@ -25,4 +25,4 @@ floor: 2
 | [The Key Vault](key-vault/) | 💻 Hands-on | Load the API key from `.env`, add to `.gitignore`, understand what you're sending |
 | [The Oracle's Chamber](oracles-chamber/) | 💻 Hands-on | Make your first API call; extract and validate SEC filing data with Pydantic; move code to a script |
 | [The Crucible](human-vs-llm/) | 💬 Discussion | AI agents at Stanford — what they send, data privacy rules, and how to stay defensible |
-| [Boss Gate 2](boss-gate-2/) | 🔑 Capstone | Ship an end-to-end LLM research pipeline |
+| [Boss Gate 2](boss-gate-2/) | 🔑 Capstone | The Genre Tribunal — predict a movie's genre, then judge and flag it with an LLM-as-a-judge |
