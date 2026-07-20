@@ -87,9 +87,10 @@ When you run `python extract_form_3_one_file.py`, four things happen in sequence
 
 Here is that same flow as a moving picture — the identical trip in hardware terms, then in kitchen terms. Notice the first leg (disk → RAM) is the slow one; once the data is close to the processor, the rest is quick:
 
-<svg viewBox="0 0 600 176" role="img" aria-labelledby="hwflow-title hwflow-desc" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;max-width:600px;height:auto;margin:1.25rem auto 0.25rem" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
+<svg viewBox="0 0 600 210" role="img" aria-labelledby="hwflow-title hwflow-desc" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;max-width:600px;height:auto;margin:1.25rem auto 0.25rem" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
   <title id="hwflow-title">How your program uses the hardware</title>
-  <desc id="hwflow-desc">A packet of data travels along a track from Storage to RAM to the CPU. Reading from disk into RAM is the slow leg; once the data is in RAM the CPU reaches it quickly. Results are written back to storage.</desc>
+  <desc id="hwflow-desc">A packet of data loops from Storage to RAM to the CPU and back to Storage. Reading from disk into RAM is the slow leg; once the data is in RAM the CPU reaches it quickly; then results are written back to disk.</desc>
+  <defs><marker id="bk-hw" markerWidth="9" markerHeight="9" refX="6.5" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#8a94a6"/></marker></defs>
   <text x="12" y="20" font-size="12" font-weight="700" letter-spacing="0.4" fill="#8a94a6">🖥  HOW YOUR PROGRAM USES THE HARDWARE</text>
   <line x1="80" y1="44" x2="520" y2="44" stroke="#cdd4e6" stroke-width="2" stroke-dasharray="4 5"/>
   <text x="190" y="34" text-anchor="middle" font-size="11.5" font-weight="700" fill="#c0392b">read — slow (I/O)</text>
@@ -104,35 +105,40 @@ Here is that same flow as a moving picture — the identical trip in hardware te
   <text x="520" y="93" text-anchor="middle" font-size="14" font-weight="700" fill="#2c3e50">CPU</text>
   <rect x="487" y="103" width="12" height="12" rx="2" fill="#cdd4e6"/><rect x="503" y="103" width="12" height="12" rx="2" fill="#cdd4e6"/><rect x="519" y="103" width="12" height="12" rx="2" fill="#cdd4e6"/><rect x="535" y="103" width="12" height="12" rx="2" fill="#cdd4e6"/>
   <text x="520" y="128" text-anchor="middle" font-size="10" fill="#6a7280">cores do the work</text>
+  <line x1="520" y1="162" x2="90" y2="162" stroke="#8a94a6" stroke-width="1.5" stroke-dasharray="4 4" marker-end="url(#bk-hw)"/>
+  <text x="305" y="156" text-anchor="middle" font-size="11" font-weight="600" fill="#8a94a6">write results back to disk</text>
   <g>
     <circle cx="80" cy="44" r="8" fill="#0072B2"><animate attributeName="r" values="8;10;8" dur="1s" repeatCount="indefinite"/></circle>
-    <animateTransform attributeName="transform" type="translate" values="0,0; 0,0; 220,0; 220,0; 440,0; 440,0; 0,0" keyTimes="0; 0.08; 0.50; 0.58; 0.72; 0.92; 1" dur="6s" repeatCount="indefinite" calcMode="linear"/>
+    <animateTransform attributeName="transform" type="translate" values="0,0; 0,0; 220,0; 220,0; 440,0; 440,0; 440,118; 0,118; 0,0" keyTimes="0; 0.05; 0.42; 0.50; 0.60; 0.72; 0.82; 0.95; 1" dur="8s" repeatCount="indefinite" calcMode="linear"/>
   </g>
-  <text x="300" y="162" text-anchor="middle" font-size="12" fill="#6a7280">Data crawls from disk into RAM (the slow step), then the CPU works on it in RAM.</text>
+  <text x="300" y="198" text-anchor="middle" font-size="12" fill="#6a7280">Data crawls from disk into RAM (the slow step), the CPU works in RAM, then results are written back to disk.</text>
 </svg>
 
-<svg viewBox="0 0 600 176" role="img" aria-labelledby="kflow-title kflow-desc" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;max-width:600px;height:auto;margin:0.25rem auto 0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
+<svg viewBox="0 0 600 210" role="img" aria-labelledby="kflow-title kflow-desc" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;max-width:600px;height:auto;margin:0.25rem auto 0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
   <title id="kflow-title">The same trip, in the kitchen</title>
-  <desc id="kflow-desc">A shopping cart travels from the convenience store to the fridge to the stove. Biking from the store is the slow leg; once ingredients are in the fridge they are within arm's reach of the burners on the stove.</desc>
+  <desc id="kflow-desc">A shopping cart loops from the convenience store to the fridge to the stove and back to the store. Biking from the store is the slow leg; once ingredients are in the fridge they are within arm's reach of the stove; then leftovers go back to the store.</desc>
+  <defs><marker id="bk-k" markerWidth="9" markerHeight="9" refX="6.5" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#8a94a6"/></marker></defs>
   <text x="12" y="20" font-size="12" font-weight="700" letter-spacing="0.4" fill="#8a94a6">🍳  THE SAME TRIP, IN THE KITCHEN</text>
   <line x1="80" y1="44" x2="520" y2="44" stroke="#cdd4e6" stroke-width="2" stroke-dasharray="4 5"/>
   <text x="190" y="34" text-anchor="middle" font-size="11.5" font-weight="700" fill="#c0392b">the bike — slow</text>
   <text x="410" y="34" text-anchor="middle" font-size="11.5" font-weight="700" fill="#3f4f74">arm's reach</text>
   <rect x="20" y="72" width="120" height="60" rx="10" fill="#eef1f8" stroke="#cdd4e6" stroke-width="1.5"/>
-  <text x="80" y="97" text-anchor="middle" font-size="18">🏪</text>
-  <text x="80" y="120" text-anchor="middle" font-size="11" font-weight="700" fill="#2c3e50">Store = disk</text>
+  <text x="80" y="99" text-anchor="middle" font-size="18">🏪</text>
+  <text x="80" y="121" text-anchor="middle" font-size="11" font-weight="700" fill="#2c3e50">Store = disk</text>
   <rect x="240" y="72" width="120" height="60" rx="10" fill="#eef1f8" stroke="#cdd4e6" stroke-width="1.5"/>
-  <text x="300" y="97" text-anchor="middle" font-size="18">🧊</text>
-  <text x="300" y="120" text-anchor="middle" font-size="11" font-weight="700" fill="#2c3e50">Fridge = RAM</text>
+  <text x="300" y="99" text-anchor="middle" font-size="18">🧊</text>
+  <text x="300" y="121" text-anchor="middle" font-size="11" font-weight="700" fill="#2c3e50">Fridge = RAM</text>
   <rect x="460" y="72" width="120" height="60" rx="10" fill="#eef1f8" stroke="#cdd4e6" stroke-width="1.5"/>
   <text x="520" y="95" text-anchor="middle" font-size="16">🔥</text>
-  <circle cx="497" cy="112" r="5" fill="#cdd4e6"/><circle cx="512" cy="112" r="5" fill="#cdd4e6"/><circle cx="527" cy="112" r="5" fill="#cdd4e6"/><circle cx="542" cy="112" r="5" fill="#cdd4e6"/>
-  <text x="520" y="128" text-anchor="middle" font-size="10" fill="#6a7280">stove = CPU · burners = cores</text>
+  <circle cx="497" cy="110" r="5" fill="#cdd4e6"/><circle cx="512" cy="110" r="5" fill="#cdd4e6"/><circle cx="527" cy="110" r="5" fill="#cdd4e6"/><circle cx="542" cy="110" r="5" fill="#cdd4e6"/>
+  <text x="520" y="126" text-anchor="middle" font-size="11" font-weight="700" fill="#2c3e50">Stove = CPU</text>
+  <line x1="520" y1="162" x2="90" y2="162" stroke="#8a94a6" stroke-width="1.5" stroke-dasharray="4 4" marker-end="url(#bk-k)"/>
+  <text x="305" y="156" text-anchor="middle" font-size="11" font-weight="600" fill="#8a94a6">leftovers go back to the store</text>
   <g>
     <text x="80" y="50" text-anchor="middle" font-size="18">🛒</text>
-    <animateTransform attributeName="transform" type="translate" values="0,0; 0,0; 220,0; 220,0; 440,0; 440,0; 0,0" keyTimes="0; 0.08; 0.50; 0.58; 0.72; 0.92; 1" dur="6s" repeatCount="indefinite" calcMode="linear"/>
+    <animateTransform attributeName="transform" type="translate" values="0,0; 0,0; 220,0; 220,0; 440,0; 440,0; 440,118; 0,118; 0,0" keyTimes="0; 0.05; 0.42; 0.50; 0.60; 0.72; 0.82; 0.95; 1" dur="8s" repeatCount="indefinite" calcMode="linear"/>
   </g>
-  <text x="300" y="162" text-anchor="middle" font-size="12" fill="#6a7280">Bike groceries from the store (slow) to the fridge, then cook at the stove with what's in the fridge.</text>
+  <text x="300" y="198" text-anchor="middle" font-size="12" fill="#6a7280">Bike groceries from the store (slow) to the fridge, cook at the stove, then leftovers go back to the store.</text>
 </svg>
 
 {: .warning }
