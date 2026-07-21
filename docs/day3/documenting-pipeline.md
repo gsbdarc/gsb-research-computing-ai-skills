@@ -12,7 +12,7 @@ permalink: /day3/documenting-pipeline/
 
 ---
 
-## Exercise — Write a README
+## Main quest — Write a README
 
 Write your README while the code is still fresh — before you close the terminal. Your memory of every flag and design choice is sharpest right now.
 
@@ -71,18 +71,18 @@ Input: SEC Form 3 filings from EDGAR (public domain).
 
 ---
 
-## Optional practice
+## Side quests
 
 {: .note }
 > Finished early? Try one or both of these.
 
-**Optional practice — Have Claude Stress-Test Your README**
+**Side quest — Have Claude Stress-Test Your README**
 
 Ask Claude Code to read your README as if it were a labmate seeing this pipeline for the first time, and to flag anything that would stop them from rerunning it without asking you a question. Fix at least one thing it flags.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-chronicle" data-key="side1"> I had Claude critique my README as a first-time reader and fixed at least one issue it flagged</label>
 
-**Optional practice — Explain It to Your PI**
+**Side quest — Explain It to Your PI**
 
 Write 2-3 sentences explaining what this pipeline does for a non-technical reader — your PI, your committee, an IRB reviewer. No SLURM, no flags, no jargon.
 

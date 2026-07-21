@@ -188,7 +188,7 @@ rm -r ~/Desktop/spell_chamber        # remove the folder and all its contents
 >
 > 1. Open the **Quest Log** (bottom-left corner) → click **Sync**.
 > 2. Click **Copy token**.
-> 3. On the Yens, inside your clone, run `python3 scripts/quest_sync.py <paste-token>`.
-> 4. **First time only:** sign in once with `gh auth login` (also in **The Repository**) so the push works.
+> 3. **First time only:** sign in once with `gh auth login` (also in **The Repository**) so the push works.
+> 4. On the Yens, inside your clone, run `python3 scripts/quest_sync.py <paste-token>`.
 >
-> Re-run whenever you finish more — the token always holds your full progress.
+> **Each time you finish more quests,** tick the new boxes, then repeat: **Sync → Copy token → re-run the command** with the fresh token (the one-time sign-in is already done). Each token is a full snapshot of everything you've checked, so the latest sync always reflects *all* your progress.

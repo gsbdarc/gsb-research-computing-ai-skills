@@ -12,7 +12,7 @@ permalink: /day3/slurm-job/
 
 ---
 
-## Exercise — Write a SLURM Script
+## Main quest — Write a SLURM Script
 
 {: .important }
 > **Task:** Build a SLURM job script line by line to run your Form 3 extraction script on a compute node.
@@ -163,7 +163,7 @@ Once your job runs, check your inbox. You should receive two emails: one when th
 
 ---
 
-## Optional practice — Go Interactive Instead of Batch
+## Side quest — Go Interactive Instead of Batch
 
 Everything so far has been batch submission — write a script, `sbatch` it, wait. SLURM also supports an interactive allocation on a dedicated node, useful for debugging without fighting other users for resources:
 
@@ -175,7 +175,7 @@ Once it drops you into a shell on your allocated node, run your script there dir
 
 <label class="quest-check"><input type="checkbox" data-room="d3-foremans-desk" data-key="side2"> I requested an interactive allocation with srun --pty and ran my script there</label>
 
-**Optional practice — Chain Two Jobs**
+**Side quest — Chain Two Jobs**
 
 Real pipelines are often more than one step. Submit a second job that only starts if your first one succeeds:
 
@@ -187,7 +187,7 @@ Replace `JOBID` with the job ID of a job you already submitted. Confirm with `sq
 
 <label class="quest-check"><input type="checkbox" data-room="d3-foremans-desk" data-key="side3"> I chained two SLURM jobs with --dependency=afterok</label>
 
-**Optional practice — Watch Your Job on Its Node**
+**Side quest — Watch Your Job on Its Node**
 
 A running batch job has a compute node all to itself — and while it's running, you can SSH in and watch it work. First find out where it landed:
 

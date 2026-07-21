@@ -47,7 +47,7 @@
       label: 'Day 3 — Cluster Computing',
       prefix: 'd3',
       rooms: [
-        { id: 'd3-kitchen',         keys: ['main', 'side1', 'side2', 'side3'] },
+        { id: 'd3-kitchen',         keys: ['main', 'side1', 'side2'] },
         { id: 'd3-head-chef',       keys: ['mystery', 'main', 'readme', 'side2', 'side3', 'side4', 'side5', 'side6', 'side7'] },
         { id: 'd3-data-mine',       keys: ['main', 'side1', 'side3', 'side5'] },
         { id: 'd3-foremans-desk',   keys: ['main', 'submit', 'side1', 'side2', 'side3', 'side4'] },
