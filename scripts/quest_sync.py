@@ -2,9 +2,9 @@
 """Sync your Quest Log progress to the leaderboard.
 
 On your personal course site, open the Quest Log (bottom-left corner), click
-"Sync to leaderboard", and copy the command it shows you. Run that command here
-on the Yens, inside your clone of your fork. It decodes your progress, writes
-quest_log.json, and pushes it to your fork so the leaderboard updates.
+"Sync", and copy the token. Run this here on the Yens, inside your clone of your
+fork. It decodes your progress, writes quest_log.json, and pushes it to your
+fork so the leaderboard updates.
 
     python3 scripts/quest_sync.py <token>
 """
@@ -19,13 +19,38 @@ from pathlib import Path
 CLASS_REPO = "gsbdarc/gsb-research-computing-ai-skills"
 REPO_ROOT = Path(__file__).resolve().parent.parent
 QUEST_LOG = REPO_ROOT / "quest_log.json"
+QUEST_KEYS = Path(__file__).resolve().parent / "quest_keys.json"
+
+
+def fnv1a_hex(s):
+    """FNV-1a (32-bit) hex digest — must match keyListHash() in quest-log.js."""
+    h = 0x811C9DC5
+    for ch in s.encode("utf-8"):
+        h ^= ch
+        h = (h * 0x01000193) & 0xFFFFFFFF
+    return format(h, "x")
 
 
 def decode_token(token):
-    token = token.strip()
-    pad = "=" * (-len(token) % 4)
-    raw = base64.urlsafe_b64decode(token + pad).decode("utf-8")
-    return [k for k in raw.split(",") if k]
+    """Decode a 'version.hash.bitfield' token into the list of completed keys.
+
+    The hash guards against a token built from a different key list than this
+    clone has (e.g. the fork is behind the site).
+    """
+    parts = token.strip().split(".")
+    if len(parts) != 3 or parts[0] != "1":
+        sys.exit("Unrecognized token — copy a fresh one from the Quest Log Sync button.")
+    _, token_hash, b64 = parts
+    keys = json.loads(QUEST_KEYS.read_text())
+    if token_hash != fnv1a_hex(",".join(keys)):
+        sys.exit(
+            "This token was made from a different version of the site than this clone.\n"
+            "Run 'git pull' in your fork, reload the site, copy a fresh token, and re-run."
+        )
+    pad = "=" * (-len(b64) % 4)
+    raw = base64.urlsafe_b64decode(b64 + pad)
+    return [k for i, k in enumerate(keys)
+            if (i >> 3) < len(raw) and raw[i >> 3] & (1 << (i & 7))]
 
 
 def git(*args):

@@ -100,13 +100,49 @@
     return room + '.' + key;
   }
 
-  // Encode the completed quests into a compact, paste-safe token (base64url of
-  // the comma-joined keys) for scripts/quest_sync.py to decode on the Yens.
+  // Canonical, ordered list of every quest key, derived from DAYS. MUST match
+  // scripts/quest_keys.json (read by scripts/quest_sync.py); regenerate that
+  // file with `node .instructor/gen_quest_keys.js` after changing DAYS.
+  function orderedKeys() {
+    var keys = [];
+    DAYS.forEach(function (d) {
+      d.rooms.forEach(function (r) {
+        r.keys.forEach(function (k) { keys.push(r.id + '.' + k); });
+      });
+    });
+    return keys;
+  }
+
+  // FNV-1a (32-bit) over the joined key list, as hex. Lets quest_sync.py detect
+  // a token built from a different site version than the clone has.
+  function keyListHash(keys) {
+    var s = keys.join(',');
+    var h = 0x811c9dc5;
+    for (var i = 0; i < s.length; i++) {
+      h ^= s.charCodeAt(i);
+      h = Math.imul(h, 0x01000193) >>> 0;
+    }
+    return h.toString(16);
+  }
+
+  // Encode completed quests as a compact, fixed-size, paste-safe token:
+  // version "1", a hash of the key list, and a base64url bitfield (one bit per
+  // canonical key). scripts/quest_sync.py decodes it on the Yens.
   function encodeProgress() {
     var progress = loadProgress();
-    var keys = Object.keys(progress).filter(function (k) { return progress[k] === true; }).sort();
-    var b64 = btoa(keys.join(',')).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
-    return { token: b64, count: keys.length };
+    var keys = orderedKeys();
+    var bytes = new Uint8Array(Math.ceil(keys.length / 8));
+    var count = 0;
+    for (var i = 0; i < keys.length; i++) {
+      if (progress[keys[i]] === true) {
+        bytes[i >> 3] |= (1 << (i & 7));
+        count++;
+      }
+    }
+    var bin = '';
+    for (var j = 0; j < bytes.length; j++) bin += String.fromCharCode(bytes[j]);
+    var b64 = btoa(bin).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+    return { token: '1.' + keyListHash(keys) + '.' + b64, count: count };
   }
 
   // ── Checkbox sync ─────────────────────────────────────────────────────────
