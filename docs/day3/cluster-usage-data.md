@@ -82,14 +82,14 @@ When you're ready — put a **🟢 green sticky** on your laptop.
 
 ---
 
-## Optional practice
+## Side quests
 
 {: .note }
 > Finished early? Try any of these.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-data-mine" data-key="side1"> I made at least one plot or visualization</label>
 
-**Optional practice — Per-User Limits vs. the Whole Node**
+**Side quest — Per-User Limits vs. the Whole Node**
 
 Group the processes by `user` and compute total `cpu_pct` and `mem_pct` per person. Then compare two different ceilings:
 
@@ -100,7 +100,7 @@ Is anyone close to their per-user limit? And how much of the *entire node* is ac
 
 <label class="quest-check"><input type="checkbox" data-room="d3-data-mine" data-key="side3"> I compared per-user usage against both the per-user limit and the whole node's capacity</label>
 
-**Optional practice — Watch It Live (`top`)**
+**Side quest — Watch It Live (`top`)**
 
 The CSV you've been analyzing is a **photograph** — one frozen instant, captured by a script that ran `top` once and saved the result. `top` itself is the **live view**: the same numbers, refreshing every few seconds. SSH to a Yen node and run it:
 

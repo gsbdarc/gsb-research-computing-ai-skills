@@ -198,7 +198,7 @@ The cloud is a rented kitchen — and it's **just for you**. Unlike the Yens, yo
 
 ---
 
-## Exercise — Class Participation
+## Main quest — Class Participation
 
 {: .important }
 > 🥪 **Demo + Discussion:** 🥪 We will all participate in a class demo together. 🥪
@@ -225,33 +225,21 @@ The cloud is a rented kitchen — and it's **just for you**. Unlike the Yens, yo
 
 ---
 
-## Optional practice
+## Side quests
 
 {: .note }
 > Finished early? Try one or both of these.
 
-**Optional practice 1 — Know your own machine**
+**Side quest 1 — Know your own machine**
 
-Check your own laptop's CPU core count and RAM, and compare them to a Yen node (256 cores). On Mac: `system_profiler SPHardwareDataType`. On Windows: Task Manager → Performance tab. On Linux: `nproc` and `free -h`.
-
-<label class="quest-check"><input type="checkbox" data-room="d3-kitchen" data-key="side1"> I checked my own laptop's CPU cores and RAM and compared them to a Yen node</label>
-
-**Optional practice 2 — Price the rented kitchen**
-
-Look up on-demand pricing for a cloud VM comparable to a Yen node (similar CPU/RAM), and estimate what it would cost to run your Day 2 extraction job there for an hour. Grant budgets aren't infinite — this is a real judgment call you'll make in your own research.
-
-<label class="quest-check"><input type="checkbox" data-room="d3-kitchen" data-key="side2"> I estimated the cost of running my Day 2 job in the cloud for an hour</label>
-
-**Optional practice 3 — Laptop vs. a Yen node**
-
-You looked up your laptop's specs in the *Know your own machine* practice above. Enter them below to see just how much bigger one Yen node is.
+**Work with Claude** to figure out how to check your own laptop's CPU core count and RAM — tell it what operating system you're on and have it walk you through finding each one. Then enter your specs below to see just how much bigger one Yen node is (**yen1 has 256 cores and 1 TB of RAM**).
 
 <style>
 .yen-widget { border: 1px solid #ddd; border-radius: 6px; padding: 1rem 1.25rem; margin: 1rem 0; }
 .yen-widget label { display: block; margin: 0.35rem 0; }
 .yen-widget input { width: 6rem; margin-left: 0.4rem; }
 .yen-widget button { margin-top: 0.6rem; padding: 0.35rem 0.9rem; cursor: pointer; border-radius: 4px; border: 1px solid #ccc; background: #f0f0f0; }
-#yw-out { margin-top: 0.75rem; line-height: 1.5; }
+#yw-out, #cw-out { margin-top: 0.75rem; line-height: 1.5; }
 </style>
 
 <div class="yen-widget">
@@ -263,7 +251,7 @@ You looked up your laptop's specs in the *Know your own machine* practice above.
 
 <script>
 (function () {
-  var YEN_CORES = 256, YEN_RAM = 1024; // one Yen node: 256 logical cores, ~1 TB RAM
+  var YEN_CORES = 256, YEN_RAM = 1024; // one Yen node (yen1): 256 logical cores, ~1 TB RAM
   function compare() {
     var c = parseFloat(document.getElementById('yw-cores').value);
     var r = parseFloat(document.getElementById('yw-ram').value);
@@ -281,5 +269,41 @@ You looked up your laptop's specs in the *Know your own machine* practice above.
 })();
 </script>
 
-<label class="quest-check"><input type="checkbox" data-room="d3-kitchen" data-key="side3"> I used the widget to compare my laptop to a Yen node</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-kitchen" data-key="side1"> I checked my own laptop's CPU cores and RAM and compared them to a Yen node</label>
+
+**Side quest 2 — Price the rented kitchen**
+
+Look up on-demand pricing for a cloud VM comparable to a Yen node (similar CPU/RAM). Then use the calculator below — enter the VM's specs and the price per hour you found — to estimate what your Day 2 extraction job would cost to run there for an hour. Grant budgets aren't infinite; this is a real judgment call you'll make in your own research.
+
+<div class="yen-widget">
+  <label>VM CPU cores: <input id="cw-cores" type="number" min="1" step="1" value="256"></label>
+  <label>VM RAM (GB): <input id="cw-ram" type="number" min="1" step="1" value="1024"></label>
+  <label>Price per hour ($): <input id="cw-rate" type="number" min="0" step="0.01" value="3.00"></label>
+  <label>Hours you'd run it: <input id="cw-hours" type="number" min="0" step="0.5" value="1"></label>
+  <button id="cw-go">Estimate cost</button>
+  <p id="cw-out"></p>
+</div>
+
+<script>
+(function () {
+  function estimate() {
+    var cores = parseFloat(document.getElementById('cw-cores').value);
+    var ram = parseFloat(document.getElementById('cw-ram').value);
+    var rate = parseFloat(document.getElementById('cw-rate').value);
+    var hours = parseFloat(document.getElementById('cw-hours').value);
+    var out = document.getElementById('cw-out');
+    if (!(rate >= 0) || !(hours >= 0)) { out.textContent = 'Enter a price per hour and how many hours.'; return; }
+    var total = rate * hours;
+    out.innerHTML =
+      'A VM with <strong>' + (cores > 0 ? cores : '?') + '</strong> cores and <strong>'
+      + (ram > 0 ? ram : '?') + ' GB</strong> at <strong>$' + rate.toFixed(2) + '/hr</strong>'
+      + ' would cost <strong>$' + total.toFixed(2) + '</strong> to run for '
+      + hours + ' hour' + (hours === 1 ? '' : 's') + '.';
+  }
+  document.getElementById('cw-go').addEventListener('click', estimate);
+  estimate();
+})();
+</script>
+
+<label class="quest-check"><input type="checkbox" data-room="d3-kitchen" data-key="side2"> I estimated the cost of running my Day 2 job in the cloud for an hour</label>
 

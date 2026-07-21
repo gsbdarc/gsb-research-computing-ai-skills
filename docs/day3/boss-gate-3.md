@@ -37,7 +37,7 @@ Your commit should include:
 
 ---
 
-## Optional practice — Feel the Pain Point
+## Side quest — Feel the Pain Point
 
 Your batch ran the ~10 filings **one after another**. Now imagine hundreds or thousands: even in a batch, they run serially, so the wall-clock time just keeps climbing. Add a few more URLs to `data/aws_links.csv`, resubmit, and watch `Elapsed` grow roughly linearly with the file count. Running them **in parallel** — many at once instead of one at a time — is exactly what Day 4's job arrays exist to do.
 

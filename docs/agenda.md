@@ -30,11 +30,11 @@ Every day adds a layer to one research pipeline. The dataset: SEC Form 3 filings
 - Claude on the Yens
 - Security discussion
 
-### Exercises
+### Main quests
 
 **Setup block (~20-30 min) — do this before any CLI instruction:**
 
-| # | Exercise |
+| # | Main quest |
 |---|-------|
 | 0 | Setup: fork repo → enable Actions → enable GitHub Pages → trigger first build → open personal dungeon site |
 
@@ -42,7 +42,7 @@ Every day adds a layer to one research pipeline. The dataset: SEC Form 3 filings
 
 **CLI + cluster:**
 
-| # | Exercise |
+| # | Main quest |
 |---|-------|
 | 1 | CLI navigation — `ls`, `cd`, `mkdir`, `mv`, `cp`, `rm` |
 | 2 | Bulk operations with wildcards — rename 300 files in one command |
@@ -52,7 +52,7 @@ Every day adds a layer to one research pipeline. The dataset: SEC Form 3 filings
 | 6 | Git: commit and push to fork |
 | 7 | Introduce Claude Code — run in repo, discuss researcher role vs AI tool, Stanford data rules |
 
-### Optional practice
+### Side quests
 - Add here
 
 
@@ -70,9 +70,9 @@ Every day adds a layer to one research pipeline. The dataset: SEC Form 3 filings
 - LLM-as-a-judge: have a model self-evaluate with an agreement + confidence score, then flag low-confidence outputs for human review — the escalation *policy lives in your code, not the prompt* (auditable)
 - AI coding agents at Stanford: data privacy, security, best practices *(discussion)*
 
-### Exercises
+### Main quests
 
-| # | Exercise |
+| # | Main quest |
 |---|-------|
 | 1 | Open JupyterHub briefly; write and run a Python script from the terminal |
 | 2 | Understand `$PATH`; create venv; install packages; register Jupyter kernel; rebuild a complex script from `requirements.txt` to see reproducibility |
@@ -83,7 +83,7 @@ Every day adds a layer to one research pipeline. The dataset: SEC Form 3 filings
 | 7 | Update `README.md` with pipeline description; commit and push |
 | Boss Gate 2 *(optional capstone)* | The Genre Tribunal: predict a movie's genre → judge the prediction (agreement + certainty) → flag `needs_human_review` in your code → commit `results/genre_verdicts.json` |
 
-### Optional practice
+### Side quests
 - Prompt engineering: system vs. user messages, temperature, reasoning
 - Batch processing preview: loop over a directory before Day 3
 - Add here
@@ -116,7 +116,7 @@ Every day adds a layer to one research pipeline. The dataset: SEC Form 3 filings
 
 ### Section-by-Section Outline
 
-| Section | Exercise(s) | Optional practice | Skills Learned | Hands-on |
+| Section | Main quest(s) | Side quests | Skills Learned | Hands-on |
 |---|---|---|---|---|
 | **Compute Environments** | Class demo + discussion: laptop vs. Yens vs. cloud (CPU, RAM, storage tradeoffs) | Compare your laptop's cores/RAM to a Yen node; estimate cloud $/hr for the Day 2 job; use the laptop-vs-Yen widget | Shared vocabulary for CPU, RAM, and storage across environments | Demo + discussion |
 | **Profiling Resource Usage** | Profile a mystery script with `time`, `watch userload`, and `htop` (serial vs. parallel); document resource needs in README | Vectorized vs. non-vectorized profiling; compare `/usr/bin/time -v`'s peak RAM to `userload`'s; profile an I/O-bound script (`sys` vs. `user` time) | Profiling methodology; estimating resources instead of guessing | Two-terminal live profiling |
@@ -143,9 +143,9 @@ Every day adds a layer to one research pipeline. The dataset: SEC Form 3 filings
 - Human vs. LLM: when to trust results at scale, how to validate *(discussion)*
 - Reproducibility: README as the deliverable that makes a pipeline rerunnable
 
-### Exercises
+### Main quests
 
-| # | Exercise |
+| # | Main quest |
 |---|-------|
 | 1 | Convert day3 script to an array job; one task per filing; collect all results |
 | 2 | Submit GPU job to `yen-gpu4` (H200); verify with `nvidia-smi` |
@@ -153,5 +153,5 @@ Every day adds a layer to one research pipeline. The dataset: SEC Form 3 filings
 | 6 | Discussion: when to use local models vs third-party vs Playground? |
 | 7 | Finalize `README.md` — full pipeline, both endpoints, how to rerun; commit and push | 
 
-### Optional practice
+### Side quests
 - Add here

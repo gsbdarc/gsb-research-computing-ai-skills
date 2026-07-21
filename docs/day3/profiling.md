@@ -23,7 +23,7 @@ Before we run anything, let's make sure we have the vocabulary for the resources
 
 ---
 
-## 💻 Exercise 1 — Run Your Script
+## 💻 Main quest — Run Your Script
 
 {: .important }
 > **Task:** Run your Day 2 extraction script on the Yens interactively and think about its resource footprint.
@@ -52,7 +52,7 @@ This page will teach you **how to estimate the resources your script is actually
 
 ---
 
-## Exercise — Profile a Mystery Script
+## Main quest — Profile a Mystery Script
 
 You are going to run a script you have never seen before and figure out what resources it uses — without reading the code. This is called **profiling**: measuring a script's time, CPU, and RAM usage as it runs. The technique is simple: one terminal runs the script, a second terminal on the **same node** watches it live.
 
@@ -139,7 +139,7 @@ When you can describe what the mystery script does to your CPU and RAM — put a
 
 ---
 
-## 💻 Exercise 3 — Profile Your Day 2 Script
+## 💻 Main quest — Profile Your Day 2 Script
 
 Now apply the same technique to a script you already know: `extract_form_3_one_file.py` from Day 2.
 
@@ -157,7 +157,7 @@ Note the `real`, `user`, and `sys` times when it finishes. Is this script serial
 
 ---
 
-## Exercise — Document Your Script's Resource Needs
+## Main quest — Document Your Script's Resource Needs
 
 Now that you have profiled `extract_form_3_one_file.py`, write down what you found. Open the `README.md` in your repo and add a **Resource Profile** section:
 
@@ -179,7 +179,7 @@ Fill in the actual numbers from your `time` and `userload` output. This document
 
 ---
 
-## Optional practice — Vectorized vs. Non-Vectorized
+## Side quest — Vectorized vs. Non-Vectorized
 
 {: .note }
 > Finished early? This one is self-contained — no script of your own required.
@@ -220,7 +220,7 @@ Record what you find in your `README.md`:
 
 ---
 
-## Optional practice — Catch What `userload` Misses
+## Side quest — Catch What `userload` Misses
 
 {: .note }
 > Finished early? Try one or both of these.
@@ -235,7 +235,7 @@ Look for **Maximum resident set size** in the output — this is the script's tr
 
 <label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="side6"> I compared /usr/bin/time -v's peak RAM to what watch userload showed me</label>
 
-**Optional practice — Profile an I/O-Bound Script**
+**Side quest — Profile an I/O-Bound Script**
 
 Everything you've profiled so far is CPU-bound (`user` time dominates). Write a tiny script that's I/O-bound instead — for example, one that reads and re-writes a large file in a loop — and profile it the same way. Compare its `sys` and `user` times to the mystery script's.
 

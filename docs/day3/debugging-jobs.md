@@ -12,7 +12,7 @@ permalink: /day3/debugging-jobs/
 
 ---
 
-## Exercise — Debug and Fix a Real Failure
+## Main quest — Debug and Fix a Real Failure
 
 We've staged a job that failed for a past cohort. Your task: submit it, watch it fail, read the logs to find out *why*, fix it, and resubmit until it completes.
 
@@ -72,12 +72,12 @@ When your job shows `COMPLETED` — put a **🟢 green sticky** on your laptop.
 
 ---
 
-## Optional Exercises
+## Side quests
 
 {: .note }
 > Finished early? Try one or both of these.
 
-**Optional practice — Audit your resource usage**
+**Side quest — Audit your resource usage**
 
 After your job completes, compare what you requested vs what you actually used:
 
@@ -93,7 +93,7 @@ Did you over-request memory? Use these numbers to calibrate your next job's `--m
 
 <label class="quest-check"><input type="checkbox" data-room="d3-watch-tower" data-key="side1"> I audited my resource usage and know whether I over- or under-requested</label>
 
-**Optional practice — Watch a job live**
+**Side quest — Watch a job live**
 
 While your job is running (status `R`), you can follow the output as it writes:
 
@@ -105,7 +105,7 @@ Ctrl-C to stop following. This is useful for long jobs where you want to see pro
 
 <label class="quest-check"><input type="checkbox" data-room="d3-watch-tower" data-key="side2"> I followed a running job's output live with tail -f</label>
 
-**Optional practice — Decode the exit code**
+**Side quest — Decode the exit code**
 
 ```bash
 sacct -j JOBID --format=JobID,ExitCode,State
@@ -115,13 +115,13 @@ An `ExitCode` like `137` often means the job was killed for using too much memor
 
 <label class="quest-check"><input type="checkbox" data-room="d3-watch-tower" data-key="side3"> I decoded my job's ExitCode with sacct and can explain what it means</label>
 
-**Optional practice — Trigger an OOM on purpose**
+**Side quest — Trigger an OOM on purpose**
 
 Edit your `#SBATCH --mem` directive down to something clearly too small (e.g. `--mem=10M`) and resubmit. Watch it get killed for running out of memory, then compare its `sacct` `State` and `.err` signature to the bug you fixed earlier — can you tell an OOM kill apart from a code bug at a glance now?
 
 <label class="quest-check"><input type="checkbox" data-room="d3-watch-tower" data-key="side4"> I deliberately triggered an OOM kill and compared its failure signature to my original bug</label>
 
-**Optional practice — Trigger a timeout on purpose**
+**Side quest — Trigger a timeout on purpose**
 
 The other way jobs die is running out of *time*. Submit a job that asks for far less time than it needs — `--wrap` runs an inline command as a throwaway job:
 

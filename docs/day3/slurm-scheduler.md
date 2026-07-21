@@ -69,7 +69,7 @@ Instead of running your script directly on a shared node, you submit it to the s
 
 ---
 
-## Exercise — Peek at the Queue
+## Main quest — Peek at the Queue
 
 {: .important }
 > **Task:** Look at the live SLURM queue to see what jobs are waiting or running right now.
@@ -115,12 +115,12 @@ When you can read the queue, tell `R` from `PD`, and describe the Yens partition
 
 ---
 
-## Optional Exercises
+## Side quests
 
 {: .note }
 > Finished early? Try this.
 
-**Optional practice — Add a `longsqueue` alias**
+**Side quest — Add a `longsqueue` alias**
 
 The default `squeue` output is sparse. Pass a custom format to see what each job actually requested — CPU cores, memory, and time limit:
 
@@ -141,7 +141,7 @@ Now run `longsqueue` — you should see the full resource picture of every job i
 
 <label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="side3"> I added the longsqueue alias to my ~/.bash_profile and can read CPU and memory requests in the queue</label>
 
-**Optional practice — Inspect any job with scontrol**
+**Side quest — Inspect any job with scontrol**
 
 Pick any job from `squeue` and look up its full details:
 
@@ -158,7 +158,7 @@ This works on any job — yours or someone else's — as long as it is still in 
 
 <label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="side4"> I used scontrol to find the CPU, RAM, and time limit of a job in the queue</label>
 
-**Optional practice — Compare partitions**
+**Side quest — Compare partitions**
 
 Run `sinfo -p gpu` and `sinfo -p normal` (or whichever partitions exist on the Yens) and compare what each offers — node count, time limits, resource caps. Can you explain when you'd request one over the other for a job?
 
