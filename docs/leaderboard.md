@@ -5,9 +5,9 @@ nav_order: 5
 permalink: /leaderboard/
 ---
 
-# 🏆 DARC Dungeon Leaderboard
+# 🏆 Class Leaderboard
 
-*Rankings update when students sync their quest logs. Each completed main quest or side quest adds to your **Quest Log**; your total drives your **Level** (max Level 10). **Boss Gates** = optional capstone challenges completed (max 4).*
+*Rankings update when students sync their progress. Each completed exercise adds to your total, which drives your **Level** (max Level 10). **Challenges** = optional day-end capstones completed (max 4).*
 
 <div id="lb-controls">
   <button id="lb-refresh">↻ Refresh</button>
@@ -59,7 +59,7 @@ tr.lb-leader td { background: #f4f8ff; }
   var BRANCH = 'main';
   var TOTAL  = 74; // keep in sync with TOTAL_CHECKS in assets/js/quest-log.js
 
-  // quest_log.json keys that mark each day's Boss Gate as complete
+  // quest_log.json keys that mark each day's optional capstone as complete
   var BOSS_GATE_KEYS = [
     'd1-boss-gate-1.main',
     'd2-boss-gate.commit',
@@ -77,12 +77,27 @@ tr.lb-leader td { background: #f4f8ff; }
   }
 
   function parseStudents(text) {
-    var students = [], re = /^- username:\s*(\S+)/gm, m;
+    var students = [];
+    var re = /^- username:\s*(\S+)/gm, m, matches = [];
     while ((m = re.exec(text)) !== null) {
-      var username = m[1].replace(/['"]/g, '');
-      var after = text.slice(m.index + m[0].length);
-      var nm = after.match(/^[\s\S]*?name:\s*["']?(.+?)["']?\s*$/m);
-      students.push({ username: username, name: nm ? nm[1].trim() : username });
+      matches.push({
+        username: m[1].replace(/['"]/g, ''),
+        contentStart: m.index + m[0].length,
+        lineStart: m.index
+      });
+    }
+    // Bound each entry by the next "- username:" so a missing repo:/name:
+    // can't bleed into the following entry's value.
+    for (var i = 0; i < matches.length; i++) {
+      var end = (i + 1 < matches.length) ? matches[i + 1].lineStart : text.length;
+      var block = text.slice(matches[i].contentStart, end);
+      var repoM = block.match(/^\s*repo:\s*["']?(.+?)["']?\s*$/m);
+      var nameM = block.match(/^\s*name:\s*["']?(.+?)["']?\s*$/m);
+      students.push({
+        username: matches[i].username,
+        repo: repoM ? repoM[1].trim() : REPO,
+        name: nameM ? nameM[1].trim() : matches[i].username
+      });
     }
     return students;
   }
@@ -108,8 +123,8 @@ tr.lb-leader td { background: #f4f8ff; }
     var html = '';
     for (var i = 0; i < 4; i++) {
       html += i < cleared
-        ? '<span class="gate-cleared" title="Boss Gate ' + (i+1) + ' cleared">⚔</span>'
-        : '<span class="gate-locked" title="Boss Gate ' + (i+1) + ' not yet done">·</span>';
+        ? '<span class="gate-cleared" title="Challenge ' + (i+1) + ' cleared">✔</span>'
+        : '<span class="gate-locked" title="Challenge ' + (i+1) + ' not yet done">·</span>';
     }
     html += '<span class="gate-label">' + Math.min(cleared, 4) + '/4</span>';
     return html;
@@ -132,7 +147,7 @@ tr.lb-leader td { background: #f4f8ff; }
       return '<p>No students registered yet — the instructor will add them before class.</p>';
     }
     var html = '<table class="lb-table"><thead><tr>'
-      + '<th>Rank</th><th>Name</th><th>Level</th><th>Boss Gates</th><th>Progress</th>'
+      + '<th>Rank</th><th>Name</th><th>Level</th><th>Challenges</th><th>Progress</th>'
       + '</tr></thead><tbody>';
 
     entries.forEach(function (e, i) {
@@ -164,7 +179,7 @@ tr.lb-leader td { background: #f4f8ff; }
           return;
         }
         return Promise.all(students.map(function (s) {
-          var url = RAW + '/' + s.username + '/' + REPO + '/' + BRANCH + '/quest_log.json';
+          var url = RAW + '/' + s.username + '/' + (s.repo || REPO) + '/' + BRANCH + '/quest_log.json';
           return fetchText(url)
             .then(function (t) { return Object.assign({}, s, parseQuestLog(t)); })
             .catch(function () { return Object.assign({}, s, { completedChecks: 0, bossGates: 0 }); });

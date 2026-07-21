@@ -76,16 +76,32 @@ chmod 644 /scratch/shared/gsb-research-computing-ai-skills/boss1/*.spell
 
 ---
 
-## Before Day 1 — Enroll students
+## Day 1 — Enroll students
 
-Add each student's GitHub username to `docs/_data/students.yml` in the instructor repo before class starts. The leaderboard will show anyone listed here as soon as they push to their fork.
+Once students have forked the repo, populate the roster automatically from everyone
+who has forked, so you don't need to collect usernames by hand:
+
+```bash
+python3 .instructor/sync_forks_to_students.py            # dry run — report only
+python3 .instructor/sync_forks_to_students.py --apply     # write new entries
+```
+
+The script queries GitHub for all forks and appends any missing ones to
+`docs/_data/students.yml`, capturing each fork's **actual repo name** (forks made
+before the repo was renamed keep their old name, e.g. `rf-bootcamp-2026`). Names are
+best-effort from public GitHub profiles — review them, then commit and push to `main`.
+GitHub Pages rebuilds in ~2 minutes and the leaderboard is live.
+
+To add someone by hand instead:
 
 ```yaml
 - username: their-github-username
+  repo: gsb-research-computing-ai-skills
   name: "First L."
 ```
 
-Commit and push to `main`. GitHub Pages rebuilds in ~2 minutes and the leaderboard is live.
+The leaderboard shows anyone listed here as soon as they push `quest_log.json` to
+their fork's `main`.
 
 ---
 
@@ -98,7 +114,7 @@ https://gsbdarc.github.io/gsb-research-computing-ai-skills/leaderboard/
 ```
 
 **What it shows:**
-- Each student's rank, level (Initiate → Archmage), boss gates cleared (⚔ = day cleared), and progress bar
+- Each student's rank, level (max 10), challenges cleared (✔ = capstone cleared), and progress bar
 - Students who did side quests rank higher — the progress bar shows who went beyond the main quests
 - Students with no progress yet show as Level 1 / Initiate with an empty bar
 
