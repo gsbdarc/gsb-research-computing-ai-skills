@@ -1,18 +1,14 @@
-# Enrolled students — add GitHub usernames here before Day 1.
-# The leaderboard at /leaderboard/ fetches each student's progress.yml from their fork.
+# Enrolled students — the leaderboard at /leaderboard/ reads this roster and
+# fetches each student's quest_log.json from their fork.
 #
-# Format:
+# On Day 1, populate this automatically from everyone who has forked the repo:
+#   python3 .instructor/sync_forks_to_students.py            # dry run, report only
+#   python3 .instructor/sync_forks_to_students.py --apply     # write new entries
+# then review the names, commit, and push to main.
+#
+# Format (repo is the fork's actual name — forks made before the repo was
+# renamed keep their old name, e.g. rf-bootcamp-2026):
+#
 #   - username: their-github-username
-#     name: "First L."   # first name + last initial, shown on leaderboard
-#
-# Example (remove before class):
-# - username: jsmith
-#   name: "Jane S."
-
-- username: natalya-patrikeeva
-  name: "Natalya R."
-
-- username: Jeffotter
-  name: "Jeff. O."
-- username: alexstorer
-  name: "Alex S."
+#     repo: gsb-research-computing-ai-skills
+#     name: "First L."   # shown on the leaderboard
