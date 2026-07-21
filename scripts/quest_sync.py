@@ -6,7 +6,7 @@ On your personal course site, open the Quest Log (bottom-left corner), click
 on the Yens, inside your clone of your fork. It decodes your progress, writes
 quest_log.json, and pushes it to your fork so the leaderboard updates.
 
-    python scripts/quest_sync.py <token>
+    python3 scripts/quest_sync.py <token>
 """
 
 import argparse
@@ -71,7 +71,11 @@ def main():
         return
     push = git("push", "origin", "HEAD:main")
     if push.returncode != 0:
-        sys.exit("Push failed:\n" + (push.stderr or push.stdout))
+        sys.exit(
+            "Push failed:\n" + (push.stderr or push.stdout)
+            + "\nIf that's an authentication error, sign in once with 'gh auth login' "
+            "on the Yens (Day 1's Repository room), then re-run this."
+        )
     print("Pushed to your fork. The leaderboard updates within ~2 minutes.")
 
 

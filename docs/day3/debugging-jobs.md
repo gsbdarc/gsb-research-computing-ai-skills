@@ -70,13 +70,6 @@ When your job shows `COMPLETED` — put a **🟢 green sticky** on your laptop.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-watch-tower" data-key="main"> I found the bug, fixed it, resubmitted, and my job shows COMPLETED</label>
 
-<details markdown="1">
-<summary>🔄 Sync to leaderboard</summary>
-
-**Keep the leaderboard live.** In your terminal on the Yens, inside `~/gsb-research-computing-ai-skills` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-watch-tower.main` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/gsb-research-computing-ai-skills`), not the class repo `gsbdarc/gsb-research-computing-ai-skills` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
-
-</details>
-
 ---
 
 ## Optional Exercises
@@ -100,13 +93,6 @@ Did you over-request memory? Use these numbers to calibrate your next job's `--m
 
 <label class="quest-check"><input type="checkbox" data-room="d3-watch-tower" data-key="side1"> I audited my resource usage and know whether I over- or under-requested</label>
 
-<details markdown="1">
-<summary>🔄 Sync to leaderboard</summary>
-
-**Keep the leaderboard live.** In your terminal on the Yens, inside `~/gsb-research-computing-ai-skills` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-watch-tower.side1` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/gsb-research-computing-ai-skills`), not the class repo `gsbdarc/gsb-research-computing-ai-skills` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
-
-</details>
-
 **Optional practice — Watch a job live**
 
 While your job is running (status `R`), you can follow the output as it writes:
@@ -119,13 +105,6 @@ Ctrl-C to stop following. This is useful for long jobs where you want to see pro
 
 <label class="quest-check"><input type="checkbox" data-room="d3-watch-tower" data-key="side2"> I followed a running job's output live with tail -f</label>
 
-<details markdown="1">
-<summary>🔄 Sync to leaderboard</summary>
-
-**Keep the leaderboard live.** In your terminal on the Yens, inside `~/gsb-research-computing-ai-skills` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-watch-tower.side2` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/gsb-research-computing-ai-skills`), not the class repo `gsbdarc/gsb-research-computing-ai-skills` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
-
-</details>
-
 **Optional practice — Decode the exit code**
 
 ```bash
@@ -136,25 +115,11 @@ An `ExitCode` like `137` often means the job was killed for using too much memor
 
 <label class="quest-check"><input type="checkbox" data-room="d3-watch-tower" data-key="side3"> I decoded my job's ExitCode with sacct and can explain what it means</label>
 
-<details markdown="1">
-<summary>🔄 Sync to leaderboard</summary>
-
-**Keep the leaderboard live.** In your terminal on the Yens, inside `~/gsb-research-computing-ai-skills` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-watch-tower.side3` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/gsb-research-computing-ai-skills`), not the class repo `gsbdarc/gsb-research-computing-ai-skills` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
-
-</details>
-
 **Optional practice — Trigger an OOM on purpose**
 
 Edit your `#SBATCH --mem` directive down to something clearly too small (e.g. `--mem=10M`) and resubmit. Watch it get killed for running out of memory, then compare its `sacct` `State` and `.err` signature to the bug you fixed earlier — can you tell an OOM kill apart from a code bug at a glance now?
 
 <label class="quest-check"><input type="checkbox" data-room="d3-watch-tower" data-key="side4"> I deliberately triggered an OOM kill and compared its failure signature to my original bug</label>
-
-<details markdown="1">
-<summary>🔄 Sync to leaderboard</summary>
-
-**Keep the leaderboard live.** In your terminal on the Yens, inside `~/gsb-research-computing-ai-skills` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-watch-tower.side4` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/gsb-research-computing-ai-skills`), not the class repo `gsbdarc/gsb-research-computing-ai-skills` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
-
-</details>
 
 **Optional practice — Trigger a timeout on purpose**
 
@@ -174,9 +139,3 @@ The `State` shows `TIMEOUT` (and the log notes `CANCELLED ... DUE TO TIME LIMIT`
 
 <label class="quest-check"><input type="checkbox" data-room="d3-watch-tower" data-key="side5"> I deliberately triggered a timeout and can tell TIMEOUT, OOM, and code-bug failures apart</label>
 
-<details markdown="1">
-<summary>🔄 Sync to leaderboard</summary>
-
-**Keep the leaderboard live.** In your terminal on the Yens, inside `~/gsb-research-computing-ai-skills` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-watch-tower.side5` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/gsb-research-computing-ai-skills`), not the class repo `gsbdarc/gsb-research-computing-ai-skills` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
-
-</details>

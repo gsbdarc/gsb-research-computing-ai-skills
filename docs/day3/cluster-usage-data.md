@@ -80,13 +80,6 @@ When you're ready — put a **🟢 green sticky** on your laptop.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-data-mine" data-key="main"> I loaded the data, explored it, and wrote up one true, specific finding in my README</label>
 
-<details markdown="1">
-<summary>🔄 Sync to leaderboard</summary>
-
-**Keep the leaderboard live.** In your terminal on the Yens, inside `~/gsb-research-computing-ai-skills` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-data-mine.main` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/gsb-research-computing-ai-skills`), not the class repo `gsbdarc/gsb-research-computing-ai-skills` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
-
-</details>
-
 ---
 
 ## Optional practice
@@ -95,13 +88,6 @@ When you're ready — put a **🟢 green sticky** on your laptop.
 > Finished early? Try any of these.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-data-mine" data-key="side1"> I made at least one plot or visualization</label>
-
-<details markdown="1">
-<summary>🔄 Sync to leaderboard</summary>
-
-**Keep the leaderboard live.** In your terminal on the Yens, inside `~/gsb-research-computing-ai-skills` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-data-mine.side1` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/gsb-research-computing-ai-skills`), not the class repo `gsbdarc/gsb-research-computing-ai-skills` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
-
-</details>
 
 **Optional practice — Per-User Limits vs. the Whole Node**
 
@@ -113,13 +99,6 @@ Group the processes by `user` and compute total `cpu_pct` and `mem_pct` per pers
 Is anyone close to their per-user limit? And how much of the *entire node* is actually in use? A node can sit far from full even while one user is maxed out — that's the per-user limit doing its job: keeping any one job from starving everyone else on a shared machine.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-data-mine" data-key="side3"> I compared per-user usage against both the per-user limit and the whole node's capacity</label>
-
-<details markdown="1">
-<summary>🔄 Sync to leaderboard</summary>
-
-**Keep the leaderboard live.** In your terminal on the Yens, inside `~/gsb-research-computing-ai-skills` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-data-mine.side3` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/gsb-research-computing-ai-skills`), not the class repo `gsbdarc/gsb-research-computing-ai-skills` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
-
-</details>
 
 **Optional practice — Watch It Live (`top`)**
 
@@ -142,9 +121,3 @@ Watch for a few seconds: which processes churn near a full core, and which just 
 
 <label class="quest-check"><input type="checkbox" data-room="d3-data-mine" data-key="side5"> I ran `top` live on a Yen node, read the header and per-process columns, and can explain how it relates to the CSV snapshot</label>
 
-<details markdown="1">
-<summary>🔄 Sync to leaderboard</summary>
-
-**Keep the leaderboard live.** In your terminal on the Yens, inside `~/gsb-research-computing-ai-skills` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-data-mine.side5` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/gsb-research-computing-ai-skills`), not the class repo `gsbdarc/gsb-research-computing-ai-skills` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
-
-</details>
