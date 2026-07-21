@@ -218,8 +218,8 @@ The cloud is a rented kitchen — and it's **just for you**. Unlike the Yens, yo
 >
 > 1. Open the **Quest Log** (bottom-left corner) → click **Sync**.
 > 2. Click **Copy token**.
-> 3. On the Yens, inside your clone, run `python3 scripts/quest_sync.py <paste-token>`.
-> 4. **First time only:** sign in once with `gh auth login` (see Day 1) so the push works.
+> 3. **First time only:** sign in once with `gh auth login` (see Day 1) so the push works.
+> 4. On the Yens, inside your clone, run `python3 scripts/quest_sync.py <paste-token>`.
 >
 > Re-run whenever you finish more — the token always holds your full progress.
 
