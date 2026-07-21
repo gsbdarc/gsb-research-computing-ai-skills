@@ -1,6 +1,12 @@
 import os
+
+# This job only makes API calls — it does no heavy math — so keep number-crunching
+# libraries (numpy/OpenBLAS via pandas) from spinning up a thread per core on the
+# shared node. Must be set before pandas is imported.
+os.environ.setdefault("OPENBLAS_NUM_THREADS", "1")
+os.environ.setdefault("OMP_NUM_THREADS", "1")
+
 import json
-import argparse
 import requests
 import pandas as pd
 from openai import OpenAI
@@ -17,6 +23,11 @@ client = OpenAI(
 CSV_PATH = "data/aws_links.csv"
 RESULTS_DIR = "results"
 os.makedirs(RESULTS_DIR, exist_ok=True)
+
+# How many filings to process. Kept small on purpose: every filing is a paid API
+# call, so a stray run shouldn't fire hundreds. Bump this up deliberately when you
+# mean to (e.g. to 100 for the Day 3 Challenge).
+NUM_FILINGS = 10
 
 
 class Form3Filing(BaseModel):
@@ -40,16 +51,11 @@ Extract the following fields:
 Return valid JSON matching the schema exactly.
 """
 
-parser = argparse.ArgumentParser(description="Extract Form 3 fields from the filings listed in a CSV.")
-parser.add_argument("--limit", type=int, default=None, help="Process only the first N filings (default: all).")
-args = parser.parse_args()
-
 df = pd.read_csv(CSV_PATH)
 # Skip the first row which is just the S3 folder URL
 urls = df["urls"].dropna().tolist()
 urls = [u for u in urls if u.endswith(".txt")]
-if args.limit is not None:
-    urls = urls[: args.limit]
+urls = urls[:NUM_FILINGS]
 
 total = len(urls)
 print(f"Found {total} filings in {CSV_PATH}")
