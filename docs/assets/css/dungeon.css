@@ -113,3 +113,19 @@
   white-space: pre-wrap;
   overflow-wrap: anywhere;
 }
+
+/* The site title ("GSB Research Computing & AI Skills") wraps to a few lines in
+   the sidebar, but Just-the-Docs caps the header at 3.75rem and vertically
+   centers the title, clipping the top and bottom lines with no way to scroll.
+   Let the header grow to fit the full title, and trim the font a touch. */
+@media (min-width: 50rem) {
+  .site-header {
+    height: auto;
+    max-height: none;
+    min-height: 3.75rem;
+  }
+  .site-title {
+    font-size: 1.25rem !important;
+    line-height: 1.2;
+  }
+}
