@@ -53,7 +53,7 @@ Same command, two different results. The two terminals are using **different Pyt
 In your **Jupyter terminal** (or SSH terminal), move into your cloned repo and make a folder for today's work:
 
 ```bash
-cd ~/rf-bootcamp-2026
+cd ~/gsb-research-computing-ai-skills
 mkdir -p day2
 ```
 
@@ -64,7 +64,7 @@ Now forge the virtual environment at the repo root, using the system Python:
 ```
 
 {: .note }
-> 💡 This single `.venv` at `~/rf-bootcamp-2026/.venv` is the crucible you'll use for the rest of the bootcamp, and it's the exact path Days 3 and 4 **activate**. (Potion Brawl in Step 6 is a *separate* project, so it gets its own venv, which is the "one project, one crucible" rule in action.)
+> 💡 This single `.venv` at `~/gsb-research-computing-ai-skills/.venv` is the crucible you'll use for the rest of the bootcamp, and it's the exact path Days 3 and 4 **activate**. (Potion Brawl in Step 6 is a *separate* project, so it gets its own venv, which is the "one project, one crucible" rule in action.)
 
 
 ---
@@ -72,7 +72,7 @@ Now forge the virtual environment at the repo root, using the system Python:
 ### Step 2: Activate and Explore the PATH Change
 
 ```bash
-source ~/rf-bootcamp-2026/.venv/bin/activate
+source ~/gsb-research-computing-ai-skills/.venv/bin/activate
 ```
 
 Your prompt now shows `(.venv)`, meaning you are inside the environment. Check what changed:
@@ -93,7 +93,7 @@ echo $PATH
 **Reactivate:**
 
 ```bash
-source ~/rf-bootcamp-2026/.venv/bin/activate
+source ~/gsb-research-computing-ai-skills/.venv/bin/activate
 ```
 
 {: .note }
@@ -198,7 +198,7 @@ Your cloned repo already ships one: **Potion Brawl**, a little physics spectacle
 Move into it and read the scroll:
 
 ```bash
-cd ~/rf-bootcamp-2026/data/potion_brawl
+cd ~/gsb-research-computing-ai-skills/data/potion_brawl
 cat requirements.txt
 ```
 
@@ -282,8 +282,8 @@ This prints every registered kernel and its path (a `--user` install like yours 
 Step 5 said never to copy a venv folder. See for yourself why. Peek inside your crucible:
 
 ```bash
-ls -l ~/rf-bootcamp-2026/.venv/bin/python
-cat ~/rf-bootcamp-2026/.venv/pyvenv.cfg
+ls -l ~/gsb-research-computing-ai-skills/.venv/bin/python
+cat ~/gsb-research-computing-ai-skills/.venv/pyvenv.cfg
 ```
 
 The `python` inside a venv is just a **symlink** back to one specific system Python, and `pyvenv.cfg` hardcodes that interpreter's path. Move or copy the folder to another machine (or another user's account) and those paths point at nothing. That is exactly why you rebuild from `requirements.txt` instead of copying the crucible.

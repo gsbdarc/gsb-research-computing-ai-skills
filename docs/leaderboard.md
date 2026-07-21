@@ -54,8 +54,8 @@ tr.lb-leader td { background: #f4f8ff; }
 <script>
 (function () {
   var RAW    = 'https://raw.githubusercontent.com';
-  var MAIN   = 'gsbdarc/rf-bootcamp-2026';
-  var REPO   = 'rf-bootcamp-2026';
+  var MAIN   = 'gsbdarc/gsb-research-computing-ai-skills';
+  var REPO   = 'gsb-research-computing-ai-skills';
   var BRANCH = 'main';
   var TOTAL  = 57; // keep in sync with TOTAL_CHECKS in assets/js/quest-log.js
 

@@ -80,7 +80,7 @@ Click **"📤 Sync to leaderboard"** in the bottom-left corner of this page. A f
 
 **Step 2 — Upload it to your fork**
 
-Go to your fork on GitHub (`github.com/YOUR_USERNAME/rf-bootcamp-2026`) → **Add file → Upload files** → drag `quest_log.json` in → **Commit changes** to `main`.
+Go to your fork on GitHub (`github.com/YOUR_USERNAME/gsb-research-computing-ai-skills`) → **Add file → Upload files** → drag `quest_log.json` in → **Commit changes** to `main`.
 
 The leaderboard updates within 2 minutes — this is your final rank.
 

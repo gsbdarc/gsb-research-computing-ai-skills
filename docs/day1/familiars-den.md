@@ -241,7 +241,7 @@ claude
 **5 — Give it a real task.** No need to download anything yourself — just point Claude at the grimoire on GitHub and say what you want:
 
 ```
-> Download and unzip the grimoire from https://raw.githubusercontent.com/gsbdarc/rf-bootcamp-2026/main/docs/assets/data/grimoire.zip and tell me, for each element, the longest spell name(s).
+> Download and unzip the grimoire from https://raw.githubusercontent.com/gsbdarc/gsb-research-computing-ai-skills/main/docs/assets/data/grimoire.zip and tell me, for each element, the longest spell name(s).
 ```
 
 Claude fetches the archive, unzips it, reads the filenames, and reports one spell per element. Notice what you *didn't* do: no `curl`, no `unzip`, no wildcards or pipes — you said what you wanted, and it worked out how. That's the shift Claude Code represents.
@@ -249,7 +249,7 @@ Claude fetches the archive, unzips it, reads the filenames, and reports one spel
 **6 — Quit, and move to your project.** Leave Claude Code by typing `/exit` (or pressing `Ctrl+D`). The next section sets things up inside your course repo, so move there now:
 
 ```bash
-cd ~/rf-bootcamp-2026
+cd ~/gsb-research-computing-ai-skills
 ```
 
 {: .note }
@@ -332,7 +332,7 @@ Optional — the Day 1 Challenge only needs the exercise from Version Control wi
 <details markdown="1">
 <summary>Show steps</summary>
 
-Now let Claude Code do real work on your own site. Launch `claude` inside `rf-bootcamp-2026`, then press `Shift+Tab` until you're in **auto mode** — so Claude can run the whole task end to end without stopping to ask at every edit and git step. Then give it a concrete, checkable task — switch the site to dark mode and drive the whole git loop for you:
+Now let Claude Code do real work on your own site. Launch `claude` inside `gsb-research-computing-ai-skills`, then press `Shift+Tab` until you're in **auto mode** — so Claude can run the whole task end to end without stopping to ask at every edit and git step. Then give it a concrete, checkable task — switch the site to dark mode and drive the whole git loop for you:
 
 ```
 > Switch this site's theme to dark mode, commit it on a new branch, and open a pull request.
@@ -346,7 +346,7 @@ Then confirm it worked: on your fork on GitHub, a new **branch** and a **pull re
 **See your change.** When Claude opens the PR it prints a link — follow it and open the **Files changed** tab. That alone confirms Claude made the edit correctly, and reviewing the diff *is* the review. To watch it render *live*, merge the PR into your fork's `main`; your GitHub Pages site rebuilds in a minute or two and dark mode appears at your site URL:
 
 ```
-https://YOUR-USERNAME.github.io/rf-bootcamp-2026/
+https://YOUR-USERNAME.github.io/gsb-research-computing-ai-skills/
 ```
 
 {: .note }

@@ -31,14 +31,14 @@ The boss doesn't care about your plan, only your output. Ten films, two models, 
 >
 > **Submit:**
 > ```bash
-> cd ~/rf-bootcamp-2026 && source .venv/bin/activate
+> cd ~/gsb-research-computing-ai-skills && source .venv/bin/activate
 > python day2/genre_tribunal.py        # reads data/..., writes results/...
 > git add results/genre_verdicts.json
 > git commit -m "Boss Gate 2: Genre Tribunal complete"
 > git push
 > ```
 
-Run it from the **repo root** (`~/rf-bootcamp-2026`) so that `data/top_rated_movies.csv` and `results/genre_verdicts.json` both resolve.
+Run it from the **repo root** (`~/gsb-research-computing-ai-skills`) so that `data/top_rated_movies.csv` and `results/genre_verdicts.json` both resolve.
 {: .tip }
 
 ---
@@ -110,7 +110,7 @@ Click **"📤 Sync to leaderboard"** in the bottom-left corner of this page. A f
 
 **Step 2 — Upload it to your fork**
 
-Go to your fork on GitHub (`github.com/YOUR_USERNAME/rf-bootcamp-2026`) → **Add file → Upload files** → drag `quest_log.json` in → **Commit changes** to `main`.
+Go to your fork on GitHub (`github.com/YOUR_USERNAME/gsb-research-computing-ai-skills`) → **Add file → Upload files** → drag `quest_log.json` in → **Commit changes** to `main`.
 
 The leaderboard updates within 2 minutes. Your instructor can see your level, which boss gates you've cleared, and how many side quests you completed.
 

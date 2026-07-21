@@ -13,7 +13,7 @@ A four-day hands-on course covering the command line, the Yens cluster, SLURM, G
 Click **Fork** in the top-right corner of this page. GitHub creates your own copy at:
 
 ```
-https://github.com/YOUR-USERNAME/rf-bootcamp-2026
+https://github.com/YOUR-USERNAME/gsb-research-computing-ai-skills
 ```
 
 ### Step 2 — Enable GitHub Actions on your fork
@@ -33,7 +33,7 @@ Go to **Actions → "Deploy Jekyll site to Pages" → Run workflow → Run workf
 Your personal dungeon site will be live at:
 
 ```
-https://YOUR-USERNAME.github.io/rf-bootcamp-2026/
+https://YOUR-USERNAME.github.io/gsb-research-computing-ai-skills/
 ```
 
 Wait ~2 minutes, then open the URL. After that, every push to `main` rebuilds automatically.
@@ -41,8 +41,8 @@ Wait ~2 minutes, then open the URL. After that, every push to `main` rebuilds au
 ### Step 5 — Clone your fork to the Yens
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/rf-bootcamp-2026.git
-cd rf-bootcamp-2026
+git clone https://github.com/YOUR-USERNAME/gsb-research-computing-ai-skills.git
+cd gsb-research-computing-ai-skills
 ```
 
 Work from this directory for all your course work.

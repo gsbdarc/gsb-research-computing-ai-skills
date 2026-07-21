@@ -13,8 +13,8 @@ Students download the grimoire zip to their laptops at the start of Day 1 (Grimo
 ```bash
 # On the Yens
 cd /scratch/shared
-git clone https://github.com/gsbdarc/rf-bootcamp-2026.git
-cd rf-bootcamp-2026
+git clone https://github.com/gsbdarc/gsb-research-computing-ai-skills.git
+cd gsb-research-computing-ai-skills
 
 python3 scripts/generate_grimoire.py --seed 2026 --count 300
 # creates grimoire/ with ~300 .spell files named name_element_tier_type_mastery.spell
@@ -38,24 +38,24 @@ Current link: `https://drive.google.com/file/d/1pGFegdCMjzHDDmfjJrSuZe10L8zrQsWo
 
 ### 2 — Stage Boss Gate 1 vault in scratch
 
-The boss gate challenge lives at `/scratch/shared/rf-bootcamp-2026/boss1/`.
+The boss gate challenge lives at `/scratch/shared/gsb-research-computing-ai-skills/boss1/`.
 
 **Create 50 standard spell files (10 per element):**
 
 ```bash
-mkdir -p /scratch/shared/rf-bootcamp-2026/boss1/
+mkdir -p /scratch/shared/gsb-research-computing-ai-skills/boss1/
 
 # Grimoire is a flat directory — no subdirectories yet (students sort theirs on laptops)
 # Use wildcards on the element name in the filename to grab 10 per element
 for elem in fire ice lightning earth wind; do
-  ls /scratch/shared/rf-bootcamp-2026/grimoire/*_${elem}_*.spell | head -10 | xargs -I{} cp {} /scratch/shared/rf-bootcamp-2026/boss1/
+  ls /scratch/shared/gsb-research-computing-ai-skills/grimoire/*_${elem}_*.spell | head -10 | xargs -I{} cp {} /scratch/shared/gsb-research-computing-ai-skills/boss1/
 done
 ```
 
 **Create the signature spell:**
 
 ```bash
-cat > /scratch/shared/rf-bootcamp-2026/boss1/void_arcane_6_legendary_archmage.spell << 'EOF'
+cat > /scratch/shared/gsb-research-computing-ai-skills/boss1/void_arcane_6_legendary_archmage.spell << 'EOF'
 SIGNATURE: ARCHMAGE-SEAL-7734
 EOF
 ```
@@ -63,15 +63,15 @@ EOF
 Verify:
 
 ```bash
-ls /scratch/shared/rf-bootcamp-2026/boss1/ | wc -l   # should be 51
-ls /scratch/shared/rf-bootcamp-2026/boss1/ | grep arcane  # should show the signature spell
+ls /scratch/shared/gsb-research-computing-ai-skills/boss1/ | wc -l   # should be 51
+ls /scratch/shared/gsb-research-computing-ai-skills/boss1/ | grep arcane  # should show the signature spell
 ```
 
 **Set permissions so all students can read but not modify:**
 
 ```bash
-chmod 755 /scratch/shared/rf-bootcamp-2026/boss1/
-chmod 644 /scratch/shared/rf-bootcamp-2026/boss1/*.spell
+chmod 755 /scratch/shared/gsb-research-computing-ai-skills/boss1/
+chmod 644 /scratch/shared/gsb-research-computing-ai-skills/boss1/*.spell
 ```
 
 ---
@@ -94,7 +94,7 @@ Commit and push to `main`. GitHub Pages rebuilds in ~2 minutes and the leaderboa
 Open this URL in a browser on the projector machine:
 
 ```
-https://gsbdarc.github.io/rf-bootcamp-2026/leaderboard/
+https://gsbdarc.github.io/gsb-research-computing-ai-skills/leaderboard/
 ```
 
 **What it shows:**
@@ -121,7 +121,7 @@ https://gsbdarc.github.io/rf-bootcamp-2026/leaderboard/
 ## Day-of checklist
 
 - [ ] Grimoire zip is accessible at the Google Drive link (test the download in a browser)
-- [ ] `/scratch/shared/rf-bootcamp-2026/boss1/` has 51 files, readable by all
+- [ ] `/scratch/shared/gsb-research-computing-ai-skills/boss1/` has 51 files, readable by all
 - [ ] Signature spell exists: `void_arcane_6_legendary_archmage.spell`
 - [ ] Signature string inside it: `SIGNATURE: ARCHMAGE-SEAL-7734`
 
