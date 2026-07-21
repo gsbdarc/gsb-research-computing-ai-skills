@@ -12,10 +12,10 @@ permalink: /day3/boss-gate-3/
 
 ## The Challenge — Scale Up to a Batch
 
-In Writing & Submitting a SLURM Job you ran the extraction on a *single* filing. Now scale it to a **batch of ~10**: `scripts/extract_form_3_batch.py` loops over every filing listed in `data/aws_links.csv` and writes one JSON per filing into `results/`.
+In Profiling Resource Usage you measured **10 filings** and estimated 100. Now actually run **100**: `scripts/extract_form_3_batch.py --limit 100` loops over 100 filings from `data/aws_links.csv` and writes one JSON per filing into `results/`.
 
-1. Write `slurm/extract_form_3_batch.slurm` — shebang, `#SBATCH` directives, `cd`, `source .venv/bin/activate`, then `python scripts/extract_form_3_batch.py`.
-2. **Re-estimate your resources.** You profiled *one* filing back in Profiling Resource Usage. The batch processes filings one at a time, so **RAM stays about the same**, but **wall-clock time scales with the number of filings** — set `#SBATCH --time` to roughly single-file time × the number of filings, plus headroom. Don't just reuse your single-file number.
+1. Write `slurm/extract_form_3_batch.slurm` — shebang, `#SBATCH` directives, `cd`, `source .venv/bin/activate`, then `python scripts/extract_form_3_batch.py --limit 100`.
+2. **Re-estimate your resources.** You profiled *10* filings back in Profiling Resource Usage. The batch processes filings one at a time, so **RAM and cores stay about the same**, but **wall-clock time scales with the number of filings** — set `#SBATCH --time` to roughly your 10-filing time × 10, plus headroom. Don't just reuse your 10-filing number. Did your estimate hold up?
 3. Submit with `sbatch`; confirm it enters the queue with `squeue --me`.
 4. When it finishes, check `sacct -j JOBID --format=JobID,State,Elapsed,MaxRSS` and confirm `results/` has one JSON per filing.
 5. Update `README.md` — how to run the batch, the resources you requested and *why*, and where the output lands.
@@ -28,7 +28,7 @@ git push
 ```
 
 Your commit should include:
-- `slurm/extract_form_3_batch.slurm` with `#SBATCH` directives **re-estimated for ~10 filings**, not guesses and not just your single-file numbers
+- `slurm/extract_form_3_batch.slurm` with `#SBATCH` directives **re-estimated for 100 filings**, not guesses and not just your 10-filing numbers
 - `README.md` — what the batch does, how to run it, where output lands
 
 ---
@@ -39,7 +39,7 @@ Your commit should include:
 
 ## Side quest — Feel the Pain Point
 
-Your batch ran the ~10 filings **one after another**. Now imagine hundreds or thousands: even in a batch, they run serially, so the wall-clock time just keeps climbing. Add a few more URLs to `data/aws_links.csv`, resubmit, and watch `Elapsed` grow roughly linearly with the file count. Running them **in parallel** — many at once instead of one at a time — is exactly what Day 4's job arrays exist to do.
+Your batch ran the 100 filings **one after another**. Now imagine thousands: even in a batch, they run serially, so the wall-clock time just keeps climbing. Bump the count up — try `--limit 200` — resubmit, and watch `Elapsed` grow roughly linearly with the file count. Running them **in parallel** — many at once instead of one at a time — is exactly what Day 4's job arrays exist to do.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-boss-gate" data-key="side1"> I grew the batch, saw the elapsed time climb, and can describe why serial processing doesn't scale and how job arrays would help</label>
 
@@ -47,13 +47,13 @@ Your batch ran the ~10 filings **one after another**. Now imagine hundreds or th
 
 ## 📊 End of Day 3 — Sync Your Progress
 
-Let your instructor see where you landed today. You already have Claude Code open on the Yens — ask it to handle the sync.
+Let your instructor see where you landed today:
 
-In your terminal, inside `~/gsb-research-computing-ai-skills`, tell Claude something like:
+1. Open the **Quest Log** (bottom-left corner) → click **Sync**.
+2. Click **Copy token**.
+3. On the Yens, inside your clone, run `python3 scripts/quest_sync.py <paste-token>`.
 
-> Look at the `DAYS` list in `docs/assets/js/quest-log.js` to find the exact `room.key` names for Day 3. In `quest_log.json` at my repo root (create it if it doesn't exist yet), set those keys to `true` for everything I completed today: [list what you finished, e.g. "the profiling and data-exploration exercises, and the Day 3 Challenge"]. Then commit and push it to my fork.
-
-The leaderboard updates within 2 minutes once Claude pushes. Your instructor can see how many quests you completed and whether you completed the Day 3 Challenge.
+The leaderboard updates within ~2 minutes. (First time only: sign in once with `gh auth login` — see Day 1 — so the push works.)
 
 ---
 

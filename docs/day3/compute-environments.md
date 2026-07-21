@@ -234,6 +234,18 @@ The cloud is a rented kitchen — and it's **just for you**. Unlike the Yens, yo
 
 **Work with Claude** to figure out how to check your own laptop's CPU core count and RAM — tell it what operating system you're on and have it walk you through finding each one. Then enter your specs below to see just how much bigger one Yen node is (**yen1 has 256 cores and 1 TB of RAM**).
 
+{: .warning }
+> Start Claude **on your laptop**, not on the Yens — otherwise it'll report the Yen node's specs (256 cores, 1 TB), not your own machine's.
+
+<details markdown="1">
+<summary>💡 Hint — what to ask Claude</summary>
+
+You don't need a fancy prompt. For example:
+
+> Would you help me find the RAM and number of cores on my laptop?
+
+</details>
+
 <style>
 .yen-widget { border: 1px solid #ddd; border-radius: 6px; padding: 1rem 1.25rem; margin: 1rem 0; }
 .yen-widget label { display: block; margin: 0.35rem 0; }
@@ -273,7 +285,16 @@ The cloud is a rented kitchen — and it's **just for you**. Unlike the Yens, yo
 
 **Side quest 2 — Price the rented kitchen**
 
-Look up on-demand pricing for a cloud VM comparable to a Yen node (similar CPU/RAM). Then use the calculator below — enter the VM's specs and the price per hour you found — to estimate what your Day 2 extraction job would cost to run there for an hour. Grant budgets aren't infinite; this is a real judgment call you'll make in your own research.
+**Work with Claude** to find on-demand pricing for a cloud VM comparable to a Yen node — 256 cores and 1 TB of RAM, for example on AWS. Then use the calculator below — enter the VM's specs and the price per hour you found — to estimate what your Day 2 extraction job would cost to run there for an hour. Grant budgets aren't infinite; this is a real judgment call you'll make in your own research.
+
+<details markdown="1">
+<summary>💡 Hint — what to ask Claude</summary>
+
+You don't need a fancy prompt. For example:
+
+> Do you have on-demand VM pricing for a cloud VM (say AWS) with 256 cores and 1 TB of RAM?
+
+</details>
 
 <div class="yen-widget">
   <label>VM CPU cores: <input id="cw-cores" type="number" min="1" step="1" value="256"></label>

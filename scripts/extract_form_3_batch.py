@@ -1,5 +1,6 @@
 import os
 import json
+import argparse
 import requests
 import pandas as pd
 from openai import OpenAI
@@ -39,10 +40,16 @@ Extract the following fields:
 Return valid JSON matching the schema exactly.
 """
 
+parser = argparse.ArgumentParser(description="Extract Form 3 fields from the filings listed in a CSV.")
+parser.add_argument("--limit", type=int, default=None, help="Process only the first N filings (default: all).")
+args = parser.parse_args()
+
 df = pd.read_csv(CSV_PATH)
 # Skip the first row which is just the S3 folder URL
 urls = df["urls"].dropna().tolist()
 urls = [u for u in urls if u.endswith(".txt")]
+if args.limit is not None:
+    urls = urls[: args.limit]
 
 total = len(urls)
 print(f"Found {total} filings in {CSV_PATH}")
