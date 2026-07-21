@@ -68,7 +68,7 @@ If you see a response, the API is working.
 A sample SEC Form 3 filing is included in your course repo:
 
 ```bash
-ls ~/rf-bootcamp-2026/data/sec_filings/
+ls ~/gsb-research-computing-ai-skills/data/sec_filings/
 ```
 
 You should see one or more `.txt` files. Load it in `oracle.ipynb` and take a look:
@@ -167,12 +167,12 @@ print(response.choices[0].message.content)
 {: .note }
 > 💡 Notice the split: **`logging` is for diagnostics** (what the program is doing, and when), while **`print` is for the actual result** you want to keep. Log messages carry a timestamp and level (`INFO`, `WARNING`, `ERROR`) and go to the error stream; your extracted answer stays clean on standard output. On Day 3, when these scripts run as cluster jobs, those logs are exactly what you'll read to see what happened.
 
-Copy this into a new file called `form3_test.py` in your `day2/` folder (in the Jupyter terminal: `cd ~/rf-bootcamp-2026/day2 && touch form3_test.py`).
+Copy this into a new file called `form3_test.py` in your `day2/` folder (in the Jupyter terminal: `cd ~/gsb-research-computing-ai-skills/day2 && touch form3_test.py`).
 
 Run it from the terminal:
 
 ```bash
-cd ~/rf-bootcamp-2026/day2
+cd ~/gsb-research-computing-ai-skills/day2
 python form3_test.py
 ```
 

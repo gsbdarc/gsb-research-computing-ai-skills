@@ -1,13 +1,13 @@
 # Boss Gate 1 — Solution Key
 
 **Instructor use only.** This file is not served by GitHub Pages.  
-Update `SIGNATURE_SPELL` and `SEAL` below to match what you staged in `/scratch/shared/rf-bootcamp-2026/boss1/`.
+Update `SIGNATURE_SPELL` and `SEAL` below to match what you staged in `/scratch/shared/gsb-research-computing-ai-skills/boss1/`.
 
 ---
 
 ## Staged files
 
-- `/scratch/shared/rf-bootcamp-2026/boss1/` — ~50 standard spell files + 1 signature spell
+- `/scratch/shared/gsb-research-computing-ai-skills/boss1/` — ~50 standard spell files + 1 signature spell
 - Standard spells: 10 per element × 5 elements (`fire`, `ice`, `lightning`, `earth`, `wind`)
 - Signature spell: `void_arcane_6_legendary_archmage.spell` (update filename as needed)
 - Contents of signature spell:
@@ -23,7 +23,7 @@ Update `SIGNATURE_SPELL` and `SEAL` below to match what you staged in `/scratch/
 ```bash
 # Step 1 — create workspace and copy vault
 mkdir /scratch/shared/$USER/boss1
-cp -r /scratch/shared/rf-bootcamp-2026/boss1/ /scratch/shared/$USER/boss1/
+cp -r /scratch/shared/gsb-research-computing-ai-skills/boss1/ /scratch/shared/$USER/boss1/
 cd /scratch/shared/$USER/boss1
 ls | wc -l           # should show 51
 
@@ -48,7 +48,7 @@ cat void_arcane_6_legendary_archmage.spell
 # SIGNATURE: ARCHMAGE-SEAL-XXXX
 
 # Step 5 — record proof in repo
-cd ~/rf-bootcamp-2026/
+cd ~/gsb-research-computing-ai-skills/
 nano signature_spell.txt
 # write exactly:
 #   Spell found: void_arcane_6_legendary_archmage.spell

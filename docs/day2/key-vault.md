@@ -46,7 +46,7 @@ Every one of those questions should worry you a little. That's the whole reason 
 The bootcamp API key lives in a shared file on the Yens. Take a look:
 
 ```bash
-cat /scratch/shared/rf-bootcamp-2026/.env
+cat /scratch/shared/gsb-research-computing-ai-skills/.env
 ```
 
 You'll see something like:
@@ -104,9 +104,9 @@ The `.env` file must never be committed to git. Add it now:
 ```bash
 echo ".env" >> ~/.gitignore
 # or, within your bootcamp repo:
-echo ".env" >> ~/rf-bootcamp-2026/.gitignore
-git -C ~/rf-bootcamp-2026 add .gitignore
-git -C ~/rf-bootcamp-2026 commit -m "Ignore .env files"
+echo ".env" >> ~/gsb-research-computing-ai-skills/.gitignore
+git -C ~/gsb-research-computing-ai-skills add .gitignore
+git -C ~/gsb-research-computing-ai-skills commit -m "Ignore .env files"
 ```
 
 {: .warning }

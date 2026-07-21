@@ -11,7 +11,7 @@ description: >-
   CLI, SSH, JupyterHub, SLURM, GPU jobs on the H200, and AI workflows —
   taught in bite-sized blocks with a live tutor bot on the site.
 
-baseurl: '/rf-bootcamp-2026'
+baseurl: '/gsb-research-computing-ai-skills'
 url: 'https://gsbdarc.github.io'
 
 exclude:

@@ -21,11 +21,11 @@ You can read the site and track your Quest Log with nothing installed. To do the
 {: .important }
 > **New here? Start with Day 1 → The Gatehouse.**
 >
-> 1. **Fork this repo** — click **Fork** in the top-right corner of the [GitHub page](https://github.com/gsbdarc/rf-bootcamp-2026) to create your own copy
+> 1. **Fork this repo** — click **Fork** in the top-right corner of the [GitHub page](https://github.com/gsbdarc/gsb-research-computing-ai-skills) to create your own copy
 > 2. **Enable Actions** on your fork — click the **Actions** tab → **"I understand my workflows, go ahead and enable them"**
 > 3. **Enable GitHub Pages** on your fork: Settings → Pages → Build and deployment → Source → select **GitHub Actions** (saves automatically)
 > 4. **Trigger the first build** — Actions → "Deploy Jekyll site to Pages" → Run workflow → Run workflow
-> 5. **Open your personal dungeon site** (~2 min after step 4): `https://YOUR-USERNAME.github.io/rf-bootcamp-2026/`
+> 5. **Open your personal dungeon site** (~2 min after step 4): `https://YOUR-USERNAME.github.io/gsb-research-computing-ai-skills/`
 >
 > Once your site is live, put a **🟢 green sticky** on your laptop lid. If you're stuck on any step, put a **🔴 red sticky** up so an instructor can come help.
 >

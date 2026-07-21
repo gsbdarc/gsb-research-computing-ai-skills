@@ -46,7 +46,7 @@ Your batch ran the ~10 filings **one after another**. Now imagine hundreds or th
 <details markdown="1">
 <summary>🔄 Sync to leaderboard</summary>
 
-**Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-boss-gate.side1` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
+**Keep the leaderboard live.** In your terminal on the Yens, inside `~/gsb-research-computing-ai-skills` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-boss-gate.side1` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/gsb-research-computing-ai-skills`), not the class repo `gsbdarc/gsb-research-computing-ai-skills` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
 
 </details>
 
@@ -56,7 +56,7 @@ Your batch ran the ~10 filings **one after another**. Now imagine hundreds or th
 
 Let your instructor see where you landed today. You already have Claude Code open on the Yens — ask it to handle the sync.
 
-In your terminal, inside `~/rf-bootcamp-2026`, tell Claude something like:
+In your terminal, inside `~/gsb-research-computing-ai-skills`, tell Claude something like:
 
 > Look at the `DAYS` list in `docs/assets/js/quest-log.js` to find the exact `room.key` names for Day 3. In `quest_log.json` at my repo root (create it if it doesn't exist yet), set those keys to `true` for everything I completed today: [list what you finished, e.g. "the profiling and data-exploration exercises, and the Day 3 Challenge"]. Then commit and push it to my fork.
 

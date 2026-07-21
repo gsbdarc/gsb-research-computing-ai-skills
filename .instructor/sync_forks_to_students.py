@@ -17,7 +17,7 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).parent.parent
 STUDENTS_FILE = REPO_ROOT / "docs" / "_data" / "students.yml"
-CLASS_REPO = "gsbdarc/rf-bootcamp-2026"
+CLASS_REPO = "gsbdarc/gsb-research-computing-ai-skills"
 
 
 def list_fork_owners():

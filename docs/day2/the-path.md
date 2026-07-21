@@ -29,7 +29,7 @@ ls                # do you see files from Day 1?
 module avail      # Remember these?
 ```
 
-You should see your home directory and the `rf-bootcamp-2026` folder you cloned yesterday.
+You should see your home directory and the `gsb-research-computing-ai-skills` folder you cloned yesterday.
 
 ---
 
