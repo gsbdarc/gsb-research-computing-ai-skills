@@ -213,17 +213,8 @@ The cloud is a rented kitchen — and it's **just for you**. Unlike the Yens, yo
 
 <label class="quest-check"><input type="checkbox" data-room="d3-kitchen" data-key="main"> I participated in the class demo and discussion</label>
 
-<details markdown="1">
-<summary>🔄 Sync to leaderboard</summary>
-
-**Keep the leaderboard live.**
-
-1. In your terminal on the Yens, go to `~/gsb-research-computing-ai-skills`.
-2. Start Claude Code with `claude` if it isn't already running.
-3. Tell it: "Set `d3-kitchen.main` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/gsb-research-computing-ai-skills`), not the class repo `gsbdarc/gsb-research-computing-ai-skills` — if it points to the class repo, stop and tell me. Then commit and push to `main`."
-4. Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
-
-</details>
+{: .note }
+> **📤 Sync your progress to the leaderboard.** Open the **Quest Log** (bottom-left corner) → click **Sync** → **Copy token**. Then on the Yens, inside your clone, run `python3 scripts/quest_sync.py <paste-token>`. First time: sign in once with `gh auth login` (see Day 1). Re-run whenever you finish more — the token always holds your full progress.
 
 ---
 
@@ -238,25 +229,11 @@ Check your own laptop's CPU core count and RAM, and compare them to a Yen node (
 
 <label class="quest-check"><input type="checkbox" data-room="d3-kitchen" data-key="side1"> I checked my own laptop's CPU cores and RAM and compared them to a Yen node</label>
 
-<details markdown="1">
-<summary>🔄 Sync to leaderboard</summary>
-
-**Keep the leaderboard live.** In your terminal on the Yens, inside `~/gsb-research-computing-ai-skills` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-kitchen.side1` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/gsb-research-computing-ai-skills`), not the class repo `gsbdarc/gsb-research-computing-ai-skills` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
-
-</details>
-
 **Optional practice 2 — Price the rented kitchen**
 
 Look up on-demand pricing for a cloud VM comparable to a Yen node (similar CPU/RAM), and estimate what it would cost to run your Day 2 extraction job there for an hour. Grant budgets aren't infinite — this is a real judgment call you'll make in your own research.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-kitchen" data-key="side2"> I estimated the cost of running my Day 2 job in the cloud for an hour</label>
-
-<details markdown="1">
-<summary>🔄 Sync to leaderboard</summary>
-
-**Keep the leaderboard live.** In your terminal on the Yens, inside `~/gsb-research-computing-ai-skills` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-kitchen.side2` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/gsb-research-computing-ai-skills`), not the class repo `gsbdarc/gsb-research-computing-ai-skills` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
-
-</details>
 
 **Optional practice 3 — Laptop vs. a Yen node**
 
@@ -299,9 +276,3 @@ You looked up your laptop's specs in the *Know your own machine* practice above.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-kitchen" data-key="side3"> I used the widget to compare my laptop to a Yen node</label>
 
-<details markdown="1">
-<summary>🔄 Sync to leaderboard</summary>
-
-**Keep the leaderboard live.** In your terminal on the Yens, inside `~/gsb-research-computing-ai-skills` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-kitchen.side3` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/gsb-research-computing-ai-skills`), not the class repo `gsbdarc/gsb-research-computing-ai-skills` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
-
-</details>

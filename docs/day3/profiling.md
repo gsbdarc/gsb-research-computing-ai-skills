@@ -137,13 +137,6 @@ When you can describe what the mystery script does to your CPU and RAM — put a
 
 <label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="mystery"> I profiled scripts with time, watch userload, and htop, and can tell serial from parallel execution</label>
 
-<details markdown="1">
-<summary>🔄 Sync to leaderboard</summary>
-
-**Keep the leaderboard live.** In your terminal on the Yens, inside `~/gsb-research-computing-ai-skills` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-head-chef.mystery` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/gsb-research-computing-ai-skills`), not the class repo `gsbdarc/gsb-research-computing-ai-skills` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
-
-</details>
-
 ---
 
 ## 💻 Exercise 3 — Profile Your Day 2 Script
@@ -183,13 +176,6 @@ Now that you have profiled `extract_form_3_one_file.py`, write down what you fou
 Fill in the actual numbers from your `time` and `userload` output. This documents what the script needs to process a single file — a baseline you will use when scaling up.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="readme"> I documented the script's time, CPU, and RAM in README.md</label>
-
-<details markdown="1">
-<summary>🔄 Sync to leaderboard</summary>
-
-**Keep the leaderboard live.** In your terminal on the Yens, inside `~/gsb-research-computing-ai-skills` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-head-chef.readme` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/gsb-research-computing-ai-skills`), not the class repo `gsbdarc/gsb-research-computing-ai-skills` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
-
-</details>
 
 ---
 
@@ -232,13 +218,6 @@ Record what you find in your `README.md`:
 
 <label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="side2"> I profiled the vectorized vs. non-vectorized demo (and/or my own script) and recorded the speedup</label>
 
-<details markdown="1">
-<summary>🔄 Sync to leaderboard</summary>
-
-**Keep the leaderboard live.** In your terminal on the Yens, inside `~/gsb-research-computing-ai-skills` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-head-chef.side2` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/gsb-research-computing-ai-skills`), not the class repo `gsbdarc/gsb-research-computing-ai-skills` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
-
-</details>
-
 ---
 
 ## Optional practice — Catch What `userload` Misses
@@ -256,22 +235,9 @@ Look for **Maximum resident set size** in the output — this is the script's tr
 
 <label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="side6"> I compared /usr/bin/time -v's peak RAM to what watch userload showed me</label>
 
-<details markdown="1">
-<summary>🔄 Sync to leaderboard</summary>
-
-**Keep the leaderboard live.** In your terminal on the Yens, inside `~/gsb-research-computing-ai-skills` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-head-chef.side6` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/gsb-research-computing-ai-skills`), not the class repo `gsbdarc/gsb-research-computing-ai-skills` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
-
-</details>
-
 **Optional practice — Profile an I/O-Bound Script**
 
 Everything you've profiled so far is CPU-bound (`user` time dominates). Write a tiny script that's I/O-bound instead — for example, one that reads and re-writes a large file in a loop — and profile it the same way. Compare its `sys` and `user` times to the mystery script's.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="side7"> I profiled an I/O-bound script and compared its sys vs. user time to the mystery script's</label>
 
-<details markdown="1">
-<summary>🔄 Sync to leaderboard</summary>
-
-**Keep the leaderboard live.** In your terminal on the Yens, inside `~/gsb-research-computing-ai-skills` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-head-chef.side7` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/gsb-research-computing-ai-skills`), not the class repo `gsbdarc/gsb-research-computing-ai-skills` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
-
-</details>

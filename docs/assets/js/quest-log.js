@@ -284,12 +284,11 @@
         return;
       }
       sync.innerHTML = go
-        + '<span class="quest-sync-hint">Run this on the Yens, inside your fork:</span>'
-        + '<textarea readonly rows="3"></textarea>'
-        + '<div class="quest-sync-row"><button type="button" class="quest-sync-copy">Copy</button>'
-        + '<span class="quest-sync-hint" style="margin:0">' + enc.count + ' quest' + (enc.count === 1 ? '' : 's') + '</span></div>'
-        + '<span class="quest-sync-hint" style="margin:.35rem 0 0">First time? Sign in once with <code>gh auth login</code> on the Yens (Day 1) so the push works.</span>';
-      sync.querySelector('textarea').value = 'python3 scripts/quest_sync.py ' + enc.token;
+        + '<span class="quest-sync-hint">Copy your progress token, then paste it into the sync command shown on the page:</span>'
+        + '<textarea readonly rows="2"></textarea>'
+        + '<div class="quest-sync-row"><button type="button" class="quest-sync-copy">Copy token</button>'
+        + '<span class="quest-sync-hint" style="margin:0">' + enc.count + ' quest' + (enc.count === 1 ? '' : 's') + '</span></div>';
+      sync.querySelector('textarea').value = enc.token;
     }
     sync.addEventListener('click', function (e) {
       var goBtn = e.target.closest ? e.target.closest('.quest-sync-go') : null;

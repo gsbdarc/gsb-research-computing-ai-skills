@@ -43,13 +43,6 @@ Your batch ran the ~10 filings **one after another**. Now imagine hundreds or th
 
 <label class="quest-check"><input type="checkbox" data-room="d3-boss-gate" data-key="side1"> I grew the batch, saw the elapsed time climb, and can describe why serial processing doesn't scale and how job arrays would help</label>
 
-<details markdown="1">
-<summary>🔄 Sync to leaderboard</summary>
-
-**Keep the leaderboard live.** In your terminal on the Yens, inside `~/gsb-research-computing-ai-skills` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-boss-gate.side1` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/gsb-research-computing-ai-skills`), not the class repo `gsbdarc/gsb-research-computing-ai-skills` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
-
-</details>
-
 ---
 
 ## 📊 End of Day 3 — Sync Your Progress

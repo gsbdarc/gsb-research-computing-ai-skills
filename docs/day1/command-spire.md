@@ -180,3 +180,6 @@ rm -r ~/Desktop/spell_chamber        # remove the folder and all its contents
 ```
 
 <label class="quest-check"><input type="checkbox" data-room="d1-command-spire" data-key="main"> Exercise complete</label>
+
+{: .note }
+> **📤 Sync your progress to the leaderboard.** Once you've forked and cloned the repo (coming up in **The Repository**), you record progress like this: open the **Quest Log** (bottom-left corner) → click **Sync** → **Copy token**. Then on the Yens, inside your clone, run `python3 scripts/quest_sync.py <paste-token>`. **The first time**, sign in once with `gh auth login` (also in The Repository) so the push works. Re-run whenever you finish more — the token always holds your full progress.
