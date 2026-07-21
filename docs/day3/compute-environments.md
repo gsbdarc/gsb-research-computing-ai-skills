@@ -1,12 +1,12 @@
 ---
 layout: default
-title: "The Kitchen"
-parent: "Day 3 — The Hearth"
+title: "Compute Environments"
+parent: "Day 3 — Cluster Computing"
 nav_order: 2
-permalink: /day3/kitchen/
+permalink: /day3/compute-environments/
 ---
 
-# The Kitchen
+# Compute Environments
 
 <div data-room-id="d3-kitchen"></div>
 
@@ -85,6 +85,62 @@ When you run `python extract_form_3_one_file.py`, four things happen in sequence
 
 ![What Happens When You Run a Script]({{ site.baseurl }}/assets/images/kitchen-script-laptop.png)
 
+Here is that same flow as a moving picture — the identical trip in hardware terms, then in kitchen terms. Notice the first leg (disk → RAM) is the slow one; once the data is close to the processor, the rest is quick:
+
+<svg viewBox="0 0 600 210" role="img" aria-labelledby="hwflow-title hwflow-desc" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;max-width:600px;height:auto;margin:1.25rem auto 0.25rem" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
+  <title id="hwflow-title">How your program uses the hardware</title>
+  <desc id="hwflow-desc">A packet of data loops from Storage to RAM to the CPU and back to Storage. Reading from disk into RAM is the slow leg; once the data is in RAM the CPU reaches it quickly; then results are written back to disk.</desc>
+  <defs><marker id="bk-hw" markerWidth="9" markerHeight="9" refX="6.5" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#8a94a6"/></marker></defs>
+  <text x="12" y="20" font-size="12" font-weight="700" letter-spacing="0.4" fill="#8a94a6">🖥  HOW YOUR PROGRAM USES THE HARDWARE</text>
+  <line x1="80" y1="44" x2="520" y2="44" stroke="#cdd4e6" stroke-width="2" stroke-dasharray="4 5"/>
+  <text x="190" y="34" text-anchor="middle" font-size="11.5" font-weight="700" fill="#c0392b">read — slow (I/O)</text>
+  <text x="410" y="34" text-anchor="middle" font-size="11.5" font-weight="700" fill="#3f4f74">fast</text>
+  <rect x="20" y="72" width="120" height="60" rx="10" fill="#eef1f8" stroke="#cdd4e6" stroke-width="1.5"/>
+  <text x="80" y="98" text-anchor="middle" font-size="14" font-weight="700" fill="#2c3e50">Storage</text>
+  <text x="80" y="117" text-anchor="middle" font-size="10.5" fill="#6a7280">disk — large, slow</text>
+  <rect x="240" y="72" width="120" height="60" rx="10" fill="#eef1f8" stroke="#cdd4e6" stroke-width="1.5"/>
+  <text x="300" y="98" text-anchor="middle" font-size="14" font-weight="700" fill="#2c3e50">RAM</text>
+  <text x="300" y="117" text-anchor="middle" font-size="10.5" fill="#6a7280">fast, limited</text>
+  <rect x="460" y="72" width="120" height="60" rx="10" fill="#eef1f8" stroke="#cdd4e6" stroke-width="1.5"/>
+  <text x="520" y="93" text-anchor="middle" font-size="14" font-weight="700" fill="#2c3e50">CPU</text>
+  <rect x="487" y="103" width="12" height="12" rx="2" fill="#cdd4e6"/><rect x="503" y="103" width="12" height="12" rx="2" fill="#cdd4e6"/><rect x="519" y="103" width="12" height="12" rx="2" fill="#cdd4e6"/><rect x="535" y="103" width="12" height="12" rx="2" fill="#cdd4e6"/>
+  <text x="520" y="128" text-anchor="middle" font-size="10" fill="#6a7280">cores do the work</text>
+  <line x1="520" y1="162" x2="90" y2="162" stroke="#8a94a6" stroke-width="1.5" stroke-dasharray="4 4" marker-end="url(#bk-hw)"/>
+  <text x="305" y="156" text-anchor="middle" font-size="11" font-weight="600" fill="#8a94a6">write results back to disk</text>
+  <g>
+    <circle cx="80" cy="44" r="8" fill="#0072B2"><animate attributeName="r" values="8;10;8" dur="1s" repeatCount="indefinite"/></circle>
+    <animateTransform attributeName="transform" type="translate" values="0,0; 0,0; 220,0; 220,0; 440,0; 440,0; 440,118; 0,118; 0,0" keyTimes="0; 0.05; 0.42; 0.50; 0.60; 0.72; 0.82; 0.95; 1" dur="8s" repeatCount="indefinite" calcMode="linear"/>
+  </g>
+  <text x="300" y="198" text-anchor="middle" font-size="12" fill="#6a7280">Data crawls from disk into RAM (the slow step), the CPU works in RAM, then results are written back to disk.</text>
+</svg>
+
+<svg viewBox="0 0 600 210" role="img" aria-labelledby="kflow-title kflow-desc" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;max-width:600px;height:auto;margin:0.25rem auto 0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
+  <title id="kflow-title">The same trip, in the kitchen</title>
+  <desc id="kflow-desc">A shopping cart loops from the convenience store to the fridge to the stove and back to the store. Biking from the store is the slow leg; once ingredients are in the fridge they are within arm's reach of the stove; then leftovers go back to the store.</desc>
+  <defs><marker id="bk-k" markerWidth="9" markerHeight="9" refX="6.5" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#8a94a6"/></marker></defs>
+  <text x="12" y="20" font-size="12" font-weight="700" letter-spacing="0.4" fill="#8a94a6">🍳  THE SAME TRIP, IN THE KITCHEN</text>
+  <line x1="80" y1="44" x2="520" y2="44" stroke="#cdd4e6" stroke-width="2" stroke-dasharray="4 5"/>
+  <text x="190" y="34" text-anchor="middle" font-size="11.5" font-weight="700" fill="#c0392b">the bike — slow</text>
+  <text x="410" y="34" text-anchor="middle" font-size="11.5" font-weight="700" fill="#3f4f74">arm's reach</text>
+  <rect x="20" y="72" width="120" height="60" rx="10" fill="#eef1f8" stroke="#cdd4e6" stroke-width="1.5"/>
+  <text x="80" y="99" text-anchor="middle" font-size="18">🏪</text>
+  <text x="80" y="121" text-anchor="middle" font-size="11" font-weight="700" fill="#2c3e50">Store = disk</text>
+  <rect x="240" y="72" width="120" height="60" rx="10" fill="#eef1f8" stroke="#cdd4e6" stroke-width="1.5"/>
+  <text x="300" y="99" text-anchor="middle" font-size="18">🧊</text>
+  <text x="300" y="121" text-anchor="middle" font-size="11" font-weight="700" fill="#2c3e50">Fridge = RAM</text>
+  <rect x="460" y="72" width="120" height="60" rx="10" fill="#eef1f8" stroke="#cdd4e6" stroke-width="1.5"/>
+  <text x="520" y="95" text-anchor="middle" font-size="16">🔥</text>
+  <circle cx="497" cy="110" r="5" fill="#cdd4e6"/><circle cx="512" cy="110" r="5" fill="#cdd4e6"/><circle cx="527" cy="110" r="5" fill="#cdd4e6"/><circle cx="542" cy="110" r="5" fill="#cdd4e6"/>
+  <text x="520" y="126" text-anchor="middle" font-size="11" font-weight="700" fill="#2c3e50">Stove = CPU</text>
+  <line x1="520" y1="162" x2="90" y2="162" stroke="#8a94a6" stroke-width="1.5" stroke-dasharray="4 4" marker-end="url(#bk-k)"/>
+  <text x="305" y="156" text-anchor="middle" font-size="11" font-weight="600" fill="#8a94a6">leftovers go back to the store</text>
+  <g>
+    <text x="80" y="50" text-anchor="middle" font-size="18">🛒</text>
+    <animateTransform attributeName="transform" type="translate" values="0,0; 0,0; 220,0; 220,0; 440,0; 440,0; 440,118; 0,118; 0,0" keyTimes="0; 0.05; 0.42; 0.50; 0.60; 0.72; 0.82; 0.95; 1" dur="8s" repeatCount="indefinite" calcMode="linear"/>
+  </g>
+  <text x="300" y="198" text-anchor="middle" font-size="12" fill="#6a7280">Bike groceries from the store (slow) to the fridge, cook at the stove, then leftovers go back to the store.</text>
+</svg>
+
 {: .warning }
 > **The tricky part: the bike ride is slow.** Reading from disk is orders of magnitude slower than reading from RAM. Your CPU can crunch through data in nanoseconds, but a disk read takes milliseconds — **a million times longer**. If your dataset is too large to fit in RAM all at once, your script keeps making bike trips mid-computation, and that is what makes jobs crawl. This is why knowing how much RAM your script needs matters — not just for the cluster, but on your laptop too.
 
@@ -142,7 +198,7 @@ The cloud is a rented kitchen — and it's **just for you**. Unlike the Yens, yo
 
 ---
 
-## Main Quest — Class Participation
+## Main quest — Class Participation
 
 {: .important }
 > 🥪 **Demo + Discussion:** 🥪 We will all participate in a class demo together. 🥪
@@ -157,61 +213,45 @@ The cloud is a rented kitchen — and it's **just for you**. Unlike the Yens, yo
 
 <label class="quest-check"><input type="checkbox" data-room="d3-kitchen" data-key="main"> I participated in the class demo and discussion</label>
 
-<details markdown="1">
-<summary>🔄 Sync to leaderboard</summary>
-
-**Keep the leaderboard live.**
-
-1. In your terminal on the Yens, go to `~/rf-bootcamp-2026`.
-2. Start Claude Code with `claude` if it isn't already running.
-3. Tell it: "Set `d3-kitchen.main` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`."
-4. Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
-
-</details>
+{: .note }
+> **📤 Sync your progress to the leaderboard**
+>
+> 1. Open the **Quest Log** (bottom-left corner) → click **Sync**.
+> 2. Click **Copy token**.
+> 3. **First time only:** sign in once with `gh auth login` (see Day 1) so the push works.
+> 4. On the Yens, inside your clone, run `python3 scripts/quest_sync.py <paste-token>`.
+>
+> **Each time you finish more quests,** tick the new boxes, then repeat: **Sync → Copy token → re-run the command** with the fresh token (the one-time sign-in is already done). Each token is a full snapshot of everything you've checked, so the latest sync always reflects *all* your progress.
 
 ---
 
-## Side Quests
+## Side quests
 
 {: .note }
 > Finished early? Try one or both of these.
 
-**Side Quest 1 — Know your own machine**
+**Side quest 1 — Know your own machine**
 
-Check your own laptop's CPU core count and RAM, and compare them to a Yen node (256 cores). On Mac: `system_profiler SPHardwareDataType`. On Windows: Task Manager → Performance tab. On Linux: `nproc` and `free -h`.
+**Work with Claude** to figure out how to check your own laptop's CPU core count and RAM — tell it what operating system you're on and have it walk you through finding each one. Then enter your specs below to see just how much bigger one Yen node is (**yen1 has 256 cores and 1 TB of RAM**).
 
-<label class="quest-check"><input type="checkbox" data-room="d3-kitchen" data-key="side1"> I checked my own laptop's CPU cores and RAM and compared them to a Yen node</label>
-
-<details markdown="1">
-<summary>🔄 Sync to leaderboard</summary>
-
-**Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-kitchen.side1` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
-
-</details>
-
-**Side Quest 2 — Price the rented kitchen**
-
-Look up on-demand pricing for a cloud VM comparable to a Yen node (similar CPU/RAM), and estimate what it would cost to run your Day 2 extraction job there for an hour. Grant budgets aren't infinite — this is a real judgment call you'll make in your own research.
-
-<label class="quest-check"><input type="checkbox" data-room="d3-kitchen" data-key="side2"> I estimated the cost of running my Day 2 job in the cloud for an hour</label>
+{: .warning }
+> Start Claude **on your laptop**, not on the Yens — otherwise it'll report the Yen node's specs (256 cores, 1 TB), not your own machine's.
 
 <details markdown="1">
-<summary>🔄 Sync to leaderboard</summary>
+<summary>💡 Hint — what to ask Claude</summary>
 
-**Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-kitchen.side2` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
+You don't need a fancy prompt. For example:
+
+> Would you help me find the RAM and number of cores on my laptop?
 
 </details>
-
-**Side Quest 3 — Laptop vs. a Yen node**
-
-You looked up your laptop's specs in Side Quest 1. Enter them below to see just how much bigger one Yen node is.
 
 <style>
 .yen-widget { border: 1px solid #ddd; border-radius: 6px; padding: 1rem 1.25rem; margin: 1rem 0; }
 .yen-widget label { display: block; margin: 0.35rem 0; }
 .yen-widget input { width: 6rem; margin-left: 0.4rem; }
 .yen-widget button { margin-top: 0.6rem; padding: 0.35rem 0.9rem; cursor: pointer; border-radius: 4px; border: 1px solid #ccc; background: #f0f0f0; }
-#yw-out { margin-top: 0.75rem; line-height: 1.5; }
+#yw-out, #cw-out { margin-top: 0.75rem; line-height: 1.5; }
 </style>
 
 <div class="yen-widget">
@@ -223,7 +263,7 @@ You looked up your laptop's specs in Side Quest 1. Enter them below to see just 
 
 <script>
 (function () {
-  var YEN_CORES = 256, YEN_RAM = 1024; // one Yen node: 256 logical cores, ~1 TB RAM
+  var YEN_CORES = 256, YEN_RAM = 1024; // one Yen node (yen1): 256 logical cores, ~1 TB RAM
   function compare() {
     var c = parseFloat(document.getElementById('yw-cores').value);
     var r = parseFloat(document.getElementById('yw-ram').value);
@@ -241,11 +281,50 @@ You looked up your laptop's specs in Side Quest 1. Enter them below to see just 
 })();
 </script>
 
-<label class="quest-check"><input type="checkbox" data-room="d3-kitchen" data-key="side3"> I used the widget to compare my laptop to a Yen node</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-kitchen" data-key="side1"> I checked my own laptop's CPU cores and RAM and compared them to a Yen node</label>
+
+**Side quest 2 — Price the rented kitchen**
+
+**Work with Claude** to find on-demand pricing for a cloud VM comparable to a Yen node — 256 cores and 1 TB of RAM, for example on AWS. Then use the calculator below — enter the VM's specs and the price per hour you found — to estimate what your Day 2 extraction job would cost to run there for an hour. Grant budgets aren't infinite; this is a real judgment call you'll make in your own research.
 
 <details markdown="1">
-<summary>🔄 Sync to leaderboard</summary>
+<summary>💡 Hint — what to ask Claude</summary>
 
-**Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-kitchen.side3` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
+You don't need a fancy prompt. For example:
+
+> Do you have on-demand VM pricing for a cloud VM (say AWS) with 256 cores and 1 TB of RAM?
 
 </details>
+
+<div class="yen-widget">
+  <label>VM CPU cores: <input id="cw-cores" type="number" min="1" step="1" value="256"></label>
+  <label>VM RAM (GB): <input id="cw-ram" type="number" min="1" step="1" value="1024"></label>
+  <label>Price per hour ($): <input id="cw-rate" type="number" min="0" step="0.01" value="3.00"></label>
+  <label>Hours you'd run it: <input id="cw-hours" type="number" min="0" step="0.5" value="1"></label>
+  <button id="cw-go">Estimate cost</button>
+  <p id="cw-out"></p>
+</div>
+
+<script>
+(function () {
+  function estimate() {
+    var cores = parseFloat(document.getElementById('cw-cores').value);
+    var ram = parseFloat(document.getElementById('cw-ram').value);
+    var rate = parseFloat(document.getElementById('cw-rate').value);
+    var hours = parseFloat(document.getElementById('cw-hours').value);
+    var out = document.getElementById('cw-out');
+    if (!(rate >= 0) || !(hours >= 0)) { out.textContent = 'Enter a price per hour and how many hours.'; return; }
+    var total = rate * hours;
+    out.innerHTML =
+      'A VM with <strong>' + (cores > 0 ? cores : '?') + '</strong> cores and <strong>'
+      + (ram > 0 ? ram : '?') + ' GB</strong> at <strong>$' + rate.toFixed(2) + '/hr</strong>'
+      + ' would cost <strong>$' + total.toFixed(2) + '</strong> to run for '
+      + hours + ' hour' + (hours === 1 ? '' : 's') + '.';
+  }
+  document.getElementById('cw-go').addEventListener('click', estimate);
+  estimate();
+})();
+</script>
+
+<label class="quest-check"><input type="checkbox" data-room="d3-kitchen" data-key="side2"> I estimated the cost of running my Day 2 job in the cloud for an hour</label>
+

@@ -35,20 +35,20 @@
       label: 'Day 2 — The Alchemist\'s Lab',
       prefix: 'd2',
       rooms: [
-        { id: 'd2-arcane-notebook',          keys: ['main'] },
-        { id: 'd2-venv-forge',               keys: ['main'] },
-        { id: 'd2-stanford-ai-playground',   keys: ['main'] },
-        { id: 'd2-key-vault',                keys: ['main'] },
-        { id: 'd2-oracles-chamber',          keys: ['main'] },
+        { id: 'd2-arcane-notebook',          keys: ['main', 'side1', 'side2'] },
+        { id: 'd2-venv-forge',               keys: ['main', 'side1', 'side2', 'side3'] },
+        { id: 'd2-stanford-ai-playground',   keys: ['main', 'side1', 'side2', 'side3'] },
+        { id: 'd2-key-vault',                keys: ['main', 'side1', 'side2'] },
+        { id: 'd2-oracles-chamber',          keys: ['main', 'side1', 'side2', 'side3', 'side4'] },
         { id: 'd2-human-vs-llm',             keys: ['main'] },
         { id: 'd2-boss-gate',                keys: ['commit'] },
       ],
     },
     {
-      label: 'Day 3 — The Hearth',
+      label: 'Day 3 — Cluster Computing',
       prefix: 'd3',
       rooms: [
-        { id: 'd3-kitchen',         keys: ['main', 'side1', 'side2', 'side3'] },
+        { id: 'd3-kitchen',         keys: ['main', 'side1', 'side2'] },
         { id: 'd3-head-chef',       keys: ['mystery', 'main', 'readme', 'side2', 'side3', 'side4', 'side5', 'side6', 'side7'] },
         { id: 'd3-data-mine',       keys: ['main', 'side1', 'side3', 'side5'] },
         { id: 'd3-foremans-desk',   keys: ['main', 'submit', 'side1', 'side2', 'side3', 'side4'] },
@@ -97,6 +97,51 @@
 
   function storageKey(room, key) {
     return room + '.' + key;
+  }
+
+  // Canonical, ordered list of every quest key, derived from DAYS. MUST match
+  // scripts/quest_keys.json (read by scripts/quest_sync.py); regenerate that
+  // file with `node .instructor/gen_quest_keys.js` after changing DAYS.
+  function orderedKeys() {
+    var keys = [];
+    DAYS.forEach(function (d) {
+      d.rooms.forEach(function (r) {
+        r.keys.forEach(function (k) { keys.push(r.id + '.' + k); });
+      });
+    });
+    return keys;
+  }
+
+  // FNV-1a (32-bit) over the joined key list, as hex. Lets quest_sync.py detect
+  // a token built from a different site version than the clone has.
+  function keyListHash(keys) {
+    var s = keys.join(',');
+    var h = 0x811c9dc5;
+    for (var i = 0; i < s.length; i++) {
+      h ^= s.charCodeAt(i);
+      h = Math.imul(h, 0x01000193) >>> 0;
+    }
+    return h.toString(16);
+  }
+
+  // Encode completed quests as a compact, fixed-size, paste-safe token:
+  // version "1", a hash of the key list, and a base64url bitfield (one bit per
+  // canonical key). scripts/quest_sync.py decodes it on the Yens.
+  function encodeProgress() {
+    var progress = loadProgress();
+    var keys = orderedKeys();
+    var bytes = new Uint8Array(Math.ceil(keys.length / 8));
+    var count = 0;
+    for (var i = 0; i < keys.length; i++) {
+      if (progress[keys[i]] === true) {
+        bytes[i >> 3] |= (1 << (i & 7));
+        count++;
+      }
+    }
+    var bin = '';
+    for (var j = 0; j < bytes.length; j++) bin += String.fromCharCode(bytes[j]);
+    var b64 = btoa(bin).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+    return { token: '1.' + keyListHash(keys) + '.' + b64, count: count };
   }
 
   // ── Checkbox sync ─────────────────────────────────────────────────────────
@@ -172,7 +217,6 @@
     var progress = loadProgress();
     var counts = countCompleted(progress);
     var level = computeLevel(counts.done);
-    var title = LEVEL_TITLES[level - 1];
 
     var toggle = document.getElementById('quest-log-toggle');
     if (toggle) {
@@ -182,14 +226,14 @@
     var levelEl = document.getElementById('quest-level-display');
     if (levelEl) {
       var pct = Math.round(counts.done / TOTAL_CHECKS * 100);
-      levelEl.innerHTML = '<span class="level-title">Level ' + level + ' — ' + title + '</span>'
+      levelEl.innerHTML = '<span class="level-title">Level ' + level + '</span>'
         + '<div class="level-bar"><div class="level-fill" style="width:' + pct + '%"></div></div>';
     }
 
     // Update the entrance page summary if present
     var summary = document.getElementById('quest-log-summary');
     if (summary) {
-      summary.innerHTML = '<strong>Level ' + level + ' — ' + title + '</strong>'
+      summary.innerHTML = '<strong>Level ' + level + '</strong>'
         + ' &nbsp;·&nbsp; ' + counts.done + '/' + TOTAL_CHECKS + ' Quest Log';
     }
 
@@ -218,7 +262,15 @@
       '#quest-sunet .quest-sunet-val{font-weight:700;}' +
       '#quest-sunet .quest-sunet-edit{border:none;background:none;padding:0;margin-left:auto;' +
         'color:#8a5a12;text-decoration:underline;font-size:.78rem;}' +
-      '#quest-sunet .quest-sunet-edit:hover{background:none;color:#5b3a08;}';
+      '#quest-sunet .quest-sunet-edit:hover{background:none;color:#5b3a08;}' +
+      '#quest-sync{margin-top:.5rem;padding-top:.5rem;border-top:1px solid rgba(0,0,0,.12);font-size:.82rem;}' +
+      '#quest-sync .quest-sync-go{font:inherit;cursor:pointer;border:1px solid #d9b477;background:#fff;border-radius:6px;padding:.25rem .6rem;font-weight:700;}' +
+      '#quest-sync .quest-sync-go:hover{background:#f3e6cf;}' +
+      '#quest-sync .quest-sync-hint{color:#6a7280;font-size:.72rem;display:block;margin:.3rem 0 .15rem;}' +
+      '#quest-sync textarea{width:100%;box-sizing:border-box;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.7rem;border:1px solid #d9b477;border-radius:6px;padding:.3rem;resize:none;}' +
+      '#quest-sync .quest-sync-row{display:flex;gap:.4rem;align-items:center;margin-top:.3rem;}' +
+      '#quest-sync .quest-sync-copy{font:inherit;cursor:pointer;border:1px solid #d9b477;background:#fff;border-radius:6px;padding:.15rem .55rem;}' +
+      '#quest-sync .quest-sync-copy:hover{background:#f3e6cf;}';
     var sunetStyle = document.createElement('style');
     sunetStyle.textContent = sunetCss;
     document.head.appendChild(sunetStyle);
@@ -246,6 +298,41 @@
     var list = document.createElement('ul');
     list.id = 'quest-log-list';
     panel.appendChild(list);
+
+    // ── Sync: encode progress into a token to paste into scripts/quest_sync.py ─
+    var sync = document.createElement('div');
+    sync.id = 'quest-sync';
+    sync.innerHTML = '<button type="button" class="quest-sync-go">🔄 Sync</button>';
+    panel.appendChild(sync);
+
+    function renderSync() {
+      var enc = encodeProgress();
+      var go = '<button type="button" class="quest-sync-go">🔄 Sync</button>';
+      if (!enc.count) {
+        sync.innerHTML = go + '<span class="quest-sync-hint">Complete a quest first, then sync.</span>';
+        return;
+      }
+      sync.innerHTML = go
+        + '<span class="quest-sync-hint">Copy your progress token, then paste it into the sync command shown on the page:</span>'
+        + '<textarea readonly rows="2"></textarea>'
+        + '<div class="quest-sync-row"><button type="button" class="quest-sync-copy">Copy token</button>'
+        + '<span class="quest-sync-hint" style="margin:0">' + enc.count + ' quest' + (enc.count === 1 ? '' : 's') + '</span></div>';
+      sync.querySelector('textarea').value = enc.token;
+    }
+    sync.addEventListener('click', function (e) {
+      var goBtn = e.target.closest ? e.target.closest('.quest-sync-go') : null;
+      var cpBtn = e.target.closest ? e.target.closest('.quest-sync-copy') : null;
+      if (!goBtn && !cpBtn) return;
+      e.stopPropagation();  // keep the panel's click-outside handler from closing us
+      if (goBtn) { renderSync(); return; }
+      var ta = sync.querySelector('textarea');
+      if (ta) {
+        ta.select();
+        try { navigator.clipboard.writeText(ta.value); } catch (_) { try { document.execCommand('copy'); } catch (__) {} }
+        cpBtn.textContent = 'Copied ✓';
+        setTimeout(function () { cpBtn.textContent = 'Copy'; }, 1500);
+      }
+    });
 
     // ── SUNet ID: fills the SUNetID placeholder in commands site-wide ────────
     var SUNET_KEY = 'bootcamp.sunetid';

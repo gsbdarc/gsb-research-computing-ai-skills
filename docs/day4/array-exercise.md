@@ -20,7 +20,7 @@ You'll submit a job array that processes 100 SEC filings in parallel, then combi
 **Part 1 — Prepare the input list:**
 
 ```bash
-ls ~/rf-bootcamp-2026/data/sec_filings/*.txt > /scratch/shared/$USER/filings_list.txt
+ls ~/gsb-research-computing-ai-skills/data/sec_filings/*.txt > /scratch/shared/$USER/filings_list.txt
 wc -l /scratch/shared/$USER/filings_list.txt   # confirm: should be 100
 mkdir -p /scratch/shared/$USER/results logs
 ```
@@ -38,12 +38,12 @@ mkdir -p /scratch/shared/$USER/results logs
 #SBATCH --array=1-100
 #SBATCH --partition=normal
 
-source ~/rf-bootcamp-2026/.venv/bin/activate
+source ~/gsb-research-computing-ai-skills/.venv/bin/activate
 
 FILING=$(sed -n "${SLURM_ARRAY_TASK_ID}p" /scratch/shared/$USER/filings_list.txt)
 echo "Task $SLURM_ARRAY_TASK_ID processing: $FILING"
 
-python3 ~/rf-bootcamp-2026/scripts/extract_form_3_cli.py "$FILING" "/scratch/shared/$USER/results/filing_${SLURM_ARRAY_TASK_ID}.json"
+python3 ~/gsb-research-computing-ai-skills/scripts/extract_form_3_cli.py "$FILING" "/scratch/shared/$USER/results/filing_${SLURM_ARRAY_TASK_ID}.json"
 ```
 
 {: .tip }
@@ -133,7 +133,7 @@ head -3 results/extracted_filings.csv   # sanity-check the columns and first row
 <label class="quest-check"><input type="checkbox" data-room="d4-array-exercise" data-key="main"> Exercise complete — array submitted, merged, and verified</label>
 
 {: .note }
-> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d4-array-exercise.main` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
+> 🔄 **Keep the leaderboard live.** In your terminal on the Yens, inside `~/gsb-research-computing-ai-skills` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d4-array-exercise.main` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/gsb-research-computing-ai-skills`), not the class repo `gsbdarc/gsb-research-computing-ai-skills` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
 
 ---
 

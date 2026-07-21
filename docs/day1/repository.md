@@ -32,7 +32,7 @@ Version control tracks every change you make to a project — who changed what, 
   <rect x="370" y="30" width="276" height="116" rx="14" fill="#eef5ff" stroke="#bcd4f2" stroke-width="1.5"/>
   <g transform="translate(390,50) scale(1.05)"><path fill="#2c3e50" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></g>
   <text x="414" y="63" font-size="15" font-weight="700" fill="#2c3e50">GitHub · the cloud</text>
-  <text x="390" y="92" font-size="11.5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" fill="#33415c">YOUR_USERNAME/rf-bootcamp-2026</text>
+  <text x="390" y="92" font-size="11.5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" fill="#33415c">YOUR_USERNAME/gsb-research-computing-ai-skills</text>
   <text x="390" y="117" font-size="12.5" fill="#6a7280">your fork — backup &amp; submission</text>
   <line x1="294" y1="76" x2="364" y2="76" stroke="#e67e22" stroke-width="2.5" marker-end="url(#gd1-ah)"/>
   <text x="330" y="66" text-anchor="middle" font-size="12.5" font-weight="600" fill="#b3611a">push</text>
@@ -98,10 +98,10 @@ The workflow for this course:
   <text x="50" y="66" font-size="12" font-weight="700" letter-spacing="0.6" fill="#8a94a6">ON GITHUB · THE CLOUD</text>
   <rect x="30" y="82" width="250" height="80" rx="12" fill="#eef5ff" stroke="#bcd4f2" stroke-width="1.5"/>
   <text x="50" y="116" font-size="15" font-weight="700" fill="#2c3e50">Course repo</text>
-  <text x="50" y="142" font-size="11.5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" fill="#5b6472">gsbdarc/rf-bootcamp-2026</text>
+  <text x="50" y="142" font-size="11.5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" fill="#5b6472">gsbdarc/gsb-research-computing-ai-skills</text>
   <rect x="404" y="82" width="250" height="80" rx="12" fill="#eef5ff" stroke="#bcd4f2" stroke-width="1.5"/>
   <text x="424" y="116" font-size="15" font-weight="700" fill="#2c3e50">Your fork</text>
-  <text x="424" y="142" font-size="11.5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" fill="#5b6472">YOUR_USERNAME/rf-bootcamp-2026</text>
+  <text x="424" y="142" font-size="11.5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" fill="#5b6472">YOUR_USERNAME/gsb-research-computing-ai-skills</text>
   <line x1="288" y1="122" x2="398" y2="122" stroke="#e67e22" stroke-width="2.5" marker-end="url(#gd2-ah)"/>
   <text x="343" y="111" text-anchor="middle" font-size="13" font-weight="700" fill="#b3611a">① fork</text>
   <!-- Yens band -->
@@ -155,12 +155,12 @@ Your work in this course is tracked in your version history. Set up your copy of
 
 **Step 1 — Fork the course repo, and build your site**
 
-A **fork** is your own copy of the course repo, living under your GitHub account. Go to the [course repo on GitHub](https://github.com/gsbdarc/rf-bootcamp-2026) and click **Fork** in the top-right corner to create it.
+A **fork** is your own copy of the course repo, living under your GitHub account. Go to the [course repo on GitHub](https://github.com/gsbdarc/gsb-research-computing-ai-skills) and click **Fork** in the top-right corner to create it.
 
 Now turn your fork into your personal course site:
 
 - **Enable GitHub Pages:** on your fork, go to **Settings → Pages → Source → GitHub Actions → Save**.
-- **Open your site:** `https://YOUR-USERNAME.github.io/rf-bootcamp-2026/`
+- **Open your site:** `https://YOUR-USERNAME.github.io/gsb-research-computing-ai-skills/`
 
 This is now *your* course site, where your progress and leaderboard position are tracked from here on. (It may take a minute to appear the first time.)
 
@@ -170,8 +170,8 @@ This is now *your* course site, where your progress and leaderboard position are
 
 ```bash
 cd ~
-git clone https://github.com/YOUR_GITHUB_USERNAME/rf-bootcamp-2026.git
-cd rf-bootcamp-2026
+git clone https://github.com/YOUR_GITHUB_USERNAME/gsb-research-computing-ai-skills.git
+cd gsb-research-computing-ai-skills
 ```
 
 **Step 3 — Authenticate with GitHub (one time)**

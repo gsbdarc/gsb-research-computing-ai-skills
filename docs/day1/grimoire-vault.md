@@ -27,7 +27,7 @@ Download the dataset straight to your Desktop and unzip it (Git Bash on Windows,
 
 ```bash
 cd ~/Desktop                              # go to Desktop
-curl -L https://raw.githubusercontent.com/gsbdarc/rf-bootcamp-2026/main/docs/assets/data/grimoire.zip -o grimoire.zip
+curl -L https://raw.githubusercontent.com/gsbdarc/gsb-research-computing-ai-skills/main/docs/assets/data/grimoire.zip -o grimoire.zip
 unzip grimoire.zip                        # unzip the archive
 ```
 

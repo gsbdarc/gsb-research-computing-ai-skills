@@ -1,12 +1,12 @@
 ---
 layout: default
-title: "The Storage Pantry"
-parent: "Day 3 — The Hearth"
+title: "Exploring Cluster Usage Data"
+parent: "Day 3 — Cluster Computing"
 nav_order: 4
-permalink: /day3/storage-pantry/
+permalink: /day3/cluster-usage-data/
 ---
 
-# The Storage Pantry
+# Exploring Cluster Usage Data
 
 <div data-room-id="d3-data-mine"></div>
 
@@ -48,7 +48,7 @@ import pandas as pd
 cols = ['timestamp','host','pid','user','pr','ni','virt','res','shr',
         's','cpu_pct','mem_pct','time_plus','command','type']
 
-DATA = '/scratch/shared/rf-bootcamp-2026/data/yenstop_2026-07-10-20-56-06.csv'
+DATA = '/scratch/shared/gsb-research-computing-ai-skills/data/yenstop_2026-07-10-20-56-06.csv'
 
 df = pd.read_csv(DATA, header=None, names=cols, on_bad_lines='skip')
 df.head()
@@ -74,54 +74,33 @@ Find one thing in the data worth keeping. Add a short section to your `README.md
 It doesn't have to be the most impressive finding. It just has to be true, specific, and explained in plain language.
 
 {: .note }
-> This `README.md` keeps growing today — you'll add a Resource Profile section in The Scales and a full pipeline writeup in The Recipe Book. Same file the whole time.
+> This `README.md` keeps growing today — you'll add a Resource Profile section in Profiling Resource Usage and a full pipeline writeup in Documenting Your Pipeline. Same file the whole time.
 
 When you're ready — put a **🟢 green sticky** on your laptop.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-data-mine" data-key="main"> I loaded the data, explored it, and wrote up one true, specific finding in my README</label>
 
-<details markdown="1">
-<summary>🔄 Sync to leaderboard</summary>
-
-**Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-data-mine.main` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
-
-</details>
-
 ---
 
-## Side Quests
+## Side quests
 
 {: .note }
 > Finished early? Try any of these.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-data-mine" data-key="side1"> I made at least one plot or visualization</label>
 
-<details markdown="1">
-<summary>🔄 Sync to leaderboard</summary>
-
-**Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-data-mine.side1` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
-
-</details>
-
-**Side Quest — Per-User Limits vs. the Whole Node**
+**Side quest — Per-User Limits vs. the Whole Node**
 
 Group the processes by `user` and compute total `cpu_pct` and `mem_pct` per person. Then compare two different ceilings:
 
-- the **per-user limit** — the cap any single researcher gets (mentioned back in The Scales), and
+- the **per-user limit** — the cap any single researcher gets (mentioned back in Profiling Resource Usage), and
 - the **whole node's capacity** — 256 logical CPUs and ~1 TB of RAM.
 
 Is anyone close to their per-user limit? And how much of the *entire node* is actually in use? A node can sit far from full even while one user is maxed out — that's the per-user limit doing its job: keeping any one job from starving everyone else on a shared machine.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-data-mine" data-key="side3"> I compared per-user usage against both the per-user limit and the whole node's capacity</label>
 
-<details markdown="1">
-<summary>🔄 Sync to leaderboard</summary>
-
-**Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-data-mine.side3` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
-
-</details>
-
-**Side Quest — Watch It Live (`top`)**
+**Side quest — Watch It Live (`top`)**
 
 The CSV you've been analyzing is a **photograph** — one frozen instant, captured by a script that ran `top` once and saved the result. `top` itself is the **live view**: the same numbers, refreshing every few seconds. SSH to a Yen node and run it:
 
@@ -142,9 +121,3 @@ Watch for a few seconds: which processes churn near a full core, and which just 
 
 <label class="quest-check"><input type="checkbox" data-room="d3-data-mine" data-key="side5"> I ran `top` live on a Yen node, read the header and per-process columns, and can explain how it relates to the CSV snapshot</label>
 
-<details markdown="1">
-<summary>🔄 Sync to leaderboard</summary>
-
-**Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-data-mine.side5` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
-
-</details>

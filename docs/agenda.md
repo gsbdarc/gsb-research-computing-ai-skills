@@ -1,4 +1,4 @@
-# RF Coding Bootcamp 2026 — Instructor Planning Agenda
+# GSB Research Computing & AI Skills — Instructor Planning Agenda
 
 ## The Running Research Project
 
@@ -30,11 +30,11 @@ Every day adds a layer to one research pipeline. The dataset: SEC Form 3 filings
 - Claude on the Yens
 - Security discussion
 
-### Main Quests
+### Main quests
 
 **Setup block (~20-30 min) — do this before any CLI instruction:**
 
-| # | Quest |
+| # | Main quest |
 |---|-------|
 | 0 | Setup: fork repo → enable Actions → enable GitHub Pages → trigger first build → open personal dungeon site |
 
@@ -42,7 +42,7 @@ Every day adds a layer to one research pipeline. The dataset: SEC Form 3 filings
 
 **CLI + cluster:**
 
-| # | Quest |
+| # | Main quest |
 |---|-------|
 | 1 | CLI navigation — `ls`, `cd`, `mkdir`, `mv`, `cp`, `rm` |
 | 2 | Bulk operations with wildcards — rename 300 files in one command |
@@ -52,7 +52,7 @@ Every day adds a layer to one research pipeline. The dataset: SEC Form 3 filings
 | 6 | Git: commit and push to fork |
 | 7 | Introduce Claude Code — run in repo, discuss researcher role vs AI tool, Stanford data rules |
 
-### Side Quests *(optional)*
+### Side quests
 - Add here
 
 
@@ -63,67 +63,69 @@ Every day adds a layer to one research pipeline. The dataset: SEC Form 3 filings
 ### Core Concepts
 - JupyterHub: brief orientation; notebooks vs. scripts — scripts are the primary workflow
 - Python environments: `$PATH`, `module load`, `venv`, `pip`, reproducibility
+- Reproducibility in practice: rebuild a complex project from `requirements.txt` in a fresh venv (the Potion Brawl example in The Venv Forge) — same recipe, same result, any machine
 - Stanford AI Playground: web GUI and API gateway; what leaves the cluster; tokens, costs, context windows
 - Secure key management: `.env`, `python-dotenv`, `.gitignore`
 - Structured LLM output: Pydantic models and validation
+- LLM-as-a-judge: have a model self-evaluate with an agreement + confidence score, then flag low-confidence outputs for human review — the escalation *policy lives in your code, not the prompt* (auditable)
 - AI coding agents at Stanford: data privacy, security, best practices *(discussion)*
 
-### Main Quests
+### Main quests
 
-| # | Quest |
+| # | Main quest |
 |---|-------|
 | 1 | Open JupyterHub briefly; write and run a Python script from the terminal |
-| 2 | Understand `$PATH`; create venv; install packages; register Jupyter kernel |
+| 2 | Understand `$PATH`; create venv; install packages; register Jupyter kernel; rebuild a complex script from `requirements.txt` to see reproducibility |
 | 3 | Explore Stanford AI Playground web GUI |
 | 4 | Load API key from `.env`; initialize OpenAI-compatible client |
 | 5 | First API call: extract fields from one SEC filing; validate with Pydantic; save to JSON |
 | 6 | Discussion: AI coding agents at Stanford — data privacy, security, best practices |
-| 7 | Update `README.md` with pipeline description; commit and push | 
+| 7 | Update `README.md` with pipeline description; commit and push |
+| Boss Gate 2 *(optional capstone)* | The Genre Tribunal: predict a movie's genre → judge the prediction (agreement + certainty) → flag `needs_human_review` in your code → commit `results/genre_verdicts.json` |
 
-### Side Quests *(optional)*
+### Side quests
 - Prompt engineering: system vs. user messages, temperature, reasoning
 - Batch processing preview: loop over a directory before Day 3
 - Add here
 
 ---
 
-## Day 3 — The Cluster: SLURM & Batch Computing
+## Day 3 — Cluster Computing
 
-**Theme:** Slurm; submit same python script
+**Theme:** SLURM and batch computing on the cluster
 
 ### Core Concepts
-- The kitchen analogy: CPU (burners), RAM (fridge), shared storage (warehouse), SLURM (head chef)
+- Compute resources: CPU cores, RAM, shared storage, and why a shared cluster needs a scheduler (SLURM)
 - Resource estimation: measure wall time and memory before writing `#SBATCH` directives
-- System data: analyze a real Yens `top`/yenstop snapshot (and live `top`) to understand CPU/RAM/process/user patterns
-- Hardware intuition: physical cores vs. logical threads (hyper-threading — 128 physical × 2 = 256 logical on yen1) and the cache → RAM → disk memory hierarchy (`lscpu`)
+- System data: analyze a real Yens `top`/yenstop snapshot (and live `top`) to understand CPU/RAM/process/user patterns, and per-user vs. whole-node limits
 - Job lifecycle: submit → queue → run → complete → logs
-- Job monitoring: `squeue`, `sacct`, `scancel`, reading output files
+- Job monitoring: `squeue`, `sinfo`, `sacct`, `scancel`, reading `.out`/`.err` logs
 
 ### Timing (3 hours)
 
-| Room | Time |
+| Section | Time |
 |---|---|
-| The Kitchen (demo) | 25 min |
-| The Scales (profile Day 2 script + profile mystery script) | 30 min |
-| The Storage Pantry (analyze real Yens system data with an AI agent) | 35 min |
-| The Back Kitchen (why SLURM exists; read the queue with squeue/sinfo) | 20 min |
-| The Ticket Rail (write + submit `slurm/extract_form_3_one_file.slurm`) | 25 min |
-| Failed Order (`sacct` after job completes) | 15 min |
-| The Recipe Book (write README) | 20 min |
-| Boss Gate 3 (commit + push) | 15 min |
+| Compute Environments (demo) | 25 min |
+| Profiling Resource Usage (profile the mystery script; document resource needs) | 30 min |
+| Exploring Cluster Usage Data (analyze a real Yens system-data snapshot with an AI agent) | 35 min |
+| The SLURM Scheduler (why SLURM exists; read the queue + partitions with squeue/sinfo) | 20 min |
+| Writing & Submitting a SLURM Job (write + submit `slurm/extract_form_3_one_file.slurm`) | 25 min |
+| Debugging Failed Jobs (debug a failed job with sacct + logs) | 15 min |
+| Documenting Your Pipeline (write README) | 20 min |
+| Day 3 Challenge (batch ~10 filings + re-estimate resources) | 15 min |
 
-### Room-by-Room Outline
+### Section-by-Section Outline
 
-| Room | Main Quest(s) | Side Quest(s) | Skills Learned | Hands-on Exercise |
+| Section | Main quest(s) | Side quests | Skills Learned | Hands-on |
 |---|---|---|---|---|
-| **The Kitchen** | Class demo + discussion: laptop vs. Yens vs. cloud (CPU, RAM, storage tradeoffs) | Compare your own laptop's cores/RAM to a Yen node; estimate cloud $/hr for the Day 2 job | Shared vocabulary for CPU, RAM, and storage across environments | Demo + discussion — no hands-on exercise on this page |
-| **The Scales** | Profile a mystery script with `time`, `watch userload`, and `htop` (serial vs. parallel); document resource needs in README | Profile your own research script; compare `/usr/bin/time -v`'s peak RAM to `userload`'s; profile an I/O-bound script and compare `sys` vs. `user` time | Profiling methodology; estimating resources instead of guessing | Two-terminal live profiling technique |
-| **The Storage Pantry** | Load the real yenstop CSV snapshot, explore it (e.g. work out the biggest process in GB, given yen1's ~1 TB RAM), and write up one finding in README | Make a plot; group processes by user vs. the per-user limits from The Scales; explore cores vs. threads and the cache/memory hierarchy with `lscpu`; run `top` live and read its output | Real cluster data literacy; CPU/thread & memory-hierarchy intuition; plain-language write-up | Explore a monitoring CSV with pandas/Claude; inspect the node with `lscpu` and live `top` |
-| **The Back Kitchen** | Read `squeue`, filter by partition, explain `R` vs. `PD` | `sinfo` (partitions/node states); `longsqueue` alias; `scontrol show job`; compare a GPU vs. CPU partition request | Why SLURM exists; interactive vs. scheduled Yen nodes | Read and filter the live SLURM queue |
-| **The Ticket Rail** | Write a SLURM script from scratch (shebang, `#SBATCH` directives, env setup, run command); submit, monitor, and cancel a job | Email notifications (`--mail-type=ALL`); interactive allocation (`srun --pty`); job dependency chaining (`--dependency=afterok`) | Writing a SLURM script line by line; managing a job's full lifecycle | Write, submit, and cancel a real SLURM job |
-| **Failed Order** | Debug a failed job: read `sacct`/logs, fix the bug, resubmit to `COMPLETED` | Audit requested vs. actual resource usage; follow a live job with `tail -f`; decode `ExitCode`; deliberately trigger an OOM kill | Debugging methodology; recognizing failure signatures (code bug vs. OOM) | Real debug → fix → resubmit loop on a failing job |
-| **The Recipe Book** | Write a README covering what the script does, how to run it, and where output lands | Have Claude critique the README as a first-time reader; write a plain-language summary for a non-technical audience | Technical documentation habits; AI-assisted review; research communication | Write a full README from a template while the work is fresh |
-| **Boss Gate 3** | Commit and push the SLURM script + README (capstone) | Manually rerun against a few more filings; describe what breaks at scale (primes Day 4's job arrays) | Synthesize the day: profiling → SLURM → debugging → documentation → commit | Full pipeline submission, backed by real measurements |
+| **Compute Environments** | Class demo + discussion: laptop vs. Yens vs. cloud (CPU, RAM, storage tradeoffs) | Compare your laptop's cores/RAM to a Yen node; estimate cloud $/hr for the Day 2 job; use the laptop-vs-Yen widget | Shared vocabulary for CPU, RAM, and storage across environments | Demo + discussion |
+| **Profiling Resource Usage** | Profile a mystery script with `time`, `watch userload`, and `htop` (serial vs. parallel); document resource needs in README | Vectorized vs. non-vectorized profiling; compare `/usr/bin/time -v`'s peak RAM to `userload`'s; profile an I/O-bound script (`sys` vs. `user` time) | Profiling methodology; estimating resources instead of guessing | Two-terminal live profiling |
+| **Exploring Cluster Usage Data** | Load the real yenstop CSV, explore it (e.g. the biggest process in GB given yen1's ~1 TB RAM), and write up one finding in README | Make a plot; compare per-user usage against both the per-user limit and the whole node; run `top` live | Real cluster-data literacy; per-user vs. system limits; plain-language write-up | Explore a monitoring CSV with pandas/Claude; watch live `top` |
+| **The SLURM Scheduler** | Read the queue with `squeue`, filter by partition, explain `R` vs. `PD`, and describe partitions/node states with `sinfo` | `longsqueue` alias; `scontrol show job`; compare a GPU vs. CPU partition | Why SLURM exists; interactive vs. scheduled nodes; partitions | Read and filter the live SLURM queue |
+| **Writing & Submitting a SLURM Job** | Write a SLURM script from scratch (shebang, `#SBATCH` directives, `.out`/`.err` logs, env setup, run command); submit, monitor, and cancel a job | Email notifications (`--mail-type=ALL`); interactive allocation (`srun --pty`); job dependency chaining; ssh to your job's node and watch it with `htop` | Writing a SLURM script line by line; managing a job's lifecycle; reading logs | Write, submit, and cancel a real SLURM job |
+| **Debugging Failed Jobs** | Debug a staged failing job — read `sacct`/logs, fix the bug, resubmit to `COMPLETED` | Audit requested vs. actual usage; follow a live job with `tail -f`; decode `ExitCode`; trigger an OOM; trigger a timeout | Debugging methodology; telling code-bug vs. OOM vs. timeout failures apart | Real debug → fix → resubmit loop |
+| **Documenting Your Pipeline** | Write a README covering what the script does, how to run it, and where output lands | Have Claude stress-test your README as a first-time reader; explain it to your PI in plain language | Technical documentation habits; AI-assisted review; research communication | Write a full README while the work is fresh |
+| **Day 3 Challenge** | Scale the extraction to a ~10-filing batch and re-estimate `#SBATCH` resources; commit and push the batch SLURM script + README | Grow the batch and watch the elapsed time climb — why serial doesn't scale (primes Day 4 job arrays) | Scaling single-file → batch; re-estimating resources; synthesizing profiling → SLURM → debugging → docs | Full batch submission, backed by real measurements |
 
 ---
 
@@ -141,9 +143,9 @@ Every day adds a layer to one research pipeline. The dataset: SEC Form 3 filings
 - Human vs. LLM: when to trust results at scale, how to validate *(discussion)*
 - Reproducibility: README as the deliverable that makes a pipeline rerunnable
 
-### Main Quests
+### Main quests
 
-| # | Quest |
+| # | Main quest |
 |---|-------|
 | 1 | Convert day3 script to an array job; one task per filing; collect all results |
 | 2 | Submit GPU job to `yen-gpu4` (H200); verify with `nvidia-smi` |
@@ -151,5 +153,5 @@ Every day adds a layer to one research pipeline. The dataset: SEC Form 3 filings
 | 6 | Discussion: when to use local models vs third-party vs Playground? |
 | 7 | Finalize `README.md` — full pipeline, both endpoints, how to rerun; commit and push | 
 
-### Side Quests *(optional)*
+### Side quests
 - Add here

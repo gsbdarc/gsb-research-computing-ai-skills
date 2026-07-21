@@ -17,15 +17,27 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).parent.parent
 STUDENTS_FILE = REPO_ROOT / "docs" / "_data" / "students.yml"
-CLASS_REPO = "gsbdarc/rf-bootcamp-2026"
+CLASS_REPO = "gsbdarc/gsb-research-computing-ai-skills"
 
 
-def list_fork_owners():
+def list_forks():
+    """Return (owner_login, repo_name) for every fork of the class repo.
+
+    The repo name matters: forks made before the repo was renamed keep their
+    old name (e.g. rf-bootcamp-2026), and the leaderboard fetches each fork's
+    quest_log.json from its actual name.
+    """
     out = subprocess.run(
-        ["gh", "api", f"repos/{CLASS_REPO}/forks", "--paginate", "--jq", ".[].owner.login"],
+        ["gh", "api", f"repos/{CLASS_REPO}/forks", "--paginate",
+         "--jq", '.[] | .owner.login + "\t" + .name'],
         capture_output=True, text=True, check=True,
     )
-    return [line.strip() for line in out.stdout.splitlines() if line.strip()]
+    forks = []
+    for line in out.stdout.splitlines():
+        if "\t" in line:
+            login, repo = line.split("\t", 1)
+            forks.append((login.strip(), repo.strip()))
+    return forks
 
 
 def load_existing_usernames():
@@ -54,8 +66,8 @@ def guess_display_name(username):
 
 def append_students(new_entries):
     lines = ["\n"]
-    for username, name in new_entries:
-        lines.append(f'- username: {username}\n  name: "{name}"\n')
+    for username, repo, name in new_entries:
+        lines.append(f'- username: {username}\n  repo: {repo}\n  name: "{name}"\n')
     with STUDENTS_FILE.open("a") as f:
         f.writelines(lines)
 
@@ -63,19 +75,19 @@ def append_students(new_entries):
 def main():
     apply = "--apply" in sys.argv[1:]
 
-    fork_owners = list_fork_owners()
+    forks = list_forks()
     existing = load_existing_usernames()
-    new_usernames = [u for u in fork_owners if u not in existing]
+    new_forks = [(u, r) for (u, r) in forks if u not in existing]
 
-    if not new_usernames:
+    if not new_forks:
         print("No new forks found — roster is already up to date.")
         return 0
 
-    new_entries = [(u, guess_display_name(u)) for u in new_usernames]
+    new_entries = [(u, r, guess_display_name(u)) for (u, r) in new_forks]
 
     print(f"Found {len(new_entries)} new fork(s):")
-    for username, name in new_entries:
-        print(f'  - username: {username}\n    name: "{name}"')
+    for username, repo, name in new_entries:
+        print(f'  - username: {username}\n    repo: {repo}\n    name: "{name}"')
     print("\nNames are best-effort from public GitHub profiles — double-check before class.")
 
     if apply:

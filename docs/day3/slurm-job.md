@@ -1,21 +1,21 @@
 ---
 layout: default
-title: "The Ticket Rail"
-parent: "Day 3 — The Hearth"
+title: "Writing & Submitting a SLURM Job"
+parent: "Day 3 — Cluster Computing"
 nav_order: 7
-permalink: /day3/ticket-rail/
+permalink: /day3/slurm-job/
 ---
 
-# The Ticket Rail
+# Writing & Submitting a SLURM Job
 
 <div data-room-id="d3-foremans-desk"></div>
 
 ---
 
-## Main Exercise — Write a SLURM Script
+## Main quest — Write a SLURM Script
 
 {: .important }
-> **Exercise:** Build a SLURM job script line by line to run your Form 3 extraction script on a compute node.
+> **Task:** Build a SLURM job script line by line to run your Form 3 extraction script on a compute node.
 
 **Create the file:**
 
@@ -41,7 +41,7 @@ The `#!` tells the operating system which interpreter to run the rest of the fil
 
 **Step 2 — SBATCH directives**
 
-These are instructions to the SLURM scheduler. Fill in each placeholder using the measurements you took in The Scales:
+These are instructions to the SLURM scheduler. Fill in each placeholder using the measurements you took in Profiling Resource Usage:
 
 ```bash
 #SBATCH --job-name=<job-name>
@@ -58,7 +58,7 @@ These are instructions to the SLURM scheduler. Fill in each placeholder using th
 
 ```bash
 # Navigate to your project
-cd $HOME/rf-bootcamp-2026
+cd $HOME/gsb-research-computing-ai-skills
 
 # Activate your virtual environment
 source .venv/bin/activate
@@ -104,13 +104,6 @@ When your script is complete — put a **🟢 green sticky** on your laptop.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-foremans-desk" data-key="main"> I wrote extract_form_3_one_file.slurm and understand every line</label>
 
-<details markdown="1">
-<summary>🔄 Sync to leaderboard</summary>
-
-**Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-foremans-desk.main` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
-
-</details>
-
 ---
 
 ## Submit
@@ -145,13 +138,6 @@ squeue --me
 
 <label class="quest-check"><input type="checkbox" data-room="d3-foremans-desk" data-key="submit"> I submitted with sbatch, confirmed it in the queue, and cancelled it with scancel</label>
 
-<details markdown="1">
-<summary>🔄 Sync to leaderboard</summary>
-
-**Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-foremans-desk.submit` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
-
-</details>
-
 ---
 
 ## Add Email Notifications
@@ -175,16 +161,9 @@ Once your job runs, check your inbox. You should receive two emails: one when th
 
 <label class="quest-check"><input type="checkbox" data-room="d3-foremans-desk" data-key="side1"> I added email notifications and resubmitted</label>
 
-<details markdown="1">
-<summary>🔄 Sync to leaderboard</summary>
-
-**Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-foremans-desk.side1` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
-
-</details>
-
 ---
 
-## Side Quest — Go Interactive Instead of Batch
+## Side quest — Go Interactive Instead of Batch
 
 Everything so far has been batch submission — write a script, `sbatch` it, wait. SLURM also supports an interactive allocation on a dedicated node, useful for debugging without fighting other users for resources:
 
@@ -196,14 +175,7 @@ Once it drops you into a shell on your allocated node, run your script there dir
 
 <label class="quest-check"><input type="checkbox" data-room="d3-foremans-desk" data-key="side2"> I requested an interactive allocation with srun --pty and ran my script there</label>
 
-<details markdown="1">
-<summary>🔄 Sync to leaderboard</summary>
-
-**Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-foremans-desk.side2` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
-
-</details>
-
-**Side Quest — Chain Two Jobs**
+**Side quest — Chain Two Jobs**
 
 Real pipelines are often more than one step. Submit a second job that only starts if your first one succeeds:
 
@@ -215,14 +187,7 @@ Replace `JOBID` with the job ID of a job you already submitted. Confirm with `sq
 
 <label class="quest-check"><input type="checkbox" data-room="d3-foremans-desk" data-key="side3"> I chained two SLURM jobs with --dependency=afterok</label>
 
-<details markdown="1">
-<summary>🔄 Sync to leaderboard</summary>
-
-**Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-foremans-desk.side3` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
-
-</details>
-
-**Side Quest — Watch Your Job on Its Node**
+**Side quest — Watch Your Job on Its Node**
 
 A running batch job has a compute node all to itself — and while it's running, you can SSH in and watch it work. First find out where it landed:
 
@@ -241,9 +206,3 @@ You'll see your Python process using the CPU and RAM you requested in the script
 
 <label class="quest-check"><input type="checkbox" data-room="d3-foremans-desk" data-key="side4"> I found my job's node with squeue and watched it run live with htop</label>
 
-<details markdown="1">
-<summary>🔄 Sync to leaderboard</summary>
-
-**Keep the leaderboard live.** In your terminal on the Yens, inside `~/rf-bootcamp-2026` — start Claude Code with `claude` if it isn't already running — tell it: "Set `d3-foremans-desk.side4` to `true` in `quest_log.json` at my repo root (create it if missing). Before pushing, run `git remote -v` and confirm `origin` is my own fork (`{{ site.data.site_meta.github_owner }}/rf-bootcamp-2026`), not the class repo `gsbdarc/rf-bootcamp-2026` — if it points to the class repo, stop and tell me. Then commit and push to `main`." Claude runs the `git add`/`commit`/`push` for you — same `main` branch you've been pushing to all along.
-
-</details>

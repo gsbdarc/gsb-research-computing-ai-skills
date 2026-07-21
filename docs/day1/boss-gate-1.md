@@ -69,7 +69,7 @@ Still on your **laptop**, copy the file straight into your course repo on the
 Yens (`scp` runs over the SSH connection you set up earlier):
 
 ```bash
-scp ~/Desktop/provenance.txt SUNetID@yen.stanford.edu:~/rf-bootcamp-2026/provenance.txt
+scp ~/Desktop/provenance.txt SUNetID@yen.stanford.edu:~/gsb-research-computing-ai-skills/provenance.txt
 ```
 
 This is the same upload direction you practiced in
@@ -84,7 +84,7 @@ Now hop onto the Yens, move into your repo, and launch Claude Code:
 
 ```bash
 ssh SUNetID@yen.stanford.edu     # if you're not already connected
-cd ~/rf-bootcamp-2026
+cd ~/gsb-research-computing-ai-skills
 claude
 ```
 

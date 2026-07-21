@@ -6,6 +6,6 @@
 #SBATCH --mem=1G
 #SBATCH --cpus-per-task=1
 
-cd $HOME/rf-bootcamp-2026
+cd $HOME/gsb-research-computing-ai-skills
 source .venv/bin/activate
 python scripts/last_year_bug.py

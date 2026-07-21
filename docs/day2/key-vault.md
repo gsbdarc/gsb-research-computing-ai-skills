@@ -21,18 +21,38 @@ permalink: /day2/key-vault/
 
 ---
 
-### Step 1 — Look at the Shared Key
+### Step 1 — Why a `.env` File?
+
+Before you touch the shared key, a quick gut check. What happens if you just write this directly in your script?
+
+```python
+api_key = "sk-stanford-abc123"
+```
+
+Ask yourself:
+- Where does this script go next? (A `git push`. A Slack message. A Claude Code chat window you paste code into for help.)
+- If you delete this line in your next commit, is the key actually gone?
+- If a labmate wants to run your script with their own key, what do they have to edit in your code?
+
+Every one of those questions should worry you a little. That's the whole reason `.env` files exist: the secret lives in one file, off to the side, that never gets committed, shared, or pasted anywhere. Your code asks for the key by name at runtime. It never contains the key itself.
+
+{: .note }
+> **Wait, "environment" again?** In the Venv Forge, you built a **virtual environment**: a folder of isolated Python packages. A `.env` file is a completely different thing: a text file of **environment variables**, key/value pairs like `STANFORD_API_KEY=...`, that your shell or script can read at runtime. Same word, two unrelated ideas. A virtual environment isolates *packages*. An environment variable holds a *value* (usually a secret or config setting) that your code reads without hardcoding it.
+
+---
+
+### Step 2 — Look at the Shared Key
 
 The bootcamp API key lives in a shared file on the Yens. Take a look:
 
 ```bash
-cat /scratch/shared/rf-bootcamp-2026/.env
+cat /scratch/shared/gsb-research-computing-ai-skills/.env
 ```
 
 You'll see something like:
 
 ```
-OPENAI_API_KEY=sk-stanford-...
+STANFORD_API_KEY=sk-stanford-...
 OPENAI_BASE_URL=https://aiapi-prod.stanford.edu/v1
 ```
 
@@ -40,7 +60,7 @@ Do not copy this file anywhere public. Do not commit it to git. You are about to
 
 ---
 
-### Step 2 — Create Your Own `.env`
+### Step 3 — Create Your Own `.env`
 
 In your `day2/` directory:
 
@@ -52,22 +72,41 @@ touch .env
 Open `.env` and add the values you saw above:
 
 ```
-OPENAI_API_KEY=sk-stanford-...
+STANFORD_API_KEY=sk-stanford-...
 OPENAI_BASE_URL=https://aiapi-prod.stanford.edu/v1
 ```
 
+<details markdown="1">
+<summary>Reminder: Confirm It Worked (click to reveal)</summary>
+
+Files that start with a dot are hidden by default from a plain `ls`. This is the same trick from Day 1's Command Spire: add `-a` to reveal hidden files.
+
+```bash
+ls -a
+```
+
+You should see `.env` in the list. Now check the contents actually saved:
+
+```bash
+cat .env
+```
+
+You should see your two lines: `STANFORD_API_KEY=...` and `OPENAI_BASE_URL=...`. If the file is missing or empty, check `pwd` to confirm you're in `~/day2`, then redo Step 3.
+
+</details>
+
 ---
 
-### Step 3 — Add `.env` to `.gitignore`
+### Step 4 — Add `.env` to `.gitignore`
 
 The `.env` file must never be committed to git. Add it now:
 
 ```bash
 echo ".env" >> ~/.gitignore
 # or, within your bootcamp repo:
-echo ".env" >> ~/rf-bootcamp-2026/.gitignore
-git -C ~/rf-bootcamp-2026 add .gitignore
-git -C ~/rf-bootcamp-2026 commit -m "Ignore .env files"
+echo ".env" >> ~/gsb-research-computing-ai-skills/.gitignore
+git -C ~/gsb-research-computing-ai-skills add .gitignore
+git -C ~/gsb-research-computing-ai-skills commit -m "Ignore .env files"
 ```
 
 {: .warning }
@@ -75,7 +114,7 @@ git -C ~/rf-bootcamp-2026 commit -m "Ignore .env files"
 
 ---
 
-### Step 4 — Load in Python
+### Step 5 — Load in Python
 
 In your JupyterHub notebook (with the Bootcamp 2026 kernel):
 
@@ -85,7 +124,7 @@ import os
 
 load_dotenv('/path/to/your/day2/.env')   # reads .env, sets environment variables
 
-print(os.getenv("OPENAI_API_KEY"))       # should print your key (keep this cell private)
+print(os.getenv("STANFORD_API_KEY"))       # should print your key (keep this cell private)
 print(os.getenv("OPENAI_BASE_URL"))
 ```
 
@@ -93,13 +132,13 @@ Or simply `load_dotenv()` (no path) to load `.env` from the current working dire
 
 ---
 
-### Step 5 — Initialize the Client
+### Step 6 — Initialize the Client
 
 ```python
 import openai
 
 client = openai.OpenAI(
-    api_key=os.environ["OPENAI_API_KEY"],
+    api_key=os.environ["STANFORD_API_KEY"],
     base_url=os.environ["OPENAI_BASE_URL"],
 )
 ```
@@ -117,17 +156,43 @@ Every time you call the API, the following is sent to Stanford's gateway:
 - **Metadata** — timestamp, model name, token counts, your IP address
 - **Model response** — returned and (at Stanford's end) logged
 
-**Three-bucket rule** — before sending any data to an API, classify it:
+**Classify before you send:** place any data on Stanford's risk scale before it goes to an API.
 
-| Bucket | Examples | Send via Stanford API? |
-|--------|----------|----------------------|
-| 🟢 **Public** | Published papers, open datasets | Yes |
-| 🟡 **Restricted** | Unpublished research, proprietary data, IRB-approved data | Check your DUA/IRB first |
-| 🔴 **PII** | Names, SSNs, health records, email addresses | No — never |
+| Risk level | Examples | Send via Stanford API? |
+|------------|----------|------------------------|
+| 🟢 **Low** | Published papers, open datasets | Yes |
+| 🟡 **Moderate** | Unpublished research, FERPA records, DUA-covered data | Yes, check your DUA/IRB |
+| 🔴 **High (incl. PHI)** | SSNs, financial account numbers, health records | Yes, the gateway is approved for it (subject to your DUA) |
 
-When in doubt: anonymize a test subset before sending real data through any API.
+The Stanford gateway clears all three levels because it stays inside Stanford's perimeter. A **third-party** API (not Stanford's) is Low-risk or public data only. More on choosing paths in [The Crucible](../human-vs-llm/).
 
 <label class="quest-check"><input type="checkbox" data-room="d2-key-vault" data-key="main"> Main Quest complete</label>
+
+---
+
+## 📦 Side Quests
+
+{: .note }
+> Finished early? Try any of these.
+
+**Side Quest: Search for Leaked Keys**
+
+The warning above says GitHub indexes public repos and automated scanners find leaked keys. See it for yourself: use [GitHub code search](https://github.com/search) to look up a well-known leaked-key pattern, like `AKIA` (an AWS access key prefix) or a generic `sk-` prefix. Don't open, save, clone, or use anything you find. Just note how many public results come back. This is exactly what those scanners are doing at scale, all day, every day.
+
+<label class="quest-check"><input type="checkbox" data-room="d2-key-vault" data-key="side1"> I searched GitHub for a leaked-key pattern and saw how many public results turned up</label>
+
+**Side Quest: Prove Git Never Forgets**
+
+In a throwaway scratch repo (not this one), commit a fake `.env` containing a made-up key like `STANFORD_API_KEY=sk-fake-1234`. Delete the file in a second commit. Now run:
+
+```bash
+git log --all --full-history -- .env
+git show <first-commit-hash>:.env
+```
+
+The key is still there, sitting in the first commit, even though the file is gone from your working directory. Deleting a file removes it from the latest snapshot. It does not remove it from history.
+
+<label class="quest-check"><input type="checkbox" data-room="d2-key-vault" data-key="side2"> I committed a fake key, deleted it, and found it still recoverable from git history</label>
 
 ---
 

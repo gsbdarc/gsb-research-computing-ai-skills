@@ -1,0 +1,22 @@
+# ⚗️  The Recipe Scroll  ⚗️
+# Every reagent the Potion Brawl needs, pinned so the brew is identical in any lab.
+# Tested on Python 3.10 (the lab's /usr/bin/python3). Rebuild with:
+#     /usr/bin/python3 -m venv .venv && source .venv/bin/activate
+#     pip install -r requirements.txt
+#
+# These are the curated top-level reagents. For the *authoritative* lock of every
+# transitive dependency, freeze your built venv:  pip freeze > requirements.lock.txt
+
+numpy==1.26.4        # the physics: positions, velocities, populations
+scipy==1.11.4        # cKDTree — fast "who is touching whom" collision search
+pandas==2.1.4        # the population ledger + the installed-reagents table
+matplotlib==3.8.4    # charts, the cycle diagram, and the GIF frames
+plotly==5.22.0       # the interactive 3-D shop floor (notebook)
+networkx==3.2.1      # draws the Law of the Brawl as a 3-node cycle
+imageio==2.34.1      # stitches the frames into brawl.gif
+pillow==10.3.0       # image backend behind matplotlib + imageio
+rich==13.7.1         # the colourful terminal spectacle
+pyfiglet==1.0.2      # the big ASCII "POTION BRAWL" banner
+tqdm==4.66.4         # the "brewing..." progress bar
+ipykernel==6.29.4    # registers the venv as a Jupyter kernel
+jupyterlab==4.2.1    # so you can run the notebook inside this very venv
