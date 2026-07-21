@@ -7,7 +7,7 @@ permalink: /leaderboard/
 
 # 🏆 DARC Dungeon Leaderboard
 
-*Rankings update when students sync their quest logs. Each completed main quest or side quest adds to your **Quest Log**; your total drives your **Level** (max Level 10 — Archmage). **Boss Gates** = optional capstone challenges completed (max 4).*
+*Rankings update when students sync their quest logs. Each completed main quest or side quest adds to your **Quest Log**; your total drives your **Level** (max Level 10). **Boss Gates** = optional capstone challenges completed (max 4).*
 
 <div id="lb-controls">
   <button id="lb-refresh">↻ Refresh</button>
@@ -67,19 +67,13 @@ tr.lb-leader td { background: #f4f8ff; }
     'd4-boss-gate.commit',
   ];
 
-  var LEVEL_TITLES = [
-    'Initiate', 'Apprentice', 'Scholar', 'Journeyman', 'Adept',
-    'Specialist', 'Expert', 'Veteran', 'Master', 'Archmage',
-  ];
-
   function computeLevel(checks) {
     return Math.min(10, Math.floor(checks / TOTAL * 9) + 1);
   }
 
   function levelBadge(checks) {
     var lv = computeLevel(checks);
-    return '<span class="lb-level-num">Lv.' + lv + '</span>'
-      + '<span class="lb-level-title">' + LEVEL_TITLES[lv - 1] + '</span>';
+    return '<span class="lb-level-num">Lv.' + lv + '</span>';
   }
 
   function parseStudents(text) {
