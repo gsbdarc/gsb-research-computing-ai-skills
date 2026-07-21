@@ -12,3 +12,10 @@
 #   - username: their-github-username
 #     repo: gsb-research-computing-ai-skills
 #     name: "First L."   # shown on the leaderboard
+
+- username: natalya-patrikeeva
+  repo: gsb-research-computing-ai-skills
+  name: "Natalya R."
+- username: Jeffotter
+  repo: rf-bootcamp-2026
+  name: "Jeff. O."
