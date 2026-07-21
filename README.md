@@ -1,8 +1,8 @@
-# RF Coding Bootcamp 2026 — DARC Dungeon
+# GSB Research Computing & AI Skills
 
-> **Stanford GSB DARC · Pre-doctoral Researcher Training · 4 days · Hands-on**
+> **Stanford GSB DARC · Research computing & AI skills for GSB researchers · 4 days · Hands-on**
 
-A four-day hands-on course covering the command line, the Yens cluster, SLURM, GPU jobs, LLM APIs, and AI coding tools. The course runs as a dungeon game — complete rooms, earn skills, and take on optional Boss Gate challenges.
+A four-day hands-on course covering the command line, the Yens cluster, SLURM, GPU jobs, LLM APIs, and AI coding tools. The course runs as a game — complete rooms, earn skills, and take on optional challenges.
 
 ---
 

@@ -1,15 +1,15 @@
-# Site-wide settings for RF Coding Bootcamp 2026
+# Site-wide settings for GSB Research Computing & AI Skills
 #
 # This file is NOT auto-reloaded by `jekyll serve` — restart the server
 # after changing anything here.
 
-title: RF Coding Bootcamp 2026
-tagline: GSB RF Coding Bootcamp Website
+title: "GSB Research Computing & AI Skills"
+tagline: "Stanford GSB · Research computing & AI skills"
 author: GSB DARC Team
 description: >-
-  Four-day intro to Stanford GSB's Yens cluster for pre-doctoral researchers.
-  CLI, SSH, JupyterHub, SLURM, GPU jobs on the H200, and AI workflows —
-  taught in bite-sized blocks with a live tutor bot on the site.
+  Hands-on research computing and AI skills for Stanford GSB researchers:
+  the command line, the Yens cluster, SSH, JupyterHub, Python environments,
+  SLURM, GPU jobs on the H200, and AI coding tools.
 
 baseurl: '/gsb-research-computing-ai-skills'
 url: 'https://gsbdarc.github.io'
