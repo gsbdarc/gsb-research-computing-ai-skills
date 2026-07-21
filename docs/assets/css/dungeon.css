@@ -104,7 +104,6 @@
   color: #fff; font-weight: 700; padding: 0.1rem 0.45rem;
   border-radius: 999px; font-size: 0.82em; margin-right: 0.35rem;
 }
-.lb-level-title { color: #666; font-size: 0.88em; }
 
 /* Wrap long plain-text code blocks (e.g. Claude Code prompt examples) so they
    wrap instead of scrolling off-screen. Command blocks (language-bash) are

@@ -13,11 +13,6 @@
   // (defined below) in TOTAL_CHECKS, so it can never drift out of sync with the
   // room structure when quests are added or removed.
 
-  const LEVEL_TITLES = [
-    'Initiate', 'Apprentice', 'Scholar', 'Journeyman', 'Adept',
-    'Specialist', 'Expert', 'Veteran', 'Master', 'Archmage',
-  ];
-
   // Full room structure — used to compute per-day totals in the quest log panel.
   // Keys match data-room attributes on checkboxes throughout the site.
   const DAYS = [
@@ -187,7 +182,6 @@
     var progress = loadProgress();
     var counts = countCompleted(progress);
     var level = computeLevel(counts.done);
-    var title = LEVEL_TITLES[level - 1];
 
     var toggle = document.getElementById('quest-log-toggle');
     if (toggle) {
@@ -197,14 +191,14 @@
     var levelEl = document.getElementById('quest-level-display');
     if (levelEl) {
       var pct = Math.round(counts.done / TOTAL_CHECKS * 100);
-      levelEl.innerHTML = '<span class="level-title">Level ' + level + ' — ' + title + '</span>'
+      levelEl.innerHTML = '<span class="level-title">Level ' + level + '</span>'
         + '<div class="level-bar"><div class="level-fill" style="width:' + pct + '%"></div></div>';
     }
 
     // Update the entrance page summary if present
     var summary = document.getElementById('quest-log-summary');
     if (summary) {
-      summary.innerHTML = '<strong>Level ' + level + ' — ' + title + '</strong>'
+      summary.innerHTML = '<strong>Level ' + level + '</strong>'
         + ' &nbsp;·&nbsp; ' + counts.done + '/' + TOTAL_CHECKS + ' Quest Log';
     }
 
@@ -273,12 +267,12 @@
     // ── Sync: encode progress into a token to paste into scripts/quest_sync.py ─
     var sync = document.createElement('div');
     sync.id = 'quest-sync';
-    sync.innerHTML = '<button type="button" class="quest-sync-go">🔄 Sync to leaderboard</button>';
+    sync.innerHTML = '<button type="button" class="quest-sync-go">🔄 Sync</button>';
     panel.appendChild(sync);
 
     function renderSync() {
       var enc = encodeProgress();
-      var go = '<button type="button" class="quest-sync-go">🔄 Sync to leaderboard</button>';
+      var go = '<button type="button" class="quest-sync-go">🔄 Sync</button>';
       if (!enc.count) {
         sync.innerHTML = go + '<span class="quest-sync-hint">Complete a quest first, then sync.</span>';
         return;
