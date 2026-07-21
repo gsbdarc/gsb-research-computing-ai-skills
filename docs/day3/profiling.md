@@ -182,24 +182,31 @@ You saw about **4 `python` processes** in `htop` and roughly **4 Cores** in `use
 
 ## 💻 Main quest — Profile Your Day 2 Script
 
-Now apply the same technique to a **real workload** you already know: `extract_form_3_batch.py`, which runs your Day 2 extraction over many filings. Process **10 filings** and profile it.
+Now apply the same technique to your **real Day 2 workload**. `extract_form_3_batch.py` runs the same Form 3 extraction you did on Day 2 with `extract_form_3_one_file.py` — but loops over many filings instead of one. Process **10 filings** and profile it.
 
 Terminal 2 (start this first):
 ```bash
 watch userload
 ```
 
+The script is set to process **10 filings** (see `NUM_FILINGS` near the top — kept small so a stray run doesn't fire hundreds of paid API calls).
+
 Terminal 1:
 ```bash
-time python scripts/extract_form_3_batch.py --limit 10
+time python scripts/extract_form_3_batch.py
 ```
 
-Watch Terminal 2 as the 10 filings process one after another, and note two very different things:
+Watch Terminal 2 as the 10 filings process one after another:
 
-- **Cores and % Mem barely move.** This script spends almost all its time *waiting on the Stanford API* to extract each filing — it's **I/O-bound** (network-bound), not CPU-bound like the mystery script. One filing sits in memory at a time, so RAM stays low no matter how many you run.
-- **`real` time is substantial** — roughly 10 × the time for a single filing, because the calls run one after another (serial).
+- **Cores and % Mem barely move.** Almost all the time is spent *waiting on the Stanford API* to extract each filing — this is an **I/O-bound** (network-bound) job, not CPU-bound like the mystery script. One filing sits in memory at a time, so RAM stays low no matter how many you run.
+- **`real` time is large but `user` time is small.** The process barely touches the CPU; it's mostly waiting. That gap (`real` ≫ `user`) is the signature of an I/O-bound, serial job.
 
 Note the `real`, `user`, and `sys` times when it finishes. Is this script **serial** or **parallel**?
+
+{: .note }
+> **A couple of things to expect:**
+> - **Spiky, uneven times** — each filing takes as long as the API takes to answer, so 10 filings won't be exactly 10 × one. Timing a batch of 10 averages that out.
+> - **A tidy footprint on purpose.** The script pins `OPENBLAS_NUM_THREADS=1` at the top, so the math libraries don't spin up a thread per core on the shared node. A job that only makes API calls has no use for them — and it keeps your `userload` honest at about **1 Core**.
 
 ---
 
