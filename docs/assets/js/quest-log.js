@@ -105,6 +105,15 @@
     return room + '.' + key;
   }
 
+  // Encode the completed quests into a compact, paste-safe token (base64url of
+  // the comma-joined keys) for scripts/quest_sync.py to decode on the Yens.
+  function encodeProgress() {
+    var progress = loadProgress();
+    var keys = Object.keys(progress).filter(function (k) { return progress[k] === true; }).sort();
+    var b64 = btoa(keys.join(',')).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+    return { token: b64, count: keys.length };
+  }
+
   // ── Checkbox sync ─────────────────────────────────────────────────────────
 
   function initCheckboxes() {
@@ -224,7 +233,15 @@
       '#quest-sunet .quest-sunet-val{font-weight:700;}' +
       '#quest-sunet .quest-sunet-edit{border:none;background:none;padding:0;margin-left:auto;' +
         'color:#8a5a12;text-decoration:underline;font-size:.78rem;}' +
-      '#quest-sunet .quest-sunet-edit:hover{background:none;color:#5b3a08;}';
+      '#quest-sunet .quest-sunet-edit:hover{background:none;color:#5b3a08;}' +
+      '#quest-sync{margin-top:.5rem;padding-top:.5rem;border-top:1px solid rgba(0,0,0,.12);font-size:.82rem;}' +
+      '#quest-sync .quest-sync-go{font:inherit;cursor:pointer;border:1px solid #d9b477;background:#fff;border-radius:6px;padding:.25rem .6rem;font-weight:700;}' +
+      '#quest-sync .quest-sync-go:hover{background:#f3e6cf;}' +
+      '#quest-sync .quest-sync-hint{color:#6a7280;font-size:.72rem;display:block;margin:.3rem 0 .15rem;}' +
+      '#quest-sync textarea{width:100%;box-sizing:border-box;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.7rem;border:1px solid #d9b477;border-radius:6px;padding:.3rem;resize:none;}' +
+      '#quest-sync .quest-sync-row{display:flex;gap:.4rem;align-items:center;margin-top:.3rem;}' +
+      '#quest-sync .quest-sync-copy{font:inherit;cursor:pointer;border:1px solid #d9b477;background:#fff;border-radius:6px;padding:.15rem .55rem;}' +
+      '#quest-sync .quest-sync-copy:hover{background:#f3e6cf;}';
     var sunetStyle = document.createElement('style');
     sunetStyle.textContent = sunetCss;
     document.head.appendChild(sunetStyle);
@@ -252,6 +269,41 @@
     var list = document.createElement('ul');
     list.id = 'quest-log-list';
     panel.appendChild(list);
+
+    // ── Sync: encode progress into a token to paste into scripts/quest_sync.py ─
+    var sync = document.createElement('div');
+    sync.id = 'quest-sync';
+    sync.innerHTML = '<button type="button" class="quest-sync-go">🔄 Sync to leaderboard</button>';
+    panel.appendChild(sync);
+
+    function renderSync() {
+      var enc = encodeProgress();
+      var go = '<button type="button" class="quest-sync-go">🔄 Sync to leaderboard</button>';
+      if (!enc.count) {
+        sync.innerHTML = go + '<span class="quest-sync-hint">Complete a quest first, then sync.</span>';
+        return;
+      }
+      sync.innerHTML = go
+        + '<span class="quest-sync-hint">Run this on the Yens, inside your fork:</span>'
+        + '<textarea readonly rows="3"></textarea>'
+        + '<div class="quest-sync-row"><button type="button" class="quest-sync-copy">Copy</button>'
+        + '<span class="quest-sync-hint" style="margin:0">' + enc.count + ' quest' + (enc.count === 1 ? '' : 's') + '</span></div>';
+      sync.querySelector('textarea').value = 'python scripts/quest_sync.py ' + enc.token;
+    }
+    sync.addEventListener('click', function (e) {
+      var goBtn = e.target.closest ? e.target.closest('.quest-sync-go') : null;
+      var cpBtn = e.target.closest ? e.target.closest('.quest-sync-copy') : null;
+      if (!goBtn && !cpBtn) return;
+      e.stopPropagation();  // keep the panel's click-outside handler from closing us
+      if (goBtn) { renderSync(); return; }
+      var ta = sync.querySelector('textarea');
+      if (ta) {
+        ta.select();
+        try { navigator.clipboard.writeText(ta.value); } catch (_) { try { document.execCommand('copy'); } catch (__) {} }
+        cpBtn.textContent = 'Copied ✓';
+        setTimeout(function () { cpBtn.textContent = 'Copy'; }, 1500);
+      }
+    });
 
     // ── SUNet ID: fills the SUNetID placeholder in commands site-wide ────────
     var SUNET_KEY = 'bootcamp.sunetid';
