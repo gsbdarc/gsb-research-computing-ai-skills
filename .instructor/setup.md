@@ -1,4 +1,4 @@
-# Instructor Setup — RF Coding Bootcamp 2026
+# Instructor Setup — GSB Research Computing & AI Skills
 
 Run these steps before class. Everything here is one-time per cohort unless noted.
 

@@ -1,4 +1,4 @@
-# RF Coding Bootcamp 2026 — Instructor Planning Agenda
+# GSB Research Computing & AI Skills — Instructor Planning Agenda
 
 ## The Running Research Project
 
