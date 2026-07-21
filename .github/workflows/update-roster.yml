@@ -1,0 +1,42 @@
+name: Update leaderboard roster
+
+# Keeps docs/_data/students.yml in sync with everyone who has forked the class
+# repo, so students appear on the leaderboard automatically — no instructor
+# action required. Runs when someone forks, on a short schedule as a safety
+# net, and on demand from the Actions tab.
+on:
+  fork:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/10 * * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-roster
+  cancel-in-progress: false
+
+jobs:
+  roster:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Add new forks to the roster
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 .instructor/sync_forks_to_students.py --apply
+
+      - name: Commit if the roster changed
+        run: |
+          if [[ -n "$(git status --porcelain docs/_data/students.yml)" ]]; then
+            git config user.name  "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add docs/_data/students.yml
+            git commit -m "Auto-update leaderboard roster from forks"
+            git push
+            echo "Roster updated."
+          else
+            echo "No new forks — roster unchanged."
+          fi
