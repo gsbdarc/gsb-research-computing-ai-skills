@@ -7,7 +7,7 @@ permalink: /leaderboard/
 
 # 🏆 Class Leaderboard
 
-*Rankings update when students sync their progress. Each completed exercise adds to your total, which drives your **Level** (max Level 10). **Challenges** = optional day-end capstones completed (max 4).*
+*Rankings update when students sync their progress. **Every quest you complete earns you a spell** — the more spells you acquire, the higher you climb. Each time you clear a day's **Capstone**, you **level up** to a new Title: Apprentice → Conjurer → Enchanter → Mage → Warlock.*
 
 <div id="lb-controls">
   <button id="lb-refresh">↻ Refresh</button>
@@ -36,11 +36,14 @@ permalink: /leaderboard/
 
 .lb-rank { width: 3rem; text-align: center; font-size: 1.3em; font-weight: 700; }
 .lb-name { font-weight: 600; font-size: 1em; }
-.lb-gates { font-size: 1.15em; letter-spacing: 0.1em; white-space: nowrap; }
 .gate-cleared { color: #e67e22; }
 .gate-locked  { color: #ddd; }
-.gate-label { font-size: 0.78em; color: #999; margin-left: 0.4rem; font-family: sans-serif; letter-spacing: 0; }
-.lb-level { white-space: nowrap; }
+.lb-spells { white-space: nowrap; }
+.lb-spell-num { font-size: 1.25em; font-weight: 700; color: #333; }
+.lb-spell-total { font-size: 0.85em; color: #aaa; margin-left: 0.2rem; }
+.lb-title-cell { white-space: nowrap; }
+.lb-title { font-weight: 600; color: #8e44ad; }
+.lb-title-pips { margin-left: 0.45rem; font-size: 1.05em; letter-spacing: 0.08em; }
 .lb-bar-wrap { min-width: 120px; }
 .lb-bar { background: #eee; border-radius: 999px; height: 10px; }
 .lb-fill { background: linear-gradient(90deg, #e67e22, #f1c40f); border-radius: 999px; height: 10px; transition: width 0.5s ease; }
@@ -67,13 +70,24 @@ tr.lb-leader td { background: #f4f8ff; }
     'd4-boss-gate.commit',
   ];
 
-  function computeLevel(checks) {
-    return Math.min(10, Math.floor(checks / TOTAL * 9) + 1);
+  // Dungeon titles earned by clearing each day's Capstone (0-4 cleared).
+  var TITLES = ['Apprentice', 'Conjurer', 'Enchanter', 'Mage', 'Warlock'];
+  function titleFor(caps) { return TITLES[Math.min(caps, 4)]; }
+
+  function spellsCell(n) {
+    return '<span class="lb-spell-num">' + n + '</span>'
+         + '<span class="lb-spell-total">/ ' + TOTAL + '</span>';
   }
 
-  function levelBadge(checks) {
-    var lv = computeLevel(checks);
-    return '<span class="lb-level-num">Lv.' + lv + '</span>';
+  function titleCell(caps) {
+    var pips = '';
+    for (var i = 0; i < 4; i++) {
+      pips += i < caps
+        ? '<span class="gate-cleared" title="Capstone ' + (i+1) + ' cleared">✦</span>'
+        : '<span class="gate-locked" title="Capstone ' + (i+1) + ' not yet cleared">·</span>';
+    }
+    return '<span class="lb-title">' + titleFor(caps) + '</span>'
+         + '<span class="lb-title-pips">' + pips + '</span>';
   }
 
   function parseStudents(text) {
@@ -124,17 +138,6 @@ tr.lb-leader td { background: #f4f8ff; }
     });
   }
 
-  function gateIcons(cleared) {
-    var html = '';
-    for (var i = 0; i < 4; i++) {
-      html += i < cleared
-        ? '<span class="gate-cleared" title="Challenge ' + (i+1) + ' cleared">✔</span>'
-        : '<span class="gate-locked" title="Challenge ' + (i+1) + ' not yet done">·</span>';
-    }
-    html += '<span class="gate-label">' + Math.min(cleared, 4) + '/4</span>';
-    return html;
-  }
-
   function progressBar(n) {
     var pct = Math.min(100, Math.round(n / TOTAL * 100));
     return '<div class="lb-bar"><div class="lb-fill" style="width:' + pct + '%"></div></div>';
@@ -152,7 +155,7 @@ tr.lb-leader td { background: #f4f8ff; }
       return '<p>No students registered yet — the instructor will add them before class.</p>';
     }
     var html = '<table class="lb-table"><thead><tr>'
-      + '<th>Rank</th><th>Name</th><th>Level</th><th>Challenges</th><th>Progress</th>'
+      + '<th>Rank</th><th>Name</th><th>Spells</th><th>Title</th><th>Progress</th>'
       + '</tr></thead><tbody>';
 
     entries.forEach(function (e, i) {
@@ -161,8 +164,8 @@ tr.lb-leader td { background: #f4f8ff; }
       html += '<tr class="' + rowClass + '">'
         + '<td class="lb-rank">' + rankCell(i) + '</td>'
         + '<td class="lb-name">' + e.name + (allClear ? '<span class="lb-crown">👑</span>' : '') + '</td>'
-        + '<td class="lb-level">' + levelBadge(e.completedChecks) + '</td>'
-        + '<td class="lb-gates">' + gateIcons(e.bossGates) + '</td>'
+        + '<td class="lb-spells">' + spellsCell(e.completedChecks) + '</td>'
+        + '<td class="lb-title-cell">' + titleCell(e.bossGates) + '</td>'
         + '<td class="lb-bar-wrap">' + progressBar(e.completedChecks) + '</td>'
         + '</tr>';
     });
