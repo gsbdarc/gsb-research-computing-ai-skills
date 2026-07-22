@@ -77,7 +77,7 @@
   color: #5b4a2f;
 }
 .quest-cmd-gen:hover { background: #f3e6cf; }
-.quest-cmd-hint { display: block; color: #6a7280; font-size: 0.85em; margin-top: 0.4rem; }
+.quest-cmd-hint { display: block; color: #6a7280; font-size: 1rem; margin-top: 0.45rem; }
 
 /* "Copy" button next to a revealed sync command */
 .quest-cmd-copy {
