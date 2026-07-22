@@ -101,18 +101,21 @@ Every day adds a layer to one research pipeline. The dataset: SEC Form 3 filings
 - Job lifecycle: submit → queue → run → complete → logs
 - Job monitoring: `squeue`, `sinfo`, `sacct`, `scancel`, reading `.out`/`.err` logs
 
-### Timing (3 hours)
+### Timing (3 hours ≈ 180 min)
 
-| Section | Time |
-|---|---|
-| Compute Environments (demo) | 25 min |
-| Profiling Resource Usage (profile the mystery script; document resource needs) | 30 min |
-| Exploring Cluster Usage Data (analyze a real Yens system-data snapshot with an AI agent) | 35 min |
-| The SLURM Scheduler (why SLURM exists; read the queue + partitions with squeue/sinfo) | 20 min |
-| Writing & Submitting a SLURM Job (write + submit `slurm/extract_form_3_one_file.slurm`) | 25 min |
-| Debugging Failed Jobs (debug a failed job with sacct + logs) | 15 min |
-| Documenting Your Pipeline (write README) | 20 min |
-| Day 3 Challenge (batch ~10 filings + re-estimate resources) | 15 min |
+Times are rough, scaled by how many quests each section holds and how hands-on it is (the SLURM job section is the heaviest — 13 quests including debugging). Keep a full **30 min** for the Capstone.
+
+| Section | Quests | Time |
+|---|---|---|
+| Compute Environments (demo + discussion) | 3 | 20 min |
+| Profiling Resource Usage (two-terminal live profiling; document resource needs) | 5 | 30 min |
+| Exploring Cluster Usage Data (analyze a real Yens yenstop snapshot with Claude) | 3 | 25 min |
+| The SLURM Scheduler (why SLURM exists; read the queue + partitions with `squeue`/`sinfo`) | 4 | 15 min |
+| Writing & Submitting a SLURM Job (write + submit + monitor + cancel; debug broken `fix_me*.slurm` jobs) | 13 | 45 min |
+| Documenting Your Pipeline (write the README) | 2 | 15 min |
+| Day 3 Capstone (estimate resources for 100 filings *before* running, batch-submit, compare actual vs. estimate, document) | 1 | 30 min |
+
+*If students finish the Capstone early: sync to climb the leaderboard, revisit skipped quests, and bring any lingering Day 3 questions to the instructors.*
 
 ### Section-by-Section Outline
 
@@ -122,10 +125,9 @@ Every day adds a layer to one research pipeline. The dataset: SEC Form 3 filings
 | **Profiling Resource Usage** | Profile a mystery script with `time`, `watch userload`, and `htop` (serial vs. parallel); document resource needs in README | Vectorized vs. non-vectorized profiling; compare `/usr/bin/time -v`'s peak RAM to `userload`'s; profile an I/O-bound script (`sys` vs. `user` time) | Profiling methodology; estimating resources instead of guessing | Two-terminal live profiling |
 | **Exploring Cluster Usage Data** | Load the real yenstop CSV, explore it (e.g. the biggest process in GB given yen1's ~1 TB RAM), and write up one finding in README | Make a plot; compare per-user usage against both the per-user limit and the whole node; run `top` live | Real cluster-data literacy; per-user vs. system limits; plain-language write-up | Explore a monitoring CSV with pandas/Claude; watch live `top` |
 | **The SLURM Scheduler** | Read the queue with `squeue`, filter by partition, explain `R` vs. `PD`, and describe partitions/node states with `sinfo` | `longsqueue` alias; `scontrol show job`; compare a GPU vs. CPU partition | Why SLURM exists; interactive vs. scheduled nodes; partitions | Read and filter the live SLURM queue |
-| **Writing & Submitting a SLURM Job** | Write a SLURM script from scratch (shebang, `#SBATCH` directives, `.out`/`.err` logs, env setup, run command); submit, monitor, and cancel a job | Email notifications (`--mail-type=ALL`); interactive allocation (`srun --pty`); job dependency chaining; ssh to your job's node and watch it with `htop` | Writing a SLURM script line by line; managing a job's lifecycle; reading logs | Write, submit, and cancel a real SLURM job |
-| **Debugging Failed Jobs** | Debug a staged failing job — read `sacct`/logs, fix the bug, resubmit to `COMPLETED` | Audit requested vs. actual usage; follow a live job with `tail -f`; decode `ExitCode`; trigger an OOM; trigger a timeout | Debugging methodology; telling code-bug vs. OOM vs. timeout failures apart | Real debug → fix → resubmit loop |
+| **Writing & Submitting a SLURM Job** | Write a SLURM script from scratch (shebang, `#SBATCH` directives, `.out`/`.err` logs, env setup, run command); submit, monitor, and cancel a job; watch a job run on its node with `htop` | Email notifications (`--mail-type=ALL`); interactive allocation (`srun --pty`); job dependency chaining; the `dev` partition; **debug broken `fix_me*.slurm` jobs** to `COMPLETED`; audit requested-vs-used; follow a live job with `tail -f`; decode `ExitCode`; trigger an OOM; trigger a timeout | Writing a SLURM script line by line; managing a job's lifecycle; reading logs; telling code-bug vs. OOM vs. timeout failures apart | Write, submit, cancel, watch, and debug real SLURM jobs |
 | **Documenting Your Pipeline** | Write a README covering what the script does, how to run it, and where output lands | Have Claude stress-test your README as a first-time reader; explain it to your PI in plain language | Technical documentation habits; AI-assisted review; research communication | Write a full README while the work is fresh |
-| **Day 3 Challenge** | Scale the extraction to a ~10-filing batch and re-estimate `#SBATCH` resources; commit and push the batch SLURM script + README | Grow the batch and watch the elapsed time climb — why serial doesn't scale (primes Day 4 job arrays) | Scaling single-file → batch; re-estimating resources; synthesizing profiling → SLURM → debugging → docs | Full batch submission, backed by real measurements |
+| **Day 3 Capstone** | Estimate CPU/RAM/time for 100 filings and write the estimate (which resources scale + why) in the README *before* running; write `slurm/extract_form_3_batch.slurm` for 100 with email notifications; submit and confirm; compare actual (email/`sacct`) vs. estimate and document over/under; commit and push via Claude Code | — | Estimating a larger run before submitting, then checking the estimate against reality; synthesizing profiling → SLURM → debugging → docs | Full 100-filing batch submission, backed by real measurements |
 
 ---
 

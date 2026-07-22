@@ -10,6 +10,11 @@ permalink: /day3/cluster-usage-data/
 
 <div data-room-id="d3-cluster-usage-data"></div>
 
+{: .note }
+> 🟢 **Green sticky** = I'm done and ready &nbsp;&nbsp; 🔴 **Red sticky** = I need help
+>
+> Put a sticky note on your laptop lid so instructors can see where you are.
+
 ---
 
 ## What Is This Data?

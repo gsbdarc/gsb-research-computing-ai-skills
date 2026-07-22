@@ -151,4 +151,4 @@ See `.instructor/boss-gate-1.key.md` for the full step-by-step solution to Boss 
 
 ## Boss gates
 
-There is **no auto-grader** — every floor is unlocked from the start and boss gates are optional capstone challenges. A student "clears" a gate by committing the gate's deliverables and marking its key `true` in `quest_log.json` (via Claude Code). The leaderboard reads those keys directly: `d1-boss-gate-1.main`, `d2-boss-gate.commit`, `d3-boss-gate.commit`, `d4-boss-gate.commit`.
+There is **no auto-grader** — every floor is unlocked from the start and boss gates are optional capstone challenges. A student "clears" a gate by committing the gate's deliverables and marking its key `true` in `quest_log.json` (via Claude Code). The leaderboard reads those keys directly: `d1-boss-gate-1.main`, `d2-boss-gate.commit`, `d3-capstone.commit`, `d4-boss-gate.commit`.

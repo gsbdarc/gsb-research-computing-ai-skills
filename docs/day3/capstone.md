@@ -1,0 +1,76 @@
+---
+layout: default
+title: "Day 3 Capstone"
+parent: "Day 3 — Cluster Computing"
+nav_order: 10
+permalink: /day3/capstone/
+---
+
+# Day 3 Capstone
+
+{: .note }
+> 🟢 **Green sticky** = I'm done and ready &nbsp;&nbsp; 🔴 **Red sticky** = I need help
+>
+> Put a sticky note on your laptop lid so instructors can see where you are.
+
+---
+
+## The Capstone — Scale to 100 filings
+
+All day you've profiled and run **10 filings**. The capstone: scale to **100** — and **estimate what it needs *before* you run it**.
+
+### 1. Estimate the resources for 100 filings — and write it down first
+
+You're running the same loop, just over 100 files instead of 10. Think about what **CPU**, **RAM**, and **time** it will take. Open `scripts/extract_form_3_batch.py` (or have Claude read it) and reason it out:
+
+> Look at `scripts/extract_form_3_batch.py` and my Profiling README (the 10-filing numbers) and help me estimate the CPU, RAM, and wall-clock time this needs for 100 filings.
+
+**Before you submit anything**, write in your `README.md`: which resources you think will **scale** with the number of filings processed and which will stay about flat — and **why** — along with your CPU, RAM, and wall-clock **estimate for 100**. Committing to a number *before* you run it is the whole point.
+
+### 2. Write a SLURM script for the batch
+
+Create `slurm/extract_form_3_batch.slurm`, just like the `extract_form_3_one_file.slurm` you built earlier — but point it at `scripts/extract_form_3_batch.py` with `NUM_FILINGS` set to `100`. Fill in `--time`, `--mem`, and `--cpus-per-task` with **your estimates for 100**, and add the email-notification lines so you get a completion email.
+
+### 3. Submit and confirm it ran
+
+```bash
+sbatch slurm/extract_form_3_batch.slurm
+squeue --me
+```
+
+Wait for the completion email. From it — and from `sacct -j JOBID --format=JobID,State,Elapsed,MaxRSS` — note **how long it took** and **how much CPU/RAM it actually used** versus what you requested.
+
+### 4. Compare actual vs. your estimate
+
+Back in `README.md`, next to the estimate you wrote in step 1, add the **actual** numbers from the email and `sacct`, and note whether you **over- or under-estimated** each resource — and by how much. That comparison is the payoff; next time you'll estimate better.
+
+### 5. Commit and push from the Yens
+
+Ask Claude Code to handle it:
+
+> Add and commit `slurm/extract_form_3_batch.slurm` and my README changes with a message like "Day 3 Capstone: 100-filing batch", then push to my fork.
+
+<label class="quest-check"><input type="checkbox" data-room="d3-capstone" data-key="commit"> I estimated resources for 100 filings, ran the batch, compared actual vs. requested from the email, documented over/under-estimation in my README, and pushed to my fork</label>
+
+---
+
+## Finished early? Climb the leaderboard
+
+Got time left? Go back through Day 3 and knock out any quests you skipped — every quest you complete and sync bumps your total and your rank on the leaderboard. (Each checked quest has a **🔄 Show my sync command** button; run that command on the Yens to update your standing.)
+
+{: .note }
+> **Done and synced?** Bring any lingering Day 3 questions to the instructors — now's the time to ask.
+
+---
+
+## Day 3 — What You Learned
+
+- **Compute environments** — CPU cores, RAM, and storage, and how laptop vs. Yens vs. cloud trade off.
+- **Profiling** — measuring a script's time, CPU, and RAM with `time`, `userload`, and `htop`; telling **serial from parallel** and **CPU-bound from I/O-bound** work.
+- **Reading real cluster data** — exploring a live monitoring snapshot, and per-user vs. whole-node limits.
+- **SLURM** — why a scheduler exists; reading the queue and partitions (`squeue`, `sinfo`, QoS caps).
+- **Running jobs** — writing a SLURM script from scratch, submitting/monitoring/cancelling, reading `.out`/`.err` logs, and **debugging failed jobs** (code bug vs. OOM vs. timeout).
+- **Resource estimation & scaling** — profiling a small run, estimating a bigger one, and checking your estimate against what the job actually used.
+- **Reproducibility** — a README a colleague (or future you) can actually rerun.
+
+You now have the full loop every real research pipeline needs: **estimate → request → run → check → document.**
