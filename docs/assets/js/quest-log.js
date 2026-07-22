@@ -167,30 +167,86 @@
     return { token: spell, count: count };
   }
 
-  // Auto-fill any on-page `quest_sync.py ...` command with the live spell, and
-  // give it a one-click Copy button. Runs on load and on every checkbox change,
-  // so the command shown on the page is always ready to paste.
-  function refreshSyncCommands() {
-    var spell = encodeProgress().token;
-    var nodes = document.querySelectorAll('code');
-    for (var i = 0; i < nodes.length; i++) {
-      var el = nodes[i];
-      if (el.textContent.indexOf('scripts/quest_sync.py') === -1) continue;
-      el.textContent = el.textContent.replace(/(quest_sync\.py\s+)\S+/, '$1' + spell);
-      if (!el.dataset.questCmd) {
-        el.dataset.questCmd = '1';
-        var copyBtn = document.createElement('button');
-        copyBtn.type = 'button';
-        copyBtn.className = 'quest-cmd-copy';
-        copyBtn.textContent = 'Copy';
-        (function (element, button) {
-          button.addEventListener('click', function () {
-            try { navigator.clipboard.writeText(element.textContent); } catch (_) {}
-            button.textContent = 'Copied ✓';
-            setTimeout(function () { button.textContent = 'Copy'; }, 1500);
-          });
-        })(el, copyBtn);
-        el.insertAdjacentElement('afterend', copyBtn);
+  // Per-checkbox sync affordance: once a quest box is checked, a "Show my sync
+  // command" button appears beneath it; clicking reveals the current incantation
+  // plus a Copy button. The incantation is the same site-wide (total + capstones)
+  // and refreshed live so a revealed command never goes stale.
+  function buildSyncCommand() {
+    return 'python3 scripts/quest_sync.py ' + encodeProgress().token;
+  }
+
+  function ensureSyncAffordance(label) {
+    var box = label.nextElementSibling;
+    if (box && box.classList && box.classList.contains('quest-sync-inline')) return box;
+
+    box = document.createElement('div');
+    box.className = 'quest-sync-inline';
+
+    var gen = document.createElement('button');
+    gen.type = 'button';
+    gen.className = 'quest-cmd-gen';
+    gen.textContent = '🔄 Show my sync command';
+
+    var reveal = document.createElement('span');
+    reveal.className = 'quest-cmd-reveal';
+    reveal.style.display = 'none';
+
+    var code = document.createElement('code');
+    code.className = 'quest-cmd';
+
+    var copy = document.createElement('button');
+    copy.type = 'button';
+    copy.className = 'quest-cmd-copy';
+    copy.textContent = 'Copy';
+
+    var hint = document.createElement('span');
+    hint.className = 'quest-cmd-hint';
+    hint.innerHTML = 'run it on the Yens, inside your clone · first time: <code>gh auth login</code>';
+
+    reveal.appendChild(code);
+    reveal.appendChild(copy);
+    reveal.appendChild(hint);
+    box.appendChild(gen);
+    box.appendChild(reveal);
+
+    gen.addEventListener('click', function () {
+      code.textContent = buildSyncCommand();
+      reveal.style.display = '';
+      gen.style.display = 'none';
+    });
+    copy.addEventListener('click', function () {
+      try { navigator.clipboard.writeText(code.textContent); } catch (_) {}
+      copy.textContent = 'Copied ✓';
+      setTimeout(function () { copy.textContent = 'Copy'; }, 1500);
+    });
+
+    label.insertAdjacentElement('afterend', box);
+    return box;
+  }
+
+  // Show/hide the sync affordance under a checkbox as it is checked/unchecked.
+  function toggleSyncAffordance(label, checked) {
+    if (!label) return;
+    if (checked) {
+      ensureSyncAffordance(label).style.display = '';
+    } else {
+      var box = label.nextElementSibling;
+      if (box && box.classList && box.classList.contains('quest-sync-inline')) {
+        box.style.display = 'none';
+        box.querySelector('.quest-cmd-gen').style.display = '';
+        box.querySelector('.quest-cmd-reveal').style.display = 'none';
+      }
+    }
+  }
+
+  // Keep any already-revealed command current as more boxes are ticked.
+  function updateRevealedSpells() {
+    var cmd = buildSyncCommand();
+    var reveals = document.querySelectorAll('.quest-sync-inline .quest-cmd-reveal');
+    for (var i = 0; i < reveals.length; i++) {
+      if (reveals[i].style.display !== 'none') {
+        var c = reveals[i].querySelector('code.quest-cmd');
+        if (c) c.textContent = cmd;
       }
     }
   }
@@ -210,7 +266,7 @@
       if (progress[sk]) {
         cb.checked = true;
         var label = cb.closest('.quest-check');
-        if (label) label.classList.add('done');
+        if (label) { label.classList.add('done'); toggleSyncAffordance(label, true); }
       }
 
       // Save on change
@@ -227,7 +283,8 @@
         if (label) label.classList.toggle('done', cb.checked);
 
         renderQuestLog();
-        refreshSyncCommands();
+        toggleSyncAffordance(label, cb.checked);
+        updateRevealedSpells();
       });
     });
   }
@@ -425,7 +482,6 @@
     createWidget();
     initCheckboxes();
     renderQuestLog();
-    refreshSyncCommands();
   });
 
 })();

@@ -63,7 +63,21 @@
 }
 .quest-check.done { text-decoration: line-through; color: #999; }
 
-/* Small "Copy" button appended after an auto-filled sync command */
+/* Per-checkbox sync affordance: "Show my sync command" → revealed incantation */
+.quest-sync-inline { margin: -0.35rem 0 0.85rem 1.6rem; font-size: 0.85em; }
+.quest-cmd-gen {
+  cursor: pointer;
+  padding: 0.15rem 0.6rem;
+  font-size: 0.95em;
+  border: 1px solid #d9b477;
+  border-radius: 6px;
+  background: #fff8ef;
+  color: #5b4a2f;
+}
+.quest-cmd-gen:hover { background: #f3e6cf; }
+.quest-cmd-hint { display: block; color: #6a7280; font-size: 0.85em; margin-top: 0.25rem; }
+
+/* Small "Copy" button next to a revealed sync command */
 .quest-cmd-copy {
   margin-left: 0.4rem;
   padding: 0.05rem 0.4rem;

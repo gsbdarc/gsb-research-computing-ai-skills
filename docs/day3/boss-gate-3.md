@@ -47,12 +47,7 @@ Your batch ran the 100 filings **one after another**. Now imagine thousands: eve
 
 ## 📊 End of Day 3 — Sync Your Progress
 
-Let your instructor see where you landed today:
-
-1. Tick the quests you completed.
-2. On the Yens, inside your clone, run the sync command — it's **already filled in with your progress** (click **Copy** on the command): `python3 scripts/quest_sync.py <paste-token>`
-
-The leaderboard updates within ~2 minutes. (First time only: sign in once with `gh auth login` — see Day 1 — so the push works.)
+Let your instructor see where you landed today: check off everything you finished, then click **🔄 Show my sync command** beneath any checked quest and run that command on the Yens, inside your clone. The leaderboard updates within ~2 minutes. (First time only: sign in once with `gh auth login` — see Day 1 — so the push works.)
 
 ---
 

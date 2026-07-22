@@ -182,12 +182,8 @@ rm -r ~/Desktop/spell_chamber        # remove the folder and all its contents
 <label class="quest-check"><input type="checkbox" data-room="d1-command-spire" data-key="main"> Exercise complete</label>
 
 {: .note }
-> **📤 Sync your progress to the leaderboard**
+> **📤 Syncing your progress to the leaderboard**
 >
-> Once you've forked and cloned the repo (coming up in **The Repository**), record your progress like this:
+> Whenever you check off a quest, a **🔄 Show my sync command** button appears beneath it. Click it to reveal your personal sync command — a short "incantation" — then run that command on the Yens, inside your clone, to update the leaderboard.
 >
-> 1. Tick the quests you completed.
-> 2. **First time only:** sign in once with `gh auth login` (also in **The Repository**) so the push works.
-> 3. On the Yens, inside your clone, run the sync command — it's **already filled in with your progress** (click **Copy** on the command to grab it): `python3 scripts/quest_sync.py <paste-token>`
->
-> The command **updates automatically** as you tick more quests — just copy and re-run it whenever you finish more. It always holds your full progress.
+> **First time only:** sign in once with `gh auth login` (coming up in **The Repository**) so the push works.
