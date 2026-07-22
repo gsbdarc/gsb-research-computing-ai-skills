@@ -170,18 +170,18 @@ The Stanford gateway clears all three levels because it stays inside Stanford's 
 
 ---
 
-## 📦 Side Quests
+## Side quests
 
 {: .note }
 > Finished early? Try any of these.
 
-**Side Quest: Search for Leaked Keys**
+**Side quest — Search for Leaked Keys**
 
 The warning above says GitHub indexes public repos and automated scanners find leaked keys. See it for yourself: use [GitHub code search](https://github.com/search) to look up a well-known leaked-key pattern, like `AKIA` (an AWS access key prefix) or a generic `sk-` prefix. Don't open, save, clone, or use anything you find. Just note how many public results come back. This is exactly what those scanners are doing at scale, all day, every day.
 
 <label class="quest-check"><input type="checkbox" data-room="d2-key-vault" data-key="side1"> I searched GitHub for a leaked-key pattern and saw how many public results turned up</label>
 
-**Side Quest: Prove Git Never Forgets**
+**Side quest — Prove Git Never Forgets**
 
 In a throwaway scratch repo (not this one), commit a fake `.env` containing a made-up key like `STANFORD_API_KEY=sk-fake-1234`. Delete the file in a second commit. Now run:
 
