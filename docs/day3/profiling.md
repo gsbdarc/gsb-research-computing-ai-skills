@@ -8,6 +8,11 @@ permalink: /day3/profiling/
 
 # Profiling Resource Usage
 
+{: .note }
+> 🟢 **Green sticky** = I'm done and ready &nbsp;&nbsp; 🔴 **Red sticky** = I need help
+>
+> Put a sticky note on your laptop lid so instructors can see where you are.
+
 ---
 
 ## Computing Resources — A Quick Recap
@@ -232,10 +237,12 @@ Fill in the actual numbers from your `time` and `userload` output.
 
 ---
 
-## Side quest — Vectorized vs. Non-Vectorized
+## Side quests
 
 {: .note }
-> Finished early?
+> Finished early? Try any of these.
+
+**Side quest — Vectorized vs. Non-Vectorized**
 
 The single biggest speedup in scientific Python is usually **vectorization** — doing the math on a whole array in one operation instead of looping element-by-element in Python. The array operation runs in fast, pre-compiled code, so it's often 10–100× faster. We ship a script that computes the same sum of squares both ways — profile it and see the difference.
 
@@ -254,12 +261,7 @@ Both versions produce the identical result; the script prints how much faster th
 
 <label class="quest-check"><input type="checkbox" data-room="d3-profiling" data-key="side2"> I profiled the vectorized vs. non-vectorized demo and saw the speedup</label>
 
----
-
-## Side quest — Change the number of cores
-
-{: .note }
-> Finished early? Try one or both of these.
+**Side quest — Change the number of cores**
 
 Open `scripts/mystery_script.py` and change `num_cores = 4` to a different number — try **1**, or **8**. Then **profile it again** just like you did above: `watch userload` in one terminal, and `time` + `htop` in the other.
 

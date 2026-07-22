@@ -10,6 +10,11 @@ permalink: /day3/compute-environments/
 
 <div data-room-id="d3-compute-environments"></div>
 
+{: .note }
+> 🟢 **Green sticky** = I'm done and ready &nbsp;&nbsp; 🔴 **Red sticky** = I need help
+>
+> Put a sticky note on your laptop lid so instructors can see where you are.
+
 ---
 
 ## Your Research Project in Computing Terms
