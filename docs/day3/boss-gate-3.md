@@ -49,9 +49,8 @@ Your batch ran the 100 filings **one after another**. Now imagine thousands: eve
 
 Let your instructor see where you landed today:
 
-1. Open the **Quest Log** (bottom-left corner) → click **Sync**.
-2. Click **Copy token**.
-3. On the Yens, inside your clone, run `python3 scripts/quest_sync.py <paste-token>`.
+1. Tick the quests you completed.
+2. On the Yens, inside your clone, run the sync command — it's **already filled in with your progress** (click **Copy** on the command): `python3 scripts/quest_sync.py <paste-token>`
 
 The leaderboard updates within ~2 minutes. (First time only: sign in once with `gh auth login` — see Day 1 — so the push works.)
 

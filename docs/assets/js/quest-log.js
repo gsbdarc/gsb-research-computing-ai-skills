@@ -1,3 +1,8 @@
+---
+# Front matter makes Jekyll process this file through Liquid so the sync-token
+# wordlist can be injected from docs/_data/spell_words.json (see SPELL_WORDS
+# below). Keep this file free of `{{` and `{%` sequences other than that one.
+---
 /* DARC Dungeon — Quest Log
  * Persists checkbox state across pages via localStorage.
  * Shows a floating widget with completion count.
@@ -6,6 +11,11 @@
 
 (function () {
   'use strict';
+
+  // Spell wordlist for the sync token — injected at build time from the single
+  // source of truth docs/_data/spell_words.json (scripts/quest_sync.py reads the
+  // same file to decode). 256 words → one word per byte.
+  var SPELL_WORDS = {{ site.data.spell_words | jsonify }};
 
   const STORAGE_KEY = 'dungeon.v1.progress';
 
@@ -125,24 +135,53 @@
     return h.toString(16);
   }
 
-  // Encode completed quests as a compact, fixed-size, paste-safe token:
-  // version "1", a hash of the key list, and a base64url bitfield (one bit per
-  // canonical key). scripts/quest_sync.py decodes it on the Yens.
+  // Encode completed quests as a mnemonic "spell" — one word per byte of the
+  // bitfield (one bit per canonical key), plus two "seal" words derived from the
+  // key-list hash so scripts/quest_sync.py can reject a stale-version spell.
+  // Hyphen-joined so it pastes as a single shell argument.
   function encodeProgress() {
     var progress = loadProgress();
     var keys = orderedKeys();
-    var bytes = new Uint8Array(Math.ceil(keys.length / 8));
+    var nbytes = Math.ceil(keys.length / 8);
+    var bytes = [];
+    for (var b = 0; b < nbytes; b++) bytes.push(0);
     var count = 0;
     for (var i = 0; i < keys.length; i++) {
-      if (progress[keys[i]] === true) {
-        bytes[i >> 3] |= (1 << (i & 7));
-        count++;
+      if (progress[keys[i]] === true) { bytes[i >> 3] |= (1 << (i & 7)); count++; }
+    }
+    var hh = ('0000000' + keyListHash(keys)).slice(-8);   // 8 hex chars, zero-padded
+    bytes.push(parseInt(hh.slice(0, 2), 16));             // seal byte 0
+    bytes.push(parseInt(hh.slice(2, 4), 16));             // seal byte 1
+    var spell = bytes.map(function (x) { return SPELL_WORDS[x]; }).join('-');
+    return { token: spell, count: count };
+  }
+
+  // Auto-fill any on-page `quest_sync.py ...` command with the live spell, and
+  // give it a one-click Copy button. Runs on load and on every checkbox change,
+  // so the command shown on the page is always ready to paste.
+  function refreshSyncCommands() {
+    var spell = encodeProgress().token;
+    var nodes = document.querySelectorAll('code');
+    for (var i = 0; i < nodes.length; i++) {
+      var el = nodes[i];
+      if (el.textContent.indexOf('scripts/quest_sync.py') === -1) continue;
+      el.textContent = el.textContent.replace(/(quest_sync\.py\s+)\S+/, '$1' + spell);
+      if (!el.dataset.questCmd) {
+        el.dataset.questCmd = '1';
+        var copyBtn = document.createElement('button');
+        copyBtn.type = 'button';
+        copyBtn.className = 'quest-cmd-copy';
+        copyBtn.textContent = 'Copy';
+        (function (element, button) {
+          button.addEventListener('click', function () {
+            try { navigator.clipboard.writeText(element.textContent); } catch (_) {}
+            button.textContent = 'Copied ✓';
+            setTimeout(function () { button.textContent = 'Copy'; }, 1500);
+          });
+        })(el, copyBtn);
+        el.insertAdjacentElement('afterend', copyBtn);
       }
     }
-    var bin = '';
-    for (var j = 0; j < bytes.length; j++) bin += String.fromCharCode(bytes[j]);
-    var b64 = btoa(bin).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
-    return { token: '1.' + keyListHash(keys) + '.' + b64, count: count };
   }
 
   // ── Checkbox sync ─────────────────────────────────────────────────────────
@@ -177,6 +216,7 @@
         if (label) label.classList.toggle('done', cb.checked);
 
         renderQuestLog();
+        refreshSyncCommands();
       });
     });
   }
@@ -263,15 +303,7 @@
       '#quest-sunet .quest-sunet-val{font-weight:700;}' +
       '#quest-sunet .quest-sunet-edit{border:none;background:none;padding:0;margin-left:auto;' +
         'color:#8a5a12;text-decoration:underline;font-size:.78rem;}' +
-      '#quest-sunet .quest-sunet-edit:hover{background:none;color:#5b3a08;}' +
-      '#quest-sync{margin-top:.5rem;padding-top:.5rem;border-top:1px solid rgba(0,0,0,.12);font-size:.82rem;}' +
-      '#quest-sync .quest-sync-go{font:inherit;cursor:pointer;border:1px solid #d9b477;background:#fff;border-radius:6px;padding:.25rem .6rem;font-weight:700;}' +
-      '#quest-sync .quest-sync-go:hover{background:#f3e6cf;}' +
-      '#quest-sync .quest-sync-hint{color:#6a7280;font-size:.72rem;display:block;margin:.3rem 0 .15rem;}' +
-      '#quest-sync textarea{width:100%;box-sizing:border-box;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.7rem;border:1px solid #d9b477;border-radius:6px;padding:.3rem;resize:none;}' +
-      '#quest-sync .quest-sync-row{display:flex;gap:.4rem;align-items:center;margin-top:.3rem;}' +
-      '#quest-sync .quest-sync-copy{font:inherit;cursor:pointer;border:1px solid #d9b477;background:#fff;border-radius:6px;padding:.15rem .55rem;}' +
-      '#quest-sync .quest-sync-copy:hover{background:#f3e6cf;}';
+      '#quest-sunet .quest-sunet-edit:hover{background:none;color:#5b3a08;}';
     var sunetStyle = document.createElement('style');
     sunetStyle.textContent = sunetCss;
     document.head.appendChild(sunetStyle);
@@ -299,41 +331,6 @@
     var list = document.createElement('ul');
     list.id = 'quest-log-list';
     panel.appendChild(list);
-
-    // ── Sync: encode progress into a token to paste into scripts/quest_sync.py ─
-    var sync = document.createElement('div');
-    sync.id = 'quest-sync';
-    sync.innerHTML = '<button type="button" class="quest-sync-go">🔄 Sync</button>';
-    panel.appendChild(sync);
-
-    function renderSync() {
-      var enc = encodeProgress();
-      var go = '<button type="button" class="quest-sync-go">🔄 Sync</button>';
-      if (!enc.count) {
-        sync.innerHTML = go + '<span class="quest-sync-hint">Complete a quest first, then sync.</span>';
-        return;
-      }
-      sync.innerHTML = go
-        + '<span class="quest-sync-hint">Copy your progress token, then paste it into the sync command shown on the page:</span>'
-        + '<textarea readonly rows="2"></textarea>'
-        + '<div class="quest-sync-row"><button type="button" class="quest-sync-copy">Copy token</button>'
-        + '<span class="quest-sync-hint" style="margin:0">' + enc.count + ' quest' + (enc.count === 1 ? '' : 's') + '</span></div>';
-      sync.querySelector('textarea').value = enc.token;
-    }
-    sync.addEventListener('click', function (e) {
-      var goBtn = e.target.closest ? e.target.closest('.quest-sync-go') : null;
-      var cpBtn = e.target.closest ? e.target.closest('.quest-sync-copy') : null;
-      if (!goBtn && !cpBtn) return;
-      e.stopPropagation();  // keep the panel's click-outside handler from closing us
-      if (goBtn) { renderSync(); return; }
-      var ta = sync.querySelector('textarea');
-      if (ta) {
-        ta.select();
-        try { navigator.clipboard.writeText(ta.value); } catch (_) { try { document.execCommand('copy'); } catch (__) {} }
-        cpBtn.textContent = 'Copied ✓';
-        setTimeout(function () { cpBtn.textContent = 'Copy'; }, 1500);
-      }
-    });
 
     // ── SUNet ID: fills the SUNetID placeholder in commands site-wide ────────
     var SUNET_KEY = 'bootcamp.sunetid';
@@ -417,6 +414,7 @@
     createWidget();
     initCheckboxes();
     renderQuestLog();
+    refreshSyncCommands();
   });
 
 })();
