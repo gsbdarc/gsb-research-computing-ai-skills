@@ -47,7 +47,7 @@ python3 ~/gsb-research-computing-ai-skills/scripts/extract_form_3_cli.py "$FILIN
 ```
 
 {: .tip }
-> **Throttle concurrency with `%N`.** As written, `--array=1-100` lets SLURM run as many of the 100 tasks at once as the partition allows — and since each task calls the Stanford AI Playground, dozens of simultaneous requests can trip the API's rate limit and fail. Cap how many run *at the same time* by appending `%N` to the array range:
+> **Throttle concurrency with `%N`.** As written, `--array=1-100` lets SLURM run as many of the 100 tasks at once as the partition allows — and since each task calls the Stanford AI API Gateway, dozens of simultaneous requests can trip the API's rate limit and fail. Cap how many run *at the same time* by appending `%N` to the array range:
 >
 > ```bash
 > #SBATCH --array=1-100%10   # all 100 tasks still run, but at most 10 at once

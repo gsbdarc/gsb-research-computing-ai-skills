@@ -113,7 +113,7 @@ ollama pull llama3.2:3b     # download the weights (cached locally on the cluste
 ollama serve                # start the local model server (keep it running)
 ```
 
-**Part 2 — Query it from Python.** The interface is **OpenAI-compatible**, so this is the *same* code you used for the Stanford AI Playground on Day 2 — only the `base_url` changes.
+**Part 2 — Query it from Python.** The interface is **OpenAI-compatible**, so this is the *same* code you used for the Stanford AI API Gateway on Day 2 — only the `base_url` changes.
 
 ```python
 from openai import OpenAI

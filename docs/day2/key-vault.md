@@ -10,14 +10,14 @@ permalink: /day2/key-vault/
 
 <div data-room-id="d2-key-vault"></div>
 
-*You press your shoulder against a door reinforced with iron bands and Stanford seals. It swings open to reveal a small chamber with a single locked chest. Inside: the key that opens the Stanford AI Playground. These keys are not yours to keep. They belong to Stanford, they are audited, and they do not cross the campus perimeter. Know what that buys you — speed, safety, budget protection — and what it costs you — privacy of prompts — before your fingers touch a single API endpoint.*
+*You press your shoulder against a door reinforced with iron bands and Stanford seals. It swings open to reveal a small chamber with a single locked chest. Inside: the key that opens the Stanford AI API Gateway. These keys are not yours to keep. They belong to Stanford, they are audited, and they do not cross the campus perimeter. Know what that buys you — speed, safety, budget protection — and what it costs you — privacy of prompts — before your fingers touch a single API endpoint.*
 
 ---
 
 ## 🗡️ Main Quest
 
 {: .important }
-> **Quest:** Load the Stanford AI Playground API key from a `.env` file, add `.env` to `.gitignore`, and make your first authenticated API call.
+> **Quest:** Load the Stanford AI API Gateway API key from a `.env` file, add `.env` to `.gitignore`, and make your first authenticated API call.
 
 ---
 
@@ -200,4 +200,4 @@ The key is still there, sitting in the first commit, even though the file is gon
 
 - Load API keys from `.env` using `python-dotenv` — the key stays out of your code and out of git
 - `.gitignore` is your first line of defense against accidental credential exposure
-- Everything you send through the Stanford AI Playground is logged — classify your data before calling the API
+- Everything you send through the Stanford AI API Gateway is logged — classify your data before calling the API

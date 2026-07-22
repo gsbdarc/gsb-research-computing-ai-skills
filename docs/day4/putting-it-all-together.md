@@ -21,7 +21,7 @@ This capstone combines everything from the week into one pipeline — all at onc
 > Reuse your `jobs/array_extract.sh` from [Submitting an Array Job](../array-exercise/) (`--array=1-100`). Each task processes one filing and writes its result to `/scratch/shared/$USER/results/filing_N.json`. After the array completes, merge all outputs into `results/extracted_filings.csv`.
 >
 > **Part 2 — Swap the endpoint:**
-> Modify your array script to call **Ollama on the H200** instead of the Stanford AI Playground. The Ollama server must be running on `yen-gpu4` in a `screen` session before you submit the array.
+> Modify your array script to call **Ollama on the H200** instead of the Stanford AI API Gateway. The Ollama server must be running on `yen-gpu4` in a `screen` session before you submit the array.
 >
 > **Part 3 — Compare outputs:**
 > Run the same 5 filings through both the Playground (`gpt-4o-mini`) and Ollama (your chosen model). Save the results side-by-side in `results/comparison.csv` with columns: `filename`, `playground_name`, `ollama_name`, `playground_role`, `ollama_role`.
@@ -56,7 +56,7 @@ Every row in this table is a tool you used this week and where you learned it �
 | Remote access | SSH | Day 1 — Connecting to a Cluster |
 | Version control | Git fork → commit → push | Day 1 — Version Control with Git |
 | Python environment | venv + pip + dotenv | Day 2 — environment setup |
-| LLM extraction | Stanford AI Playground + Pydantic | Day 2 — structured extraction |
+| LLM extraction | Stanford AI API Gateway + Pydantic | Day 2 — structured extraction |
 | Data governance | 3-bucket privacy rule | Day 2 — data classification |
 | Batch jobs | SLURM `sbatch` + profiling | Day 3 — batch jobs |
 | Documentation | README + project layout | Day 3 — reproducibility |

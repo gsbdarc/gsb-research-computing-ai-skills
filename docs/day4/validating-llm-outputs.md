@@ -57,13 +57,13 @@ Because the model won't flag its own mistakes, you have to check correctness *ex
 - **Compare across models.** Run the same inputs through two different models and look at where they *disagree* — disagreement is a cheap flag for "this item is uncertain," pointing you to the cases worth reviewing.
 
 {: .tip }
-> **Swapping in a second model is a one-line change.** The Stanford AI Playground, a local model served by Ollama, and third-party APIs all speak the same OpenAI-compatible API — so running the same prompt through another model just means a different `base_url` (and `model`/`api_key`). The rest of your code is identical:
+> **Swapping in a second model is a one-line change.** The Stanford AI API Gateway, a local model served by Ollama, and third-party APIs all speak the same OpenAI-compatible API — so running the same prompt through another model just means a different `base_url` (and `model`/`api_key`). The rest of your code is identical:
 >
 > ```python
 > import os
 > from openai import OpenAI
 >
-> # Model A — Stanford AI Playground
+> # Model A — Stanford AI API Gateway
 > playground = OpenAI(base_url="https://aiapi-prod.stanford.edu/v1", api_key=os.getenv("STANFORD_API_KEY"))
 >
 > # Model B — a local model served by Ollama on the Yens
