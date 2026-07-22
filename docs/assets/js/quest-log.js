@@ -1,3 +1,8 @@
+---
+# Front matter makes Jekyll process this file through Liquid so the sync-token
+# wordlist can be injected from docs/_data/spell_words.json (see SPELL_WORDS
+# below). Keep this file free of `{{` and `{%` sequences other than that one.
+---
 /* DARC Dungeon — Quest Log
  * Persists checkbox state across pages via localStorage.
  * Shows a floating widget with completion count.
@@ -6,6 +11,11 @@
 
 (function () {
   'use strict';
+
+  // Spell wordlist for the sync token — injected at build time from the single
+  // source of truth docs/_data/spell_words.json (scripts/quest_sync.py reads the
+  // same file to decode). 256 words → one word per byte.
+  var SPELL_WORDS = {{ site.data.spell_words | jsonify }};
 
   const STORAGE_KEY = 'dungeon.v1.progress';
 
@@ -125,24 +135,120 @@
     return h.toString(16);
   }
 
-  // Encode completed quests as a compact, fixed-size, paste-safe token:
-  // version "1", a hash of the key list, and a base64url bitfield (one bit per
-  // canonical key). scripts/quest_sync.py decodes it on the Yens.
+  // quest_log.json keys that mark each day's boss gate (capstone) complete —
+  // must match BOSS_GATE_KEYS in docs/leaderboard.md.
+  var BOSS_GATE_KEYS = [
+    'd1-boss-gate-1.main',
+    'd2-boss-gate.commit',
+    'd3-boss-gate.commit',
+    'd4-boss-gate.commit'
+  ];
+
+  // Encode progress as a short 3-word "spell": [completed count, capstone count,
+  // seal]. The leaderboard only needs those two numbers, so the spell stays a
+  // short incantation. The seal (key-list hash byte folded in with the counts)
+  // lets scripts/quest_sync.py reject a stale-version or mistyped spell; the
+  // per-position offset keeps a zero byte from always rendering as the same word.
   function encodeProgress() {
     var progress = loadProgress();
     var keys = orderedKeys();
-    var bytes = new Uint8Array(Math.ceil(keys.length / 8));
     var count = 0;
     for (var i = 0; i < keys.length; i++) {
-      if (progress[keys[i]] === true) {
-        bytes[i >> 3] |= (1 << (i & 7));
-        count++;
+      if (progress[keys[i]] === true) count++;
+    }
+    var bossCount = 0;
+    for (var b = 0; b < BOSS_GATE_KEYS.length; b++) {
+      if (progress[BOSS_GATE_KEYS[b]] === true) bossCount++;
+    }
+    var hashByte = parseInt(('0000000' + keyListHash(keys)).slice(-8).slice(0, 2), 16);
+    var seal = (count + bossCount + hashByte) & 255;
+    var bytes = [count & 255, bossCount & 255, seal];
+    var spell = bytes.map(function (x, i) { return SPELL_WORDS[(x + i * 17) & 255]; }).join('-');
+    return { token: spell, count: count };
+  }
+
+  // Per-checkbox sync affordance: once a quest box is checked, a "Show my sync
+  // command" button appears beneath it; clicking reveals the current incantation
+  // plus a Copy button. The incantation is the same site-wide (total + capstones)
+  // and refreshed live so a revealed command never goes stale.
+  function buildSyncCommand() {
+    return 'python3 scripts/quest_sync.py ' + encodeProgress().token;
+  }
+
+  function ensureSyncAffordance(label) {
+    var box = label.nextElementSibling;
+    if (box && box.classList && box.classList.contains('quest-sync-inline')) return box;
+
+    box = document.createElement('div');
+    box.className = 'quest-sync-inline';
+
+    var gen = document.createElement('button');
+    gen.type = 'button';
+    gen.className = 'quest-cmd-gen';
+    gen.textContent = '🔄 Show my sync command';
+
+    var reveal = document.createElement('span');
+    reveal.className = 'quest-cmd-reveal';
+    reveal.style.display = 'none';
+
+    var code = document.createElement('code');
+    code.className = 'quest-cmd';
+
+    var copy = document.createElement('button');
+    copy.type = 'button';
+    copy.className = 'quest-cmd-copy';
+    copy.textContent = 'Copy';
+
+    var hint = document.createElement('span');
+    hint.className = 'quest-cmd-hint';
+    hint.innerHTML = 'run it on the Yens, inside your clone · first time: <code>gh auth login</code>';
+
+    reveal.appendChild(code);
+    reveal.appendChild(copy);
+    reveal.appendChild(hint);
+    box.appendChild(gen);
+    box.appendChild(reveal);
+
+    gen.addEventListener('click', function () {
+      code.textContent = buildSyncCommand();
+      reveal.style.display = '';
+      gen.style.display = 'none';
+    });
+    copy.addEventListener('click', function () {
+      try { navigator.clipboard.writeText(code.textContent); } catch (_) {}
+      copy.textContent = 'Copied ✓';
+      setTimeout(function () { copy.textContent = 'Copy'; }, 1500);
+    });
+
+    label.insertAdjacentElement('afterend', box);
+    return box;
+  }
+
+  // Show/hide the sync affordance under a checkbox as it is checked/unchecked.
+  function toggleSyncAffordance(label, checked) {
+    if (!label) return;
+    if (checked) {
+      ensureSyncAffordance(label).style.display = '';
+    } else {
+      var box = label.nextElementSibling;
+      if (box && box.classList && box.classList.contains('quest-sync-inline')) {
+        box.style.display = 'none';
+        box.querySelector('.quest-cmd-gen').style.display = '';
+        box.querySelector('.quest-cmd-reveal').style.display = 'none';
       }
     }
-    var bin = '';
-    for (var j = 0; j < bytes.length; j++) bin += String.fromCharCode(bytes[j]);
-    var b64 = btoa(bin).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
-    return { token: '1.' + keyListHash(keys) + '.' + b64, count: count };
+  }
+
+  // Keep any already-revealed command current as more boxes are ticked.
+  function updateRevealedSpells() {
+    var cmd = buildSyncCommand();
+    var reveals = document.querySelectorAll('.quest-sync-inline .quest-cmd-reveal');
+    for (var i = 0; i < reveals.length; i++) {
+      if (reveals[i].style.display !== 'none') {
+        var c = reveals[i].querySelector('code.quest-cmd');
+        if (c) c.textContent = cmd;
+      }
+    }
   }
 
   // ── Checkbox sync ─────────────────────────────────────────────────────────
@@ -160,7 +266,7 @@
       if (progress[sk]) {
         cb.checked = true;
         var label = cb.closest('.quest-check');
-        if (label) label.classList.add('done');
+        if (label) { label.classList.add('done'); toggleSyncAffordance(label, true); }
       }
 
       // Save on change
@@ -177,6 +283,8 @@
         if (label) label.classList.toggle('done', cb.checked);
 
         renderQuestLog();
+        toggleSyncAffordance(label, cb.checked);
+        updateRevealedSpells();
       });
     });
   }
@@ -263,15 +371,7 @@
       '#quest-sunet .quest-sunet-val{font-weight:700;}' +
       '#quest-sunet .quest-sunet-edit{border:none;background:none;padding:0;margin-left:auto;' +
         'color:#8a5a12;text-decoration:underline;font-size:.78rem;}' +
-      '#quest-sunet .quest-sunet-edit:hover{background:none;color:#5b3a08;}' +
-      '#quest-sync{margin-top:.5rem;padding-top:.5rem;border-top:1px solid rgba(0,0,0,.12);font-size:.82rem;}' +
-      '#quest-sync .quest-sync-go{font:inherit;cursor:pointer;border:1px solid #d9b477;background:#fff;border-radius:6px;padding:.25rem .6rem;font-weight:700;}' +
-      '#quest-sync .quest-sync-go:hover{background:#f3e6cf;}' +
-      '#quest-sync .quest-sync-hint{color:#6a7280;font-size:.72rem;display:block;margin:.3rem 0 .15rem;}' +
-      '#quest-sync textarea{width:100%;box-sizing:border-box;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.7rem;border:1px solid #d9b477;border-radius:6px;padding:.3rem;resize:none;}' +
-      '#quest-sync .quest-sync-row{display:flex;gap:.4rem;align-items:center;margin-top:.3rem;}' +
-      '#quest-sync .quest-sync-copy{font:inherit;cursor:pointer;border:1px solid #d9b477;background:#fff;border-radius:6px;padding:.15rem .55rem;}' +
-      '#quest-sync .quest-sync-copy:hover{background:#f3e6cf;}';
+      '#quest-sunet .quest-sunet-edit:hover{background:none;color:#5b3a08;}';
     var sunetStyle = document.createElement('style');
     sunetStyle.textContent = sunetCss;
     document.head.appendChild(sunetStyle);
@@ -299,41 +399,6 @@
     var list = document.createElement('ul');
     list.id = 'quest-log-list';
     panel.appendChild(list);
-
-    // ── Sync: encode progress into a token to paste into scripts/quest_sync.py ─
-    var sync = document.createElement('div');
-    sync.id = 'quest-sync';
-    sync.innerHTML = '<button type="button" class="quest-sync-go">🔄 Sync</button>';
-    panel.appendChild(sync);
-
-    function renderSync() {
-      var enc = encodeProgress();
-      var go = '<button type="button" class="quest-sync-go">🔄 Sync</button>';
-      if (!enc.count) {
-        sync.innerHTML = go + '<span class="quest-sync-hint">Complete a quest first, then sync.</span>';
-        return;
-      }
-      sync.innerHTML = go
-        + '<span class="quest-sync-hint">Copy your progress token, then paste it into the sync command shown on the page:</span>'
-        + '<textarea readonly rows="2"></textarea>'
-        + '<div class="quest-sync-row"><button type="button" class="quest-sync-copy">Copy token</button>'
-        + '<span class="quest-sync-hint" style="margin:0">' + enc.count + ' quest' + (enc.count === 1 ? '' : 's') + '</span></div>';
-      sync.querySelector('textarea').value = enc.token;
-    }
-    sync.addEventListener('click', function (e) {
-      var goBtn = e.target.closest ? e.target.closest('.quest-sync-go') : null;
-      var cpBtn = e.target.closest ? e.target.closest('.quest-sync-copy') : null;
-      if (!goBtn && !cpBtn) return;
-      e.stopPropagation();  // keep the panel's click-outside handler from closing us
-      if (goBtn) { renderSync(); return; }
-      var ta = sync.querySelector('textarea');
-      if (ta) {
-        ta.select();
-        try { navigator.clipboard.writeText(ta.value); } catch (_) { try { document.execCommand('copy'); } catch (__) {} }
-        cpBtn.textContent = 'Copied ✓';
-        setTimeout(function () { cpBtn.textContent = 'Copy'; }, 1500);
-      }
-    });
 
     // ── SUNet ID: fills the SUNetID placeholder in commands site-wide ────────
     var SUNET_KEY = 'bootcamp.sunetid';

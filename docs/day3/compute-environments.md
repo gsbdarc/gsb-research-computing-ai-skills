@@ -213,16 +213,6 @@ The cloud is a rented kitchen — and it's **just for you**. Unlike the Yens, yo
 
 <label class="quest-check"><input type="checkbox" data-room="d3-kitchen" data-key="main"> I participated in the class demo and discussion</label>
 
-{: .note }
-> **📤 Sync your progress to the leaderboard**
->
-> 1. Open the **Quest Log** (bottom-left corner) → click **Sync**.
-> 2. Click **Copy token**.
-> 3. **First time only:** sign in once with `gh auth login` (see Day 1) so the push works.
-> 4. On the Yens, inside your clone, run `python3 scripts/quest_sync.py <paste-token>`.
->
-> **Each time you finish more quests,** tick the new boxes, then repeat: **Sync → Copy token → re-run the command** with the fresh token (the one-time sign-in is already done). Each token is a full snapshot of everything you've checked, so the latest sync always reflects *all* your progress.
-
 ---
 
 ## Side quests

@@ -1,16 +1,17 @@
 #!/usr/bin/env python3
 """Sync your Quest Log progress to the leaderboard.
 
-On your personal course site, open the Quest Log (bottom-left corner), click
-"Sync", and copy the token. Run this here on the Yens, inside your clone of your
-fork. It decodes your progress, writes quest_log.json, and pushes it to your
-fork so the leaderboard updates.
+On your personal course site, tick the quests you finished, then copy the ready
+"spell" from the sync command shown on the page. Run it here on the Yens, inside
+your clone of your fork:
 
-    python3 scripts/quest_sync.py <token>
+    python3 scripts/quest_sync.py <spell>
+
+It decodes your progress, writes quest_log.json, and pushes it to your fork so
+the leaderboard updates. (Instructor/debug: pass --raw with "COUNT,GATES".)
 """
 
 import argparse
-import base64
 import json
 import subprocess
 import sys
@@ -20,6 +21,7 @@ CLASS_REPO = "gsbdarc/gsb-research-computing-ai-skills"
 REPO_ROOT = Path(__file__).resolve().parent.parent
 QUEST_LOG = REPO_ROOT / "quest_log.json"
 QUEST_KEYS = Path(__file__).resolve().parent / "quest_keys.json"
+SPELL_WORDS = REPO_ROOT / "docs" / "_data" / "spell_words.json"
 
 
 def fnv1a_hex(s):
@@ -31,26 +33,43 @@ def fnv1a_hex(s):
     return format(h, "x")
 
 
-def decode_token(token):
-    """Decode a 'version.hash.bitfield' token into the list of completed keys.
+STALE_MSG = (
+    "This spell is from a different version of the site than this clone.\n"
+    "Run 'git pull' in your fork, reload the site, copy a fresh spell, and re-cast."
+)
 
-    The hash guards against a token built from a different key list than this
-    clone has (e.g. the fork is behind the site).
+
+def decode_spell(spell):
+    """Decode the 3-word progress spell into (completed_count, capstone_count).
+
+    Layout: [completed count, capstone count, seal]. The seal folds the key-list
+    hash byte in with the counts, so a spell from a stale site — or a mistyped
+    word — is rejected rather than silently mis-decoded.
     """
-    parts = token.strip().split(".")
-    if len(parts) != 3 or parts[0] != "1":
-        sys.exit("Unrecognized token — copy a fresh one from the Quest Log Sync button.")
-    _, token_hash, b64 = parts
+    words = spell.strip().split("-")
+    if len(words) != 3:
+        sys.exit("That doesn't look like a sync spell — copy a fresh one from the page.")
+    wordlist = json.loads(SPELL_WORDS.read_text())
+    index = {w: i for i, w in enumerate(wordlist)}
+    try:
+        vals = [(index[w] - i * 17) % 256 for i, w in enumerate(words)]
+    except KeyError as e:
+        sys.exit("Unknown word in the spell (%s) — copy a fresh one from the page." % e.args[0])
+    count, boss_count, seal = vals
     keys = json.loads(QUEST_KEYS.read_text())
-    if token_hash != fnv1a_hex(",".join(keys)):
-        sys.exit(
-            "This token was made from a different version of the site than this clone.\n"
-            "Run 'git pull' in your fork, reload the site, copy a fresh token, and re-run."
-        )
-    pad = "=" * (-len(b64) % 4)
-    raw = base64.urlsafe_b64decode(b64 + pad)
-    return [k for i, k in enumerate(keys)
-            if (i >> 3) < len(raw) and raw[i >> 3] & (1 << (i & 7))]
+    hash_byte = int(fnv1a_hex(",".join(keys)).rjust(8, "0")[0:2], 16)
+    if seal != (count + boss_count + hash_byte) & 255:
+        sys.exit(STALE_MSG)
+    return count, boss_count
+
+
+def decode_raw(spec):
+    """Instructor/debug: pass the counts directly as 'COUNT,GATES' (e.g. 20,2)."""
+    try:
+        count_s, boss_s = spec.split(",")
+        return int(count_s), int(boss_s)
+    except Exception:
+        sys.exit("Expected --raw 'COUNT,GATES', e.g. --raw '20,2'.")
 
 
 def git(*args):
@@ -74,20 +93,28 @@ def require_fork():
 
 def main():
     ap = argparse.ArgumentParser(description="Sync Quest Log progress to your fork.")
-    ap.add_argument("token", help="the token from the Quest Log 'Sync to leaderboard' button")
+    ap.add_argument("spell", help="the sync spell copied from the command on your course site")
+    ap.add_argument("--raw", action="store_true",
+                    help="pass counts directly as 'COUNT,GATES' instead of a word spell")
     args = ap.parse_args()
 
+    decoder = decode_raw if args.raw else decode_spell
     try:
-        keys = decode_token(args.token)
+        count, boss_count = decoder(args.spell)
+    except SystemExit:
+        raise
     except Exception:
-        sys.exit("That token could not be decoded — copy it again from the Sync button.")
-    if not keys:
-        sys.exit("No completed quests in that token — nothing to sync.")
+        sys.exit("That spell could not be decoded — copy it again from the page.")
+    if count <= 0:
+        sys.exit("No completed quests in that spell — nothing to sync.")
 
     require_fork()
 
-    QUEST_LOG.write_text(json.dumps({k: True for k in keys}, indent=2) + "\n")
-    print("Recorded %d completed quest%s in %s" % (len(keys), "" if len(keys) == 1 else "s", QUEST_LOG.name))
+    QUEST_LOG.write_text(
+        json.dumps({"completedChecks": count, "bossGates": boss_count}, indent=2) + "\n"
+    )
+    print("The runes align — %d quest%s sealed into your grimoire (%d capstone%s)."
+          % (count, "" if count == 1 else "s", boss_count, "" if boss_count == 1 else "s"))
 
     git("add", str(QUEST_LOG))
     commit = git("commit", "-m", "Sync quest log")

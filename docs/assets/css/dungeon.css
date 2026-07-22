@@ -63,6 +63,36 @@
 }
 .quest-check.done { text-decoration: line-through; color: #999; }
 
+/* Per-checkbox sync affordance: "Show my sync command" → revealed incantation */
+.quest-sync-inline { margin: -0.25rem 0 1rem 1.6rem; font-size: 1rem; }
+.quest-sync-inline code.quest-cmd { font-size: 0.95em; padding: 0.2rem 0.45rem; }
+.quest-cmd-gen {
+  cursor: pointer;
+  padding: 0.4rem 0.9rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: 1px solid #d9b477;
+  border-radius: 6px;
+  background: #fff8ef;
+  color: #5b4a2f;
+}
+.quest-cmd-gen:hover { background: #f3e6cf; }
+.quest-cmd-hint { display: block; color: #6a7280; font-size: 1rem; margin-top: 0.45rem; }
+
+/* "Copy" button next to a revealed sync command */
+.quest-cmd-copy {
+  margin-left: 0.5rem;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.95em;
+  cursor: pointer;
+  border: 1px solid #cdd4e6;
+  border-radius: 6px;
+  background: #eef1f8;
+  color: #2c3e50;
+  vertical-align: middle;
+}
+.quest-cmd-copy:hover { background: #dde3f2; }
+
 /* ── Dungeon entrance — floors left column, skills right column, rows aligned ── */
 .dungeon-layout {
   display: grid;
