@@ -57,14 +57,14 @@ tr.lb-leader td { background: #f4f8ff; }
   var MAIN   = 'gsbdarc/gsb-research-computing-ai-skills';
   var REPO   = 'gsb-research-computing-ai-skills';
   var BRANCH = 'main';
-  var TOTAL  = 73; // keep in sync with TOTAL_CHECKS in assets/js/quest-log.js
+  var TOTAL  = 75; // keep in sync with TOTAL_CHECKS in assets/js/quest-log.js
 
   // quest_log.json keys that mark each day's optional capstone as complete
   var BOSS_GATE_KEYS = [
     'd1-boss-gate-1.main',
     'd2-boss-gate.commit',
     'd3-boss-gate.commit',
-    'd4-boss-gate.commit',
+    'd4-capstone.commit',
   ];
 
   function computeLevel(checks) {

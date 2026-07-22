@@ -68,7 +68,7 @@ Before you pick one, separate two very different jobs. The data risk is not the 
 
 **Job 1: Using an LLM to analyze your data.** Your data *is* the input: you deliberately put it in the prompt, the way you fed filing text to the model in [The Oracle's Chamber](../oracles-chamber/). The question is direct: *is this data allowed to go where this model runs?* Classify the data on Stanford's risk scale, then choose the path:
 
-- **Stanford AI Playground / API gateway:** approved for **every** Stanford risk level, Low, Moderate, and High Risk *including PHI*, because it runs inside Stanford's contracted perimeter. For real research data this is your default path. (A restrictive DUA can still narrow what you may send, so check yours.)
+- **Stanford AI API Gateway / API gateway:** approved for **every** Stanford risk level, Low, Moderate, and High Risk *including PHI*, because it runs inside Stanford's contracted perimeter. For real research data this is your default path. (A restrictive DUA can still narrow what you may send, so check yours.)
 - **A local model on the Yens:** keeps everything on the cluster. Reach for it when a DUA says the data may not leave your own systems, or when you want no external dependency at all (you'll do this on Day 4).
 - **A third-party tool or API** (ChatGPT, Claude direct to Anthropic, Copilot): *outside* Stanford's perimeter, so public or low-risk data only, unless it is separately approved.
 

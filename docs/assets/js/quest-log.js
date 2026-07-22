@@ -19,9 +19,10 @@
 
   const STORAGE_KEY = 'dungeon.v1.progress';
 
-  // Total possible checkboxes across the entire dungeon is computed from DAYS
-  // (defined below) in TOTAL_CHECKS, so it can never drift out of sync with the
-  // room structure when quests are added or removed.
+  const LEVEL_TITLES = [
+    'Initiate', 'Apprentice', 'Scholar', 'Journeyman', 'Adept',
+    'Specialist', 'Expert', 'Veteran', 'Master', 'Archmage',
+  ];
 
   // Full room structure — used to compute per-day totals in the quest log panel.
   // Keys match data-room attributes on checkboxes throughout the site.
@@ -67,26 +68,24 @@
       ],
     },
     {
-      label: 'Day 4 — The GPU Fortress',
+      label: 'Day 4 — Parallelization & GPUs',
       prefix: 'd4',
       rooms: [
-        { id: 'd4-array-cavern',         keys: ['main'] },
-        { id: 'd4-armory',              keys: ['main'] },
-        { id: 'd4-h200-chamber',        keys: ['main'] },
-        { id: 'd4-summoning-circle',    keys: ['main'] },
-        { id: 'd4-engine-room',         keys: ['main'] },
-        { id: 'd4-trap-garden',         keys: ['main'] },
-        { id: 'd4-boss-gate',           keys: ['commit'] },
+        { id: 'd4-parallelization',      keys: ['main'] },
+        { id: 'd4-slurm-arrays',         keys: ['main'] },
+        { id: 'd4-array-exercise',       keys: ['main'] },
+        { id: 'd4-why-local-llms',      keys: ['main'] },
+        { id: 'd4-running-llms',        keys: ['main', 'exercise', 'side1'] },
+        { id: 'd4-failure-modes',       keys: ['main'] },
+        { id: 'd4-capstone',            keys: ['commit'] },
       ],
     },
   ];
 
-  // Single source of truth for the grand total: sum every room's keys across all
-  // days. Add or remove a key above and this stays correct automatically.
+  // Total possible checkboxes across the entire dungeon — derived from DAYS so
+  // it stays correct as rooms/keys are added or removed.
   const TOTAL_CHECKS = DAYS.reduce(function (sum, day) {
-    return sum + day.rooms.reduce(function (roomSum, room) {
-      return roomSum + room.keys.length;
-    }, 0);
+    return sum + day.rooms.reduce(function (s, room) { return s + room.keys.length; }, 0);
   }, 0);
 
   // ── Storage ──────────────────────────────────────────────────────────────

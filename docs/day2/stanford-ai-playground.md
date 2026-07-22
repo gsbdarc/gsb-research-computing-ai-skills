@@ -1,12 +1,12 @@
 ---
 layout: default
-title: "The Stanford AI Playground"
+title: "The Stanford AI API Gateway"
 parent: "Day 2 — The Alchemist's Lab"
 nav_order: 3
 permalink: /day2/stanford-ai-playground/
 ---
 
-# The Stanford AI Playground
+# The Stanford AI API Gateway
 
 <div data-room-id="d2-stanford-ai-playground"></div>
 
@@ -75,10 +75,10 @@ Since AI is permeating every facet of research, Stanford has worked hard to give
 | Cloud AI | Google Vertex | Google |
 
 
-## 🖊️ What Is Stanford AI Playground?
+## 🖊️ What Is Stanford AI API Gateway?
 
 
-Stanford AI Playground is a University-hosted gateway to large language models. It gives every Stanford researcher access to the same models (Claude-Opus-4-8, GPT-5.2, gemini-3.5-flash, and others) without a personal OpenAI account or credit card.
+Stanford AI API Gateway is a University-hosted gateway to large language models. It gives every Stanford researcher access to the same models (Claude-Opus-4-8, GPT-5.2, gemini-3.5-flash, and others) without a personal OpenAI account or credit card.
 
 It comes in two forms:
 
@@ -99,11 +99,11 @@ Ask it something:
 - *"Summarize what a virtual environment is in one sentence."*
 - *"What is the difference between a kernel and a Python interpreter?"*
 
-Notice: the responses come from the same models you'd use via the API. You're already using Stanford AI Playground.
+Notice: the responses come from the same models you'd use via the API. You're already using Stanford AI API Gateway.
 
 ---
 
-## 🖊️ Upsides and Downsides
+## 🖊️ Upsides and Downsides {#upsides-and-downsides}
 
 | | Detail |
 |-|--------|
@@ -144,7 +144,7 @@ That gateway is a server Stanford stands up and maintains itself, placed between
 
 **Requesting Your Own Key**
 
-Today you're using the shared bootcamp key. If you or your PI need a personal Stanford AI Playground key later, you'll submit a request with:
+Today you're using the shared bootcamp key. If you or your PI need a personal Stanford AI API Gateway key later, you'll submit a request with:
 
 - **Organization**: Stanford University, Stanford Health Care (SHC), or Stanford Children's Health (SCH)
 - **Requester**: yourself, someone else, or your department/service team
@@ -187,7 +187,7 @@ Set the system prompt so the AI knows who you are, your current knowledge level,
 
 ## 🧠 Skills Learned
 
-- Stanford AI Playground gives every researcher access to Claude-Opus-4-8, GPT-5.2, and other models; no personal account needed
+- Stanford AI API Gateway gives every researcher access to Claude-Opus-4-8, GPT-5.2, and other models; no personal account needed
 - The web GUI and the API gateway are two interfaces to the same underlying service
 - The API is OpenAI-compatible: only `base_url` and the key change; all code is the same
 - Prompts sent through Stanford's gateway are subject to audit; classify your data before sending it

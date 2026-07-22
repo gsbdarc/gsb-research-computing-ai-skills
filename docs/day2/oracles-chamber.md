@@ -17,7 +17,7 @@ permalink: /day2/oracles-chamber/
 ## 🗡️ Main Quest
 
 {: .important }
-> **Quest:** Make your first live API call, then use the Stanford AI Playground to extract structured information from a real SEC Form 3 filing — and save the logic to a standalone Python script.
+> **Quest:** Make your first live API call, then use the Stanford AI API Gateway to extract structured information from a real SEC Form 3 filing — and save the logic to a standalone Python script.
 
 ---
 

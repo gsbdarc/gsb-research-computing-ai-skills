@@ -44,5 +44,5 @@ You can read the site and track your progress with nothing installed. To do the 
   <div class="floor-card">
     <h3><a href="{{ '/day4/' | relative_url }}">Day 4 — GPUs &amp; Scaling</a></h3>
   </div>
-  <div class="floor-skills">Job arrays &middot; GPU tiers &middot; Local LLMs &middot; OpenAI-compatible API &middot; Human vs LLM</div>
+  <div class="floor-skills">Job arrays &middot; GPU tiers &middot; Local LLMs &middot; OpenAI-compatible API &middot; LLM failure modes</div>
 </div>
