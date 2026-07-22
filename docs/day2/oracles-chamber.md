@@ -236,11 +236,14 @@ Fold this into your `form3_test.py` so the script validates every response and w
 
 ---
 
-## 📦 Side Quests
+## Side quests
+
+{: .note }
+> Finished early? Try any of these.
 
 Your `client` talks to more than one endpoint. Each of these is a different door on the same Stanford gateway (your `base_url` never changes), so with the client already configured, they just work.
 
-**Side Quest: List the Available Models**
+**Side quest — List the Available Models**
 
 Hit the models endpoint (`GET /v1/models`) to see exactly which model ids the gateway accepts. This is the menu for every other call.
 
@@ -253,7 +256,7 @@ Look for `text-embedding-ada-002` and `imagen-4.0-generate-001` in the list; tho
 
 <label class="quest-check"><input type="checkbox" data-room="d2-oracles-chamber" data-key="side1"> I listed the available models</label>
 
-**Side Quest: Turn Text into an Embedding**
+**Side quest — Turn Text into an Embedding**
 
 An embedding turns text into a vector of numbers that captures its meaning, the foundation of semantic search and clustering. Call the embeddings endpoint (`POST /v1/embeddings`):
 
@@ -269,7 +272,7 @@ print(vector[:8])
 
 <label class="quest-check"><input type="checkbox" data-room="d2-oracles-chamber" data-key="side2"> I generated an embedding vector</label>
 
-**Side Quest: Generate an Image**
+**Side quest — Generate an Image**
 
 The same gateway can create images. Call the image endpoint (`POST /v1/images/generations`):
 
@@ -294,7 +297,7 @@ else:                             # others (e.g. imagen) return base64
 
 <label class="quest-check"><input type="checkbox" data-room="d2-oracles-chamber" data-key="side3"> I generated an image</label>
 
-**Side Quest: Count Tokens and Calculate the Cost**
+**Side quest — Count Tokens and Calculate the Cost**
 
 Every response reports how many tokens it used. Look at the `usage` field on one of your earlier chat responses:
 

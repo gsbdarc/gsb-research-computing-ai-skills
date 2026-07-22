@@ -10,7 +10,14 @@ permalink: /day2/venv-forge/
 
 <div data-room-id="d2-venv-forge"></div>
 
-*Deep in the Alchemist's Lab, the forge blazes with a fierce, contained light. Every serious project demands its own crucible, a sealed vessel where dependencies are bound to one purpose and one purpose only. Pour the wrong reagent into the wrong crucible and the contamination cascades, poisoning every experiment downstream. The Forge was built to stop that. Step inside, heat your crucible, and pour your ingredients with precision. One project. One environment. No exceptions.*
+A virtual environment is a sealed Python of your own: its own interpreter and its own installed packages, isolated so one project's dependencies never collide with another's. You'll forge one with `python3 -m venv`, then **activate** it — which simply prepends its `bin/` to your `$PATH`, the same trick `module load` played in The Path — install the packages this bootcamp needs, and register it as a named **kernel** so JupyterHub notebooks can use it. Finally you'll capture the whole environment as a `requirements.txt` recipe: the one file that lets a collaborator, or future you, rebuild your exact setup and reproduce your results on any machine. One project, one environment.
+
+---
+
+## 🗡️ Main Quest
+
+{: .important }
+> **Quest:** Create a Python virtual environment on the Yens, **activate** it, install packages, and connect it to JupyterHub as a named kernel.
 
 ---
 
@@ -38,17 +45,15 @@ import seaborn   # this works, seaborn is installed here
 
 Now try the exact same thing in your **login shell**. This time `import seaborn` fails with `ModuleNotFoundError`.
 
-Same command, two different results. The two terminals are using **different Pythons**, each with its own set of installed packages. That is the problem this room solves: stop leaving your environment to chance and forge one you control.
+**❓ Same command, same package name — so why would `import seaborn` work in one terminal but not the other?** Think it through before you reveal the answer.
 
+<details markdown="1">
+<summary>💡 Answer — click to reveal</summary>
 
-## 🗡️ Main Quest
+The two terminals are using **different Pythons**, each with its own set of installed packages. `pip install seaborn` in the JupyterHub terminal installed it for *that* Python only — your login shell runs a different Python that never got it. That is the problem this room solves: stop leaving your environment to chance and forge one you control.
+</details>
 
-{: .important }
-> **Quest:** Create a Python virtual environment on the Yens, **activate** it, install packages, and connect it to JupyterHub as a named kernel.
-
----
-
-### Step 1: Create a Working Directory and Venv
+## Step 1: Create a Working Directory and Venv
 
 In your **Jupyter terminal** (or SSH terminal), move into your cloned repo and make a folder for today's work:
 
@@ -69,7 +74,7 @@ Now forge the virtual environment at the repo root, using the system Python:
 
 ---
 
-### Step 2: Activate and Explore the PATH Change
+## Step 2: Activate and Explore the PATH Change
 
 ```bash
 source ~/gsb-research-computing-ai-skills/.venv/bin/activate
@@ -106,7 +111,7 @@ source ~/gsb-research-computing-ai-skills/.venv/bin/activate
 
 ---
 
-### Step 3: Install Packages
+## Step 3: Install Packages
 
 With the venv **active**, install the packages you'll need for Day 2:
 
@@ -133,7 +138,7 @@ python3 -c "import dotenv"    # should fail: not installed in system python
 
 ---
 
-### Step 4: Register as a Jupyter Kernel
+## Step 4: Register as a Jupyter Kernel
 
 With the venv **active**, register it as a kernel JupyterHub can use:
 
@@ -143,14 +148,15 @@ python -m ipykernel install --user --name=bootcamp-2026 --display-name "Bootcamp
 
 Now go to JupyterHub:
 - Open your `day2/` folder in the file browser
-- Create a new notebook
+- Create a new notebook and name it `venv_check.ipynb`
 - Select **"Bootcamp 2026"** as the kernel from the kernel menu
 
-In the notebook, confirm the environment is **active**:
+In the notebook, confirm the environment is **active** — that the packages you installed in Step 3 are importable from this kernel:
 
 ```python
 import dotenv
-print("dotenv is available!")
+import openai
+print("dotenv and openai are available!")
 ```
 
 If this runs without error, your venv is correctly connected.
@@ -162,7 +168,7 @@ If this runs without error, your venv is correctly connected.
 
 ---
 
-### Step 5: Share the Recipe, Not the Crucible
+## Step 5: Share the Recipe, Not the Crucible
 
 You may need to share an environment with a collaborator or recreate it on another machine. Do not copy the venv folder itself: virtual environments contain machine-specific paths and can break when moved.
 
@@ -179,7 +185,7 @@ Commit `requirements.txt` to your repository, but keep `.venv/` out of git (it's
 To recreate the environment elsewhere:
 
 ```bash
-python3 -m venv .venv
+/usr/bin/python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements.txt
 ```
@@ -189,7 +195,7 @@ python -m pip install -r requirements.txt
 
 ---
 
-### Step 6: Rebuild a Complex Brew from the Scroll
+## Step 6: Rebuild a Complex Brew from the Scroll
 
 Everything so far was an *empty* crucible: you installed a handful of packages you chose yourself. The real power of a venv shows up when you inherit **someone else's complex project** and have to make it run: no guessing which packages, no "but it works on my machine." Just the code and the recipe scroll.
 
@@ -204,7 +210,7 @@ cat requirements.txt
 
 That's **13 pinned reagents**. Nobody memorises that list, and nobody should have to. The scroll *is* the memory.
 
-#### Forge a crucible just for this brew
+### Forge a crucible just for this brew
 
 Potion Brawl gets its **own** environment, separate from the one you built above. That is the whole discipline: one project, one crucible.
 
@@ -219,7 +225,7 @@ One command rebuilds the entire shelf (exact packages, exact versions) from the 
 {: .note }
 > `.venv/` and the brew's `output/` folder are already in the repo's `.gitignore`, so you'll never accidentally commit hundreds of megabytes of packages or generated artifacts.
 
-#### Brew it
+### Brew it
 
 ```bash
 python potion_brawl.py
@@ -235,7 +241,7 @@ You'll get a `POTION BRAWL` banner, a progress bar, a populations table, and a f
 | `victor.txt` | the tick count and final tally |
 | `lab_journal.pkl` | the **save state**: positions, velocities, and the random-number generator |
 
-#### The punchline: reproducibility you can *see*
+### The punchline: reproducibility you can *see*
 
 Run it again:
 
@@ -263,9 +269,12 @@ The recipe scroll + your code = the same brew, any alchemist, any lab.
 
 ---
 
-## 📦 Side Quests
+## Side quests
 
-**Side Quest: Find Where Kernels Live**
+{: .note }
+> Finished early? Try any of these.
+
+**Side quest — Find Where Kernels Live**
 
 A kernel is just a folder on disk. Track yours down:
 
@@ -277,7 +286,7 @@ This prints every registered kernel and its path (a `--user` install like yours 
 
 <label class="quest-check"><input type="checkbox" data-room="d2-venv-forge" data-key="side2"> I found where my kernels live and read a kernel.json</label>
 
-**Side Quest: Why You Can't Copy a Crucible**
+**Side quest — Why You Can't Copy a Crucible**
 
 Step 5 said never to copy a venv folder. See for yourself why. Peek inside your crucible:
 

@@ -10,9 +10,17 @@ permalink: /day2/the-path/
 
 <div data-room-id="d2-arcane-notebook"></div>
 
-You awake with a start as if from a bad dream. You were sleeping so peacefully, what was that dream about. As the fresh air hits your face you remember what you were dreaming about...
+Every command you type is a name, and the shell must find who answers. The Path ($PATH) is the ranked list of directories it searches, top to bottom, until the first match wins, which is why loading a module can change which python responds. But a bare terminal can draw a plot without ever showing it, so the Path leads to JupyterHub: your window into the cluster, where code runs on the Yens' hardware but appears in your browser. There you'll run Python three ways, line-by-line in the interpreter, cell-by-cell in a notebook, and start-to-finish as a script, the form you submit to the cluster.
 
 ---
+
+## 🗡️ Main Quest: The Path
+
+{: .important }
+> **Quest:** Follow the sacred Path, Learn about JupyterHub, command AI to do your bidding
+
+---
+
 ## Review
 
 Before opening any notebooks, confirm you're on the Yens.
@@ -33,13 +41,6 @@ You should see your home directory and the `gsb-research-computing-ai-skills` fo
 
 ---
 
-## 🗡️ Main Quest: The Path
-
-{: .important }
-> **Quest:** Follow the sacred Path, Learn about JupyterHub, command AI to do your bidding
-
----
-
 ## Step 1: Who and Where Are You?
 
 Get your bearings before walking the Path:
@@ -49,6 +50,8 @@ whoami                     # who am I logged in as?
 pwd                        # where am I?
 echo $PATH | tr ':' '\n'   # what is the Path? (one entry per line)
 ```
+
+`pwd` should show your home directory, `/home/users/<SUNet>`. If you're somewhere else, run `cd` on its own to return home before continuing.
 
 `$PATH` is the shell's **search checklist**. It is a list of directories, roughly:
 
@@ -66,7 +69,7 @@ When you type a command, the shell walks these directories top to bottom and run
 {: .chest }
 > **Exercise:** Using yesterday's skills, find `python3`.
 
-<details> <summary>Hint (click to reveal)</summary>
+<details> <summary>💡 Hint — click to reveal</summary>
 
 Run <code>which python3</code> and look at the front of the Path.
 </details>
@@ -139,7 +142,7 @@ exit()
 {: .note }
 > 💡 `plt.show()` would normally pop open a window, but a terminal has no screen to draw on, so nothing appears. That is why we also call `fig.savefig(...)`: it writes the plot to `my_plot.png` in your current directory.
 
-<details> <summary>Hint: got a ModuleNotFoundError? (click to reveal)</summary>
+<details> <summary>💡 Hint: got a ModuleNotFoundError? — click to reveal</summary>
 
 Leave Python with <code>exit()</code>, run <code>pip install matplotlib numpy</code> in the same environment, then start <code>python3</code> again.
 </details>
@@ -162,7 +165,7 @@ IHDR....IDATx...��KѐP....
 What is this **incantation?** A terminal can *run* the code that draws an image, but it cannot *show* you the image itself. If this is all the Yens has to offer, why did you take this perilous journey? For that, you need a window into the cluster: **JupyterHub**.
 
 
-### Step 3: Summon JupyterHub
+## Step 3: Summon JupyterHub
 
 JupyterHub is the development environment we offer on the Yens. It runs in your browser, but your code executes on the cluster's hardware, not your laptop. Instead of the bare command line from Step 2, you get an interactive workspace: write and run code in notebooks, edit files, open a terminal, and see plots and tables right on the screen.
 
@@ -180,7 +183,7 @@ Log in with your SUNet credentials. You should see the same files as your home d
 
 ---
 
-### Step 4: Start a Notebook and a Terminal
+## Step 4: Start a Notebook and a Terminal
 
 - Click the **blue "+"** to open the Launcher
 - Start a **Python 3** notebook
@@ -190,7 +193,7 @@ A **notebook** runs code in *cells* you execute one at a time, with the results 
 
 ---
 
-### Step 5: Run a Cell
+## Step 5: Run a Cell
 
 Type this into the first cell and run it with **Shift+Enter**:
 
@@ -222,7 +225,7 @@ This time the graph appears **right below the cell**. That is what JupyterHub bu
 
 ---
 
-### Step 6: Run the Same Code as a Script
+## Step 6: Run the Same Code as a Script
 
 You have now run Python two ways: the interactive interpreter (Step 2) and a notebook (Step 5). The third way is a **script**, a `.py` file that runs start to finish on its own. This is what you submit to the cluster.
 
@@ -240,15 +243,18 @@ Same output, different workflow. Notebooks are good for exploration; scripts are
 
 ---
 
-## 📦 Side Quests
+## Side quests
 
-**Side Quest: Behold the Incantation**
+{: .note }
+> Finished early? Try any of these.
+
+**Side quest — Behold the Incantation**
 
 The terminal could only show you `my_plot.png` as gibberish. JupyterHub can do better. In the **file browser** on the left, find `my_plot.png` and **double-click** it. It opens in an image viewer, and the plot you drew finally reveals itself, the same file, now readable because you have the right tool to look at it.
 
 <label class="quest-check"><input type="checkbox" data-room="d2-arcane-notebook" data-key="side1"> I opened my_plot.png in JupyterHub and saw the graph</label>
 
-**Side Quest: Enchant the Plot**
+**Side quest — Enchant the Plot**
 
 A plot is never finished. Back in your notebook, edit the plotting cell to make it your own, then re-run it with **Shift+Enter** and watch it change:
 
@@ -256,7 +262,25 @@ A plot is never finished. Back in your notebook, edit the plotting cell to make 
 - Give each line a `label=...` and add `ax.legend()` to name them
 - Change a line's colour with `color="crimson"` (or `"teal"`, `"goldenrod"`)
 
-<label class="quest-check"><input type="checkbox" data-room="d2-arcane-notebook" data-key="side2"> I modified the plot and re-ran the cell to see it update</label>
+**Now command the AI to do your bidding.** First save your notebook with a name you'll recognise (**File → Save Notebook As…**, e.g. `plotting.ipynb`). Then open a **Terminal** in JupyterHub and summon Claude Code, exactly as you did in [Working with Claude Code](../../day1/familiars-den/):
+
+```bash
+cd ~                 # or wherever you saved the notebook
+module load claude
+claude
+```
+
+Then describe the plot you want — no matplotlib to memorise, just say it:
+
+```text
+> Make the plot in plotting.ipynb as exciting as you can — bold colours, several
+> lines, a dramatic title, annotations, gridlines, whatever looks great. Then leave
+> the notebook so I can re-run it.
+```
+
+Claude edits the `.ipynb` **file on disk**. Switch back to the notebook tab — JupyterHub will notice the file changed and offer to **reload** it (click *Reload*) — then **Kernel → Restart Kernel and Run All Cells** to see your enchanted plot.
+
+<label class="quest-check"><input type="checkbox" data-room="d2-arcane-notebook" data-key="side2"> I modified the plot — by hand and with Claude Code — and re-ran the cell to see it update</label>
 
 ---
 

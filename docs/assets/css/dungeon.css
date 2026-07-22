@@ -161,3 +161,20 @@
     line-height: 1.2;
   }
 }
+
+/* Hint / spoiler collapsibles (<details>) in lesson content default to a plain
+   browser triangle that clashes with the gold callout theme. Render the summary
+   as a gold "hint" pill so it reads as an interactive prompt. Scoped to
+   .main-content so it never touches the quest-log panel's own UI. */
+.main-content details > summary {
+  display: inline-block;
+  cursor: pointer;
+  border: 1px solid #d9b477;
+  border-radius: 6px;
+  background: #fff8ef;
+  color: #5b4a2f;
+  padding: 0.4rem 0.8rem;
+  font-weight: 600;
+}
+.main-content details > summary:hover { background: #f3e6cf; }
+.main-content details[open] > summary { margin-bottom: 0.6rem; }
