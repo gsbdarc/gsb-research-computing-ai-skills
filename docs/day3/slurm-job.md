@@ -8,7 +8,7 @@ permalink: /day3/slurm-job/
 
 # Writing & Submitting a SLURM Job
 
-<div data-room-id="d3-foremans-desk"></div>
+<div data-room-id="d3-slurm-job"></div>
 
 ---
 
@@ -102,7 +102,7 @@ Save the file.
 
 When your script is complete — put a **🟢 green sticky** on your laptop.
 
-<label class="quest-check"><input type="checkbox" data-room="d3-foremans-desk" data-key="main"> I wrote extract_form_3_one_file.slurm and understand every line</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-slurm-job" data-key="main"> I wrote extract_form_3_one_file.slurm and understand every line</label>
 
 ---
 
@@ -136,7 +136,7 @@ squeue --me
 {: .note }
 > You may briefly see your job's status change to **CG** (completing) before it disappears from the queue — that's normal, not an error.
 
-<label class="quest-check"><input type="checkbox" data-room="d3-foremans-desk" data-key="submit"> I submitted with sbatch, confirmed it in the queue, and cancelled it with scancel</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-slurm-job" data-key="submit"> I submitted with sbatch, confirmed it in the queue, and cancelled it with scancel</label>
 
 ---
 
@@ -159,7 +159,7 @@ sbatch slurm/extract_form_3_one_file.slurm
 
 Once your job runs, check your inbox. You should receive two emails: one when the job **starts** and one when it **ends** — the end email includes a utilization summary showing how much CPU time and memory the job actually used.
 
-<label class="quest-check"><input type="checkbox" data-room="d3-foremans-desk" data-key="side1"> I added email notifications and resubmitted</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-slurm-job" data-key="side1"> I added email notifications and resubmitted</label>
 
 ---
 
@@ -173,7 +173,7 @@ srun --pty --cpus-per-task=2 --mem=4G --time=00:30:00 bash
 
 Once it drops you into a shell on your allocated node, run your script there directly.
 
-<label class="quest-check"><input type="checkbox" data-room="d3-foremans-desk" data-key="side2"> I requested an interactive allocation with srun --pty and ran my script there</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-slurm-job" data-key="side2"> I requested an interactive allocation with srun --pty and ran my script there</label>
 
 **Side quest — Chain Two Jobs**
 
@@ -185,7 +185,7 @@ sbatch --dependency=afterok:JOBID slurm/extract_form_3_one_file.slurm
 
 Replace `JOBID` with the job ID of a job you already submitted. Confirm with `squeue --me` that the new job shows as pending until the first one completes.
 
-<label class="quest-check"><input type="checkbox" data-room="d3-foremans-desk" data-key="side3"> I chained two SLURM jobs with --dependency=afterok</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-slurm-job" data-key="side3"> I chained two SLURM jobs with --dependency=afterok</label>
 
 **Side quest — Watch Your Job on Its Node**
 
@@ -204,5 +204,5 @@ htop -u $USER                    # or: top -u $USER
 
 You'll see your Python process using the CPU and RAM you requested in the script. Press `q` to quit `htop`, then `exit` to leave the node. This only works while the job is running, and only on a node where you actually have a job — you can't SSH to arbitrary compute nodes.
 
-<label class="quest-check"><input type="checkbox" data-room="d3-foremans-desk" data-key="side4"> I found my job's node with squeue and watched it run live with htop</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-slurm-job" data-key="side4"> I found my job's node with squeue and watched it run live with htop</label>
 

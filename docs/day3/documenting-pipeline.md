@@ -8,7 +8,7 @@ permalink: /day3/documenting-pipeline/
 
 # Documenting Your Pipeline
 
-<div data-room-id="d3-chronicle"></div>
+<div data-room-id="d3-documenting-pipeline"></div>
 
 ---
 
@@ -67,7 +67,7 @@ Input: SEC Form 3 filings from EDGAR (public domain).
 {: .note }
 > You will update this README in Boss Gate 4 when you scale with a job array.
 
-<label class="quest-check"><input type="checkbox" data-room="d3-chronicle" data-key="main"> README written and covers what the script does, how to run it, and where output lands</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-documenting-pipeline" data-key="main"> README written and covers what the script does, how to run it, and where output lands</label>
 
 ---
 
@@ -80,11 +80,11 @@ Input: SEC Form 3 filings from EDGAR (public domain).
 
 Ask Claude Code to read your README as if it were a labmate seeing this pipeline for the first time, and to flag anything that would stop them from rerunning it without asking you a question. Fix at least one thing it flags.
 
-<label class="quest-check"><input type="checkbox" data-room="d3-chronicle" data-key="side1"> I had Claude critique my README as a first-time reader and fixed at least one issue it flagged</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-documenting-pipeline" data-key="side1"> I had Claude critique my README as a first-time reader and fixed at least one issue it flagged</label>
 
 **Side quest — Explain It to Your PI**
 
 Write 2-3 sentences explaining what this pipeline does for a non-technical reader — your PI, your committee, an IRB reviewer. No SLURM, no flags, no jargon.
 
-<label class="quest-check"><input type="checkbox" data-room="d3-chronicle" data-key="side2"> I wrote a plain-language explanation of my pipeline for a non-technical reader</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-documenting-pipeline" data-key="side2"> I wrote a plain-language explanation of my pipeline for a non-technical reader</label>
 

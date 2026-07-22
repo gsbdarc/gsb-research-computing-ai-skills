@@ -8,7 +8,7 @@ permalink: /day3/cluster-usage-data/
 
 # Exploring Cluster Usage Data
 
-<div data-room-id="d3-data-mine"></div>
+<div data-room-id="d3-cluster-usage-data"></div>
 
 ---
 
@@ -71,14 +71,9 @@ Make a plot. Ask Claude to explain something. Follow a thread that looks interes
 
 Find one thing in the data worth keeping. Add a short section to your `README.md` — a few sentences describing what you found and what it tells you about how shared research nodes actually get used.
 
-It doesn't have to be the most impressive finding. It just has to be true, specific, and explained in plain language.
-
-{: .note }
-> This `README.md` keeps growing today — you'll add a Resource Profile section in Profiling Resource Usage and a full pipeline writeup in Documenting Your Pipeline. Same file the whole time.
-
 When you're ready — put a **🟢 green sticky** on your laptop.
 
-<label class="quest-check"><input type="checkbox" data-room="d3-data-mine" data-key="main"> I used Claude to explore the data, made a visualization, and wrote up one true, specific finding in my README</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-cluster-usage-data" data-key="main"> I used Claude to explore the data, made a visualization, and wrote up one finding in README</label>
 
 ---
 
@@ -87,18 +82,18 @@ When you're ready — put a **🟢 green sticky** on your laptop.
 {: .note }
 > Finished early? Try any of these.
 
-<label class="quest-check"><input type="checkbox" data-room="d3-data-mine" data-key="side1"> I made at least one plot or visualization</label>
-
 **Side quest — Per-User Limits vs. the Whole Node**
 
 Group the processes by `user` and compute total `cpu_pct` and `mem_pct` per person. Then compare two different ceilings:
 
-- the **per-user limit** — the cap any single researcher gets (mentioned back in Profiling Resource Usage), and
-- the **whole node's capacity** — 256 logical CPUs and ~1 TB of RAM.
+- the **per-user limit** — the cap any single researcher gets, and
+- the **whole node's capacity** — the total cores and RAM on the specific Yen node you're on.
+
+Look both up on the [Yen user limits page](https://rcpedia.stanford.edu/_policies/user_limits/) — they vary by node, so don't assume a fixed number.
 
 Is anyone close to their per-user limit? And how much of the *entire node* is actually in use? A node can sit far from full even while one user is maxed out — that's the per-user limit doing its job: keeping any one job from starving everyone else on a shared machine.
 
-<label class="quest-check"><input type="checkbox" data-room="d3-data-mine" data-key="side3"> I compared per-user usage against both the per-user limit and the whole node's capacity</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-cluster-usage-data" data-key="side3"> I compared per-user usage against both the per-user limit and the whole node's capacity</label>
 
 **Side quest — Watch It Live (`top`)**
 
@@ -117,7 +112,7 @@ While it's running, try these keys:
 - `u`, then type a username and press Enter — show only that person's processes
 - `q` — quit
 
-Watch for a few seconds: which processes churn near a full core, and which just sit `S` (sleeping)? Then quit and add one line to your `README.md` explaining how this live view relates to the frozen CSV snapshot you analyzed.
+Watch for a few seconds: which processes churn near a full core, and which just sit `S` (sleeping)? Press `q` to quit when you're done.
 
-<label class="quest-check"><input type="checkbox" data-room="d3-data-mine" data-key="side5"> I ran `top` live on a Yen node, read the header and per-process columns, and can explain how it relates to the CSV snapshot</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-cluster-usage-data" data-key="side5"> I ran `top` live on a Yen node, read the header and per-process columns, and can explain how it relates to the CSV snapshot</label>
 

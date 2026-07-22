@@ -47,10 +47,9 @@
 
 /* ── Quest checkbox labels ── */
 .quest-check {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  display: block;
   margin: 0.5rem 0 0.75rem;
+  padding-left: 1.6em;
   font-style: italic;
   color: #555;
   font-size: 0.9em;
@@ -59,9 +58,13 @@
   width: 1.1em;
   height: 1.1em;
   cursor: pointer;
-  flex-shrink: 0;
+  margin-left: -1.6em;
+  margin-right: 0.5em;
+  vertical-align: -0.12em;
 }
 .quest-check.done { text-decoration: line-through; color: #999; }
+/* Inline code in a quest label renders upright (not italic) so it reads as a command */
+.quest-check code { font-style: normal; }
 
 /* Per-checkbox sync affordance: "Show my sync command" → revealed incantation */
 .quest-sync-inline { margin: -0.25rem 0 1rem 1.6rem; font-size: 1rem; }

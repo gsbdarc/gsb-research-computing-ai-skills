@@ -169,7 +169,7 @@ As the script runs, watch new `python` rows appear — that's it spawning work. 
 
 When you can describe what the mystery script does to your CPU and RAM — put a **🟢 green sticky** on your laptop. If something is not working, put up a **🔴 red sticky** and an instructor will come help.
 
-<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="mystery"> I profiled the mystery script and compared with my neighbor, and can describe the resources it needs to run</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-profiling" data-key="mystery"> I profiled the mystery script and compared with my neighbor, and can describe the resources it needs to run</label>
 
 <details markdown="1">
 <summary>💡 Open after you've discussed and checked the box</summary>
@@ -228,7 +228,7 @@ Now that you've profiled **10 filings**, write down what you measured. Open the 
 
 Fill in the actual numbers from your `time` and `userload` output.
 
-<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="readme"> I profiled the LLM extraction script on 10 filings and documented the time / CPU / RAM (and which Yen node) in my README</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-profiling" data-key="readme"> I profiled the LLM extraction script on 10 filings and documented the time / CPU / RAM (and which Yen node) in my README</label>
 
 ---
 
@@ -252,7 +252,7 @@ watch userload
 
 Both versions produce the identical result; the script prints how much faster the vectorized one was (often 10× or more). Notice the slow Python loop pins a core the whole time, while the NumPy version finishes almost before you can look at Terminal 2.
 
-<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="side2"> I profiled the vectorized vs. non-vectorized demo and saw the speedup</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-profiling" data-key="side2"> I profiled the vectorized vs. non-vectorized demo and saw the speedup</label>
 
 ---
 
@@ -269,7 +269,7 @@ time python scripts/mystery_script.py
 
 Document what changes and discuss with your neighbor: How many `python` processes appear in `htop` now? How many **Cores** in `userload`? Did the `real` (wall-clock) time go up or down? Does the resource usage match the number you set?
 
-<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="side6"> I changed num_cores in the mystery script, re-profiled it, and can explain how the processes and cores changed</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-profiling" data-key="side6"> I changed num_cores in the mystery script, re-profiled it, and can explain how the processes and cores changed</label>
 
 **Side quest — Prompt caching: the second run is faster**
 
@@ -285,5 +285,5 @@ Even though you cleared the output files, the **second run is noticeably faster*
 
 Read more: [AI API Gateway FAQs](https://uit.stanford.edu/service/ai-api-gateway/faqs).
 
-<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="side7"> I re-ran the 10 filings and saw prompt caching make the second run faster</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-profiling" data-key="side7"> I re-ran the 10 filings and saw prompt caching make the second run faster</label>
 

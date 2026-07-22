@@ -8,7 +8,7 @@ permalink: /day3/compute-environments/
 
 # Compute Environments
 
-<div data-room-id="d3-kitchen"></div>
+<div data-room-id="d3-compute-environments"></div>
 
 ---
 
@@ -211,7 +211,7 @@ The cloud is a rented kitchen — and it's **just for you**. Unlike the Yens, yo
 
 </details>
 
-<label class="quest-check"><input type="checkbox" data-room="d3-kitchen" data-key="main"> I participated in the class demo and discussion</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-compute-environments" data-key="main"> I participated in the class demo and discussion</label>
 
 ---
 
@@ -271,7 +271,7 @@ You don't need a fancy prompt. For example:
 })();
 </script>
 
-<label class="quest-check"><input type="checkbox" data-room="d3-kitchen" data-key="side1"> I checked my own laptop's CPU cores and RAM and compared them to a Yen node</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-compute-environments" data-key="side1"> I checked my own laptop's CPU cores and RAM and compared them to a Yen node</label>
 
 **Side quest 2 — Price the rented kitchen**
 
@@ -316,5 +316,5 @@ You don't need a fancy prompt. For example:
 })();
 </script>
 
-<label class="quest-check"><input type="checkbox" data-room="d3-kitchen" data-key="side2"> I estimated the cost of running my Day 2 job in the cloud for an hour</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-compute-environments" data-key="side2"> I estimated the cost of running my Day 2 job in the cloud for an hour</label>
 
