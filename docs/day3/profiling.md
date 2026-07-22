@@ -148,7 +148,7 @@ htop -u SUNetID
 
 The `-u` flag limits `htop` to your processes, so the hundreds of other users' processes on the node don't drown yours out.
 
-**Each row in `htop` is one process.** In each row, the `CPU%` column shows how hard that process is pushing — here **100% = one full core busy**, 200% = two cores, and so on, so a single process reading over 100% is spreading across multiple cores. For memory, watch **`RES`** — the real RAM the process is actually using; **`MEM%`** is that same RES as a share of the whole node's RAM. Ignore **`VIRT`** — that's memory the process *reserved*, not what it's using.
+**Each row in `htop` is one process.** In each row, the `CPU%` column shows how hard that process is pushing — here **100% = one full core busy**, 200% = two cores, and so on, so a single process reading over 100% is spreading across multiple cores. For memory, watch **`RES`** — the real RAM the process is actually using. `htop` shows it in **KB** by default, so `9000` ≈ **9 MB**; larger values get an `M` or `G` suffix (like `111M`). **`MEM%`** is that same RES as a share of the **whole node's** RAM — on a 1 TB node a few MB rounds to **0.0%**, which is why `userload` can read `0% Mem` even though the process really is using memory. Ignore **`VIRT`** — that's memory the process *reserved*, not what it's using.
 
 Now, in **Terminal 1**, run the script again and watch your rows in `htop` light up:
 
@@ -204,9 +204,9 @@ Watch Terminal 2 as the 10 filings process one after another:
 Note the `real`, `user`, and `sys` times when it finishes. Is this script **serial** or **parallel**?
 
 {: .note }
-> **A couple of things to expect:**
-> - **Spiky, uneven times** — each filing takes as long as the API takes to answer, so 10 filings won't be exactly 10 × one. Timing a batch of 10 averages that out.
-> - **A tidy footprint on purpose.** The script pins `OPENBLAS_NUM_THREADS=1` at the top, so the math libraries don't spin up a thread per core on the shared node. A job that only makes API calls has no use for them — and it keeps your `userload` honest at about **1 Core**.
+> **What you should see:** just **one `python` process** in `htop`, and **less than 1 Core** in `userload`. A typical run: `real 0m22.5s`, `user 0m1.9s`, `sys 0m0.5s` — the `user` CPU time (~2s) is a tiny slice of the `real` wall-clock (~22s); the other ~20s was spent **waiting on the API**. That's a textbook **I/O-bound** profile: it barely touches the CPU — its cost is time spent waiting, not compute.
+>
+> Two more things: per-filing times are **spiky** (each is however long the API takes, so 10 ≠ exactly 10 × one), and the script pins `OPENBLAS_NUM_THREADS=1` so a job that only makes API calls doesn't spin up a thread per core on the shared node.
 
 ---
 
@@ -231,7 +231,7 @@ Now that you've profiled **10 filings**, write down what you measured — and us
 - RAM peak: (same as 10 — one filing in memory at a time)
 ```
 
-Fill in the actual numbers from your `time` and `userload` output. Because this job is **API-bound and serial**, cores and RAM stay flat as you add files — **only wall-clock time grows.** That's exactly the estimate you'll hand SLURM next: modest CPU and RAM, but a time limit that scales with the number of filings.
+Fill in the actual numbers from your `time` and `userload` output. Because this job is **API-bound and serial**, cores and RAM stay flat as you add files — **only wall-clock time grows.** That's the kind of estimate you'll reach for later when you ask the cluster to run this at scale: modest CPU and RAM, but a time budget that scales with the number of filings.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="readme"> I profiled 10 filings, documented the time/CPU/RAM, and estimated what 100 filings would need</label>
 
