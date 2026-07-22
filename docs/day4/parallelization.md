@@ -113,50 +113,49 @@ Because the work is independent, you can hand the filings out across several cor
 
 Even with just a handful of cores, the batch finishes in a fraction of the serial time: here two cores clear six filings in three waves — about 3 × 5s ≈ 15s of wall-clock time, versus ~30s running them one at a time. That is parallelization: the same total work, spread across many workers instead of stacked on one.
 
-So far every filing took the same 5 seconds. Real filings aren't so uniform — a dense filing with many transactions can take two or three times as long as a simple one. When task durations are uneven, the cores stop finishing in lockstep:
+So far every filing took the same 5 seconds. Real filings aren't so uniform — a dense filing with many transactions can take two or three times as long as a simple one. Because each core grabs the next free filing the moment it's done, a long filing early in the batch doesn't stall anyone — the other core just backfills the short ones around it:
 
 <svg viewBox="0 0 600 178" role="img" aria-labelledby="imbalance-title imbalance-desc" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;max-width:598px;height:auto;margin:1.5rem auto" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
-  <title id="imbalance-title">A long filing causes load imbalance</title>
-  <desc id="imbalance-desc">Six filings in a row; the last filing takes three times as long as the others. Two cores process the filings two at a time. When the short filings run out, one core moves to the end of the line and waits idle while the other core finishes the long final filing, which sets the total time.</desc>
-  <!-- filing boxes: the last one (filing 6) is long and tinted -->
+  <title id="imbalance-title">A long filing early keeps the cores balanced</title>
+  <desc id="imbalance-desc">Six filings in a row; the fourth filing, in the middle, takes three times as long as the others. Each core grabs the next free filing the moment it finishes one. One core stays busy on the long fourth filing while the other backfills the short filings around it, so both cores finish at the same time with no idle waiting.</desc>
+  <!-- filing boxes: the middle one (filing 4) is long and tinted -->
   <rect x="16"  y="64" width="76" height="56" rx="10" fill="#eef1f8" stroke="#cdd4e6" stroke-width="1.5"/>
   <text x="54"  y="97" font-size="13" fill="#2c3e50" text-anchor="middle">filing 1</text>
   <rect x="107" y="64" width="76" height="56" rx="10" fill="#eef1f8" stroke="#cdd4e6" stroke-width="1.5"/>
   <text x="145" y="97" font-size="13" fill="#2c3e50" text-anchor="middle">filing 2</text>
   <rect x="198" y="64" width="76" height="56" rx="10" fill="#eef1f8" stroke="#cdd4e6" stroke-width="1.5"/>
   <text x="236" y="97" font-size="13" fill="#2c3e50" text-anchor="middle">filing 3</text>
-  <rect x="289" y="64" width="76" height="56" rx="10" fill="#eef1f8" stroke="#cdd4e6" stroke-width="1.5"/>
-  <text x="327" y="97" font-size="13" fill="#2c3e50" text-anchor="middle">filing 4</text>
+  <rect x="289" y="64" width="76" height="56" rx="10" fill="#fdf1e0" stroke="#e6cfa8" stroke-width="1.5"/>
+  <text x="327" y="90" font-size="13" fill="#2c3e50" text-anchor="middle">filing 4</text>
+  <text x="327" y="107" font-size="10" font-weight="600" fill="#b26a00" text-anchor="middle">long ×3</text>
   <rect x="380" y="64" width="76" height="56" rx="10" fill="#eef1f8" stroke="#cdd4e6" stroke-width="1.5"/>
   <text x="418" y="97" font-size="13" fill="#2c3e50" text-anchor="middle">filing 5</text>
-  <rect x="471" y="64" width="76" height="56" rx="10" fill="#fdf1e0" stroke="#e6cfa8" stroke-width="1.5"/>
-  <text x="509" y="90" font-size="13" fill="#2c3e50" text-anchor="middle">filing 6</text>
-  <text x="509" y="107" font-size="10" font-weight="600" fill="#b26a00" text-anchor="middle">long ×3</text>
-  <!-- core 1 (blue): filings 1, 3, 5 — then waits idle at the end of the line -->
+  <rect x="471" y="64" width="76" height="56" rx="10" fill="#eef1f8" stroke="#cdd4e6" stroke-width="1.5"/>
+  <text x="509" y="97" font-size="13" fill="#2c3e50" text-anchor="middle">filing 6</text>
+  <!-- core 1 (blue): backfills the short filings 1 → 3 → 5 → 6 -->
   <g>
     <path d="M46,54 L62,54 L54,64 Z" fill="#0072B2"/>
-    <circle cx="54" cy="34" r="20" fill="#0072B2"/>
+    <circle cx="54" cy="34" r="20" fill="#0072B2"><animate attributeName="r" values="20;22;20" dur="1s" repeatCount="indefinite"/></circle>
     <text x="54" y="38" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">CPU</text>
-    <text x="54" y="9" font-size="10" font-weight="600" fill="#9aa2b1" text-anchor="middle" opacity="0">idle<animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.5833;0.60;0.8667;1" dur="8s" repeatCount="indefinite" calcMode="linear"/></text>
     <animateTransform attributeName="transform" type="translate"
-      values="0,0;0,0;182,0;182,0;364,0;364,0;524,0;524,0;0,0"
-      keyTimes="0;0.1667;0.1833;0.35;0.3667;0.5333;0.5833;0.8667;1"
+      values="0,0;0,0;182,0;182,0;364,0;364,0;455,0;455,0;0,0"
+      keyTimes="0;0.195;0.215;0.41;0.43;0.625;0.645;0.84;1"
       dur="8s" repeatCount="indefinite" calcMode="linear"/>
   </g>
-  <!-- core 2 (orange): filings 2, 4, then the long filing 6 — the straggler -->
+  <!-- core 2 (orange): filing 2, then stays on the long filing 4 -->
   <g>
     <path d="M137,54 L153,54 L145,64 Z" fill="#E69F00"/>
-    <circle cx="145" cy="34" r="20" fill="#E69F00"/>
+    <circle cx="145" cy="34" r="20" fill="#E69F00"><animate attributeName="r" values="20;22;20" dur="1s" repeatCount="indefinite"/></circle>
     <text x="145" y="38" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">CPU</text>
     <animateTransform attributeName="transform" type="translate"
-      values="0,0;0,0;182,0;182,0;364,0;364,0;0,0"
-      keyTimes="0;0.1667;0.1833;0.35;0.3667;0.8667;1"
+      values="0,0;0,0;182,0;182,0;0,0"
+      keyTimes="0;0.195;0.215;0.84;1"
       dur="8s" repeatCount="indefinite" calcMode="linear"/>
   </g>
-  <text x="300" y="150" font-size="12.5" fill="#6a7280" text-anchor="middle"><tspan x="300" dy="0">Filing 6 runs 3× longer, so core 2 is still busy when core 1 runs out of work.</tspan><tspan x="300" dy="16">Core 1 waits idle at the end of the line; the straggler sets the total time.</tspan></text>
+  <text x="300" y="150" font-size="12.5" fill="#6a7280" text-anchor="middle"><tspan x="300" dy="0">Each core grabs the next free filing: core 1 sweeps 1 → 3 → 5 → 6 while</tspan><tspan x="300" dy="16">core 2 handles the long filing 4. Both finish together — no core sits idle.</tspan></text>
 </svg>
 
-The core that draws a long filing keeps working after the others have run out, and the total wall-clock time is set by that straggler — not the average. The cores that finish early sit idle waiting for it. This is called **load imbalance**, and it's why you can't just divide total work by the number of cores to predict runtime.
+Here the long filing lands early, so the short ones backfill around it and both cores finish at the same moment — no one sits idle. The catch is timing: if that long filing were the *last* task left, there'd be nothing to backfill it, the finished core would sit idle, and that lone straggler would set the total time. This is called **load imbalance**, and it's why the *order* you process tasks in matters — not just how many cores you have.
 
 {: .tip }
 > **If you can order the work, run the longest tasks first.** Load imbalance bites hardest when a long task starts *late* — the other cores finish and sit idle waiting for it. Start the longest tasks first and the short ones backfill around them, so the cores finish close together. This is the "longest processing time first" rule, and it's provably within a third of the best-possible finish time. It does need a rough sense of which tasks are long, but a cheap proxy often works — e.g. sort the filings by file size (bigger ≈ slower) and process the biggest first.
