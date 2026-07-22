@@ -111,7 +111,7 @@
   }
 
   // Canonical, ordered list of every quest key, derived from DAYS. MUST match
-  // scripts/quest_keys.json (read by scripts/quest_sync.py); regenerate that
+  // docs/_data/quest_keys.json (read by scripts/quest_sync.py); regenerate that
   // file with `node .instructor/gen_quest_keys.js` after changing DAYS.
   function orderedKeys() {
     var keys = [];
