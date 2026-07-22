@@ -10,7 +10,7 @@ permalink: /day4/why-local-llms/
 
 <div data-room-id="d4-why-local-llms"></div>
 
-Since Day 2, every LLM call you've made — to the Stanford AI Playground, or any third-party model — has gone to an **API** (application programming interface): your prompt and your data travel to someone else's server, the model runs there, and the answer comes back. This section asks the opposite question: when should you run the model *yourself*, on Stanford's own hardware (the Yens)?
+Since Day 2, every LLM call you've made — to the Stanford AI API Gateway, or any third-party model — has gone to an **API** (application programming interface): your prompt and your data travel to someone else's server, the model runs there, and the answer comes back. This section asks the opposite question: when should you run the model *yourself*, on Stanford's own hardware (the Yens)?
 
 ---
 
@@ -24,31 +24,30 @@ When you call an LLM API, three things happen outside your control:
 
 <svg viewBox="0 0 600 164" role="img" aria-labelledby="api-title api-desc" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;max-width:600px;height:auto;margin:1.5rem auto" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
   <title id="api-title">Calling an LLM API sends your data to a remote server and back</title>
-  <desc id="api-desc">Your code on the left sends a packet labelled "prompt plus data" across the internet to the model provider's server on the right, which runs the model and sends a "response" packet back.</desc>
-  <!-- network link -->
-  <line x1="170" y1="98" x2="430" y2="98" stroke="#cbd3e0" stroke-width="2" stroke-dasharray="4 5"/>
-  <!-- left node: your code -->
-  <rect x="20" y="66" width="150" height="64" rx="10" fill="#eef1f8" stroke="#cdd4e6" stroke-width="1.5"/>
-  <text x="95" y="90" font-size="13" font-weight="700" fill="#2c3e50" text-anchor="middle">Your code</text>
-  <text x="95" y="105" font-size="10.5" fill="#6a7280" text-anchor="middle">(on your or</text>
-  <text x="95" y="118" font-size="10.5" fill="#6a7280" text-anchor="middle">Stanford's machines)</text>
+  <desc id="api-desc">Your code on the left and the model provider's server on the right, separated by a dashed vertical boundary line. Your code sends a packet labelled "prompt plus data" across the boundary to the provider, which runs the model and sends a "response" packet back.</desc>
+  <!-- trust boundary: the point where your data leaves your machine -->
+  <line x1="300" y1="42" x2="300" y2="132" stroke="#b3bccb" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <!-- left node: your code (widened so the sub-caption fits on one line) -->
+  <rect x="14" y="66" width="206" height="64" rx="10" fill="#eef1f8" stroke="#cdd4e6" stroke-width="1.5"/>
+  <text x="117" y="90" font-size="13" font-weight="700" fill="#2c3e50" text-anchor="middle">Your code</text>
+  <text x="117" y="105" font-size="10.5" fill="#6a7280" text-anchor="middle">(on your or Stanford's machines)</text>
   <!-- right node: model provider -->
   <rect x="430" y="66" width="150" height="64" rx="10" fill="#eef1f8" stroke="#cdd4e6" stroke-width="1.5"/>
   <text x="505" y="90" font-size="13" font-weight="700" fill="#2c3e50" text-anchor="middle">Model provider</text>
   <text x="505" y="105" font-size="10.5" fill="#6a7280" text-anchor="middle">(in the cloud)</text>
-  <!-- outbound packet: prompt + data -->
+  <!-- outbound packet: prompt + data (starts just right of the wider box) -->
   <g>
-    <rect x="176" y="85" width="120" height="26" rx="8" fill="#E69F00"/>
-    <text x="236" y="102" font-size="11" font-weight="600" fill="#ffffff" text-anchor="middle">prompt + data ▶</text>
+    <rect x="226" y="85" width="120" height="26" rx="8" fill="#E69F00"/>
+    <text x="286" y="102" font-size="11" font-weight="600" fill="#ffffff" text-anchor="middle">prompt + data ▶</text>
     <animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.06;0.44;0.5;1" dur="5s" repeatCount="indefinite"/>
-    <animateTransform attributeName="transform" type="translate" values="0,0;0,0;130,0;130,0" keyTimes="0;0.06;0.44;1" dur="5s" repeatCount="indefinite" calcMode="linear"/>
+    <animateTransform attributeName="transform" type="translate" values="0,0;0,0;82,0;82,0" keyTimes="0;0.06;0.44;1" dur="5s" repeatCount="indefinite" calcMode="linear"/>
   </g>
   <!-- inbound packet: response -->
   <g>
     <rect x="304" y="85" width="120" height="26" rx="8" fill="#0072B2"/>
     <text x="364" y="102" font-size="11" font-weight="600" fill="#ffffff" text-anchor="middle">◀ response</text>
     <animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.5;0.56;0.94;1" dur="5s" repeatCount="indefinite"/>
-    <animateTransform attributeName="transform" type="translate" values="0,0;0,0;-130,0;-130,0" keyTimes="0;0.56;0.94;1" dur="5s" repeatCount="indefinite" calcMode="linear"/>
+    <animateTransform attributeName="transform" type="translate" values="0,0;0,0;-82,0;-82,0" keyTimes="0;0.56;0.94;1" dur="5s" repeatCount="indefinite" calcMode="linear"/>
   </g>
   <!-- caption -->
   <text x="300" y="150" font-size="12.5" fill="#6a7280" text-anchor="middle">Your prompt and data go to the model provider's servers, and the response comes back.</text>
@@ -57,6 +56,42 @@ When you call an LLM API, three things happen outside your control:
 ---
 
 ## Why Run It Yourself?
+
+<svg viewBox="0 0 600 232" role="img" aria-labelledby="local-title local-desc" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;max-width:600px;height:auto;margin:1.5rem auto" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
+  <title id="local-title">Running the model yourself keeps your prompt and data on your side</title>
+  <desc id="local-desc">Your code sits above a local model, both on the left of a dashed vertical boundary — the edge of your, or Stanford's, machines. A labelled bar carries the prompt and data down to the local model and the response back up; neither crosses the boundary. On the right, in the cloud, the model provider's server is greyed out and not contacted.</desc>
+  <!-- boundary: the edge of your machines -->
+  <line x1="300" y1="36" x2="300" y2="196" stroke="#b3bccb" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <!-- territory labels -->
+  <text x="150" y="26" font-size="11" font-weight="700" fill="#2c3e50" text-anchor="middle">On your or Stanford's machines</text>
+  <text x="450" y="26" font-size="11" font-weight="700" fill="#9aa3b0" text-anchor="middle">In the cloud</text>
+  <!-- your code (top) -->
+  <rect x="70" y="44" width="160" height="48" rx="10" fill="#eef1f8" stroke="#cdd4e6" stroke-width="1.5"/>
+  <text x="150" y="72" font-size="13" font-weight="700" fill="#2c3e50" text-anchor="middle">Your code</text>
+  <!-- local model (below) -->
+  <rect x="70" y="150" width="160" height="48" rx="10" fill="#eef1f8" stroke="#cdd4e6" stroke-width="1.5"/>
+  <text x="150" y="178" font-size="13" font-weight="700" fill="#2c3e50" text-anchor="middle">Local model</text>
+  <!-- outbound bar: prompt + data, travels down to the local model -->
+  <g>
+    <rect x="90" y="98" width="120" height="24" rx="8" fill="#E69F00"/>
+    <text x="150" y="114" font-size="11" font-weight="600" fill="#ffffff" text-anchor="middle">prompt + data ▼</text>
+    <animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.06;0.44;0.5;1" dur="5s" repeatCount="indefinite"/>
+    <animateTransform attributeName="transform" type="translate" values="0,0;0,0;0,26;0,26" keyTimes="0;0.06;0.44;1" dur="5s" repeatCount="indefinite" calcMode="linear"/>
+  </g>
+  <!-- inbound bar: response, travels back up -->
+  <g>
+    <rect x="90" y="124" width="120" height="24" rx="8" fill="#0072B2"/>
+    <text x="150" y="140" font-size="11" font-weight="600" fill="#ffffff" text-anchor="middle">▲ response</text>
+    <animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.5;0.56;0.94;1" dur="5s" repeatCount="indefinite"/>
+    <animateTransform attributeName="transform" type="translate" values="0,0;0,0;0,-26;0,-26" keyTimes="0;0.56;0.94;1" dur="5s" repeatCount="indefinite" calcMode="linear"/>
+  </g>
+  <!-- model provider: present but not contacted -->
+  <rect x="370" y="97" width="160" height="48" rx="10" fill="#eef1f8" stroke="#cdd4e6" stroke-width="1.5" stroke-dasharray="5 4" opacity="0.5"/>
+  <text x="450" y="118" font-size="13" font-weight="700" fill="#9aa3b0" text-anchor="middle">Model provider</text>
+  <text x="450" y="134" font-size="10" fill="#9aa3b0" text-anchor="middle">(not contacted)</text>
+  <!-- caption -->
+  <text x="300" y="222" font-size="12.5" fill="#6a7280" text-anchor="middle">Run the model yourself and your prompt and data never cross into the cloud.</text>
+</svg>
 
 **1. Privacy & data requirements — often a hard rule, not a preference.** Restricted, confidential, or IRB-governed data may not leave Stanford's perimeter. Run the model locally and your prompts and documents never leave the cluster — nothing goes to an outside model provider. (Which bucket your data falls in was covered in [the data classification section](../../day2/human-vs-llm/) on Day 2.)
 
@@ -90,14 +125,14 @@ Running locally isn't always the answer. The honest tradeoffs:
 
 ## The Three Options at a Glance
 
-| | Local on the Yens | Stanford AI Playground | Third-party API |
+| | Local on the Yens | Stanford AI API Gateway | Third-party API |
 |---|---|---|---|
 | **Where your data goes** | Stays on the cluster | In the cloud, but regulated and approved by Stanford | Leaves Stanford → model provider |
 | **Cost** | Free at the margin | Budget-capped Stanford account | Per-token billing |
 | **Models** | Open-weight models you can run on the Yens | Provider-curated, Stanford-audited | Latest, most capable |
 | **Best for** | Restricted data, large batch jobs | Everyday research | Hardest tasks where data rules allow |
 
-For the Stanford AI Playground's tradeoffs in more depth, see the [Upsides and Downsides table](../../day2/stanford-ai-playground/#upsides-and-downsides) from Day 2.
+For the Stanford AI API Gateway's tradeoffs in more depth, see the [Upsides and Downsides table](../../day2/stanford-ai-playground/#upsides-and-downsides) from Day 2.
 
 ---
 
