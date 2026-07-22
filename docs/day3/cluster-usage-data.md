@@ -40,7 +40,7 @@ The file below is one such snapshot from yen1, taken on July 10, 2026 at 20:56. 
 
 ## Your Turn
 
-Load the file and explore. Use Claude, a notebook, a script — whatever works for you. There are no required questions.
+Load the file and explore it **with Claude** — ask it about the columns, dig into what's running, and have it help you **make a visualization** of an insight you find.
 
 ```python
 import pandas as pd
@@ -78,7 +78,7 @@ It doesn't have to be the most impressive finding. It just has to be true, speci
 
 When you're ready — put a **🟢 green sticky** on your laptop.
 
-<label class="quest-check"><input type="checkbox" data-room="d3-data-mine" data-key="main"> I loaded the data, explored it, and wrote up one true, specific finding in my README</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-data-mine" data-key="main"> I used Claude to explore the data, made a visualization, and wrote up one true, specific finding in my README</label>
 
 ---
 

@@ -212,37 +212,32 @@ Note the `real`, `user`, and `sys` times when it finishes. Is this script **seri
 
 ## Main quest — Document Your Script's Resource Needs
 
-Now that you've profiled **10 filings**, write down what you measured — and use it to **estimate what 100 filings would need**. Open the `README.md` in your repo and add a **Resource Profile** section:
+Now that you've profiled **10 filings**, write down what you measured. Open the `README.md` in your repo and add a **Resource Profile** section:
 
 ```markdown
 ## Resource Profile
 
-### extract_form_3_batch.py — 10 filings (measured)
+### extract_form_3_batch.py — 10 filings
 
+- Yen node used:
 - Wall-clock time (real):
 - CPU cores used:
 - RAM peak (RES / % Mem):
 - Serial or parallel:
-
-### Estimate for 100 filings
-
-- Wall-clock time (real): ~10 × the 10-filing time
-- CPU cores used: (same as 10 — serial work doesn't need more cores)
-- RAM peak: (same as 10 — one filing in memory at a time)
 ```
 
-Fill in the actual numbers from your `time` and `userload` output. Because this job is **API-bound and serial**, cores and RAM stay flat as you add files — **only wall-clock time grows.** That's the kind of estimate you'll reach for later when you ask the cluster to run this at scale: modest CPU and RAM, but a time budget that scales with the number of filings.
+Fill in the actual numbers from your `time` and `userload` output.
 
-<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="readme"> I profiled 10 filings, documented the time/CPU/RAM, and estimated what 100 filings would need</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="readme"> I profiled the LLM extraction script on 10 filings and documented the time / CPU / RAM (and which Yen node) in my README</label>
 
 ---
 
 ## Side quest — Vectorized vs. Non-Vectorized
 
 {: .note }
-> Finished early? This one is self-contained — no script of your own required.
+> Finished early?
 
-The single biggest speedup in scientific Python is usually **vectorization**: pushing a computation into NumPy (compiled C loops) instead of a Python `for` loop. We ship a script that computes the same sum of squares both ways — profile it and see the difference.
+The single biggest speedup in scientific Python is usually **vectorization** — doing the math on a whole array in one operation instead of looping element-by-element in Python. The array operation runs in fast, pre-compiled code, so it's often 10–100× faster. We ship a script that computes the same sum of squares both ways — profile it and see the difference.
 
 Terminal 1 — run it:
 ```bash
@@ -257,24 +252,7 @@ watch userload
 
 Both versions produce the identical result; the script prints how much faster the vectorized one was (often 10× or more). Notice the slow Python loop pins a core the whole time, while the NumPy version finishes almost before you can look at Terminal 2.
 
-**Have a script from your own research?** Even better — copy it over and profile it the same way, then hunt for a hot `for` loop you could vectorize:
-
-```bash
-scp /path/to/your/script.py SUNetID@yen.stanford.edu:~/your-project/
-```
-
-Record what you find in your `README.md`:
-
-```
-## Resource Profile — vectorized vs. loop
-
-- Python loop time (real):
-- NumPy vectorized time (real):
-- Speedup:
-- (If you profiled your own script) a loop you could vectorize:
-```
-
-<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="side2"> I profiled the vectorized vs. non-vectorized demo (and/or my own script) and recorded the speedup</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="side2"> I profiled the vectorized vs. non-vectorized demo and saw the speedup</label>
 
 ---
 
@@ -293,9 +271,19 @@ Document what changes and discuss with your neighbor: How many `python` processe
 
 <label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="side6"> I changed num_cores in the mystery script, re-profiled it, and can explain how the processes and cores changed</label>
 
-**Side quest — Profile an I/O-Bound Script**
+**Side quest — Prompt caching: the second run is faster**
 
-Everything you've profiled so far is CPU-bound (`user` time dominates). Write a tiny script that's I/O-bound instead — for example, one that reads and re-writes a large file in a loop — and profile it the same way. Compare its `sys` and `user` times to the mystery script's.
+Run the 10 filings, then delete the results and run them again:
 
-<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="side7"> I profiled an I/O-bound script and compared its sys vs. user time to the mystery script's</label>
+```bash
+time python scripts/extract_form_3_batch.py
+rm -rf results/*
+time python scripts/extract_form_3_batch.py
+```
+
+Even though you cleared the output files, the **second run is noticeably faster**. The Stanford AI Playground supports **prompt caching**: when a request repeats a large chunk the model has already processed (here, the system prompt and the filings you just sent), it reuses that cached work instead of re-reading it — so it answers faster and cheaper. Compare the two `real` times.
+
+Read more: [AI API Gateway FAQs](https://uit.stanford.edu/service/ai-api-gateway/faqs).
+
+<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="side7"> I re-ran the 10 filings and saw prompt caching make the second run faster</label>
 
