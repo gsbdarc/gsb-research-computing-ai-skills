@@ -8,7 +8,7 @@ permalink: /day3/slurm-scheduler/
 
 # The SLURM Scheduler
 
-<div data-room-id="d3-head-chef"></div>
+<div data-room-id="d3-slurm-scheduler"></div>
 
 ---
 
@@ -111,7 +111,7 @@ sinfo
 
 When you can read the queue, tell `R` from `PD`, and describe the Yens partitions and node states — put a **🟢 green sticky** on your laptop.
 
-<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="main"> I can read the queue with squeue, filter by partition, and describe the partitions and node states with sinfo</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-slurm-scheduler" data-key="main"> I can read the queue with squeue, filter by partition, and describe the partitions and node states with sinfo</label>
 
 ---
 
@@ -139,7 +139,7 @@ source ~/.bash_profile
 
 Now run `longsqueue` — you should see the full resource picture of every job in the queue.
 
-<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="side3"> I added the longsqueue alias to my ~/.bash_profile and can read CPU and memory requests in the queue</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-slurm-scheduler" data-key="side3"> I added the longsqueue alias to my ~/.bash_profile and can read CPU and memory requests in the queue</label>
 
 **Side quest — Inspect any job with scontrol**
 
@@ -156,11 +156,11 @@ Find these fields in the output:
 
 This works on any job — yours or someone else's — as long as it is still in the queue or running.
 
-<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="side4"> I used scontrol to find the CPU, RAM, and time limit of a job in the queue</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-slurm-scheduler" data-key="side4"> I used scontrol to find the CPU, RAM, and time limit of a job in the queue</label>
 
 **Side quest — Compare partitions**
 
 Run `sinfo -p gpu` and `sinfo -p normal` (or whichever partitions exist on the Yens) and compare what each offers — node count, time limits, resource caps. Can you explain when you'd request one over the other for a job?
 
-<label class="quest-check"><input type="checkbox" data-room="d3-head-chef" data-key="side5"> I compared a GPU partition to a CPU partition with sinfo and can explain when I'd request each</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-slurm-scheduler" data-key="side5"> I compared a GPU partition to a CPU partition with sinfo and can explain when I'd request each</label>
 
