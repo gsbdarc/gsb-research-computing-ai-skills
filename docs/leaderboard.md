@@ -105,6 +105,11 @@ tr.lb-leader td { background: #f4f8ff; }
   function parseQuestLog(text) {
     var data;
     try { data = JSON.parse(text); } catch (e) { data = {}; }
+    // Current compact format written by quest_sync.py: { completedChecks, bossGates }.
+    if (typeof data.completedChecks === 'number') {
+      return { completedChecks: data.completedChecks, bossGates: data.bossGates || 0 };
+    }
+    // Fallback for any fork still holding an older per-key quest_log.json.
     var completedChecks = 0;
     for (var k in data) { if (data[k] === true) completedChecks++; }
     var bossGates = 0;

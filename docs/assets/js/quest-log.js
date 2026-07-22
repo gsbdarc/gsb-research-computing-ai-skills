@@ -135,26 +135,34 @@
     return h.toString(16);
   }
 
-  // Encode completed quests as a mnemonic "spell" — one word per byte of the
-  // bitfield (one bit per canonical key), plus two "seal" words derived from the
-  // key-list hash so scripts/quest_sync.py can reject a stale-version spell.
-  // Hyphen-joined so it pastes as a single shell argument.
+  // quest_log.json keys that mark each day's boss gate (capstone) complete —
+  // must match BOSS_GATE_KEYS in docs/leaderboard.md.
+  var BOSS_GATE_KEYS = [
+    'd1-boss-gate-1.main',
+    'd2-boss-gate.commit',
+    'd3-boss-gate.commit',
+    'd4-boss-gate.commit'
+  ];
+
+  // Encode progress as a short 3-word "spell": [completed count, capstone count,
+  // seal]. The leaderboard only needs those two numbers, so the spell stays a
+  // short incantation. The seal (key-list hash byte folded in with the counts)
+  // lets scripts/quest_sync.py reject a stale-version or mistyped spell; the
+  // per-position offset keeps a zero byte from always rendering as the same word.
   function encodeProgress() {
     var progress = loadProgress();
     var keys = orderedKeys();
-    var nbytes = Math.ceil(keys.length / 8);
-    var bytes = [];
-    for (var b = 0; b < nbytes; b++) bytes.push(0);
     var count = 0;
     for (var i = 0; i < keys.length; i++) {
-      if (progress[keys[i]] === true) { bytes[i >> 3] |= (1 << (i & 7)); count++; }
+      if (progress[keys[i]] === true) count++;
     }
-    var hh = ('0000000' + keyListHash(keys)).slice(-8);   // 8 hex chars, zero-padded
-    bytes.push(parseInt(hh.slice(0, 2), 16));             // seal byte 0
-    bytes.push(parseInt(hh.slice(2, 4), 16));             // seal byte 1
-    // Offset each byte by its position before mapping to a word, so a sparse
-    // bitfield (mostly zeros early in the course) doesn't render as a long run
-    // of the same word. Reversible: quest_sync.py subtracts the same offset.
+    var bossCount = 0;
+    for (var b = 0; b < BOSS_GATE_KEYS.length; b++) {
+      if (progress[BOSS_GATE_KEYS[b]] === true) bossCount++;
+    }
+    var hashByte = parseInt(('0000000' + keyListHash(keys)).slice(-8).slice(0, 2), 16);
+    var seal = (count + bossCount + hashByte) & 255;
+    var bytes = [count & 255, bossCount & 255, seal];
     var spell = bytes.map(function (x, i) { return SPELL_WORDS[(x + i * 17) & 255]; }).join('-');
     return { token: spell, count: count };
   }
