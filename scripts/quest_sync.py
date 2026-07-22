@@ -59,7 +59,7 @@ def decode_spell(spell):
     if len(words) != nbytes + 2:
         sys.exit("That doesn't look like a full sync spell — copy a fresh one from the page.")
     try:
-        vals = [index[w] for w in words]
+        vals = [(index[w] - i * 17) % 256 for i, w in enumerate(words)]
     except KeyError as e:
         sys.exit("Unknown word in the spell (%s) — copy a fresh one from the page." % e.args[0])
     hh = fnv1a_hex(",".join(keys)).rjust(8, "0")

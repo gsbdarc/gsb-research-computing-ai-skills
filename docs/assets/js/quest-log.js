@@ -152,7 +152,10 @@
     var hh = ('0000000' + keyListHash(keys)).slice(-8);   // 8 hex chars, zero-padded
     bytes.push(parseInt(hh.slice(0, 2), 16));             // seal byte 0
     bytes.push(parseInt(hh.slice(2, 4), 16));             // seal byte 1
-    var spell = bytes.map(function (x) { return SPELL_WORDS[x]; }).join('-');
+    // Offset each byte by its position before mapping to a word, so a sparse
+    // bitfield (mostly zeros early in the course) doesn't render as a long run
+    // of the same word. Reversible: quest_sync.py subtracts the same offset.
+    var spell = bytes.map(function (x, i) { return SPELL_WORDS[(x + i * 17) & 255]; }).join('-');
     return { token: spell, count: count };
   }
 
