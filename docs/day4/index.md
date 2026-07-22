@@ -10,6 +10,8 @@ floor: 4
 
 # Day 4 — Parallelization & GPUs
 
+<p style="color:#c0392b; font-weight:700;">TODO: Update this summary page — the intro summary below and the per-section summaries in the Sections table are out of date after the Day 4 content revisions (e.g., the restructured Parallelization Basics page).</p>
+
 Day 4 scales yesterday's single SLURM job into a full research pipeline. You'll fan one script across hundreds of filings with **job arrays**, then move onto **GPU nodes** — comparing the A30, A40, and H200 and seeing how VRAM sets a ceiling on the model size you can load. From there you'll run a **local LLM** on cluster hardware with Ollama, weigh it against the Stanford AI API Gateway and third-party APIs, and learn to spot where LLMs fail before their output reaches your results. Putting It All Together caps the day — and the bootcamp — with the full stack running end to end: **SLURM → GPU → local LLM**, documented so it reruns.
 
 **Duration:** ~3 hours
