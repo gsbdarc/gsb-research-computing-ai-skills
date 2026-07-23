@@ -119,7 +119,7 @@ tr.lb-leader td { background: #f4f8ff; }
   function parseQuestLog(text) {
     var data;
     try { data = JSON.parse(text); } catch (e) { data = {}; }
-    // Current compact format written by quest_sync.py: { completedChecks, bossGates }.
+    // Current compact format written by the cast program: { completedChecks, bossGates }.
     if (typeof data.completedChecks === 'number') {
       return { completedChecks: data.completedChecks, bossGates: data.bossGates || 0 };
     }

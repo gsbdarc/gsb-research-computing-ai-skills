@@ -182,8 +182,8 @@ rm -r ~/Desktop/spell_chamber        # remove the folder and all its contents
 <label class="quest-check"><input type="checkbox" data-room="d1-command-spire" data-key="main"> Exercise complete</label>
 
 {: .note }
-> **📤 Syncing your progress to the leaderboard**
+> **📤 Casting your progress to the leaderboard**
 >
-> Whenever you check off a quest, a **🔄 Show my sync command** button appears beneath it. Click it to reveal your personal sync command — a short "incantation" — then run that command on the Yens, inside your clone, to update the leaderboard.
+> Whenever you check off a quest, a **🔮 Cast to the leaderboard** button appears beneath it. Click it to reveal your personal **incantation** — a short spell like `cast frost-ember-sigil` — then run it on the Yens, inside your clone, to update the leaderboard.
 >
-> **First time only:** sign in once with `gh auth login` (coming up in **The Repository**) so the push works.
+> **First time only:** you'll ready your spell-caster (make `cast` executable) and sign in with `gh auth login` — both covered in **The Repository**.
