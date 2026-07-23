@@ -5,7 +5,7 @@ On your personal course site, tick the quests you finished, then copy the ready
 "spell" from the sync command shown on the page. Run it here on the Yens, inside
 your clone of your fork:
 
-    cast <spell>
+    ./cast <spell>
 
 It decodes your progress, writes quest_log.json, and pushes it to your fork so
 the leaderboard updates. (Instructor/debug: pass --raw with "COUNT,GATES".)
@@ -18,7 +18,7 @@ import sys
 from pathlib import Path
 
 CLASS_REPO = "gsbdarc/gsb-research-computing-ai-skills"
-REPO_ROOT = Path(__file__).resolve().parent.parent
+REPO_ROOT = Path(__file__).resolve().parent
 QUEST_LOG = REPO_ROOT / "quest_log.json"
 QUEST_KEYS = REPO_ROOT / "docs" / "_data" / "quest_keys.json"
 SPELL_WORDS = REPO_ROOT / "docs" / "_data" / "spell_words.json"

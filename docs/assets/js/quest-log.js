@@ -172,7 +172,7 @@
   // plus a Copy button. The incantation is the same site-wide (total + capstones)
   // and refreshed live so a revealed command never goes stale.
   function buildSyncCommand() {
-    return 'cast ' + encodeProgress().token;
+    return './cast ' + encodeProgress().token;
   }
 
   function ensureSyncAffordance(label) {
@@ -201,7 +201,12 @@
 
     var hint = document.createElement('span');
     hint.className = 'quest-cmd-hint';
-    hint.innerHTML = 'cast it on the Yens · one-time setup on Day 1 (see <a href="/gsb-research-computing-ai-skills/day1/repository/">Version Control with Git</a>)';
+    // On the setup page itself (Version Control with Git), don't link to the page
+    // you're already on; everywhere else point back to it.
+    var onSetupPage = /\/day1\/repository\/?$/.test(window.location.pathname);
+    hint.innerHTML = onSetupPage
+      ? 'run it from your repo root on the Yens · Step 7 makes it executable'
+      : 'run it from your repo root on the Yens · one-time <code>chmod +x cast</code> (see <a href="/gsb-research-computing-ai-skills/day1/repository/">Version Control with Git</a>)';
 
     reveal.appendChild(code);
     reveal.appendChild(copy);
