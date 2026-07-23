@@ -10,11 +10,6 @@ permalink: /day3/cluster-usage-data/
 
 <div data-room-id="d3-cluster-usage-data"></div>
 
-{: .note }
-> 🟢 **Green sticky** = I'm done and ready &nbsp;&nbsp; 🔴 **Red sticky** = I need help
->
-> Put a sticky note on your laptop lid so instructors can see where you are.
-
 ---
 
 ## What Is This Data?
@@ -70,6 +65,20 @@ Some directions if you want a place to start — but don't feel limited to these
 
 Make a plot. Ask Claude to explain something. Follow a thread that looks interesting.
 
+{: .note }
+> **Seeing your plot on the cluster.** There's no screen to pop a plot window open on, so you have two options:
+>
+> - **In JupyterHub** — run your code in a notebook and the plot renders inline.
+> - **From a script or the terminal** — save the figure to a file, then open that file from Jupyter's file browser:
+>
+>     ```python
+>     import matplotlib
+>     matplotlib.use("Agg")          # no display needed
+>     import matplotlib.pyplot as plt
+>     # ... build your plot ...
+>     plt.savefig("usage_plot.png", dpi=150, bbox_inches="tight")
+>     ```
+
 ---
 
 ## Write It Up
@@ -77,6 +86,11 @@ Make a plot. Ask Claude to explain something. Follow a thread that looks interes
 Find one thing in the data worth keeping. Add a short section to your `README.md` — a few sentences describing what you found and what it tells you about how shared research nodes actually get used.
 
 When you're ready — put a **🟢 green sticky** on your laptop.
+
+{: .note }
+> 🟢 **Green sticky** = I'm done and ready &nbsp;&nbsp; 🔴 **Red sticky** = I need help
+>
+> Put a sticky note on your laptop lid so instructors can see where you are.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-cluster-usage-data" data-key="main"> I used Claude to explore the data, made a visualization, and wrote up one finding in README</label>
 
@@ -98,6 +112,11 @@ Look both up on the [Yen user limits page](https://rcpedia.stanford.edu/_policie
 
 Is anyone close to their per-user limit? And how much of the *entire node* is actually in use? A node can sit far from full even while one user is maxed out — that's the per-user limit doing its job: keeping any one job from starving everyone else on a shared machine.
 
+{: .note }
+> 🟢 **Green sticky** = I'm done and ready &nbsp;&nbsp; 🔴 **Red sticky** = I need help
+>
+> Put a sticky note on your laptop lid so instructors can see where you are.
+
 <label class="quest-check"><input type="checkbox" data-room="d3-cluster-usage-data" data-key="side3"> I compared per-user usage against both the per-user limit and the whole node's capacity</label>
 
 **Side quest — Watch It Live (`top`)**
@@ -118,6 +137,11 @@ While it's running, try these keys:
 - `q` — quit
 
 Watch for a few seconds: which processes churn near a full core, and which just sit `S` (sleeping)? Press `q` to quit when you're done.
+
+{: .note }
+> 🟢 **Green sticky** = I'm done and ready &nbsp;&nbsp; 🔴 **Red sticky** = I need help
+>
+> Put a sticky note on your laptop lid so instructors can see where you are.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-cluster-usage-data" data-key="side5"> I ran `top` live on a Yen node, read the header and per-process columns, and can explain how it relates to the CSV snapshot</label>
 
