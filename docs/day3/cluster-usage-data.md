@@ -112,11 +112,6 @@ Look both up on the [Yen user limits page](https://rcpedia.stanford.edu/_policie
 
 Is anyone close to their per-user limit? And how much of the *entire node* is actually in use? A node can sit far from full even while one user is maxed out — that's the per-user limit doing its job: keeping any one job from starving everyone else on a shared machine.
 
-{: .note }
-> 🟢 **Green sticky** = I'm done and ready &nbsp;&nbsp; 🔴 **Red sticky** = I need help
->
-> Put a sticky note on your laptop lid so instructors can see where you are.
-
 <label class="quest-check"><input type="checkbox" data-room="d3-cluster-usage-data" data-key="side3"> I compared per-user usage against both the per-user limit and the whole node's capacity</label>
 
 **Side quest — Watch It Live (`top`)**
@@ -137,11 +132,6 @@ While it's running, try these keys:
 - `q` — quit
 
 Watch for a few seconds: which processes churn near a full core, and which just sit `S` (sleeping)? Press `q` to quit when you're done.
-
-{: .note }
-> 🟢 **Green sticky** = I'm done and ready &nbsp;&nbsp; 🔴 **Red sticky** = I need help
->
-> Put a sticky note on your laptop lid so instructors can see where you are.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-cluster-usage-data" data-key="side5"> I ran `top` live on a Yen node, read the header and per-process columns, and can explain how it relates to the CSV snapshot</label>
 
