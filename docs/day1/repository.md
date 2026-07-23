@@ -236,8 +236,8 @@ git push -u origin experiment
 Your fork ships with a small program called `cast` — your spell-caster for recording quest progress to the leaderboard. Make it executable and give it a short name you can run from anywhere on the Yens (run this from inside your repo):
 
 ```bash
-chmod +x cast
-echo "alias cast=\"$PWD/cast\"" >> ~/.bash_profile
+chmod +x scripts/cast
+echo "alias cast=\"$PWD/scripts/cast\"" >> ~/.bash_profile
 source ~/.bash_profile
 ```
 

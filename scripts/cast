@@ -18,7 +18,7 @@ import sys
 from pathlib import Path
 
 CLASS_REPO = "gsbdarc/gsb-research-computing-ai-skills"
-REPO_ROOT = Path(__file__).resolve().parent
+REPO_ROOT = Path(__file__).resolve().parent.parent
 QUEST_LOG = REPO_ROOT / "quest_log.json"
 QUEST_KEYS = REPO_ROOT / "docs" / "_data" / "quest_keys.json"
 SPELL_WORDS = REPO_ROOT / "docs" / "_data" / "spell_words.json"
