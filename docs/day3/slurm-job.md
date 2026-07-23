@@ -249,11 +249,6 @@ python scripts/extract_form_3_one_file.py   # run it and watch the output live
 
 Because you're interactive, you see the output as it happens and can re-run instantly after a fix — no re-queuing. Type `exit` to release the allocation when you're done.
 
-{: .note }
-> 🟢 **Green sticky** = I'm done and ready &nbsp;&nbsp; 🔴 **Red sticky** = I need help
->
-> Put a sticky note on your laptop lid so instructors can see where you are.
-
 <label class="quest-check"><input type="checkbox" data-room="d3-slurm-job" data-key="side2"> I requested an interactive allocation with `srun --pty` and ran my script there</label>
 
 **Side quest — Chain Two Jobs**
@@ -266,11 +261,6 @@ sbatch --dependency=afterok:JOBID slurm/extract_form_3_one_file.slurm
 
 Replace `JOBID` with the job ID of a job you already submitted. Confirm with `squeue --me` that the new job shows as pending until the first one completes.
 
-{: .note }
-> 🟢 **Green sticky** = I'm done and ready &nbsp;&nbsp; 🔴 **Red sticky** = I need help
->
-> Put a sticky note on your laptop lid so instructors can see where you are.
-
 <label class="quest-check"><input type="checkbox" data-room="d3-slurm-job" data-key="side3"> I chained two SLURM jobs with --dependency=afterok</label>
 
 **Side quest — The `dev` partition**
@@ -278,11 +268,6 @@ Replace `JOBID` with the job ID of a job you already submitted. Confirm with `sq
 The Yens have a dedicated **`dev` partition** for short, interactive debugging jobs — quick test runs while you're getting a script working, **not** production runs. It has tighter time limits but is meant to turn around fast, so you're not stuck in the main queue while iterating. Read up on it on RCpedia, then try submitting to it with `-p dev` (on `sbatch` or `srun`).
 
 Learn more: [Yen SLURM partitions](https://rcpedia.stanford.edu/_user_guide/slurm/#current-partitions-and-their-limits).
-
-{: .note }
-> 🟢 **Green sticky** = I'm done and ready &nbsp;&nbsp; 🔴 **Red sticky** = I need help
->
-> Put a sticky note on your laptop lid so instructors can see where you are.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-slurm-job" data-key="side5"> I read about the dev partition on RCpedia and know when to use it (short debug jobs, not production)</label>
 
@@ -308,11 +293,6 @@ Fix the bug in `slurm/fix_me.slurm`, add the email-notification lines (from **Ad
 **Bonus:** `slurm/extract_form_3_one_file_broken.slurm` has *two* bugs — one in the SLURM script and one in the Python it runs (`scripts/extract_form_3_one_file_broken.py`). Fix both.
 
 Only check this off once a job you fixed actually **completed** — you'll know because the SLURM email says it finished with **exit status `0`**.
-
-{: .note }
-> 🟢 **Green sticky** = I'm done and ready &nbsp;&nbsp; 🔴 **Red sticky** = I need help
->
-> Put a sticky note on your laptop lid so instructors can see where you are.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-slurm-job" data-key="debug"> I worked with Claude to fix a broken job, resubmitted, and got the SLURM email confirming it COMPLETED (exit status 0)</label>
 

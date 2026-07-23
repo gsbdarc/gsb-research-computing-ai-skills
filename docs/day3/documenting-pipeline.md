@@ -69,10 +69,5 @@ Add a pipeline writeup to your `README.md`. Here's a skeleton — fill in each s
 
 Ask Claude Code to read your README as if it were a labmate seeing this pipeline for the first time, and to flag anything that would stop them from rerunning it without asking you a question. Fix at least one thing it flags.
 
-{: .note }
-> 🟢 **Green sticky** = I'm done and ready &nbsp;&nbsp; 🔴 **Red sticky** = I need help
->
-> Put a sticky note on your laptop lid so instructors can see where you are.
-
 <label class="quest-check"><input type="checkbox" data-room="d3-documenting-pipeline" data-key="side1"> I had Claude critique my README as a first-time reader and fixed at least one issue it flagged</label>
 

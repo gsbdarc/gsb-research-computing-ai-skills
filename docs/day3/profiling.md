@@ -264,11 +264,6 @@ watch userload
 
 Both versions produce the identical result; the script prints how much faster the vectorized one was (often 10× or more). Notice the slow Python loop pins a core the whole time, while the NumPy version finishes almost before you can look at Terminal 2.
 
-{: .note }
-> 🟢 **Green sticky** = I'm done and ready &nbsp;&nbsp; 🔴 **Red sticky** = I need help
->
-> Put a sticky note on your laptop lid so instructors can see where you are.
-
 <label class="quest-check"><input type="checkbox" data-room="d3-profiling" data-key="side2"> I profiled the vectorized vs. non-vectorized demo and saw the speedup</label>
 
 **Side quest — Change the number of cores**
@@ -280,11 +275,6 @@ time python scripts/mystery_script.py
 ```
 
 Document what changes and discuss with your neighbor: How many `python` processes appear in `htop` now? How many **Cores** in `userload`? Did the `real` (wall-clock) time go up or down? Does the resource usage match the number you set?
-
-{: .note }
-> 🟢 **Green sticky** = I'm done and ready &nbsp;&nbsp; 🔴 **Red sticky** = I need help
->
-> Put a sticky note on your laptop lid so instructors can see where you are.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-profiling" data-key="side6"> I changed num_cores in the mystery script, re-profiled it, and can explain how the processes and cores changed</label>
 
@@ -301,11 +291,6 @@ time python scripts/extract_form_3_batch.py
 Even though you cleared the output files, the **second run is noticeably faster**. The Stanford AI Playground supports **prompt caching**: when a request repeats a large chunk the model has already processed (here, the system prompt and the filings you just sent), it reuses that cached work instead of re-reading it — so it answers faster and cheaper. Compare the two `real` times.
 
 Read more: [AI API Gateway FAQs](https://uit.stanford.edu/service/ai-api-gateway/faqs).
-
-{: .note }
-> 🟢 **Green sticky** = I'm done and ready &nbsp;&nbsp; 🔴 **Red sticky** = I need help
->
-> Put a sticky note on your laptop lid so instructors can see where you are.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-profiling" data-key="side7"> I re-ran the 10 filings and saw prompt caching make the second run faster</label>
 
