@@ -13,7 +13,7 @@
   'use strict';
 
   // Spell wordlist for the sync token — injected at build time from the single
-  // source of truth docs/_data/spell_words.json (scripts/quest_sync.py reads the
+  // source of truth docs/_data/spell_words.json (the cast program reads the
   // same file to decode). 256 words → one word per byte.
   var SPELL_WORDS = {{ site.data.spell_words | jsonify }};
 
@@ -111,7 +111,7 @@
   }
 
   // Canonical, ordered list of every quest key, derived from DAYS. MUST match
-  // docs/_data/quest_keys.json (read by scripts/quest_sync.py); regenerate that
+  // docs/_data/quest_keys.json (read by the cast program); regenerate that
   // file with `node .instructor/gen_quest_keys.js` after changing DAYS.
   function orderedKeys() {
     var keys = [];
@@ -123,7 +123,7 @@
     return keys;
   }
 
-  // FNV-1a (32-bit) over the joined key list, as hex. Lets quest_sync.py detect
+  // FNV-1a (32-bit) over the joined key list, as hex. Lets the cast program detect
   // a token built from a different site version than the clone has.
   function keyListHash(keys) {
     var s = keys.join(',');
@@ -147,7 +147,7 @@
   // Encode progress as a short 3-word "spell": [completed count, capstone count,
   // seal]. The leaderboard only needs those two numbers, so the spell stays a
   // short incantation. The seal (key-list hash byte folded in with the counts)
-  // lets scripts/quest_sync.py reject a stale-version or mistyped spell; the
+  // lets the cast program reject a stale-version or mistyped spell; the
   // per-position offset keeps a zero byte from always rendering as the same word.
   function encodeProgress() {
     var progress = loadProgress();
@@ -167,12 +167,12 @@
     return { token: spell, count: count };
   }
 
-  // Per-checkbox sync affordance: once a quest box is checked, a "Show my sync
-  // command" button appears beneath it; clicking reveals the current incantation
+  // Per-checkbox sync affordance: once a quest box is checked, a "Cast to the
+  // leaderboard" button appears beneath it; clicking reveals the current incantation
   // plus a Copy button. The incantation is the same site-wide (total + capstones)
   // and refreshed live so a revealed command never goes stale.
   function buildSyncCommand() {
-    return 'python3 scripts/quest_sync.py ' + encodeProgress().token;
+    return 'cast ' + encodeProgress().token;
   }
 
   function ensureSyncAffordance(label) {
@@ -185,7 +185,7 @@
     var gen = document.createElement('button');
     gen.type = 'button';
     gen.className = 'quest-cmd-gen';
-    gen.textContent = '🔄 Show my sync command';
+    gen.textContent = '🔮 Cast to the leaderboard';
 
     var reveal = document.createElement('span');
     reveal.className = 'quest-cmd-reveal';
@@ -201,7 +201,7 @@
 
     var hint = document.createElement('span');
     hint.className = 'quest-cmd-hint';
-    hint.innerHTML = 'run it on the Yens, inside your clone · first time: <code>gh auth login</code>';
+    hint.innerHTML = 'cast it on the Yens · one-time setup on Day 1 (see <a href="/gsb-research-computing-ai-skills/day1/repository/">Version Control with Git</a>)';
 
     reveal.appendChild(code);
     reveal.appendChild(copy);

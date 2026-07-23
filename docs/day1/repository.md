@@ -231,6 +231,18 @@ git push -u origin experiment
 {: .important }
 > Every day's challenge is submitted the same way — a `git push` to your fork. Come back to these steps whenever you need to submit work.
 
+**Step 7 — Ready your spell-caster (one time)**
+
+Your fork ships with a small program called `cast` — your spell-caster for recording quest progress to the leaderboard. Make it executable and give it a short name you can run from anywhere on the Yens (run this from inside your repo):
+
+```bash
+chmod +x scripts/cast
+echo "alias cast=\"$PWD/scripts/cast\"" >> ~/.bash_profile
+source ~/.bash_profile
+```
+
+From now on, whenever you finish a quest, the site shows a **🔮 Cast to the leaderboard** button with a one-line spell — copy it and run `cast <spell>` here to update your standing.
+
 <label class="quest-check"><input type="checkbox" data-room="d1-repository" data-key="main"> Exercise complete</label>
 
 ---

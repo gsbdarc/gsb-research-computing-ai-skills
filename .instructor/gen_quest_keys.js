@@ -1,7 +1,7 @@
 // Regenerate docs/_data/quest_keys.json from the DAYS registry in
 // docs/assets/js/quest-log.js. The JSON is the canonical, ordered list of quest
 // keys that both the Quest Log token encoder (quest-log.js) and the decoder
-// (scripts/quest_sync.py) rely on. Run this after changing DAYS:
+// (the cast program) rely on. Run this after changing DAYS:
 //
 //     node .instructor/gen_quest_keys.js
 //
