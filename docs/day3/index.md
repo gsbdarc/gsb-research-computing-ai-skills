@@ -35,5 +35,6 @@ Work through the sections in order — later ones build on earlier ones, and the
 | [Exploring Cluster Usage Data](cluster-usage-data/) | 💻🤖 Hands-on (Claude-assisted) | **Data exploration** — the same messy-real-data instinct you'll need on your own datasets |
 | [The SLURM Scheduler](slurm-scheduler/) | 💬💻 Discussion + hands-on | **Interactive vs. scheduled Yen nodes** — so your research jobs get dedicated resources instead of competing with everyone else on a shared login node |
 | [Writing & Submitting a SLURM Job](slurm-job/) | 💻 Hands-on | **Batch jobs** — the actual mechanism you'll use to run your own research code on the cluster (plus debugging broken jobs) |
+| [Writing a SLURM Job with Claude](slurm-with-claude/) | 💻🤖 Hands-on (Claude-assisted) | **Reusable skills** — teach Claude your Yen SLURM conventions once with a skill (global vs. project), then have it draft the batch job and judge its work against yours |
 | [Documenting Your Pipeline](documenting-pipeline/) | 💻🤖 Hands-on (Claude-assisted) | **Reproducibility** — what makes collaborators, and your future self, trust and rerun your results |
 | [Day 3 Capstone](capstone/) | 🔑 Capstone | **Profiled submission** — the exact loop you'll repeat for every real research pipeline from here on |
