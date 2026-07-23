@@ -25,10 +25,10 @@ Your repo already has a `slurm/` folder (with a few prepared scripts). Just make
 mkdir -p logs
 ```
 
-Create a new file `slurm/extract_form_3_one_file.slurm` and open it in your editor — you'll build it up line by line below.
+Create a new file `slurm/extract_form_3_batch.slurm` and open it in your editor — you'll build it up line by line below.
 
 {: .note }
-> No preferred terminal editor? You can create it right in **JupyterHub**: in the file browser, open the `slurm/` folder, click **+ New → Text File** (or **File → New → Text File**), edit it in the browser, then **rename** the file to `extract_form_3_one_file.slurm` and save with `Cmd/Ctrl+S`.
+> No preferred terminal editor? You can create it right in **JupyterHub**: in the file browser, open the `slurm/` folder, click **+ New → Text File** (or **File → New → Text File**), edit it in the browser, then **rename** the file to `extract_form_3_batch.slurm` and save with `Cmd/Ctrl+S`.
 
 ---
 
@@ -105,8 +105,10 @@ source .venv/bin/activate
 The last line of the file is the actual work — the command SLURM will run on the compute node when the job starts. It's a line you write *inside* the script, **not** something you run yourself right now:
 
 ```bash
-python scripts/extract_form_3_one_file.py
+python scripts/extract_form_3_batch.py
 ```
+
+This runs the **10-filing batch you profiled** — `scripts/extract_form_3_batch.py` loops over `NUM_FILINGS` (10) SEC Form 3 filings from `data/aws_links.csv` — so the `--time`, `--mem`, and `--cpus-per-task` you filled in above come straight from your Profiling README.
 
 Save the file.
 
@@ -120,14 +122,14 @@ When your script is complete — put a **🟢 green sticky** on your laptop.
 >
 > Put a sticky note on your laptop lid so instructors can see where you are.
 
-<label class="quest-check"><input type="checkbox" data-room="d3-slurm-job" data-key="main"> I wrote extract_form_3_one_file.slurm and understand every line</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-slurm-job" data-key="main"> I wrote extract_form_3_batch.slurm and understand every line</label>
 
 ---
 
 ## Submit
 
 ```bash
-sbatch slurm/extract_form_3_one_file.slurm
+sbatch slurm/extract_form_3_batch.slurm
 # Submitted batch job 12345678
 ```
 
@@ -167,7 +169,7 @@ squeue --me
 
 ## Add Email Notifications
 
-Open `slurm/extract_form_3_one_file.slurm` and add these two lines with your other `#SBATCH` directives:
+Open `slurm/extract_form_3_batch.slurm` and add these two lines with your other `#SBATCH` directives:
 
 ```bash
 #SBATCH --mail-type=ALL
@@ -179,7 +181,7 @@ Open `slurm/extract_form_3_one_file.slurm` and add these two lines with your oth
 Resubmit:
 
 ```bash
-sbatch slurm/extract_form_3_one_file.slurm
+sbatch slurm/extract_form_3_batch.slurm
 ```
 
 Once your job runs, check your inbox. You should receive two emails: one when the job **starts** and one when it **ends**. The start email tells you when it began — compare that to when you submitted to see how long it **waited in the queue**. The end email includes a **utilization summary** (how much CPU time and memory the job actually used) and the job's **exit status**: `0` means success; any other value means it failed.
@@ -244,7 +246,7 @@ Once it drops you into a shell on your allocated node, you're on a fresh shell �
 ```bash
 cd $HOME/gsb-research-computing-ai-skills   # into your project
 source .venv/bin/activate                   # activate your environment
-python scripts/extract_form_3_one_file.py   # run it and watch the output live
+python scripts/extract_form_3_batch.py   # run it and watch the output live
 ```
 
 Because you're interactive, you see the output as it happens and can re-run instantly after a fix — no re-queuing. Type `exit` to release the allocation when you're done.
@@ -256,7 +258,7 @@ Because you're interactive, you see the output as it happens and can re-run inst
 Real pipelines are often more than one step. Submit a second job that only starts if your first one succeeds:
 
 ```bash
-sbatch --dependency=afterok:JOBID slurm/extract_form_3_one_file.slurm
+sbatch --dependency=afterok:JOBID slurm/extract_form_3_batch.slurm
 ```
 
 Replace `JOBID` with the job ID of a job you already submitted. Confirm with `squeue --me` that the new job shows as pending until the first one completes.

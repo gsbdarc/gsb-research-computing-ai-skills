@@ -28,7 +28,7 @@ You're running the same loop, just over 100 files instead of 10. Think about wha
 
 ### 2. Write a SLURM script for the batch
 
-Create `slurm/extract_form_3_batch.slurm`, just like the `extract_form_3_one_file.slurm` you built earlier — but point it at `scripts/extract_form_3_batch.py` with `NUM_FILINGS` set to `100`. Fill in `--time`, `--mem`, and `--cpus-per-task` with **your estimates for 100**, and add the email-notification lines so you get a completion email.
+You already built `slurm/extract_form_3_batch.slurm` for **10 filings** on the SLURM-job page. Now scale it: bump `NUM_FILINGS` to `100` in `scripts/extract_form_3_batch.py`, and re-tune `--time`, `--mem`, and `--cpus-per-task` in the `.slurm` with **your estimates for 100** (make sure the email-notification lines are there so you get a completion email).
 
 **Zoom out:** *it's still one Python script with a big `for` loop — for each of the 100 Form 3 filings: read it, send it to the API, save the structured data. The SLURM script just runs that single script, once, on the cluster.*
 
