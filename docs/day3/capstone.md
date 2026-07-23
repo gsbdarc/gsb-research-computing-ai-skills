@@ -8,16 +8,13 @@ permalink: /day3/capstone/
 
 # Day 3 Capstone
 
-{: .note }
-> 🟢 **Green sticky** = I'm done and ready &nbsp;&nbsp; 🔴 **Red sticky** = I need help
->
-> Put a sticky note on your laptop lid so instructors can see where you are.
-
 ---
 
 ## The Capstone — Scale to 100 filings
 
 All day you've profiled and run **10 filings**. The capstone: scale to **100** — and **estimate what it needs *before* you run it**.
+
+**Step back — what are we actually doing?** Each "filing" is a real **SEC Form 3**; your script hands it to the **Stanford AI API**, which reads it and returns the structured fields. Scaling to 100 doesn't change that shape: the batch still walks the filings **one at a time**, making one blocking API call per filing and waiting for the answer before starting the next. That's why this job is **I/O-bound** — as you saw in profiling, the wall-clock time grows with the number of filings while RAM and CPU stay about flat. (It's also *why* serial doesn't scale, and exactly the thread Day 4 picks up when you fan these calls out in parallel with **job arrays**.)
 
 ### 1. Estimate the resources for 100 filings — and write it down first
 
@@ -49,6 +46,11 @@ Back in `README.md`, next to the estimate you wrote in step 1, add the **actual*
 Ask Claude Code to handle it:
 
 > Add and commit `slurm/extract_form_3_batch.slurm` and my README changes with a message like "Day 3 Capstone: 100-filing batch", then push to my fork.
+
+{: .note }
+> 🟢 **Green sticky** = I'm done and ready &nbsp;&nbsp; 🔴 **Red sticky** = I need help
+>
+> Put a sticky note on your laptop lid so instructors can see where you are.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-capstone" data-key="commit"> I estimated resources for 100 filings, ran the batch, compared actual vs. requested from the email, documented over/under-estimation in my README, and pushed to my fork</label>
 

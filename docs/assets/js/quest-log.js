@@ -61,7 +61,7 @@
         { id: 'd3-profiling',            keys: ['mystery', 'readme', 'side2', 'side6', 'side7'] },
         { id: 'd3-cluster-usage-data',   keys: ['main', 'side3', 'side5'] },
         { id: 'd3-slurm-scheduler',      keys: ['main', 'side3', 'side4', 'side5'] },
-        { id: 'd3-slurm-job',            keys: ['main', 'submit', 'side1', 'side2', 'side3', 'side4', 'side5', 'debug', 'audit', 'tail', 'exit', 'oom', 'timeout'] },
+        { id: 'd3-slurm-job',            keys: ['main', 'submit', 'side1', 'side2', 'side3', 'side4', 'side5', 'debug'] },
         { id: 'd3-documenting-pipeline', keys: ['main', 'side1'] },
         { id: 'd3-capstone',             keys: ['commit'] },
       ],
