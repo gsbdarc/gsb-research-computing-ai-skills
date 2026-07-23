@@ -201,7 +201,7 @@
 
     var hint = document.createElement('span');
     hint.className = 'quest-cmd-hint';
-    hint.innerHTML = 'cast it on the Yens · one-time setup on Day 1 (see The Repository)';
+    hint.innerHTML = 'cast it on the Yens · one-time setup on Day 1 (see <a href="/gsb-research-computing-ai-skills/day1/repository/">Version Control with Git</a>)';
 
     reveal.appendChild(code);
     reveal.appendChild(copy);
