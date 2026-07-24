@@ -45,7 +45,7 @@ load_dotenv()
 
 client = openai.OpenAI(
     api_key=os.environ["STANFORD_API_KEY"],
-    base_url=os.environ["OPENAI_BASE_URL"],
+    base_url="https://aiapi-prod.stanford.edu/v1",
 )
 
 completion = client.chat.completions.create(
@@ -144,7 +144,7 @@ load_dotenv()
 
 client = openai.OpenAI(
     api_key=os.environ["STANFORD_API_KEY"],
-    base_url=os.environ["OPENAI_BASE_URL"],
+    base_url="https://aiapi-prod.stanford.edu/v1",
 )
 
 logger.info("Reading filing")
