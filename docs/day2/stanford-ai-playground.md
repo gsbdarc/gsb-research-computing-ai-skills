@@ -10,7 +10,7 @@ permalink: /day2/stanford-ai-playground/
 
 <div data-room-id="d2-stanford-ai-playground"></div>
 
-*Beyond the forge, a corridor opens into a high-vaulted chamber where a single door is held by many locks at once. Stanford's data-risk tiers turn one ward; your Data Use Agreement turns another; an IRB protocol a third; the model provider's contract a fourth. No single key opens the door — every contingency must align together, or the data stays where it is. The Playground is the one instrument on campus built so all of them can line up at once: governed, audited, contracted on your behalf. Learn which locks apply to your data before you reach for the handle.*
+*Beyond the forge, a corridor opens into a high-vaulted chamber where a single door is held by many locks at once. Stanford's data-risk tiers turn one ward; your Data Use Agreement turns another; an IRB protocol a third; the model provider's contract a fourth. No single key opens the door: every contingency must align together, or the data stays where it is. The Playground is the one instrument on campus built so all of them can line up at once: governed, audited, contracted on your behalf. Learn which locks apply to your data before you reach for the handle.*
 
 ---
 
@@ -49,7 +49,7 @@ DUAs come from datasets purchased or licensed for faculty use. Stanford's lawyer
 You follow both systems (Stanford's classification and your DUA) so Stanford stays protected.
 
 {: .warning }
-> **Improper use of a dataset can mean lawsuits — and losing access to the data, or the tools, entirely.**
+> **Improper use of a dataset can mean lawsuits, and losing access to the data or the tools entirely.**
 
 **🖊️ Quick Check: Classify These Five**
 
@@ -64,17 +64,17 @@ For each, is it **Low**, **Moderate**, or **High** Risk under Stanford's definit
 *Discuss as a class: which ones surprised you? Where did opinions differ?*
 
 <details markdown="1">
-<summary>💡 Answer key — click to reveal</summary>
+<summary>💡 Answer key: click to reveal</summary>
 
 | # | Item | Risk | Why |
 |---|------|------|-----|
-| 1 | Published, peer-reviewed article | 🟢 **Low** | Already public — no restriction on sharing. |
+| 1 | Published, peer-reviewed article | 🟢 **Low** | Already public, no restriction on sharing. |
 | 2 | Social Security numbers | 🔴 **High** | Regulated personal identifiers; a textbook High-Risk example. |
 | 3 | Unreleased internal budget / projection | 🟡 **Moderate** | Confidential business information, but not regulated personal data. |
 | 4 | Student grades and transcripts | 🟡 **Moderate** | Education records protected by **FERPA**. |
 | 5 | De-identified, aggregated survey data | 🟢 **Low** | De-identification *and* aggregation remove the personal risk. |
 
-A **DUA or IRB protocol can push any of these higher** — de-identified data that can be re-identified, or a budget under a confidentiality agreement, may need stricter handling. Classify by the data **and** its contract.
+A **DUA or IRB protocol can push any of these higher**: de-identified data that can be re-identified, or a budget under a confidentiality agreement, may need stricter handling. Classify by the data **and** its contract.
 </details>
 
 ---
@@ -83,10 +83,10 @@ Since AI is permeating every facet of research, Stanford has worked hard to give
 
 ## 🖊️ Stanford's AI Offerings
 
-Stanford builds and runs **two** of its own AI services — two different ways in to the same governed idea:
+Stanford builds and runs **two** of its own AI services, two different ways in to the same governed idea:
 
-- **The AI Playground** — a **chat window** in your browser, built on the open-source **LibreChat** platform. Point, click, and type; nothing to install. *(This room.)*
-- **The AI API Gateway** — **API access** to the same class of models for your *code*, over an OpenAI-compatible endpoint (`aiapi-prod.stanford.edu`). A separate system you call programmatically. You'll wire into it from [The Key Vault](../key-vault/) onward.
+- **The AI Playground:** a **chat window** in your browser, built on the open-source **LibreChat** platform. Point, click, and type; nothing to install. *(This room.)*
+- **The AI API Gateway:** **API access** to the same class of models for your *code*, over an OpenAI-compatible endpoint (`aiapi-prod.stanford.edu`). A separate system you call programmatically. You'll wire into it from [The Key Vault](../key-vault/) onward.
 
 Both keep every prompt inside Stanford's contracted perimeter. The rest of this room walks the **chat window** first, then the **API**.
 
@@ -106,11 +106,11 @@ Stanford also brokers access to a growing list of **third-party** services (each
 
 ---
 
-## 🖊️ The AI Playground — a Chat Window
+## 🖊️ The AI Playground: A Chat Window
 
-The AI Playground is a University-hosted **chat interface**, built on the open-source **LibreChat** platform, that gives every Stanford researcher one safe, governed space to work with many cutting-edge models. You log in with your SUNet credentials and chat much as you would with ChatGPT — but every prompt stays inside Stanford's contracted perimeter, and it is cleared for data up to **High Risk — but *not* PHI** (protected health information).
+The AI Playground is a University-hosted **chat interface**, built on the open-source **LibreChat** platform, that gives every Stanford researcher one safe, governed space to work with many cutting-edge models. You log in with your SUNet credentials and chat much as you would with ChatGPT, but every prompt stays inside Stanford's contracted perimeter, and it is cleared for data up to **High Risk, but *not* PHI** (protected health information).
 
-It offers many of the same models you'd reach commercially — such as Claude Opus 4.8, GPT-5.2, and Gemini 2.5 Flash, among others — with no personal account or credit card. (The exact model ids come from the models endpoint you'll query in [The Oracle's Chamber](../oracles-chamber/).)
+It offers many of the same models you'd reach commercially (Claude Opus 4.8, GPT-5.2, and Gemini 2.5 Flash, among others) with no personal account or credit card. (The exact model ids come from the models endpoint you'll query in [The Oracle's Chamber](../oracles-chamber/).)
 
 ### 🔰 Try the AI Playground
 
@@ -129,12 +129,12 @@ Notice: the responses come from the same models you'd reach through the API. You
 | ✅ **No personal billing** | Budget caps enforced by Stanford; you cannot accidentally run up a $10,000 bill |
 | ✅ **Stanford data perimeter** | Covered under Stanford's data processing agreement with the model provider |
 | ✅ **No account required** | Every Stanford researcher has access via SUNet login |
-| ⚠️ **Prompts are logged** | Stanford can review usage logs, so it isn't anonymous. The upside: that audited, contracted perimeter is exactly what clears the Playground for sensitive data up to **High Risk — though not PHI** (and always subject to your DUA) |
+| ⚠️ **Prompts are logged** | Stanford can review usage logs, so it isn't anonymous. The upside: that audited, contracted perimeter is exactly what clears the Playground for sensitive data up to **High Risk, though not PHI** (and always subject to your DUA) |
 | ⚠️ **Model selection** | Available models are determined by Stanford's contract, not your preference |
 
 ---
 
-## 🖊️ The AI API Gateway — API Access
+## 🖊️ The AI API Gateway: API Access
 
 The Playground's sibling, the Stanford <a href="https://uit.stanford.edu/service/ai-api-gateway" target="_blank" rel="noopener noreferrer"><strong>AI API Gateway</strong></a>, exposes the same class of models to your *code* and is fully OpenAI-compatible. Code that already calls the OpenAI API can call Stanford's gateway with two changes:
 
@@ -230,19 +230,19 @@ In the next room (The Key Vault), you'll load the key securely from a `.env` fil
 {: .note }
 > Finished early? Try any of these.
 
-**Side quest — Save a Course Context Prompt**
+**Side quest: Save a Course Context Prompt**
 
 Save a reusable prompt that gives the AI quick background on the class you're taking: what the course is, what you're working on, and what tools you have access to. Paste it in at the top of a new conversation instead of re-explaining yourself every time.
 
 <label class="quest-check"><input type="checkbox" data-room="d2-stanford-ai-playground" data-key="side1"> I saved a reusable course-context prompt</label>
 
-**Side quest — Compare Two Models**
+**Side quest: Compare Two Models**
 
 Ask two different cutting-edge models the same Yen-specific question. Compare the answers: which one do you trust more, and why?
 
 <label class="quest-check"><input type="checkbox" data-room="d2-stanford-ai-playground" data-key="side2"> I compared two models on the same question</label>
 
-**Side quest — Customize the System Prompt**
+**Side quest: Customize the System Prompt**
 
 Set the system prompt so the AI knows who you are, your current knowledge level, and how you like to be spoken to. Ask the same question with the system prompt empty versus filled in, and see whether the tone or depth actually changes.
 
@@ -253,6 +253,6 @@ Set the system prompt so the AI knows who you are, your current knowledge level,
 ## 🧠 Skills Learned
 
 - Stanford AI Playground gives every researcher access to models such as Claude Opus 4.8, GPT-5.2, and Gemini 2.5 Flash; no personal account needed
-- The AI Playground (a LibreChat **chat window**) and the AI API Gateway (**API access** for code) are two *separate* Stanford services — the chat window is cleared to High Risk but **not PHI**, while the API Gateway handles High Risk **including PHI**
+- The AI Playground (a LibreChat **chat window**) and the AI API Gateway (**API access** for code) are two *separate* Stanford services: the chat window is cleared to High Risk but **not PHI**, while the API Gateway handles High Risk **including PHI**
 - The API is OpenAI-compatible: only `base_url` and the key change; all code is the same
 - Prompts sent through either service are logged and subject to audit; classify your data before sending it
