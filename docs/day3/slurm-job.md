@@ -23,7 +23,7 @@ permalink: /day3/slurm-job/
 deactivate
 ```
 
-`sbatch` copies your current shell environment into the job by default, so an active venv would leak in — and hide the fact that your script needs to activate it itself. Deactivating now means the job starts on a truly fresh shell, like a real compute node, and **the Slurm script** is what activates the environment (Step 3 below).
+`sbatch` copies your current shell's environment into the job by default, so if `.venv` is active when you submit, it **rides along** — and the job can quietly succeed even if the script forgot to activate it. Deactivate first so the job runs on only what the **script** sets up (the `source .venv/bin/activate` in Step 3) — the way it'll run for a teammate, or for you from a clean login.
 
 **Create the file:**
 
@@ -51,7 +51,7 @@ The first line of every shell script is the **shebang**:
 #!/bin/bash
 ```
 
-The `#!` tells the operating system which interpreter to run the rest of the file with — here, the Bash shell at `/bin/bash`. Without it, the system doesn't know whether your script is Bash, Python, or something else. It has to be the very first line of the file.
+The `#!` (the **shebang**) tells the operating system which **interpreter** — the program that reads your script and runs it line by line — to use for the rest of the file; here, the Bash shell at `/bin/bash`. Without it, the system doesn't know whether your script is Bash, Python, or something else. It has to be the very first line of the file.
 
 ---
 
@@ -180,7 +180,7 @@ squeue --me
 
 ## Add Email Notifications
 
-**Ask Claude Code to add** the two email directives to your script — these two lines, with **your** SUNet ID in place of `SUNetID`:
+**Ask Claude Code to add** the two email directives to your script — these two lines:
 
 ```bash
 #SBATCH --mail-type=ALL
@@ -214,7 +214,7 @@ Once you've got the emails and your job finished with exit status `0` — put a 
 
 ## Watch a Job Run on Its Node
 
-The extraction job is quick and barely touches the CPU, so it's hard to catch in the act. We've shipped a heavier demo — `slurm/mystery.slurm`, which runs the mystery script from Profiling for about **30 seconds** across a few cores — long enough to watch it live.
+`slurm/mystery.slurm` runs the mystery script from Profiling for about **30 seconds** across a few cores — long enough to watch it live.
 
 Submit it:
 
@@ -225,8 +225,8 @@ sbatch slurm/mystery.slurm
 While your job is running you can SSH to the node it's on and watch it work. (Nodes are **shared** — other users' jobs run on them too — but your job has its own **dedicated cores and RAM**.) The `NODELIST` column from `squeue --me` shows which node it landed on (e.g. `yen10`). SSH there and watch your processes live:
 
 ```bash
-ssh SUNetID@yen10.stanford.edu   # use your job's actual node
-htop -u $USER                    # or: top -u $USER
+ssh SUNetID@yen10   # use your job's actual node
+htop -u SUNetID                  # or: top -u SUNetID
 ```
 
 You'll see the mystery script's Python workers pinning the cores you requested. Press `q` to quit `htop`, then `exit` to leave the node.
@@ -254,6 +254,12 @@ Everything so far has been batch submission — write a script, `sbatch` it, wai
 
 ```bash
 srun --pty --cpus-per-task=2 --mem=4G --time=00:30:00 bash
+```
+
+Your interactive session is a Slurm job like any other — run `squeue --me` and you'll see it listed (state `R`) until you release it:
+
+```bash
+squeue --me
 ```
 
 Once it drops you into a shell on your allocated node, you're on a fresh shell — do the same setup your batch script does, then run the script directly:
@@ -305,9 +311,9 @@ cat logs/fix_me_*.err
 
 **Read the plan it comes back with.** If the fix makes sense, approve it and let Claude apply it — you're the reviewer.
 
-You'll also want a completion email, so ask Claude to add the notification lines to this script — with **your** SUNet in place of `SUNetID`:
+You'll also want a completion email, so ask Claude to add the notification lines to this script:
 
-> Add `#SBATCH --mail-type=ALL` and `#SBATCH --mail-user=SUNetID@stanford.edu` (use my SUNet) to `slurm/fix_me.slurm`.
+> Add `#SBATCH --mail-type=ALL` and `#SBATCH --mail-user=SUNetID@stanford.edu` to `slurm/fix_me.slurm`.
 
 Then resubmit — **keep debugging and resubmitting until the Slurm email says the job succeeded** (exit status `0`).
 
@@ -351,7 +357,7 @@ The trickiest one: it hides *two* bugs — one in the Slurm script and one in th
 
 **Side quest — Chain Two Jobs**
 
-Real research pipelines run in **stages**, and each stage feeds the next — you might **download** raw data in one job, **clean** it in a second, then **analyze** it in a third, with each step reading the file the one before it wrote. Rather than babysit them and launch each by hand when the last finishes, you can queue the whole chain at once: `--dependency=afterok` tells the scheduler to hold each job until the one before it **succeeds**. Your repo ships a small two-step version of this:
+A real research pipeline is a chain of **stages**, each feeding the next. Scaled up, your Form 3 work is naturally three jobs: **(1) download** the raw filings from EDGAR, **(2) extract** the structured fields with the API (what your batch script does), then **(3) aggregate** the per-filing JSON into one dataset and compute summary stats. Each stage reads the file the one before it wrote — stage 2 can't start until stage 1's downloads land, and stage 3 needs stage 2's extractions. Rather than babysit them, launching each by hand the moment the last finishes, you queue the whole chain at once: `--dependency=afterok` tells Slurm to hold each job until the one before it **succeeds**. Your repo ships a small two-step version of this:
 
 - `scripts/chain_step1.py` — crunches numbers for ~2 minutes, then writes its result to `/scratch/users/SUNetID/chain_demo/step1_result.txt`.
 - `scripts/chain_step2.py` — reads that file and does more math, writing `step2_result.txt` beside it.
@@ -364,9 +370,9 @@ with `slurm/chain_step1.slurm` and `slurm/chain_step2.slurm` to run them.
 sbatch slurm/chain_step1.slurm
 ```
 
-**Step 2 — submit the second right away**, chained to the first. First, have Claude add the email lines to `slurm/chain_step2.slurm` — with **your** SUNet in place of `SUNetID` — so you get a note when the chain finishes:
+**Step 2 — submit the second right away**, chained to the first. First, have Claude add the email lines to `slurm/chain_step2.slurm` so you get a note when the chain finishes:
 
-> Add `#SBATCH --mail-type=ALL` and `#SBATCH --mail-user=SUNetID@stanford.edu` (use my SUNet) to `slurm/chain_step2.slurm`.
+> Add `#SBATCH --mail-type=ALL` and `#SBATCH --mail-user=SUNetID@stanford.edu` to `slurm/chain_step2.slurm`.
 
 Then submit it, replacing `JOBID` with step 1's ID:
 
@@ -399,7 +405,7 @@ The Yens have a dedicated **`dev` partition** for short, interactive debugging j
 <details markdown="1">
 <summary>Show steps</summary>
 
-Fire a quick throwaway job at `dev` with `-p dev` (and `--wrap`, which runs an inline command as a job). It's tiny, so it schedules fast — put your SUNet in `--mail-user` so you get the completion email:
+Fire a quick throwaway job at `dev` with `-p dev` (and `--wrap`, which runs an inline command as a job). It's tiny, so it schedules fast, and it emails you when it finishes:
 
 ```bash
 sbatch -p dev --mail-type=ALL --mail-user=SUNetID@stanford.edu --wrap="hostname; sleep 30"
