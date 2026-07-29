@@ -151,6 +151,19 @@ Or **pipe** data straight into it. On Linux, every command-line program has two 
 cat logs/fix_me_*.err | claude -p "this Slurm job failed — explain the error and suggest a fix"
 ```
 
-Because it's just another command that reads `stdin` and prints to `stdout`, you can even drop `claude -p` **inside a Slurm job or a shell script** — have a batch job summarize its own results, flag anomalies, or write a note to your log, all without you watching it run.
+Because it's just another command that reads `stdin` and prints to `stdout`, you can drop `claude -p` **inside a Slurm job or a shell script** and let it work in **batch mode** — no interactive session at all.
+
+Picture inheriting a whole project you didn't write — a stack of scripts and Slurm jobs. You can wire `claude -p` into those jobs so that, as each one runs unattended, Claude documents the run for you: at the end of the script, pipe the results (or the log) to Claude and have it append a plain-English summary of what ran, what the output means, and anything that looks off — straight into the job's own output. For example, add a few lines to the *end* of a `.slurm` script, after the real work:
+
+```bash
+# ... your extraction / analysis commands above ...
+
+# Let Claude write a human-readable summary of this run into the log
+cat results/*.json \
+  | claude -p "Summarize what this run produced and flag anything unusual." \
+  >> logs/run_summary.txt
+```
+
+Submit a batch of these and you come back to finished jobs that have already **documented themselves** — what they did, when, and what to look at — without you watching a single one run.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-slurm-with-claude" data-key="side1"> I used `claude -p` to review a script, and piped a failed job's log to Claude for a one-shot diagnosis</label>
