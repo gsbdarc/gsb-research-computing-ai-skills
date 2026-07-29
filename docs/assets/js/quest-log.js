@@ -62,7 +62,7 @@
         { id: 'd3-cluster-usage-data',   keys: ['main', 'side3', 'side5'] },
         { id: 'd3-slurm-scheduler',      keys: ['main', 'side3', 'side4', 'side5'] },
         { id: 'd3-slurm-job',            keys: ['main', 'submit', 'side1', 'side2', 'side3', 'side4', 'side5', 'debug', 'debug2', 'debug3', 'debug4'] },
-        { id: 'd3-slurm-with-claude',    keys: ['main', 'side1'] },
+        { id: 'd3-slurm-with-claude',    keys: ['global', 'project', 'side1'] },
         { id: 'd3-documenting-pipeline', keys: ['main', 'side1'] },
         { id: 'd3-capstone',             keys: ['commit'] },
       ],

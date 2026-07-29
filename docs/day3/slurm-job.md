@@ -77,7 +77,7 @@ What each one is:
 {: .note }
 > **About the `--output` and `--error` files:**
 > - A batch job has **no terminal** — you're not watching it run. So Slurm redirects everything your script would normally print: normal output goes to the **`--output` (`.out`) file**, and error messages/tracebacks go to the **`--error` (`.err`) file**. Those files are how you see what the job did and debug it when it fails.
-> - `%j` gets replaced with the job ID, so each run writes its own `logs/extract_<jobid>.out` and `.err` instead of overwriting the last.
+> - `%j` gets replaced with the job ID, so each run writes its own `logs/extract_JOBID.out` and `.err` instead of overwriting the last.
 > - **Combine them if you like:** omit `--error` entirely and Slurm sends *both* normal output and errors to the single `--output` (`.out`) file. Keeping them separate just makes errors easier to spot.
 > - The `logs/` directory must exist before the job runs — Slurm won't create it, which is why `mkdir -p logs` came first.
 
@@ -360,27 +360,33 @@ The trickiest one: it hides *two* bugs — one in the Slurm script and one in th
 A real research pipeline is a chain of **stages**, each feeding the next. Scaled up, your Form 3 work is naturally three jobs: **(1) download** the raw filings from EDGAR, **(2) extract** the structured fields with the API (what your batch script does), then **(3) aggregate** the per-filing JSON into one dataset and compute summary stats. Each stage reads the file the one before it wrote — stage 2 can't start until stage 1's downloads land, and stage 3 needs stage 2's extractions. Rather than babysit them, launching each by hand the moment the last finishes, you queue the whole chain at once: `--dependency=afterok` tells Slurm to hold each job until the one before it **succeeds**. Your repo ships a small two-step version of this:
 
 - `scripts/chain_step1.py` — crunches numbers for ~2 minutes, then writes its result to `/scratch/users/SUNetID/chain_demo/step1_result.txt`.
-- `scripts/chain_step2.py` — reads that file and does more math, writing `step2_result.txt` beside it.
+- `scripts/chain_step2.py` — reads that file and does ~30 seconds more math, writing `step2_result.txt` beside it.
 
 with `slurm/chain_step1.slurm` and `slurm/chain_step2.slurm` to run them.
 
-**Step 1 — submit the first job** and note the `JOBID` it prints:
+**Step 1 — read both job scripts first** so you know what you're submitting. Notice they're ordinary Slurm scripts, and that step 2 reads the file step 1 wrote:
+
+```bash
+cat slurm/chain_step1.slurm slurm/chain_step2.slurm
+```
+
+**Step 2 — have Claude add the email lines to step 2** *before* you submit, so you get a note when the chain finishes:
+
+> Add `#SBATCH --mail-type=ALL` and `#SBATCH --mail-user=SUNetID@stanford.edu` to `slurm/chain_step2.slurm`.
+
+**Step 3 — submit both back-to-back.** Step 1 runs for ~2 minutes, so fire them off one after the other and let it crunch while step 2 queues behind it. Submit step 1 and note the `JOBID` it prints:
 
 ```bash
 sbatch slurm/chain_step1.slurm
 ```
 
-**Step 2 — submit the second right away**, chained to the first. First, have Claude add the email lines to `slurm/chain_step2.slurm` so you get a note when the chain finishes:
-
-> Add `#SBATCH --mail-type=ALL` and `#SBATCH --mail-user=SUNetID@stanford.edu` to `slurm/chain_step2.slurm`.
-
-Then submit it, replacing `JOBID` with step 1's ID:
+Then submit step 2 right away, chained to the first — replace `JOBID` with step 1's ID:
 
 ```bash
 sbatch --dependency=afterok:JOBID slurm/chain_step2.slurm
 ```
 
-**Step 3 — watch the queue.** Both jobs are in, but step 2 waits its turn. `watch` re-runs a command every couple of seconds, so you can see the handoff happen live:
+**Step 4 — watch the queue.** Both jobs are in, but step 2 waits its turn. `watch` re-runs a command every couple of seconds, so you can see the handoff happen live:
 
 ```bash
 watch squeue --me
@@ -388,7 +394,10 @@ watch squeue --me
 
 Step 1 shows `R` (running) while step 2 sits `PD` with reason `(Dependency)`. When step 1 finishes, step 2 flips to `R` on its own — you do nothing. Press `Ctrl-C` to stop watching.
 
-**Step 4 — check the handoff** once both are done:
+{: .note }
+> 💡 If step 1 **fails**, `afterok` is never satisfied, so step 2's reason in `squeue` changes from `(Dependency)` to `(DependencyNeverSatisfied)`. That job will never run — but it won't clear itself either. It sits in the queue until **you** cancel it with `scancel JOBID`. Clear it, fix step 1, then requeue the chain.
+
+**Step 5 — check the handoff** once both are done:
 
 ```bash
 cat /scratch/users/SUNetID/chain_demo/step2_result.txt
@@ -396,7 +405,7 @@ cat /scratch/users/SUNetID/chain_demo/step2_result.txt
 
 Step 2's number is computed from step 1's — proof the scratch file passed between them. Had step 1 failed, step 2 would never have started.
 
-<label class="quest-check"><input type="checkbox" data-room="d3-slurm-job" data-key="side3"> I chained the two jobs with --dependency=afterok — step 2 waited for step 1 and used its scratch file — and got the Slurm email that step 2 completed</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-slurm-job" data-key="side3"> I chained the two jobs with `--dependency=afterok` — step 2 waited for step 1 and used its scratch file — and got the Slurm email that step 2 completed</label>
 
 **Side quest — The `dev` partition**
 
