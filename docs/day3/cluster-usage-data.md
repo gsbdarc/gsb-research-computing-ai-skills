@@ -10,6 +10,8 @@ permalink: /day3/cluster-usage-data/
 
 <div data-room-id="d3-cluster-usage-data"></div>
 
+Before you run your own jobs on the Yens, it helps to see how the machine actually gets used — who's running what, how busy the cores are, how much memory is in play. Digging into a real snapshot is also the easiest way to build intuition for the vocabulary you'll lean on all day: what a **process** is, what a **user** is, the difference between **RAM** in use and **virtual** memory reserved. You'll explore it with Claude — the same instinct you'll use on any messy dataset in your own research.
+
 ---
 
 ## What Is This Data?
@@ -38,7 +40,10 @@ The file below is one such snapshot from yen1, taken on July 10, 2026 at 20:56. 
 
 ---
 
-## Your Turn
+## Main quest — Explore the Usage Data
+
+{: .important }
+> **Task:** Load the yenstop snapshot, explore it with Claude, make a visualization, and write up one finding in your README.
 
 Load the file and explore it **with Claude** — ask it about the columns, dig into what's running, and have it help you **make a visualization** of an insight you find.
 
@@ -54,14 +59,14 @@ df = pd.read_csv(DATA, header=None, names=cols, on_bad_lines='skip')
 df.head()
 ```
 
-Some directions if you want a place to start — but don't feel limited to these:
-
-- Who is using the most CPU? The most memory? Are they the same person?
-- How many processes are actually running right now versus just sleeping?
-- What commands appear most often? What do you think they are?
-- How long have some of these processes been running? Does anything surprise you?
-- What does virtual memory look like compared to resident memory for the same process?
-- yen1 has about **1 TB of RAM**, and `mem_pct` is each process's share of that. What is the single biggest process using, in **GB**? Cross-check your answer against the `res` column — that's the actual bytes resident in RAM.
+{: .chest }
+> **Your turn — pick a thread to pull.** Some directions to start (don't feel limited to these):
+> - Who is using the most CPU? The most memory? Are they the same person?
+> - How many processes are actually running right now versus just sleeping?
+> - What commands appear most often? What do you think they are?
+> - How long have some of these processes been running? Does anything surprise you?
+> - What does virtual memory look like compared to resident memory for the same process?
+> - yen1 has about **1 TB of RAM**, and `mem_pct` is each process's share of that. What is the single biggest process using, in **GB**? Cross-check your answer against the `res` column — that's the actual bytes resident in RAM.
 
 Make a plot. Ask Claude to explain something. Follow a thread that looks interesting.
 
@@ -81,16 +86,12 @@ Make a plot. Ask Claude to explain something. Follow a thread that looks interes
 
 ---
 
-## Write It Up
+### Write it up
 
 Find one thing in the data worth keeping. Add a short section to your `README.md` — a few sentences describing what you found and what it tells you about how shared research nodes actually get used.
 
-When you're ready — put a **🟢 green sticky** on your laptop.
-
 {: .note }
 > 🟢 **Green sticky** = I'm done and ready &nbsp;&nbsp; 🔴 **Red sticky** = I need help
->
-> Put a sticky note on your laptop lid so instructors can see where you are.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-cluster-usage-data" data-key="main"> I used Claude to explore the data, made a visualization, and wrote up one finding in README</label>
 

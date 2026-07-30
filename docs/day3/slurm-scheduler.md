@@ -53,6 +53,29 @@ The solution: a scheduler. **Slurm** reads every job request, knows what resourc
 
 Instead of running your script directly on a shared node, you submit it to the scheduler: you specify what resources you need, Slurm runs it on a dedicated node, and you collect the results when it's done.
 
+<svg viewBox="0 0 730 108" role="img" aria-labelledby="whererun-title" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;max-width:730px;height:auto;margin:0.5rem auto" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
+  <title id="whererun-title">You submit a job from a shared interactive Yen; the Slurm scheduler runs it on a separate dedicated compute node, using that node's own cores and RAM.</title>
+  <defs>
+    <marker id="whererun-ah" markerWidth="10" markerHeight="10" refX="7" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#e67e22"/></marker>
+  </defs>
+  <rect x="8" y="16" width="204" height="76" rx="12" fill="#fff8ef" stroke="#e6cfa8" stroke-width="1.5"/>
+  <text x="26" y="50" font-size="17" font-weight="700" fill="#1f2937">💻 Interactive Yen</text>
+  <text x="26" y="74" font-size="14" fill="#4b5563">yen1–yen5 · you work here</text>
+  <line x1="214" y1="54" x2="272" y2="54" stroke="#e67e22" stroke-width="2.5" marker-end="url(#whererun-ah)"/>
+  <text x="243" y="44" text-anchor="middle" font-size="13.5" font-weight="700" fill="#b3611a">submit</text>
+  <rect x="274" y="32" width="140" height="44" rx="12" fill="#f3f4f7" stroke="#d5d8e2" stroke-width="1.5"/>
+  <text x="344" y="54" text-anchor="middle" font-size="17" font-weight="700" fill="#1f2937">Slurm</text>
+  <text x="344" y="70" text-anchor="middle" font-size="13" fill="#4b5563">the scheduler</text>
+  <line x1="416" y1="54" x2="468" y2="54" stroke="#e67e22" stroke-width="2.5" marker-end="url(#whererun-ah)"/>
+  <text x="442" y="44" text-anchor="middle" font-size="13.5" font-weight="700" fill="#b3611a">runs it</text>
+  <rect x="470" y="8" width="242" height="92" rx="12" fill="#eef5ff" stroke="#bcd4f2" stroke-width="1.5"/>
+  <text x="486" y="38" font-size="16" font-weight="700" fill="#1f2937">🖥️ Compute Node(s)</text>
+  <text x="486" y="64" font-size="14" fill="#4b5563">your script gets dedicated</text>
+  <text x="486" y="84" font-size="14" fill="#4b5563">cores + RAM</text>
+</svg>
+
+*You submit from a shared interactive Yen, but the job runs on separate **compute node(s)** — with dedicated cores and RAM, nothing else competing.*
+
 | Slurm concept | What it is |
 |---|---|
 | Slurm scheduler | Decides which jobs run where and when |
@@ -99,6 +122,41 @@ squeue -p gpu
 
 Every `PD` job is waiting for a node with the resources it requested. When Slurm finds a matching node — it runs.
 
+<svg viewBox="0 0 720 130" role="img" aria-labelledby="lifecycle-title" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;max-width:720px;height:auto;margin:1rem auto" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
+  <title id="lifecycle-title">A job's lifecycle: you submit it, it waits in the queue as PD, runs as R on a compute node, completes, and leaves .out and .err logs behind.</title>
+  <defs>
+    <marker id="lifecycle-ah" markerWidth="10" markerHeight="10" refX="7" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#e67e22"/></marker>
+  </defs>
+  <line x1="124" y1="78" x2="150" y2="78" stroke="#e67e22" stroke-width="2.5" marker-end="url(#lifecycle-ah)"/>
+  <line x1="262" y1="78" x2="288" y2="78" stroke="#e67e22" stroke-width="2.5" marker-end="url(#lifecycle-ah)"/>
+  <line x1="400" y1="78" x2="426" y2="78" stroke="#e67e22" stroke-width="2.5" marker-end="url(#lifecycle-ah)"/>
+  <line x1="538" y1="78" x2="564" y2="78" stroke="#e67e22" stroke-width="2.5" marker-end="url(#lifecycle-ah)"/>
+  <rect x="12" y="40" width="112" height="76" rx="10" fill="#fff8ef" stroke="#e6cfa8" stroke-width="1.5"/>
+  <text x="68" y="72" text-anchor="middle" font-size="17" font-weight="700" fill="#1f2937">submit</text>
+  <text x="68" y="93" text-anchor="middle" font-size="12" fill="#6a7280">your job</text>
+  <rect x="150" y="40" width="112" height="76" rx="10" fill="#f3f4f7" stroke="#d5d8e2" stroke-width="1.5"/>
+  <text x="206" y="72" text-anchor="middle" font-size="17" font-weight="700" fill="#6a7280">PD</text>
+  <text x="206" y="91" text-anchor="middle" font-size="12" fill="#6a7280">queued</text>
+  <text x="206" y="107" text-anchor="middle" font-size="11" fill="#9aa4b0">waiting for a node</text>
+  <rect x="288" y="40" width="112" height="76" rx="10" fill="#eef5ff" stroke="#e67e22" stroke-width="2"/>
+  <text x="344" y="72" text-anchor="middle" font-size="17" font-weight="700" fill="#b3611a">R</text>
+  <text x="344" y="91" text-anchor="middle" font-size="12" fill="#5b6472">running</text>
+  <text x="344" y="107" text-anchor="middle" font-size="11" fill="#9aa4b0">on a compute node</text>
+  <rect x="426" y="40" width="112" height="76" rx="10" fill="#eef5ff" stroke="#bcd4f2" stroke-width="1.5"/>
+  <text x="482" y="72" text-anchor="middle" font-size="16" font-weight="700" fill="#1f2937">completed</text>
+  <text x="482" y="93" text-anchor="middle" font-size="12" fill="#6a7280">job finishes</text>
+  <rect x="564" y="40" width="112" height="76" rx="10" fill="#f3f4f7" stroke="#d5d8e2" stroke-width="1.5"/>
+  <text x="620" y="72" text-anchor="middle" font-size="17" font-weight="700" fill="#1f2937">logs</text>
+  <text x="620" y="91" text-anchor="middle" font-size="12" fill="#6a7280">.out / .err</text>
+  <text x="620" y="107" text-anchor="middle" font-size="11" fill="#9aa4b0">in logs/</text>
+  <g>
+    <path d="M58,16 L78,16 L68,32 Z" fill="#0072B2"><animateTransform attributeName="transform" type="translate" values="0,0; 0,5; 0,0" dur="0.9s" repeatCount="indefinite"/></path>
+    <animateTransform attributeName="transform" type="translate" values="0,0; 0,0; 138,0; 138,0; 276,0; 276,0; 414,0; 414,0; 552,0; 552,0; 0,0" keyTimes="0; 0.06; 0.22; 0.28; 0.44; 0.50; 0.66; 0.72; 0.88; 0.94; 1" dur="10s" repeatCount="indefinite" calcMode="linear"/>
+  </g>
+</svg>
+
+*The lifecycle of every job — you'll see the `R` and `PD` states in `squeue`, and the logs are where you look when it's done (or when it fails). Later pages refer back to this flow.*
+
 Now run `sinfo` to see the state of all nodes and the partitions they belong to:
 
 ```bash
@@ -109,12 +167,8 @@ sinfo
 - What partitions exist? Which one would you use for a normal job?
 - What is the maximum time limit for each partition? (See the [current partitions and their limits](https://rcpedia.stanford.edu/_user_guide/slurm/#current-partitions-and-their-limits).)
 
-When you can read the queue, tell `R` from `PD`, and describe the Yens partitions and node states — put a **🟢 green sticky** on your laptop.
-
 {: .note }
 > 🟢 **Green sticky** = I'm done and ready &nbsp;&nbsp; 🔴 **Red sticky** = I need help
->
-> Put a sticky note on your laptop lid so instructors can see where you are.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-slurm-scheduler" data-key="main"> I can read the queue with squeue, filter by partition, and describe the partitions and node states with sinfo</label>
 
@@ -123,7 +177,7 @@ When you can read the queue, tell `R` from `PD`, and describe the Yens partition
 ## Side quests
 
 {: .note }
-> Finished early? Try this.
+> Finished early? Try any of these.
 
 **Side quest — Add a `longsqueue` alias**
 

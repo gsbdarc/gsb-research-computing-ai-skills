@@ -59,8 +59,6 @@ Ask Claude Code to handle it:
 
 {: .note }
 > 🟢 **Green sticky** = I'm done and ready &nbsp;&nbsp; 🔴 **Red sticky** = I need help
->
-> Put a sticky note on your laptop lid so instructors can see where you are.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-capstone" data-key="commit"> I estimated resources for 100 filings, ran the batch, compared actual vs. requested from the email, documented over/under-estimation in my README, and pushed to my fork</label>
 

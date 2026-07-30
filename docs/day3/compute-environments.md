@@ -174,10 +174,10 @@ The cloud is a rented kitchen — and it's **just for you**. Unlike the Yens, yo
 ## Main quest — Class Participation
 
 {: .important }
-> 🥪 **Demo + Discussion:** 🥪 We will all participate in a class demo together. 🥪
+> **Task:** Take part in the class demo and discussion — laptop vs. Yens vs. cloud.
 
 <details markdown="1">
-<summary><strong>After the demo:</strong></summary>
+<summary>❓ After the demo — discuss these</summary>
 
 - What are the tradeoffs between your laptop, the Yens, and the cloud?
 - What happens when many researchers all run jobs at once on the shared Yens?
@@ -186,14 +186,25 @@ The cloud is a rented kitchen — and it's **just for you**. Unlike the Yens, yo
 
 <label class="quest-check"><input type="checkbox" data-room="d3-compute-environments" data-key="main"> I participated in the class demo and discussion</label>
 
+<details markdown="1">
+<summary>🔮 How to cast your progress — click to reveal</summary>
+
+Every quest you check reveals a **🔮 Cast to the leaderboard** button with a one-line `./cast` spell. To record it:
+
+1. SSH to the Yens — `ssh SUNetID@yen.stanford.edu`
+2. `cd` to your repo — `cd ~/gsb-research-computing-ai-skills`
+3. Paste the `./cast …` spell from the quest and run it.
+
+</details>
+
 ---
 
 ## Side quests
 
 {: .note }
-> Finished early? Try one or both of these.
+> Finished early? Try any of these.
 
-**Side quest 1 — Know your own machine**
+**Side quest — Know your own machine**
 
 **Work with Claude** to figure out how to check your own laptop's CPU core count and RAM — tell it what operating system you're on and have it walk you through finding each one. Then enter your specs below to see just how much bigger one Yen node is (**yen1 has 256 cores and 1 TB of RAM**).
 
@@ -246,7 +257,7 @@ You don't need a fancy prompt. For example:
 
 <label class="quest-check"><input type="checkbox" data-room="d3-compute-environments" data-key="side1"> I checked my own laptop's CPU cores and RAM and compared them to a Yen node</label>
 
-**Side quest 2 — Price the rented kitchen**
+**Side quest — Price the rented kitchen**
 
 **Work with Claude** to find on-demand pricing for a cloud VM comparable to a Yen node — 256 cores and 1 TB of RAM, for example on AWS. Then use the calculator below — enter the VM's specs and the price per hour you found — to estimate what your Day 2 extraction job would cost to run there for an hour. Grant budgets aren't infinite; this is a real judgment call you'll make in your own research.
 

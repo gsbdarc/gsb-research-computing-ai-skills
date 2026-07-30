@@ -10,6 +10,27 @@ permalink: /day3/slurm-job/
 
 <div data-room-id="d3-slurm-job"></div>
 
+<svg viewBox="0 0 720 164" role="img" aria-labelledby="smap-title" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;max-width:720px;height:auto;margin:1.5rem auto" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
+  <title id="smap-title">Day 3 map — you are on the submit-to-Slurm step.</title>
+  <defs>
+    <marker id="smap-gray" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#c2cad4"/></marker>
+  </defs>
+  <text x="70" y="46" text-anchor="middle" font-size="17" fill="#8a94a6">profile</text>
+  <text x="210" y="28" text-anchor="middle" font-size="17" font-weight="700" fill="#8C1515">submit to</text><text x="210" y="48" text-anchor="middle" font-size="17" font-weight="700" fill="#8C1515">Slurm</text>
+  <text x="350" y="46" text-anchor="middle" font-size="17" fill="#8a94a6">read logs</text>
+  <text x="490" y="46" text-anchor="middle" font-size="17" fill="#8a94a6">document</text>
+  <text x="640" y="46" text-anchor="middle" font-size="17" font-weight="600" fill="#8a94a6">scale (Day 4)</text>
+  <line x1="92" y1="80" x2="468" y2="80" stroke="#c2cad4" stroke-width="3"/>
+  <line x1="512" y1="80" x2="622" y2="80" stroke="#c2cad4" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#smap-gray)"/>
+  <path d="M350,101 L350,124 Q350,130 344,130 L216,130 Q210,130 210,124 L210,103" fill="none" stroke="#c2cad4" stroke-width="2.5" stroke-dasharray="5 4" marker-end="url(#smap-gray)"/>
+  <text x="280" y="150" text-anchor="middle" font-size="15" fill="#8a94a6">debug</text>
+  <circle cx="70" cy="80" r="20" fill="#f3f4f7" stroke="#9aa4b0" stroke-width="3"/><text x="70" y="87" text-anchor="middle" font-size="20" font-weight="700" fill="#8a94a6">1</text>
+  <circle cx="210" cy="80" r="20" fill="#fff" stroke="#8C1515" stroke-width="3"/><text x="210" y="87" text-anchor="middle" font-size="20" font-weight="700" fill="#8C1515">2</text>
+  <circle cx="350" cy="80" r="20" fill="#f3f4f7" stroke="#9aa4b0" stroke-width="3"/><text x="350" y="87" text-anchor="middle" font-size="20" font-weight="700" fill="#8a94a6">3</text>
+  <circle cx="490" cy="80" r="20" fill="#f3f4f7" stroke="#9aa4b0" stroke-width="3"/><text x="490" y="87" text-anchor="middle" font-size="20" font-weight="700" fill="#8a94a6">4</text>
+  <circle cx="640" cy="80" r="20" fill="#f3f4f7" stroke="#9aa4b0" stroke-width="3"/><text x="640" y="87" text-anchor="middle" font-size="20" font-weight="700" fill="#8a94a6">5</text>
+</svg>
+
 ---
 
 ## Main quest — Write a Slurm Script
@@ -72,7 +93,7 @@ What each one is:
 
 - `--job-name` — a short label **you pick** so you can spot this job in the queue (e.g. `form3-extract`). It doesn't affect resources; name it whatever's memorable.
 - `--output` / `--error` — files where the job's normal output and errors get written; `%j` is auto-filled with the job ID, so each run gets its own log. **Leave these as-is.**
-- `--time`, `--mem`, `--cpus-per-task` — the resources you're **requesting**. Fill these in from the **time**, **RAM**, and **CPU cores** you recorded in your Profiling README (formatted like `00:10:00`, `4G`, and `2`).
+- `--time`, `--mem`, `--cpus-per-task` — the resources you're **requesting**. Fill these in from the **time**, **RAM**, and **CPU cores** you recorded in your Profiling README.
 
 {: .note }
 > **About the `--output` and `--error` files:**
@@ -121,17 +142,40 @@ python scripts/extract_form_3_batch.py
 
 This runs the **10-filing batch you profiled** — `scripts/extract_form_3_batch.py` loops over `NUM_FILINGS` (10) SEC Form 3 filings from `data/aws_links.csv` — so the `--time`, `--mem`, and `--cpus-per-task` you filled in above come straight from your Profiling README.
 
-Save the file.
+Save the file. Here's the whole script, with its four parts labeled:
+
+<svg viewBox="0 0 700 272" role="img" aria-labelledby="anatomy-title" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;max-width:700px;height:auto;margin:0.5rem auto" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
+  <title id="anatomy-title">The anatomy of a Slurm batch script: the shebang, the #SBATCH resource directives, the environment setup, and the run line(s) that do the work.</title>
+  <rect x="16" y="10" width="440" height="252" rx="10" fill="#fbfcfe" stroke="#d5d8e2" stroke-width="1.5"/>
+  <rect x="18" y="22" width="436" height="22" fill="#f3f4f7"/>
+  <rect x="18" y="58" width="436" height="124" fill="#fdf0e3"/>
+  <rect x="18" y="194" width="436" height="44" fill="#eaf1fb"/>
+  <rect x="18" y="240" width="436" height="22" fill="#e9f5ee"/>
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#3a4452">
+    <text x="32" y="38">#!/bin/bash</text>
+    <text x="32" y="76">#SBATCH --job-name=&lt;job-name&gt;</text>
+    <text x="32" y="96">#SBATCH --output=logs/extract_%j.out</text>
+    <text x="32" y="116">#SBATCH --error=logs/extract_%j.err</text>
+    <text x="32" y="136">#SBATCH --time=&lt;HH:MM:SS&gt;</text>
+    <text x="32" y="156">#SBATCH --mem=&lt;RAM&gt;</text>
+    <text x="32" y="176">#SBATCH --cpus-per-task=&lt;cores&gt;</text>
+    <text x="32" y="212">cd $HOME/gsb-research-computing-ai-skills</text>
+    <text x="32" y="232">source .venv/bin/activate</text>
+    <text x="32" y="256">python scripts/extract_form_3_batch.py</text>
+  </g>
+  <circle cx="472" cy="33" r="6" fill="#8a94a6"/><text x="486" y="38" font-size="13.5" font-weight="700" fill="#2c3e50">shebang — the interpreter</text>
+  <circle cx="472" cy="120" r="6" fill="#e67e22"/><text x="486" y="116" font-size="13.5" font-weight="700" fill="#2c3e50">#SBATCH — requests to the</text><text x="486" y="135" font-size="12.5" fill="#6a7280">scheduler (not commands)</text>
+  <circle cx="472" cy="216" r="6" fill="#3a76c4"/><text x="486" y="212" font-size="13.5" font-weight="700" fill="#2c3e50">environment setup —</text><text x="486" y="231" font-size="12.5" fill="#6a7280">cd + activate venv, on the node</text>
+  <circle cx="472" cy="256" r="6" fill="#2e8b57"/><text x="486" y="260" font-size="13.5" font-weight="700" fill="#2c3e50">run line(s) — your command(s)</text>
+</svg>
+
+*Every Slurm script has these four parts: the **shebang**, the **`#SBATCH`** directives (requests to the scheduler, not commands that run), the **environment setup** that runs on the compute node, and the **run line(s)** that do the actual work.*
 
 {: .warning }
 > **Slurm starts a fresh shell on the compute node.** Your virtual environment is not active. Your working directory is not set. Every setup step must be in the script — `cd`, `source .venv/bin/activate`, and any `module load` commands you need. If it works interactively on the Yens but fails as a job, a missing setup step is usually why.
 
-When your script is complete — put a **🟢 green sticky** on your laptop.
-
 {: .note }
 > 🟢 **Green sticky** = I'm done and ready &nbsp;&nbsp; 🔴 **Red sticky** = I need help
->
-> Put a sticky note on your laptop lid so instructors can see where you are.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-slurm-job" data-key="main"> I wrote extract_form_3_batch.slurm and understand every line</label>
 
@@ -171,8 +215,6 @@ squeue --me
 
 {: .note }
 > 🟢 **Green sticky** = I'm done and ready &nbsp;&nbsp; 🔴 **Red sticky** = I need help
->
-> Put a sticky note on your laptop lid so instructors can see where you are.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-slurm-job" data-key="submit"> I submitted with `sbatch`, confirmed it in the queue, and cancelled it with `scancel`</label>
 
@@ -187,9 +229,12 @@ squeue --me
 #SBATCH --mail-user=SUNetID@stanford.edu
 ```
 
-A prompt like:
+<details markdown="1">
+<summary>💡 Hint — a prompt to try</summary>
 
 > Add `--mail-type=ALL` and `--mail-user=SUNetID@stanford.edu` to the `#SBATCH` directives in `slurm/extract_form_3_batch.slurm`.
+
+</details>
 
 `ALL` sends an email when the job starts, ends, and fails — including a utilization summary showing how much CPU and RAM it actually used.
 
@@ -201,14 +246,40 @@ sbatch slurm/extract_form_3_batch.slurm
 
 Once your job runs, check your inbox. You should receive two emails: one when the job **starts** and one when it **ends**. The start email tells you when it began — compare that to when you submitted to see how long it **waited in the queue**. The end email includes a **utilization summary** (how much CPU time and memory the job actually used) and the job's **exit status**: `0` means success; any other value means it failed.
 
-Once you've got the emails and your job finished with exit status `0` — put a **🟢 green sticky** on your laptop. If it failed or the emails didn't arrive, put up a **🔴 red sticky** and an instructor will help.
+## Look at the Logs
+
+<svg viewBox="0 0 720 164" role="img" aria-labelledby="rlmap-title" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;max-width:720px;height:auto;margin:1.5rem auto" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
+  <title id="rlmap-title">Day 3 map — you are on the read-logs step.</title>
+  <defs>
+    <marker id="rlmap-gray" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#c2cad4"/></marker>
+  </defs>
+  <text x="70" y="46" text-anchor="middle" font-size="17" fill="#8a94a6">profile</text>
+  <text x="210" y="28" text-anchor="middle" font-size="17" fill="#8a94a6">submit to</text><text x="210" y="48" text-anchor="middle" font-size="17" fill="#8a94a6">Slurm</text>
+  <text x="350" y="46" text-anchor="middle" font-size="17" font-weight="700" fill="#8C1515">read logs</text>
+  <text x="490" y="46" text-anchor="middle" font-size="17" fill="#8a94a6">document</text>
+  <text x="640" y="46" text-anchor="middle" font-size="17" font-weight="600" fill="#8a94a6">scale (Day 4)</text>
+  <line x1="92" y1="80" x2="468" y2="80" stroke="#c2cad4" stroke-width="3"/>
+  <line x1="512" y1="80" x2="622" y2="80" stroke="#c2cad4" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#rlmap-gray)"/>
+  <path d="M350,101 L350,124 Q350,130 344,130 L216,130 Q210,130 210,124 L210,103" fill="none" stroke="#c2cad4" stroke-width="2.5" stroke-dasharray="5 4" marker-end="url(#rlmap-gray)"/>
+  <text x="280" y="150" text-anchor="middle" font-size="15" fill="#8a94a6">debug</text>
+  <circle cx="70" cy="80" r="20" fill="#f3f4f7" stroke="#9aa4b0" stroke-width="3"/><text x="70" y="87" text-anchor="middle" font-size="20" font-weight="700" fill="#8a94a6">1</text>
+  <circle cx="210" cy="80" r="20" fill="#f3f4f7" stroke="#9aa4b0" stroke-width="3"/><text x="210" y="87" text-anchor="middle" font-size="20" font-weight="700" fill="#8a94a6">2</text>
+  <circle cx="350" cy="80" r="20" fill="#fff" stroke="#8C1515" stroke-width="3"/><text x="350" y="87" text-anchor="middle" font-size="20" font-weight="700" fill="#8C1515">3</text>
+  <circle cx="490" cy="80" r="20" fill="#f3f4f7" stroke="#9aa4b0" stroke-width="3"/><text x="490" y="87" text-anchor="middle" font-size="20" font-weight="700" fill="#8a94a6">4</text>
+  <circle cx="640" cy="80" r="20" fill="#f3f4f7" stroke="#9aa4b0" stroke-width="3"/><text x="640" y="87" text-anchor="middle" font-size="20" font-weight="700" fill="#8a94a6">5</text>
+</svg>
+
+The job wrote **log files** to `logs/` — the `.out` file has the script's normal output, the `.err` file has any errors:
+
+```bash
+cat logs/extract_*.out
+cat logs/extract_*.err
+```
 
 {: .note }
 > 🟢 **Green sticky** = I'm done and ready &nbsp;&nbsp; 🔴 **Red sticky** = I need help
->
-> Put a sticky note on your laptop lid so instructors can see where you are.
 
-<label class="quest-check"><input type="checkbox" data-room="d3-slurm-job" data-key="side1"> My job completed without fail and I got emails from Slurm</label>
+<label class="quest-check"><input type="checkbox" data-room="d3-slurm-job" data-key="side1"> My job completed without fail, I got emails from Slurm, and I inspected the logs</label>
 
 ---
 
@@ -222,7 +293,15 @@ Submit it:
 sbatch slurm/mystery.slurm
 ```
 
-While your job is running you can SSH to the node it's on and watch it work. (Nodes are **shared** — other users' jobs run on them too — but your job has its own **dedicated cores and RAM**.) The `NODELIST` column from `squeue --me` shows which node it landed on (e.g. `yen10`). SSH there and watch your processes live:
+While your job is running you can SSH to the node it's on and watch it work. (Nodes are **shared** — other users' jobs run on them too — but your job has its own **dedicated cores and RAM**.)
+
+First, run `squeue --me` to find which node it landed on — the `NODELIST` column (e.g. `yen10`):
+
+```bash
+squeue --me
+```
+
+Then SSH to that node and watch your processes live:
 
 ```bash
 ssh SUNetID@yen10   # use your job's actual node
@@ -236,8 +315,6 @@ You'll see the mystery script's Python workers pinning the cores you requested. 
 
 {: .note }
 > 🟢 **Green sticky** = I'm done and ready &nbsp;&nbsp; 🔴 **Red sticky** = I need help
->
-> Put a sticky note on your laptop lid so instructors can see where you are.
 
 <label class="quest-check"><input type="checkbox" data-room="d3-slurm-job" data-key="side4"> I found my job's node with squeue and watched it run live with htop</label>
 
@@ -276,10 +353,35 @@ Because you're interactive, you see the output as it happens and can re-run inst
 
 **Side quest — Debug `fix_me.slurm`**
 
+<svg viewBox="0 0 720 164" role="img" aria-labelledby="dmap-title" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;max-width:720px;height:auto;margin:1.5rem auto" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
+  <title id="dmap-title">Day 3 map — you are on the debug-and-resubmit step.</title>
+  <defs>
+    <marker id="dmap-gray" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#c2cad4"/></marker>
+    <marker id="dmap-red" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#8C1515"/></marker>
+  </defs>
+  <text x="70" y="46" text-anchor="middle" font-size="17" fill="#8a94a6">profile</text>
+  <text x="210" y="28" text-anchor="middle" font-size="17" fill="#8a94a6">submit to</text><text x="210" y="48" text-anchor="middle" font-size="17" fill="#8a94a6">Slurm</text>
+  <text x="350" y="46" text-anchor="middle" font-size="17" fill="#8a94a6">read logs</text>
+  <text x="490" y="46" text-anchor="middle" font-size="17" fill="#8a94a6">document</text>
+  <text x="640" y="46" text-anchor="middle" font-size="17" font-weight="600" fill="#8a94a6">scale (Day 4)</text>
+  <line x1="92" y1="80" x2="468" y2="80" stroke="#c2cad4" stroke-width="3"/>
+  <line x1="512" y1="80" x2="622" y2="80" stroke="#c2cad4" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#dmap-gray)"/>
+  <path d="M350,101 L350,124 Q350,130 344,130 L216,130 Q210,130 210,124 L210,103" fill="none" stroke="#8C1515" stroke-width="2.5" stroke-dasharray="5 4" marker-end="url(#dmap-red)"/>
+  <text x="280" y="150" text-anchor="middle" font-size="15" font-weight="700" fill="#8C1515">debug</text>
+  <circle cx="70" cy="80" r="20" fill="#f3f4f7" stroke="#9aa4b0" stroke-width="3"/><text x="70" y="87" text-anchor="middle" font-size="20" font-weight="700" fill="#8a94a6">1</text>
+  <circle cx="210" cy="80" r="20" fill="#f3f4f7" stroke="#9aa4b0" stroke-width="3"/><text x="210" y="87" text-anchor="middle" font-size="20" font-weight="700" fill="#8a94a6">2</text>
+  <circle cx="350" cy="80" r="20" fill="#f3f4f7" stroke="#9aa4b0" stroke-width="3"/><text x="350" y="87" text-anchor="middle" font-size="20" font-weight="700" fill="#8a94a6">3</text>
+  <circle cx="490" cy="80" r="20" fill="#f3f4f7" stroke="#9aa4b0" stroke-width="3"/><text x="490" y="87" text-anchor="middle" font-size="20" font-weight="700" fill="#8a94a6">4</text>
+  <circle cx="640" cy="80" r="20" fill="#f3f4f7" stroke="#9aa4b0" stroke-width="3"/><text x="640" y="87" text-anchor="middle" font-size="20" font-weight="700" fill="#8a94a6">5</text>
+</svg>
+
 Your repo ships a few Slurm scripts that are **deliberately broken**. Fix them one at a time, and **work with Claude**: point Claude Code at the job's error log and ask it to explain what went wrong and propose a fix. **Read its explanation, and if the fix makes sense, approve it** and let Claude apply it — you're the reviewer, so don't accept a change you don't understand.
 
+{: .note }
+> 💡 These error logs come back later — a later side quest uses a failed job's `logs/fix_me_*.err`. Even if you don't fix all of them, **submit at least the first one and let it fail** so you have a `logs/fix_me_*.err` to use then.
+
 <details markdown="1">
-<summary>Show steps</summary>
+<summary>📋 Show steps</summary>
 
 Submit the first one:
 
@@ -412,7 +514,7 @@ Step 2's number is computed from step 1's — proof the scratch file passed betw
 The Yens have a dedicated **`dev` partition** for short, interactive debugging jobs — quick test runs while you're getting a script working, **not** production runs. It has tighter time limits but is meant to turn around fast, so you're not stuck in the main queue while iterating. Learn more: [Yen Slurm partitions](https://rcpedia.stanford.edu/_user_guide/slurm/#current-partitions-and-their-limits).
 
 <details markdown="1">
-<summary>Show steps</summary>
+<summary>📋 Show steps</summary>
 
 Fire a quick throwaway job at `dev` with `-p dev` (and `--wrap`, which runs an inline command as a job). It's tiny, so it schedules fast, and it emails you when it finishes:
 

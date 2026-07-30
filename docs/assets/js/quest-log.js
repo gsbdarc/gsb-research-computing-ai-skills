@@ -220,19 +220,9 @@
     copy.className = 'quest-cmd-copy';
     copy.textContent = 'Copy';
 
-    var hint = document.createElement('span');
-    hint.className = 'quest-cmd-hint';
-    // On the setup page itself (Version Control with Git), don't link to the page
-    // you're already on; everywhere else point back to it.
-    var onSetupPage = /\/day1\/repository\/?$/.test(window.location.pathname);
-    hint.innerHTML = onSetupPage
-      ? 'run it from your repo root on the Yens · Step 7 makes it executable'
-      : 'run it from your repo root on the Yens · one-time <code>chmod +x cast</code> (see <a href="/gsb-research-computing-ai-skills/day1/repository/">Version Control with Git</a>)';
-
     reveal.appendChild(wand);
     reveal.appendChild(code);
     reveal.appendChild(copy);
-    reveal.appendChild(hint);
     box.appendChild(reveal);
 
     // Always copy the full, current spell — even if clicked mid-animation.
