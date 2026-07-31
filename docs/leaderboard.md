@@ -60,7 +60,10 @@ tr.lb-leader td { background: #f4f8ff; }
   var MAIN   = 'gsbdarc/gsb-research-computing-ai-skills';
   var REPO   = 'gsb-research-computing-ai-skills';
   var BRANCH = 'main';
-  var TOTAL  = 73; // keep in sync with TOTAL_CHECKS in assets/js/quest-log.js
+  // Derived at build time from docs/_data/quest_keys.json, which is itself
+  // generated from the DAYS registry in assets/js/quest-log.js. Nothing to keep
+  // in sync by hand: add or remove a quest key and this total follows.
+  var TOTAL  = {{ site.data.quest_keys | size }};
 
   // quest_log.json keys that mark each day's optional capstone as complete
   var BOSS_GATE_KEYS = [
