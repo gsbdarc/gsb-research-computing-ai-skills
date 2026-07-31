@@ -85,6 +85,7 @@ Now hop onto the Yens, move into your repo, and launch Claude Code:
 ```bash
 ssh SUNetID@yen.stanford.edu     # if you're not already connected
 cd ~/gsb-research-computing-ai-skills
+ml claude-code
 claude
 ```
 
