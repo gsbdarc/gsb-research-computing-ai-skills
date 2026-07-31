@@ -178,6 +178,145 @@ code.quest-cmd.cast-flash::before {
 }
 .quest-cmd-copy:hover { background: #dde3f2; }
 
+/* ── Party reveal — face-down cards that flip to show one of us ──────────────
+   Each card window is a crop of the single group illustration: the background
+   is drawn 4× the card width, and background-position picks out one character.
+   The percentages are hand-tuned so each figure sits centred in its card, and
+   the vertical 16.3% frames head-to-waist above the nameplates in the art. */
+.party-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin: 1.25rem 0;
+}
+@media (max-width: 640px) { .party-grid { grid-template-columns: repeat(2, 1fr); } }
+
+.party-card { perspective: 900px; }
+
+/* The flipping surface. A button so it is keyboard-operable for free. */
+.party-flip {
+  display: block;
+  width: 100%;
+  aspect-ratio: 288 / 580;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+.party-inner {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+.party-card.revealed .party-inner { transform: rotateY(180deg); }
+.party-flip:hover .party-inner { transform: translateY(-3px); }
+.party-card.revealed .party-flip:hover .party-inner { transform: rotateY(180deg) translateY(-3px); }
+
+.party-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  border: 2px solid #d9b477;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);
+  overflow: hidden;
+}
+
+/* Face-down side: a sealed card with a sigil */
+.party-face-down {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  background:
+    radial-gradient(circle at 50% 38%, rgba(240, 214, 160, 0.30), transparent 62%),
+    linear-gradient(160deg, #3b4a63, #232f43);
+  color: #f0d6a0;
+}
+.party-sigil { font-size: 1.9rem; line-height: 1; }
+.party-tap {
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  padding: 0 0.4rem;
+  text-align: center;
+}
+.party-flip:hover .party-face-down { filter: brightness(1.12); }
+
+/* Face-up side: the cropped portrait */
+.party-face-up {
+  transform: rotateY(180deg);
+  background-image: url("../images/darc-party.png");
+  background-repeat: no-repeat;
+  background-size: 400% auto;
+  background-color: #e8e2d6;
+}
+.party-card:nth-child(1) .party-face-up { background-position: 3.5% 17.5%; }
+.party-card:nth-child(2) .party-face-up { background-position: 37.5% 17.5%; }
+.party-card:nth-child(3) .party-face-up { background-position: 66.4% 17.5%; }
+.party-card:nth-child(4) .party-face-up { background-position: 94.4% 17.5%; }
+
+/* Caption below each card: "???" until the card is turned over */
+.party-caption {
+  margin: 0.55rem 0 0;
+  min-height: 5.4em;
+  text-align: center;
+  font-size: 0.82em;
+  line-height: 1.45;
+}
+.party-caption .party-unknown { color: #9aa0ab; letter-spacing: 0.15em; }
+.party-caption .party-known { display: none; }
+.party-card.revealed .party-caption .party-unknown { display: none; }
+.party-card.revealed .party-caption .party-known {
+  display: block;
+  animation: party-caption-in 0.45s ease 0.35s both;
+}
+@keyframes party-caption-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: none; }
+}
+.party-caption .party-name { display: block; font-weight: 700; color: #2c3e50; }
+.party-caption .party-class {
+  display: block;
+  font-variant: small-caps;
+  letter-spacing: 0.06em;
+  color: #8a5a12;
+}
+.party-caption .party-item { display: block; font-style: italic; color: #6a7280; }
+.party-caption .party-role { display: block; color: #6a7280; }
+
+/* Banner that appears once every card is face-up: first a prompt to tick the
+   quest box, then a confirmation once it is ticked */
+.party-done .party-logged { display: none; }
+.party-reveal.quest-logged .party-done .party-nudge { display: none; }
+.party-reveal.quest-logged .party-done .party-logged { display: inline; }
+.party-done {
+  margin: 0.5rem 0 0;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid #d9b477;
+  border-radius: 8px;
+  background: #fdf6ea;
+  color: #5b4a2f;
+  font-size: 0.9em;
+}
+
+/* Restoring saved progress on load: show the party without spinning the cards */
+.party-reveal.party-instant .party-inner { transition: none; }
+.party-reveal.party-instant .party-known { animation: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .party-inner { transition: none; }
+  .party-caption .party-known { animation: none; }
+  .party-flip:hover .party-inner { transform: none; }
+  .party-card.revealed .party-flip:hover .party-inner { transform: rotateY(180deg); }
+}
+
 /* ── Dungeon entrance — floors left column, skills right column, rows aligned ── */
 .dungeon-layout {
   display: grid;

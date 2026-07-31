@@ -30,6 +30,7 @@
       label: 'Day 1 — The Gatehouse',
       prefix: 'd1',
       rooms: [
+        { id: 'd1-intro',                keys: ['party'] },
         { id: 'd1-command-spire',       keys: ['main'] },
         { id: 'd1-grimoire-vault',       keys: ['main', 'side1'] },
         { id: 'd1-ssh-gate',             keys: ['main', 'side1'] },
