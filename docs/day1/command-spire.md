@@ -116,6 +116,10 @@ Your terminal is open. In this exercise you will use the command line to find wh
 {: .important }
 > **Goal:** Use the command line to navigate your file system and reorganize a directory of files — without touching a mouse.
 
+![A wizard at a workbench conjuring folders and files with a wand — a folder becomes a file, which becomes two files, each duplicated below]({{ "/assets/images/wizard-file-operations.png" | relative_url }})
+
+*Everything you'd normally do by clicking and dragging — making a folder, creating a file, copying it — you're about to do by typing. Same result, no mouse.*
+
 **Investigation**
 
 Find your current working directory and list the files in it.
