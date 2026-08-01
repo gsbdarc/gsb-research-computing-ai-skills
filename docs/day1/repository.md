@@ -155,14 +155,20 @@ Your work in this course is tracked in your version history. Set up your copy of
 
 **Step 1 — Fork the course repo, and build your site**
 
-A **fork** is your own copy of the course repo, living under your GitHub account. Go to the [course repo on GitHub](https://github.com/gsbdarc/gsb-research-computing-ai-skills) and click **Fork** in the top-right corner to create it.
+A **fork** is your own copy of the course repo, living under your GitHub account. GitHub deliberately switches a few things *off* on a new fork, so turning your fork into a working course site takes five clicks in a particular order. Do all of them now:
 
-Now turn your fork into your personal course site:
+1. **Fork the repo.** Go to the [course repo on GitHub](https://github.com/gsbdarc/gsb-research-computing-ai-skills) and click **Fork** in the top-right corner.
+2. **Turn on Issues.** On your fork: **Settings → General → Features → tick *Issues***. A fork starts with its issue tracker switched off, and you'll be logging issues later today — both the `github-for-research` skill and the Day 1 Challenge depend on it.
+3. **Turn on Actions.** Open the **Actions** tab on your fork. It says *"Workflows aren't being run on this forked repository"* — click the green **"I understand my workflows, go ahead and enable them."** This is the step everyone misses, and nothing builds until you do it.
+4. **Turn on Pages.** **Settings → Pages → Source → GitHub Actions → Save.** (This tells GitHub *how* to publish; it does not lift the block in step 3, which is why both are needed.)
+5. **Build the site once by hand.** **Actions → Deploy Jekyll site to Pages → Run workflow.** Enabling Actions isn't retroactive, so the very first build needs a nudge. From here on, every change that lands on your `main` rebuilds the site automatically.
 
-- **Enable GitHub Pages:** on your fork, go to **Settings → Pages → Source → GitHub Actions → Save**.
-- **Open your site:** `https://YOUR-USERNAME.github.io/gsb-research-computing-ai-skills/`
+Then open your site: `https://YOUR-USERNAME.github.io/gsb-research-computing-ai-skills/`
 
-This is now *your* course site, where your progress and leaderboard position are tracked from here on. (It may take a minute to appear the first time.)
+This is now *your* course site, where your progress and leaderboard position are tracked from here on. (The first build takes a minute or two — watch it finish on the **Actions** tab.)
+
+{: .note }
+> **Leave the other workflow switched off.** Your fork also contains **Update leaderboard roster**. That one is for the *class* repo only — it would keep overwriting your copy of the class roster every ten minutes and collide with your own work. You don't need it: the leaderboard reads your progress directly from your fork, so `./cast` (Step 7) is all it takes to appear on it.
 
 **Step 2 — Clone to the Yens**
 
@@ -233,11 +239,14 @@ git commit -m "Add my first commit from Day 1"
 
 **Step 6 — Push to your fork**
 
-**Pushing** sends your saved snapshots up to your fork on GitHub — where your site updates and, later, your submitted work can be checked.
+**Pushing** sends your saved snapshots up to your fork on GitHub — where they're backed up and, later, where your submitted work can be checked.
 
 ```bash
 git push -u origin experiment
 ```
+
+{: .note }
+> This pushes your **branch**, which is not the same as updating your site. The site rebuilds only when your fork's `main` changes — which happens when you cast a spell (Step 7) or merge a pull request. An experiment on a branch leaves the published site alone, which is exactly the point of branching.
 
 {: .important }
 > Every day's challenge is submitted the same way — a `git push` to your fork. Come back to these steps whenever you need to submit work.
