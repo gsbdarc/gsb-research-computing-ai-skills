@@ -72,7 +72,7 @@ Two things to know about `/tmp`: it's **private to that node** (a file at `/tmp`
 **Check your quota:**
 ```bash
 gsbquota                             # shows home and scratch usage for your account
-gsbquota /yen/projects/faculty/your_project  # append a path to check a project folder's usage
+gsbquota /yen/projects/faculty/your_project  # append a path to check usage for a project folder
 ```
 
 **Browse storage in a visual file manager:**

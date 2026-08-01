@@ -59,7 +59,7 @@ What elements do you see? What patterns are there? What would make a logical org
 ls grimoire/*_fire_*        # every file with _fire_ in its name
 ls grimoire/*_5_*           # every tier-5 file
 ls grimoire/*_healing_*     # every healing file
-ls grimoire/*.spell         # every .spell file (all of them)
+ls grimoire/*.spell         # every .spell file — all of them
 ```
 
 `*` can go anywhere in the pattern, and you can use more than one — `*_fire_*_healing_*` matches fire healing files. Try a few combinations.
@@ -70,10 +70,10 @@ ls grimoire/*.spell         # every .spell file (all of them)
 - `head -N` shows only the first N lines
 
 ```bash
-ls grimoire/ | wc -l              # how many files in total?
+ls grimoire/ | wc -l              # how many files in total
 ls grimoire/ | head -20           # just the first 20 names
-ls grimoire/*_fire_* | wc -l      # how many fire files?
-ls grimoire/*_5_* | wc -l         # how many tier-5 files?
+ls grimoire/*_fire_* | wc -l      # how many fire files
+ls grimoire/*_5_* | wc -l         # how many tier-5 files
 ```
 
 Read a pipeline left to right: *list the fire files, then count how many lines that produces.* You'll reach for this pattern — `ls` a subset, pipe it to a counter or filter — constantly in real work.
@@ -149,8 +149,9 @@ ls ice/ | wc -l       # count ice files
 ls lightning/ | wc -l
 ls earth/ | wc -l
 ls wind/ | wc -l
-# all 5 counts should sum to 300
 ```
+
+All five counts should sum to 300.
 
 You can also count everything at once:
 
@@ -179,7 +180,7 @@ The `cat` command displays the contents of a file:
 
 ```bash
 cat tier3_spells.txt               # view the file you just created
-wc -l tier3_spells.txt             # how many tier-3 files are there?
+wc -l tier3_spells.txt             # how many tier-3 files there are
 ```
 
 {: .note }

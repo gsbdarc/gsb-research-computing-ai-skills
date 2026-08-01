@@ -73,7 +73,7 @@ Neither side of an `scp` command has to be your laptop — you can copy directly
 The reason this works is that the Yen nodes can reach *each other* on the network, not just your laptop reaching them. You can see this directly: from your laptop, SSH into one node, then SSH again from that node to another.
 
 ```bash
-ssh SUNetID@yen.stanford.edu    # from your laptop → land on a Yen (say yen1)
+ssh SUNetID@yen.stanford.edu    # from your laptop → land on a Yen, say yen1
 hostname                        # confirms which node, e.g. yen1
 ssh yen2                        # hop from yen1 to yen2 — no full address needed on-cluster
 hostname                        # now shows yen2

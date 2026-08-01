@@ -51,7 +51,7 @@ Do this on your **laptop** (a local Terminal / Git Bash tab), *not* on the Yens 
 run it on the Yens and you'd capture the *cluster's* address instead of yours.
 
 ```bash
-curl -s https://api.ipify.org > ~/Desktop/provenance.txt   # your laptop's public IP
+curl -s https://api.ipify.org > ~/Desktop/provenance.txt   # the public IP of your laptop
 cat ~/Desktop/provenance.txt                               # confirm you got an address
 ```
 
@@ -83,7 +83,7 @@ remote.
 Now hop onto the Yens, move into your repo, and launch Claude Code:
 
 ```bash
-ssh SUNetID@yen.stanford.edu     # if you're not already connected
+ssh SUNetID@yen.stanford.edu     # if not already connected
 cd ~/gsb-research-computing-ai-skills
 ml claude-code
 claude

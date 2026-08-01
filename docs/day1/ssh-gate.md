@@ -122,7 +122,7 @@ Replace `SUNetID` with your Stanford username. When prompted for your password, 
 **Identify your node:**
 ```bash
 hostname      # e.g. yen1, yen2, yen3, yen4, or yen5
-whoami        # confirm you're logged in as yourself
+whoami        # confirm you are logged in as yourself
 ```
 
 {: .note }

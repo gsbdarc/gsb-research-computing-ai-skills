@@ -140,7 +140,7 @@ ls           # list files and directories here
 Now look for hidden files — files whose names start with a dot are invisible to a plain `ls`:
 
 ```bash
-ls -lah      # -l long format · -a all files (including hidden) · -h human-readable sizes
+ls -lah      # -l long format · -a all files, including hidden · -h human-readable sizes
 ```
 
 A **flag** modifies the behavior of a command. `-lah` is three flags combined into one: it tells `ls` to show everything, in detail, with file sizes you can actually read. You can look up any command's flags by searching online — for example, "ls command flags".

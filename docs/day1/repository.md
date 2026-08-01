@@ -196,7 +196,7 @@ Pushing to your fork has to prove it's really you. You'll create a **Personal Ac
 
 ```bash
 ml gh-cli           # make gh available on the Yens
-gh auth login       # answer: GitHub.com → HTTPS → Authenticate Git? Yes → Paste an authentication token
+gh auth login       # answer: GitHub.com → HTTPS → Authenticate Git → Yes → Paste an authentication token
 gh auth setup-git   # let gh remember the token so git never asks you again
 ```
 
