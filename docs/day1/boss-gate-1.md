@@ -124,7 +124,10 @@ cover all of these objectives:
   }
   ```
 - **Do the git work the research way.** Log an issue for the task, work on a new
-  branch, commit crediting Claude, and open a pull request.
+  branch, commit crediting Claude, and open a pull request. (Logging the issue
+  needs the **Issues** tab switched on for your fork — Step 1 of
+  [Version Control with Git](../repository/). If Claude reports that it can't
+  create an issue, that's why.)
 
 **Then read the plan Claude gives you.** Before you approve, check it yourself:
 
