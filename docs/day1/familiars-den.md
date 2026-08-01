@@ -165,17 +165,7 @@ Context is erased the moment you `/clear` or close the terminal. **Memory** is w
 
 A **skill** is a reusable set of instructions that Claude Code pulls in whenever it's relevant — so it follows your group's way of doing things without being told each time. If *memory* is a set of facts, a *skill* is a way of working.
 
-Skills can come from Stanford, from your lab, or ones you write yourself. This course ships one — **github-for-research** — which you'll meet just below.
-
-{: .tip }
-> **See it for yourself — Claude lives in hidden files.** Remember the **dotfiles** from Command Line Basics — names starting with a `.`, invisible to a plain `ls`? That's exactly where Claude Code keeps its settings, skills, and memory. Reveal the hidden folder in your home directory and look inside:
->
-> ```bash
-> ls -a ~          # spot the hidden .claude folder among the dotfiles
-> ls ~/.claude     # settings, skills, and memory — all plain text
-> ```
->
-> Open one up (`cat ~/.claude/CLAUDE.md` shows your personal memory, if you've saved any). Nothing here is magic — it's ordinary text in hidden files, editable and versionable like anything else you've touched today.
+Skills can come from Stanford, from your lab, or ones you write yourself. This course ships one — **github-for-research** — which you'll install just below, and you'll see exactly where it lands on disk.
 
 ---
 
@@ -221,6 +211,9 @@ ml claude-code
 
 {: .note }
 > If `ml claude-code` can't find the module, ask an instructor for the exact name — the module list changes over time.
+
+{: .note }
+> **Already have Claude Code on the Yens?** Some people arrive with their own install, or signed in with a personal (non-Stanford) account. Run `which claude` — if it points somewhere other than the module, **grab an instructor** rather than untangling it yourself. We'll get you switched over to the module and your Stanford login, so your usage runs under Stanford's terms.
 
 **2 — Make a working folder and launch it from there.** Create a `cctest` directory in your home directory, move into it, and start Claude Code:
 
@@ -278,6 +271,23 @@ bash scripts/install_github_for_research_skill.sh
 {: .note }
 > This is a one-time setup. Not sure if it's already installed? Just ask Claude Code — `> do you have the github-for-research skill?` — or run the command again; it's safe to re-run. The skill's home is `gsbdarc/claude-skill-github-for-research`.
 
+{: .tip }
+> **See it for yourself — Claude lives in hidden files.** Look at the last thing the installer printed:
+>
+> ```
+> Skill installed at: /home/users/SUNetID/.claude/skills/github-for-research
+> ```
+>
+> That `.claude` is a **dotfile** — the hidden names from Command Line Basics, the ones a plain `ls` won't show you. It's where Claude Code keeps its settings, skills, and memory. Go and look:
+>
+> ```bash
+> ls -a ~
+> ls ~/.claude
+> ls ~/.claude/skills
+> ```
+>
+> The first reveals the hidden `.claude` folder among the other dotfiles; the second shows settings, skills, and memory; the third shows the skill you just installed, sitting there as an ordinary folder. Open one up — `cat ~/.claude/skills/github-for-research/SKILL.md` is the very text Claude will follow. Nothing here is magic: it's plain text in hidden files, readable and editable like anything else you've touched today.
+
 {: .note }
 > 🟢 **Green sticky** = I'm done and ready &nbsp;&nbsp; 🔴 **Red sticky** = I need help
 >
@@ -300,20 +310,43 @@ A repository that follows these practices is one you can actually *understand* �
 
 Notice how much you can piece together *because* the repo is organized and documented — and how long it takes.
 
-**With Claude Code.** Now let Claude do the reading. Clone it, launch Claude Code inside, and ask the same things in plain English:
+**With Claude Code.** Now let Claude do the reading. This is someone else's project, not your coursework, so clone it into the scratch folder you made earlier rather than dropping it into your course repo:
 
 ```bash
+cd ~/cctest
 git clone https://github.com/gsbdarc/sf311.git
 cd sf311
 claude
 ```
 
+Now ask the same things in plain English — and notice the first sentence:
+
 ```
-> What research question does this project answer? How was the raw 311 data cleaned and where is that checked? Walk me through reproducing the main finding, and list anything left to do.
+> Use the github-for-research skill. What research question does this project answer? How was the raw 311 data cleaned and where is that checked? Walk me through reproducing the main finding, and list anything left to do.
 ```
+
+{: .important }
+> **Name the skill.** A skill isn't guaranteed to kick in on its own — Claude decides whether it looks relevant, and often it just answers the question without it. Saying *"Use the github-for-research skill"* removes the guesswork. Get in the habit: when you want the research practices applied, ask for them by name. You'll do it again in the next exercise.
 
 {: .tip }
 > Claude reads the README, the scripts, and the issue history and answers in seconds — but only *because* someone kept the repo the way this skill describes. Good practice is what makes a project answerable, by a person or by Claude.
+
+**Quit Claude Code** with `/exit` when you're done reading.
+
+<label class="quest-check"><input type="checkbox" data-room="d1-familiars-den" data-key="repo"> Investigated a well-kept repo</label>
+
+{: .tip }
+> **Casting from somewhere else.** You're in `~/cctest/sf311` right now, not your fork — so a bare `./cast` won't find your repo. Two ways round it: go back with `cd ~/gsb-research-computing-ai-skills` and run `./cast <spell>` as usual, or cast from wherever you are using the full path:
+>
+> ```bash
+> ~/gsb-research-computing-ai-skills/cast <spell>
+> ```
+>
+> `cast` works out your repo from its own location, so the full path works from any folder. That even lets you cast **without leaving Claude Code** — type `!` to drop into shell mode and run it right there:
+>
+> ```
+> ! ~/gsb-research-computing-ai-skills/cast <spell>
+> ```
 
 </details>
 
@@ -329,25 +362,45 @@ Optional — the Day 1 Challenge only needs the exercise from Version Control wi
 <details markdown="1">
 <summary>Make a real change: dark mode</summary>
 
-Now let Claude Code do real work on your own site. Launch `claude` inside `gsb-research-computing-ai-skills`, then press `Shift+Tab` until you're in **auto mode** — so Claude can run the whole task end to end without stopping to ask at every edit and git step. Then give it a concrete, checkable task — switch the site to dark mode and drive the whole git loop for you:
+Now let Claude Code do real work on your own site. First go back to your course repo — if you did the sf311 practice above, you're still sitting in someone else's project:
+
+```bash
+cd ~/gsb-research-computing-ai-skills
+claude
+```
+
+Press `Shift+Tab` until you're in **auto mode** — so Claude can run the whole task end to end without stopping to ask at every edit and git step. Then give it a concrete, checkable task — switch the site to dark mode and drive the whole git loop for you:
 
 ```
-> Switch this site's theme to dark mode, commit it on a new branch, and open a pull request.
+> Use the github-for-research skill. Switch this site's theme to dark mode, commit it on a new branch, and open a pull request. You don't have to be thorough, it's a proof of concept.
 ```
+
+Two things in that prompt are doing real work:
+
+- **"Use the github-for-research skill"** — the same habit as the last exercise. Without it Claude will happily commit straight to `main` and skip the branch and PR entirely.
+- **"You don't have to be thorough, it's a proof of concept"** — left to itself, Claude will go hunting for every colour on the site and spend five minutes doing it. The theme really is one line in `docs/_config.yml`, and this tells Claude that flipping it is enough. Scoping a task like this is one of the most useful things you can say to an AI assistant.
 
 Then confirm it worked: on your fork on GitHub, a new **branch** and a **pull request** should have appeared with the theme change.
 
 {: .note }
-> Look at what it did: the work went on a **branch**, opened as a **pull request**, and the commit **credits Claude** — the good habits happened automatically, because of the github-for-research skill.
+> Look at what it did: the work went on a **branch**, opened as a **pull request**, and the commit **credits Claude** — the good habits happened automatically, because you asked for the github-for-research skill.
 
-**See your change.** When Claude opens the PR it prints a link — follow it and open the **Files changed** tab. That alone confirms Claude made the edit correctly, and reviewing the diff *is* the review. To watch it render *live*, merge the PR into your fork's `main`; your GitHub Pages site rebuilds in a minute or two and dark mode appears at your site URL:
+**See your change.** When Claude opens the PR it prints a link — follow it and open the **Files changed** tab. That alone confirms Claude made the edit correctly, and reviewing the diff *is* the review.
+
+To watch it render *live*, the change has to reach your fork's `main` — GitHub Pages publishes one site per repo, so there's no separate preview for a branch. Merge the PR whichever way you like:
+
+- **In the browser** — open the PR and click **Merge pull request**, then **Confirm merge**.
+- **In the terminal** — from your repo, `gh pr merge --merge` (you already signed `gh` in on the Yens).
+- **Ask Claude** — `> merge that pull request`.
+
+Any of the three lands the change on `main`, which triggers the **Deploy Jekyll site to Pages** workflow you enabled in [Version Control with Git](../repository/). Watch it run on your fork's **Actions** tab; a minute or two later, dark mode appears at your site URL:
 
 ```
 https://YOUR-USERNAME.github.io/gsb-research-computing-ai-skills/
 ```
 
 {: .note }
-> GitHub Pages publishes one site per repo, so there's no separate preview for a branch — merging into `main` is how you see it. On your personal fork, turning the whole site dark is harmless.
+> On your personal fork, turning the whole site dark is harmless — and if you decide you hate it, the fix is one more sentence to Claude.
 
 </details>
 
