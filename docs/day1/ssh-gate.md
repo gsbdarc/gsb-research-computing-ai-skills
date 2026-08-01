@@ -10,7 +10,7 @@ permalink: /day1/ssh-gate/
 
 <div data-room-id="d1-ssh-gate"></div>
 
-SSH lets you connect from your laptop to a remote computer and run commands there as if you were sitting at it. In this room you will learn what a remote server is, why researchers use one, and how to log in to the Yens cluster.
+SSH lets you connect from your laptop to a remote computer and run commands there as if you were sitting at it. In this section you will learn what a remote server is, why researchers use one, and how to log in to the Yens cluster.
 
 ---
 

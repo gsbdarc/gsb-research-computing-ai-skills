@@ -10,7 +10,7 @@ permalink: /day1/cartographers-room/
 
 <div data-room-id="d1-cartographers-room"></div>
 
-This room covers how storage is organized on the Yens: where your files live, how much space you have, and what software is available. Knowing this early helps you avoid running out of quota mid-job or being unable to find the software you need.
+This section covers how storage is organized on the Yens: where your files live, how much space you have, and what software is available. Knowing this early helps you avoid running out of quota mid-job or being unable to find the software you need.
 
 ---
 
@@ -83,12 +83,19 @@ gsbbrowser                # opens an interactive file size browser in the termin
 
 **See what software modules are available:**
 ```bash
-module avail              # lists all available software modules
-module avail python       # filter by name
-module load python/3.11   # load a specific version (adjust to what's available)
-python --version          # confirm it loaded
-module list               # see what's currently loaded
-module unload python/3.11 # unload it
+module avail
+module avail python
+module load python/3.11
+python3 --version
+module list
+module unload python/3.11
 ```
+
+- `module avail` — list all available software modules
+- `module avail python` — filter that list by name
+- `module load python/3.11` — load a specific version (adjust to what's available)
+- `python3 --version` — confirm it loaded. Note it's `python3`, not `python` — on the Yens the plain `python` command does not exist
+- `module list` — see what's currently loaded
+- `module unload python/3.11` — unload it
 
 <label class="quest-check"><input type="checkbox" data-room="d1-cartographers-room" data-key="main"> Exercise complete</label>
