@@ -10,7 +10,7 @@ permalink: /day1/grimoire-vault/
 
 <div data-room-id="d1-grimoire-vault"></div>
 
-This room teaches you how to organize hundreds of files at once using the shell — no loops or Python required. You start with 300 disorganized files, each named in a cryptic format like `fireball_fire_3_offensive_meteor.spell`, and impose a clean structure on them.
+This section teaches you how to organize hundreds of files at once using the shell — no loops or Python required. You start with 300 disorganized files, each named in a cryptic format like `fireball_fire_3_offensive_meteor.spell`, and impose a clean structure on them.
 
 ---
 
@@ -30,10 +30,14 @@ Three hundred files. No order. No organization. A real research dataset often lo
 Download the dataset straight to your Desktop and unzip it (Git Bash on Windows, Terminal on macOS):
 
 ```bash
-cd ~/Desktop                              # go to Desktop
+cd ~/Desktop
 curl -L https://raw.githubusercontent.com/gsbdarc/gsb-research-computing-ai-skills/main/docs/assets/data/grimoire.zip -o grimoire.zip
-unzip grimoire.zip                        # unzip the archive
+unzip grimoire.zip
 ```
+
+- `cd ~/Desktop` — go to your Desktop
+- `curl -L … -o grimoire.zip` — download the archive and save it under that name
+- `unzip grimoire.zip` — unpack it into a `grimoire/` folder
 
 ---
 
@@ -119,7 +123,7 @@ Now put the wildcard to work. `*_fire_*` matches every filename with `_fire_` in
 
 ```bash
 cd ~/Desktop/grimoire
-mkdir fire ice lightning earth wind
+mkdir -p fire ice lightning earth wind
 
 mv *_fire_*.spell fire/
 mv *_ice_*.spell ice/
@@ -163,9 +167,11 @@ Create a file listing the names of all tier-3 files in the dataset.
 The `grep` command searches for a pattern in input. Combined with `ls` and a pipe, you can filter filenames by any part of their name:
 
 ```bash
-ls */*.spell | grep "_3_"          # list all tier-3 files
-ls */*.spell | grep "_3_" > tier3_spells.txt   # save the list to a file
+ls */*.spell | grep "_3_"
+ls */*.spell | grep "_3_" > tier3_spells.txt
 ```
+
+The first line lists all tier-3 files; the second saves that list to a file.
 
 The `>` operator redirects output to a file instead of printing it to the screen. If the file already exists it is overwritten; use `>>` to append instead.
 
@@ -230,7 +236,7 @@ Using `cp` (not `mv`) — so files stay in their element folders — organize th
 <summary>Solution (expand after trying)</summary>
 
 ```bash
-mkdir offensive defensive utility healing
+mkdir -p offensive defensive utility healing
 
 cp */*_offensive_*.spell offensive/
 cp */*_defensive_*.spell defensive/
