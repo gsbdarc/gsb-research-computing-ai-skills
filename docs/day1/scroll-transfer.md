@@ -24,16 +24,17 @@ Transfer a directory from your laptop to your Yens scratch space using `scp`.
 From your **laptop** (open a new local terminal tab):
 
 ```bash
-scp -r ~/Desktop/grimoire/ SUNetID@yen.stanford.edu:/scratch/users/SUNetID/grimoire/
+scp -r ~/Desktop/grimoire SUNetID@yen.stanford.edu:/scratch/users/SUNetID/grimoire
 ```
 
 - `-r` means recursive — copies the whole directory tree
 - The destination path is `remote_host:remote_path`
+- **Leave the trailing slashes off.** A `/` on the end of the destination means *"put this inside that folder"* — so `scp` expects the folder to already exist and fails with `path canonicalization failed` if it doesn't. Without the slash, `scp -r` creates the destination folder for you.
 
-**Verify the transfer on the Yens:**
+**Verify the transfer on the Yens.** SSH back onto the Yens (or use the tab that's already open) and list what arrived — you should see your files:
+
 ```bash
-# SSH back onto the Yens (or use the tab that's already open)
-ls /scratch/users/SUNetID/grimoire/fire/    # should show your files
+ls /scratch/users/SUNetID/grimoire/fire/
 ```
 
 {: .note }
@@ -52,7 +53,7 @@ ls /scratch/users/SUNetID/grimoire/fire/    # should show your files
 Run this from your **laptop** (not the Yens):
 
 ```bash
-scp -r SUNetID@yen.stanford.edu:/scratch/users/SUNetID/grimoire/ ~/Desktop/grimoire_from_yens/
+scp -r SUNetID@yen.stanford.edu:/scratch/users/SUNetID/grimoire ~/Desktop/grimoire_from_yens
 ```
 
 Now the remote path is the source and the local path is the destination. Same command, order reversed.
@@ -84,12 +85,16 @@ Because `/tmp` is shared by everyone on a node, give yourself a private subfolde
 
 **SSH into one node** (say `yen1`), create a file in your folder, then copy the whole folder to a *different* node (`yen2`):
 
+On yen1, make a folder that's yours alone and put a file in it:
+
 ```bash
-# on yen1 — make a folder that's yours alone
 mkdir -p /tmp/SUNetID
 echo "hello from $(hostname)" > /tmp/SUNetID/note.txt
+```
 
-# copy the whole folder straight to yen2 (scp -r creates it there)
+Then copy the whole folder straight to yen2 — `/tmp` already exists there, so the trailing slash is right here: it drops your folder *inside* it.
+
+```bash
 scp -r /tmp/SUNetID SUNetID@yen2.stanford.edu:/tmp/
 ```
 
