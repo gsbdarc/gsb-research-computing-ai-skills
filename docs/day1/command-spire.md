@@ -125,25 +125,31 @@ Your terminal is open. In this exercise you will use the command line to find wh
 Find your current working directory and list the files in it.
 
 ```bash
-pwd          # print working directory — where you are right now
-ls           # list files and directories here
+pwd
+ls
 ```
 
+- `pwd` — print working directory: where you are right now
+- `ls` — list files and directories here
+
 {: .note }
-> **About the `#` notes.** Everything from a `#` to the end of a line is an explanation written for
-> you — it is *not* part of the command. Type or paste only the part to the **left** of the `#`.
+> **Reading the code blocks in this course.** Commands come first, in a grey box; what each one does is explained underneath. Copy the box, run it, then read the list to see what happened.
 >
-> On a Mac the Terminal's shell (**zsh**) does not accept these notes typed at the prompt, so
-> pasting a whole line gives you something like `pwd: too many arguments` or
-> `ls: #: No such file or directory`. Nothing is broken — just re-run without the `#` part.
+> Later pages sometimes put a short note *inside* the box instead, after a `#`. Everything from the `#` onward is written for you and is **not** part of the command, so type or paste only what comes before it. On a Mac the Terminal's shell (**zsh**) won't accept those notes at the prompt — paste one and you'll get a complaint like `too many arguments`. Nothing is broken; just re-run without the `#` part.
 
 Now look for hidden files — files whose names start with a dot are invisible to a plain `ls`:
 
 ```bash
-ls -lah      # -l long format · -a all files, including hidden · -h human-readable sizes
+ls -lah
 ```
 
-A **flag** modifies the behavior of a command. `-lah` is three flags combined into one: it tells `ls` to show everything, in detail, with file sizes you can actually read. You can look up any command's flags by searching online — for example, "ls command flags".
+A **flag** modifies the behavior of a command. `-lah` is three flags combined into one:
+
+- `-l` — long format: one file per line, with details
+- `-a` — all files, including hidden ones
+- `-h` — human-readable file sizes
+
+Together they tell `ls` to show everything, in detail, with file sizes you can actually read. You can look up any command's flags by searching online — for example, "ls command flags".
 
 {: .tip }
 > **Tab completion:** Start typing a filename or path and press `Tab` — the shell completes it. Press `Tab` twice to see all matches. Use it constantly; it prevents typos and saves time.
