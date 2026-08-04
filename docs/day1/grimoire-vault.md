@@ -110,11 +110,6 @@ Now imagine doing that for all 300 files across 5 elements. How long would it ta
 
 That is exactly what the terminal solves. This is the first skill you will use in real research — and you will reach for it again every time a new dataset arrives.
 
-{: .note }
-> 🟢 **Green sticky** = I'm done and ready &nbsp;&nbsp; 🔴 **Red sticky** = I need help
->
-> Put a sticky note on your laptop lid so instructors can see where you are.
-
 ---
 
 **Step 5 — Execute: sort with wildcards**
