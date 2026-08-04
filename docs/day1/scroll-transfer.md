@@ -40,6 +40,11 @@ ls /scratch/users/SUNetID/grimoire/fire/
 {: .note }
 > The Yens use a **shared file system** — every Yen server (yen1–yen5) sees the same `/home` and `/scratch`. You copy once and the file is available everywhere on the cluster. No need to copy again if you switch nodes.
 
+{: .note }
+> 🟢 **Green sticky** = I'm done and ready &nbsp;&nbsp; 🔴 **Red sticky** = I need help
+>
+> Put a sticky note on your laptop lid so instructors can see where you are.
+
 <label class="quest-check"><input type="checkbox" data-room="d1-scroll-transfer" data-key="main"> Exercise complete</label>
 
 ---
