@@ -218,4 +218,9 @@ rm -r ~/Desktop/spell_chamber
 - `rm scroll_copy.txt` — remove the copy
 - `rm -r` — remove the folder *and* all its contents (`-r` = recursive)
 
+{: .note }
+> 🟢 **Green sticky** = I'm done and ready &nbsp;&nbsp; 🔴 **Red sticky** = I need help
+>
+> Put a sticky note on your laptop lid so instructors can see where you are.
+
 <label class="quest-check"><input type="checkbox" data-room="d1-command-spire" data-key="main"> Exercise complete</label>
