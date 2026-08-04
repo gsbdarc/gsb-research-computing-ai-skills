@@ -180,6 +180,11 @@ git clone https://github.com/YOUR_GITHUB_USERNAME/gsb-research-computing-ai-skil
 cd gsb-research-computing-ai-skills
 ```
 
+{: .note }
+> 🟢 **Green sticky** = I'm done and ready &nbsp;&nbsp; 🔴 **Red sticky** = I need help
+>
+> Put a sticky note on your laptop lid so instructors can see where you are.
+
 **Step 3 — Authenticate with GitHub (one time)**
 
 Pushing to your fork has to prove it's really you. You'll create a **Personal Access Token (PAT)** — a single-purpose password for the command line — and hand it to the **GitHub CLI** (`gh`) once. After that git just works. There's no browser on the Yens, so a token is the simplest way in.
@@ -264,6 +269,11 @@ From now on, whenever you check off a quest the site reveals a one-line spell be
 ```bash
 ./cast <spell>
 ```
+
+{: .note }
+> 🟢 **Green sticky** = I'm done and ready &nbsp;&nbsp; 🔴 **Red sticky** = I need help
+>
+> Put a sticky note on your laptop lid so instructors can see where you are.
 
 <label class="quest-check"><input type="checkbox" data-room="d1-repository" data-key="main"> Exercise complete</label>
 
