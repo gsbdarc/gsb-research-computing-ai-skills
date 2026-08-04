@@ -98,4 +98,9 @@ module unload python/3.11
 - `module list` — see what's currently loaded
 - `module unload python/3.11` — unload it
 
+{: .note }
+> 🟢 **Green sticky** = I'm done and ready &nbsp;&nbsp; 🔴 **Red sticky** = I need help
+>
+> Put a sticky note on your laptop lid so instructors can see where you are.
+
 <label class="quest-check"><input type="checkbox" data-room="d1-cartographers-room" data-key="main"> Exercise complete</label>
