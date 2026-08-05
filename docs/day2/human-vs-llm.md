@@ -106,7 +106,7 @@ Three patterns dominate at Stanford right now. Two treat AI as an **instrument**
 
 **1. Reading unstructured text at scale.** The most common by far. A researcher has thousands of dense documents (filings, earnings calls, court opinions, contracts, clinical notes, news archives, open-ended survey responses) holding evidence that no structured dataset captures. The model reads them and returns fields you can actually analyze.
 
-The important nuance: this usually isn't a fishing expedition. The researcher already has a hypothesis from their study, and the model is how they **test and validate it** across a corpus too large to hand-code. That reframes the work. You aren't asking a model what to think, you're asking it to apply your coding scheme consistently across 10,000 documents, which is also why validation matters so much: an inconsistent coder silently corrupts your result. Today's Form 3 room is that pattern at a scale of one, and [Boss Gate 2](../boss-gate-2/) builds the checking half, where a second model reviews each call and the genuinely contested ones get routed back to you.
+The important nuance: this usually isn't a fishing expedition. The researcher already has a hypothesis from their study, and the model is how they **test and validate it** across a corpus too large to hand-code. That reframes the work. You aren't asking a model what to think, you're asking it to apply your coding scheme consistently across 10,000 documents, which is also why validation matters so much: an inconsistent coder silently corrupts your result. Today's Form 3 room is that pattern at a scale of one, and the [Day 2 Challenge](../boss-gate-2/) builds the checking half, where a second model reviews each call and the genuinely contested ones get routed back to you.
 
 **2. Building and automating the pipeline.** Researchers use coding agents to write the plumbing around pattern 1: the batch loop, the retry logic, the SLURM script, the plots. The researcher stays the designer and reviewer; the agent handles the parts that are tedious rather than intellectual. You'll do exactly this on Day 3 when you have Claude Code write a SLURM job.
 
@@ -131,7 +131,7 @@ Two very different jobs hide behind "using AI," and they carry different risks.
 | 🟡 **Moderate** | Unpublished research, FERPA records, DUA-covered data | ✅ | ✅ | ❌ unless approved |
 | 🔴 **High (incl. PHI)** | SSNs, account numbers, health records, credentials | ✅† | ❌* | ❌ |
 
-<small>*<strong>The Yens are approved for Low and Moderate risk data, not High.</strong> Running the model locally keeps your data on the machine, but that only helps if the data is allowed on that machine in the first place — and High Risk data isn't allowed on the Yens at all. High Risk work belongs on a system cleared for it, which at Stanford means <a href="https://nero-docs.stanford.edu/" target="_blank" rel="noopener noreferrer">Nero</a> rather than the Yens; sort that out before you copy anything anywhere.</small><br>
+<small>*<strong>The Yens are approved for Low and Moderate risk data, not High.</strong> Running the model locally keeps your data on the machine, but that only helps if the data is allowed on that machine in the first place — and High Risk data isn't allowed on the Yens at all. High Risk work belongs on a system cleared for it, which at Stanford means <a href="https://docs.carina.stanford.edu/" target="_blank" rel="noopener noreferrer">Carina</a> (on-premises, Slurm-based) or <a href="https://nero-docs.stanford.edu/" target="_blank" rel="noopener noreferrer">Nero GCP</a> (secure Google Cloud) rather than the Yens; sort that out before you copy anything anywhere.</small><br>
 <small>†API Gateway only. The **Playground chat window** runs under the same Stanford contract but stops short of PHI, so when PHI is involved reach for the API, not the chat box.</small>
 
 {: .warning }
@@ -165,39 +165,121 @@ The gateway clears every row because it runs under Stanford's contract rather th
 
 ### What it costs
 
-Risk decides what you *may* send. Cost decides what you can afford to send at scale. The two tools you've met today are billed in completely different ways, and confusing them is how budgets go wrong.
+Risk decides what you *may* send. Cost decides what you can afford to send at scale.
 
-#### The API Gateway: metered, per call
+You met the headline in [The Stanford AI Playground](../stanford-ai-playground/): the chat window is free, the API Gateway is metered. Here is where the meter actually runs.
 
-You pay for what you use. Every call is billed on two numbers, priced per model:
+<svg viewBox="0 0 1000 400" role="img" aria-labelledby="cost-flow-title" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;max-width:1000px;height:auto;margin:1.5rem auto" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
+  <title id="cost-flow-title">Where the money goes in a single API call. Everything you send — your prompt, the filing text, the schema — is billed as input tokens. Inside the model, a reasoning model may generate hidden thinking that is billed as output tokens even though it is never shown to you. Everything you read back is billed as output tokens as well. Output is priced higher than input, and both rates depend on which model you chose. The meter runs three times per call, and only one of those three is visible in the reply you read.</title>
+  <defs>
+    <marker id="cost-ah" markerWidth="10" markerHeight="10" refX="7" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#556a95"/></marker>
+  </defs>
 
-- **Tokens in**: your prompt, plus everything you stuffed around it. The filing text, the schema, the chat history.
-- **Tokens out**: everything the model generates back.
+  <!-- what you send -->
+  <rect x="20" y="118" width="205" height="140" rx="14" fill="#fdf6ea" stroke="#e6cfa8" stroke-width="1.5"/>
+  <text x="122" y="158" text-anchor="middle" font-size="17" font-weight="700" fill="#2c3e50">📤  what you send</text>
+  <text x="122" y="190" text-anchor="middle" font-size="14" fill="#9a8a68">your prompt</text>
+  <text x="122" y="214" text-anchor="middle" font-size="14" fill="#9a8a68">the filing text</text>
+  <text x="122" y="238" text-anchor="middle" font-size="14" fill="#9a8a68">the schema</text>
 
-Output is typically the more expensive side, and rates vary widely across the catalog. Current numbers live on the <a href="https://uit.stanford.edu/service/ai-api-gateway/rates" target="_blank" rel="noopener noreferrer">AI API Gateway rates page</a>; check them there rather than trusting a number in a slide deck.
+  <!-- arrow 1 + meter badge -->
+  <line x1="228" y1="188" x2="384" y2="188" stroke="#556a95" stroke-width="2.5" marker-end="url(#cost-ah)"/>
+  <rect x="244" y="136" width="126" height="30" rx="8" fill="#fff6e5" stroke="#dcae6a" stroke-width="1.4"/>
+  <text x="307" y="156" text-anchor="middle" font-size="14" font-weight="700" fill="#b3611a">💰 input</text>
 
-So you have two cost levers before you scale: **how much you send** (the `[:4000]` slice from The Oracle's Chamber is a cost decision as much as a context-limit one) and **which model you pick** (the cheapest and most expensive ids on that list are not close).
+  <!-- the model -->
+  <rect x="388" y="95" width="240" height="205" rx="16" fill="#eef5ff" stroke="#bcd4f2" stroke-width="1.8"/>
+  <text x="508" y="130" text-anchor="middle" font-size="17" font-weight="700" fill="#2c3e50">🧠  the model</text>
+  <rect x="402" y="152" width="212" height="88" rx="10" fill="#ffffff" stroke="#9db8d8" stroke-width="1.4" stroke-dasharray="6 5"/>
+  <text x="508" y="180" text-anchor="middle" font-size="14.5" font-weight="700" fill="#3f4f74">thinking you never see</text>
+  <text x="508" y="203" text-anchor="middle" font-size="12.5" fill="#6a7280">some models reason first</text>
+  <text x="508" y="226" text-anchor="middle" font-size="12.5" font-weight="700" fill="#b3611a">💰 billed as output</text>
+  <text x="508" y="272" text-anchor="middle" font-size="12.5" font-style="italic" fill="#8a94a6">invisible on your screen</text>
+
+  <!-- arrow 2 + meter badge -->
+  <line x1="631" y1="188" x2="787" y2="188" stroke="#556a95" stroke-width="2.5" marker-end="url(#cost-ah)"/>
+  <rect x="638" y="136" width="142" height="30" rx="8" fill="#fff6e5" stroke="#dcae6a" stroke-width="1.4"/>
+  <text x="709" y="156" text-anchor="middle" font-size="14" font-weight="700" fill="#b3611a">💰💰 output</text>
+
+  <!-- what you read -->
+  <rect x="790" y="118" width="190" height="140" rx="14" fill="#fdf6ea" stroke="#e6cfa8" stroke-width="1.5"/>
+  <text x="885" y="158" text-anchor="middle" font-size="17" font-weight="700" fill="#2c3e50">📥  what you read</text>
+  <text x="885" y="192" text-anchor="middle" font-size="14" fill="#9a8a68">the reply</text>
+  <text x="885" y="222" text-anchor="middle" font-size="12.5" font-style="italic" fill="#8a94a6">the only part</text>
+  <text x="885" y="242" text-anchor="middle" font-size="12.5" font-style="italic" fill="#8a94a6">you actually see</text>
+
+  <!-- summary band -->
+  <line x1="60" y1="330" x2="940" y2="330" stroke="#e6cfa8" stroke-width="1"/>
+  <text x="500" y="362" text-anchor="middle" font-size="15.5" font-weight="700" fill="#2c3e50">The meter runs three times. You see one of them.</text>
+  <text x="500" y="386" text-anchor="middle" font-size="13.5" fill="#6a7280">Output is priced higher than input, and both rates depend on the model you picked.</text>
+</svg>
+
+Three levers, then, before you scale a run:
+
+| Lever | The decision you're making |
+|---|---|
+| **How much you send** | The `[:4000]` slice in The Oracle's Chamber was a cost decision as much as a context-limit one |
+| **Which model** | The cheapest and most expensive ids on the gateway are not close |
+| **Whether it reasons** | A three-word answer can cost thousands of output tokens you never see |
+
+Rates change, so look them up rather than trusting a number in a slide deck: **<a href="https://uit.stanford.edu/service/ai-api-gateway/rates" target="_blank" rel="noopener noreferrer">AI API Gateway rates</a>**.
 
 #### AI coding agents: a plan, not a meter
 
-Claude Code, Copilot, and the rest aren't billed per call. They're **licensed**, and everyday use is **free to you** as a Stanford affiliate. If you need more than the standard allowance, your **PI requests an upgraded plan**: a fixed cost, paid up front to the University, that buys a much larger allowance for a set period. It doesn't accrue per keystroke and it doesn't grow because you had a busy week.
-
-That difference changes what you have to watch:
+There's no meter on this side at all. Claude Code, Copilot, and the rest are **licensed**, and everyday use is **free to you** as a Stanford affiliate; need more than the standard allowance and your **PI requests an upgraded plan** — a fixed cost paid up front, not a per-keystroke charge.
 
 | | API Gateway | Coding agent |
 |---|---|---|
 | **Billing** | Per token, per model | Flat plan; standard tier free |
 | **A runaway loop** | Spends real money, immediately | Burns your allowance, then stops |
 | **Scaling up** | Costs more, in proportion | Needs a request through your PI |
-| **What to plan** | Measure on a sample, then multiply | Ask early; approval and budget take time |
+| **What to plan** | Measure on a sample, then multiply | Ask early; approval takes time |
 
-Neither is "the cheap one." The gateway can be nearly free for a small job and expensive for a careless one. An agent plan costs the same whether you use it hard or not at all, so the waste there is an unused seat, not a surprise invoice.
+Neither is "the cheap one." The gateway is nearly free for a small job and expensive for a careless one; an agent plan costs the same whether you lean on it or never log in.
 
-#### The subtle one: you pay for thinking you never see
+#### Same answer, 22× the bill
 
-Back on the metered side. Models such as `o1`, `o3-mini`, `deepseek-r1`, and the `gpt-5` family work a problem through internally before writing their answer. That internal reasoning is generated text. It counts as **output tokens** and you pay for it, but most of these models never show it to you. A three-word reply can cost thousands of output tokens.
+Models such as `o1`, `o3-mini`, `deepseek-r1`, and the `gpt-5` family reason internally before answering. One trick question, three models, all three correct in about forty words — here is what each one charged:
 
-Nothing is broken when that happens; it's how the model works. The trap is estimating cost from the length of the reply. Ask a one-line trick question three ways and the gateway reports 37 output tokens from `gemini-2.5-flash-lite`, 112 from `o3-mini` (64 of them hidden reasoning), and 688 from `deepseek-r1`. Same answer, 18× the output. The visible reply tells you nothing about the bill, so read `usage`. The *Pay for Thinking You Never See* side quest in [The Oracle's Chamber](../oracles-chamber/) walks through it.
+<svg viewBox="0 0 1000 320" role="img" aria-labelledby="tok-title" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;max-width:1000px;height:auto;margin:1.5rem auto" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
+  <title id="tok-title">Output tokens billed for the same one-line answer, by model. gemini-2.5-flash-lite was billed 27 output tokens, all of them the reply you can read. o3-mini was billed 236, of which it reported 192 as hidden reasoning — 81 percent of the charge for text never shown to the user. deepseek-r1 was billed 595 output tokens, 22 times gemini's total; it reported no breakdown, but its visible reply is only about 47 tokens, so roughly 548 of them must have been reasoning. The length of the visible reply is no guide to what a call costs.</title>
+
+  <!-- legend -->
+  <rect x="190" y="20" width="12" height="12" rx="2" fill="#b3611a"/>
+  <text x="209" y="31" font-size="13.5" fill="#6a7280">output you can read</text>
+  <rect x="352" y="20" width="12" height="12" rx="2" fill="#3f4f74"/>
+  <text x="371" y="31" font-size="13.5" fill="#6a7280">reasoning, reported</text>
+  <rect x="512" y="20" width="12" height="12" rx="2" fill="#3f4f74" stroke="#ffffff" stroke-width="1.4" stroke-dasharray="3 2"/>
+  <text x="531" y="31" font-size="13.5" fill="#6a7280">reasoning, inferred</text>
+
+  <!-- baseline -->
+  <line x1="189" y1="52" x2="189" y2="234" stroke="#e6cfa8" stroke-width="1"/>
+
+  <!-- gemini-2.5-flash-lite : 27 output, no reasoning -->
+  <text x="178" y="83" text-anchor="end" font-size="13" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" fill="#2c3e50">gemini-2.5-flash-lite</text>
+  <path d="M190,62 H209 Q213,62 213,66 V90 Q213,94 209,94 H190 Z" fill="#b3611a"/>
+  <text x="223" y="83" font-size="14" font-weight="700" fill="#2c3e50">27</text>
+
+  <!-- o3-mini : 236 = 44 shown + 192 reported reasoning -->
+  <text x="178" y="147" text-anchor="end" font-size="13" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" fill="#2c3e50">o3-mini</text>
+  <rect x="190" y="126" width="38" height="32" fill="#b3611a"/>
+  <path d="M230,126 H391 Q395,126 395,130 V154 Q395,158 391,158 H230 Z" fill="#3f4f74"/>
+  <text x="312" y="147" text-anchor="middle" font-size="12.5" font-weight="700" fill="#ffffff">192 reported</text>
+  <text x="405" y="147" font-size="14" font-weight="700" fill="#2c3e50">236<tspan font-weight="400" fill="#8a94a6"> — 81% of it hidden</tspan></text>
+
+  <!-- deepseek-r1 : 595, no breakdown reported; ~47 visible so ~548 inferred -->
+  <text x="178" y="211" text-anchor="end" font-size="13" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" fill="#2c3e50">deepseek-r1</text>
+  <rect x="190" y="190" width="39" height="32" fill="#b3611a"/>
+  <path d="M231,190 H698 Q702,190 702,194 V218 Q702,222 698,222 H231 Z" fill="#3f4f74" stroke="#ffffff" stroke-width="1.6" stroke-dasharray="6 5"/>
+  <text x="466" y="211" text-anchor="middle" font-size="12.5" font-weight="700" fill="#ffffff">≈548 inferred — it reported nothing</text>
+  <text x="712" y="211" font-size="14" font-weight="700" fill="#2c3e50">595<tspan font-weight="400" fill="#8a94a6"> — 92% of it hidden</tspan></text>
+
+  <!-- caption -->
+  <text x="500" y="272" text-anchor="middle" font-size="15" font-weight="700" fill="#2c3e50">Same question. Same answer. 22× the bill.</text>
+  <text x="500" y="296" text-anchor="middle" font-size="12.5" fill="#8a94a6">deepseek-r1 reported no breakdown — but its visible reply is ~47 tokens, so the other ~548 went somewhere.</text>
+</svg>
+
+Nothing is broken here; that's how these models work. The trap is reading cost off the length of the reply, so read `usage` instead. If you want to watch it happen on a live call, the *Pay for Thinking You Never See* side quest in [The Oracle's Chamber](../oracles-chamber/) runs exactly this comparison.
 
 {: .note }
 > **Class discussion:** You budget a 10,000-filing run by timing 10 filings and multiplying. What could make the real bill come in far higher? (Think: a longer filing, a model swap, a retry loop, a reasoning model.) Which of those would you catch before spending the money, and how? Now ask the same question about a semester of Claude Code use, where the failure isn't an invoice but running out of allowance the week before a deadline.
