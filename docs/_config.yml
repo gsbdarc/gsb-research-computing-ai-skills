@@ -23,7 +23,7 @@ exclude:
 
 # Theme (use the gem directly — we're not on the legacy github-pages stack)
 theme: just-the-docs
-color_scheme: light
+color_scheme: dark
 search_enabled: true
 heading_anchors: true
 
