@@ -12,6 +12,8 @@ permalink: /day2/venv-forge/
 
 A virtual environment is a sealed Python of your own: its own interpreter and its own installed packages, isolated so one project's dependencies never collide with another's. You'll forge one with `python3 -m venv`, then **activate** it — which simply prepends its `bin/` to your `$PATH`, the same trick `module load` played in The Path — install the packages this course needs, and register it as a named **kernel** so JupyterHub notebooks can use it. Finally you'll capture the whole environment as a `requirements.txt` recipe: the one file that lets a collaborator, or future you, rebuild your exact setup and reproduce your results on any machine. One project, one environment.
 
+<img src="{{ '/assets/images/day2-venv-forge.png' | relative_url }}" alt="An illustration titled The Venv Forge: a smith in a star-patterned cloak stands at an anvil in a stone workshop, hammer in hand, shaping a glowing blue orb labelled .venv. A banner reads: forge your own isolated Python environment, no cross-contamination, no surprises; a stone by the fire is carved isolation, reproducibility, repeatability. Behind him three cauldrons steam in green, blue, and purple, labelled python 3.10, python 3.11, and python 3.12, under a sign reading: choose your ingredients wisely, each brew is separate, keep them that way. A board headed The $PATH lists five directories the shell searches top to bottom and notes that the first match wins, which is why modules change which python responds. Open books in the foreground give a five-step forging guide — create, activate, install, work, deactivate — a list of common spells (python -m venv .venv to create, source .venv/bin/activate to step in, which python to see which python you'll use, deactivate to step back out), checks for verifying the environment (which python, python --version, pip list), and best practices: one project one environment, never mix, document your setup, reproduce with confidence." style="display:block;width:100%;max-width:900px;height:auto;margin:1.5rem auto">
+
 ---
 
 ## 🗡️ Main Quest
@@ -113,13 +115,48 @@ source ~/gsb-research-computing-ai-skills/.venv/bin/activate
 
 ## Step 3: Install Packages
 
-With the venv **active**, install the packages you'll need for the rest of the course:
+With the venv **active**, install what the rest of the course needs. The repo already ships the list, so read it before you install anything:
 
 ```bash
-pip install python-dotenv ipykernel openai pydantic pandas
+cd ~/gsb-research-computing-ai-skills
+cat requirements.txt
 ```
 
-These packages are installed only inside this venv, not for anyone else on the cluster. You'll use `openai` and `pydantic` today in The Oracle's Chamber, `pandas` at Boss Gate 2 and again on Day 3, and `ipykernel` in the next step to connect this venv to JupyterHub.
+Eight packages, one per line. Install them all in one command:
+
+```bash
+pip install -r requirements.txt
+```
+
+`-r` means "read the packages from this file." That flag is the entire reason a project ships a `requirements.txt`: the list lives **in the repo**, not in someone's memory or a Slack message.
+
+<details markdown="1">
+<summary>The same thing, the long way — click to reveal</summary>
+
+Nothing magic is happening. `-r` only saves you from typing the names out, which you could do instead:
+
+```bash
+pip install openai python-dotenv pydantic pandas requests ipykernel jupyter matplotlib
+```
+
+Same packages, same environment at the end of it. The difference isn't the install, it's that the first version is **written down**. Install by hand today and next month you're guessing which packages you used; a collaborator has no way to find out at all. You'll write a `requirements.txt` of your own in Step 5, and rebuild a stranger's project from theirs in Step 6.
+
+</details>
+
+Here's what each one is for, and where you'll meet it:
+
+| Package | What it's for | Where you'll use it |
+|---|---|---|
+| `openai` | Calling the Stanford AI API Gateway | The Oracle's Chamber, today |
+| `python-dotenv` | Loading your API key from `.env` | The Key Vault, today |
+| `pydantic` | Validating the model's output against a schema | The Oracle's Chamber, today |
+| `pandas` | Tabular data (`numpy` rides along with it) | the Day 2 Challenge, then Day 3 |
+| `requests` | Downloading filings over HTTP | Day 3's batch extraction |
+| `ipykernel` | Registering this venv as a JupyterHub kernel | Step 4, next |
+| `jupyter` | The notebook machinery itself | Throughout |
+| `matplotlib` | Plots | Day 3's cluster usage data |
+
+These land **only inside this venv** — not for anyone else on the cluster, and not for your own other projects.
 
 Verify by testing in the venv terminal:
 
@@ -184,32 +221,49 @@ If this runs without error, your venv is correctly connected.
 
 You may need to share an environment with a collaborator or recreate it on another machine. Do not copy the venv folder itself: virtual environments contain machine-specific paths and can break when moved.
 
-Instead, save a `requirements.txt` file. This is the recipe for your environment: a list of the packages and versions needed to run your code.
+Instead you share the **recipe**: a text file listing the packages needed to run your code. In Step 3 you installed from one you didn't write — **we** wrote it, and it came with the repo when you cloned it. That's the normal case, and it's the point: you inherited a working environment from a file. Now go the other direction and produce a recipe from the environment you just built.
 
-With your virtual environment **activated**, create the recipe:
+With your virtual environment **activated**, ask pip what's actually in it:
 
 ```bash
-python3 -m pip freeze > requirements.txt
+python3 -m pip freeze > requirements.lock.txt
+cat requirements.lock.txt
 ```
 
-Commit `requirements.txt` to your repository, but keep `.venv/` out of git (it's already in `.gitignore`).
+That's a lot more than the eight lines you installed from. `pip freeze` reports **every** package in the environment at its **exact** version, including the dozens nobody asked for — the dependencies of your dependencies. `pandas` alone dragged in `numpy`, `pytz`, and `python-dateutil`.
 
-To recreate the environment elsewhere:
+So you now have two files describing this same environment, written by different authors for different jobs:
+
+| File | Where it came from | What it holds | What it's for |
+|---|---|---|---|
+| `requirements.txt` | **a human**, by hand — here, us, when we built this repo | only the packages the project deliberately asked for | saying what the project *needs* |
+| `requirements.lock.txt` | **`pip freeze`**, just now | every package in the venv, pinned to an exact version | reproducing one *specific* environment, exactly |
+
+{: .warning }
+> ⚠️ **Freeze to `requirements.lock.txt`, not `requirements.txt`.** You're standing in the repo root, so `pip freeze > requirements.txt` would **overwrite** the curated list the repo gave you in Step 3 — replacing eight readable lines with forty machine-generated ones, in a file that's tracked by git. Different filename, no collision, both files kept.
+
+On your own project you'd be the one writing the curated file, and it's worth seeing how short it stays: you add a line when you deliberately reach for a new package, and you leave the transitive dependencies to pip. Which file to commit depends on what you're promising a reader. Commit `requirements.txt` always — it's the human-readable statement of intent, and it's what a collaborator reads first. Commit the lock file too when a result has to be reproducible **exactly** — the numbers in a paper, a run someone might audit — because a package that silently went from 2.1.4 to 2.2.0 is a real way for a result to move.
+
+To recreate the environment elsewhere, from either file:
 
 ```bash
 /usr/bin/python3 -m venv .venv
 source .venv/bin/activate
-python3 -m pip install -r requirements.txt
+python3 -m pip install -r requirements.txt        # the packages the project asked for, at whatever's current
+# ...or, for a bit-for-bit rebuild of this exact environment:
+python3 -m pip install -r requirements.lock.txt   # every package, at the exact versions you had
 ```
 
+Keep `.venv/` out of git either way (it's already in `.gitignore`).
+
 {: .note }
-> `requirements.txt` recreates installed packages. It does not copy data files, API keys, notebooks, or Python itself.
+> Neither file copies data, API keys, notebooks, or Python itself. A recipe lists ingredients; it isn't the meal.
 
 ---
 
 ## Step 6: Rebuild a Real Project from Its requirements.txt
 
-Everything so far has been an environment you built yourself, one package at a time. The more common situation in research is inheriting **someone else's project** and having to make it run: you don't know which packages it needs, and "it works on my machine" is not a specification. All you should need is the code and its `requirements.txt`.
+Step 3 already had you install from a `requirements.txt` — but that was *this* repo, whose environment we'd sized for you, in a room that told you exactly what to type. The real test is inheriting **someone else's project** and having to make it run: you don't know which packages it needs, you don't know what versions, and "it works on my machine" is not a specification. All you should need is the code and its `requirements.txt`.
 
 Your cloned repo includes one: **Potion Brawl**, a small simulation in which three potions interact rock-paper-scissors style until one of them takes over. It depends on `numpy`, `scipy`, `matplotlib`, `plotly`, `networkx`, and several others.
 
@@ -276,8 +330,6 @@ Your code plus a recorded environment produces the same result for anyone, on an
 > python3 -m ipykernel install --user --name potion-brawl --display-name "Potion Brawl (venv)"
 > ```
 > Then open **`the_alchemists_lab.ipynb`** in JupyterHub, choose the **"Potion Brawl (venv)"** kernel, and *Kernel → Restart & Run All*.
-
-<label class="quest-check"><input type="checkbox" data-room="d2-venv-forge" data-key="side1"> Rebuilt and ran Potion Brawl</label>
 
 <label class="quest-check"><input type="checkbox" data-room="d2-venv-forge" data-key="main"> Main Quest complete</label>
 

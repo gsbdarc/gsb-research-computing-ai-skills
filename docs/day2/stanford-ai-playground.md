@@ -10,7 +10,7 @@ permalink: /day2/stanford-ai-playground/
 
 <div data-room-id="d2-stanford-ai-playground"></div>
 
-*Beyond the forge, a corridor opens into a high-vaulted chamber where a single door is held by many locks at once. Stanford's data-risk tiers turn one ward; your Data Use Agreement turns another; an IRB protocol a third; the model provider's contract a fourth. No single key opens the door: every contingency must align together, or the data stays where it is. The Playground is the one instrument on campus built so all of them can line up at once: governed, audited, contracted on your behalf. Learn which locks apply to your data before you reach for the handle.*
+"Can I analyze this data with AI?" is really three questions at once, and you have to satisfy all three: what risk level is the data, what does your Data Use Agreement allow, and what is the machine you're working on cleared to hold. This room covers those rules, then Stanford's two ways to work under them — the AI Playground, a chat window you log into with your SUNetID, and the AI API Gateway, which reaches the same class of models from your code. Both put every prompt under a University contract instead of a personal account's consumer terms. You'll send your first prompt through the Playground and learn which data you may, and may not, put through it.
 
 ---
 
@@ -54,7 +54,8 @@ Every system you touch is itself approved up to some maximum risk level, and tha
 |----------------------|----------------|
 | **<a href="https://rcpedia.stanford.edu/_policies/security/?h=high+risk#data-risk" target="_blank" rel="noopener noreferrer">The Yens</a>** (GSB research computing) | 🟡 Moderate |
 | **<a href="https://www.sherlock.stanford.edu/docs/concepts/" target="_blank" rel="noopener noreferrer">Sherlock</a>** (Stanford's shared HPC cluster) | 🟡 Moderate |
-| **<a href="https://nero-docs.stanford.edu/" target="_blank" rel="noopener noreferrer">Nero</a>** (secure computing for regulated data) | 🔴 High, **including** PHI |
+| **<a href="https://docs.carina.stanford.edu/" target="_blank" rel="noopener noreferrer">Carina</a>** (secure on-prem cluster for regulated data) | 🔴 High, **including** PHI |
+| **<a href="https://nero-docs.stanford.edu/" target="_blank" rel="noopener noreferrer">Nero GCP</a>** (secure cloud platform for regulated data) | 🔴 High, **including** PHI |
 | **AI Playground** (chat window) | 🔴 High, but **not** PHI |
 | **AI API Gateway** (from your code) | 🔴 High, **including** PHI |
 | A personal laptop or consumer AI account | 🟢 Low |
@@ -62,7 +63,9 @@ Every system you touch is itself approved up to some maximum risk level, and tha
 So "can I analyze this data with AI?" is really three questions: *what risk level is the data*, *what does my DUA allow*, and *what is this machine cleared to hold*. High-risk data on the Yens fails the third test even when the first two are satisfied.
 
 {: .note }
-> 💡 **Know which machine to reach for.** The Yens are your home for this course and for most GSB research; their data-risk policy is spelled out in <a href="https://rcpedia.stanford.edu/_policies/security/?h=high+risk#data-risk" target="_blank" rel="noopener noreferrer">RCpedia</a>. <a href="https://www.sherlock.stanford.edu/docs/concepts/" target="_blank" rel="noopener noreferrer">**Sherlock**</a> is Stanford's shared HPC cluster, where you go when a job outgrows the Yens. <a href="https://nero-docs.stanford.edu/" target="_blank" rel="noopener noreferrer">**Nero**</a> is the secure platform for regulated data, and it is where High-Risk work belongs, including anything involving PHI. Sort that out *before* you copy a single file, because the moment restricted data lands on a system that isn't cleared for it, the problem already exists.
+> 💡 **Know which machine to reach for.** The Yens are your home for this course and for most GSB research; their data-risk policy is spelled out in <a href="https://rcpedia.stanford.edu/_policies/security/?h=high+risk#data-risk" target="_blank" rel="noopener noreferrer">RCpedia</a>. <a href="https://www.sherlock.stanford.edu/docs/concepts/" target="_blank" rel="noopener noreferrer">**Sherlock**</a> is Stanford's shared HPC cluster, where you go when a job outgrows the Yens — still Moderate, so it is not the answer to a High-Risk problem.
+>
+> High-Risk work, including anything involving PHI, belongs on a platform built for it, and Stanford runs **two**: <a href="https://docs.carina.stanford.edu/" target="_blank" rel="noopener noreferrer">**Carina**</a> is the on-premises option, run by Stanford Research Computing with the School of Medicine, and it is **Slurm-based** — so the job scripts you write on Day 3 transfer almost unchanged. <a href="https://nero-docs.stanford.edu/" target="_blank" rel="noopener noreferrer">**Nero GCP**</a> is the cloud option, the same idea built on Google Cloud. Both need a PI-led team and go through Stanford's Data Risk Assessment, so neither is something you spin up on a Tuesday afternoon. Sort that out *before* you copy a single file, because the moment restricted data lands on a system that isn't cleared for it, the problem already exists.
 
 You satisfy all three (Stanford's classification, your DUA, and the ceiling of the system you're on) so both you and Stanford stay protected.
 
@@ -103,7 +106,7 @@ Since AI is permeating every facet of research, Stanford has worked hard to give
 
 Stanford builds and runs **two** of its own AI services, two different ways in to the same governed idea:
 
-- **The AI Playground:** a **chat window** in your browser, built on the open-source **LibreChat** platform. Point, click, and type; nothing to install. *(This room.)*
+- **The AI Playground:** a **chat window** in your browser. Point, click, and type; nothing to install. *(This room.)*
 - **The AI API Gateway:** **API access** to the same class of models for your *code*, over an OpenAI-compatible endpoint (`aiapi-prod.stanford.edu`). A separate system you call programmatically. You'll wire into it from [The Key Vault](../key-vault/) onward.
 
 {: .note }
@@ -135,7 +138,7 @@ Stanford also brokers access to a growing list of **third-party** services (each
 
 ## 🖊️ The AI Playground: A Chat Window
 
-The AI Playground is a University-hosted **chat interface**, built on the open-source **LibreChat** platform, that gives every Stanford researcher one safe, governed space to work with many cutting-edge models. You log in with your SUNetID credentials and chat much as you would with ChatGPT, but every prompt is covered by Stanford's enterprise agreement with the cloud provider instead of consumer terms, and it is cleared for data up to **High Risk, but *not* PHI** (protected health information).
+The AI Playground is a University-hosted **chat interface** that gives every Stanford researcher one safe, governed space to work with many cutting-edge models. You log in with your SUNetID credentials and chat much as you would with ChatGPT, but every prompt is covered by Stanford's enterprise agreement with the cloud provider instead of consumer terms, and it is cleared for data up to **High Risk, but *not* PHI** (protected health information).
 
 It offers many of the same models you'd reach commercially (Claude Opus 4.8, GPT-5.2, and Gemini 2.5 Flash, among others) with no personal account or credit card. (The exact model ids come from the models endpoint you'll query in [The Oracle's Chamber](../oracles-chamber/).)
 
@@ -228,6 +231,14 @@ That gateway is a server Stanford stands up and maintains itself, placed between
 {: .important }
 > **The chat window and the API have different PHI ceilings.** The Playground **chat window** is cleared for data up to High Risk but **not PHI** (protected health information). The **API Gateway** *is* approved for High Risk **including PHI** (always subject to your DUA). So when PHI is involved, reach for the **API path**, not the chat window.
 
+### The API Gateway Is Metered
+
+Here's the other way the two services differ, and it's the one that surprises people. The chat window is **free to you** — type all day, nothing accrues. The API Gateway is **pay-per-use**: every call is billed on the amount of text you send plus the amount the model generates back, at a rate that depends on which model you picked. That's what the budget cap in the diagram is capping.
+
+At the scale of today — a handful of calls on one filing — this is fractions of a cent, and you're spending against a shared course key rather than your own. It starts to matter the moment a `for` loop is involved. Ten thousand filings is ten thousand billable calls, and the difference between the cheapest and most expensive model on the menu is not small.
+
+So two habits, starting now: know that a loop over documents is a loop over charges, and measure the cost on a few records before you launch the full run. [The Crucible](../human-vs-llm/) takes this apart properly later today — what drives the bill, how to estimate one from a sample, and the trap where a model charges you for reasoning you never see.
+
 ### Requesting Your Own Key
 
 Today you're using the shared course key. If you or your PI need a personal Stanford AI API Gateway key later, you'll submit a request with:
@@ -279,6 +290,7 @@ In the next room (The Key Vault), you'll load the key securely from a `.env` fil
 ## 🧠 Skills Learned
 
 - Stanford AI Playground gives every researcher access to models such as Claude Opus 4.8, GPT-5.2, and Gemini 2.5 Flash; no personal account needed
-- The AI Playground (a LibreChat **chat window**) and the AI API Gateway (**API access** for code) are two *separate* Stanford services: the chat window is cleared to High Risk but **not PHI**, while the API Gateway handles High Risk **including PHI**
+- The AI Playground (a **chat window**) and the AI API Gateway (**API access** for code) are two *separate* Stanford services: the chat window is cleared to High Risk but **not PHI**, while the API Gateway handles High Risk **including PHI**
+- The chat window is free to you; the API Gateway is **metered per call**, billed on text in plus text out, which is why a loop over 10,000 documents is a budgeting decision and not just a coding one
 - The API is OpenAI-compatible: only `base_url` and the key change; all code is the same
 - Prompts sent through either service are logged and subject to audit; classify your data before sending it

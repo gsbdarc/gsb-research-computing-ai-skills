@@ -81,7 +81,7 @@ Every day adds a layer to one research pipeline. The dataset: SEC Form 3 filings
 | 5 | First API call: extract fields from one SEC filing; validate with Pydantic; save to JSON |
 | 6 | Discussion: AI coding agents at Stanford — data privacy, security, best practices |
 | 7 | Update `README.md` with pipeline description; commit and push |
-| Boss Gate 2 *(optional capstone)* | The Genre Tribunal: classify a movie's genre with model A → have model B check it blind (agreement + certainty) → flag `needs_human_review` in your code → report agreement rate → commit `results/genre_verdicts.json` |
+| Day 2 Challenge *(optional capstone)* | The Genre Tribunal: classify a movie's genre with model A → have model B check it blind (agreement + certainty) → flag `needs_human_review` in your code → report agreement rate → commit `results/genre_verdicts.json` |
 
 ### Side quests
 - Prompt engineering: system vs. user messages, temperature, reasoning

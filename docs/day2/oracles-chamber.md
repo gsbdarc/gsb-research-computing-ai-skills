@@ -61,6 +61,25 @@ print(completion.choices[0].message.content)
 
 If you see a response, the API is working.
 
+{: .note }
+> 🟢 **Green sticky** = the model replied, so my key, my `base_url`, and my kernel are all working &nbsp;&nbsp; 🔴 **Red sticky** = I got an error instead of a reply
+>
+> Put a sticky note on your laptop lid so instructors can see where you are.
+
+<details markdown="1">
+<summary>💡 Got an error? Read which one — click to reveal</summary>
+
+This is the first cell all week that talks to the outside world, so it's the first one that can fail for a reason other than your code. The error name tells you which piece to look at:
+
+| What you see | What it means |
+|---|---|
+| `KeyError: 'STANFORD_API_KEY'` | `load_dotenv` didn't find the file. You're in `day2/`, so the path is `"../.env"` — check `pwd` in a terminal and that [The Key Vault](../key-vault/)'s `cp` actually landed. |
+| `ModuleNotFoundError` | Wrong kernel. Check the top-right of the notebook says **GSB AI 2026**, not **Python 3**. |
+| `401` / `AuthenticationError` | The key loaded but the gateway rejected it. Re-copy it from `/scratch/shared/gsb-research-computing-ai-skills/.env` rather than retyping. |
+| `404` / `NotFoundError` | The `base_url` or the model id is off. The URL ends in `/v1`, and the model list is a side quest at the bottom of this room. |
+
+</details>
+
 ---
 
 ### Step 3: Load and Inspect a SEC Filing
@@ -436,18 +455,20 @@ All three get it right, in about the same number of words. Here's what they char
 
 | Model | Prompt tokens | **Completion tokens** | `reasoning_tokens` reported |
 |---|---|---|---|
-| `gemini-2.5-flash-lite` | 21 | **37** | not reported |
-| `o3-mini` | 26 | **112** | **64** |
-| `deepseek-r1` | 25 | **688** | not reported |
+| `gemini-2.5-flash-lite` | 21 | **27** | not reported |
+| `o3-mini` | 26 | **236** | **192** |
+| `deepseek-r1` | 24 | **595** | not reported |
 
-Read that middle column, because it's the one you pay. Same question, same answer, and `deepseek-r1` billed **18× more output** than `gemini-2.5-flash-lite` for two sentences.
+Read that middle column, because it's the one you pay. Same question, same answer, and `deepseek-r1` billed **22× more output** than `gemini-2.5-flash-lite` for two sentences.
 
 The two reasoning models expose that differently, and both cases are worth seeing:
 
-- **`o3-mini` tells you.** Its `completion_tokens_details` reports `reasoning_tokens=64`, so of the 112 output tokens you were billed for, **57% was thinking you never saw**.
-- **`deepseek-r1` doesn't.** It returns `completion_tokens_details=None`, so there's no breakdown at all. The only evidence is the size of the gap: 688 output tokens for a reply you can read in five seconds.
+- **`o3-mini` tells you.** Its `completion_tokens_details` reports `reasoning_tokens=192`, so of the 236 output tokens you were billed for, **81% was thinking you never saw**. Only about 44 tokens were the answer.
+- **`deepseek-r1` doesn't.** It returns `completion_tokens_details=None`, so the gateway gives you no breakdown at all.
 
-That's why the instruction is to print the whole `usage` object instead of reaching for one field. Whether the split is reported is a property of the model and the gateway, not something to assume. `completion_tokens` is always there, and it's always what you're charged.
+**But "not reported" doesn't mean "didn't happen" — and you can do the subtraction yourself.** `deepseek-r1`'s visible reply is about forty words, call it **47 tokens**, against **595** billed. So roughly **548 tokens of reasoning** happened and simply weren't itemized. That arithmetic — *what I was charged, minus what I can actually read* — is your fallback whenever `completion_tokens_details` comes back `None`, and it works on any model.
+
+That's why the instruction is to print the whole `usage` object instead of reaching for one field. Whether the split is *reported* is a property of the model and the gateway; whether the reasoning *was billed* is not up for debate. `completion_tokens` is always there, and it's always what you're charged.
 
 {: .note }
 > 💡 Not every id is guaranteed to be enabled, which is why the loop catches errors instead of crashing. Run the *List the Available Models* quest above to see what your key can actually reach, and swap in any reasoning model you find (`o1`, or a `gpt-5` variant).

@@ -12,6 +12,8 @@ permalink: /day2/the-path/
 
 Every command you type is a name, and the shell must find who answers. The Path ($PATH) is the ranked list of directories it searches, top to bottom, until the first match wins, which is why loading a module can change which python responds. But a bare terminal can draw a plot without ever showing it, so the Path leads to JupyterHub: your window into the cluster, where code runs on the Yens' hardware but appears in your browser. There you'll run Python three ways, line-by-line in the interpreter, cell-by-cell in a notebook, and start-to-finish as a script, the form you submit to the cluster.
 
+<img src="{{ '/assets/images/day2-the-path.png' | relative_url }}" alt="An illustration titled The Path and The Way: a robed figure holding a compass-topped staff stands at the head of a glowing path winding into a dark wood. A signboard reads: every command is a name, the shell searches the Path top to bottom, first match wins; load a module, change the Path, change the python; the Path leads to JupyterHub, your window into the cluster. A stone tablet on the left lists a $PATH — /usr/local/bin, /usr/bin, /bin, /opt/modules/bin, /home/yens/bin — and below it a crystal orb labelled JupyterHub, your window into the cluster. Three medallions along the right name the three ways to run Python: Interpreter, line-by-line exploration; Notebook, cell-by-cell discovery; and Script, start to finish, submit to the cluster. A carved stone at the lower right reads: know the Path, choose your way, send your work to the cluster." style="display:block;width:100%;max-width:900px;height:auto;margin:1.5rem auto">
+
 ---
 
 ## 🗡️ Main Quest: The Path
@@ -51,7 +53,7 @@ pwd                        # where am I?
 echo $PATH | tr ':' '\n'   # what is the Path? (one entry per line)
 ```
 
-`pwd` should show your home directory, `/home/users/<SUNetID>`. If you're somewhere else, run `cd` on its own to return home before continuing.
+`pwd` should show your home directory, `/home/users/SUNetID`. If you're somewhere else, run `cd` on its own to return home before continuing.
 
 ### Step Into the Repo First
 
@@ -59,7 +61,7 @@ echo $PATH | tr ':' '\n'   # what is the Path? (one entry per line)
 
 ```bash
 cd ~/gsb-research-computing-ai-skills
-pwd    # confirm: /home/users/<SUNetID>/gsb-research-computing-ai-skills
+pwd    # confirm: /home/users/SUNetID/gsb-research-computing-ai-skills
 ```
 
 {: .important }
@@ -76,7 +78,7 @@ pwd    # confirm: /home/users/<SUNetID>/gsb-research-computing-ai-skills
 `$PATH` is the shell's **search checklist**. It is a list of directories, roughly:
 
 ```text
-/home/users/<SUNetID>/.local/bin      # your SUNetID goes here
+/home/users/SUNetID/.local/bin      # your SUNetID goes here
 /usr/local/sbin
 /usr/local/bin
 /usr/bin
@@ -124,6 +126,8 @@ which python3               # back to the system python3 again
 
 {: .note }
 > 💡 This load / unload of `$PATH` is the exact same mechanism you'll meet in [The Venv Forge](../venv-forge/): **activating** an environment prepends a directory to the front of your PATH, and **deactivating** removes it.
+
+<label class="quest-check"><input type="checkbox" data-room="d2-arcane-notebook" data-key="path"> I walked the Path — found `python3` with `which`, watched `module load python` jump a new directory to the front, and watched `module unload` put it back</label>
 
 ---
 
@@ -187,6 +191,10 @@ IHDR....IDATx...��KѐP....
 ```
 What is this **incantation?** A terminal can *run* the code that draws an image, but it cannot *show* you the image itself. If this is all the Yens has to offer, why did you take this perilous journey? For that, you need a window into the cluster: **JupyterHub**.
 
+{: .note }
+> 🟢 **Green sticky** = the plotting code ran in the interpreter and `ls` shows `my_plot.png` in my repo folder &nbsp;&nbsp; 🔴 **Red sticky** = I got a `ModuleNotFoundError`, or no `my_plot.png` appeared
+>
+> Put a sticky note on your laptop lid so instructors can see where you are.
 
 ## Step 3: Summon JupyterHub
 
@@ -300,13 +308,16 @@ claude
 
 That `cd` matters for the same reason it did in Step 1: Claude Code works from the folder you start it in. Launch it from your home directory and it can't see a notebook that lives in your repo.
 
-Then describe the plot you want — no matplotlib to memorise, just say it:
+Then describe the plot you want — no matplotlib to memorise, just say it.
 
-```text
-> Make the plot in plotting.ipynb as exciting as you can — bold colours, several
-> lines, a dramatic title, annotations, gridlines, whatever looks great. Then leave
-> the notebook so I can re-run it.
-```
+<details markdown="1">
+<summary>💡 Hint — what to ask Claude</summary>
+
+You don't need a fancy prompt. Say what you want and let it work:
+
+> Make the plot in plotting.ipynb as exciting as you can — bold colours, several lines, a dramatic title, annotations, gridlines, whatever looks great. Then leave the notebook so I can re-run it.
+
+</details>
 
 {: .tip }
 > 🎛️ **Two dials worth setting deliberately** — both from [Day 1](../../day1/familiars-den/), both relevant right here.
